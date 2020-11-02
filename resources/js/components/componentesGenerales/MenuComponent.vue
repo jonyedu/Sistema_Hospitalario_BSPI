@@ -46,19 +46,19 @@
                 <a class="nav-link" href="">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
-                        Menú
+                        Prueba
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <router-link
-                            :to=" prefijo +
-
-                                    '/modulos/compra/mostrar_compra'
+                            :to="
+                                prefijo +
+                                    '/modulos/cirugia/valoracionPreanestecia/mostrar_valoracion_preanestesica'
                             "
                             class="nav-link"
-                            >SubMenú</router-link
+                            >Valoracion Preanestesica</router-link
                         >
                     </li>
                 </ul>
@@ -80,14 +80,14 @@ export default {
         };
     },
     mounted: function() {
-        /* this.cargarModulos(); */
+        this.cargarModulos();
         this.prefijo = prefix;
     },
     methods: {
         cargarModulos() {
             let that = this;
-            let url = this.prefijo +
-                "/parametrizacion/configuracion_menu/cargar_modulo_combo_box";
+            let url =
+                "/modulos/parametrizacion/modulo/cargar_modulo_combo_box";
             axios
                 .get(url)
                 .then(function(response) {
@@ -111,7 +111,7 @@ export default {
         cargarSubModulos(id) {
             let that = this;
             let url =
-                "/parametrizacion/configuracion_menu/cargar_sub_modulo_combo_box/" +
+                "/modulos/parametrizacion/sub_modulo/cargar_sub_modulo_combo_box/" +
                 id;
             axios
                 .get(url)

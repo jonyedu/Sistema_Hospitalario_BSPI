@@ -91,6 +91,32 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'admin_db_sql' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST_ADMIN', 'localhost'),
+            //'port' => env('DB_PORT_ADMIN', '1433'),
+            'database' => env('DB_DATABASE_ADMIN', 'forge'),
+            'username' => env('DB_USERNAME_ADMIN', 'forge'),
+            'password' => env('DB_PASSWORD_ADMIN', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+
+        'control_hospitalario_db_sql' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST_CONTROL_HOSPITALARIO', 'localhost'),
+            //'port' => env('DB_PORT_CONTROL_HOSPITALARIO', '1433'),
+            'database' => env('DB_DATABASE_CONTROL_HOSPITALARIO', 'forge'),
+            'username' => env('DB_USERNAME_CONTROL_HOSPITALARIO', 'forge'),
+            'password' => env('DB_PASSWORD_CONTROL_HOSPITALARIO', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+
     ],
 
     /*

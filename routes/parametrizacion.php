@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-$prefijo = config('global.router_prefix');
 
-Route::get($prefijo . '/{any}', 'AppController@index')->where('any', '.*');
-Route::get($prefijo, 'AppController@index')->where('any', '.*');
+Route::group(['prefix' => 'modulos/parametrizacion', 'middleware' => ['auth:web'], 'verified'], function () {
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('modulo/cargar_modulo_combo_box', 'Modulos\Parametrizacion\Modulo\ModuloApiController@cargarModuloComboBox');
+    Route::get('sub_modulo/cargar_sub_modulo_combo_box/{id}', 'Modulos\Parametrizacion\SubModulo\SubModuloApiController@cargarSubModuloComboBox');
+
 });

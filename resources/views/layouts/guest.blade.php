@@ -26,7 +26,20 @@
 
 <body>
     <div id="app" class="app flex-row align-items-center">
-        @yield('content')
+
+            @auth
+            <!-- <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a> -->
+            @else
+                @yield('content')
+
+                @if (Route::has('register'))
+                    @yield('contentRegister')
+                <!-- <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a> -->
+                @endif
+            @endif
+
+
+
     </div>
 
 </body>
