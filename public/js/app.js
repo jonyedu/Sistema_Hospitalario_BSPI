@@ -1946,6 +1946,364 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      titulo_seleccionado: "Revisión por Sistemas",
+      respuestaFinProceso: 0,
+      respuestaImprimir: 0,
+      respuestaCargarDatos: 0,
+      form: {
+        /* Datos del paciente */
+        frm_idCirugiaProgramada: "2890",
+        frm_paciente: "",
+        frm_cirujano: "",
+        frm_anestesiologo: "",
+        frm_quirofano: "",
+        frm_procedimiento: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
+    let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
+        .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Ingreso"
+    );*/
+  },
+  beforeDestroy: function beforeDestroy() {
+    /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
+    let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
+        .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Salida"
+    ); */
+  },
+  methods: {
+    /* Metodos para Llamar al Modal y la Tabla */
+    mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
+      this.$modal.show("ListaCirugiaProgramadaPaciente");
+    },
+    handleSeleccionarClick: function handleSeleccionarClick(value) {
+      this.form.frm_idCirugiaProgramada = value.SecCirPro;
+      this.form.frm_paciente = value.NombrePaciente;
+      this.form.frm_cirujano = value.Cirujano;
+      this.form.frm_anestesiologo = value.Anestesiologo;
+      this.form.frm_quirofano = value.Quirofano;
+      this.form.frm_procedimiento = value.Procedimiento;
+      this.$modal.hide("ListaCirugiaProgramadaPaciente");
+
+      if (this.$refs.revisionSistema != null) {
+        this.$refs.revisionSistema.cargarRevisionSistema();
+      }
+    },
+
+    /* Fin para llamar al Modal y la Tabla */
+
+    /* Metodos para los form-wizard */
+    onValidateTab: function onValidateTab(validationResult, activeTabIndex) {
+      //Se debera realizar las validaciones respectivas para cada tab
+      console.log("PATRIA");
+      console.log(activeTabIndex);
+      console.log(validationResult);
+    },
+
+    /* validateFirstStep() {
+        return new Promise((resolve, reject) => {
+            let poseeErrores = this.$refs.revisionSistema.validarForm();
+            resolve(poseeErrores);
+        });
+    }, */
+    onComplete: function onComplete() {
+      this.$refs.paraclinico.guardarModificar();
+      /* if(this.respuestaFinProceso){
+          this.form.frm_idCirugiaProgramada = "";
+      } */
+    },
+    onChangeTab: function onChangeTab(prevIndex, nextIndex) {
+      //Se debera realizar las validaciones respectivas para cada tab
+      this.setFormTitle(nextIndex);
+      this.guardarModificar(prevIndex);
+    },
+    setFormTitle: function setFormTitle(index) {
+      switch (index) {
+        case 0:
+          this.titulo_seleccionado = "Revisión por Sistemas";
+          this.$refs.revisionSistema.cargarRevisionSistema();
+          break;
+
+        case 1:
+          this.titulo_seleccionado = "Antecedentes";
+          this.$refs.antecedente.cargarAntecedente();
+          break;
+
+        case 2:
+          this.titulo_seleccionado = "Examen Físico";
+          this.$refs.examenFisico.cargarExamenFisico();
+          break;
+
+        case 3:
+          this.titulo_seleccionado = "Paraclinicos";
+          this.$refs.paraclinico.cargarParaclinico();
+          break;
+
+        default:
+          this.titulo_seleccionado = "";
+      }
+    },
+    guardarModificar: function guardarModificar(index) {
+      switch (index) {
+        case 0:
+          this.$refs.revisionSistema.guardarModificar();
+          break;
+
+        case 1:
+          this.$refs.antecedente.guardarModificar();
+          break;
+
+        case 2:
+          this.$refs.examenFisico.guardarModificar();
+          break;
+
+        case 3:
+          break;
+
+        default: //this.titulo_seleccionado = "";
+
+      }
+    },
+    llamarMetodoImprimir: function llamarMetodoImprimir() {
+      if (this.respuestaFinProceso || this.respuestaImprimir) {
+        window.open("/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" + this.form.frm_idCirugiaProgramada);
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/ListaCirugiaProgramadaPaciente.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/ListaCirugiaProgramadaPaciente.vue?vue&type=script&lang=js& ***!
@@ -6754,6 +7112,482 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    moduloMod: {
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
+      errores: {
+        err_descripcion: "",
+        err_abreviatura: "",
+        err_orden: ""
+      },
+      form: {
+        frm_codigo: "",
+        frm_descripcion: "",
+        frm_abreviatura: "",
+        frm_orden: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    if (this.$props.moduloMod !== null) {
+      var modulo = this.$props.moduloMod;
+      this.form.frm_codigo = modulo.codigo;
+      this.form.frm_descripcion = modulo.descripcion;
+      this.form.frm_abreviatura = modulo.abreviatura;
+      this.form.frm_orden = modulo.orden;
+    }
+    /* let nombreModulo = this.$nombresModulo.datos_generales;
+    let nombreFormulario = this.$nombresFormulario.datos_generales
+        .generalidades.organizacion_bspi.crear_organizacion_bspi
+        .nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Ingreso"
+    ); */
+
+  },
+  beforeDestroy: function beforeDestroy() {
+    /* let nombreModulo = this.$nombresModulo.datos_generales;
+    let nombreFormulario = this.$nombresFormulario.datos_generales
+        .generalidades.organizacion_bspi.crear_organizacion_bspi
+        .nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Salida"
+    ); */
+  },
+  methods: {
+    limpiarForm: function limpiarForm() {
+      this.errores = {
+        err_descripcion: "",
+        err_abreviatura: "",
+        err_orden: ""
+      };
+      this.form = {
+        frm_codigo: "",
+        frm_descripcion: "",
+        frm_abreviatura: "",
+        frm_orden: ""
+      };
+    },
+    guardarActualizarModulo: function guardarActualizarModulo() {
+      var that = this;
+      var url = "";
+      var mensaje = ""; //if()
+
+      if (this.$props.moduloMod !== null) {
+        url = "/modulos/parametrizacion/modulo/modificar_modulo";
+        mensaje = "Datos actualizados correctamente.";
+      } else {
+        url = "/modulos/parametrizacion/modulo/guardar_modulo";
+        mensaje = "Datos guardados correctamente.";
+      }
+
+      var loader = that.$loading.show();
+      axios.post(url, this.form).then(function (response) {
+        //Llamar metodo de parent para que actualice el grid.
+        loader.hide();
+        that.$emit("recargarModulo");
+        that.$emit("cerrarModalCrearModulo");
+        that.$swal({
+          icon: "success",
+          title: "Proceso realizado exitosamente",
+          text: that.mensaje
+        });
+        that.limpiarForm();
+      })["catch"](function (error) {
+        //Errores de validación
+        if (error.response.status === 422) {
+          if (error.response.data.errors.frm_descripcion != null) {
+            that.errores.err_descripcion = error.response.data.errors.frm_descripcion;
+          }
+
+          if (error.response.data.errors.frm_abreviatura != null) {
+            that.errores.err_abreviatura = error.response.data.errors.frm_abreviatura;
+          }
+
+          if (error.response.data.errors.frm_orden != null) {
+            that.errores.err_orden = error.response.data.errors.frm_orden;
+          }
+
+          loader.hide();
+        }
+
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Existen errores",
+          text: error
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      prefijo: "",
+      moduloMod: null,
+      url_data: "",
+      errores: {},
+      form: {},
+      modulos: [],
+      columns: [{
+        label: "Descripción",
+        field: "descripcion",
+        type: "String"
+      }, {
+        label: "Abreviatura",
+        field: "abreviatura",
+        type: "String"
+      }, {
+        label: "Orden",
+        field: "orden",
+        type: "String"
+      }]
+    };
+  },
+  mounted: function mounted() {
+    this.cargarModulo();
+    /* let nombreModulo = this.$nombresModulo.datos_generales;
+    let nombreFormulario = this.$nombresFormulario.datos_generales
+        .generalidades.organizacion_bspi.organizacion_bspi
+        .nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Ingreso"
+    ); */
+
+    this.prefijo = _variables__WEBPACK_IMPORTED_MODULE_0__["prefix"];
+  },
+  beforeDestroy: function beforeDestroy() {
+    /* let nombreModulo = this.$nombresModulo.datos_generales;
+    let nombreFormulario = this.$nombresFormulario.datos_generales
+        .generalidades.organizacion_bspi.organizacion_bspi
+        .nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Salida"
+    ); */
+  },
+  methods: {
+    cargarModulo: function cargarModulo() {
+      var that = this;
+      var url = "/modulos/parametrizacion/modulo/cargar_modulo_table";
+      var loader = that.$loading.show();
+      axios.get(url).then(function (response) {
+        var modulos = [];
+
+        for (var i = 0; i < response.data.modulo.length; i++) {
+          var objeto = {
+            codigo: response.data.modulo[i].codigo,
+            descripcion: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.modulo[i].descripcion),
+            abreviatura: response.data.modulo[i].abreviatura,
+            orden: response.data.modulo[i].orden
+          };
+          modulos.push(objeto);
+        }
+
+        that.modulos = modulos;
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+      });
+    },
+    modificarModulo: function modificarModulo(value) {
+      this.moduloMod = value;
+      this.abrirModalCrearModulo();
+    },
+    anularModuloConfirmacion: function anularModuloConfirmacion(value) {
+      var that = this;
+      this.$swal({
+        title: "¿Desea anular el elemento seleccionado?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar"
+      }).then(function (result) {
+        if (result.value) {
+          that.anularModulo(value.codigo);
+        }
+      });
+    },
+    anularModulo: function anularModulo(id) {
+      var that = this;
+      var url = "/modulos/parametrizacion/modulo/eliminar_modulo/" + id;
+      var loader = that.$loading.show();
+      axios["delete"](url).then(function (response) {
+        loader.hide();
+        that.cargarModulo();
+        that.$swal({
+          icon: "success",
+          title: "Proceso realizado exitosamente",
+          text: "Dato anulado correctamente."
+        });
+      })["catch"](function (error) {
+        //Errores
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+      });
+    },
+    cerrarModalCrearModulo: function cerrarModalCrearModulo() {
+      this.$modal.hide("crearModulo");
+      this.cargarModulo();
+    },
+    nuevoModulo: function nuevoModulo() {
+      this.moduloMod = null;
+      this.abrirModalCrearModulo();
+    },
+    abrirModalCrearModulo: function abrirModalCrearModulo() {
+      this.$modal.show("crearModulo");
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/componentesGenerales/MenuComponent.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/componentesGenerales/MenuComponent.vue?vue&type=script&lang=js& ***!
@@ -7382,363 +8216,6 @@ __webpack_require__.r(__webpack_exports__);
       titulo: this.$props.tituloData,
       columns: this.$props.columnsData
     };
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      titulo_seleccionado: "Revisión por Sistemas",
-      respuestaFinProceso: 0,
-      respuestaImprimir: 0,
-      respuestaCargarDatos: 0,
-      form: {
-        /* Datos del paciente */
-        frm_idCirugiaProgramada: "2890",
-        frm_paciente: "",
-        frm_cirujano: "",
-        frm_anestesiologo: "",
-        frm_quirofano: "",
-        frm_procedimiento: ""
-      }
-    };
-  },
-  mounted: function mounted() {
-    /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
-    let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
-        .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
-    this.$funcionesGlobales.registrarLogForm(
-        nombreModulo,
-        nombreFormulario,
-        "Ingreso"
-    );*/
-  },
-  beforeDestroy: function beforeDestroy() {
-    /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
-    let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
-        .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
-    this.$funcionesGlobales.registrarLogForm(
-        nombreModulo,
-        nombreFormulario,
-        "Salida"
-    ); */
-  },
-  methods: {
-    /* Metodos para Llamar al Modal y la Tabla */
-    mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
-      this.$modal.show("ListaCirugiaProgramadaPaciente");
-    },
-    handleSeleccionarClick: function handleSeleccionarClick(value) {
-      this.form.frm_idCirugiaProgramada = value.SecCirPro;
-      this.form.frm_paciente = value.NombrePaciente;
-      this.form.frm_cirujano = value.Cirujano;
-      this.form.frm_anestesiologo = value.Anestesiologo;
-      this.form.frm_quirofano = value.Quirofano;
-      this.form.frm_procedimiento = value.Procedimiento;
-      this.$modal.hide("ListaCirugiaProgramadaPaciente");
-
-      if (this.$refs.revisionSistema != null) {
-        this.$refs.revisionSistema.cargarRevisionSistema();
-      }
-    },
-
-    /* Fin para llamar al Modal y la Tabla */
-
-    /* Metodos para los form-wizard */
-    onValidateTab: function onValidateTab(validationResult, activeTabIndex) {
-      //Se debera realizar las validaciones respectivas para cada tab
-      console.log("PATRIA");
-      console.log(activeTabIndex);
-      console.log(validationResult);
-    },
-
-    /* validateFirstStep() {
-        return new Promise((resolve, reject) => {
-            let poseeErrores = this.$refs.revisionSistema.validarForm();
-            resolve(poseeErrores);
-        });
-    }, */
-    onComplete: function onComplete() {
-      this.$refs.paraclinico.guardarModificar();
-      /* if(this.respuestaFinProceso){
-          this.form.frm_idCirugiaProgramada = "";
-      } */
-    },
-    onChangeTab: function onChangeTab(prevIndex, nextIndex) {
-      //Se debera realizar las validaciones respectivas para cada tab
-      this.setFormTitle(nextIndex);
-      this.guardarModificar(prevIndex);
-    },
-    setFormTitle: function setFormTitle(index) {
-      switch (index) {
-        case 0:
-          this.titulo_seleccionado = "Revisión por Sistemas";
-          this.$refs.revisionSistema.cargarRevisionSistema();
-          break;
-
-        case 1:
-          this.titulo_seleccionado = "Antecedentes";
-          this.$refs.antecedente.cargarAntecedente();
-          break;
-
-        case 2:
-          this.titulo_seleccionado = "Examen Físico";
-          this.$refs.examenFisico.cargarExamenFisico();
-          break;
-
-        case 3:
-          this.titulo_seleccionado = "Paraclinicos";
-          this.$refs.paraclinico.cargarParaclinico();
-          break;
-
-        default:
-          this.titulo_seleccionado = "";
-      }
-    },
-    guardarModificar: function guardarModificar(index) {
-      switch (index) {
-        case 0:
-          this.$refs.revisionSistema.guardarModificar();
-          break;
-
-        case 1:
-          this.$refs.antecedente.guardarModificar();
-          break;
-
-        case 2:
-          this.$refs.examenFisico.guardarModificar();
-          break;
-
-        case 3:
-          break;
-
-        default: //this.titulo_seleccionado = "";
-
-      }
-    },
-    llamarMetodoImprimir: function llamarMetodoImprimir() {
-      if (this.respuestaFinProceso || this.respuestaImprimir) {
-        window.open("/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" + this.form.frm_idCirugiaProgramada);
-      }
-    }
   }
 });
 
@@ -48058,6 +48535,403 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=45ffcaaa&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=45ffcaaa& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "content-wrapper" },
+    [
+      _c("div", { staticClass: "content-header" }, [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "row mb-2" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("h1", { staticClass: "float-left" }, [
+                _vm._v(
+                  "\n                        Valoración Preanestecia -\n                        "
+                ),
+                _c("span", {
+                  domProps: { textContent: _vm._s(_vm.titulo_seleccionado) }
+                })
+              ])
+            ]),
+            _vm._v("\n                 \n                "),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-lg-12 col-md-12 col-sm-12 text-right"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "btn-group",
+                            attrs: { role: "group" }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-outline-primary",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.mostrarModalListaCirugiaPaciente()
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                            Nuevo\n                                        "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm.respuestaImprimir
+                              ? [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-outline-success",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.llamarMetodoImprimir()
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                                Imprimir\n                                            "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              : _vm._e()
+                          ],
+                          2
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._v("\n                 \n                "),
+            _vm._v(" "),
+            _vm.form.frm_idCirugiaProgramada != ""
+              ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+                  _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "text-left col-lg-12 col-md-12 col-sm-12"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "alert alert-success alert-dismissible fade show",
+                            attrs: { role: "alert" }
+                          },
+                          [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-sm-6 text-left" }, [
+                                _c("label", { staticClass: "col-form-label" }, [
+                                  _vm._v("Paciente:")
+                                ]),
+                                _vm._v(" "),
+                                _c("span", {
+                                  staticClass: "text-left",
+                                  domProps: {
+                                    textContent: _vm._s(_vm.form.frm_paciente)
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-6 text-left" }, [
+                                _c("label", { staticClass: "col-form-label" }, [
+                                  _vm._v("Cirujano:")
+                                ]),
+                                _vm._v(" "),
+                                _c("span", {
+                                  staticClass: "text-left",
+                                  domProps: {
+                                    textContent: _vm._s(_vm.form.frm_cirujano)
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-6 text-left" }, [
+                                _c("label", { staticClass: "col-form-label" }, [
+                                  _vm._v("Anestesiologo:")
+                                ]),
+                                _vm._v(" "),
+                                _c("span", {
+                                  staticClass: "text-left",
+                                  domProps: {
+                                    textContent: _vm._s(
+                                      _vm.form.frm_anestesiologo
+                                    )
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-6 text-left" }, [
+                                _c("label", { staticClass: "col-form-label" }, [
+                                  _vm._v("Quirófano:")
+                                ]),
+                                _vm._v(" "),
+                                _c("span", {
+                                  staticClass: "text-left",
+                                  domProps: {
+                                    textContent: _vm._s(_vm.form.frm_quirofano)
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-sm-12 text-left" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-form-label" },
+                                    [_vm._v("Procedimiento:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("span", {
+                                    staticClass: "text-left",
+                                    domProps: {
+                                      textContent: _vm._s(
+                                        _vm.form.frm_procedimiento
+                                      )
+                                    }
+                                  })
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(1)
+                          ]
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                    [
+                      _c(
+                        "form-wizard",
+                        {
+                          attrs: {
+                            title: "",
+                            subtitle: "",
+                            nextButtonText: "Siguiente",
+                            backButtonText: "Anterior",
+                            finishButtonText: "Finalizar",
+                            stepSize: "xs",
+                            shape: "square",
+                            color: "#3498db"
+                          },
+                          on: {
+                            "on-change": _vm.onChangeTab,
+                            "on-validate": _vm.onValidateTab,
+                            "on-complete": _vm.onComplete
+                          }
+                        },
+                        [
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Revisión por Sistemas",
+                                icon: "ti-layout-media-center-alt"
+                              }
+                            },
+                            [
+                              _c("revision-sistema", {
+                                ref: "revisionSistema",
+                                attrs: {
+                                  "id-sec-cir-pro":
+                                    _vm.form.frm_idCirugiaProgramada
+                                },
+                                on: {
+                                  ValidarCargarDatos: function($event) {
+                                    _vm.respuestaCargarDatos = $event
+                                  },
+                                  RespuestaImprimir: function($event) {
+                                    _vm.respuestaImprimir = $event
+                                  }
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Antecedentes",
+                                icon: "ti-folder"
+                              }
+                            },
+                            [
+                              _c("antecedente", {
+                                ref: "antecedente",
+                                attrs: {
+                                  "id-sec-cir-pro":
+                                    _vm.form.frm_idCirugiaProgramada
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Examen Físico",
+                                icon: "ti-signal"
+                              }
+                            },
+                            [
+                              _c("examen-fisico", {
+                                ref: "examenFisico",
+                                attrs: {
+                                  "id-sec-cir-pro":
+                                    _vm.form.frm_idCirugiaProgramada
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Paraclinicos",
+                                icon: "ti-support"
+                              }
+                            },
+                            [
+                              _c("paraclinico", {
+                                ref: "paraclinico",
+                                attrs: {
+                                  "id-sec-cir-pro":
+                                    _vm.form.frm_idCirugiaProgramada
+                                },
+                                on: {
+                                  validarFinProceso: function($event) {
+                                    _vm.respuestaFinProceso = $event
+                                  }
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ])
+              : _vm._e()
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          staticStyle: { "z-index": "1200" },
+          attrs: {
+            width: "65%",
+            height: "auto",
+            scrollable: true,
+            name: "ListaCirugiaProgramadaPaciente"
+          }
+        },
+        [
+          _c("lista-cirugia-programa-paciente", {
+            ref: "ListaCirugiaProgramadaPaciente",
+            on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-6" }, [
+      _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+        _c("li", { staticClass: "breadcrumb-item" }, [
+          _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "breadcrumb-item active" }, [
+          _vm._v("Dashboard v1")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/ListaCirugiaProgramadaPaciente.vue?vue&type=template&id=68d78af9&":
 /*!************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/ListaCirugiaProgramadaPaciente.vue?vue&type=template&id=68d78af9& ***!
@@ -56516,6 +57390,399 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue?vue&type=template&id=f4115d56&":
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue?vue&type=template&id=f4115d56& ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row m-3" }, [
+    _c(
+      "div",
+      { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+      [_c("center", [_c("h5", { staticClass: "mt-4" }, [_vm._v("Modulo")])])],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12 p-5" }, [
+          _c("form", [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-lg-7 col-md-7 col-sm-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.frm_descripcion,
+                        expression: "form.frm_descripcion"
+                      }
+                    ],
+                    class:
+                      _vm.errores.err_descripcion === ""
+                        ? "form-control"
+                        : "form-control is-invalid",
+                    attrs: {
+                      type: "text",
+                      id: "cicloInicial",
+                      placeholder: "Descripción del modulo"
+                    },
+                    domProps: { value: _vm.form.frm_descripcion },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "frm_descripcion",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errores.err_descripcion !== ""
+                    ? _c(
+                        "small",
+                        {
+                          staticClass: "text-danger",
+                          attrs: { id: "correoHelp" }
+                        },
+                        [_vm._v(_vm._s(_vm.errores.err_descripcion[0]))]
+                      )
+                    : _vm._e()
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-3 col-md-3 col-sm-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "abreviatura" } }, [
+                    _vm._v("Abreviatura")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.frm_abreviatura,
+                        expression: "form.frm_abreviatura"
+                      }
+                    ],
+                    class:
+                      _vm.errores.err_abreviatura === ""
+                        ? "form-control"
+                        : "form-control is-invalid",
+                    attrs: {
+                      type: "text",
+                      id: "abreviatura",
+                      placeholder: "Abreviatura"
+                    },
+                    domProps: { value: _vm.form.frm_abreviatura },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "frm_abreviatura",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm.errores.err_abreviatura !== ""
+                  ? _c(
+                      "small",
+                      {
+                        staticClass: "text-danger",
+                        attrs: { id: "correoHelp" }
+                      },
+                      [_vm._v(_vm._s(_vm.errores.err_abreviatura[0]))]
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-2 col-md-2 col-sm-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "orden" } }, [_vm._v("Orden")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.frm_orden,
+                        expression: "form.frm_orden"
+                      }
+                    ],
+                    class:
+                      _vm.errores.err_orden === ""
+                        ? "form-control"
+                        : "form-control is-invalid",
+                    attrs: {
+                      type: "number",
+                      id: "orden",
+                      placeholder: "Orden"
+                    },
+                    domProps: { value: _vm.form.frm_orden },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "frm_orden", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm.errores.err_orden !== ""
+                  ? _c(
+                      "small",
+                      {
+                        staticClass: "text-danger",
+                        attrs: { id: "correoHelp" }
+                      },
+                      [_vm._v(_vm._s(_vm.errores.err_orden[0]))]
+                    )
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "col-lg-12 col-md-12 col-sm-12 mt-4 pt-1" },
+                [
+                  _c("div", { staticClass: "form-inline" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success btn-block",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.guardarActualizarModulo()
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                    " +
+                            _vm._s(
+                              _vm.moduloMod === null ? "Guardar" : "Modificar"
+                            ) +
+                            "\n                                "
+                        )
+                      ]
+                    )
+                  ])
+                ]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "nombre" } }, [
+      _c("span", { staticClass: "text-danger" }, [_vm._v("(*)")]),
+      _vm._v("\n                                    Descripción")
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue?vue&type=template&id=2cc6745c&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue?vue&type=template&id=2cc6745c& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "content-wrapper" },
+    [
+      _c("div", { staticClass: "content-header" }, [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "row mb-2" }, [
+            _c("div", { staticClass: "col-sm-6" }, [
+              _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        staticStyle: { "margin-top": "-9px" },
+                        attrs: { to: _vm.prefijo }
+                      },
+                      [_vm._v("Home")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1)
+              ])
+            ]),
+            _vm._v("\n                 \n                "),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-lg-12 col-md-12 col-sm-12 text-right"
+                      },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "float-right" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.nuevoModulo()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                                    Nuevo\n                                                "
+                                  )
+                                ]
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row mt-2" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                            [
+                              _c("vuetable-component", {
+                                attrs: {
+                                  "anular-button": true,
+                                  "modificar-button": true,
+                                  "info-button": false,
+                                  "columns-data": _vm.columns,
+                                  "rows-data": _vm.modulos
+                                },
+                                on: {
+                                  handleModificarClick: _vm.modificarModulo,
+                                  handleAnularClick:
+                                    _vm.anularModuloConfirmacion
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          staticStyle: { "z-index": "1200" },
+          attrs: {
+            width: "70%",
+            height: "auto",
+            scrollable: true,
+            name: "crearModulo"
+          }
+        },
+        [
+          _c("crear-modificar-modulo", {
+            ref: "crearModulo",
+            attrs: { "modulo-mod": _vm.moduloMod },
+            on: {
+              recargarModulo: _vm.cargarModulo,
+              cerrarModalCrearModulo: _vm.cerrarModalCrearModulo
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("p", [_vm._v("/")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("p", { staticStyle: { "margin-left": "10px" } }, [_vm._v("Modulo")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/componentesGenerales/MenuComponent.vue?vue&type=template&id=a7df01b6&":
 /*!*************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/componentesGenerales/MenuComponent.vue?vue&type=template&id=a7df01b6& ***!
@@ -56578,30 +57845,29 @@ var render = function() {
                   "ul",
                   { key: index, staticClass: "nav nav-treeview" },
                   [
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "pages/layout/top-nav.html" }
-                        },
-                        [
-                          _c("i", { staticClass: "far fa-circle nav-icon" }),
-                          _vm._v(" "),
-                          _c("p", [
+                    _c(
+                      "li",
+                      { staticClass: "nav-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: _vm.prefijo + gestion.route }
+                          },
+                          [
                             _vm._v(
-                              "\n                            " +
-                                _vm._s(
-                                  _vm.$funcionesGlobales.toCapitalFirstAllWords(
-                                    gestion.descripcion
-                                  )
-                                ) +
-                                "\n                        "
+                              _vm._s(
+                                _vm.$funcionesGlobales.toCapitalFirstAllWords(
+                                  gestion.descripcion
+                                )
+                              )
                             )
-                          ])
-                        ]
-                      )
-                    ])
+                          ]
+                        )
+                      ],
+                      1
+                    )
                   ]
                 )
               })
@@ -57162,402 +58428,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=1d66baea&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=1d66baea& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "content-wrapper" },
-    [
-      _c("div", { staticClass: "content-header" }, [
-        _c("div", { staticClass: "container-fluid" }, [
-          _c("div", { staticClass: "row mb-2" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-              _c("h1", { staticClass: "float-left" }, [
-                _vm._v(
-                  "\n                        Valoración Preanestecia -\n                        "
-                ),
-                _c("span", {
-                  domProps: { textContent: _vm._s(_vm.titulo_seleccionado) }
-                })
-              ])
-            ]),
-            _vm._v("\n                 \n                "),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-body" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col-lg-12 col-md-12 col-sm-12 text-right"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "btn-group",
-                            attrs: { role: "group" }
-                          },
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-outline-primary",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.mostrarModalListaCirugiaPaciente()
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                            Nuevo\n                                        "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _vm.respuestaImprimir
-                              ? [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-outline-success",
-                                      attrs: { type: "button" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.llamarMetodoImprimir()
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                                Imprimir\n                                            "
-                                      )
-                                    ]
-                                  )
-                                ]
-                              : _vm._e()
-                          ],
-                          2
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _vm._v("\n                 \n                "),
-            _vm._v(" "),
-            _vm.form.frm_idCirugiaProgramada != ""
-              ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-                  _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "text-left col-lg-12 col-md-12 col-sm-12"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "alert alert-success alert-dismissible fade show",
-                            attrs: { role: "alert" }
-                          },
-                          [
-                            _c("div", { staticClass: "row" }, [
-                              _c("div", { staticClass: "col-sm-6 text-left" }, [
-                                _c("label", { staticClass: "col-form-label" }, [
-                                  _vm._v("Paciente:")
-                                ]),
-                                _vm._v(" "),
-                                _c("span", {
-                                  staticClass: "text-left",
-                                  domProps: {
-                                    textContent: _vm._s(_vm.form.frm_paciente)
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-sm-6 text-left" }, [
-                                _c("label", { staticClass: "col-form-label" }, [
-                                  _vm._v("Cirujano:")
-                                ]),
-                                _vm._v(" "),
-                                _c("span", {
-                                  staticClass: "text-left",
-                                  domProps: {
-                                    textContent: _vm._s(_vm.form.frm_cirujano)
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-sm-6 text-left" }, [
-                                _c("label", { staticClass: "col-form-label" }, [
-                                  _vm._v("Anestesiologo:")
-                                ]),
-                                _vm._v(" "),
-                                _c("span", {
-                                  staticClass: "text-left",
-                                  domProps: {
-                                    textContent: _vm._s(
-                                      _vm.form.frm_anestesiologo
-                                    )
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-sm-6 text-left" }, [
-                                _c("label", { staticClass: "col-form-label" }, [
-                                  _vm._v("Quirófano:")
-                                ]),
-                                _vm._v(" "),
-                                _c("span", {
-                                  staticClass: "text-left",
-                                  domProps: {
-                                    textContent: _vm._s(_vm.form.frm_quirofano)
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "col-sm-12 text-left" },
-                                [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-form-label" },
-                                    [_vm._v("Procedimiento:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("span", {
-                                    staticClass: "text-left",
-                                    domProps: {
-                                      textContent: _vm._s(
-                                        _vm.form.frm_procedimiento
-                                      )
-                                    }
-                                  })
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _vm._m(1)
-                          ]
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-lg-12 col-md-12 col-sm-12" },
-                    [
-                      _c(
-                        "form-wizard",
-                        {
-                          attrs: {
-                            title: "",
-                            subtitle: "",
-                            nextButtonText: "Siguiente",
-                            backButtonText: "Anterior",
-                            finishButtonText: "Finalizar",
-                            stepSize: "xs",
-                            shape: "square",
-                            color: "#3498db"
-                          },
-                          on: {
-                            "on-change": _vm.onChangeTab,
-                            "on-validate": _vm.onValidateTab,
-                            "on-complete": _vm.onComplete
-                          }
-                        },
-                        [
-                          _c(
-                            "tab-content",
-                            {
-                              attrs: {
-                                title: "Revisión por Sistemas",
-                                icon: "ti-layout-media-center-alt"
-                              }
-                            },
-                            [
-                              _c("revision-sistema", {
-                                ref: "revisionSistema",
-                                attrs: {
-                                  "id-sec-cir-pro":
-                                    _vm.form.frm_idCirugiaProgramada
-                                },
-                                on: {
-                                  ValidarCargarDatos: function($event) {
-                                    _vm.respuestaCargarDatos = $event
-                                  },
-                                  RespuestaImprimir: function($event) {
-                                    _vm.respuestaImprimir = $event
-                                  }
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tab-content",
-                            {
-                              attrs: {
-                                title: "Antecedentes",
-                                icon: "ti-folder"
-                              }
-                            },
-                            [
-                              _c("antecedente", {
-                                ref: "antecedente",
-                                attrs: {
-                                  "id-sec-cir-pro":
-                                    _vm.form.frm_idCirugiaProgramada
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tab-content",
-                            {
-                              attrs: {
-                                title: "Examen Físico",
-                                icon: "ti-signal"
-                              }
-                            },
-                            [
-                              _c("examen-fisico", {
-                                ref: "examenFisico",
-                                attrs: {
-                                  "id-sec-cir-pro":
-                                    _vm.form.frm_idCirugiaProgramada
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tab-content",
-                            {
-                              attrs: {
-                                title: "Paraclinicos",
-                                icon: "ti-support"
-                              }
-                            },
-                            [
-                              _c("paraclinico", {
-                                ref: "paraclinico",
-                                attrs: {
-                                  "id-sec-cir-pro":
-                                    _vm.form.frm_idCirugiaProgramada
-                                },
-                                on: {
-                                  validarFinProceso: function($event) {
-                                    _vm.respuestaFinProceso = $event
-                                  }
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ])
-              : _vm._e()
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "modal",
-        {
-          attrs: {
-            width: "65%",
-            height: "auto",
-            scrollable: true,
-            name: "ListaCirugiaProgramadaPaciente"
-          }
-        },
-        [
-          _c("lista-cirugia-programa-paciente", {
-            ref: "ListaCirugiaProgramadaPaciente",
-            on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
-          })
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
-        _c("li", { staticClass: "breadcrumb-item" }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "breadcrumb-item active" }, [
-          _vm._v("Dashboard v1")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "alert",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  }
-]
 render._withStripped = true
 
 
@@ -72954,7 +73824,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_js_modal__WEBPACK_IMPORTED_MO
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_form_wizard__WEBPACK_IMPORTED_MODULE_9___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("v-select", vue_select__WEBPACK_IMPORTED_MODULE_8___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("menuComponente", __webpack_require__(/*! ./components/componentesGenerales/MenuComponent.vue */ "./resources/js/components/componentesGenerales/MenuComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vuetable-component", __webpack_require__(/*! ./components/componentesGenerales/VueTableComponent.vue */ "./resources/js/components/componentesGenerales/VueTableComponent.vue")["default"]); //Modulo de Cirugía
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vuetable-component", __webpack_require__(/*! ./components/componentesGenerales/VueTableComponent.vue */ "./resources/js/components/componentesGenerales/VueTableComponent.vue")["default"]); //Modulo de Parametrizacion
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-modulo", __webpack_require__(/*! ./components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue */ "./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue")["default"]); //Modulo de Cirugía
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-cirugia-programa-paciente", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/ListaCirugiaProgramadaPaciente.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/ListaCirugiaProgramadaPaciente.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("revision-sistema", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/RevisionSistema.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/RevisionSistema.vue")["default"]);
@@ -73067,6 +73939,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_332fccf4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_332fccf4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue ***!
+  \*********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _IndexValoracionPreanestesica_vue_vue_type_template_id_45ffcaaa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IndexValoracionPreanestesica.vue?vue&type=template&id=45ffcaaa& */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=45ffcaaa&");
+/* harmony import */ var _IndexValoracionPreanestesica_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./IndexValoracionPreanestesica.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _IndexValoracionPreanestesica_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _IndexValoracionPreanestesica_vue_vue_type_template_id_45ffcaaa___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _IndexValoracionPreanestesica_vue_vue_type_template_id_45ffcaaa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexValoracionPreanestesica_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./IndexValoracionPreanestesica.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexValoracionPreanestesica_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=45ffcaaa&":
+/*!****************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=45ffcaaa& ***!
+  \****************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexValoracionPreanestesica_vue_vue_type_template_id_45ffcaaa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./IndexValoracionPreanestesica.vue?vue&type=template&id=45ffcaaa& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=45ffcaaa&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexValoracionPreanestesica_vue_vue_type_template_id_45ffcaaa___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexValoracionPreanestesica_vue_vue_type_template_id_45ffcaaa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -73417,6 +74358,144 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CrearModificarModulo_vue_vue_type_template_id_f4115d56___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CrearModificarModulo.vue?vue&type=template&id=f4115d56& */ "./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue?vue&type=template&id=f4115d56&");
+/* harmony import */ var _CrearModificarModulo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CrearModificarModulo.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CrearModificarModulo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CrearModificarModulo_vue_vue_type_template_id_f4115d56___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CrearModificarModulo_vue_vue_type_template_id_f4115d56___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarModulo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CrearModificarModulo.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarModulo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue?vue&type=template&id=f4115d56&":
+/*!************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue?vue&type=template&id=f4115d56& ***!
+  \************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarModulo_vue_vue_type_template_id_f4115d56___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CrearModificarModulo.vue?vue&type=template&id=f4115d56& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue?vue&type=template&id=f4115d56&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarModulo_vue_vue_type_template_id_f4115d56___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarModulo_vue_vue_type_template_id_f4115d56___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Modulo_vue_vue_type_template_id_2cc6745c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Modulo.vue?vue&type=template&id=2cc6745c& */ "./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue?vue&type=template&id=2cc6745c&");
+/* harmony import */ var _Modulo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Modulo.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Modulo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Modulo_vue_vue_type_template_id_2cc6745c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Modulo_vue_vue_type_template_id_2cc6745c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Modulo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Modulo.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Modulo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue?vue&type=template&id=2cc6745c&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue?vue&type=template&id=2cc6745c& ***!
+  \**********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modulo_vue_vue_type_template_id_2cc6745c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Modulo.vue?vue&type=template&id=2cc6745c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue?vue&type=template&id=2cc6745c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modulo_vue_vue_type_template_id_2cc6745c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modulo_vue_vue_type_template_id_2cc6745c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/componentesGenerales/MenuComponent.vue":
 /*!************************************************************************!*\
   !*** ./resources/js/components/componentesGenerales/MenuComponent.vue ***!
@@ -73550,75 +74629,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VueTableComponent_vue_vue_type_template_id_e7cc7488___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VueTableComponent_vue_vue_type_template_id_e7cc7488___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue":
-/*!*********************************************************************************************************!*\
-  !*** ./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue ***!
-  \*********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _IndexValoracionPreanestesica_vue_vue_type_template_id_1d66baea___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IndexValoracionPreanestesica.vue?vue&type=template&id=1d66baea& */ "./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=1d66baea&");
-/* harmony import */ var _IndexValoracionPreanestesica_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./IndexValoracionPreanestesica.vue?vue&type=script&lang=js& */ "./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _IndexValoracionPreanestesica_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _IndexValoracionPreanestesica_vue_vue_type_template_id_1d66baea___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _IndexValoracionPreanestesica_vue_vue_type_template_id_1d66baea___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************!*\
-  !*** ./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexValoracionPreanestesica_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./IndexValoracionPreanestesica.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexValoracionPreanestesica_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=1d66baea&":
-/*!****************************************************************************************************************************************!*\
-  !*** ./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=1d66baea& ***!
-  \****************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexValoracionPreanestesica_vue_vue_type_template_id_1d66baea___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./IndexValoracionPreanestesica.vue?vue&type=template&id=1d66baea& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=1d66baea&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexValoracionPreanestesica_vue_vue_type_template_id_1d66baea___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexValoracionPreanestesica_vue_vue_type_template_id_1d66baea___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -73767,17 +74777,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./variables */ "./resources/js/variables.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_modulos_cirugia_valoracionPreanestecia_IndexValoracionPreanestesica__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica */ "./resources/js/components/modulos/cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue");
+/* harmony import */ var _components_Modulos_Parametrizacion_modulo_Modulo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Modulos/Parametrizacion/modulo/Modulo */ "./resources/js/components/Modulos/Parametrizacion/modulo/Modulo.vue");
+/* harmony import */ var _components_Modulos_Cirugia_valoracionPreanestecia_IndexValoracionPreanestesica__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue");
 
 
+ //Parametrizacion
+
+ //Cirugia
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 var prefijo = _variables__WEBPACK_IMPORTED_MODULE_1__["prefix"];
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
-  routes: [{
+  routes: [//Parametrizacion
+  {
+    path: prefijo + "/modulos/parametrizacion/modulo/mostrar_modulo",
+    component: _components_Modulos_Parametrizacion_modulo_Modulo__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }, //Cirugia
+  {
     path: prefijo + "/modulos/cirugia/valoracionPreanestecia/mostrar_valoracion_preanestesica",
-    component: _components_modulos_cirugia_valoracionPreanestecia_IndexValoracionPreanestesica__WEBPACK_IMPORTED_MODULE_3__["default"]
+    component: _components_Modulos_Cirugia_valoracionPreanestecia_IndexValoracionPreanestesica__WEBPACK_IMPORTED_MODULE_4__["default"]
   }],
   mode: "history" //Evita que aparezca # en la ruta
 

@@ -37,6 +37,12 @@ Vue.component(
     require("./components/componentesGenerales/VueTableComponent.vue").default
 );
 
+//Modulo de Parametrizacion
+Vue.component(
+    "crear-modificar-modulo",
+    require("./components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue").default
+);
+
 //Modulo de Cirugía
 Vue.component(
     "lista-cirugia-programa-paciente",

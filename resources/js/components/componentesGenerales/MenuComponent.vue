@@ -29,16 +29,16 @@
                     :key="index"
                 >
                     <li class="nav-item">
-                        <a href="pages/layout/top-nav.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>
-                                {{
-                                    $funcionesGlobales.toCapitalFirstAllWords(
-                                        gestion.descripcion
-                                    )
-                                }}
-                            </p>
-                        </a>
+
+                        <router-link
+                            :to="prefijo + gestion.route"
+                            class="nav-link"
+                            >{{
+                                $funcionesGlobales.toCapitalFirstAllWords(
+                                    gestion.descripcion
+                                )
+                            }}</router-link
+                        >
                     </li>
                 </ul>
             </li>
@@ -86,8 +86,7 @@ export default {
     methods: {
         cargarModulos() {
             let that = this;
-            let url =
-                "/modulos/parametrizacion/modulo/cargar_modulo_combo_box";
+            let url = "/modulos/parametrizacion/modulo/cargar_modulo_combo_box";
             axios
                 .get(url)
                 .then(function(response) {
@@ -95,7 +94,7 @@ export default {
                     modulos = response.data.modulo;
                     that.modulos = modulos;
 
-                    if(response.data.modulo[0].codigo != null){
+                    if (response.data.modulo[0].codigo != null) {
                         that.cargarSubModulos(response.data.modulo[0].codigo);
                     }
                 })

@@ -194,6 +194,7 @@
             :width="'65%'"
             height="auto"
             :scrollable="true"
+            style="z-index: 1200;"
             name="ListaCirugiaProgramadaPaciente"
         >
             <lista-cirugia-programa-paciente
