@@ -45,4 +45,12 @@ Route::group(['prefix' => 'modulos/cirugia/', 'middleware' => ['auth:web'], 'ver
     //Guardar o Modificar
     Route::post('valoracionPreanestecia/guardar_modificar_paraclinico', 'Modulos\Cirugia\valoracionPreanestecia\ParaclinicoApiController@guardarModificarParaclinico');
 
+    Route::namespace('Modulos\Cirugia\RegistroAnestesico')->prefix('anestesia')->group( function(){
+        Route::get('agentes/{tipo}', 'AgentesController@obtenerAgentesJson');
+        Route::post('agentes/guardado/{registro_id}', 'AgentesController@guardarAgente');
+        Route::post('registrar', 'AgentesController@guardarAgente');
+        Route::post('registro/post', 'RegistroAnestesiaController@store');
+        Route::post('registro_tipo_agente/post', 'TipoAgenteAnestesiaController@store');
+
+    });
 });

@@ -124,12 +124,12 @@
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                            <!-- <template v-if="paciente != null"> -->
-                                <registro-anestesico v-bind:cirugia_id="form.frm_idCirugiaProgramada" ></registro-anestesico>
+                            <template v-if="form.frm_idCirugiaProgramada != null">
+                                <registro-anestesico :id-sec-cir-pro="form.frm_idCirugiaProgramada"></registro-anestesico>
                                 <!-- <div> -->
 
                                 <!-- </div> -->
-                            <!-- </template> -->
+                            </template>
                         </div>
                     </div>
                 </div>
@@ -158,12 +158,13 @@
 export default {
     data: function() {
         return {
+            //cirugia_id: 0,
             titulo_seleccionado: "Registro de anestecia",
             respuestaFinProceso: 0,
             respuestaImprimir: 0,
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "0001",
+                frm_idCirugiaProgramada: "",
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
@@ -199,7 +200,7 @@ export default {
             this.$modal.show("ListaCirugiaProgramadaPaciente");
         },
         handleSeleccionarClick(value) {
-            this.paciente = value;
+            //this.paciente = value;
             this.form.frm_idCirugiaProgramada = value.SecCirPro;
             this.form.frm_paciente = value.NombrePaciente;
             this.form.frm_cirujano = value.Cirujano;

@@ -25,6 +25,7 @@ class Agentes extends Model
         'des_campo2',
         'des_campo3',
         'status',
+        'usu_created_update',
         'created_at',
         'updated_at',
     ];

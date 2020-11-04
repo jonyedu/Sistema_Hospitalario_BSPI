@@ -5,7 +5,7 @@ namespace App\Models\Modulos\Cirugia\RegistroAnestesico;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ResitroAnestesico extends Model
+class RegistroAnestesico extends Model
 {
     use HasFactory;
     /**
@@ -79,5 +79,5 @@ class ResitroAnestesico extends Model
         'pcip',
         'status',
     ];
-    
+
 }

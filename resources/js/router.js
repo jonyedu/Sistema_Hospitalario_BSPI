@@ -7,6 +7,7 @@ import Modulo from "./components/Modulos/Parametrizacion/modulo/Modulo";
 
 //Cirugia
 import IndexValoracionPreanestesica from "./components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica";
+import IndexAnestesia from "./components/Modulos/Cirugia/anestesia/index";
 
 Vue.use(VueRouter);
 let prefijo = prefix;
@@ -25,6 +26,12 @@ export default new VueRouter({
                 prefijo +
                 "/modulos/cirugia/valoracionPreanestecia/mostrar_valoracion_preanestesica",
             component: IndexValoracionPreanestesica,
+        },
+        {
+            path:
+                prefijo +
+                "/modulos/cirugia/anestesia",
+            component: IndexAnestesia,
         },
     ],
     mode: "history" //Evita que aparezca # en la ruta

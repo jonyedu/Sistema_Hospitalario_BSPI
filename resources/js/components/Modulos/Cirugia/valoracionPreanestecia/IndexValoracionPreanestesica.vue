@@ -216,7 +216,7 @@ export default {
             respuestaCargarDatos: 0,
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "2890",
+                frm_idCirugiaProgramada: "",
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",

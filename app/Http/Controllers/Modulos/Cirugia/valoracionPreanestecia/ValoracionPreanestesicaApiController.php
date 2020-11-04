@@ -18,12 +18,12 @@ class ValoracionPreanestesicaApiController extends Controller
     public function cargarListaCirugiaProgramadaPaciente(ConsultarListaCirugiaRequest $request)
     {
         try {
-            $datosPaciente = DB::connection('admin_db_sql')
-                ->select("exec SpAdm_CirugiasProgramdasConsultar '2890','','DP' ");
+            /* $datosPaciente = DB::connection('admin_db_sql')
+                ->select("exec SpAdm_CirugiasProgramdasConsultar '2890','','DP' "); */
 
             $fecha = $request->input('frm_fecha');
             $listaCirugiaProgramadaPaciente = DB::connection('admin_db_sql')->select("exec SpAdm_CirugiasProgramdasConsultar '','" . $fecha . "','PO' ");
-            return  response()->json(['datosPaciente' => $datosPaciente], 200);
+            return  response()->json(['listaCirugiaProgramadaPaciente' => $listaCirugiaProgramadaPaciente], 200);
         } catch (Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);
         }

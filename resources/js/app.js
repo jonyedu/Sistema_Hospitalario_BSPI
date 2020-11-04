@@ -68,6 +68,11 @@ Vue.component(
     "paraclinico",
     require("./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue").default
 );
+
+Vue.component(
+    "registro-anestesico",
+    require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue").default
+);
 new Vue({
     el: "#app",
     components: {
