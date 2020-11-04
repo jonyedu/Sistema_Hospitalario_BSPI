@@ -3004,7 +3004,7 @@ __webpack_require__.r(__webpack_exports__);
         frm_acos: false,
         frm_anticolinesterasico: false,
         frm_otrasDroga: false,
-        frm_cual_otrasDroga: false
+        frm_cual_otrasDroga: ""
       }
     };
   },
@@ -6315,6 +6315,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      validarCargarDatos: 0,
+      respuestaImprimir: 0,
       chk: {
         /* Cardiovascular  */
         chk_hipertension: 0,
@@ -6516,8 +6518,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           that.form.frm_estomagoLleno = +response.data.revisionSistema.estomagoLleno;
           that.chk.chk_otrosGastrointestinal = +response.data.revisionSistema.otrosGastrointestinal;
           that.form.frm_otrosGastrointestinal = +response.data.revisionSistema.otrosGastrointestinal;
+          that.validarCargarDatos = 1;
+          that.respuestaImprimir = 1;
+        } else {
+          that.validarCargarDatos = 0;
+          that.respuestaImprimir = 0;
         }
 
+        that.$emit("ValidarCargarDatos", that.validarCargarDatos);
+        that.$emit("RespuestaImprimir", that.respuestaImprimir);
         loader.hide();
       })["catch"](function (error) {
         //Errores
@@ -7594,32 +7603,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       titulo_seleccionado: "Revisión por Sistemas",
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
+      respuestaCargarDatos: 0,
       form: {
         /* Datos del paciente */
         frm_idCirugiaProgramada: "2890",
@@ -7688,7 +7678,6 @@ __webpack_require__.r(__webpack_exports__);
     }, */
     onComplete: function onComplete() {
       this.$refs.paraclinico.guardarModificar();
-      this.respuestaImprimir = 1;
       /* if(this.respuestaFinProceso){
           this.form.frm_idCirugiaProgramada = "";
       } */
@@ -7746,7 +7735,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
-      if (this.respuestaFinProceso) {
+      if (this.respuestaFinProceso || this.respuestaImprimir) {
         window.open("/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" + this.form.frm_idCirugiaProgramada);
       }
     }
@@ -48909,7 +48898,7 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _vm.form.frm_otrosToxico
-                                    ? _c("div", { staticClass: "col-4" }, [
+                                    ? _c("div", { staticClass: "col-8" }, [
                                         _c("input", {
                                           directives: [
                                             {
@@ -50618,7 +50607,7 @@ var render = function() {
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-3 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("PESO")]
                               ),
                               _vm._v(" "),
@@ -50657,7 +50646,7 @@ var render = function() {
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-3 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("TALLA")]
                               ),
                               _vm._v(" "),
@@ -57250,28 +57239,6 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            true
-                              ? [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-outline-danger",
-                                      attrs: { type: "button" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.llamarMetodoGuardar(1)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                                Modificar\n                                            "
-                                      )
-                                    ]
-                                  )
-                                ]
-                              : undefined,
-                            _vm._v(" "),
                             _vm.respuestaImprimir
                               ? [
                                   _c(
@@ -57435,7 +57402,7 @@ var render = function() {
                             {
                               attrs: {
                                 title: "Revisión por Sistemas",
-                                icon: "ti-user"
+                                icon: "ti-layout-media-center-alt"
                               }
                             },
                             [
@@ -57444,6 +57411,14 @@ var render = function() {
                                 attrs: {
                                   "id-sec-cir-pro":
                                     _vm.form.frm_idCirugiaProgramada
+                                },
+                                on: {
+                                  ValidarCargarDatos: function($event) {
+                                    _vm.respuestaCargarDatos = $event
+                                  },
+                                  RespuestaImprimir: function($event) {
+                                    _vm.respuestaImprimir = $event
+                                  }
                                 }
                               })
                             ],
@@ -57452,7 +57427,12 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "tab-content",
-                            { attrs: { title: "Antecedentes" } },
+                            {
+                              attrs: {
+                                title: "Antecedentes",
+                                icon: "ti-folder"
+                              }
+                            },
                             [
                               _c("antecedente", {
                                 ref: "antecedente",
@@ -57467,7 +57447,12 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "tab-content",
-                            { attrs: { title: "Examen Físico" } },
+                            {
+                              attrs: {
+                                title: "Examen Físico",
+                                icon: "ti-signal"
+                              }
+                            },
                             [
                               _c("examen-fisico", {
                                 ref: "examenFisico",
@@ -57482,7 +57467,12 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "tab-content",
-                            { attrs: { title: "Paraclinicos" } },
+                            {
+                              attrs: {
+                                title: "Paraclinicos",
+                                icon: "ti-support"
+                              }
+                            },
                             [
                               _c("paraclinico", {
                                 ref: "paraclinico",
@@ -73805,7 +73795,7 @@ var prefijo = _variables__WEBPACK_IMPORTED_MODULE_1__["prefix"];
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prefix", function() { return prefix; });
-var prefix = "/Empresa";
+var prefix = "/LeoBecerra";
 
 /***/ }),
 

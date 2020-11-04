@@ -258,7 +258,7 @@
                                                                 >
                                                             </div>
                                                             <div
-                                                                class="col-4"
+                                                                class="col-8"
                                                                 v-if="
                                                                     form.frm_otrosToxico
                                                                 "
@@ -871,7 +871,7 @@ export default {
                 frm_acos: false,
                 frm_anticolinesterasico: false,
                 frm_otrasDroga: false,
-                frm_cual_otrasDroga: false,
+                frm_cual_otrasDroga: "",
             }
         };
     },

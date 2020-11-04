@@ -653,7 +653,7 @@
     <!-- Inicio de Hipertensión -->
     <div>
         <!-- Si está maracado SI, entra por aquí -->
-        @if($datosValoracionPreanestesica->quirurgico)
+        @if($datosValoracionPreanestesica->hipertension)
         <!-- Hipertensión  Si -->
         <div class="ad1id4d81rd6h6o-4" nowrap="true" style="z-index: 25; top: 197px; left: 104px; width: 20px; height: 13px;">
             <table align="center">

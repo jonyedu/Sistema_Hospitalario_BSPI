@@ -38,28 +38,6 @@
                                             >
                                                 Nuevo
                                             </button>
-                                            <template v-if="true">
-                                                <button
-                                                    type="button"
-                                                    class="btn btn-outline-danger"
-                                                    @click="
-                                                        llamarMetodoGuardar(1)
-                                                    "
-                                                >
-                                                    Modificar
-                                                </button>
-                                            </template>
-                                            <template v-else>
-                                                <button
-                                                    type="button"
-                                                    class="btn btn-outline-danger"
-                                                    @click="
-                                                        llamarMetodoGuardar(0)
-                                                    "
-                                                >
-                                                    Guardar
-                                                </button>
-                                            </template>
                                             <template v-if="respuestaImprimir">
                                                 <button
                                                     type="button"
@@ -167,15 +145,17 @@
                                 @on-validate="onValidateTab"
                                 @on-complete="onComplete"
                             >
-                                <tab-content title="Revisión por Sistemas" icon="ti-user">
+                                <tab-content title="Revisión por Sistemas" icon="ti-layout-media-center-alt">
                                     <revision-sistema
                                         :id-sec-cir-pro="
                                             form.frm_idCirugiaProgramada
                                         "
+                                        @ValidarCargarDatos="respuestaCargarDatos = $event"
+                                        @RespuestaImprimir="respuestaImprimir = $event"
                                         ref="revisionSistema"
                                     ></revision-sistema>
                                 </tab-content>
-                                <tab-content title="Antecedentes">
+                                <tab-content title="Antecedentes" icon="ti-folder">
                                     <antecedente
                                         :id-sec-cir-pro="
                                             form.frm_idCirugiaProgramada
@@ -183,7 +163,7 @@
                                         ref="antecedente"
                                     ></antecedente>
                                 </tab-content>
-                                <tab-content title="Examen Físico">
+                                <tab-content title="Examen Físico" icon="ti-signal">
                                     <examen-fisico
                                         :id-sec-cir-pro="
                                             form.frm_idCirugiaProgramada
@@ -191,7 +171,7 @@
                                         ref="examenFisico"
                                     ></examen-fisico>
                                 </tab-content>
-                                <tab-content title="Paraclinicos">
+                                <tab-content title="Paraclinicos" icon="ti-support">
                                     <paraclinico
                                         :id-sec-cir-pro="
                                             form.frm_idCirugiaProgramada
@@ -232,6 +212,7 @@ export default {
             titulo_seleccionado: "Revisión por Sistemas",
             respuestaFinProceso: 0,
             respuestaImprimir: 0,
+            respuestaCargarDatos: 0,
             form: {
                 /* Datos del paciente */
                 frm_idCirugiaProgramada: "2890",
@@ -297,7 +278,6 @@ export default {
         }, */
         onComplete: function() {
             this.$refs.paraclinico.guardarModificar();
-            this.respuestaImprimir = 1;
             /* if(this.respuestaFinProceso){
                 this.form.frm_idCirugiaProgramada = "";
             } */
@@ -347,7 +327,7 @@ export default {
             }
         },
         llamarMetodoImprimir() {
-            if (this.respuestaFinProceso) {
+            if (this.respuestaFinProceso || this.respuestaImprimir) {
                 window.open(
                     "/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" +
                     this.form.frm_idCirugiaProgramada

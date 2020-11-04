@@ -57,7 +57,7 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-3 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >PESO</label
                                                         >
                                                         <div class="col-sm-5 mr-2">
@@ -76,7 +76,7 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-3 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >TALLA</label
                                                         >
                                                         <div class="col-sm-5 mr-2">

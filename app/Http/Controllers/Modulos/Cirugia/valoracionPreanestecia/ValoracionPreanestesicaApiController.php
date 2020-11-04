@@ -35,9 +35,9 @@ class ValoracionPreanestesicaApiController extends Controller
             try {
                 //Variables
                 $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
-
                 $datosPaciente = [];
                 $edadPaciente = 0;
+
                 /* $datosPaciente = DB::connection('admin_db_sql')
                     ->select("exec SpAdm_CirugiasProgramdasConsultar '" . $idSecCirPro . "','','DP' "); */
                 if (sizeof($datosPaciente) > 0) {

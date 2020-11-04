@@ -612,6 +612,8 @@ export default {
     },
     data: function() {
         return {
+            validarCargarDatos: 0,
+            respuestaImprimir: 0,
             chk: {
                 /* Cardiovascular  */
                 chk_hipertension: 0,
@@ -831,8 +833,17 @@ export default {
 
                         that.chk.chk_otrosGastrointestinal = +response.data.revisionSistema.otrosGastrointestinal;
                         that.form.frm_otrosGastrointestinal = +response.data.revisionSistema.otrosGastrointestinal;
+
+                        that.validarCargarDatos= 1;
+                        that.respuestaImprimir = 1;
+                    }else{
+                        that.validarCargarDatos= 0;
+                        that.respuestaImprimir = 0;
                     }
+                    that.$emit("ValidarCargarDatos",that.validarCargarDatos);
+                    that.$emit("RespuestaImprimir",that.respuestaImprimir);
                     loader.hide()
+
                 })
                 .catch(error => {
                     //Errores
