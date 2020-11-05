@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 
 //Parametrizacion
 import Modulo from "./components/Modulos/Parametrizacion/modulo/Modulo";
+import SubModulo from "./components/Modulos/Parametrizacion/sub_modulo/SubModulo";
 
 //Cirugia
 import IndexValoracionPreanestesica from "./components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica";
@@ -19,6 +20,12 @@ export default new VueRouter({
                 prefijo +
                 "/modulos/parametrizacion/modulo/mostrar_modulo",
             component: Modulo
+        },
+        {
+            path:
+                prefijo +
+                "/modulos/parametrizacion/sub_modulo/mostrar_sub_modulo",
+            component: SubModulo
         },
         //Cirugia
         {

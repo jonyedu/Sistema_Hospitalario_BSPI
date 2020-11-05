@@ -1,6 +1,6 @@
 <template>
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-lg-12 col-md-12 col-sm-12">
             <vue-good-table
                 max-height="400px"
                 :columns="columns"
@@ -221,7 +221,7 @@
                             {{ props.formattedRow[props.column.field] }}
                         </div>
                     </span>
-                </template>  
+                </template>
                 <div slot="emptystate" align="center">
                     No hay datos para monstrar en la tabla
                 </div>

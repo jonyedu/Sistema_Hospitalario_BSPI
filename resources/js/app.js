@@ -18,6 +18,8 @@ window.Swal = swal;
 
 Vue.prototype.$funcionesGlobales = funcionesGlobales;
 
+import 'vue-select/dist/vue-select.css';
+
 Vue.use(Loading);
 Vue.use(VueRouter);
 Vue.use(VueSweetalert2);
@@ -41,6 +43,10 @@ Vue.component(
 Vue.component(
     "crear-modificar-modulo",
     require("./components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue").default
+);
+Vue.component(
+    "crear-modificar-sub-modulo",
+    require("./components/Modulos/Parametrizacion/sub_modulo/CrearModificarSubModulo.vue").default
 );
 
 //Modulo de Cirugía
