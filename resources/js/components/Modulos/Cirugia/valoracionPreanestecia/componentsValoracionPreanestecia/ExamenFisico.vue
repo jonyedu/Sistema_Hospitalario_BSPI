@@ -19,7 +19,7 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-2 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >PA</label
                                                         >
                                                         <div class="col-sm-5 mr-2">
@@ -38,7 +38,7 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-2 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >FC</label
                                                         >
                                                         <div class="col-sm-5 mr-2">
@@ -96,10 +96,10 @@
                                                     <label>Estado General</label>
                                                 </div>
                                                 <!-- B Estado General-->
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-2 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >B</label
                                                         >
                                                         <div class="col-sm-3 mr-2">
@@ -113,10 +113,10 @@
                                                     </div>
                                                 </div>
                                                 <!-- R Estado General-->
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-2 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >R</label
                                                         >
                                                         <div class="col-sm-3 mr-2">
@@ -130,10 +130,10 @@
                                                     </div>
                                                 </div>
                                                 <!-- M Estado General-->
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-2 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >M</label
                                                         >
                                                         <div class="col-sm-3 mr-2">
@@ -157,7 +157,7 @@
                                         <div class="card-body mt-2 ml-2">
                                             <div class="row">
                                                 <!-- Cuello Corto -->
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -181,10 +181,10 @@
                                                     </div>
                                                 </div>
                                                 <!-- DMT -->
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-3 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >DMT</label
                                                         >
                                                         <div class="col-sm-5 mr-2">
@@ -200,10 +200,10 @@
                                                     </div>
                                                 </div>
                                                 <!-- cm Cuello Corto-->
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-2 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >cm</label
                                                         >
                                                         <div class="col-sm-5 mr-2">
@@ -225,10 +225,10 @@
                                                     >
                                                 </div>
                                                 <!-- B Movilidad del Cuello-->
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-2 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >B</label
                                                         >
                                                         <div class="col-sm-3 mr-2">
@@ -244,10 +244,10 @@
                                                     </div>
                                                 </div>
                                                 <!-- R Movilidad del Cuello-->
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-2 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >R</label
                                                         >
                                                         <div class="col-sm-3 mr-2">
@@ -263,10 +263,10 @@
                                                     </div>
                                                 </div>
                                                 <!-- M Movilidad del Cuello -->
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-2 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >M</label
                                                         >
                                                         <div class="col-sm-3 mr-2">
@@ -439,13 +439,13 @@
                                                     >
                                                 </div>
                                                 <!-- cm Boca Apertura Ora-->
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-2 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >cm</label
                                                         >
-                                                        <div class="col-sm-5 mr-2">
+                                                        <div class="col-sm-3 mr-2">
                                                             <input
                                                                 type="text"
                                                                 class="form-control"
@@ -462,10 +462,10 @@
                                                     <label>Dentadura</label>
                                                 </div>
                                                 <!-- B Dentadura -->
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-2 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >B</label
                                                         >
                                                         <div class="col-sm-3 mr-2">
@@ -481,10 +481,10 @@
                                                     </div>
                                                 </div>
                                                 <!-- R Dentadura -->
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-2 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >R</label
                                                         >
                                                         <div class="col-sm-3 mr-2">
@@ -500,10 +500,10 @@
                                                     </div>
                                                 </div>
                                                 <!-- M Dentadura -->
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-2 col-form-label"
+                                                            class="col-sm-4 col-form-label"
                                                             >M</label
                                                         >
                                                         <div class="col-sm-3 mr-2">
@@ -518,6 +518,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="w-100"></div>
                                                 <!-- Edéntulo -->
                                                 <div class="col-sm-2">
                                                     <div

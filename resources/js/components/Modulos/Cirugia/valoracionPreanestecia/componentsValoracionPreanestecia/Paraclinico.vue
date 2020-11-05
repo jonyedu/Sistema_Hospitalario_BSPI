@@ -993,6 +993,9 @@ export default {
                         that.form.frm_categoria5 = +response.data.paraclinico.categoria5;
 
                         that.form.frm_observacion = response.data.paraclinico.observacion;
+
+                    }else{
+
                     }
                     loader.hide()
                 })
@@ -1031,9 +1034,9 @@ export default {
                         });
                         that.validarFinProceso = 1;
                         that.$emit(
-                            "validarFinProceso",
-                            that.validarFinProceso
-                        );
+                                "validarFinProceso",
+                                that.validarFinProceso
+                            );
                     })
                     .catch(error => {
                         if (error.response.status === 421) {
@@ -1054,7 +1057,8 @@ export default {
                 });
             }
         },
-                /* Paraclinicos */
+
+        /* Paraclinicos */
         validarChkHb() {
             if (this.chk.chk_hb) {
                 this.form.frm_hb = 0;

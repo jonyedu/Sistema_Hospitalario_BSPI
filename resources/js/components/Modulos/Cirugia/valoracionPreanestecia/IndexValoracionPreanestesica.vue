@@ -181,6 +181,13 @@
                                         "
                                         ref="paraclinico"
                                     ></paraclinico>
+                                    <div v-if="respuestaFinProceso">
+                                        <template>
+                                            <div v-if="respuestaFinProceso">
+                                                {{cambiarEstado()}}
+                                            </div>
+                                        </template>
+                                    </div>
                                 </tab-content>
                             </form-wizard>
                         </div>
@@ -216,7 +223,7 @@ export default {
             respuestaCargarDatos: 0,
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "",
+                frm_idCirugiaProgramada: "0002",
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
@@ -277,11 +284,18 @@ export default {
                 resolve(poseeErrores);
             });
         }, */
-        onComplete: function() {
+        onComplete() {
             this.$refs.paraclinico.guardarModificar();
-            /* if(this.respuestaFinProceso){
-                this.form.frm_idCirugiaProgramada = "";
-            } */
+            //await this.$refs.paraclinico.cargarParaclinico();
+            //await this.cambiarEstado();
+
+        },
+        cambiarEstado(){
+            if(this.respuestaFinProceso){
+                //this.form.frm_idCirugiaProgramada = "";
+                this.respuestaImprimir = 1;
+                this.setFormTitle(1);
+            }
         },
         onChangeTab(prevIndex, nextIndex) {
             //Se debera realizar las validaciones respectivas para cada tab
@@ -320,6 +334,7 @@ export default {
                     break;
                 case 2:
                     this.$refs.examenFisico.guardarModificar();
+
                     break;
                 case 3:
                     break;

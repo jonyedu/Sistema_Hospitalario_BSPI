@@ -309,9 +309,9 @@
                         <th style="width:10px;color:#ccffcc;">X</th>
                     @else
                         <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
                         <th style="width:10px;color:#ccffcc;">X</th>
+                        <td style="width:10px;">No</td>
+                        <th style="width:10px;">X</th>
                     @endif
                 @else
                     <td style="width:10px;">Si</td>
@@ -1338,8 +1338,8 @@
                 @endif
                 <!-- Fin Validar TALLA -->
 
-                <td style="width:40px;color:white;">x</td>
-                <td style="width:60px;">ESTADO GENERAL</td>
+                <td style="width:100px;color:white;">x</td>
+                <td style="width:100px;">ESTADO GENERAL</td>
                 <!-- Validar B-->
                 <td style="width:10px;">B</td>
                 @if($datosValoracionPreanestesica != null)
@@ -1448,16 +1448,16 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:300px;">ESCALA DE MALLAMPATI</td>
                 <td style="width:50px;color:white;">x</td>
-                <th style="width:10px;color:white;">X</th>
+                <td style="width:10px;color:white;">X</td>
                 <td style="width:100px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
             </tr>
             <tr>
                 <td style="width:5px;color:white;">x</td>
-                <td style="width:300px;">Clase 1: Total visibilidad de las amígdalas, úvula y paladar blando.</td>
+                <td style="width:300px;">Clases 1: Total visibilidad de las amígdalas, úvula y paladar blando.</td>
                 <td style="width:50px;color:white;">x</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->clase1)
+                    @if($datosValoracionPreanestesica->examenFisico->clase1)
                         <th style="width:10px;">X</th>
                     @else
                         <th style="width:10px;color:#ccffcc;">X</th>
@@ -1577,7 +1577,7 @@
                 <td style="width:30px;color:white;">x</td>
                 <td style="width:60px;">Edéntulo</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->edentulo)
+                    @if($datosValoracionPreanestesica->examenFisico->edentulo)
                         <td style="width:10px;">Si</td>
                         <th style="width:10px;">X</th>
                         <td style="width:10px;">No</td>

@@ -4894,6 +4894,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4903,7 +4910,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaCargarDatos: 0,
       form: {
         /* Datos del paciente */
-        frm_idCirugiaProgramada: "",
+        frm_idCirugiaProgramada: "0002",
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",
@@ -4968,10 +4975,15 @@ __webpack_require__.r(__webpack_exports__);
         });
     }, */
     onComplete: function onComplete() {
-      this.$refs.paraclinico.guardarModificar();
-      /* if(this.respuestaFinProceso){
-          this.form.frm_idCirugiaProgramada = "";
-      } */
+      this.$refs.paraclinico.guardarModificar(); //await this.$refs.paraclinico.cargarParaclinico();
+      //await this.cambiarEstado();
+    },
+    cambiarEstado: function cambiarEstado() {
+      if (this.respuestaFinProceso) {
+        //this.form.frm_idCirugiaProgramada = "";
+        this.respuestaImprimir = 1;
+        this.setFormTitle(1);
+      }
     },
     onChangeTab: function onChangeTab(prevIndex, nextIndex) {
       //Se debera realizar las validaciones respectivas para cada tab
@@ -7227,6 +7239,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -8528,7 +8541,7 @@ __webpack_require__.r(__webpack_exports__);
           that.chk.chk_categoria5 = +response.data.paraclinico.categoria5;
           that.form.frm_categoria5 = +response.data.paraclinico.categoria5;
           that.form.frm_observacion = response.data.paraclinico.observacion;
-        }
+        } else {}
 
         loader.hide();
       })["catch"](function (error) {
@@ -55714,7 +55727,27 @@ var render = function() {
                                     _vm.respuestaFinProceso = $event
                                   }
                                 }
-                              })
+                              }),
+                              _vm._v(" "),
+                              _vm.respuestaFinProceso
+                                ? _c(
+                                    "div",
+                                    [
+                                      [
+                                        _vm.respuestaFinProceso
+                                          ? _c("div", [
+                                              _vm._v(
+                                                "\n                                            " +
+                                                  _vm._s(_vm.cambiarEstado()) +
+                                                  "\n                                        "
+                                              )
+                                            ])
+                                          : _vm._e()
+                                      ]
+                                    ],
+                                    2
+                                  )
+                                : _vm._e()
                             ],
                             1
                           )
@@ -58265,7 +58298,7 @@ var render = function() {
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-2 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("PA")]
                               ),
                               _vm._v(" "),
@@ -58304,7 +58337,7 @@ var render = function() {
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-2 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("FC")]
                               ),
                               _vm._v(" "),
@@ -58419,11 +58452,11 @@ var render = function() {
                           _vm._v(" "),
                           _vm._m(0),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-2 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("B")]
                               ),
                               _vm._v(" "),
@@ -58459,11 +58492,11 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-2 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("R")]
                               ),
                               _vm._v(" "),
@@ -58499,11 +58532,11 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-2 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("M")]
                               ),
                               _vm._v(" "),
@@ -58552,7 +58585,7 @@ var render = function() {
                     [
                       _c("div", { staticClass: "card-body mt-2 ml-2" }, [
                         _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-sm-4" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
                             _c(
                               "div",
                               {
@@ -58635,11 +58668,11 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-3 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("DMT")]
                               ),
                               _vm._v(" "),
@@ -58674,11 +58707,11 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-2 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("cm")]
                               ),
                               _vm._v(" "),
@@ -58717,11 +58750,11 @@ var render = function() {
                           _vm._v(" "),
                           _vm._m(1),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-2 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("B")]
                               ),
                               _vm._v(" "),
@@ -58758,11 +58791,11 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-2 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("R")]
                               ),
                               _vm._v(" "),
@@ -58799,11 +58832,11 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-2 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("M")]
                               ),
                               _vm._v(" "),
@@ -59276,15 +59309,15 @@ var render = function() {
                         _c("div", { staticClass: "row" }, [
                           _vm._m(3),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-2 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("cm")]
                               ),
                               _vm._v(" "),
-                              _c("div", { staticClass: "col-sm-5 mr-2" }, [
+                              _c("div", { staticClass: "col-sm-3 mr-2" }, [
                                 _c("input", {
                                   directives: [
                                     {
@@ -59319,11 +59352,11 @@ var render = function() {
                           _vm._v(" "),
                           _vm._m(4),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-2 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("B")]
                               ),
                               _vm._v(" "),
@@ -59358,11 +59391,11 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-2 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("R")]
                               ),
                               _vm._v(" "),
@@ -59397,11 +59430,11 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
                             _c("div", { staticClass: "form-group row" }, [
                               _c(
                                 "label",
-                                { staticClass: "col-sm-2 col-form-label" },
+                                { staticClass: "col-sm-4 col-form-label" },
                                 [_vm._v("M")]
                               ),
                               _vm._v(" "),
@@ -59435,6 +59468,8 @@ var render = function() {
                               ])
                             ])
                           ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "w-100" }),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-sm-2" }, [
                             _c(
