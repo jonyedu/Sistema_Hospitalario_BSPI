@@ -158,6 +158,7 @@ export default {
                             codigo:response.data.modulo[i].codigo,
                             descripcion: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.modulo[i].descripcion),
                             abreviatura: response.data.modulo[i].abreviatura,
+                            imagen: response.data.modulo[i].imagen,
                             orden:response.data.modulo[i].orden,
                         };
                         modulos.push(objeto);

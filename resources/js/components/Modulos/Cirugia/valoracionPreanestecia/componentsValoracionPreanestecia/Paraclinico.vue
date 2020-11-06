@@ -1037,6 +1037,8 @@ export default {
                                 "validarFinProceso",
                                 that.validarFinProceso
                             );
+                        that.$emit("FinProceso");
+
                     })
                     .catch(error => {
                         if (error.response.status === 421) {

@@ -4896,11 +4896,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4982,7 +4977,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.respuestaFinProceso) {
         //this.form.frm_idCirugiaProgramada = "";
         this.respuestaImprimir = 1;
-        this.setFormTitle(1);
+        this.$refs.formValoracionPreanestecia.reset();
       }
     },
     onChangeTab: function onChangeTab(prevIndex, nextIndex) {
@@ -8578,6 +8573,7 @@ __webpack_require__.r(__webpack_exports__);
           });
           that.validarFinProceso = 1;
           that.$emit("validarFinProceso", that.validarFinProceso);
+          that.$emit("FinProceso");
         })["catch"](function (error) {
           if (error.response.status === 421) {
             that.$swal({
@@ -9973,6 +9969,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     moduloMod: {
@@ -9984,13 +10002,15 @@ __webpack_require__.r(__webpack_exports__);
       errores: {
         err_descripcion: "",
         err_abreviatura: "",
-        err_orden: ""
+        err_orden: "",
+        err_imagen: ""
       },
       form: {
         frm_codigo: "",
         frm_descripcion: "",
         frm_abreviatura: "",
-        frm_orden: ""
+        frm_orden: "",
+        frm_imagen: ""
       }
     };
   },
@@ -10000,6 +10020,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.frm_codigo = modulo.codigo;
       this.form.frm_descripcion = modulo.descripcion;
       this.form.frm_abreviatura = modulo.abreviatura;
+      this.form.frm_imagen = modulo.imagen;
       this.form.frm_orden = modulo.orden;
     }
     /* let nombreModulo = this.$nombresModulo.datos_generales;
@@ -10257,6 +10278,7 @@ __webpack_require__.r(__webpack_exports__);
             codigo: response.data.modulo[i].codigo,
             descripcion: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.modulo[i].descripcion),
             abreviatura: response.data.modulo[i].abreviatura,
+            imagen: response.data.modulo[i].imagen,
             orden: response.data.modulo[i].orden
           };
           modulos.push(objeto);
@@ -10935,6 +10957,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../variables */ "./resources/js/variables.js");
+//
+//
 //
 //
 //
@@ -56234,6 +56258,7 @@ var render = function() {
                       _c(
                         "form-wizard",
                         {
+                          ref: "formValoracionPreanestecia",
                           attrs: {
                             title: "",
                             subtitle: "",
@@ -56337,29 +56362,10 @@ var render = function() {
                                 on: {
                                   validarFinProceso: function($event) {
                                     _vm.respuestaFinProceso = $event
-                                  }
+                                  },
+                                  FinProceso: _vm.cambiarEstado
                                 }
-                              }),
-                              _vm._v(" "),
-                              _vm.respuestaFinProceso
-                                ? _c(
-                                    "div",
-                                    [
-                                      [
-                                        _vm.respuestaFinProceso
-                                          ? _c("div", [
-                                              _vm._v(
-                                                "\n                                            " +
-                                                  _vm._s(_vm.cambiarEstado()) +
-                                                  "\n                                        "
-                                              )
-                                            ])
-                                          : _vm._e()
-                                      ]
-                                    ],
-                                    2
-                                  )
-                                : _vm._e()
+                              })
                             ],
                             1
                           )
@@ -64927,7 +64933,7 @@ var render = function() {
         _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12 p-5" }, [
           _c("form", [
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-lg-7 col-md-7 col-sm-12" }, [
+              _c("div", { staticClass: "col-lg-5 col-md-5 col-sm-12" }, [
                 _c("div", { staticClass: "form-group" }, [
                   _vm._m(0),
                   _vm._v(" "),
@@ -65025,6 +65031,54 @@ var render = function() {
                         attrs: { id: "correoHelp" }
                       },
                       [_vm._v(_vm._s(_vm.errores.err_abreviatura[0]))]
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-2 col-md-2 col-sm-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "abreviatura" } }, [
+                    _vm._v("Imagen")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.frm_imagen,
+                        expression: "form.frm_imagen"
+                      }
+                    ],
+                    class:
+                      _vm.errores.err_imagen === ""
+                        ? "form-control"
+                        : "form-control is-invalid",
+                    attrs: {
+                      type: "text",
+                      id: "imagen",
+                      placeholder: "Imagen"
+                    },
+                    domProps: { value: _vm.form.frm_imagen },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "frm_imagen", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm.errores.err_imagen !== ""
+                  ? _c(
+                      "small",
+                      {
+                        staticClass: "text-danger",
+                        attrs: { id: "correoHelp" }
+                      },
+                      [_vm._v(_vm._s(_vm.errores.err_imagen[0]))]
                     )
                   : _vm._e()
               ]),
@@ -65835,8 +65889,8 @@ var render = function() {
               }
             },
             [
-              _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                _c("i", { staticClass: "nav-icon fas fa-copy" }),
+              _c("a", { staticClass: "nav-link" }, [
+                _c("i", { class: gestion.imagen }),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
@@ -65868,13 +65922,19 @@ var render = function() {
                             attrs: { to: _vm.prefijo + gestion.route }
                           },
                           [
-                            _vm._v(
-                              _vm._s(
-                                _vm.$funcionesGlobales.toCapitalFirstAllWords(
-                                  gestion.descripcion
-                                )
+                            _c("i", { class: gestion.imagen }),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(
+                                    _vm.$funcionesGlobales.toCapitalFirstAllWords(
+                                      gestion.descripcion
+                                    )
+                                  ) +
+                                  "\n                        "
                               )
-                            )
+                            ])
                           ]
                         )
                       ],

@@ -26,12 +26,13 @@ class ModuloApiController extends Controller
             $user = Auth::user();
             $descripcion = $request->input('frm_descripcion');
             $abreviatura = $request->input('frm_abreviatura');
+            $imagen = $request->input('frm_imagen');
             $usuario_ingreso = $user->id;
             $usuario_modificacion = $user->id;
             $pcname = $_SERVER["REMOTE_ADDR"];
             $status = 1;
             $orden = $request->input('frm_orden');
-            DB::insert("exec SPSEG_INSERT_MODULO " . "'$descripcion'" . ",'$abreviatura'" . ",'$usuario_ingreso'" . ",'$usuario_modificacion'" . ",'$pcname'" . ",'$status'" . ",'$orden'");
+            DB::insert("exec SPSEG_INSERT_MODULO " . "'$descripcion'" . ",'$abreviatura'" . ",'$imagen'" . ",'$usuario_ingreso'" . ",'$usuario_modificacion'" . ",'$pcname'" . ",'$status'" . ",'$orden'");
             return  response()->json(['msj' => 'OK'], 200);
         } catch (Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);
@@ -44,11 +45,12 @@ class ModuloApiController extends Controller
             $codigo = $request->input('frm_codigo');
             $descripcion = $request->input('frm_descripcion');
             $abreviatura = $request->input('frm_abreviatura');
+            $imagen = $request->input('frm_imagen');
             $usuario_modificar = $user->id;
             $pcname = $_SERVER["REMOTE_ADDR"];
             $status = 1;
             $orden = $request->input('frm_orden');
-            DB::update("exec SPSEG_UPDATE_MODULO " . "'$codigo'" . ",'$descripcion'" . ",'$abreviatura'" . ",'$usuario_modificar'" . ",'$pcname'" . ",'$status'" . ",'$orden'");
+            DB::update("exec SPSEG_UPDATE_MODULO " . "'$codigo'" . ",'$descripcion'" . ",'$abreviatura'" . ",'$imagen'" . ",'$usuario_modificar'" . ",'$pcname'" . ",'$status'" . ",'$orden'");
             return  response()->json(['msj' => 'OK'], 200);
         } catch (Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);

@@ -11,7 +11,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 p-5">
                     <form>
                         <div class="row">
-                            <div class="col-lg-7 col-md-7 col-sm-12">
+                            <div class="col-lg-5 col-md-5 col-sm-12">
                                 <div class="form-group">
                                     <label for="nombre"
                                         ><span class="text-danger">(*)</span>
@@ -56,6 +56,28 @@
                                     id="correoHelp"
                                     class="text-danger"
                                     >{{ errores.err_abreviatura[0] }}</small
+                                >
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-12">
+                                <div class="form-group">
+                                    <label for="abreviatura">Imagen</label>
+                                    <input
+                                        type="text"
+                                        id="imagen"
+                                        :class="
+                                            errores.err_imagen === ''
+                                                ? 'form-control'
+                                                : 'form-control is-invalid'
+                                        "
+                                        placeholder="Imagen"
+                                        v-model="form.frm_imagen"
+                                    />
+                                </div>
+                                <small
+                                    v-if="errores.err_imagen !== ''"
+                                    id="correoHelp"
+                                    class="text-danger"
+                                    >{{ errores.err_imagen[0] }}</small
                                 >
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-12">
@@ -118,13 +140,15 @@ export default {
             errores: {
                 err_descripcion: "",
                 err_abreviatura: "",
-                err_orden: ""
+                err_orden: "",
+                err_imagen: ""
             },
             form: {
                 frm_codigo: "",
                 frm_descripcion: "",
                 frm_abreviatura: "",
-                frm_orden: ""
+                frm_orden: "",
+                frm_imagen: ""
             }
         };
     },
@@ -134,6 +158,7 @@ export default {
             this.form.frm_codigo = modulo.codigo;
             this.form.frm_descripcion = modulo.descripcion;
             this.form.frm_abreviatura = modulo.abreviatura;
+            this.form.frm_imagen = modulo.imagen;
             this.form.frm_orden = modulo.orden;
         }
         /* let nombreModulo = this.$nombresModulo.datos_generales;

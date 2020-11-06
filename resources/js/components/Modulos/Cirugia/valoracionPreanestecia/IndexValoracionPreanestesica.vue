@@ -133,6 +133,7 @@
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <form-wizard
+                                ref="formValoracionPreanestecia"
                                 :title="''"
                                 :subtitle="''"
                                 :nextButtonText="'Siguiente'"
@@ -179,15 +180,9 @@
                                         @validarFinProceso="
                                             respuestaFinProceso = $event
                                         "
+                                        @FinProceso="cambiarEstado"
                                         ref="paraclinico"
                                     ></paraclinico>
-                                    <div v-if="respuestaFinProceso">
-                                        <template>
-                                            <div v-if="respuestaFinProceso">
-                                                {{cambiarEstado()}}
-                                            </div>
-                                        </template>
-                                    </div>
                                 </tab-content>
                             </form-wizard>
                         </div>
@@ -294,7 +289,7 @@ export default {
             if(this.respuestaFinProceso){
                 //this.form.frm_idCirugiaProgramada = "";
                 this.respuestaImprimir = 1;
-                this.setFormTitle(1);
+                this.$refs.formValoracionPreanestecia.reset();
             }
         },
         onChangeTab(prevIndex, nextIndex) {

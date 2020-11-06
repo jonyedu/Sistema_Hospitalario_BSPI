@@ -12,8 +12,8 @@
                 :key="index"
                 v-on:click="cargarSubModulos(gestion.codigo)"
             >
-                <a class="nav-link" href="#">
-                    <i class="nav-icon fas fa-copy"></i>
+                <a class="nav-link">
+                    <i :class="gestion.imagen"></i>
                     <p>
                         {{
                             $funcionesGlobales.toCapitalFirstAllWords(
@@ -29,16 +29,18 @@
                     :key="index"
                 >
                     <li class="nav-item">
-
                         <router-link
                             :to="prefijo + gestion.route"
                             class="nav-link"
-                            >{{
-                                $funcionesGlobales.toCapitalFirstAllWords(
-                                    gestion.descripcion
-                                )
-                            }}</router-link
-                        >
+                            ><i :class="gestion.imagen"> </i>
+                            <p>
+                                {{
+                                    $funcionesGlobales.toCapitalFirstAllWords(
+                                        gestion.descripcion
+                                    )
+                                }}
+                            </p>
+                        </router-link>
                     </li>
                 </ul>
             </li>
