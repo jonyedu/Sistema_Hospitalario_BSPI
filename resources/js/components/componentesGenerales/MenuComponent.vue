@@ -31,7 +31,7 @@
                     <li class="nav-item">
                         <router-link
                             :to="prefijo + gestion.route"
-                            class="nav-link"
+                            class="nav-link ml-3"
                             ><i :class="gestion.imagen"> </i>
                             <p>
                                 {{
@@ -44,7 +44,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item has-treeview">
+           <!--  <li class="nav-item has-treeview">
                 <a class="nav-link" href="">
                     <i class="nav-icon fas fa-copy"></i>
                     <p>
@@ -64,7 +64,7 @@
                         >
                     </li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
     </nav>
 </template>

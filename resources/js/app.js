@@ -79,6 +79,17 @@ Vue.component(
     "registro-anestesico",
     require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue").default
 );
+
+Vue.component(
+    "crear-modificar-tipo-agente",
+    require("./components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue").default
+);
+
+Vue.component(
+    "crear-modificar-tipo-posiciones",
+    require("./components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue").default
+);
+
 new Vue({
     el: "#app",
     components: {

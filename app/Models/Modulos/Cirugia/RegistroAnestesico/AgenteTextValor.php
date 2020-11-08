@@ -5,13 +5,13 @@ namespace App\Models\Modulos\Cirugia\RegistroAnestesico;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AgenteDetalleRegistro extends Model
+class AgenteTextValor extends Model
 {
     use HasFactory;
     /**
      * @var string
      */
-    protected $table = 'tb_datos_agentes';
+    protected $table = 'tb_agente_text_valor';
     /**
      * @var string
      */
@@ -19,14 +19,18 @@ class AgenteDetalleRegistro extends Model
 
     protected $fillable = [
         'id',
-        'registro_anestesia_id',
+        'agente_texto_id',
         'hora',
         'min',
-        'segundos',
-        'agente_id',
-        'indice_hora',
         'indice_min',
-        // 'img_url',
-        'usu_created_update'
+        'valor',
+        'des_campo1',
+        'des_campo2',
+        'des_campo3',
+        'usu_created_update',
+        'created_at',
+        'updated_at',
+        'pcip',
+        'status'
     ];
 }

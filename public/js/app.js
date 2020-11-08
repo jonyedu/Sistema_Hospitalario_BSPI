@@ -4377,6 +4377,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
 //
 //
 //
@@ -4532,17 +4533,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-// import RegistroAnestecico from "./components/registro-anestesico";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      prefijo: "",
       //cirugia_id: 0,
       titulo_seleccionado: "Registro de anestecia",
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       form: {
         /* Datos del paciente */
-        frm_idCirugiaProgramada: "",
+        frm_idCirugiaProgramada: "0001",
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",
@@ -4561,6 +4572,7 @@ __webpack_require__.r(__webpack_exports__);
         nombreFormulario,
         "Ingreso"
     );*/
+    this.prefijo = _variables__WEBPACK_IMPORTED_MODULE_0__["prefix"];
   },
   beforeDestroy: function beforeDestroy() {
     /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
@@ -4677,10 +4689,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4794,6 +4806,380 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    tipoAgenteMod: {
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
+      errores: {
+        err_descripcion: "",
+        err_name_system: "",
+        err_imagen: ""
+      },
+      form: {
+        frm_id: "",
+        frm_descripcion: "",
+        frm_name_system: "",
+        frm_imagen: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    if (this.$props.tipoAgenteMod !== null) {
+      var tipoAgente = this.$props.tipoAgenteMod;
+      this.form.frm_id = tipoAgente.id;
+      this.form.frm_descripcion = tipoAgente.descripcion;
+      this.form.frm_name_system = tipoAgente.name_system;
+      this.form.frm_imagen = tipoAgente.imagen;
+    }
+    /* let nombreModulo = this.$nombresModulo.datos_generales;
+    let nombreFormulario = this.$nombresFormulario.datos_generales
+        .generalidades.organizacion_bspi.crear_organizacion_bspi
+        .nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Ingreso"
+    ); */
+
+  },
+  beforeDestroy: function beforeDestroy() {
+    /* let nombreModulo = this.$nombresModulo.datos_generales;
+    let nombreFormulario = this.$nombresFormulario.datos_generales
+        .generalidades.organizacion_bspi.crear_organizacion_bspi
+        .nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Salida"
+    ); */
+  },
+  methods: {
+    limpiarForm: function limpiarForm() {
+      this.errores = {
+        err_descripcion: "",
+        err_name_system: "",
+        err_imagen: ""
+      };
+      this.form = {
+        frm_id: "",
+        frm_descripcion: "",
+        frm_name_system: "",
+        frm_imagen: ""
+      };
+    },
+    guardarActualizarTipoAgente: function guardarActualizarTipoAgente() {
+      var that = this;
+      var url = "";
+      var mensaje = ""; //if()
+
+      if (this.$props.tipoAgenteMod !== null) {
+        url = "/modulos/cirugia/tipo_agente/modificar_tipo_agente";
+        mensaje = "Datos actualizados correctamente.";
+      } else {
+        url = "/modulos/cirugia/tipo_agente/guardar_tipo_agente";
+        mensaje = "Datos guardados correctamente.";
+      }
+
+      var loader = that.$loading.show();
+      axios.post(url, this.form).then(function (response) {
+        //Llamar metodo de parent para que actualice el grid.
+        loader.hide();
+        that.$emit("recargarTipoAgente");
+        that.$emit("cerrarModalCrearTipoAgente");
+        that.$swal({
+          icon: "success",
+          title: "Proceso realizado exitosamente",
+          text: that.mensaje
+        });
+        that.limpiarForm();
+      })["catch"](function (error) {
+        //Errores de validación
+        if (error.response.status === 422) {
+          if (error.response.data.errors.frm_descripcion != null) {
+            that.errores.err_descripcion = error.response.data.errors.frm_descripcion;
+          }
+
+          if (error.response.data.errors.frm_name_system != null) {
+            that.errores.err_name_system = error.response.data.errors.frm_name_system;
+          }
+
+          if (error.response.data.errors.frm_imagen != null) {
+            that.errores.err_imagen = error.response.data.errors.frm_imagen;
+          }
+
+          loader.hide();
+        }
+
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Existen errores",
+          text: error
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      prefijo: "",
+      tipoAgenteMod: null,
+      url_data: "",
+      errores: {},
+      form: {},
+      tipoAgente: [],
+      columns: [{
+        label: "Descripción",
+        field: "descripcion",
+        type: "String"
+      }, {
+        label: "Name System",
+        field: "name_system",
+        type: "String"
+      }, {
+        label: "Imagen",
+        field: "imagen",
+        type: "String"
+      }]
+    };
+  },
+  mounted: function mounted() {
+    this.cargarTipoAgente();
+    /* let nombreModulo = this.$nombresModulo.datos_generales;
+    let nombreFormulario = this.$nombresFormulario.datos_generales
+        .generalidades.organizacion_bspi.organizacion_bspi
+        .nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Ingreso"
+    ); */
+
+    this.prefijo = _variables__WEBPACK_IMPORTED_MODULE_0__["prefix"];
+  },
+  beforeDestroy: function beforeDestroy() {
+    /* let nombreModulo = this.$nombresModulo.datos_generales;
+    let nombreFormulario = this.$nombresFormulario.datos_generales
+        .generalidades.organizacion_bspi.organizacion_bspi
+        .nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Salida"
+    ); */
+  },
+  methods: {
+    cargarTipoAgente: function cargarTipoAgente() {
+      var that = this;
+      var url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table";
+      var loader = that.$loading.show();
+      axios.get(url).then(function (response) {
+        var tipoAgente = [];
+
+        for (var i = 0; i < response.data.tipoAgente.length; i++) {
+          var objeto = {
+            id: response.data.tipoAgente[i].id,
+            descripcion: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.tipoAgente[i].descripcion),
+            name_system: response.data.tipoAgente[i].name_system,
+            imagen: response.data.tipoAgente[i].img_src
+          };
+          tipoAgente.push(objeto);
+        }
+
+        that.tipoAgente = tipoAgente;
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+      });
+    },
+    modificarTipoAgente: function modificarTipoAgente(value) {
+      this.tipoAgenteMod = value;
+      this.abrirModalCrearTipoAgente();
+    },
+    anularTipoAgenteConfirmacion: function anularTipoAgenteConfirmacion(value) {
+      var that = this;
+      this.$swal({
+        title: "¿Desea anular el elemento seleccionado?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar"
+      }).then(function (result) {
+        if (result.value) {
+          that.anularTipoAgente(value.id);
+        }
+      });
+    },
+    anularTipoAgente: function anularTipoAgente(id) {
+      var that = this;
+      var url = "/modulos/cirugia/tipo_agente/eliminar_tipo_agente/" + id;
+      var loader = that.$loading.show();
+      axios["delete"](url).then(function (response) {
+        loader.hide();
+        that.cargarTipoAgente();
+        that.$swal({
+          icon: "success",
+          title: "Proceso realizado exitosamente",
+          text: "Dato anulado correctamente."
+        });
+      })["catch"](function (error) {
+        //Errores
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+      });
+    },
+    cerrarModalCrearTipoAgente: function cerrarModalCrearTipoAgente() {
+      this.$modal.hide("crearTipoAgente");
+      this.cargarTipoAgente();
+    },
+    nuevoTipoAgente: function nuevoTipoAgente() {
+      this.tipoAgenteMod = null;
+      this.abrirModalCrearTipoAgente();
+    },
+    abrirModalCrearTipoAgente: function abrirModalCrearTipoAgente() {
+      this.$modal.show("crearTipoAgente");
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4897,8 +5283,608 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    tipoPosicionesMod: {
+      type: Object
+    }
+  },
   data: function data() {
     return {
+      errores: {
+        err_descripcion: "",
+        err_name_system: "",
+        err_imagen: ""
+      },
+      form: {
+        frm_id: "",
+        frm_descripcion: "",
+        frm_name_system: "",
+        frm_imagen: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    if (this.$props.tipoPosicionesMod !== null) {
+      var tipoPosiciones = this.$props.tipoPosicionesMod;
+      this.form.frm_id = tipoPosiciones.id;
+      this.form.frm_descripcion = tipoPosiciones.descripcion;
+      this.form.frm_name_system = tipoPosiciones.name_system;
+      this.form.frm_imagen = tipoPosiciones.imagen;
+    }
+    /* let nombreModulo = this.$nombresModulo.datos_generales;
+    let nombreFormulario = this.$nombresFormulario.datos_generales
+        .generalidades.organizacion_bspi.crear_organizacion_bspi
+        .nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Ingreso"
+    ); */
+
+  },
+  beforeDestroy: function beforeDestroy() {
+    /* let nombreModulo = this.$nombresModulo.datos_generales;
+    let nombreFormulario = this.$nombresFormulario.datos_generales
+        .generalidades.organizacion_bspi.crear_organizacion_bspi
+        .nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Salida"
+    ); */
+  },
+  methods: {
+    limpiarForm: function limpiarForm() {
+      this.errores = {
+        err_descripcion: "",
+        err_name_system: "",
+        err_imagen: ""
+      };
+      this.form = {
+        frm_id: "",
+        frm_descripcion: "",
+        frm_name_system: "",
+        frm_imagen: ""
+      };
+    },
+    guardarActualizarTipoPosiciones: function guardarActualizarTipoPosiciones() {
+      var that = this;
+      var url = "";
+      var mensaje = ""; //if()
+
+      if (this.$props.tipoPosicionesMod !== null) {
+        url = "/modulos/cirugia/tipo_posiciones/modificar_tipo_posiciones";
+        mensaje = "Datos actualizados correctamente.";
+      } else {
+        url = "/modulos/cirugia/tipo_posiciones/guardar_tipo_posiciones";
+        mensaje = "Datos guardados correctamente.";
+      }
+
+      var loader = that.$loading.show();
+      axios.post(url, this.form).then(function (response) {
+        //Llamar metodo de parent para que actualice el grid.
+        loader.hide();
+        that.$emit("recargarTipoPosiciones");
+        that.$emit("cerrarModalCrearTipoPosiciones");
+        that.$swal({
+          icon: "success",
+          title: "Proceso realizado exitosamente",
+          text: that.mensaje
+        });
+        that.limpiarForm();
+      })["catch"](function (error) {
+        //Errores de validación
+        if (error.response.status === 422) {
+          if (error.response.data.errors.frm_descripcion != null) {
+            that.errores.err_descripcion = error.response.data.errors.frm_descripcion;
+          }
+
+          if (error.response.data.errors.frm_name_system != null) {
+            that.errores.err_name_system = error.response.data.errors.frm_name_system;
+          }
+
+          if (error.response.data.errors.frm_imagen != null) {
+            that.errores.err_imagen = error.response.data.errors.frm_imagen;
+          }
+
+          loader.hide();
+        }
+
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Existen errores",
+          text: error
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      prefijo: "",
+      tipoPosicionesMod: null,
+      url_data: "",
+      errores: {},
+      form: {},
+      tipoPosiciones: [],
+      columns: [{
+        label: "Descripción",
+        field: "descripcion",
+        type: "String"
+      }, {
+        label: "Name System",
+        field: "name_system",
+        type: "String"
+      }, {
+        label: "Imagen",
+        field: "imagen",
+        type: "String"
+      }]
+    };
+  },
+  mounted: function mounted() {
+    this.cargarTipoPosiciones();
+    /* let nombreModulo = this.$nombresModulo.datos_generales;
+    let nombreFormulario = this.$nombresFormulario.datos_generales
+        .generalidades.organizacion_bspi.organizacion_bspi
+        .nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Ingreso"
+    ); */
+
+    this.prefijo = _variables__WEBPACK_IMPORTED_MODULE_0__["prefix"];
+  },
+  beforeDestroy: function beforeDestroy() {
+    /* let nombreModulo = this.$nombresModulo.datos_generales;
+    let nombreFormulario = this.$nombresFormulario.datos_generales
+        .generalidades.organizacion_bspi.organizacion_bspi
+        .nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Salida"
+    ); */
+  },
+  methods: {
+    cargarTipoPosiciones: function cargarTipoPosiciones() {
+      var that = this;
+      var url = "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table";
+      var loader = that.$loading.show();
+      axios.get(url).then(function (response) {
+        var tipoPosiciones = [];
+
+        for (var i = 0; i < response.data.tipoPosiciones.length; i++) {
+          var objeto = {
+            id: response.data.tipoPosiciones[i].id,
+            descripcion: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.tipoPosiciones[i].descripcion),
+            name_system: response.data.tipoPosiciones[i].name_system,
+            imagen: response.data.tipoPosiciones[i].img_src
+          };
+          tipoPosiciones.push(objeto);
+        }
+
+        that.tipoPosiciones = tipoPosiciones;
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+      });
+    },
+    modificarTipoPosiciones: function modificarTipoPosiciones(value) {
+      this.tipoPosicionesMod = value;
+      this.abrirModalCrearTipoPosiciones();
+    },
+    anularTipoPosicionesConfirmacion: function anularTipoPosicionesConfirmacion(value) {
+      var that = this;
+      this.$swal({
+        title: "¿Desea anular el elemento seleccionado?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar"
+      }).then(function (result) {
+        if (result.value) {
+          that.anularTipoPosiciones(value.id);
+        }
+      });
+    },
+    anularTipoPosiciones: function anularTipoPosiciones(id) {
+      var that = this;
+      var url = "/modulos/cirugia/tipo_posiciones/eliminar_tipo_posiciones/" + id;
+      var loader = that.$loading.show();
+      axios["delete"](url).then(function (response) {
+        loader.hide();
+        that.cargarTipoPosiciones();
+        that.$swal({
+          icon: "success",
+          title: "Proceso realizado exitosamente",
+          text: "Dato anulado correctamente."
+        });
+      })["catch"](function (error) {
+        //Errores
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+      });
+    },
+    cerrarModalCrearTipoPosiciones: function cerrarModalCrearTipoPosiciones() {
+      this.$modal.hide("crearTipoPosiciones");
+      this.cargarTipoPosiciones();
+    },
+    nuevoTipoPosiciones: function nuevoTipoPosiciones() {
+      this.tipoPosicionesMod = null;
+      this.abrirModalCrearTipoPosiciones();
+    },
+    abrirModalCrearTipoPosiciones: function abrirModalCrearTipoPosiciones() {
+      this.$modal.show("crearTipoPosiciones");
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      prefijo: "",
       titulo_seleccionado: "Revisión por Sistemas",
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
@@ -4923,6 +5909,7 @@ __webpack_require__.r(__webpack_exports__);
         nombreFormulario,
         "Ingreso"
     );*/
+    this.prefijo = _variables__WEBPACK_IMPORTED_MODULE_0__["prefix"];
   },
   beforeDestroy: function beforeDestroy() {
     /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
@@ -4983,7 +5970,11 @@ __webpack_require__.r(__webpack_exports__);
     onChangeTab: function onChangeTab(prevIndex, nextIndex) {
       //Se debera realizar las validaciones respectivas para cada tab
       this.setFormTitle(nextIndex);
-      this.guardarModificar(prevIndex);
+
+      if (typeof this.guardarModificar() === "function") {
+        //Es seguro ejecutar la función
+        this.guardarModificar(prevIndex);
+      }
     },
     setFormTitle: function setFormTitle(index) {
       switch (index) {
@@ -55793,291 +56784,33 @@ var render = function() {
       _c("div", { staticClass: "content-header" }, [
         _c("div", { staticClass: "container-fluid" }, [
           _c("div", { staticClass: "row mb-2" }, [
-            _c(
-              "div",
-              { staticClass: "col-lg-12 col-md-12 col-sm-12 flex flex-center" },
-              [
-                _c("h1", { staticClass: "float-left" }, [
-                  _c("span", {
-                    domProps: { textContent: _vm._s(_vm.titulo_seleccionado) }
-                  })
-                ])
-              ]
-            ),
-            _vm._v("\n                 \n                "),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-body" }, [
-                  _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("ol", { staticClass: "breadcrumb float-sm-left" }, [
+                _c(
+                  "li",
+                  [
                     _c(
-                      "div",
+                      "router-link",
                       {
-                        staticClass: "col-lg-12 col-md-12 col-sm-12 text-right"
+                        staticClass: "nav-link",
+                        staticStyle: { "margin-top": "-9px" },
+                        attrs: { to: _vm.prefijo }
                       },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "btn-group",
-                            attrs: { role: "group" }
-                          },
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-outline-primary",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.mostrarModalListaCirugiaPaciente()
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                            Nuevo\n                                        "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _vm.respuestaImprimir
-                              ? [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-outline-success",
-                                      attrs: { type: "button" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.llamarMetodoImprimir()
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                                Imprimir\n                                            "
-                                      )
-                                    ]
-                                  )
-                                ]
-                              : _vm._e()
-                          ],
-                          2
-                        )
-                      ]
+                      [_vm._v("Home")]
                     )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c("li", [
+                  _c("p", { staticStyle: { "margin-left": "10px" } }, [
+                    _c("span", {
+                      domProps: { textContent: _vm._s(_vm.titulo_seleccionado) }
+                    })
                   ])
                 ])
-              ])
-            ]),
-            _vm._v(" "),
-            _vm._v("\n                 \n                "),
-            _vm._v(" "),
-            _vm.form.frm_idCirugiaProgramada != ""
-              ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-                  _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "text-left col-lg-12 col-md-12 col-sm-12"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "alert alert-success alert-dismissible fade show",
-                            attrs: { role: "alert" }
-                          },
-                          [
-                            _c("div", { staticClass: "row" }, [
-                              _c("div", { staticClass: "col-sm-6 text-left" }, [
-                                _c("label", { staticClass: "col-form-label" }, [
-                                  _vm._v("Paciente:")
-                                ]),
-                                _vm._v(" "),
-                                _c("span", {
-                                  staticClass: "text-left",
-                                  domProps: {
-                                    textContent: _vm._s(_vm.form.frm_paciente)
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-sm-6 text-left" }, [
-                                _c("label", { staticClass: "col-form-label" }, [
-                                  _vm._v("Cirujano:")
-                                ]),
-                                _vm._v(" "),
-                                _c("span", {
-                                  staticClass: "text-left",
-                                  domProps: {
-                                    textContent: _vm._s(_vm.form.frm_cirujano)
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-sm-6 text-left" }, [
-                                _c("label", { staticClass: "col-form-label" }, [
-                                  _vm._v("Anestesiologo:")
-                                ]),
-                                _vm._v(" "),
-                                _c("span", {
-                                  staticClass: "text-left",
-                                  domProps: {
-                                    textContent: _vm._s(
-                                      _vm.form.frm_anestesiologo
-                                    )
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-sm-6 text-left" }, [
-                                _c("label", { staticClass: "col-form-label" }, [
-                                  _vm._v("Quirófano:")
-                                ]),
-                                _vm._v(" "),
-                                _c("span", {
-                                  staticClass: "text-left",
-                                  domProps: {
-                                    textContent: _vm._s(_vm.form.frm_quirofano)
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "col-sm-12 text-left" },
-                                [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-form-label" },
-                                    [_vm._v("Procedimiento:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("span", {
-                                    staticClass: "text-left",
-                                    domProps: {
-                                      textContent: _vm._s(
-                                        _vm.form.frm_procedimiento
-                                      )
-                                    }
-                                  })
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _vm._m(0)
-                          ]
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-lg-12 col-md-12 col-sm-12" },
-                    [
-                      _vm.form.frm_idCirugiaProgramada != null
-                        ? [
-                            _c("registro-anestesico", {
-                              attrs: {
-                                "id-sec-cir-pro":
-                                  _vm.form.frm_idCirugiaProgramada
-                              }
-                            })
-                          ]
-                        : _vm._e()
-                    ],
-                    2
-                  )
-                ])
-              : _vm._e()
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "modal",
-        {
-          staticStyle: { "z-index": "1200" },
-          attrs: {
-            width: "65%",
-            height: "auto",
-            scrollable: true,
-            name: "ListaCirugiaProgramadaPaciente"
-          }
-        },
-        [
-          _c("lista-cirugia-programa-paciente", {
-            ref: "ListaCirugiaProgramadaPaciente",
-            on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
-          })
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "alert",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=45ffcaaa&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=45ffcaaa& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "content-wrapper" },
-    [
-      _c("div", { staticClass: "content-header" }, [
-        _c("div", { staticClass: "container-fluid" }, [
-          _c("div", { staticClass: "row mb-2" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-              _c("h1", { staticClass: "float-left" }, [
-                _vm._v(
-                  "\n                        Valoración Preanestecia -\n                        "
-                ),
-                _c("span", {
-                  domProps: { textContent: _vm._s(_vm.titulo_seleccionado) }
-                })
               ])
             ]),
             _vm._v("\n                 \n                "),
@@ -56255,6 +56988,1106 @@ var render = function() {
                     "div",
                     { staticClass: "col-lg-12 col-md-12 col-sm-12" },
                     [
+                      _vm.form.frm_idCirugiaProgramada != null
+                        ? [
+                            _c("registro-anestesico", {
+                              attrs: {
+                                "id-sec-cir-pro":
+                                  _vm.form.frm_idCirugiaProgramada
+                              }
+                            })
+                          ]
+                        : _vm._e()
+                    ],
+                    2
+                  )
+                ])
+              : _vm._e()
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          staticStyle: { "z-index": "1200" },
+          attrs: {
+            width: "65%",
+            height: "auto",
+            scrollable: true,
+            name: "ListaCirugiaProgramadaPaciente"
+          }
+        },
+        [
+          _c("lista-cirugia-programa-paciente", {
+            ref: "ListaCirugiaProgramadaPaciente",
+            on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("p", [_vm._v("/")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=template&id=5175b7b1&":
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=template&id=5175b7b1& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row m-3" }, [
+    _c(
+      "div",
+      { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+      [
+        _c("center", [
+          _c("h5", { staticClass: "mt-4" }, [_vm._v("Tipo Agente")])
+        ])
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12 p-5" }, [
+          _c("form", [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-lg-5 col-md-5 col-sm-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.frm_descripcion,
+                        expression: "form.frm_descripcion"
+                      }
+                    ],
+                    class:
+                      _vm.errores.err_descripcion === ""
+                        ? "form-control"
+                        : "form-control is-invalid",
+                    attrs: {
+                      type: "text",
+                      id: "cicloInicial",
+                      placeholder: "Descripción del modulo"
+                    },
+                    domProps: { value: _vm.form.frm_descripcion },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "frm_descripcion",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errores.err_descripcion !== ""
+                    ? _c(
+                        "small",
+                        {
+                          staticClass: "text-danger",
+                          attrs: { id: "correoHelp" }
+                        },
+                        [_vm._v(_vm._s(_vm.errores.err_descripcion[0]))]
+                      )
+                    : _vm._e()
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-3 col-md-3 col-sm-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "abreviatura" } }, [
+                    _vm._v("Name System")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.frm_name_system,
+                        expression: "form.frm_name_system"
+                      }
+                    ],
+                    class:
+                      _vm.errores.err_name_system === ""
+                        ? "form-control"
+                        : "form-control is-invalid",
+                    attrs: {
+                      type: "text",
+                      id: "abreviatura",
+                      placeholder: "Abreviatura"
+                    },
+                    domProps: { value: _vm.form.frm_name_system },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "frm_name_system",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm.errores.err_name_system !== ""
+                  ? _c(
+                      "small",
+                      {
+                        staticClass: "text-danger",
+                        attrs: { id: "correoHelp" }
+                      },
+                      [_vm._v(_vm._s(_vm.errores.err_name_system[0]))]
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-2 col-md-2 col-sm-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "abreviatura" } }, [
+                    _vm._v("Imagen")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.frm_imagen,
+                        expression: "form.frm_imagen"
+                      }
+                    ],
+                    class:
+                      _vm.errores.err_imagen === ""
+                        ? "form-control"
+                        : "form-control is-invalid",
+                    attrs: {
+                      type: "text",
+                      id: "imagen",
+                      placeholder: "Imagen"
+                    },
+                    domProps: { value: _vm.form.frm_imagen },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "frm_imagen", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm.errores.err_imagen !== ""
+                  ? _c(
+                      "small",
+                      {
+                        staticClass: "text-danger",
+                        attrs: { id: "correoHelp" }
+                      },
+                      [_vm._v(_vm._s(_vm.errores.err_imagen[0]))]
+                    )
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "col-lg-12 col-md-12 col-sm-12 mt-4 pt-1" },
+                [
+                  _c("div", { staticClass: "form-inline" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success btn-block",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.guardarActualizarTipoAgente()
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                    " +
+                            _vm._s(
+                              _vm.tipoAgenteMod === null
+                                ? "Guardar"
+                                : "Modificar"
+                            ) +
+                            "\n                                "
+                        )
+                      ]
+                    )
+                  ])
+                ]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "nombre" } }, [
+      _c("span", { staticClass: "text-danger" }, [_vm._v("(*)")]),
+      _vm._v("\n                                    Descripción")
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=template&id=d5d5cba4&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=template&id=d5d5cba4& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "content-wrapper" },
+    [
+      _c("div", { staticClass: "content-header" }, [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "row mb-2" }, [
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("ol", { staticClass: "breadcrumb float-sm-left" }, [
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        staticStyle: { "margin-top": "-9px" },
+                        attrs: { to: _vm.prefijo }
+                      },
+                      [_vm._v("Home")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1)
+              ])
+            ]),
+            _vm._v("\n                 \n                "),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-lg-12 col-md-12 col-sm-12 text-right"
+                      },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "float-right" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.nuevoTipoAgente()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                                    Nuevo\n                                                "
+                                  )
+                                ]
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row mt-2" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                            [
+                              _c("vuetable-component", {
+                                attrs: {
+                                  "anular-button": true,
+                                  "modificar-button": true,
+                                  "info-button": false,
+                                  "columns-data": _vm.columns,
+                                  "rows-data": _vm.tipoAgente
+                                },
+                                on: {
+                                  handleModificarClick: _vm.modificarTipoAgente,
+                                  handleAnularClick:
+                                    _vm.anularTipoAgenteConfirmacion
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          staticStyle: { "z-index": "1200" },
+          attrs: {
+            width: "70%",
+            height: "auto",
+            scrollable: true,
+            name: "crearTipoAgente"
+          }
+        },
+        [
+          _c("crear-modificar-tipo-agente", {
+            ref: "crearTipoAgente",
+            attrs: { "tipo-agente-mod": _vm.tipoAgenteMod },
+            on: {
+              recargarTipoAgente: _vm.cargarTipoAgente,
+              cerrarModalCrearTipoAgente: _vm.cerrarModalCrearTipoAgente
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("p", [_vm._v("/")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("p", { staticStyle: { "margin-left": "10px" } }, [
+        _vm._v("Tipo Agente")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue?vue&type=template&id=23d84eb1&":
+/*!***************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue?vue&type=template&id=23d84eb1& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row m-3" }, [
+    _c(
+      "div",
+      { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+      [
+        _c("center", [
+          _c("h5", { staticClass: "mt-4" }, [_vm._v("Tipo Posiciones")])
+        ])
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12 p-5" }, [
+          _c("form", [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-lg-5 col-md-5 col-sm-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.frm_descripcion,
+                        expression: "form.frm_descripcion"
+                      }
+                    ],
+                    class:
+                      _vm.errores.err_descripcion === ""
+                        ? "form-control"
+                        : "form-control is-invalid",
+                    attrs: {
+                      type: "text",
+                      id: "cicloInicial",
+                      placeholder: "Descripción del modulo"
+                    },
+                    domProps: { value: _vm.form.frm_descripcion },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "frm_descripcion",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errores.err_descripcion !== ""
+                    ? _c(
+                        "small",
+                        {
+                          staticClass: "text-danger",
+                          attrs: { id: "correoHelp" }
+                        },
+                        [_vm._v(_vm._s(_vm.errores.err_descripcion[0]))]
+                      )
+                    : _vm._e()
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-3 col-md-3 col-sm-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "abreviatura" } }, [
+                    _vm._v("Name System")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.frm_name_system,
+                        expression: "form.frm_name_system"
+                      }
+                    ],
+                    class:
+                      _vm.errores.err_name_system === ""
+                        ? "form-control"
+                        : "form-control is-invalid",
+                    attrs: {
+                      type: "text",
+                      id: "abreviatura",
+                      placeholder: "Abreviatura"
+                    },
+                    domProps: { value: _vm.form.frm_name_system },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "frm_name_system",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm.errores.err_name_system !== ""
+                  ? _c(
+                      "small",
+                      {
+                        staticClass: "text-danger",
+                        attrs: { id: "correoHelp" }
+                      },
+                      [_vm._v(_vm._s(_vm.errores.err_name_system[0]))]
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-2 col-md-2 col-sm-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "abreviatura" } }, [
+                    _vm._v("Imagen")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.frm_imagen,
+                        expression: "form.frm_imagen"
+                      }
+                    ],
+                    class:
+                      _vm.errores.err_imagen === ""
+                        ? "form-control"
+                        : "form-control is-invalid",
+                    attrs: {
+                      type: "text",
+                      id: "imagen",
+                      placeholder: "Imagen"
+                    },
+                    domProps: { value: _vm.form.frm_imagen },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "frm_imagen", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm.errores.err_imagen !== ""
+                  ? _c(
+                      "small",
+                      {
+                        staticClass: "text-danger",
+                        attrs: { id: "correoHelp" }
+                      },
+                      [_vm._v(_vm._s(_vm.errores.err_imagen[0]))]
+                    )
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "col-lg-12 col-md-12 col-sm-12 mt-4 pt-1" },
+                [
+                  _c("div", { staticClass: "form-inline" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success btn-block",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.guardarActualizarTipoPosiciones()
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                    " +
+                            _vm._s(
+                              _vm.tipoPosicionesMod === null
+                                ? "Guardar"
+                                : "Modificar"
+                            ) +
+                            "\n                                "
+                        )
+                      ]
+                    )
+                  ])
+                ]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "nombre" } }, [
+      _c("span", { staticClass: "text-danger" }, [_vm._v("(*)")]),
+      _vm._v("\n                                    Descripción")
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue?vue&type=template&id=870c46a4&":
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue?vue&type=template&id=870c46a4& ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "content-wrapper" },
+    [
+      _c("div", { staticClass: "content-header" }, [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "row mb-2" }, [
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("ol", { staticClass: "breadcrumb float-sm-left" }, [
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        staticStyle: { "margin-top": "-9px" },
+                        attrs: { to: _vm.prefijo }
+                      },
+                      [_vm._v("Home")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1)
+              ])
+            ]),
+            _vm._v("\n                 \n                "),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-lg-12 col-md-12 col-sm-12 text-right"
+                      },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "float-right" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.nuevoTipoPosiciones()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                                    Nuevo\n                                                "
+                                  )
+                                ]
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row mt-2" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                            [
+                              _c("vuetable-component", {
+                                attrs: {
+                                  "anular-button": true,
+                                  "modificar-button": true,
+                                  "info-button": false,
+                                  "columns-data": _vm.columns,
+                                  "rows-data": _vm.tipoPosiciones
+                                },
+                                on: {
+                                  handleModificarClick:
+                                    _vm.modificarTipoPosiciones,
+                                  handleAnularClick:
+                                    _vm.anularTipoPosicionesConfirmacion
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          staticStyle: { "z-index": "1200" },
+          attrs: {
+            width: "70%",
+            height: "auto",
+            scrollable: true,
+            name: "crearTipoPosiciones"
+          }
+        },
+        [
+          _c("crear-modificar-tipo-posiciones", {
+            ref: "crearTipoPosiciones",
+            attrs: { "tipo-posiciones-mod": _vm.tipoPosicionesMod },
+            on: {
+              recargarTipoPosiciones: _vm.cargarTipoPosiciones,
+              cerrarModalCrearTipoPosiciones: _vm.cerrarModalCrearTipoPosiciones
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("p", [_vm._v("/")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("p", { staticStyle: { "margin-left": "10px" } }, [
+        _vm._v("Tipo Posiciones")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=45ffcaaa&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue?vue&type=template&id=45ffcaaa& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "content-wrapper" },
+    [
+      _c("div", { staticClass: "content-header" }, [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "row mb-2" }, [
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("ol", { staticClass: "breadcrumb float-sm-left" }, [
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        staticStyle: { "margin-top": "-9px" },
+                        attrs: { to: _vm.prefijo }
+                      },
+                      [_vm._v("Home")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1)
+              ])
+            ]),
+            _vm._v("\n                 \n                "),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-lg-12 col-md-12 col-sm-12 text-right"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "btn-group",
+                            attrs: { role: "group" }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-outline-primary",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.mostrarModalListaCirugiaPaciente()
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                            Nuevo\n                                        "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm.respuestaImprimir
+                              ? [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-outline-success",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.llamarMetodoImprimir()
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                                Imprimir\n                                            "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              : _vm._e()
+                          ],
+                          2
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._v("\n                 \n                "),
+            _vm._v(" "),
+            _vm.form.frm_idCirugiaProgramada != ""
+              ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+                  _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "text-left col-lg-12 col-md-12 col-sm-12"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "alert alert-success alert-dismissible fade show",
+                            attrs: { role: "alert" }
+                          },
+                          [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-sm-6 text-left" }, [
+                                _c("label", { staticClass: "col-form-label" }, [
+                                  _vm._v("Paciente:")
+                                ]),
+                                _vm._v(" "),
+                                _c("span", {
+                                  staticClass: "text-left",
+                                  domProps: {
+                                    textContent: _vm._s(_vm.form.frm_paciente)
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-6 text-left" }, [
+                                _c("label", { staticClass: "col-form-label" }, [
+                                  _vm._v("Cirujano:")
+                                ]),
+                                _vm._v(" "),
+                                _c("span", {
+                                  staticClass: "text-left",
+                                  domProps: {
+                                    textContent: _vm._s(_vm.form.frm_cirujano)
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-6 text-left" }, [
+                                _c("label", { staticClass: "col-form-label" }, [
+                                  _vm._v("Anestesiologo:")
+                                ]),
+                                _vm._v(" "),
+                                _c("span", {
+                                  staticClass: "text-left",
+                                  domProps: {
+                                    textContent: _vm._s(
+                                      _vm.form.frm_anestesiologo
+                                    )
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-6 text-left" }, [
+                                _c("label", { staticClass: "col-form-label" }, [
+                                  _vm._v("Quirófano:")
+                                ]),
+                                _vm._v(" "),
+                                _c("span", {
+                                  staticClass: "text-left",
+                                  domProps: {
+                                    textContent: _vm._s(_vm.form.frm_quirofano)
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-sm-12 text-left" },
+                                [
+                                  _c(
+                                    "label",
+                                    { staticClass: "col-form-label" },
+                                    [_vm._v("Procedimiento:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("span", {
+                                    staticClass: "text-left",
+                                    domProps: {
+                                      textContent: _vm._s(
+                                        _vm.form.frm_procedimiento
+                                      )
+                                    }
+                                  })
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(2)
+                          ]
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                    [
                       _c(
                         "form-wizard",
                         {
@@ -56409,15 +58242,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6" }, [
-      _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
-        _c("li", { staticClass: "breadcrumb-item" }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "breadcrumb-item active" }, [
-          _vm._v("Dashboard v1")
-        ])
+    return _c("li", [_c("p", [_vm._v("/")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("p", { staticStyle: { "margin-left": "10px" } }, [
+        _vm._v(
+          "\n                                Valoración Preanestesica\n                            "
+        )
       ])
     ])
   },
@@ -65206,8 +67041,8 @@ var render = function() {
       _c("div", { staticClass: "content-header" }, [
         _c("div", { staticClass: "container-fluid" }, [
           _c("div", { staticClass: "row mb-2" }, [
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("ol", { staticClass: "breadcrumb float-sm-left" }, [
                 _c(
                   "li",
                   [
@@ -65709,8 +67544,8 @@ var render = function() {
       _c("div", { staticClass: "content-header" }, [
         _c("div", { staticClass: "container-fluid" }, [
           _c("div", { staticClass: "row mb-2" }, [
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("ol", { staticClass: "breadcrumb float-sm-left" }, [
                 _c(
                   "li",
                   [
@@ -65875,124 +67710,78 @@ var render = function() {
           "data-accordion": "false"
         }
       },
-      [
-        _vm._l(_vm.modulos, function(gestion, index) {
-          return _c(
-            "li",
-            {
-              key: index,
-              staticClass: "nav-item has-treeview",
-              on: {
-                click: function($event) {
-                  return _vm.cargarSubModulos(gestion.codigo)
-                }
+      _vm._l(_vm.modulos, function(gestion, index) {
+        return _c(
+          "li",
+          {
+            key: index,
+            staticClass: "nav-item has-treeview",
+            on: {
+              click: function($event) {
+                return _vm.cargarSubModulos(gestion.codigo)
               }
-            },
-            [
-              _c("a", { staticClass: "nav-link" }, [
-                _c("i", { class: gestion.imagen }),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(
-                        _vm.$funcionesGlobales.toCapitalFirstAllWords(
-                          gestion.descripcion
-                        )
-                      ) +
-                      "\n                    "
-                  ),
-                  _c("i", { staticClass: "fas fa-angle-left right" })
-                ])
-              ]),
+            }
+          },
+          [
+            _c("a", { staticClass: "nav-link" }, [
+              _c("i", { class: gestion.imagen }),
               _vm._v(" "),
-              _vm._l(_vm.sub_modulos, function(gestion, index) {
-                return _c(
-                  "ul",
-                  { key: index, staticClass: "nav nav-treeview" },
+              _c("p", [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(
+                      _vm.$funcionesGlobales.toCapitalFirstAllWords(
+                        gestion.descripcion
+                      )
+                    ) +
+                    "\n                    "
+                ),
+                _c("i", { staticClass: "fas fa-angle-left right" })
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.sub_modulos, function(gestion, index) {
+              return _c("ul", { key: index, staticClass: "nav nav-treeview" }, [
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
                   [
                     _c(
-                      "li",
-                      { staticClass: "nav-item" },
+                      "router-link",
+                      {
+                        staticClass: "nav-link ml-3",
+                        attrs: { to: _vm.prefijo + gestion.route }
+                      },
                       [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { to: _vm.prefijo + gestion.route }
-                          },
-                          [
-                            _c("i", { class: gestion.imagen }),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(
-                                    _vm.$funcionesGlobales.toCapitalFirstAllWords(
-                                      gestion.descripcion
-                                    )
-                                  ) +
-                                  "\n                        "
-                              )
-                            ])
-                          ]
-                        )
-                      ],
-                      1
+                        _c("i", { class: gestion.imagen }),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(
+                                _vm.$funcionesGlobales.toCapitalFirstAllWords(
+                                  gestion.descripcion
+                                )
+                              ) +
+                              "\n                        "
+                          )
+                        ])
+                      ]
                     )
-                  ]
+                  ],
+                  1
                 )
-              })
-            ],
-            2
-          )
-        }),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item has-treeview" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("ul", { staticClass: "nav nav-treeview" }, [
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "nav-link",
-                    attrs: {
-                      to:
-                        _vm.prefijo +
-                        "/modulos/cirugia/valoracionPreanestecia/mostrar_valoracion_preanestesica"
-                    }
-                  },
-                  [_vm._v("Valoracion Preanestesica")]
-                )
-              ],
-              1
-            )
-          ])
-        ])
-      ],
-      2
+              ])
+            })
+          ],
+          2
+        )
+      }),
+      0
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "nav-link", attrs: { href: "" } }, [
-      _c("i", { staticClass: "nav-icon fas fa-copy" }),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("\n                    Prueba\n                    "),
-        _c("i", { staticClass: "fas fa-angle-left right" })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -81940,6 +83729,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("antecedente", __webpack_re
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("examen-fisico", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/ExamenFisico.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/ExamenFisico.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("paraclinico", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("registro-anestesico", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-tipo-agente", __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue */ "./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-tipo-posiciones", __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue")["default"]);
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: "#app",
   components: {
@@ -82202,6 +83993,282 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_1fdf841c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_1fdf841c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CrearModificarTipoAgente_vue_vue_type_template_id_5175b7b1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CrearModificarTipoAgente.vue?vue&type=template&id=5175b7b1& */ "./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=template&id=5175b7b1&");
+/* harmony import */ var _CrearModificarTipoAgente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CrearModificarTipoAgente.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CrearModificarTipoAgente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CrearModificarTipoAgente_vue_vue_type_template_id_5175b7b1___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CrearModificarTipoAgente_vue_vue_type_template_id_5175b7b1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarTipoAgente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CrearModificarTipoAgente.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarTipoAgente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=template&id=5175b7b1&":
+/*!*************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=template&id=5175b7b1& ***!
+  \*************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarTipoAgente_vue_vue_type_template_id_5175b7b1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CrearModificarTipoAgente.vue?vue&type=template&id=5175b7b1& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=template&id=5175b7b1&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarTipoAgente_vue_vue_type_template_id_5175b7b1___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarTipoAgente_vue_vue_type_template_id_5175b7b1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TipoAgente_vue_vue_type_template_id_d5d5cba4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TipoAgente.vue?vue&type=template&id=d5d5cba4& */ "./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=template&id=d5d5cba4&");
+/* harmony import */ var _TipoAgente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TipoAgente.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TipoAgente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TipoAgente_vue_vue_type_template_id_d5d5cba4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TipoAgente_vue_vue_type_template_id_d5d5cba4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoAgente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./TipoAgente.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoAgente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=template&id=d5d5cba4&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=template&id=d5d5cba4& ***!
+  \***********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoAgente_vue_vue_type_template_id_d5d5cba4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./TipoAgente.vue?vue&type=template&id=d5d5cba4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=template&id=d5d5cba4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoAgente_vue_vue_type_template_id_d5d5cba4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoAgente_vue_vue_type_template_id_d5d5cba4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CrearModificarTipoPosiciones_vue_vue_type_template_id_23d84eb1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CrearModificarTipoPosiciones.vue?vue&type=template&id=23d84eb1& */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue?vue&type=template&id=23d84eb1&");
+/* harmony import */ var _CrearModificarTipoPosiciones_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CrearModificarTipoPosiciones.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CrearModificarTipoPosiciones_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CrearModificarTipoPosiciones_vue_vue_type_template_id_23d84eb1___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CrearModificarTipoPosiciones_vue_vue_type_template_id_23d84eb1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarTipoPosiciones_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CrearModificarTipoPosiciones.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarTipoPosiciones_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue?vue&type=template&id=23d84eb1&":
+/*!*********************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue?vue&type=template&id=23d84eb1& ***!
+  \*********************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarTipoPosiciones_vue_vue_type_template_id_23d84eb1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CrearModificarTipoPosiciones.vue?vue&type=template&id=23d84eb1& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue?vue&type=template&id=23d84eb1&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarTipoPosiciones_vue_vue_type_template_id_23d84eb1___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CrearModificarTipoPosiciones_vue_vue_type_template_id_23d84eb1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TipoPosiciones_vue_vue_type_template_id_870c46a4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TipoPosiciones.vue?vue&type=template&id=870c46a4& */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue?vue&type=template&id=870c46a4&");
+/* harmony import */ var _TipoPosiciones_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TipoPosiciones.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TipoPosiciones_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TipoPosiciones_vue_vue_type_template_id_870c46a4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TipoPosiciones_vue_vue_type_template_id_870c46a4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoPosiciones_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./TipoPosiciones.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoPosiciones_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue?vue&type=template&id=870c46a4&":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue?vue&type=template&id=870c46a4& ***!
+  \*******************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoPosiciones_vue_vue_type_template_id_870c46a4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./TipoPosiciones.vue?vue&type=template&id=870c46a4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue?vue&type=template&id=870c46a4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoPosiciones_vue_vue_type_template_id_870c46a4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoPosiciones_vue_vue_type_template_id_870c46a4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -83182,12 +85249,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Modulos_Parametrizacion_sub_modulo_SubModulo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Modulos/Parametrizacion/sub_modulo/SubModulo */ "./resources/js/components/Modulos/Parametrizacion/sub_modulo/SubModulo.vue");
 /* harmony import */ var _components_Modulos_Cirugia_valoracionPreanestecia_IndexValoracionPreanestesica__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue");
 /* harmony import */ var _components_Modulos_Cirugia_anestesia_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/index */ "./resources/js/components/Modulos/Cirugia/anestesia/index.vue");
+/* harmony import */ var _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_agente/TipoAgente */ "./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue");
+/* harmony import */ var _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue");
 
 
  //Parametrizacion
 
 
  //Cirugia
+
+
 
 
 
@@ -83208,6 +85279,12 @@ var prefijo = _variables__WEBPACK_IMPORTED_MODULE_1__["prefix"];
   }, {
     path: prefijo + "/modulos/cirugia/anestesia",
     component: _components_Modulos_Cirugia_anestesia_index__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: prefijo + "/modulos/cirugia/tipo_agente/mostrar_tipo_agente",
+    component: _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
+    path: prefijo + "/modulos/cirugia/tipo_posiciones/mostrar_tipo_posiciones",
+    component: _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_8__["default"]
   }],
   mode: "history" //Evita que aparezca # en la ruta
 

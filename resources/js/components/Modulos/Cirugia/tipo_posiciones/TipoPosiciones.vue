@@ -15,7 +15,7 @@
                                 >
                             </li>
                             <li><p>/</p></li>
-                            <li><p style="margin-left:10px">SubModulo</p></li>
+                            <li><p style="margin-left:10px">Tipo Posiciones</p></li>
                         </ol>
                     </div>
                     &nbsp;
@@ -33,7 +33,7 @@
                                                     <button
                                                         class="btn btn-primary"
                                                         @click="
-                                                            nuevoSubModulo()
+                                                            nuevoTipoPosiciones()
                                                         "
                                                     >
                                                         Nuevo
@@ -50,12 +50,12 @@
                                                     :modificar-button="true"
                                                     :info-button="false"
                                                     :columns-data="columns"
-                                                    :rows-data="subModulos"
+                                                    :rows-data="tipoPosiciones"
                                                     @handleModificarClick="
-                                                        modificarSubModulo
+                                                        modificarTipoPosiciones
                                                     "
                                                     @handleAnularClick="
-                                                        anularSubModuloConfirmacion
+                                                        anularTipoPosicionesConfirmacion
                                                     "
                                                 ></vuetable-component>
                                             </div>
@@ -75,14 +75,14 @@
             :height="'auto'"
             :scrollable="true"
             style="z-index: 1200;"
-            name="crearSubModulo"
+            name="crearTipoPosiciones"
         >
-            <crear-modificar-sub-modulo
-                :sub-modulo-mod="subModuloMod"
-                @recargarSubModulo="cargarSubModulo"
-                @cerrarModalCrearSubModulo="cerrarModalCrearSubModulo"
-                ref="crearSubModulo"
-            ></crear-modificar-sub-modulo>
+            <crear-modificar-tipo-posiciones
+                :tipo-posiciones-mod="tipoPosicionesMod"
+                @recargarTipoPosiciones="cargarTipoPosiciones"
+                @cerrarModalCrearTipoPosiciones="cerrarModalCrearTipoPosiciones"
+                ref="crearTipoPosiciones"
+            ></crear-modificar-tipo-posiciones>
         </modal>
         <!-- Fin Seccion donde muestra la lista de los pacientes que tienen una cita -->
     </div>
@@ -94,32 +94,33 @@ export default {
     data: function() {
         return {
             prefijo: "",
-            subModuloMod: null,
+            tipoPosicionesMod: null,
             url_data: "",
             errores: {},
             form: {},
-            subModulos: [],
+            tipoPosiciones: [],
             columns: [
                 {
-                    label: "Modulo",
-                    field: "descripcion_modulo",
+                    label: "Descripción",
+                    field: "descripcion",
                     type: "String"
                 },
                 {
-                    label: "Descripción",
-                    field: "descripcion_sub_modulo",
+                    label: "Name System",
+                    field: "name_system",
                     type: "String"
                 },
                 {
                     label: "Imagen",
-                    field: "imagen_sub_modulo",
+                    field: "imagen",
                     type: "String"
-                },
+                }
+
             ]
         };
     },
     mounted: function() {
-        this.cargarSubModulo();
+        this.cargarTipoPosiciones();
         /* let nombreModulo = this.$nombresModulo.datos_generales;
         let nombreFormulario = this.$nombresFormulario.datos_generales
             .generalidades.organizacion_bspi.organizacion_bspi
@@ -143,28 +144,25 @@ export default {
         ); */
     },
     methods: {
-        cargarSubModulo: function() {
+        cargarTipoPosiciones: function() {
             let that = this;
             let url =
-                "/modulos/parametrizacion/sub_modulo/cargar_sub_modulo_table";
+                "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table";
             var loader = that.$loading.show();
             axios
                 .get(url)
                 .then(function(response) {
-                    let subModulo = [];
-                    for (let i = 0; i < response.data.subModulo.length; i++) {
+                    let tipoPosiciones = [];
+                    for (let i = 0; i < response.data.tipoPosiciones.length; i++) {
                         let objeto = {
-                            id_modulo:response.data.subModulo[i].MOD_CODIGO,
-                            descripcion_modulo: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.subModulo[i].MOD_DESCRIPCION),
-                            id_sub_modulo:response.data.subModulo[i].SUB_CODIGO,
-                            descripcion_sub_modulo: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.subModulo[i].SUB_DESCRIPCION),
-                            imagen_sub_modulo: response.data.subModulo[i].SUB_IMAGEN,
-                            ejecutable_sub_modulo: response.data.subModulo[i].SUB_EJECUTABLE,
-                            route_sub_modulo: response.data.subModulo[i].SUB_ROUTE,
+                            id:response.data.tipoPosiciones[i].id,
+                            descripcion: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.tipoPosiciones[i].descripcion),
+                            name_system: response.data.tipoPosiciones[i].name_system,
+                            imagen: response.data.tipoPosiciones[i].img_src,
                         };
-                        subModulo.push(objeto);
+                        tipoPosiciones.push(objeto);
                     }
-                    that.subModulos = subModulo;
+                    that.tipoPosiciones = tipoPosiciones;
                     loader.hide();
                 })
                 .catch(error => {
@@ -177,11 +175,11 @@ export default {
                     });
                 });
         },
-        modificarSubModulo(value) {
-            this.subModuloMod = value;
-            this.abrirModalCrearSubModulo();
+        modificarTipoPosiciones(value) {
+            this.tipoPosicionesMod = value;
+            this.abrirModalCrearTipoPosiciones();
         },
-        anularSubModuloConfirmacion(value) {
+        anularTipoPosicionesConfirmacion(value) {
             let that = this;
             this.$swal({
                 title: "¿Desea anular el elemento seleccionado?",
@@ -193,21 +191,21 @@ export default {
                 cancelButtonText: "Cancelar"
             }).then(result => {
                 if (result.value) {
-                    that.anularSubModulo(value.id_sub_modulo);
+                    that.anularTipoPosiciones(value.id);
                 }
             });
         },
-        anularSubModulo(id) {
+        anularTipoPosiciones(id) {
             let that = this;
             let url =
-                "/modulos/parametrizacion/sub_modulo/eliminar_sub_modulo/" +
+                "/modulos/cirugia/tipo_posiciones/eliminar_tipo_posiciones/" +
                 id;
             var loader = that.$loading.show();
             axios
                 .delete(url)
                 .then(function(response) {
                     loader.hide();
-                    that.cargarSubModulo();
+                    that.cargarTipoPosiciones();
                     that.$swal({
                         icon: "success",
                         title: "Proceso realizado exitosamente",
@@ -224,16 +222,16 @@ export default {
                     });
                 });
         },
-        cerrarModalCrearSubModulo: function() {
-            this.$modal.hide("crearSubModulo");
-            this.cargarSubModulo();
+        cerrarModalCrearTipoPosiciones: function() {
+            this.$modal.hide("crearTipoPosiciones");
+            this.cargarTipoPosiciones();
         },
-        nuevoSubModulo: function() {
-            this.subModuloMod = null;
-            this.abrirModalCrearSubModulo();
+        nuevoTipoPosiciones: function() {
+            this.tipoPosicionesMod = null;
+            this.abrirModalCrearTipoPosiciones();
         },
-        abrirModalCrearSubModulo: function() {
-            this.$modal.show("crearSubModulo");
+        abrirModalCrearTipoPosiciones: function() {
+            this.$modal.show("crearTipoPosiciones");
         },
 
     }

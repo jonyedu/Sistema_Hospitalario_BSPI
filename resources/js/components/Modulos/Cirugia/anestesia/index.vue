@@ -4,10 +4,19 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-lg-12 col-md-12 col-sm-12 flex flex-center">
-                        <h1 class="float-left">
-                            <span v-text="titulo_seleccionado"></span>
-                        </h1>
+                    <div class="col-sm-12">
+                        <ol class="breadcrumb float-sm-left">
+                            <li>
+                                <router-link
+                                    :to="prefijo"
+                                    style="margin-top:-9px"
+                                    class="nav-link"
+                                    >Home</router-link
+                                >
+                            </li>
+                            <li><p>/</p></li>
+                            <li><p style="margin-left:10px"><span v-text="titulo_seleccionado"></span></p></li>
+                        </ol>
                     </div>
                     &nbsp;
                     <!-- Seccion de los menu de botones: Historial clínico, Nueva, Guardar, etc y la Tabla Historial Clinico-->
@@ -154,17 +163,19 @@
 </template>
 
 <script>
-// import RegistroAnestecico from "./components/registro-anestesico";
+import { prefix } from "../../../../variables";
 export default {
+
     data: function() {
         return {
+            prefijo: "",
             //cirugia_id: 0,
             titulo_seleccionado: "Registro de anestecia",
             respuestaFinProceso: 0,
             respuestaImprimir: 0,
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "",
+                frm_idCirugiaProgramada: "0001",
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
@@ -183,6 +194,7 @@ export default {
             nombreFormulario,
             "Ingreso"
         );*/
+        this.prefijo = prefix;
     },
     beforeDestroy: function() {
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;

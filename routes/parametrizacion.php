@@ -17,17 +17,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'modulos/parametrizacion', 'middleware' => ['auth:web'], 'verified'], function () {
 
-    //Modulo
-    Route::get('modulo/cargar_modulo_combo_box', 'Modulos\Parametrizacion\Modulo\ModuloApiController@cargarModuloComboBox');
-    Route::get('modulo/cargar_modulo_table', 'Modulos\Parametrizacion\Modulo\ModuloApiController@cargarModuloComboBox');
-    Route::post('modulo/modificar_modulo', 'Modulos\Parametrizacion\Modulo\ModuloApiController@modificarModulo');
-    Route::post('modulo/guardar_modulo', 'Modulos\Parametrizacion\Modulo\ModuloApiController@guardarModulo');
-    Route::delete('modulo/eliminar_modulo/{id}', 'Modulos\Parametrizacion\Modulo\ModuloApiController@eliminarModulo');
+    /* SubModulo Modulo */
+    Route::namespace('Modulos\Parametrizacion\Modulo')->prefix('modulo')->group(function () {
+        Route::get('cargar_modulo_combo_box', 'ModuloApiController@cargarModuloComboBox');
+        Route::get('cargar_modulo_table', 'ModuloApiController@cargarModuloComboBox');
+        Route::post('modificar_modulo', 'ModuloApiController@modificarModulo');
+        Route::post('guardar_modulo', 'ModuloApiController@guardarModulo');
+        Route::delete('eliminar_modulo/{id}', 'ModuloApiController@eliminarModulo');
+    });
 
-    //Submodulo
-    Route::get('sub_modulo/cargar_sub_modulo_combo_box/{id}', 'Modulos\Parametrizacion\SubModulo\SubModuloApiController@cargarSubModuloComboBox');
-    Route::get('sub_modulo/cargar_sub_modulo_table', 'Modulos\Parametrizacion\SubModulo\SubModuloApiController@cargarSubModuloTabla');
-    Route::post('sub_modulo/modificar_sub_modulo', 'Modulos\Parametrizacion\SubModulo\SubModuloApiController@modificarSubModulo');
-    Route::post('sub_modulo/guardar_sub_modulo', 'Modulos\Parametrizacion\SubModulo\SubModuloApiController@guardarSubModulo');
-    Route::delete('sub_modulo/eliminar_sub_modulo/{id}', 'Modulos\Parametrizacion\SubModulo\SubModuloApiController@eliminarSubModulo');
+    /* SubModulo Submodulo */
+    Route::namespace('Modulos\Parametrizacion\SubModulo')->prefix('sub_modulo')->group(function () {
+        Route::get('cargar_sub_modulo_combo_box/{id}', 'SubModuloApiController@cargarSubModuloComboBox');
+        Route::get('cargar_sub_modulo_table', 'SubModuloApiController@cargarSubModuloTabla');
+        Route::post('modificar_sub_modulo', 'SubModuloApiController@modificarSubModulo');
+        Route::post('guardar_sub_modulo', 'SubModuloApiController@guardarSubModulo');
+        Route::delete('eliminar_sub_modulo/{id}', 'SubModuloApiController@eliminarSubModulo');
+    });
 });

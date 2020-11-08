@@ -4,8 +4,8 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
+                    <div class="col-sm-12">
+                        <ol class="breadcrumb float-sm-left">
                             <li>
                                 <router-link
                                     :to="prefijo"

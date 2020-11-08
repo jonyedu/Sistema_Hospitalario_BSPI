@@ -10,6 +10,9 @@ import SubModulo from "./components/Modulos/Parametrizacion/sub_modulo/SubModulo
 import IndexValoracionPreanestesica from "./components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica";
 import IndexAnestesia from "./components/Modulos/Cirugia/anestesia/index";
 
+import TipoAgente from "./components/Modulos/Cirugia/tipo_agente/TipoAgente";
+import TipoPosiciones from "./components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones";
+
 Vue.use(VueRouter);
 let prefijo = prefix;
 export default new VueRouter({
@@ -39,6 +42,18 @@ export default new VueRouter({
                 prefijo +
                 "/modulos/cirugia/anestesia",
             component: IndexAnestesia,
+        },
+        {
+            path:
+                prefijo +
+                "/modulos/cirugia/tipo_agente/mostrar_tipo_agente",
+            component: TipoAgente
+        },
+        {
+            path:
+                prefijo +
+                "/modulos/cirugia/tipo_posiciones/mostrar_tipo_posiciones",
+            component: TipoPosiciones
         },
     ],
     mode: "history" //Evita que aparezca # en la ruta

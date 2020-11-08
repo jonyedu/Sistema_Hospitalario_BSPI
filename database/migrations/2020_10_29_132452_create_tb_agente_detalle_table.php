@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbTipoAgenteAnestesia extends Migration
+class CreateTbAgenteDetalleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,20 @@ class CreateTbTipoAgenteAnestesia extends Migration
      */
     public function up()
     {
-        if (!Schema::connection('control_hospitalario_db_sql')->hasTable('tb_tipo_agente_anestesia')) {
-            Schema::connection('control_hospitalario_db_sql')->create('tb_tipo_agente_anestesia', function (Blueprint $table) {
+        if (!Schema::connection('control_hospitalario_db_sql')->hasTable('tb_agente_detalle')) {
+            Schema::connection('control_hospitalario_db_sql')->create('tb_agente_detalle', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                // $table->unsignedInteger('registro_anestesia_id');
+                $table->unsignedInteger('registro_anestesia_id');
                 $table->string('descripcion');
-                $table->string('name_system');;
+                $table->string('name_system');
                 /* Datos para auditoria */
                 $table->string('des_campo1', 100)->nullable();
                 $table->string('des_campo2', 50)->nullable();
                 $table->decimal('des_campo3', 10,2)->nullable();
-                $table->unsignedInteger('created_by')->nullable();
-                $table->unsignedInteger('updated_by')->nullable();
+                $table->string('usu_created_update');
                 $table->timestamps();
                 $table->string('pcip')->nullable();
-                $table->unsignedInteger('status')->default(1);
+                $table->unsignedInteger('status')->nullable();
             });
         }
     }
@@ -39,6 +38,6 @@ class CreateTbTipoAgenteAnestesia extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_tipo_agente_anestesia');
+        Schema::dropIfExists('tb_agente_detalle');
     }
 }

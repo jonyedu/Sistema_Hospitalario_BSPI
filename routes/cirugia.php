@@ -15,42 +15,62 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['prefix' => 'modulos/cirugia/', 'middleware' => ['auth:web'], 'verified'], function () {
-    //Modulo de Cirugia
-    Route::post('valoracionPreanestecia/cargar_lista_cirugia_programadaPaciente', 'Modulos\Cirugia\valoracionPreanestecia\ValoracionPreanestesicaApiController@cargarListaCirugiaProgramadaPaciente');
+Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'verified'], function () {
 
-    /* Revision por Sistema */
-    //Cargar en los Campos
-    Route::get('valoracionPreanestecia/cargar_revision_sistema_campo/{idSecCirPro}', 'Modulos\Cirugia\valoracionPreanestecia\RevisionSistemaApiController@cargarRevisionSistemaCampo');
-    //Cargar Pdf Formulario
-    Route::get('valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/{idSecCirPro}', 'Modulos\Cirugia\valoracionPreanestecia\ValoracionPreanestesicaApiController@cargarPdfFormularioValoracionPreanestesica');
-    //Guardar o Modificar
-    Route::post('valoracionPreanestecia/guardar_modificar_revision_sistema', 'Modulos\Cirugia\valoracionPreanestecia\RevisionSistemaApiController@guardarModificarRevisionSistema');
+    /* SubModulo valoracionPreanestecia */
+    Route::namespace('Modulos\Cirugia\valoracionPreanestecia')->prefix('valoracionPreanestecia')->group(function () {
+        //Modulo de Cirugia
+        Route::post('cargar_lista_cirugia_programadaPaciente', 'ValoracionPreanestesicaApiController@cargarListaCirugiaProgramadaPaciente');
 
-    /* Antecedente */
-    //Cargar en los Campos
-    Route::get('valoracionPreanestecia/cargar_antecedente_campo/{idSecCirPro}', 'Modulos\Cirugia\valoracionPreanestecia\AntecedenteApiController@cargarAntecedenteCampo');
-    //Guardar o Modificar
-    Route::post('valoracionPreanestecia/guardar_modificar_antecedente', 'Modulos\Cirugia\valoracionPreanestecia\AntecedenteApiController@guardarModificarAntecedente');
+        /* Revision por Sistema */
+        //Cargar en los Campos
+        Route::get('cargar_revision_sistema_campo/{idSecCirPro}', 'RevisionSistemaApiController@cargarRevisionSistemaCampo');
+        //Cargar Pdf Formulario
+        Route::get('cargar_pdf_formulario_valoracion_preanestesica/{idSecCirPro}', 'ValoracionPreanestesicaApiController@cargarPdfFormularioValoracionPreanestesica');
+        //Guardar o Modificar
+        Route::post('guardar_modificar_revision_sistema', 'RevisionSistemaApiController@guardarModificarRevisionSistema');
 
-    /* Examen Fisico */
-    //Cargar en los Campos
-    Route::get('valoracionPreanestecia/cargar_examen_fisico_campo/{idSecCirPro}', 'Modulos\Cirugia\valoracionPreanestecia\ExamenFisicoApiController@cargarExamenFisicoCampo');
-    //Guardar o Modificar
-    Route::post('valoracionPreanestecia/guardar_modificar_examen_fisico', 'Modulos\Cirugia\valoracionPreanestecia\ExamenFisicoApiController@guardarModificarExamenFisico');
+        /* Antecedente */
+        //Cargar en los Campos
+        Route::get('cargar_antecedente_campo/{idSecCirPro}', 'AntecedenteApiController@cargarAntecedenteCampo');
+        //Guardar o Modificar
+        Route::post('guardar_modificar_antecedente', 'AntecedenteApiController@guardarModificarAntecedente');
 
-    /* Paraclinico */
-    //Cargar en los Campos
-    Route::get('valoracionPreanestecia/cargar_paraclinico_campo/{idSecCirPro}', 'Modulos\Cirugia\valoracionPreanestecia\ParaclinicoApiController@cargarParaclinicoCampo');
-    //Guardar o Modificar
-    Route::post('valoracionPreanestecia/guardar_modificar_paraclinico', 'Modulos\Cirugia\valoracionPreanestecia\ParaclinicoApiController@guardarModificarParaclinico');
+        /* Examen Fisico */
+        //Cargar en los Campos
+        Route::get('cargar_examen_fisico_campo/{idSecCirPro}', 'ExamenFisicoApiController@cargarExamenFisicoCampo');
+        //Guardar o Modificar
+        Route::post('guardar_modificar_examen_fisico', 'ExamenFisicoApiController@guardarModificarExamenFisico');
 
-    Route::namespace('Modulos\Cirugia\RegistroAnestesico')->prefix('anestesia')->group( function(){
-        Route::get('agentes/{tipo}', 'AgentesController@obtenerAgentesJson');
-        Route::post('agentes/guardado/{registro_id}', 'AgentesController@guardarAgente');
-        Route::post('registrar', 'AgentesController@guardarAgente');
+        /* Paraclinico */
+        //Cargar en los Campos
+        Route::get('cargar_paraclinico_campo/{idSecCirPro}', 'ParaclinicoApiController@cargarParaclinicoCampo');
+        //Guardar o Modificar
+        Route::post('guardar_modificar_paraclinico', 'ParaclinicoApiController@guardarModificarParaclinico');
+    });
+
+    /* SubModulo anestesia */
+    Route::namespace('Modulos\Cirugia\RegistroAnestesico')->prefix('anestesia')->group(function () {
+        Route::get('agentes/{tipo}', 'DatosAgentesController@obtenerAgenteAnestesiaJson');
+        Route::post('agentes/guardado/{registro_id}', 'DatosAgentesController@guardarDatosAgentes');
+        Route::post('registrar', 'DatosAgentesController@guardarDatosAgentes');
         Route::post('registro/post', 'RegistroAnestesiaController@store');
         Route::post('registro_tipo_agente/post', 'TipoAgenteAnestesiaController@store');
+    });
 
+    /* SubModulo Tipo Agente */
+    Route::namespace('Modulos\Cirugia\TipoAgente')->prefix('tipo_agente')->group(function () {
+        Route::get('cargar_tipo_agente_table', 'TipoAgenteController@cargarTipoAgenteTabla');
+        Route::post('modificar_tipo_agente', 'TipoAgenteController@modificarTipoAgente');
+        Route::post('guardar_tipo_agente', 'TipoAgenteController@guardarTipoAgente');
+        Route::delete('eliminar_tipo_agente/{id}', 'TipoAgenteController@eliminarTipoAgente');
+    });
+
+    /* SubModulo Tipo Posiciones */
+    Route::namespace('Modulos\Cirugia\TipoPosiciones')->prefix('tipo_posiciones')->group(function () {
+        Route::get('cargar_tipo_posiciones_table', 'TipoPosicionesController@cargarTipoPosicionesTabla');
+        Route::post('modificar_tipo_posiciones', 'TipoPosicionesController@modificarTipoPosiciones');
+        Route::post('guardar_tipo_posiciones', 'TipoPosicionesController@guardarTipoPosiciones');
+        Route::delete('eliminar_tipo_posiciones/{id}', 'TipoPosicionesController@eliminarTipoPosiciones');
     });
 });

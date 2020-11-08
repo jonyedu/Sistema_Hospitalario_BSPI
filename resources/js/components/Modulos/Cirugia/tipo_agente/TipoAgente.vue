@@ -15,7 +15,7 @@
                                 >
                             </li>
                             <li><p>/</p></li>
-                            <li><p style="margin-left:10px">SubModulo</p></li>
+                            <li><p style="margin-left:10px">Tipo Agente</p></li>
                         </ol>
                     </div>
                     &nbsp;
@@ -33,7 +33,7 @@
                                                     <button
                                                         class="btn btn-primary"
                                                         @click="
-                                                            nuevoSubModulo()
+                                                            nuevoTipoAgente()
                                                         "
                                                     >
                                                         Nuevo
@@ -50,12 +50,12 @@
                                                     :modificar-button="true"
                                                     :info-button="false"
                                                     :columns-data="columns"
-                                                    :rows-data="subModulos"
+                                                    :rows-data="tipoAgente"
                                                     @handleModificarClick="
-                                                        modificarSubModulo
+                                                        modificarTipoAgente
                                                     "
                                                     @handleAnularClick="
-                                                        anularSubModuloConfirmacion
+                                                        anularTipoAgenteConfirmacion
                                                     "
                                                 ></vuetable-component>
                                             </div>
@@ -75,14 +75,14 @@
             :height="'auto'"
             :scrollable="true"
             style="z-index: 1200;"
-            name="crearSubModulo"
+            name="crearTipoAgente"
         >
-            <crear-modificar-sub-modulo
-                :sub-modulo-mod="subModuloMod"
-                @recargarSubModulo="cargarSubModulo"
-                @cerrarModalCrearSubModulo="cerrarModalCrearSubModulo"
-                ref="crearSubModulo"
-            ></crear-modificar-sub-modulo>
+            <crear-modificar-tipo-agente
+                :tipo-agente-mod="tipoAgenteMod"
+                @recargarTipoAgente="cargarTipoAgente"
+                @cerrarModalCrearTipoAgente="cerrarModalCrearTipoAgente"
+                ref="crearTipoAgente"
+            ></crear-modificar-tipo-agente>
         </modal>
         <!-- Fin Seccion donde muestra la lista de los pacientes que tienen una cita -->
     </div>
@@ -94,32 +94,33 @@ export default {
     data: function() {
         return {
             prefijo: "",
-            subModuloMod: null,
+            tipoAgenteMod: null,
             url_data: "",
             errores: {},
             form: {},
-            subModulos: [],
+            tipoAgente: [],
             columns: [
                 {
-                    label: "Modulo",
-                    field: "descripcion_modulo",
+                    label: "Descripción",
+                    field: "descripcion",
                     type: "String"
                 },
                 {
-                    label: "Descripción",
-                    field: "descripcion_sub_modulo",
+                    label: "Name System",
+                    field: "name_system",
                     type: "String"
                 },
                 {
                     label: "Imagen",
-                    field: "imagen_sub_modulo",
+                    field: "imagen",
                     type: "String"
-                },
+                }
+
             ]
         };
     },
     mounted: function() {
-        this.cargarSubModulo();
+        this.cargarTipoAgente();
         /* let nombreModulo = this.$nombresModulo.datos_generales;
         let nombreFormulario = this.$nombresFormulario.datos_generales
             .generalidades.organizacion_bspi.organizacion_bspi
@@ -143,28 +144,25 @@ export default {
         ); */
     },
     methods: {
-        cargarSubModulo: function() {
+        cargarTipoAgente: function() {
             let that = this;
             let url =
-                "/modulos/parametrizacion/sub_modulo/cargar_sub_modulo_table";
+                "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table";
             var loader = that.$loading.show();
             axios
                 .get(url)
                 .then(function(response) {
-                    let subModulo = [];
-                    for (let i = 0; i < response.data.subModulo.length; i++) {
+                    let tipoAgente = [];
+                    for (let i = 0; i < response.data.tipoAgente.length; i++) {
                         let objeto = {
-                            id_modulo:response.data.subModulo[i].MOD_CODIGO,
-                            descripcion_modulo: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.subModulo[i].MOD_DESCRIPCION),
-                            id_sub_modulo:response.data.subModulo[i].SUB_CODIGO,
-                            descripcion_sub_modulo: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.subModulo[i].SUB_DESCRIPCION),
-                            imagen_sub_modulo: response.data.subModulo[i].SUB_IMAGEN,
-                            ejecutable_sub_modulo: response.data.subModulo[i].SUB_EJECUTABLE,
-                            route_sub_modulo: response.data.subModulo[i].SUB_ROUTE,
+                            id:response.data.tipoAgente[i].id,
+                            descripcion: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.tipoAgente[i].descripcion),
+                            name_system: response.data.tipoAgente[i].name_system,
+                            imagen: response.data.tipoAgente[i].img_src,
                         };
-                        subModulo.push(objeto);
+                        tipoAgente.push(objeto);
                     }
-                    that.subModulos = subModulo;
+                    that.tipoAgente = tipoAgente;
                     loader.hide();
                 })
                 .catch(error => {
@@ -177,11 +175,11 @@ export default {
                     });
                 });
         },
-        modificarSubModulo(value) {
-            this.subModuloMod = value;
-            this.abrirModalCrearSubModulo();
+        modificarTipoAgente(value) {
+            this.tipoAgenteMod = value;
+            this.abrirModalCrearTipoAgente();
         },
-        anularSubModuloConfirmacion(value) {
+        anularTipoAgenteConfirmacion(value) {
             let that = this;
             this.$swal({
                 title: "¿Desea anular el elemento seleccionado?",
@@ -193,21 +191,21 @@ export default {
                 cancelButtonText: "Cancelar"
             }).then(result => {
                 if (result.value) {
-                    that.anularSubModulo(value.id_sub_modulo);
+                    that.anularTipoAgente(value.id);
                 }
             });
         },
-        anularSubModulo(id) {
+        anularTipoAgente(id) {
             let that = this;
             let url =
-                "/modulos/parametrizacion/sub_modulo/eliminar_sub_modulo/" +
+                "/modulos/cirugia/tipo_agente/eliminar_tipo_agente/" +
                 id;
             var loader = that.$loading.show();
             axios
                 .delete(url)
                 .then(function(response) {
                     loader.hide();
-                    that.cargarSubModulo();
+                    that.cargarTipoAgente();
                     that.$swal({
                         icon: "success",
                         title: "Proceso realizado exitosamente",
@@ -224,16 +222,16 @@ export default {
                     });
                 });
         },
-        cerrarModalCrearSubModulo: function() {
-            this.$modal.hide("crearSubModulo");
-            this.cargarSubModulo();
+        cerrarModalCrearTipoAgente: function() {
+            this.$modal.hide("crearTipoAgente");
+            this.cargarTipoAgente();
         },
-        nuevoSubModulo: function() {
-            this.subModuloMod = null;
-            this.abrirModalCrearSubModulo();
+        nuevoTipoAgente: function() {
+            this.tipoAgenteMod = null;
+            this.abrirModalCrearTipoAgente();
         },
-        abrirModalCrearSubModulo: function() {
-            this.$modal.show("crearSubModulo");
+        abrirModalCrearTipoAgente: function() {
+            this.$modal.show("crearTipoAgente");
         },
 
     }

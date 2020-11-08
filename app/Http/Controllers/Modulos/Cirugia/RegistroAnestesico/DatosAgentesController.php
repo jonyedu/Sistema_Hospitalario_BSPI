@@ -3,26 +3,25 @@
 namespace App\Http\Controllers\Modulos\Cirugia\RegistroAnestesico;
 
 use App\Http\Controllers\Controller;
-use App\Models\Modulos\Cirugia\RegistroAnestesico\AgenteDetalleRegistro;
+use App\Models\Modulos\Cirugia\RegistroAnestesico\AgenteAnestesia;
 // use App\Models\Modulos\Cirugia\RegistroAnestesico\AgenteDetalleRegistro;
-use App\Models\Modulos\Cirugia\RegistroAnestesico\Agentes;
-use App\Models\Modulos\Cirugia\RegistroAnestesico\TipoAgenteAnestesia;
+use App\Models\Modulos\Cirugia\RegistroAnestesico\DatosAgentes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AgentesController extends Controller
+class DatosAgentesController extends Controller
 {
     /**
      *
      */
-    public function obtenerAgentesJson($tipo)
+    public function obtenerAgenteAnestesiaJson($tipo)
     {
-        return response()->json(Agentes::activosPorTipo($tipo));
+        return response()->json(AgenteAnestesia::activosPorTipo($tipo));
     }
     /**
      *
      */
-    public function guardarAgente(Request $request, $registro_id)
+    public function guardarDatosAgentes(Request $request, $registro_id)
     {
         // return response()->json($request->input());
         // Datos del detalle
@@ -41,14 +40,14 @@ class AgentesController extends Controller
                 break;
             case 'agente':
                 # agente
-                $agente = Agentes::where('name_system', $datos->name)->first();
+                $agente = AgenteAnestesia::where('name_system', $datos->name)->first();
                 // return response()->json( $agente, 201);
 
                 // dd($agente);
                 if($agente !== null){
                     // $datos->agente_id =  $agente ->id;
                     // $datos->usu_created_update =  auth()->user()->id;
-                    AgenteDetalleRegistro::create([
+                    DatosAgentes::create([
                         'registro_anestesia_id'   => $datos->registro_anestesia_id,
                         'hora'   => $datos->hora,
                         'min'   => $datos->min,

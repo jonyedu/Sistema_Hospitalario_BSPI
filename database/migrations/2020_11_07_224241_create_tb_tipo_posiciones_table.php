@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbAngenteDetalleTable extends Migration
+class CreateTbTipoPosicionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateTbAngenteDetalleTable extends Migration
      */
     public function up()
     {
-        if (!Schema::connection('control_hospitalario_db_sql')->hasTable('tb_angente_detalle')) {
-            Schema::connection('control_hospitalario_db_sql')->create('tb_angente_detalle', function (Blueprint $table) {
+        if (!Schema::connection('control_hospitalario_db_sql')->hasTable('tb_tipo_posiciones')) {
+            Schema::connection('control_hospitalario_db_sql')->create('tb_tipo_posiciones', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->unsignedInteger('registro_anestesia_id');
                 $table->string('descripcion');
                 $table->string('name_system');
+                $table->string('img_src');
                 /* Datos para auditoria */
                 $table->string('des_campo1', 100)->nullable();
                 $table->string('des_campo2', 50)->nullable();
@@ -38,6 +38,6 @@ class CreateTbAngenteDetalleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_angente_detalle');
+        Schema::dropIfExists('tb_tipo_posiciones');
     }
 }

@@ -5,7 +5,7 @@ namespace App\Models\Modulos\Cirugia\RegistroAnestesico;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Agentes extends Model
+class AgenteAnestesia extends Model
 {
     use HasFactory;
     /**

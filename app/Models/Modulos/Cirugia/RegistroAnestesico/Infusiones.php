@@ -5,13 +5,13 @@ namespace App\Models\Modulos\Cirugia\RegistroAnestesico;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TipoAgenteAnestesia extends Model
+class Infusiones extends Model
 {
     use HasFactory;
     /**
      * @var string
      */
-    protected $table = 'tb_tipo_agente_anestesia';
+    protected $table = 'tb_infusiones';
     /**
      * @var string
      */
@@ -19,8 +19,18 @@ class TipoAgenteAnestesia extends Model
 
     protected $fillable = [
         'id',
-        'descripcion',
-        'name_system',
-        'status',
+        'dextrosas',
+        'ringer',
+        'sangre',
+        'expansores',
+        'total',
+        'des_campo1',
+        'des_campo2',
+        'des_campo3',
+        'usu_created_update',
+        'created_at',
+        'updated_at',
+        'pcip',
+        'status'
     ];
 }
