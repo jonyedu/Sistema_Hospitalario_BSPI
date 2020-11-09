@@ -3602,6 +3602,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -3871,10 +3883,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     obtenerDatosAgentes: function obtenerDatosAgentes() {
       var _this2 = this;
 
-      var url = "/modulos/cirugia/anestesia/agentes";
-      axios.get(url + "/agente").then(function (response) {
-        console.log(response.data);
-        _this2.tabla_datos_grafica = response.data;
+      /* let url = "/modulos/cirugia/anestesia/agentes"; */
+      var url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table";
+      axios
+      /* .get(url + "/agente") */
+      .get(url).then(function (response) {
+        /* console.log(response.data); */
+        _this2.tabla_datos_grafica = response.data.tipoAgente;
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -3886,10 +3901,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     obtenerDatosPosiciones: function obtenerDatosPosiciones() {
       var _this3 = this;
 
-      var url = "/modulos/cirugia/anestesia/agentes";
-      axios.get(url + "/posicion").then(function (response) {
+      /* let url = "/modulos/cirugia/anestesia/agentes"; */
+      var url = "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table";
+      axios
+      /* .get(url + "/posicion") */
+      .get(url).then(function (response) {
         console.log(response.data);
-        _this3.posiciones = response.data;
+        _this3.posiciones = response.data.tipoPosiciones;
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -4806,6 +4824,64 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     tipoAgenteMod: {
@@ -4817,13 +4893,17 @@ __webpack_require__.r(__webpack_exports__);
       errores: {
         err_descripcion: "",
         err_name_system: "",
-        err_imagen: ""
+        err_logo: "",
+        err_fotoURL: "",
+        err_nuevaURL: ""
       },
       form: {
         frm_id: "",
         frm_descripcion: "",
         frm_name_system: "",
-        frm_imagen: ""
+        frm_logo: "",
+        frm_fotoURL: "",
+        frm_nuevaURL: ""
       }
     };
   },
@@ -4833,7 +4913,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.frm_id = tipoAgente.id;
       this.form.frm_descripcion = tipoAgente.descripcion;
       this.form.frm_name_system = tipoAgente.name_system;
-      this.form.frm_imagen = tipoAgente.imagen;
+      this.form.frm_fotoURL = tipoAgente.imagen;
     }
     /* let nombreModulo = this.$nombresModulo.datos_generales;
     let nombreFormulario = this.$nombresFormulario.datos_generales
@@ -4858,6 +4938,21 @@ __webpack_require__.r(__webpack_exports__);
     ); */
   },
   methods: {
+    /* Metodos para la imagen */
+    onFileSelected: function onFileSelected(event) {
+      if (event.target.files[0]["type"] === "image/jpeg" || event.target.files[0]["type"] === "image/png" || event.target.files[0]["type"] === "image/jpg") {
+        this.form.frm_logo = event.target.files[0];
+        this.form.frm_fotoURL = URL.createObjectURL(this.form.frm_logo);
+      } else {
+        this.$swal({
+          icon: "error",
+          title: "Error de Archivo",
+          text: "Solo imagenes de formato: .jpeg, .jpg, .png son permitidos!"
+        });
+      }
+    },
+
+    /* Fin Metodos para la imagen*/
     limpiarForm: function limpiarForm() {
       this.errores = {
         err_descripcion: "",
@@ -4871,10 +4966,59 @@ __webpack_require__.r(__webpack_exports__);
         frm_imagen: ""
       };
     },
-    guardarActualizarTipoAgente: function guardarActualizarTipoAgente() {
+    guardarModificarArchivo: function guardarModificarArchivo() {
+      var _this = this;
+
+      if (this.form.frm_fotoURL == null || this.form.frm_fotoURL == "") {
+        this.$swal({
+          icon: "error",
+          title: "Existen errores",
+          text: "Se necesita una imagen"
+        });
+      } else {
+        var that = this;
+        var file = that.form.frm_logo;
+        var formData = new FormData();
+        formData.append("logo", file);
+        var config = {
+          headers: {
+            "content-type": "multipart/form-data"
+          }
+        };
+        var loader = that.$loading.show();
+        axios.post("/modulos/cirugia/tipo_agente/guardar_archivo_tipo_agente", formData, config).then(function (response) {
+          loader.hide();
+          that.guardarActualizarTipoAgente(response.data.pathFoto);
+        })["catch"](function (error) {
+          if (!error.response) {
+            _this.errorStatus = "Error: Network Error";
+          } else {
+            _this.errorStatus = error.response.data.message;
+          }
+
+          loader.hide();
+        });
+      }
+    },
+    guardarActualizarTipoAgente: function guardarActualizarTipoAgente(pathFoto) {
       var that = this;
       var url = "";
-      var mensaje = ""; //if()
+      var mensaje = "";
+      var formNew = {
+        frm_id: that.form.frm_id,
+        frm_descripcion: that.form.frm_descripcion,
+        frm_name_system: that.form.frm_name_system,
+        frm_logo: that.form.frm_logo,
+        frm_fotoURL: that.form.frm_fotoURL,
+        frm_imagen: pathFoto == "" ? this.form.frm_fotoURL : pathFoto
+      };
+      that.errores = {
+        err_descripcion: "",
+        err_name_system: "",
+        err_logo: "",
+        err_fotoURL: "",
+        err_nuevaURL: ""
+      };
 
       if (this.$props.tipoAgenteMod !== null) {
         url = "/modulos/cirugia/tipo_agente/modificar_tipo_agente";
@@ -4885,7 +5029,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       var loader = that.$loading.show();
-      axios.post(url, this.form).then(function (response) {
+      axios.post(url, formNew).then(function (response) {
         //Llamar metodo de parent para que actualice el grid.
         loader.hide();
         that.$emit("recargarTipoAgente");
@@ -5027,6 +5171,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -5044,10 +5189,6 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         label: "Name System",
         field: "name_system",
-        type: "String"
-      }, {
-        label: "Imagen",
-        field: "imagen",
         type: "String"
       }]
     };
@@ -5282,6 +5423,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     tipoPosicionesMod: {
@@ -5293,13 +5470,17 @@ __webpack_require__.r(__webpack_exports__);
       errores: {
         err_descripcion: "",
         err_name_system: "",
-        err_imagen: ""
+        err_logo: "",
+        err_fotoURL: "",
+        err_nuevaURL: ""
       },
       form: {
         frm_id: "",
         frm_descripcion: "",
         frm_name_system: "",
-        frm_imagen: ""
+        frm_logo: "",
+        frm_fotoURL: "",
+        frm_nuevaURL: ""
       }
     };
   },
@@ -5309,7 +5490,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.frm_id = tipoPosiciones.id;
       this.form.frm_descripcion = tipoPosiciones.descripcion;
       this.form.frm_name_system = tipoPosiciones.name_system;
-      this.form.frm_imagen = tipoPosiciones.imagen;
+      this.form.frm_fotoURL = tipoPosiciones.imagen;
     }
     /* let nombreModulo = this.$nombresModulo.datos_generales;
     let nombreFormulario = this.$nombresFormulario.datos_generales
@@ -5347,10 +5528,71 @@ __webpack_require__.r(__webpack_exports__);
         frm_imagen: ""
       };
     },
-    guardarActualizarTipoPosiciones: function guardarActualizarTipoPosiciones() {
+    onFileSelected: function onFileSelected(event) {
+      if (event.target.files[0]["type"] === "image/jpeg" || event.target.files[0]["type"] === "image/png" || event.target.files[0]["type"] === "image/jpg") {
+        this.form.frm_logo = event.target.files[0];
+        this.form.frm_fotoURL = URL.createObjectURL(this.form.frm_logo);
+      } else {
+        this.$swal({
+          icon: "error",
+          title: "Error de Archivo",
+          text: "Solo imagenes de formato: .jpeg, .jpg, .png son permitidos!"
+        });
+      }
+    },
+    guardarModificarArchivo: function guardarModificarArchivo() {
+      var _this = this;
+
+      if (this.form.frm_fotoURL == null || this.form.frm_fotoURL == "") {
+        this.$swal({
+          icon: "error",
+          title: "Existen errores",
+          text: "Se necesita una imagen"
+        });
+      } else {
+        var that = this;
+        var file = that.form.frm_logo;
+        var formData = new FormData();
+        formData.append("logo", file);
+        var config = {
+          headers: {
+            "content-type": "multipart/form-data"
+          }
+        };
+        var loader = that.$loading.show();
+        axios.post("/modulos/cirugia/tipo_posiciones/guardar_archivo_tipo_posiciones", formData, config).then(function (response) {
+          loader.hide();
+          that.guardarActualizarTipoPosiciones(response.data.pathFoto);
+        })["catch"](function (error) {
+          if (!error.response) {
+            _this.errorStatus = "Error: Network Error";
+          } else {
+            _this.errorStatus = error.response.data.message;
+          }
+
+          loader.hide();
+        });
+      }
+    },
+    guardarActualizarTipoPosiciones: function guardarActualizarTipoPosiciones(pathFoto) {
       var that = this;
       var url = "";
-      var mensaje = ""; //if()
+      var mensaje = "";
+      var formNew = {
+        frm_id: that.form.frm_id,
+        frm_descripcion: that.form.frm_descripcion,
+        frm_name_system: that.form.frm_name_system,
+        frm_logo: that.form.frm_logo,
+        frm_fotoURL: that.form.frm_fotoURL,
+        frm_imagen: pathFoto == "" ? this.form.frm_fotoURL : pathFoto
+      };
+      that.errores = {
+        err_descripcion: "",
+        err_name_system: "",
+        err_logo: "",
+        err_fotoURL: "",
+        err_nuevaURL: ""
+      };
 
       if (this.$props.tipoPosicionesMod !== null) {
         url = "/modulos/cirugia/tipo_posiciones/modificar_tipo_posiciones";
@@ -5361,7 +5603,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       var loader = that.$loading.show();
-      axios.post(url, this.form).then(function (response) {
+      axios.post(url, formNew).then(function (response) {
         //Llamar metodo de parent para que actualice el grid.
         loader.hide();
         that.$emit("recargarTipoPosiciones");
@@ -5503,6 +5745,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -5520,10 +5763,6 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         label: "Name System",
         field: "name_system",
-        type: "String"
-      }, {
-        label: "Imagen",
-        field: "imagen",
         type: "String"
       }]
     };
@@ -12317,6 +12556,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     columnsData: {
@@ -12356,7 +12597,7 @@ __webpack_require__.r(__webpack_exports__);
       required: false,
       "default": false
     },
-    logoHospital: {
+    imagen: {
       type: Boolean,
       required: false,
       "default": false
@@ -12412,10 +12653,10 @@ __webpack_require__.r(__webpack_exports__);
           html: true
         });
       }
-    } //Logo del Hospital
+    } //Imagen
 
 
-    if (this.$props.logoHospital) {
+    if (this.$props.imagen) {
       var _encontradoPicture = false;
 
       for (var _i2 = 0; _i2 < this.$data.columns.length; _i2++) {
@@ -12426,9 +12667,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (!_encontradoPicture) {
-        this.$data.columns.unshift({
-          label: "Logo del Hospital",
-          field: "logoHospital",
+        this.$data.columns.push({
+          label: "Imagen",
+          field: "imagen",
           html: true,
           width: "20%"
         });
@@ -54402,8 +54643,7 @@ var render = function() {
                                   name: "model",
                                   rawName: "v-model",
                                   value: _vm.agentes_text[index].descripcion,
-                                  expression:
-                                    "\n                                        agentes_text[index].descripcion\n                                    "
+                                  expression: "agentes_text[index].descripcion"
                                 }
                               ],
                               staticStyle: { width: "100%" },
@@ -54452,12 +54692,12 @@ var render = function() {
                                 ]),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "col-3" }, [
-                                  item.img_url
+                                  item.img_src
                                     ? _c("img", {
                                         attrs: {
                                           width: "15",
-                                          src: "/" + item.img_url,
-                                          alt: ""
+                                          src: item.img_src,
+                                          alt: "no carga"
                                         }
                                       })
                                     : _vm._e()
@@ -57195,52 +57435,96 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-lg-2 col-md-2 col-sm-12" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "abreviatura" } }, [
-                    _vm._v("Imagen")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.frm_imagen,
-                        expression: "form.frm_imagen"
-                      }
-                    ],
-                    class:
-                      _vm.errores.err_imagen === ""
-                        ? "form-control"
-                        : "form-control is-invalid",
-                    attrs: {
-                      type: "text",
-                      id: "imagen",
-                      placeholder: "Imagen"
-                    },
-                    domProps: { value: _vm.form.frm_imagen },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "frm_imagen", $event.target.value)
-                      }
-                    }
-                  })
+              _c("div", { staticClass: "col-lg-4 col-md-4 col-sm-12" }, [
+                _c("label", { attrs: { for: "abreviatura" } }, [
+                  _vm._v("Imagen")
                 ]),
                 _vm._v(" "),
-                _vm.errores.err_imagen !== ""
-                  ? _c(
-                      "small",
+                _c(
+                  "div",
+                  {
+                    staticClass: "row",
+                    staticStyle: {
+                      border: "1px solid black",
+                      display: "block",
+                      height: "75px",
+                      width: "150px"
+                    }
+                  },
+                  [
+                    this.$props.tipoAgenteMod !== null
+                      ? _c("div", [
+                          _vm.form.frm_fotoURL != ""
+                            ? _c("img", {
+                                staticClass: "w-50",
+                                staticStyle: {
+                                  display: "block",
+                                  margin: "auto",
+                                  height: "75px",
+                                  width: "150px"
+                                },
+                                attrs: {
+                                  src: _vm.form.frm_fotoURL,
+                                  alt: "",
+                                  srcset: ""
+                                }
+                              })
+                            : _vm._e()
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    this.$props.tipoAgenteMod === null
+                      ? _c("div", [
+                          _vm.form.frm_logo != ""
+                            ? _c("img", {
+                                staticClass: "w-50",
+                                staticStyle: {
+                                  display: "block",
+                                  margin: "auto",
+                                  height: "75px",
+                                  width: "150px"
+                                },
+                                attrs: {
+                                  src: _vm.form.frm_fotoURL,
+                                  alt: "",
+                                  srcset: ""
+                                }
+                              })
+                            : _vm._e()
+                        ])
+                      : _vm._e()
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+                    _c("input", {
+                      ref: "file",
+                      staticStyle: { display: "none" },
+                      attrs: { type: "file" },
+                      on: { change: _vm.onFileSelected }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
                       {
-                        staticClass: "text-danger",
-                        attrs: { id: "correoHelp" }
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.$refs.file.click()
+                          }
+                        }
                       },
-                      [_vm._v(_vm._s(_vm.errores.err_imagen[0]))]
+                      [
+                        _c("i", { staticClass: "fas fa-image" }),
+                        _vm._v(
+                          "Cargar\n                                        Imagen\n                                    "
+                        )
+                      ]
                     )
-                  : _vm._e()
+                  ])
+                ])
               ])
             ]),
             _vm._v(" "),
@@ -57257,7 +57541,7 @@ var render = function() {
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
-                            return _vm.guardarActualizarTipoAgente()
+                            return _vm.guardarModificarArchivo()
                           }
                         }
                       },
@@ -57391,7 +57675,8 @@ var render = function() {
                                   "modificar-button": true,
                                   "info-button": false,
                                   "columns-data": _vm.columns,
-                                  "rows-data": _vm.tipoAgente
+                                  "rows-data": _vm.tipoAgente,
+                                  imagen: _vm.tipoAgenteMod ? false : true
                                 },
                                 on: {
                                   handleModificarClick: _vm.modificarTipoAgente,
@@ -57598,52 +57883,96 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-lg-2 col-md-2 col-sm-12" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "abreviatura" } }, [
-                    _vm._v("Imagen")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.frm_imagen,
-                        expression: "form.frm_imagen"
-                      }
-                    ],
-                    class:
-                      _vm.errores.err_imagen === ""
-                        ? "form-control"
-                        : "form-control is-invalid",
-                    attrs: {
-                      type: "text",
-                      id: "imagen",
-                      placeholder: "Imagen"
-                    },
-                    domProps: { value: _vm.form.frm_imagen },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "frm_imagen", $event.target.value)
-                      }
-                    }
-                  })
+              _c("div", { staticClass: "col-lg-4 col-md-4 col-sm-12" }, [
+                _c("label", { attrs: { for: "abreviatura" } }, [
+                  _vm._v("Imagen")
                 ]),
                 _vm._v(" "),
-                _vm.errores.err_imagen !== ""
-                  ? _c(
-                      "small",
+                _c(
+                  "div",
+                  {
+                    staticClass: "row",
+                    staticStyle: {
+                      border: "1px solid black",
+                      display: "block",
+                      height: "75px",
+                      width: "150px"
+                    }
+                  },
+                  [
+                    this.$props.tipoPosicionesMod !== null
+                      ? _c("div", [
+                          _vm.form.frm_fotoURL != ""
+                            ? _c("img", {
+                                staticClass: "w-50",
+                                staticStyle: {
+                                  display: "block",
+                                  margin: "auto",
+                                  height: "75px",
+                                  width: "150px"
+                                },
+                                attrs: {
+                                  src: _vm.form.frm_fotoURL,
+                                  alt: "",
+                                  srcset: ""
+                                }
+                              })
+                            : _vm._e()
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    this.$props.tipoPosicionesMod === null
+                      ? _c("div", [
+                          _vm.form.frm_logo != ""
+                            ? _c("img", {
+                                staticClass: "w-50",
+                                staticStyle: {
+                                  display: "block",
+                                  margin: "auto",
+                                  height: "75px",
+                                  width: "150px"
+                                },
+                                attrs: {
+                                  src: _vm.form.frm_fotoURL,
+                                  alt: "",
+                                  srcset: ""
+                                }
+                              })
+                            : _vm._e()
+                        ])
+                      : _vm._e()
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+                    _c("input", {
+                      ref: "file",
+                      staticStyle: { display: "none" },
+                      attrs: { type: "file" },
+                      on: { change: _vm.onFileSelected }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
                       {
-                        staticClass: "text-danger",
-                        attrs: { id: "correoHelp" }
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.$refs.file.click()
+                          }
+                        }
                       },
-                      [_vm._v(_vm._s(_vm.errores.err_imagen[0]))]
+                      [
+                        _c("i", { staticClass: "fas fa-image" }),
+                        _vm._v(
+                          "Cargar\n                                        Imagen\n                                    "
+                        )
+                      ]
                     )
-                  : _vm._e()
+                  ])
+                ])
               ])
             ]),
             _vm._v(" "),
@@ -57660,7 +57989,7 @@ var render = function() {
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
-                            return _vm.guardarActualizarTipoPosiciones()
+                            return _vm.guardarModificarArchivo()
                           }
                         }
                       },
@@ -57794,7 +58123,8 @@ var render = function() {
                                   "modificar-button": true,
                                   "info-button": false,
                                   "columns-data": _vm.columns,
-                                  "rows-data": _vm.tipoPosiciones
+                                  "rows-data": _vm.tipoPosiciones,
+                                  imagen: _vm.tipoPosicionesMod ? false : true
                                 },
                                 on: {
                                   handleModificarClick:
@@ -67941,7 +68271,7 @@ var render = function() {
                             })
                           ])
                         ])
-                      : props.column.field == "logoHospital"
+                      : props.column.field == "imagen"
                       ? _c("span", [
                           _c("div", [
                             _c("img", {
@@ -67953,7 +68283,7 @@ var render = function() {
                                 width: "500px"
                               },
                               attrs: {
-                                src: props.row.HOSPITAL_LOGO,
+                                src: props.row.imagen,
                                 alt: "",
                                 srcset: ""
                               }
@@ -83710,9 +84040,14 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_13___default.a;
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$funcionesGlobales = _funciones_js__WEBPACK_IMPORTED_MODULE_12__["funcionesGlobales"];
 
+var options = {
+  /* position: 'bottom-start', */
+
+  /* grow: 'fullscreen' */
+};
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_7__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_7__["default"], options);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_good_table__WEBPACK_IMPORTED_MODULE_2__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_1___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_form_wizard__WEBPACK_IMPORTED_MODULE_9___default.a);

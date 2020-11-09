@@ -20,9 +20,14 @@ Vue.prototype.$funcionesGlobales = funcionesGlobales;
 
 import 'vue-select/dist/vue-select.css';
 
+const options = {
+    /* position: 'bottom-start', */
+    /* grow: 'fullscreen' */
+  };
+
 Vue.use(Loading);
 Vue.use(VueRouter);
-Vue.use(VueSweetalert2);
+Vue.use(VueSweetalert2, options);
 Vue.use(VueGoodTablePlugin);
 Vue.use(VModal);
 Vue.use(VueFormWizard)

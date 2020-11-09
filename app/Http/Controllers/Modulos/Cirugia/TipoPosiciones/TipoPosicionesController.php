@@ -20,6 +20,25 @@ class TipoPosicionesController extends Controller
         }
     }
 
+    public function guardarModificarArchivo(Request $request)
+    {
+        try {
+            $file = $request->file('logo');
+            //echo "foto: " . $request->file('logo');
+            $destinationPath=public_path('icons');
+
+            // Generate a file name with extension
+            if ($file != null && $file != '') {
+                $fileFoto = 'iconTpPos-' . time() . '.' . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $fileFoto);
+                $pathFoto='/'.'icons/'.$fileFoto;
+            }
+            return response()->json(['pathFoto' => isset($pathFoto) && $pathFoto != null ? $pathFoto : ''], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+
     public function guardarTipoPosiciones(Request $request)
     {
         try {

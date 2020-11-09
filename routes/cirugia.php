@@ -51,16 +51,23 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
 
     /* SubModulo anestesia */
     Route::namespace('Modulos\Cirugia\RegistroAnestesico')->prefix('anestesia')->group(function () {
-        Route::get('agentes/{tipo}', 'DatosAgentesController@obtenerAgenteAnestesiaJson');
-        Route::post('agentes/guardado/{registro_id}', 'DatosAgentesController@guardarDatosAgentes');
-        Route::post('registrar', 'DatosAgentesController@guardarDatosAgentes');
+        /* Echo por mi */
+
+        /* Fin Echo por mi */
+
         Route::post('registro/post', 'RegistroAnestesiaController@store');
+        Route::post('agentes/guardado/{registro_id}', 'DatosAgentesController@guardarDatosAgentes');
+        Route::get('agentes/{tipo}', 'DatosAgentesController@obtenerAgenteAnestesiaJson');
+
+        Route::post('registrar', 'DatosAgentesController@guardarDatosAgentes');
+
         Route::post('registro_tipo_agente/post', 'TipoAgenteAnestesiaController@store');
     });
 
     /* SubModulo Tipo Agente */
     Route::namespace('Modulos\Cirugia\TipoAgente')->prefix('tipo_agente')->group(function () {
         Route::get('cargar_tipo_agente_table', 'TipoAgenteController@cargarTipoAgenteTabla');
+        Route::post('guardar_archivo_tipo_agente', 'TipoAgenteController@guardarModificarArchivo');
         Route::post('modificar_tipo_agente', 'TipoAgenteController@modificarTipoAgente');
         Route::post('guardar_tipo_agente', 'TipoAgenteController@guardarTipoAgente');
         Route::delete('eliminar_tipo_agente/{id}', 'TipoAgenteController@eliminarTipoAgente');
@@ -69,6 +76,7 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
     /* SubModulo Tipo Posiciones */
     Route::namespace('Modulos\Cirugia\TipoPosiciones')->prefix('tipo_posiciones')->group(function () {
         Route::get('cargar_tipo_posiciones_table', 'TipoPosicionesController@cargarTipoPosicionesTabla');
+        Route::post('guardar_archivo_tipo_posiciones', 'TipoPosicionesController@guardarModificarArchivo');
         Route::post('modificar_tipo_posiciones', 'TipoPosicionesController@modificarTipoPosiciones');
         Route::post('guardar_tipo_posiciones', 'TipoPosicionesController@guardarTipoPosiciones');
         Route::delete('eliminar_tipo_posiciones/{id}', 'TipoPosicionesController@eliminarTipoPosiciones');

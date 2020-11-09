@@ -78,17 +78,19 @@
                             />
                         </div>
                     </span>
-                    <span v-else-if="props.column.field == 'logoHospital'">
+                    <!-- Para las imagenes -->
+                    <span v-else-if="props.column.field == 'imagen'">
                         <div>
                             <img
                                 style="display:block;margin:auto;height: 35px; width: 500px;"
                                 class="w-50"
-                                :src="props.row.HOSPITAL_LOGO"
+                                :src="props.row.imagen"
                                 alt
                                 srcset
                             />
                         </div>
                     </span>
+                    <!-- Fin Para las imagenes -->
                     <span v-else-if="props.column.field == 'info'">
                         <span v-if="infoButton">
                             <button
@@ -270,7 +272,7 @@ export default {
             required: false,
             default: false
         },
-        logoHospital: {
+        imagen: {
             type: Boolean,
             required: false,
             default: false
@@ -323,8 +325,8 @@ export default {
                 });
             }
         }
-        //Logo del Hospital
-        if (this.$props.logoHospital) {
+        //Imagen
+        if (this.$props.imagen) {
             let encontradoPicture = false;
             for (let i = 0; i < this.$data.columns.length; i++) {
                 if (this.$data.columns[i].field == "picture") {
@@ -333,9 +335,9 @@ export default {
                 }
             }
             if (!encontradoPicture) {
-                this.$data.columns.unshift({
-                    label: "Logo del Hospital",
-                    field: "logoHospital",
+                this.$data.columns.push({
+                    label: "Imagen",
+                    field: "imagen",
                     html: true,
                     width: "20%"
                 });

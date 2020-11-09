@@ -51,6 +51,7 @@
                                                     :info-button="false"
                                                     :columns-data="columns"
                                                     :rows-data="tipoPosiciones"
+                                                    :imagen="tipoPosicionesMod?false: true"
                                                     @handleModificarClick="
                                                         modificarTipoPosiciones
                                                     "
@@ -109,13 +110,7 @@ export default {
                     label: "Name System",
                     field: "name_system",
                     type: "String"
-                },
-                {
-                    label: "Imagen",
-                    field: "imagen",
-                    type: "String"
                 }
-
             ]
         };
     },

@@ -28,9 +28,11 @@
                 </p>
             </div>
             <div class="row mb-5" v-if="iniciado">
+                <!-- MAX y MIN -->
                 <div class="col-md-3 border-t pt-2 pb-4">
                     <div class="text-center"><p class="text-center">TA</p></div>
                     <div class="row">
+                        <!-- MAX -->
                         <div class="col-md-10 flex fle">
                             <label for="ta_max" class="mr-2">MAX</label>
                             <input
@@ -41,6 +43,7 @@
                                 id="ta_max"
                             />
                         </div>
+                        <!-- MIN -->
                         <div class="col-md-10 mt-2 flex flex-x">
                             <label for="ta_min" class="mr-2">MIN</label>
                             <input
@@ -53,6 +56,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- PULSO -->
                 <div
                     class="col-md-2 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
                 >
@@ -65,11 +69,13 @@
                         id="valor_pulso"
                     />
                 </div>
+                <!-- RESPIACIÓN -->
                 <div class="col-md-4 border-t pt-2 pb-4">
                     <div class="text-center">
                         <p class="text-center">RESPIACIÓN</p>
                     </div>
                     <div class="row flex flex-center-x">
+                        <!-- ESP -->
                         <div
                             class="col-lg-4 col-md-5 flex flex-x flex-center-y"
                         >
@@ -87,6 +93,7 @@
                                 "
                             />
                         </div>
+                        <!-- ASIS -->
                         <div
                             class="col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
                         >
@@ -104,6 +111,7 @@
                                 "
                             />
                         </div>
+                        <!-- CONT -->
                         <div
                             class="col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
                         >
@@ -122,6 +130,7 @@
                             />
                         </div>
                     </div>
+                    <!-- Valor -->
                     <div class="row">
                         <div class="col-md-12 flex flex-center-x pt-2 pb-4">
                             <div class="row">
@@ -141,6 +150,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- TEMPERATURA -->
                 <div
                     class="col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
                 >
@@ -155,6 +165,7 @@
                         v-model="valoresFormulario.temperatura.valor"
                     />
                 </div>
+                <!-- FETO -->
                 <div
                     class="col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
                 >
@@ -167,6 +178,7 @@
                         v-model="valoresFormulario.feto.valor"
                     />
                 </div>
+                <!-- PRES VENOSA -->
                 <div
                     class="col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
                 >
@@ -181,6 +193,7 @@
                         v-model="valoresFormulario.pares_venosa.valor"
                     />
                 </div>
+                <!-- TORNIQUETE -->
                 <div
                     class="col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
                 >
@@ -195,6 +208,7 @@
                         v-model="valoresFormulario.torniquete.valor"
                     />
                 </div>
+                <!-- POSICIÓN -->
                 <div class="col-md-3 border-t pt-2 pb-4">
                     <div class="text-center">
                         <p class="text-center grid-center">POSICIÓN</p>
@@ -222,6 +236,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Boton Agregar -->
                 <div class="flex felx-center mt-2 mb-2" style="margin: 0 auto">
                     <button
                         class="btn btn-primary"
@@ -260,18 +275,18 @@
                                     v-for="(text, index) of agentes_text"
                                     :key="index"
                                 >
+                                    <!-- Se crea varios input para Agente/Hora -->
                                     <input
                                         type="text"
                                         name=""
                                         id=""
-                                        v-model="
-                                            agentes_text[index].descripcion
-                                        "
+                                        v-model="agentes_text[index].descripcion"
                                         style="width:100%"
                                     />
                                 </div>
                                 <!-- Agente hora -->
                                 <div class="row">
+                                    <!-- Seccion donde muestra los tipos de agentes -->
                                     <div class="col-8" id="tabla-datos-grafica">
                                         <div
                                             class="row mt-2 mb-2"
@@ -285,14 +300,15 @@
                                             </div>
                                             <div class="col-3">
                                                 <img
-                                                    v-if="item.img_url"
+                                                    v-if="item.img_src"
                                                     width="15"
-                                                    :src="'/' + item.img_url"
-                                                    alt=""
+                                                    :src="item.img_src"
+                                                    alt="no carga"
                                                 />
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Muestra los valores en grados del arreglo datos_grados -->
                                     <div class="col-2 p-0">
                                         <div style="margin-top: 5.4rem">
                                             <p
@@ -305,6 +321,7 @@
                                             </p>
                                         </div>
                                     </div>
+                                    <!-- Muestra los valores en Y 0..220 -->
                                     <div class="col-2 p-0">
                                         <div
                                             v-for="(item,
@@ -316,6 +333,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- POSICION -->
                                 <div
                                     class="row border-r flex-x-end"
                                     style="padding: 15px 5px"
@@ -434,10 +452,7 @@
                                                         v-if="dato.es_agente"
                                                     >
                                                         <div
-                                                            style="
-                                height: 1.82em;
-                                grid-template-columns: 1fr 1fr 1fr;
-                              "
+                                                            style="height: 1.82em;grid-template-columns: 1fr 1fr 1fr;"
                                                             v-for="(columna,
                                                             index_columna) of dato.columnasQuinceMin"
                                                             :class="
@@ -481,10 +496,7 @@
                                                         v-if="dato.es_posicion"
                                                     >
                                                         <div
-                                                            style="
-                                height: 50px;
-                                grid-template-columns: 1fr 1fr 1fr;
-                              "
+                                                            style="height: 50px;grid-template-columns: 1fr 1fr 1fr;"
                                                             v-for="(columna,
                                                             index_columna) of dato.columnasQuinceMin"
                                                             :class="
@@ -1631,7 +1643,7 @@ export default {
         return {
             form: {
                 cirugia_id: 0,
-                registro_anestesia_id: 0,
+                registro_anestesia_id: 0
                 // agente_id: 0
             },
             // message: "Hello Vue!",
@@ -1830,12 +1842,14 @@ export default {
          * Obtener agentes
          */
         obtenerDatosAgentes: function() {
-            let url = "/modulos/cirugia/anestesia/agentes";
+            /* let url = "/modulos/cirugia/anestesia/agentes"; */
+            let url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table";
             axios
-                .get(url + "/agente")
+                /* .get(url + "/agente") */
+                .get(url)
                 .then(response => {
-                    console.log(response.data);
-                    this.tabla_datos_grafica = response.data;
+                    /* console.log(response.data); */
+                    this.tabla_datos_grafica = response.data.tipoAgente;
                 })
                 .catch(err => console.log(err));
         },
@@ -1843,12 +1857,15 @@ export default {
          * Obtener posiciones
          */
         obtenerDatosPosiciones: function() {
-            let url = "/modulos/cirugia/anestesia/agentes";
+            /* let url = "/modulos/cirugia/anestesia/agentes"; */
+            let url =
+                "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table";
             axios
-                .get(url + "/posicion")
+                /* .get(url + "/posicion") */
+                .get(url)
                 .then(response => {
                     console.log(response.data);
-                    this.posiciones = response.data;
+                    this.posiciones = response.data.tipoPosiciones;
                 })
                 .catch(err => console.log(err));
         },
@@ -1966,7 +1983,7 @@ export default {
                                     segundos: this.seconds,
                                     valor: valor,
                                     name: adicional.system_name,
-                                    indice_hora : this.indice_hora
+                                    indice_hora: this.indice_hora
                                 },
                                 adicional.tipo
                             );
@@ -2000,7 +2017,7 @@ export default {
                                             segundos: this.seconds,
                                             valor: valor,
                                             name: adicional.system_name,
-                                            indice_hora : this.indice_hora,
+                                            indice_hora: this.indice_hora
                                         },
                                         adicional.tipo
                                     );

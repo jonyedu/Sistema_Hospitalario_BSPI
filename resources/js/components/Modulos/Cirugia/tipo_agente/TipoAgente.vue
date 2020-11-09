@@ -51,6 +51,7 @@
                                                     :info-button="false"
                                                     :columns-data="columns"
                                                     :rows-data="tipoAgente"
+                                                    :imagen="tipoAgenteMod?false: true"
                                                     @handleModificarClick="
                                                         modificarTipoAgente
                                                     "
@@ -109,13 +110,7 @@ export default {
                     label: "Name System",
                     field: "name_system",
                     type: "String"
-                },
-                {
-                    label: "Imagen",
-                    field: "imagen",
-                    type: "String"
                 }
-
             ]
         };
     },
@@ -146,8 +141,7 @@ export default {
     methods: {
         cargarTipoAgente: function() {
             let that = this;
-            let url =
-                "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table";
+            let url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table";
             var loader = that.$loading.show();
             axios
                 .get(url)
@@ -155,10 +149,13 @@ export default {
                     let tipoAgente = [];
                     for (let i = 0; i < response.data.tipoAgente.length; i++) {
                         let objeto = {
-                            id:response.data.tipoAgente[i].id,
-                            descripcion: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.tipoAgente[i].descripcion),
-                            name_system: response.data.tipoAgente[i].name_system,
-                            imagen: response.data.tipoAgente[i].img_src,
+                            id: response.data.tipoAgente[i].id,
+                            descripcion: that.$funcionesGlobales.toCapitalFirstAllWords(
+                                response.data.tipoAgente[i].descripcion
+                            ),
+                            name_system:
+                                response.data.tipoAgente[i].name_system,
+                            imagen: response.data.tipoAgente[i].img_src
                         };
                         tipoAgente.push(objeto);
                     }
@@ -197,9 +194,7 @@ export default {
         },
         anularTipoAgente(id) {
             let that = this;
-            let url =
-                "/modulos/cirugia/tipo_agente/eliminar_tipo_agente/" +
-                id;
+            let url = "/modulos/cirugia/tipo_agente/eliminar_tipo_agente/" + id;
             var loader = that.$loading.show();
             axios
                 .delete(url)
@@ -232,8 +227,7 @@ export default {
         },
         abrirModalCrearTipoAgente: function() {
             this.$modal.show("crearTipoAgente");
-        },
-
+        }
     }
 };
 </script>
