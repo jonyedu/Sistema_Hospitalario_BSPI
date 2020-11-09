@@ -23,7 +23,7 @@ class CreateTbDatosAgentes extends Migration
                 $table->unsignedInteger('agente_id');
                 $table->unsignedInteger('indice_hora')->nullable();
                 $table->unsignedInteger('indice_min')->nullable();
-                $table->string('img_url', 100)->nullable();
+                $table->unsignedInteger('valor');
                 /* Datos para auditoria */
                 $table->string('des_campo1', 100)->nullable();
                 $table->string('des_campo2', 50)->nullable();

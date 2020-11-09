@@ -5,13 +5,13 @@ namespace App\Models\Modulos\Cirugia\RegistroAnestesico;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DatosAgentes extends Model
+class DatosRespiracion extends Model
 {
     use HasFactory;
     /**
      * @var string
      */
-    protected $table = 'tb_datos_agentes';
+    protected $table = 'tb_datos_respiracion';
     /**
      * @var string
      */

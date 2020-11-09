@@ -18,10 +18,10 @@ class CreateTbRegistroAnestesiaTable extends Migration
                 $table->bigIncrements('id');
                 $table->unsignedInteger('SecCirPro');
                 /* Tiempos */
-                $table->unsignedInteger('duracion_anestesia')->nullable();
-                $table->unsignedInteger('hs_min')->nullable();
-                $table->unsignedInteger('duracion_operacion')->nullable();
-                $table->unsignedInteger('h_min')->nullable();
+                $table->unsignedInteger('duracion_anestesia');
+                $table->unsignedInteger('hs_min');
+                $table->unsignedInteger('duracion_operacion');
+                $table->unsignedInteger('h_min');
                 /* Tecnicas */
                 //seccion 0
                 $table->boolean('general')->default(0);

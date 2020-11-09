@@ -43,6 +43,8 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::post('guardar_modificar_examen_fisico', 'ExamenFisicoApiController@guardarModificarExamenFisico');
 
         /* Paraclinico */
+        //Cargar Combobox Tipo Sangre
+        Route::get('cargar_tipo_sangre_combo_box', 'ParaclinicoApiController@cargarTipoSangreComboBox');
         //Cargar en los Campos
         Route::get('cargar_paraclinico_campo/{idSecCirPro}', 'ParaclinicoApiController@cargarParaclinicoCampo');
         //Guardar o Modificar
@@ -51,10 +53,6 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
 
     /* SubModulo anestesia */
     Route::namespace('Modulos\Cirugia\RegistroAnestesico')->prefix('anestesia')->group(function () {
-        /* Echo por mi */
-
-        /* Fin Echo por mi */
-
         Route::post('registro/post', 'RegistroAnestesiaController@store');
         Route::post('agentes/guardado/{registro_id}', 'DatosAgentesController@guardarDatosAgentes');
         Route::get('agentes/{tipo}', 'DatosAgentesController@obtenerAgenteAnestesiaJson');

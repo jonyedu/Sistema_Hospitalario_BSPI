@@ -1,7 +1,6 @@
 <template>
     <div class="col-md-12">
         <div class="card card-warning">
-
             <div class="card-body">
                 <form role="form">
                     <div class="row">
@@ -25,7 +24,9 @@
                                                             class="custom-control-input"
                                                             id="defaultInline54"
                                                             value="1"
-                                                            @click="validarChkHb()"
+                                                            @click="
+                                                                validarChkHb()
+                                                            "
                                                             v-model="chk.chk_hb"
                                                         />
                                                         <label
@@ -48,7 +49,9 @@
                                                             @click="
                                                                 validarChkHcto()
                                                             "
-                                                            v-model="chk.chk_hcto"
+                                                            v-model="
+                                                                chk.chk_hcto
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -91,7 +94,9 @@
                                                             class="custom-control-input"
                                                             id="defaultInline57"
                                                             value="1"
-                                                            @click="validarChkNa()"
+                                                            @click="
+                                                                validarChkNa()
+                                                            "
                                                             v-model="chk.chk_na"
                                                         />
                                                         <label
@@ -111,7 +116,9 @@
                                                             class="custom-control-input"
                                                             id="defaultInline58"
                                                             value="1"
-                                                            @click="validarChkCi()"
+                                                            @click="
+                                                                validarChkCi()
+                                                            "
                                                             v-model="chk.chk_ci"
                                                         />
                                                         <label
@@ -131,7 +138,9 @@
                                                             class="custom-control-input"
                                                             id="defaultInline59"
                                                             value="1"
-                                                            @click="validarChkK()"
+                                                            @click="
+                                                                validarChkK()
+                                                            "
                                                             v-model="chk.chk_k"
                                                         />
                                                         <label
@@ -151,7 +160,9 @@
                                                             class="custom-control-input"
                                                             id="defaultInline60"
                                                             value="1"
-                                                            @click="validarChkCa()"
+                                                            @click="
+                                                                validarChkCa()
+                                                            "
                                                             v-model="chk.chk_ca"
                                                         />
                                                         <label
@@ -171,8 +182,12 @@
                                                             class="custom-control-input"
                                                             id="defaultInline61"
                                                             value="1"
-                                                            @click="validarChkBun()"
-                                                            v-model="chk.chk_bun"
+                                                            @click="
+                                                                validarChkBun()
+                                                            "
+                                                            v-model="
+                                                                chk.chk_bun
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -194,7 +209,9 @@
                                                             @click="
                                                                 validarChkCreati()
                                                             "
-                                                            v-model="chk.chk_creati"
+                                                            v-model="
+                                                                chk.chk_creati
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -261,7 +278,9 @@
                                                             class="custom-control-input"
                                                             id="defaultInline65"
                                                             value="1"
-                                                            @click="validarChkTp()"
+                                                            @click="
+                                                                validarChkTp()
+                                                            "
                                                             v-model="chk.chk_tp"
                                                         />
                                                         <label
@@ -281,8 +300,12 @@
                                                             class="custom-control-input"
                                                             id="defaultInline66"
                                                             value="1"
-                                                            @click="validarChkTpt()"
-                                                            v-model="chk.chk_tpt"
+                                                            @click="
+                                                                validarChkTpt()
+                                                            "
+                                                            v-model="
+                                                                chk.chk_tpt
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -292,7 +315,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- Mg -->
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-2">
                                                     <div class="form-group row">
                                                         <div class="col-sm-2">
                                                             <div
@@ -319,6 +342,33 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div
+                                                    class="col-lg-3 col-md-3 col-sm-3"
+                                                >
+                                                    <div class="form-group">
+                                                        <v-select
+                                                            v-model="
+                                                                selectedTipoSangre
+                                                            "
+                                                            :value="
+                                                                form.frm_id_tipo_sangre
+                                                            "
+                                                            :options="tipoSangre"
+                                                            label="display"
+                                                            @input="
+                                                                setSelectedTipoSangre
+                                                            "
+                                                        >
+                                                            <template
+                                                                slot="no-options"
+                                                                >No se ha
+                                                                encontrado
+                                                                ningun
+                                                                dato</template
+                                                            >
+                                                        </v-select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -336,7 +386,9 @@
                                                             class="col-sm-2 col-form-label"
                                                             >E.K.G</label
                                                         >
-                                                        <div class="col-sm-9 mr-2">
+                                                        <div
+                                                            class="col-sm-9 mr-2"
+                                                        >
                                                             <input
                                                                 type="text"
                                                                 class="form-control"
@@ -355,7 +407,9 @@
                                                             class="col-sm-2 col-form-label"
                                                             >Ecocardiograma</label
                                                         >
-                                                        <div class="col-sm-9 mr-2">
+                                                        <div
+                                                            class="col-sm-9 mr-2"
+                                                        >
                                                             <input
                                                                 type="text"
                                                                 class="form-control"
@@ -374,7 +428,9 @@
                                                             class="col-sm-2 col-form-label"
                                                             >Rx Tórax</label
                                                         >
-                                                        <div class="col-sm-9 mr-2">
+                                                        <div
+                                                            class="col-sm-9 mr-2"
+                                                        >
                                                             <input
                                                                 type="text"
                                                                 class="form-control"
@@ -398,7 +454,10 @@
                                             <div class="row">
                                                 <!-- Titulo CLASIFICACIÓN ASA -->
                                                 <div class="col-sm-12">
-                                                    <label>CLASIFICACIÓN ASA</label>
+                                                    <label
+                                                        >CLASIFICACIÓN
+                                                        ASA</label
+                                                    >
                                                 </div>
                                                 <!-- ASA 1 -->
                                                 <div class="col-sm-12">
@@ -413,7 +472,9 @@
                                                             @click="
                                                                 validarChkAsa1()
                                                             "
-                                                            v-model="chk.chk_asa1"
+                                                            v-model="
+                                                                chk.chk_asa1
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -435,7 +496,9 @@
                                                             @click="
                                                                 validarChkAsa2()
                                                             "
-                                                            v-model="chk.chk_asa2"
+                                                            v-model="
+                                                                chk.chk_asa2
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -457,7 +520,9 @@
                                                             @click="
                                                                 validarChkAsa3()
                                                             "
-                                                            v-model="chk.chk_asa3"
+                                                            v-model="
+                                                                chk.chk_asa3
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -479,7 +544,9 @@
                                                             @click="
                                                                 validarChkAsa4()
                                                             "
-                                                            v-model="chk.chk_asa4"
+                                                            v-model="
+                                                                chk.chk_asa4
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -501,7 +568,9 @@
                                                             @click="
                                                                 validarChkAsa5()
                                                             "
-                                                            v-model="chk.chk_asa5"
+                                                            v-model="
+                                                                chk.chk_asa5
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -520,7 +589,9 @@
                                                             class="custom-control-input"
                                                             id="defaultInline73"
                                                             value="1"
-                                                            @click="validarChkU()"
+                                                            @click="
+                                                                validarChkU()
+                                                            "
                                                             v-model="chk.chk_u"
                                                         />
                                                         <label
@@ -566,9 +637,11 @@
                                                             for="defaultInline74"
                                                             >Riesgo mínimo
                                                             independiente de la
-                                                            anestesia. Procedimiento
-                                                            minimamente invasivo con
-                                                            poca o mínima pérdida
+                                                            anestesia.
+                                                            Procedimiento
+                                                            minimamente invasivo
+                                                            con poca o mínima
+                                                            pérdida
                                                             sanguínea.</label
                                                         >
                                                     </div>
@@ -601,8 +674,8 @@
                                                             >Procedimiento con
                                                             invasividad leve o
                                                             moderada. Pérdida
-                                                            sanguínea menor a 500
-                                                            ml. Riesgo leve
+                                                            sanguínea menor a
+                                                            500 ml. Riesgo leve
                                                             independiente de la
                                                             anestesia.</label
                                                         >
@@ -633,8 +706,9 @@
                                                             style="font-weight: normal;"
                                                             class="custom-control-label"
                                                             for="defaultInline76"
-                                                            >Procedimiento moderado
-                                                            o significamente
+                                                            >Procedimiento
+                                                            moderado o
+                                                            significamente
                                                             invasivo. Pérdida
                                                             sanguínea potencial
                                                             entre 500 y 1500 ml.
@@ -669,10 +743,11 @@
                                                             style="font-weight: normal;"
                                                             class="custom-control-label"
                                                             for="defaultInline77"
-                                                            >Procedimiento altamente
-                                                            invasivo. Pérdida
-                                                            sanguínea mayor a 1500
-                                                            ml. Riesgo alto
+                                                            >Procedimiento
+                                                            altamente invasivo.
+                                                            Pérdida sanguínea
+                                                            mayor a 1500 ml.
+                                                            Riesgo alto
                                                             independiente de la
                                                             anestesia.</label
                                                         >
@@ -703,10 +778,11 @@
                                                             style="font-weight: normal;"
                                                             class="custom-control-label"
                                                             for="defaultInline78"
-                                                            >Procedimiento altamente
-                                                            invasivo. Pérdida
-                                                            sanguínea mayor a 1500
-                                                            ml. Riesgo crítico para
+                                                            >Procedimiento
+                                                            altamente invasivo.
+                                                            Pérdida sanguínea
+                                                            mayor a 1500 ml.
+                                                            Riesgo crítico para
                                                             el paciente
                                                             independiente de la
                                                             anestesia.</label
@@ -729,7 +805,9 @@
                                                         class="col-sm-12 col-form-label"
                                                         >Observaciones</label
                                                     >
-                                                    <div class="col-sm-12 mr-2 mb-2">
+                                                    <div
+                                                        class="col-sm-12 mr-2 mb-2"
+                                                    >
                                                         <textarea
                                                             type="text"
                                                             class="form-control"
@@ -764,6 +842,8 @@ export default {
     },
     data: function() {
         return {
+            tipoSangre: [],
+            selectedTipoSangre: "",
             validarFinProceso: 0,
             chk: {
                 /* Paraclinicos */
@@ -815,6 +895,7 @@ export default {
                 frm_tp: false,
                 frm_tpt: false,
                 frm_mg: false,
+                frm_id_tipo_sangre: 0,
 
                 /* E.K.G */
                 frm_ekg: "",
@@ -842,6 +923,7 @@ export default {
         };
     },
     mounted: function() {
+        this.setSelectedTipoSangre();
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
         let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
             .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
@@ -865,32 +947,64 @@ export default {
         ); */
     },
     methods: {
-        validarForm(){
+        setSelectedTipoSangre(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            let url = "/modulos/cirugia/valoracionPreanestecia/cargar_tipo_sangre_combo_box";
+            if (value != null) {
+                this.form.frm_id_tipo_sangre = value.id_tipo_sangre;
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let tipoSangre = [];
+                    response.data.tipoSangre.forEach(tiposSangre => {
+                        let objeto = {};
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(tiposSangre.descripcion);
+                        objeto.id_tipo_sangre = tiposSangre.codigo;
+                        tipoSangre.push(objeto);
+                    });
+                    that.tipoSangre = tipoSangre;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    });
+                    loader.hide();
+                });
+        },
+        validarForm() {
             //Se comprueba que un checkbox tenga data
-            let keys= Object.keys(this.form.checks);
-            let poseeSeleccionCheck=false;
+            let keys = Object.keys(this.form.checks);
+            let poseeSeleccionCheck = false;
             keys.forEach(element => {
-                console.log(this.form.checks[element])
-                if(this.form.checks[element]){
-                    poseeSeleccionCheck=true;
+                console.log(this.form.checks[element]);
+                if (this.form.checks[element]) {
+                    poseeSeleccionCheck = true;
                 }
             });
-            if(!poseeSeleccionCheck){
+            if (!poseeSeleccionCheck) {
                 this.$swal({
-                        icon: "warning",
-                        title: "Existen campos requeridos",
-                        text: "Debe seleccionar por lo menos un motivo"
-                    });
+                    icon: "warning",
+                    title: "Existen campos requeridos",
+                    text: "Debe seleccionar por lo menos un motivo"
+                });
                 return false;
-            }else{
-                if(this.form.descripcion=='' || this.form.descripcion==null){
+            } else {
+                if (
+                    this.form.descripcion == "" ||
+                    this.form.descripcion == null
+                ) {
                     this.$swal({
                         icon: "warning",
                         title: "Existen campos requeridos",
                         text: "La descripción no debe estar vacia"
                     });
                     return false;
-
                 }
             }
             return true;
@@ -899,13 +1013,17 @@ export default {
         cargarParaclinico: function() {
             let that = this;
             let url =
-                "/modulos/cirugia/valoracionPreanestecia/cargar_paraclinico_campo/" +that.$props.idSecCirPro;
+                "/modulos/cirugia/valoracionPreanestecia/cargar_paraclinico_campo/" +
+                that.$props.idSecCirPro;
             var loader = that.$loading.show();
             axios
                 .get(url)
                 .then(function(response) {
                     //Obtiene los datos de Motivo Antecedentes
-                    if(response.data.paraclinico!=null && response.data.paraclinico!=undefined){
+                    if (
+                        response.data.paraclinico != null &&
+                        response.data.paraclinico != undefined
+                    ) {
                         /* hb, gcto, etc */
                         that.chk.chk_hb = +response.data.paraclinico.hb;
                         that.form.frm_hb = +response.data.paraclinico.hb;
@@ -913,8 +1031,10 @@ export default {
                         that.chk.chk_hcto = +response.data.paraclinico.hcto;
                         that.form.frm_hcto = +response.data.paraclinico.hcto;
 
-                        that.chk.chk_leucocito = +response.data.paraclinico.leucocito;
-                        that.form.frm_leucocito = +response.data.paraclinico.leucocito;
+                        that.chk.chk_leucocito = +response.data.paraclinico
+                            .leucocito;
+                        that.form.frm_leucocito = +response.data.paraclinico
+                            .leucocito;
 
                         that.chk.chk_na = +response.data.paraclinico.na;
                         that.form.frm_na = +response.data.paraclinico.na;
@@ -932,13 +1052,18 @@ export default {
                         that.form.frm_bun = +response.data.paraclinico.bun;
 
                         that.chk.chk_creati = +response.data.paraclinico.creati;
-                        that.form.frm_creati = +response.data.paraclinico.creati;
+                        that.form.frm_creati = +response.data.paraclinico
+                            .creati;
 
-                        that.chk.chk_glicemia = +response.data.paraclinico.glicemia;
-                        that.form.frm_glicemia = +response.data.paraclinico.glicemia;
+                        that.chk.chk_glicemia = +response.data.paraclinico
+                            .glicemia;
+                        that.form.frm_glicemia = +response.data.paraclinico
+                            .glicemia;
 
-                        that.chk.chk_plaqueta = +response.data.paraclinico.plaqueta;
-                        that.form.frm_plaqueta = +response.data.paraclinico.plaqueta;
+                        that.chk.chk_plaqueta = +response.data.paraclinico
+                            .plaqueta;
+                        that.form.frm_plaqueta = +response.data.paraclinico
+                            .plaqueta;
 
                         that.chk.chk_tp = +response.data.paraclinico.tp;
                         that.form.frm_tp = +response.data.paraclinico.tp;
@@ -948,13 +1073,16 @@ export default {
 
                         that.chk.chk_mg = +response.data.paraclinico.mg;
                         that.form.frm_mg = +response.data.paraclinico.mg;
+                        that.form.frm_id_tipo_sangre = +response.data.paraclinico.id_tipo_sangre;
 
                         /* Gineco-Obstétricos */
                         that.form.frm_ekg = response.data.paraclinico.ekg;
 
-                        that.form.frm_ecocardiograma = response.data.paraclinico.ecocardiograma;
+                        that.form.frm_ecocardiograma =
+                            response.data.paraclinico.ecocardiograma;
 
-                        that.form.frm_rxTorax = response.data.paraclinico.rxTorax;
+                        that.form.frm_rxTorax =
+                            response.data.paraclinico.rxTorax;
 
                         /* CLASIFICACIÓN ASA */
 
@@ -977,27 +1105,36 @@ export default {
                         that.form.frm_u = +response.data.paraclinico.u;
 
                         /* Clasificación de riesgo quirúrgico del Hospital Jonhs Hopkins */
-                        that.chk.chk_categoria1 = +response.data.paraclinico.categoria1;
-                        that.form.frm_categoria1 = +response.data.paraclinico.categoria1;
+                        that.chk.chk_categoria1 = +response.data.paraclinico
+                            .categoria1;
+                        that.form.frm_categoria1 = +response.data.paraclinico
+                            .categoria1;
 
-                        that.chk.chk_categoria2 = +response.data.paraclinico.categoria2;
-                        that.form.frm_categoria2 = +response.data.paraclinico.categoria2;
+                        that.chk.chk_categoria2 = +response.data.paraclinico
+                            .categoria2;
+                        that.form.frm_categoria2 = +response.data.paraclinico
+                            .categoria2;
 
-                        that.chk.chk_categoria3 = +response.data.paraclinico.categoria3;
-                        that.form.frm_categoria3 = +response.data.paraclinico.categoria3;
+                        that.chk.chk_categoria3 = +response.data.paraclinico
+                            .categoria3;
+                        that.form.frm_categoria3 = +response.data.paraclinico
+                            .categoria3;
 
-                        that.chk.chk_categoria4 = +response.data.paraclinico.categoria4;
-                        that.form.frm_categoria4 = +response.data.paraclinico.categoria4;
+                        that.chk.chk_categoria4 = +response.data.paraclinico
+                            .categoria4;
+                        that.form.frm_categoria4 = +response.data.paraclinico
+                            .categoria4;
 
-                        that.chk.chk_categoria5 = +response.data.paraclinico.categoria5;
-                        that.form.frm_categoria5 = +response.data.paraclinico.categoria5;
+                        that.chk.chk_categoria5 = +response.data.paraclinico
+                            .categoria5;
+                        that.form.frm_categoria5 = +response.data.paraclinico
+                            .categoria5;
 
-                        that.form.frm_observacion = response.data.paraclinico.observacion;
-
-                    }else{
-
+                        that.form.frm_observacion =
+                            response.data.paraclinico.observacion;
+                    } else {
                     }
-                    loader.hide()
+                    loader.hide();
                 })
                 .catch(error => {
                     //Errores
@@ -1022,7 +1159,7 @@ export default {
                     that.mensaje = "Datos guardados correctamente.";
                 }
                 var loader = that.$loading.show();
-                this.form.frm_idCirugiaProgramada= idSecCirPro;
+                this.form.frm_idCirugiaProgramada = idSecCirPro;
                 axios
                     .post(url, this.form)
                     .then(function(response) {
@@ -1033,12 +1170,8 @@ export default {
                             text: that.mensaje
                         });
                         that.validarFinProceso = 1;
-                        that.$emit(
-                                "validarFinProceso",
-                                that.validarFinProceso
-                            );
+                        that.$emit("validarFinProceso", that.validarFinProceso);
                         that.$emit("FinProceso");
-
                     })
                     .catch(error => {
                         if (error.response.status === 421) {
@@ -1241,7 +1374,7 @@ export default {
             } else {
                 this.form.frm_categoria5 = 1;
             }
-        },
+        }
         /* Fin Clasificación de riesgo quirúrgico del Hospital Jonhs Hopkins */
     }
 };

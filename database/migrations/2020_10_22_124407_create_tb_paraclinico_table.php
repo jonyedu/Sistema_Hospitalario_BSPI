@@ -17,6 +17,7 @@ class CreateTbParaclinicoTable extends Migration
             Schema::connection('control_hospitalario_db_sql')->create('tb_paraclinico', function (Blueprint $table) {
                 $table->bigIncrements('idParaclinico');
                 $table->unsignedInteger('SecCirPro');
+                $table->unsignedInteger('id_tipo_sangre');
                 $table->unsignedInteger('hb')->default(0);
                 $table->unsignedInteger('hcto')->default(0);
                 $table->unsignedInteger('leucocito')->default(0);

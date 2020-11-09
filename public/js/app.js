@@ -3883,13 +3883,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     obtenerDatosAgentes: function obtenerDatosAgentes() {
       var _this2 = this;
 
-      /* let url = "/modulos/cirugia/anestesia/agentes"; */
-      var url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table";
-      axios
-      /* .get(url + "/agente") */
-      .get(url).then(function (response) {
+      var url = "/modulos/cirugia/anestesia/agentes";
+      /* let url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table"; */
+
+      axios.get(url + "/agente")
+      /* .get(url) */
+      .then(function (response) {
         /* console.log(response.data); */
-        _this2.tabla_datos_grafica = response.data.tipoAgente;
+        _this2.tabla_datos_grafica = response.data;
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -3901,13 +3902,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     obtenerDatosPosiciones: function obtenerDatosPosiciones() {
       var _this3 = this;
 
-      /* let url = "/modulos/cirugia/anestesia/agentes"; */
-      var url = "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table";
-      axios
-      /* .get(url + "/posicion") */
-      .get(url).then(function (response) {
+      var url = "/modulos/cirugia/anestesia/agentes";
+      /* let url =
+          "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table"; */
+
+      axios.get(url + "/posicion")
+      /* .get(url) */
+      .then(function (response) {
         console.log(response.data);
-        _this3.posiciones = response.data.tipoPosiciones;
+        _this3.posiciones = response.data;
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -6130,7 +6133,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaCargarDatos: 0,
       form: {
         /* Datos del paciente */
-        frm_idCirugiaProgramada: "0002",
+        frm_idCirugiaProgramada: "2890",
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",
@@ -6209,11 +6212,13 @@ __webpack_require__.r(__webpack_exports__);
     onChangeTab: function onChangeTab(prevIndex, nextIndex) {
       //Se debera realizar las validaciones respectivas para cada tab
       this.setFormTitle(nextIndex);
+      /* if (typeof this.onChangeTab() === "function") {
+          alert("entra");
+          //Es seguro ejecutar la función
+          this.guardarModificar(prevIndex);
+      } */
 
-      if (typeof this.guardarModificar() === "function") {
-        //Es seguro ejecutar la función
-        this.guardarModificar(prevIndex);
-      }
+      this.guardarModificar(prevIndex);
     },
     setFormTitle: function setFormTitle(index) {
       switch (index) {
@@ -7498,7 +7503,8 @@ __webpack_require__.r(__webpack_exports__);
               title: "Proceso realizado exitosamente",
               text: that.mensaje
           }); */
-          //that.cargarAtencionMotivo();
+
+          that.cargarAntecedente();
         })["catch"](function (error) {
           if (error.response.status === 421) {
             that.$swal({
@@ -9553,6 +9559,84 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -9562,6 +9646,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      tipoSangre: [],
+      selectedTipoSangre: "",
       validarFinProceso: 0,
       chk: {
         /* Paraclinicos */
@@ -9613,6 +9699,7 @@ __webpack_require__.r(__webpack_exports__);
         frm_tp: false,
         frm_tpt: false,
         frm_mg: false,
+        frm_id_tipo_sangre: 0,
 
         /* E.K.G */
         frm_ekg: "",
@@ -9640,6 +9727,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    this.setSelectedTipoSangre();
     /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
     let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
         .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
@@ -9663,6 +9751,35 @@ __webpack_require__.r(__webpack_exports__);
     ); */
   },
   methods: {
+    setSelectedTipoSangre: function setSelectedTipoSangre(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/cirugia/valoracionPreanestecia/cargar_tipo_sangre_combo_box";
+
+      if (value != null) {
+        this.form.frm_id_tipo_sangre = value.id_tipo_sangre;
+      }
+
+      axios.get(url).then(function (response) {
+        var tipoSangre = [];
+        response.data.tipoSangre.forEach(function (tiposSangre) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(tiposSangre.descripcion);
+          objeto.id_tipo_sangre = tiposSangre.codigo;
+          tipoSangre.push(objeto);
+        });
+        that.tipoSangre = tipoSangre;
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+        loader.hide();
+      });
+    },
     validarForm: function validarForm() {
       var _this = this;
 
@@ -9685,7 +9802,7 @@ __webpack_require__.r(__webpack_exports__);
         });
         return false;
       } else {
-        if (this.form.descripcion == '' || this.form.descripcion == null) {
+        if (this.form.descripcion == "" || this.form.descripcion == null) {
           this.$swal({
             icon: "warning",
             title: "Existen campos requeridos",
@@ -9734,6 +9851,7 @@ __webpack_require__.r(__webpack_exports__);
           that.form.frm_tpt = +response.data.paraclinico.tpt;
           that.chk.chk_mg = +response.data.paraclinico.mg;
           that.form.frm_mg = +response.data.paraclinico.mg;
+          that.form.frm_id_tipo_sangre = +response.data.paraclinico.id_tipo_sangre;
           /* Gineco-Obstétricos */
 
           that.form.frm_ekg = response.data.paraclinico.ekg;
@@ -10634,6 +10752,137 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -10678,7 +10927,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         /* Gastrointestinal */
         chk_ulcera: 0,
         chk_estomagoLleno: 0,
-        chk_otrosGastrointestinal: 0
+        chk_otrosGastrointestinal: 0,
+
+        /* Sistema Endocrima */
+        chk_diabetes: 0,
+        chk_hipertiroidismo: 0,
+        chk_obecidad: 0,
+        chk_otrosSistemaEndocrima: 0
       },
       form: {
         frm_idCirugiaProgramada: "",
@@ -10715,7 +10970,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         /* Gastrointestinal */
         frm_ulcera: 0,
         frm_estomagoLleno: 0,
-        frm_otrosGastrointestinal: 0
+        frm_otrosGastrointestinal: 0,
+
+        /* Sistema Endocrima */
+        frm_diabetes: 0,
+        frm_hipertiroidismo: 0,
+        frm_obecidad: 0,
+        frm_otrosSistemaEndocrima: 0
       }
     };
   },
@@ -10771,7 +11032,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
         return false;
       } else {
-        if (this.form.descripcion == '' || this.form.descripcion == null) {
+        if (this.form.descripcion == "" || this.form.descripcion == null) {
           this.$swal({
             icon: "warning",
             title: "Existen campos requeridos",
@@ -10846,6 +11107,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           that.form.frm_estomagoLleno = +response.data.revisionSistema.estomagoLleno;
           that.chk.chk_otrosGastrointestinal = +response.data.revisionSistema.otrosGastrointestinal;
           that.form.frm_otrosGastrointestinal = +response.data.revisionSistema.otrosGastrointestinal;
+          /* Sistema Endocrima */
+
+          that.chk.chk_diabetes = +response.data.revisionSistema.diabetes;
+          that.form.frm_diabetes = +response.data.revisionSistema.diabetes;
+          that.chk.chk_hipertiroidismo = +response.data.revisionSistema.hipertiroidismo;
+          that.form.frm_hipertiroidismo = +response.data.revisionSistema.hipertiroidismo;
+          that.chk.chk_obecidad = +response.data.revisionSistema.obecidad;
+          that.form.frm_obecidad = +response.data.revisionSistema.obecidad;
+          that.chk.chk_otrosSistemaEndocrima = +response.data.revisionSistema.otrosSistemaEndocrima;
+          that.form.frm_otrosSistemaEndocrima = +response.data.revisionSistema.otrosSistemaEndocrima;
           that.validarCargarDatos = 1;
           that.respuestaImprimir = 1;
         } else {
@@ -11076,6 +11347,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.frm_otrosGastrointestinal = 0;
     } else {
       this.form.frm_otrosGastrointestinal = 1;
+    }
+  }), _defineProperty(_methods, "validarChkDiabetes", function validarChkDiabetes() {
+    if (this.chk.chk_diabetes) {
+      this.form.frm_diabetes = 0;
+    } else {
+      this.form.frm_diabetes = 1;
+    }
+  }), _defineProperty(_methods, "validarChkHipertiroidismo", function validarChkHipertiroidismo() {
+    if (this.chk.chk_hipertiroidismo) {
+      this.form.frm_hipertiroidismo = 0;
+    } else {
+      this.form.frm_hipertiroidismo = 1;
+    }
+  }), _defineProperty(_methods, "validarChkObecidad", function validarChkObecidad() {
+    if (this.chk.chk_obecidad) {
+      this.form.frm_obecidad = 0;
+    } else {
+      this.form.frm_obecidad = 1;
+    }
+  }), _defineProperty(_methods, "validarChkOtrosSistemaEndocrima", function validarChkOtrosSistemaEndocrima() {
+    if (this.chk.chk_otrosSistemaEndocrima) {
+      this.form.frm_otrosSistemaEndocrima = 0;
+    } else {
+      this.form.frm_otrosSistemaEndocrima = 1;
     }
   }), _methods)
 });
@@ -54287,58 +54582,6 @@ var render = function() {
                     })
                   ]
                 )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-12 flex flex-center-x pt-2 pb-4" },
-                  [
-                    _c("div", { staticClass: "row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "mr-2 col-12",
-                          attrs: { for: "ta_value" }
-                        },
-                        [_vm._v("Valor")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.valoresFormulario.respiracion.valor,
-                            expression:
-                              "\n                                    valoresFormulario.respiracion.valor\n                                "
-                          }
-                        ],
-                        staticClass: "input-registro col-12 text-center",
-                        attrs: {
-                          type: "text",
-                          name: "ta_value",
-                          id: "ta_value"
-                        },
-                        domProps: {
-                          value: _vm.valoresFormulario.respiracion.valor
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.valoresFormulario.respiracion,
-                              "valor",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ])
-                  ]
-                )
               ])
             ]),
             _vm._v(" "),
@@ -54692,11 +54935,11 @@ var render = function() {
                                 ]),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "col-3" }, [
-                                  item.img_src
+                                  item.img_url
                                     ? _c("img", {
                                         attrs: {
                                           width: "15",
-                                          src: item.img_src,
+                                          src: "/" + item.img_url,
                                           alt: "no carga"
                                         }
                                       })
@@ -55860,7 +56103,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
-      _c("p", { staticClass: "text-center" }, [_vm._v("RESPIACIÓN")])
+      _c("p", { staticClass: "text-center" }, [_vm._v("RESPIRACIÓN")])
     ])
   },
   function() {
@@ -62926,7 +63169,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_hcto,
-                                      expression: "chk.chk_hcto"
+                                      expression:
+                                        "\n                                                            chk.chk_hcto\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -63379,7 +63623,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_bun,
-                                      expression: "chk.chk_bun"
+                                      expression:
+                                        "\n                                                            chk.chk_bun\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -63454,7 +63699,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_creati,
-                                      expression: "chk.chk_creati"
+                                      expression:
+                                        "\n                                                            chk.chk_creati\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -63756,7 +64002,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_tpt,
-                                      expression: "chk.chk_tpt"
+                                      expression:
+                                        "\n                                                            chk.chk_tpt\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -63817,7 +64064,7 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-8" }, [
+                          _c("div", { staticClass: "col-sm-2" }, [
                             _c("div", { staticClass: "form-group row" }, [
                               _c("div", { staticClass: "col-sm-2" }, [
                                 _c(
@@ -63895,7 +64142,48 @@ var render = function() {
                                 )
                               ])
                             ])
-                          ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-lg-3 col-md-3 col-sm-3" },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "form-group" },
+                                [
+                                  _c(
+                                    "v-select",
+                                    {
+                                      attrs: {
+                                        value: _vm.form.frm_id_tipo_sangre,
+                                        options: _vm.tipoSangre,
+                                        label: "display"
+                                      },
+                                      on: { input: _vm.setSelectedTipoSangre },
+                                      model: {
+                                        value: _vm.selectedTipoSangre,
+                                        callback: function($$v) {
+                                          _vm.selectedTipoSangre = $$v
+                                        },
+                                        expression:
+                                          "\n                                                            selectedTipoSangre\n                                                        "
+                                      }
+                                    },
+                                    [
+                                      _c("template", { slot: "no-options" }, [
+                                        _vm._v(
+                                          "No se ha\n                                                            encontrado\n                                                            ningun\n                                                            dato"
+                                        )
+                                      ])
+                                    ],
+                                    2
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
                         ])
                       ])
                     ]
@@ -64058,7 +64346,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_asa1,
-                                      expression: "chk.chk_asa1"
+                                      expression:
+                                        "\n                                                            chk.chk_asa1\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -64137,7 +64426,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_asa2,
-                                      expression: "chk.chk_asa2"
+                                      expression:
+                                        "\n                                                            chk.chk_asa2\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -64216,7 +64506,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_asa3,
-                                      expression: "chk.chk_asa3"
+                                      expression:
+                                        "\n                                                            chk.chk_asa3\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -64295,7 +64586,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_asa4,
-                                      expression: "chk.chk_asa4"
+                                      expression:
+                                        "\n                                                            chk.chk_asa4\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -64374,7 +64666,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_asa5,
-                                      expression: "chk.chk_asa5"
+                                      expression:
+                                        "\n                                                            chk.chk_asa5\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -64600,7 +64893,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "Riesgo mínimo\n                                                        independiente de la\n                                                        anestesia. Procedimiento\n                                                        minimamente invasivo con\n                                                        poca o mínima pérdida\n                                                        sanguínea."
+                                      "Riesgo mínimo\n                                                        independiente de la\n                                                        anestesia.\n                                                        Procedimiento\n                                                        minimamente invasivo\n                                                        con poca o mínima\n                                                        pérdida\n                                                        sanguínea."
                                     )
                                   ]
                                 )
@@ -64685,7 +64978,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "Procedimiento con\n                                                        invasividad leve o\n                                                        moderada. Pérdida\n                                                        sanguínea menor a 500\n                                                        ml. Riesgo leve\n                                                        independiente de la\n                                                        anestesia."
+                                      "Procedimiento con\n                                                        invasividad leve o\n                                                        moderada. Pérdida\n                                                        sanguínea menor a\n                                                        500 ml. Riesgo leve\n                                                        independiente de la\n                                                        anestesia."
                                     )
                                   ]
                                 )
@@ -64770,7 +65063,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "Procedimiento moderado\n                                                        o significamente\n                                                        invasivo. Pérdida\n                                                        sanguínea potencial\n                                                        entre 500 y 1500 ml.\n                                                        Riesgo moderado\n                                                        independiente de la\n                                                        anestesia."
+                                      "Procedimiento\n                                                        moderado o\n                                                        significamente\n                                                        invasivo. Pérdida\n                                                        sanguínea potencial\n                                                        entre 500 y 1500 ml.\n                                                        Riesgo moderado\n                                                        independiente de la\n                                                        anestesia."
                                     )
                                   ]
                                 )
@@ -64855,7 +65148,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "Procedimiento altamente\n                                                        invasivo. Pérdida\n                                                        sanguínea mayor a 1500\n                                                        ml. Riesgo alto\n                                                        independiente de la\n                                                        anestesia."
+                                      "Procedimiento\n                                                        altamente invasivo.\n                                                        Pérdida sanguínea\n                                                        mayor a 1500 ml.\n                                                        Riesgo alto\n                                                        independiente de la\n                                                        anestesia."
                                     )
                                   ]
                                 )
@@ -64940,7 +65233,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "Procedimiento altamente\n                                                        invasivo. Pérdida\n                                                        sanguínea mayor a 1500\n                                                        ml. Riesgo crítico para\n                                                        el paciente\n                                                        independiente de la\n                                                        anestesia."
+                                      "Procedimiento\n                                                        altamente invasivo.\n                                                        Pérdida sanguínea\n                                                        mayor a 1500 ml.\n                                                        Riesgo crítico para\n                                                        el paciente\n                                                        independiente de la\n                                                        anestesia."
                                     )
                                   ]
                                 )
@@ -65020,7 +65313,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12" }, [
-      _c("label", [_vm._v("CLASIFICACIÓN ASA")])
+      _c("label", [
+        _vm._v(
+          "CLASIFICACIÓN\n                                                    ASA"
+        )
+      ])
     ])
   },
   function() {
@@ -65277,7 +65574,11 @@ var render = function() {
                                     staticClass: "custom-control-label",
                                     attrs: { for: "defaultInline2" }
                                   },
-                                  [_vm._v("Enf. Coronaria")]
+                                  [
+                                    _vm._v(
+                                      "Enf.\n                                                        Coronaria"
+                                    )
+                                  ]
                                 )
                               ]
                             )
@@ -65526,7 +65827,11 @@ var render = function() {
                                     staticClass: "custom-control-label",
                                     attrs: { for: "defaultInline5" }
                                   },
-                                  [_vm._v("Enf. Valvular")]
+                                  [
+                                    _vm._v(
+                                      "Enf.\n                                                        Valvular"
+                                    )
+                                  ]
                                 )
                               ]
                             )
@@ -65720,7 +66025,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_epoc,
-                                      expression: "chk.chk_epoc"
+                                      expression:
+                                        "\n                                                            chk.chk_epoc\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -65797,7 +66103,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_asma,
-                                      expression: "chk.chk_asma"
+                                      expression:
+                                        "\n                                                            chk.chk_asma\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -65871,7 +66178,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_tbc,
-                                      expression: "chk.chk_tbc"
+                                      expression:
+                                        "\n                                                            chk.chk_tbc\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -66135,7 +66443,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_ecv,
-                                      expression: "chk.chk_ecv"
+                                      expression:
+                                        "\n                                                            chk.chk_ecv\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -66471,7 +66780,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_ira,
-                                      expression: "chk.chk_ira"
+                                      expression:
+                                        "\n                                                            chk.chk_ira\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -66636,7 +66946,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_irc,
-                                      expression: "chk.chk_irc"
+                                      expression:
+                                        "\n                                                            chk.chk_irc\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -66815,7 +67126,8 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_ulcera,
-                                      expression: "chk.chk_ulcera"
+                                      expression:
+                                        "\n                                                            chk.chk_ulcera\n                                                        "
                                     }
                                   ],
                                   staticClass: "custom-control-input",
@@ -66956,7 +67268,11 @@ var render = function() {
                                     staticClass: "custom-control-label",
                                     attrs: { for: "defaultInline22" }
                                   },
-                                  [_vm._v("Estomago Lleno")]
+                                  [
+                                    _vm._v(
+                                      "Estomago\n                                                        Lleno"
+                                    )
+                                  ]
                                 )
                               ]
                             )
@@ -67040,6 +67356,351 @@ var render = function() {
                                   {
                                     staticClass: "custom-control-label",
                                     attrs: { for: "defaultInline23" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                                        Otros\n                                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "card",
+                      staticStyle: { "background-color": "#C8C8C5" }
+                    },
+                    [
+                      _c("div", { staticClass: "card-body mt-2 ml-2" }, [
+                        _c("label", [_vm._v("Sistema Endocrima")]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-sm-3" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "custom-control custom-checkbox custom-control-inline"
+                              },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.chk.chk_diabetes,
+                                      expression:
+                                        "\n                                                            chk.chk_diabetes\n                                                        "
+                                    }
+                                  ],
+                                  staticClass: "custom-control-input",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "defaultInline24",
+                                    value: "1"
+                                  },
+                                  domProps: {
+                                    checked: Array.isArray(_vm.chk.chk_diabetes)
+                                      ? _vm._i(_vm.chk.chk_diabetes, "1") > -1
+                                      : _vm.chk.chk_diabetes
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.validarChkDiabetes()
+                                    },
+                                    change: function($event) {
+                                      var $$a = _vm.chk.chk_diabetes,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = "1",
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            _vm.$set(
+                                              _vm.chk,
+                                              "chk_diabetes",
+                                              $$a.concat([$$v])
+                                            )
+                                        } else {
+                                          $$i > -1 &&
+                                            _vm.$set(
+                                              _vm.chk,
+                                              "chk_diabetes",
+                                              $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1))
+                                            )
+                                        }
+                                      } else {
+                                        _vm.$set(_vm.chk, "chk_diabetes", $$c)
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "custom-control-label",
+                                    attrs: { for: "defaultInline24" }
+                                  },
+                                  [_vm._v("Diabetes")]
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-3" }, [
+                            _c("div"),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "custom-control custom-checkbox custom-control-inline"
+                              },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.chk.chk_hipertiroidismo,
+                                      expression:
+                                        "\n                                                            chk.chk_hipertiroidismo\n                                                        "
+                                    }
+                                  ],
+                                  staticClass: "custom-control-input",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "defaultInline25"
+                                  },
+                                  domProps: {
+                                    checked: Array.isArray(
+                                      _vm.chk.chk_hipertiroidismo
+                                    )
+                                      ? _vm._i(
+                                          _vm.chk.chk_hipertiroidismo,
+                                          null
+                                        ) > -1
+                                      : _vm.chk.chk_hipertiroidismo
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.validarChkHipertiroidismo()
+                                    },
+                                    change: function($event) {
+                                      var $$a = _vm.chk.chk_hipertiroidismo,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = null,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            _vm.$set(
+                                              _vm.chk,
+                                              "chk_hipertiroidismo",
+                                              $$a.concat([$$v])
+                                            )
+                                        } else {
+                                          $$i > -1 &&
+                                            _vm.$set(
+                                              _vm.chk,
+                                              "chk_hipertiroidismo",
+                                              $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1))
+                                            )
+                                        }
+                                      } else {
+                                        _vm.$set(
+                                          _vm.chk,
+                                          "chk_hipertiroidismo",
+                                          $$c
+                                        )
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "custom-control-label",
+                                    attrs: { for: "defaultInline25" }
+                                  },
+                                  [_vm._v("Hipertiroidismo")]
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-3" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "custom-control custom-checkbox custom-control-inline"
+                              },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.chk.chk_obecidad,
+                                      expression:
+                                        "\n                                                            chk.chk_obecidad\n                                                        "
+                                    }
+                                  ],
+                                  staticClass: "custom-control-input",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "defaultInline26"
+                                  },
+                                  domProps: {
+                                    checked: Array.isArray(_vm.chk.chk_obecidad)
+                                      ? _vm._i(_vm.chk.chk_obecidad, null) > -1
+                                      : _vm.chk.chk_obecidad
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.validarChkObecidad()
+                                    },
+                                    change: function($event) {
+                                      var $$a = _vm.chk.chk_obecidad,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = null,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            _vm.$set(
+                                              _vm.chk,
+                                              "chk_obecidad",
+                                              $$a.concat([$$v])
+                                            )
+                                        } else {
+                                          $$i > -1 &&
+                                            _vm.$set(
+                                              _vm.chk,
+                                              "chk_obecidad",
+                                              $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1))
+                                            )
+                                        }
+                                      } else {
+                                        _vm.$set(_vm.chk, "chk_obecidad", $$c)
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "custom-control-label",
+                                    attrs: { for: "defaultInline26" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                                        Obecidad\n                                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-3" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "custom-control custom-checkbox custom-control-inline"
+                              },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.chk.chk_otrosSistemaEndocrima,
+                                      expression:
+                                        "\n                                                            chk.chk_otrosSistemaEndocrima\n                                                        "
+                                    }
+                                  ],
+                                  staticClass: "custom-control-input",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "defaultInline27"
+                                  },
+                                  domProps: {
+                                    checked: Array.isArray(
+                                      _vm.chk.chk_otrosSistemaEndocrima
+                                    )
+                                      ? _vm._i(
+                                          _vm.chk.chk_otrosSistemaEndocrima,
+                                          null
+                                        ) > -1
+                                      : _vm.chk.chk_otrosSistemaEndocrima
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.validarChkOtrosSistemaEndocrima()
+                                    },
+                                    change: function($event) {
+                                      var $$a =
+                                          _vm.chk.chk_otrosSistemaEndocrima,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = null,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            _vm.$set(
+                                              _vm.chk,
+                                              "chk_otrosSistemaEndocrima",
+                                              $$a.concat([$$v])
+                                            )
+                                        } else {
+                                          $$i > -1 &&
+                                            _vm.$set(
+                                              _vm.chk,
+                                              "chk_otrosSistemaEndocrima",
+                                              $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1))
+                                            )
+                                        }
+                                      } else {
+                                        _vm.$set(
+                                          _vm.chk,
+                                          "chk_otrosSistemaEndocrima",
+                                          $$c
+                                        )
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "custom-control-label",
+                                    attrs: { for: "defaultInline27" }
                                   },
                                   [
                                     _vm._v(

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbDatosPosicionesTable extends Migration
+class CreateTbDatosRespiracionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateTbDatosPosicionesTable extends Migration
      */
     public function up()
     {
-        if (!Schema::connection('control_hospitalario_db_sql')->hasTable('tb_datos_posiciones')) {
-            Schema::connection('control_hospitalario_db_sql')->create('tb_datos_posiciones', function (Blueprint $table) {
+        if (!Schema::connection('control_hospitalario_db_sql')->hasTable('tb_datos_respiracion')) {
+            Schema::connection('control_hospitalario_db_sql')->create('tb_datos_respiracion', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->unsignedInteger('registro_anestesia_id');
                 $table->unsignedInteger('hora')->nullable();
                 $table->unsignedInteger('min')->nullable();
                 $table->unsignedInteger('segundos')->nullable();
-                $table->unsignedInteger('posicion_id');
-                $table->unsignedInteger('indice_hora');
-                $table->unsignedInteger('indice_min');
+                $table->unsignedInteger('agente_id');
+                $table->unsignedInteger('indice_hora')->nullable();
+                $table->unsignedInteger('indice_min')->nullable();
+                $table->unsignedInteger('valor')->default(0);
                 /* Datos para auditoria */
                 $table->string('des_campo1', 100)->nullable();
                 $table->string('des_campo2', 50)->nullable();
@@ -42,6 +43,6 @@ class CreateTbDatosPosicionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_datos_posiciones');
+        Schema::dropIfExists('tb_datos_respiracion');
     }
 }

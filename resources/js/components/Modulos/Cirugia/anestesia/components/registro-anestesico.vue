@@ -69,10 +69,10 @@
                         id="valor_pulso"
                     />
                 </div>
-                <!-- RESPIACIÓN -->
+                <!-- RESPIRACIÓN -->
                 <div class="col-md-4 border-t pt-2 pb-4">
                     <div class="text-center">
-                        <p class="text-center">RESPIACIÓN</p>
+                        <p class="text-center">RESPIRACIÓN</p>
                     </div>
                     <div class="row flex flex-center-x">
                         <!-- ESP -->
@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <!-- Valor -->
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-12 flex flex-center-x pt-2 pb-4">
                             <div class="row">
                                 <label for="ta_value" class="mr-2 col-12"
@@ -148,7 +148,7 @@
                                 />
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- TEMPERATURA -->
                 <div
@@ -300,9 +300,9 @@
                                             </div>
                                             <div class="col-3">
                                                 <img
-                                                    v-if="item.img_src"
+                                                    v-if="item.img_url"
                                                     width="15"
-                                                    :src="item.img_src"
+                                                    :src="'/' + item.img_url"
                                                     alt="no carga"
                                                 />
                                             </div>
@@ -1842,14 +1842,14 @@ export default {
          * Obtener agentes
          */
         obtenerDatosAgentes: function() {
-            /* let url = "/modulos/cirugia/anestesia/agentes"; */
-            let url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table";
+            let url = "/modulos/cirugia/anestesia/agentes";
+            /* let url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table"; */
             axios
-                /* .get(url + "/agente") */
-                .get(url)
+                .get(url + "/agente")
+                /* .get(url) */
                 .then(response => {
                     /* console.log(response.data); */
-                    this.tabla_datos_grafica = response.data.tipoAgente;
+                    this.tabla_datos_grafica = response.data;
                 })
                 .catch(err => console.log(err));
         },
@@ -1857,15 +1857,15 @@ export default {
          * Obtener posiciones
          */
         obtenerDatosPosiciones: function() {
-            /* let url = "/modulos/cirugia/anestesia/agentes"; */
-            let url =
-                "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table";
+            let url = "/modulos/cirugia/anestesia/agentes";
+            /* let url =
+                "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table"; */
             axios
-                /* .get(url + "/posicion") */
-                .get(url)
+                .get(url + "/posicion")
+                /* .get(url) */
                 .then(response => {
                     console.log(response.data);
-                    this.posiciones = response.data.tipoPosiciones;
+                    this.posiciones = response.data;
                 })
                 .catch(err => console.log(err));
         },
