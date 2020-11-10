@@ -280,7 +280,9 @@
                                         type="text"
                                         name=""
                                         id=""
-                                        v-model="agentes_text[index].descripcion"
+                                        v-model="
+                                            agentes_text[index].descripcion
+                                        "
                                         style="width:100%"
                                     />
                                 </div>
@@ -376,6 +378,7 @@
                                                     :style="dato.style"
                                                     :class="dato._class"
                                                 >
+                                                    <!-- Muestra los tiempos 0 15 30 45  -->
                                                     <template
                                                         v-if="dato.es_tiempo"
                                                     >
@@ -414,6 +417,7 @@
                                                         </div>
                                                     </template>
                                                     <!-- Ingreso de datos de manera libre -->
+                                                    <!-- Aquí pones los datos que están arriba de la rejilla dond e se grafica -->
                                                     <template
                                                         v-if="dato.es_dato"
                                                     >
@@ -441,13 +445,16 @@
                                                                                 1
                                                                         ]
                                                                             .valores[
-                                                                            index_columna
+                                                                            index_columna +
+                                                                                index *
+                                                                                    4
                                                                         ]
                                                                     "
                                                                 />
                                                             </div>
                                                         </div>
                                                     </template>
+
                                                     <template
                                                         v-if="dato.es_agente"
                                                     >
@@ -609,13 +616,28 @@
                                         />
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div
+                                        class="col-md-2 border-r pl-0 text-center"
+                                    >
+                                        4
+                                    </div>
+                                    <div class="col-md-10 border-r p-0">
+                                        <input
+                                            type="text"
+                                            class="input-line"
+                                            v-model="drogas_administradas[3]"
+                                            name="drogas_administradas[]"
+                                        />
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="row border-b">
                                     <div
                                         class="col-md-2 border-r pl-0 text-center"
                                     >
-                                        4
+                                        5
                                     </div>
                                     <div class="col-md-10 border-r p-0">
                                         <input
@@ -630,7 +652,7 @@
                                     <div
                                         class="col-md-2 border-r pl-0 text-center"
                                     >
-                                        5
+                                        6
                                     </div>
                                     <div class="col-md-10 border-r p-0">
                                         <input
@@ -645,7 +667,7 @@
                                     <div
                                         class="col-md-2 border-r pl-0 text-center"
                                     >
-                                        6
+                                        7
                                     </div>
                                     <div class="col-md-10 border-r p-0">
                                         <input
@@ -660,7 +682,22 @@
                                     <div
                                         class="col-md-2 border-r pl-0 text-center"
                                     >
-                                        7
+                                        8
+                                    </div>
+                                    <div class="col-md-10 border-r p-0">
+                                        <input
+                                            type="text"
+                                            class="input-line"
+                                            v-model="drogas_administradas[6]"
+                                            name="drogas_administradas[]"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div
+                                        class="col-md-2 border-r pl-0 text-center"
+                                    >
+                                        9
                                     </div>
                                     <div class="col-md-10 border-r p-0">
                                         <input
@@ -677,7 +714,7 @@
                                     <div
                                         class="col-md-2 border-r pl-0 text-center"
                                     >
-                                        8
+                                        10
                                     </div>
                                     <div class="col-md-10 border-r p-0">
                                         <input
@@ -692,37 +729,52 @@
                                     <div
                                         class="col-md-2 border-r pl-0 text-center"
                                     >
-                                        9
-                                    </div>
-                                    <div class="col-md-10 border-r p-0">
-                                        <input
-                                            type="text"
-                                            class="input-line"
-                                            v-model="drogas_administradas[9]"
-                                            name="drogas_administradas[]"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div
-                                        class="col-md-2 border-r pl-0 text-center"
-                                    >
-                                        10
-                                    </div>
-                                    <div class="col-md-10 border-r p-0">
-                                        <input
-                                            type="text"
-                                            class="input-line"
-                                            v-model="drogas_administradas[9]"
-                                            name="drogas_administradas[]"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div
-                                        class="col-md-2 border-r pl-0 text-center"
-                                    >
                                         11
+                                    </div>
+                                    <div class="col-md-10 border-r p-0">
+                                        <input
+                                            type="text"
+                                            class="input-line"
+                                            v-model="drogas_administradas[9]"
+                                            name="drogas_administradas[]"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div
+                                        class="col-md-2 border-r pl-0 text-center"
+                                    >
+                                        12
+                                    </div>
+                                    <div class="col-md-10 border-r p-0">
+                                        <input
+                                            type="text"
+                                            class="input-line"
+                                            v-model="drogas_administradas[9]"
+                                            name="drogas_administradas[]"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div
+                                        class="col-md-2 border-r pl-0 text-center"
+                                    >
+                                        13
+                                    </div>
+                                    <div class="col-md-10 border-r p-0">
+                                        <input
+                                            type="text"
+                                            class="input-line"
+                                            v-model="drogas_administradas[10]"
+                                            name="drogas_administradas[]"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div
+                                        class="col-md-2 border-r pl-0 text-center"
+                                    >
+                                        14
                                     </div>
                                     <div class="col-md-10 border-r p-0">
                                         <input
@@ -746,48 +798,34 @@
                             TIEMPOS
                         </div>
                         <div class="row">
-                            <div class="col-md-2">
-                                <input
-                                    type="text"
-                                    class="m-w input-line"
-                                    name="duracion_anestecia"
-                                />
-                            </div>
-                            <div class="col-md-10 border-r">
+                            <div class="col-md-12 border-r">
                                 DURACIÓN ANESTESIA
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-4 col-ms-8">
                                 <input
-                                    type="text"
-                                    class="m-w input-line"
+                                    type="time"
                                     name="hs_min"
+                                    v-model="form.fchaDuracionAnestecia"
                                 />
                             </div>
-                            <div class="col-md-10 border-r">HS Min</div>
+                            <div class="col-md-8 border-r">HS Min</div>
                         </div>
                         <div class="row">
-                            <div class="col-md-2">
-                                <input
-                                    type="text"
-                                    class="input-line m-w"
-                                    name="duracion_operacion"
-                                />
-                            </div>
-                            <div class="col-md-10 border-r">
+                            <div class="col-md-12 border-r">
                                 DURACIÓN OPERACIÓN
                             </div>
                         </div>
                         <div class="row border-b">
-                            <div class="col-md-2">
+                            <div class="col-md-4 col-ms-8">
                                 <input
-                                    type="text"
-                                    class="input-line m-w"
+                                    type="time"
                                     name="h_min"
+                                    v-model="form.fchaDuracionOperacion"
                                 />
                             </div>
-                            <div class="col-md-10 border-r">H. Min</div>
+                            <div class="col-md-8 border-r">H. Min</div>
                         </div>
                     </div>
                     <!-- TECNICAS -->
@@ -800,6 +838,7 @@
                         <div class="row border-b">
                             <!-- parte 1 -->
                             <div class="col-md-6">
+                                <!-- GENERAL -->
                                 <div class="row border-b border-r">
                                     <label
                                         class="col-md-11 p-0 m-0"
@@ -813,9 +852,11 @@
                                             type="checkbox"
                                             name="general"
                                             id="general"
+                                            v-model="form.general"
                                         />
                                     </div>
                                 </div>
+                                <!-- SISTEMA ABIERTO -->
                                 <div class="row border-r">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -829,9 +870,11 @@
                                             type="checkbox"
                                             name="sistema-abierto"
                                             id="sistema-abierto"
+                                            v-model="form.sistema_abierto"
                                         />
                                     </div>
                                 </div>
+                                <!-- SISTEMA CERRADO -->
                                 <div class="row border-r">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -845,9 +888,11 @@
                                             type="checkbox"
                                             name="sistema-cerrado"
                                             id="sistema-cerrado"
+                                            v-model="form.sistem_cerrado"
                                         />
                                     </div>
                                 </div>
+                                <!-- SISTEM SEMI-CERR -->
                                 <div class="row border-r">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -861,9 +906,11 @@
                                             type="checkbox"
                                             name="sistem-semi-cerr"
                                             id="sistem-semi-cerr"
+                                            v-model="form.sistem_semi_cerr"
                                         />
                                     </div>
                                 </div>
+                                <!-- APARTOS USADOS -->
                                 <div class="row border-r">
                                     <label
                                         class="col-md-12 p-0 m-0 upper"
@@ -872,6 +919,7 @@
                                             >apartos usados</span
                                         ></label
                                     >
+                                    <!-- CINC y VAIIVEN -->
                                     <div class="col-md-12s p-0">
                                         <label for="cinc" class="upper"
                                             ><span class="space-left"
@@ -882,6 +930,7 @@
                                             type="checkbox"
                                             name="cinc"
                                             id="cinc"
+                                            v-model="form.cinc"
                                         />
                                         <label for="vaiiven" class="upper ml-2"
                                             >vaiiven</label
@@ -890,10 +939,11 @@
                                             type="checkbox"
                                             name="vaiiven"
                                             id="vaiiven"
+                                            v-model="form.vaiiven"
                                         />
                                     </div>
                                 </div>
-
+                                <!-- MASCARA -->
                                 <div class="row border-b border-r">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -907,17 +957,19 @@
                                             type="checkbox"
                                             name="mascara"
                                             id="mascara"
+                                            v-model="form.mascara"
                                         />
                                     </div>
                                 </div>
                                 <!-- parte 2 -->
+                                <!-- INTE. TRAQUEAL -->
                                 <div class="row flex border-r">
                                     <span
                                         class="col-md-12 p-0 m-0 upper text-center"
                                         >inte. traqueal</span
                                     >
                                 </div>
-
+                                <!-- ORAL y NASAL -->
                                 <div class="row border-r">
                                     <div class="col-md-12 p-0">
                                         <label for="oral" class="upper"
@@ -929,6 +981,7 @@
                                             type="checkbox"
                                             name="oral"
                                             id="oral"
+                                            v-model="form.oral"
                                         />
                                         <label for="nasal" class="upper ml-2"
                                             >nasal</label
@@ -937,6 +990,7 @@
                                             type="checkbox"
                                             name="nasal"
                                             id="nasal"
+                                            v-model="form.nasal"
                                         />
                                     </div>
                                     <div class="col-md-12 p-0">
@@ -960,13 +1014,27 @@
                                         />
                                     </div>
                                 </div>
-                                <div class="row flex border-r">
-                                    <span class="col-md-12 p-0 m-0"
+                                <!-- TURBO No -->
+                                <div class="row border-b border-r">
+                                    <label
+                                        class="col-md-6 p-0 m-0 upper"
+                                        for="dextrosas"
                                         ><span class="space-left"
-                                            >TURBO No________</span
-                                        ></span
+                                            >TURBO No</span
+                                        ></label
                                     >
+                                    <div class="col-md-3 p-0">
+                                        <input
+                                            class="input-line"
+                                            v-model="form.turbo_inte_traqueal"
+                                            type="number"
+                                            name="dextrosas"
+                                            id="dextrosas"
+                                            style="width: 100%"
+                                        />
+                                    </div>
                                 </div>
+                                <!-- MANGUITO INFLAM. -->
                                 <div class="row border-r">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -980,9 +1048,13 @@
                                             type="checkbox"
                                             name="manguito-inflam"
                                             id="manguito-inflam"
+                                            v-model="
+                                                form.manguito_inflam_inte_traqueal
+                                            "
                                         />
                                     </div>
                                 </div>
+                                <!-- TAPONAMIENTO -->
                                 <div class="row border-r">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -996,9 +1068,13 @@
                                             type="checkbox"
                                             name="Taponamiento"
                                             id="Taponamiento"
+                                            v-model="
+                                                form.taponamiento_inte_traqueal
+                                            "
                                         />
                                     </div>
                                 </div>
+                                <!-- ASIST TOPICA -->
                                 <div class="row border-r">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -1012,9 +1088,13 @@
                                             type="checkbox"
                                             name="asist-topica"
                                             id="asist-topica"
+                                            v-model="
+                                                form.asist_topica_inte_traqueal
+                                            "
                                         />
                                     </div>
                                 </div>
+                                <!-- SIST TRAMBORAL -->
                                 <div class="row border-r">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -1028,35 +1108,71 @@
                                             type="checkbox"
                                             name="asist-tramboral"
                                             id="asist-semtramborali"
+                                            v-model="
+                                                form.asist_tranboral_inte_traqueal
+                                            "
                                         />
                                     </div>
                                 </div>
                             </div>
                             <!-- CONDUCTIVA -->
                             <div class="col-md-6">
+                                <!-- CONDUCTIVA -->
                                 <div class="row border-b">
-                                    <label class="col-md-11 p-0 m-0" for=""
+                                    <label
+                                        class="col-md-11 p-0 m-0 upper"
+                                        for="habon"
                                         ><span class="space-left"
                                             >CONDUCTIVA</span
                                         ></label
                                     >
+                                    <div class="col-md-1 p-0">
+                                        <input
+                                            type="checkbox"
+                                            name="habon"
+                                            id="habon"
+                                            v-model="form.conductiva"
+                                        />
+                                    </div>
                                 </div>
+                                <!-- ASEPSIA DE PIEL -->
                                 <div class="row border-b">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
-                                        for=""
+                                        for="habon"
                                         ><span class="space-left"
-                                            >asepsia de piel</span
+                                            >ASEPSIA DE PIEL</span
                                         ></label
                                     >
+                                    <div class="col-md-1 p-0">
+                                        <input
+                                            type="checkbox"
+                                            name="habon"
+                                            id="habon"
+                                            v-model="form.asepsia_piel"
+                                        />
+                                    </div>
                                 </div>
-                                <div class="row border-b">
-                                    <span class="col-md-12 p-0 m-0"
+                                <div class="row border-b border-r">
+                                    <label
+                                        class="col-md-6 p-0 m-0 upper"
+                                        for="dextrosas"
                                         ><span class="space-left"
-                                            >CON:___________</span
-                                        ></span
+                                            >CON:</span
+                                        ></label
                                     >
+                                    <div class="col-md-3 p-0">
+                                        <input
+                                            class="input-line"
+                                            v-model="form.con"
+                                            type="text"
+                                            name="dextrosas"
+                                            id="dextrosas"
+                                            style="width: 100%"
+                                        />
+                                    </div>
                                 </div>
+                                <!-- HABON -->
                                 <div class="row border-b">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -1070,9 +1186,11 @@
                                             type="checkbox"
                                             name="habon"
                                             id="habon"
+                                            v-model="form.habon"
                                         />
                                     </div>
                                 </div>
+                                <!-- RAQUIDEA -->
                                 <div class="row border-b">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -1086,9 +1204,11 @@
                                             type="checkbox"
                                             name="raquidea"
                                             id="raquidea"
+                                            v-model="form.raquidea"
                                         />
                                     </div>
                                 </div>
+                                <!-- EPIDURAL CAUD -->
                                 <div class="row border-b">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -1102,9 +1222,11 @@
                                             type="checkbox"
                                             name="epidural-caud"
                                             id="epidural-caud"
+                                            v-model="form.epidural"
                                         />
                                     </div>
                                 </div>
+                                <!-- SIMPLE -->
                                 <div class="row">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -1118,9 +1240,11 @@
                                             type="checkbox"
                                             name="simple"
                                             id="simple"
+                                            v-model="form.simple"
                                         />
                                     </div>
                                 </div>
+                                <!-- CONTINUA -->
                                 <div class="row">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -1134,9 +1258,11 @@
                                             type="checkbox"
                                             name="continua"
                                             id="continua"
+                                            v-model="form.continua"
                                         />
                                     </div>
                                 </div>
+                                <!-- ALTURA PUNCION -->
                                 <div class="row border-b flex text-center">
                                     <label
                                         class="col-md-12 p-0 m-0"
@@ -1147,6 +1273,7 @@
                                         ></label
                                     >
                                 </div>
+                                <!-- PUNCION LAT -->
                                 <div class="row">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -1160,9 +1287,11 @@
                                             type="checkbox"
                                             name="puncion-lat"
                                             id="puncion-lat"
+                                            v-model="form.puncion_lat"
                                         />
                                     </div>
                                 </div>
+                                <!-- LINEA MEDIA -->
                                 <div class="row border-b">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -1176,25 +1305,51 @@
                                             type="checkbox"
                                             name="linea-media"
                                             id="linea-media"
+                                            v-model="form.linea_media"
                                         />
                                     </div>
                                 </div>
-                                <div class="row border-b">
-                                    <label class="col-md-11 p-0 m-0" for=""
+                                <!-- AGUJA No -->
+                                <div class="row border-b border-r">
+                                    <label
+                                        class="col-md-6 p-0 m-0"
+                                        for="dextrosas"
                                         ><span class="space-left"
                                             >AGUJA No</span
                                         ></label
                                     >
+                                    <div class="col-md-3 p-0">
+                                        <input
+                                            class="input-line"
+                                            v-model="form.aguja"
+                                            type="number"
+                                            name="dextrosas"
+                                            id="dextrosas"
+                                            style="width: 100%"
+                                        />
+                                    </div>
                                 </div>
-                                <div class="row border-b">
+                                <!-- NIVEL -->
+                                <div class="row border-b border-r">
                                     <label
-                                        class="col-md-11 p-0 m-0 upper"
-                                        for=""
+                                        class="col-md-6 p-0 m-0 upper"
+                                        for="dextrosas"
                                         ><span class="space-left"
-                                            >nivel</span
+                                            >NIVEL</span
                                         ></label
                                     >
+                                    <div class="col-md-3 p-0">
+                                        <input
+                                            class="input-line"
+                                            v-model="form.nivel"
+                                            type="text"
+                                            name="dextrosas"
+                                            id="dextrosas"
+                                            style="width: 100%"
+                                        />
+                                    </div>
                                 </div>
+                                <!-- HIPERBARA -->
                                 <div class="row border-b">
                                     <label
                                         class="col-md-11 p-0 m-0 upper"
@@ -1208,24 +1363,42 @@
                                             type="checkbox"
                                             name="hiperbara"
                                             id="hiperbara"
+                                            v-model="form.hiperbara"
                                         />
                                     </div>
                                 </div>
                                 <div class="row border-b">
-                                    <label class="col-md-11 p-0 m-0" for=""
-                                        ><span class="space-left"
-                                            >POSICION PACIENTE</span
-                                        ></label
-                                    >
+                                    <label class="col-md-4 p-0 m-0" for=""
+                                            ><span class="space-left"
+                                                >POSICION PACIENTE</span
+                                            ></label
+                                        >
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <div class="form-group">
+                                            <v-select
+                                                v-model="selectedTipoPosiciones"
+                                                :value="form.id_tipo_posiciones"
+                                                :options="tipoPosiciones"
+                                                label="display"
+                                                @input="setSelectedTipoPosiciones"
+                                            >
+                                                <template slot="no-options"
+                                                    >No existen datos</template
+                                                >
+                                            </v-select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- INFUSIONES -->
                     <div class="col-md-5 col-lg-5 border-t border-t mt-3">
+                        <!-- INFUSIONES -->
                         <div class="row border-b flex flex-center-x">
                             <span>INFUSIONES</span>
                         </div>
+                        <!-- DEXTROSAS -->
                         <div class="row border-b border-r">
                             <span class="col-md-1 border-r">D</span>
                             <label
@@ -1238,7 +1411,7 @@
                             <div class="col-md-3 p-0">
                                 <input
                                     class="input-line"
-                                    v-model="dextrosas"
+                                    v-model="form.dextrosas"
                                     type="number"
                                     name="dextrosas"
                                     id="dextrosas"
@@ -1247,6 +1420,7 @@
                             </div>
                             <label class="col-md-1 p-0 m-0" for="">cc</label>
                         </div>
+                        <!-- SANGRE -->
                         <div class="row border-b border-r">
                             <span class="col-md-1 border-r">D</span>
                             <label class="col-md-6 p-0 m-0 upper" for="sangre"
@@ -1255,7 +1429,7 @@
                             <div class="col-md-3 p-0">
                                 <input
                                     class="input-line"
-                                    v-model="sangre"
+                                    v-model="form.sangre"
                                     type="number"
                                     name="sangre"
                                     id="sangre"
@@ -1264,6 +1438,7 @@
                             </div>
                             <label class="col-md-1 p-0 m-0" for="">cc</label>
                         </div>
+                        <!-- RINGER -->
                         <div class="row border-b border-r">
                             <span class="col-md-1 border-r">R</span>
                             <label class="col-md-6 p-0 m-0 upper" for="ringer"
@@ -1272,7 +1447,7 @@
                             <div class="col-md-3 p-0">
                                 <input
                                     class="input-line"
-                                    v-model="ringer"
+                                    v-model="form.ringer"
                                     type="number"
                                     name="ringer"
                                     id="ringer"
@@ -1281,6 +1456,7 @@
                             </div>
                             <label class="col-md-1 p-0 m-0" for="">cc</label>
                         </div>
+                        <!-- EXPANSIONES -->
                         <div class="row border-b border-r">
                             <span class="col-md-1 border-r">S</span>
                             <label
@@ -1294,7 +1470,7 @@
                                 <input
                                     class="input-line"
                                     type="number"
-                                    v-model="expansiones"
+                                    v-model="form.expansiones"
                                     name="expansiones"
                                     id="expansiones"
                                     style="width: 100%"
@@ -1302,6 +1478,7 @@
                             </div>
                             <label class="col-md-1 p-0 m-0" for="">cc</label>
                         </div>
+                        <!-- TOTAL -->
                         <div class="row border-b border-r">
                             <span class="col-md-1 border-r">E</span>
                             <label
@@ -1314,11 +1491,11 @@
                             </div>
                             <label class="col-md-1 p-0 m-0" for="">cc</label>
                         </div>
-
                         <!-- HEMORRAGEA -->
                         <div class="row border-b flex flex-center-x">
                             <span>hemorragia</span>
                         </div>
+                        <!-- cc APROX -->
                         <div class="row border-b border-r">
                             <div class="col-md-1"></div>
                             <div class="col-md-7 p-0">
@@ -1328,15 +1505,18 @@
                                     name="hemorragia"
                                     id="hemorragia"
                                     style="width: 100%"
+                                    v-model="form.hemorragia"
                                 />
                             </div>
                             <label class="col-md-3 p-0 m-0" for=""
                                 >cc APROX</label
                             >
                         </div>
+                        <!-- apagar -->
                         <div class="row border-b flex flex-center-x">
                             <span>apagar</span>
                         </div>
+                        <!-- Los minutos All -->
                         <div class="row border-b border-r">
                             <label class="col-md-3 p-0 m-0 upper" for="1-min"
                                 >1 min</label
@@ -1357,6 +1537,7 @@
                                     name="1-min"
                                     id="1-min"
                                     style="width: 100%"
+                                    v-model="form.min1"
                                 />
                             </div>
                             <div class="col-md-3 p-0">
@@ -1366,6 +1547,7 @@
                                     name="5-min"
                                     id="5-min"
                                     style="width: 100%"
+                                    v-model="form.min5"
                                 />
                             </div>
                             <div class="col-md-3 p-0">
@@ -1375,6 +1557,7 @@
                                     name="10-min"
                                     id="10-min"
                                     style="width: 100%"
+                                    v-model="form.min10"
                                 />
                             </div>
                             <div class="col-md-3 p-0">
@@ -1384,9 +1567,11 @@
                                     name="p_muerto"
                                     id="p_muerto"
                                     style="width: 100%"
+                                    v-model="form.p_muerto"
                                 />
                             </div>
                         </div>
+                        <!-- tecnicas especiales -->
                         <div class="row border-b flex flex-center-x">
                             <span>tecnicas especiales</span>
                         </div>
@@ -1398,9 +1583,11 @@
                                     name="tecnicas_especiales"
                                     id="tecnicas_especiales"
                                     style="width: 100%"
+                                    v-model="form.tecnicas_especiales"
                                 />
                             </div>
                         </div>
+                        <!-- CONDUCIDO A: -->
                         <div class="row">
                             <label for="conducido_a"
                                 ><span class="space-left">CONDUCIDO A:</span>
@@ -1410,9 +1597,12 @@
                                 class="input-line"
                                 name="conducido_a"
                                 id="conducido_a"
+                                v-model="form.conducido_a"
                             />
                         </div>
+                        <!-- POR: -->
                         <div class="row">
+                            <!-- POR: -->
                             <label class="col-md-2" for="conducido_por"
                                 >POR:
                             </label>
@@ -1421,6 +1611,7 @@
                                 class="input-line col-md-4"
                                 name="conducido_por"
                                 id="conducido_por"
+                                v-model="form.por"
                             />
                             <label class="col-md-2" for="conducido_hora"
                                 >HORA:
@@ -1430,6 +1621,7 @@
                                 class="input-line col-md-4"
                                 name="conducido_hora"
                                 id="conducido_hora"
+                                v-model="form.hora"
                             />
                         </div>
                     </div>
@@ -1439,7 +1631,9 @@
                         <div class="row border-b flex flex-center-x">
                             <span>COMPLICACIONES OPERATRIAS</span>
                         </div>
+                        <!-- HIPOTENSION y ARRITMIAS -->
                         <div class="row border-b pt-2 pb-2">
+                            <!-- HIPOTENSION -->
                             <label class="col-md-5 p-0 m-0" for="hipotension"
                                 ><span class="space-left"
                                     >HIPOTENSION</span
@@ -1450,8 +1644,10 @@
                                     type="checkbox"
                                     name="hipotension"
                                     id="hipotension"
+                                    v-model="form.hipotension"
                                 />
                             </div>
+                            <!-- arritmias -->
                             <label
                                 class="col-md-5 p-0 upper m-0"
                                 for="arritmias"
@@ -1462,10 +1658,13 @@
                                     type="checkbox"
                                     name="arritmias"
                                     id="arritmias"
+                                    v-model="form.arritmias"
                                 />
                             </div>
                         </div>
+                        <!-- depresion respiratoria y perforacion duramadre -->
                         <div class="row border-b pt-2 pb-2">
+                            <!-- depresion respiratoria -->
                             <label
                                 class="col-md-5 p-0 upper m-0"
                                 for="depresion-respiratoria"
@@ -1478,8 +1677,10 @@
                                     type="checkbox"
                                     name="depresion-respiratoria"
                                     id="depresion-respiratoria"
+                                    v-model="form.depresion_respiratoria"
                                 />
                             </div>
+                            <!-- perforacion duramadre -->
                             <label
                                 class="col-md-5 p-0 upper m-0"
                                 for="perforacion-duramadre"
@@ -1490,9 +1691,11 @@
                                     type="checkbox"
                                     name="perforacion-duramadre"
                                     id="perforacion-duramadre"
+                                    v-model="form.perforacion_duramadre"
                                 />
                             </div>
                         </div>
+                        <!-- dificultad intubacion y nauseas-vomitos -->
                         <div class="row border-b pt-2 pb-2">
                             <label
                                 class="col-md-5 p-0 upper m-0"
@@ -1506,6 +1709,7 @@
                                     type="checkbox"
                                     name="dificultad-intubacion"
                                     id="dificultad-intubacion"
+                                    v-model="form.dificultad_intubacion"
                                 />
                             </div>
                             <label
@@ -1518,9 +1722,11 @@
                                     type="checkbox"
                                     name="nauseas-vomitos"
                                     id="nauseas-vomitos"
+                                    v-model="form.nauseas_vomitos"
                                 />
                             </div>
                         </div>
+                        <!-- conductiva insuficiente y laringo espasmo -->
                         <div class="row border-b pt-2 pb-2">
                             <label
                                 class="col-md-5 p-0 upper m-0"
@@ -1534,6 +1740,7 @@
                                     type="checkbox"
                                     name="conductiva-insuficiente"
                                     id="conductiva-insuficiente"
+                                    v-model="form.conductiva_insuficiente"
                                 />
                             </div>
                             <label
@@ -1546,9 +1753,11 @@
                                     type="checkbox"
                                     name="laringo-espasmo"
                                     id="laringo-espasmo"
+                                    v-model="form.laringo_espasmo"
                                 />
                             </div>
                         </div>
+                        <!-- paro cardiaco y ninguna -->
                         <div class="row border-b pt-2 pb-2">
                             <label
                                 class="col-md-5 p-0 upper m-0"
@@ -1562,6 +1771,7 @@
                                     type="checkbox"
                                     name="paro-cardiaco"
                                     id="paro-cardiaco"
+                                    v-model="form.paro_cardiaco"
                                 />
                             </div>
                             <label class="col-md-5 p-0 upper m-0" for="ninguna"
@@ -1572,9 +1782,11 @@
                                     type="checkbox"
                                     name="ninguna"
                                     id="ninguna"
+                                    v-model="form.ninguna"
                                 />
                             </div>
                         </div>
+                        <!-- cambio de tecnica y -->
                         <div class="row border-b pt-2 pb-2">
                             <label
                                 class="col-md-5 p-0 upper m-0"
@@ -1588,18 +1800,22 @@
                                     type="checkbox"
                                     name="cambio-tecnica"
                                     id="cambio-tecnica"
+                                    v-model="form.cambio_tecnica"
                                 />
                             </div>
                         </div>
+                        <!-- otros -->
                         <div class="row border-b pt-2 pb-2">
                             <div class="flex col-md-5 p-0 upper">
                                 <span class="space-left mr-2">otros</span>
                                 <input
                                     class="border-none-b- w-100p"
                                     type="text"
+                                    v-model="form.otros_complicaciones"
                                 />
                             </div>
                         </div>
+                        <!-- COMENTATIOS -->
                         <div class="row">
                             <span class="col-md-12">COMENTATIOS:</span>
                             <textarea
@@ -1607,8 +1823,10 @@
                                 id=""
                                 class="col-md-12"
                                 rows="3"
+                                v-model="form.comentario"
                             ></textarea>
                         </div>
+                        <!-- FIRMA DEL ANESTESIOLOGO: -->
                         <div class="">
                             <div class="" style="height: 70px"></div>
                             <div class="flex flex-y">
@@ -1641,17 +1859,84 @@ export default {
     },
     data: function() {
         return {
+            selectedTipoPosiciones: "",
+            tipoPosiciones: "",
             form: {
                 cirugia_id: 0,
-                registro_anestesia_id: 0
-                // agente_id: 0
+                registro_anestesia_id: 0,
+                id_tipo_posiciones: 0,
+                /* Datos para modificar registro anestesico */
+                general: false,
+                sistem_abierto: false,
+                sistem_cerrado: false,
+                sistem_semi_cerr: false,
+                cinc_aparatos_usados: false,
+                vaiiven_aparatos_usados: false,
+                mascara: false,
+                //seccion 1
+                oral_inte_traqueal: false,
+                nasal_inte_traqueal: false,
+                rapido_inte_traqueal: false,
+                lenta_inte_traqueal: false,
+                turbo_inte_traqueal: 0,
+                manguito_inflam_inte_traqueal: false,
+                taponamiento_inte_traqueal: false,
+                asist_topica_inte_traqueal: false,
+                asist_tranboral_inte_traqueal: false,
+                //seccion 2
+                conductiva: false,
+                asepsia_piel: false,
+                con: "",
+                habon: false,
+                raquidea: false,
+                epidural_caud: false,
+                //seccion 3
+                simple_altura_puncion: false,
+                continua_altura_puncion: false,
+                //seccion 4
+                puncion_lat: false,
+                linea_media: false,
+                //seccion 5
+                aguja: 0,
+                nivel: "",
+                hiperbara: false,
+                /* Complicaciones Operatorias */
+                hipotension: false,
+                arritmias: false,
+                depresion_respiratoria: false,
+                perforacion_duramadre: false,
+                dificultad_intubacion: false,
+                nauses_vomitos: false,
+                conductiva_insuficiente: false,
+                laringo_espasmo: false,
+                paro_cardiaco: false,
+                ninguna: false,
+                cambio_tecnica: false,
+                otros_complicaciones: "",
+                comentario: "",
+                /* Hemorragia */
+                hemorragia: 0,
+                /* Apagar */
+                min1: false,
+                min5: false,
+                min10: false,
+                p_muerto: false,
+                /* Tecnicas Especiales */
+                conducido_a: "",
+                por: "",
+                hora: "",
+                /* Fin Datos para modificar registro anestesico */
+
+                /* Datos para guardar en la tabla infusiones */
+                dextrosas: 0,
+                sangre: 0,
+                ringer: 0,
+                expansiones: 0,
+                total:0,
+                /* Fin Datos para guardar en la tabla infusiones */
             },
-            // message: "Hello Vue!",
-            sangre: "",
+
             registro_id: 1,
-            expansiones: "",
-            dextrosas: "",
-            ringer: "",
             drogas_administradas: [],
             peso: "",
             estatura: "",
@@ -1786,11 +2071,11 @@ export default {
          * Cácular el valor final para las infusiones
          */
         total_infusiones: function(params) {
-            return (
-                +Number(this.sangre) +
-                Number(this.expansiones) +
-                Number(this.dextrosas) +
-                Number(this.ringer)
+            return this.form.total = (
+                +Number(this.form.sangre) +
+                Number(this.form.expansiones) +
+                Number(this.form.dextrosas) +
+                Number(this.form.ringer)
             );
         }
     },
@@ -1806,6 +2091,7 @@ export default {
         /**
          * Control de tiempo
          */
+        this.setSelectedTipoPosiciones();
         setInterval(() => {
             this.seconds += 1;
             if (this.seconds >= 59) {
@@ -1831,6 +2117,36 @@ export default {
     },
     beforeDestroy: function() {},
     methods: {
+        setSelectedTipoPosiciones(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            let url = "/modulos/cirugia/anestesia/cargar_tipo_posiciones_combo_box";
+            if (value != null) {
+                this.form.id_tipo_posiciones = value.id_tipo_posiciones;
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let tipoPosiciones = [];
+                    response.data.tipoPosiciones.forEach(tiposPosiciones => {
+                        let objeto = {};
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(tiposPosiciones.descripcion);
+                        objeto.id_tipo_posiciones = tiposPosiciones.id;
+                        tipoPosiciones.push(objeto);
+                    });
+                    that.tipoPosiciones = tipoPosiciones;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    });
+                    loader.hide();
+                });
+        },
         /**
          * Método para obtener datos principales desde el server
          */
@@ -1933,6 +2249,59 @@ export default {
                 "img/icons/fin_anestecia.png",
                 { system_name: "FIN-ANESTECIA", tipo: this.system_agente }
             );
+            this.guardarDrograAdministrada();
+        },
+        guardarDrograAdministrada() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            let formNew = {
+                frm_registro_anestesia_id: that.form.registro_anestesia_id,
+                frm_descripciones: that.drogas_administradas
+            };
+
+            url = "/modulos/cirugia/anestesia/guardar_droga_administrada";
+
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    //Llamar metodo de parent para que actualice el grid.
+                    that.modifcarRegistroAnestesia();
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores de validación
+                    loader.hide();
+                    that.$swal({
+                        icon: "error",
+                        title: "Error Guardar Drogas Administradas",
+                        text: error
+                    });
+                });
+        },
+        modifcarRegistroAnestesia() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            url = "/modulos/cirugia/anestesia/modifcar_registro_anestesia";
+
+            var loader = that.$loading.show();
+            axios
+                .post(url, this.form)
+                .then(function(response) {
+                    //Llamar metodo de parent para que actualice el grid.
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores de validación
+                    loader.hide();
+                    that.$swal({
+                        icon: "error",
+                        title: "Error Guardar Drogas Administradas",
+                        text: error
+                    });
+                });
         },
         /**
          * Método para pintar el dato en una rejilla y enviar ese dato al servidor
