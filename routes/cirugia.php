@@ -62,7 +62,8 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::get('cargar_tipo_posiciones_combo_box', 'AgenteAnestesiaController@cargarAgenteTipoPosicionComboBox');
         Route::post('guardar_droga_administrada', 'DrogasAdministradasController@guardarDrogaAdministradas');
         Route::post('modifcar_registro_anestesia', 'RegistroAnestesiaController@modifcarRegistroAnestesia');
-
+        Route::post('guardar_registro_infusiones', 'RegistroInfusionesController@guardarRegistroInfusiones');
+        Route::get('cargar_pdf_formulario_registro_anestesia/{idSecCirPro}', 'RegistroAnestesiaController@cargarPdfFormularioRegistroAnestesia');
 
     });
 

@@ -65,6 +65,7 @@ class RegistroAnestesia extends Model
         'cambio_tecnica',
         'otros_complicaciones',
         'comentario',
+        'hemorragia',
         'min1',
         'min5',
         'min10',

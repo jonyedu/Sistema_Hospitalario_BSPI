@@ -870,7 +870,7 @@
                                             type="checkbox"
                                             name="sistema-abierto"
                                             id="sistema-abierto"
-                                            v-model="form.sistema_abierto"
+                                            v-model="form.sistem_abierto"
                                         />
                                     </div>
                                 </div>
@@ -930,7 +930,7 @@
                                             type="checkbox"
                                             name="cinc"
                                             id="cinc"
-                                            v-model="form.cinc"
+                                            v-model="form.cinc_aparatos_usados"
                                         />
                                         <label for="vaiiven" class="upper ml-2"
                                             >vaiiven</label
@@ -939,7 +939,7 @@
                                             type="checkbox"
                                             name="vaiiven"
                                             id="vaiiven"
-                                            v-model="form.vaiiven"
+                                            v-model="form.vaiiven_aparatos_usados"
                                         />
                                     </div>
                                 </div>
@@ -981,7 +981,7 @@
                                             type="checkbox"
                                             name="oral"
                                             id="oral"
-                                            v-model="form.oral"
+                                            v-model="form.oral_inte_traqueal"
                                         />
                                         <label for="nasal" class="upper ml-2"
                                             >nasal</label
@@ -990,7 +990,7 @@
                                             type="checkbox"
                                             name="nasal"
                                             id="nasal"
-                                            v-model="form.nasal"
+                                            v-model="form.nasal_inte_traqueal"
                                         />
                                     </div>
                                     <div class="col-md-12 p-0">
@@ -1003,6 +1003,7 @@
                                             type="checkbox"
                                             name="rapido"
                                             id="rapido"
+                                            v-model="form.rapido_inte_traqueal"
                                         />
                                         <label for="lenta" class="upper ml-2"
                                             >lenta</label
@@ -1011,6 +1012,7 @@
                                             type="checkbox"
                                             name="lenta"
                                             id="lenta"
+                                            v-model="form.lenta_inte_traqueal"
                                         />
                                     </div>
                                 </div>
@@ -1018,7 +1020,7 @@
                                 <div class="row border-b border-r">
                                     <label
                                         class="col-md-6 p-0 m-0 upper"
-                                        for="dextrosas"
+                                        for="turbo"
                                         ><span class="space-left"
                                             >TURBO No</span
                                         ></label
@@ -1028,8 +1030,8 @@
                                             class="input-line"
                                             v-model="form.turbo_inte_traqueal"
                                             type="number"
-                                            name="dextrosas"
-                                            id="dextrosas"
+                                            name="turbo"
+                                            id="turbo"
                                             style="width: 100%"
                                         />
                                     </div>
@@ -1156,7 +1158,7 @@
                                 <div class="row border-b border-r">
                                     <label
                                         class="col-md-6 p-0 m-0 upper"
-                                        for="dextrosas"
+                                        for="con"
                                         ><span class="space-left"
                                             >CON:</span
                                         ></label
@@ -1166,8 +1168,8 @@
                                             class="input-line"
                                             v-model="form.con"
                                             type="text"
-                                            name="dextrosas"
-                                            id="dextrosas"
+                                            name="con"
+                                            id="con"
                                             style="width: 100%"
                                         />
                                     </div>
@@ -1222,7 +1224,7 @@
                                             type="checkbox"
                                             name="epidural-caud"
                                             id="epidural-caud"
-                                            v-model="form.epidural"
+                                            v-model="form.epidural_caud"
                                         />
                                     </div>
                                 </div>
@@ -1240,7 +1242,7 @@
                                             type="checkbox"
                                             name="simple"
                                             id="simple"
-                                            v-model="form.simple"
+                                            v-model="form.simple_altura_puncion"
                                         />
                                     </div>
                                 </div>
@@ -1258,7 +1260,7 @@
                                             type="checkbox"
                                             name="continua"
                                             id="continua"
-                                            v-model="form.continua"
+                                            v-model="form.continua_altura_puncion"
                                         />
                                     </div>
                                 </div>
@@ -1313,7 +1315,7 @@
                                 <div class="row border-b border-r">
                                     <label
                                         class="col-md-6 p-0 m-0"
-                                        for="dextrosas"
+                                        for="aguja"
                                         ><span class="space-left"
                                             >AGUJA No</span
                                         ></label
@@ -1323,8 +1325,8 @@
                                             class="input-line"
                                             v-model="form.aguja"
                                             type="number"
-                                            name="dextrosas"
-                                            id="dextrosas"
+                                            name="aguja"
+                                            id="aguja"
                                             style="width: 100%"
                                         />
                                     </div>
@@ -1333,7 +1335,7 @@
                                 <div class="row border-b border-r">
                                     <label
                                         class="col-md-6 p-0 m-0 upper"
-                                        for="dextrosas"
+                                        for="nivel"
                                         ><span class="space-left"
                                             >NIVEL</span
                                         ></label
@@ -1343,8 +1345,8 @@
                                             class="input-line"
                                             v-model="form.nivel"
                                             type="text"
-                                            name="dextrosas"
-                                            id="dextrosas"
+                                            name="nivel"
+                                            id="nivel"
                                             style="width: 100%"
                                         />
                                     </div>
@@ -1399,7 +1401,7 @@
                             <span>INFUSIONES</span>
                         </div>
                         <!-- DEXTROSAS -->
-                        <div class="row border-b border-r">
+                        <!-- <div class="row border-b border-r">
                             <span class="col-md-1 border-r">D</span>
                             <label
                                 class="col-md-6 p-0 m-0 upper"
@@ -1411,7 +1413,7 @@
                             <div class="col-md-3 p-0">
                                 <input
                                     class="input-line"
-                                    v-model="form.dextrosas"
+                                    v-model="form.infusiones.dextrosas.valor"
                                     type="number"
                                     name="dextrosas"
                                     id="dextrosas"
@@ -1419,17 +1421,17 @@
                                 />
                             </div>
                             <label class="col-md-1 p-0 m-0" for="">cc</label>
-                        </div>
+                        </div> -->
                         <!-- SANGRE -->
-                        <div class="row border-b border-r">
-                            <span class="col-md-1 border-r">D</span>
+                        <div v-for="(infusion, index) in form.infusiones" :key="index" class="row border-b border-r">
+                            <span class="col-md-1 border-r"> {{infusion.abreviatura}} </span>
                             <label class="col-md-6 p-0 m-0 upper" for="sangre"
-                                ><span class="space-left">sangre</span></label
+                                ><span class="space-left"> {{infusion.descripcion}} </span></label
                             >
                             <div class="col-md-3 p-0">
                                 <input
                                     class="input-line"
-                                    v-model="form.sangre"
+                                    v-model="infusion.valor"
                                     type="number"
                                     name="sangre"
                                     id="sangre"
@@ -1439,7 +1441,7 @@
                             <label class="col-md-1 p-0 m-0" for="">cc</label>
                         </div>
                         <!-- RINGER -->
-                        <div class="row border-b border-r">
+                        <!-- <div class="row border-b border-r">
                             <span class="col-md-1 border-r">R</span>
                             <label class="col-md-6 p-0 m-0 upper" for="ringer"
                                 ><span class="space-left">ringer</span></label
@@ -1447,7 +1449,7 @@
                             <div class="col-md-3 p-0">
                                 <input
                                     class="input-line"
-                                    v-model="form.ringer"
+                                    v-model="form.infusiones.ringer.valor"
                                     type="number"
                                     name="ringer"
                                     id="ringer"
@@ -1455,10 +1457,10 @@
                                 />
                             </div>
                             <label class="col-md-1 p-0 m-0" for="">cc</label>
-                        </div>
+                        </div> -->
                         <!-- EXPANSIONES -->
-                        <div class="row border-b border-r">
-                            <span class="col-md-1 border-r">S</span>
+                        <!-- <div class="row border-b border-r">
+                            <span class="col-md-1 border-r">E</span>
                             <label
                                 class="col-md-6 p-0 m-0 upper"
                                 for="expansiones"
@@ -1470,17 +1472,39 @@
                                 <input
                                     class="input-line"
                                     type="number"
-                                    v-model="form.expansiones"
+                                    v-model="form.infusiones.expansiones.valor"
                                     name="expansiones"
                                     id="expansiones"
                                     style="width: 100%"
                                 />
                             </div>
                             <label class="col-md-1 p-0 m-0" for="">cc</label>
-                        </div>
+                        </div> -->
+                        <!-- SOLUCIONES SALINAS -->
+                        <!-- <div class="row border-b border-r">
+                            <span class="col-md-1 border-r">S</span>
+                            <label
+                                class="col-md-6 p-0 m-0 upper"
+                                for="solucionesSalinas"
+                                ><span class="space-left"
+                                    >SOLUCIONES SALINAS</span
+                                ></label
+                            >
+                            <div class="col-md-3 p-0">
+                                <input
+                                    class="input-line"
+                                    type="number"
+                                    v-model="form.infusiones.soluciones_salinas.valor"
+                                    name="solucionesSalinas"
+                                    id="solucionesSalinas"
+                                    style="width: 100%"
+                                />
+                            </div>
+                            <label class="col-md-1 p-0 m-0" for="">cc</label>
+                        </div> -->
                         <!-- TOTAL -->
                         <div class="row border-b border-r">
-                            <span class="col-md-1 border-r">E</span>
+                            <span class="col-md-1 border-r">T</span>
                             <label
                                 class="col-md-6 p-0 m-0 upper"
                                 for="expansiones"
@@ -1617,7 +1641,7 @@
                                 >HORA:
                             </label>
                             <input
-                                type="text"
+                                type="time"
                                 class="input-line col-md-4"
                                 name="conducido_hora"
                                 id="conducido_hora"
@@ -1722,7 +1746,7 @@
                                     type="checkbox"
                                     name="nauseas-vomitos"
                                     id="nauseas-vomitos"
-                                    v-model="form.nauseas_vomitos"
+                                    v-model="form.nauses_vomitos"
                                 />
                             </div>
                         </div>
@@ -1859,6 +1883,7 @@ export default {
     },
     data: function() {
         return {
+            validarImprimir: 0,
             selectedTipoPosiciones: "",
             tipoPosiciones: "",
             form: {
@@ -1866,6 +1891,8 @@ export default {
                 registro_anestesia_id: 0,
                 id_tipo_posiciones: 0,
                 /* Datos para modificar registro anestesico */
+                fchaDuracionAnestecia: '00:00',
+                fchaDuracionOperacion: '00:00',
                 general: false,
                 sistem_abierto: false,
                 sistem_cerrado: false,
@@ -1924,14 +1951,42 @@ export default {
                 /* Tecnicas Especiales */
                 conducido_a: "",
                 por: "",
-                hora: "",
+                hora: "00:00",
                 /* Fin Datos para modificar registro anestesico */
 
                 /* Datos para guardar en la tabla infusiones */
-                dextrosas: 0,
-                sangre: 0,
-                ringer: 0,
-                expansiones: 0,
+                infusiones: [
+                    {
+                        descripcion: "DEXTROSAS",
+                        name: "DEXTROSAS",
+                        abreviatura: "D",
+                        valor: 0
+                    },
+                    {
+                        descripcion: "SANGRE",
+                        name: "SANGRE",
+                        abreviatura: "S",
+                        valor: 0
+                    },
+                    {
+                        descripcion: "RINGER",
+                        name: "RINGER",
+                        abreviatura: "R",
+                        valor: 0
+                    },
+                    {
+                        descripcion: "EXPANSIONES",
+                        name: "EXPANSIONES",
+                        abreviatura: "E",
+                        valor: 0
+                    },
+                    {
+                        descripcion: "SOLUCIONES SALINAS",
+                        name: "SOLUCIONES_SALINAS",
+                        abreviatura: "SS",
+                        valor: 0
+                    },
+                ],
                 total:0,
                 /* Fin Datos para guardar en la tabla infusiones */
             },
@@ -2071,15 +2126,15 @@ export default {
          * Cácular el valor final para las infusiones
          */
         total_infusiones: function(params) {
-            return this.form.total = (
-                +Number(this.form.sangre) +
-                Number(this.form.expansiones) +
-                Number(this.form.dextrosas) +
-                Number(this.form.ringer)
-            );
+            var subTotal = 0;
+            this.form.infusiones.forEach(function(infusion){
+                subTotal+= (+Number(infusion.valor));
+            });
+            return this.form.total = subTotal;
         }
     },
     mounted: function() {
+        this.form.cirugia_id = this.$props.idSecCirPro;
         /**
          * Se empiezan a llenar los datos de la rejilla
          */
@@ -2266,7 +2321,6 @@ export default {
             axios
                 .post(url, formNew)
                 .then(function(response) {
-                    //Llamar metodo de parent para que actualice el grid.
                     that.modifcarRegistroAnestesia();
                     loader.hide();
                 })
@@ -2290,7 +2344,7 @@ export default {
             axios
                 .post(url, this.form)
                 .then(function(response) {
-                    //Llamar metodo de parent para que actualice el grid.
+                    that.guardarRegistroInfusiones();
                     loader.hide();
                 })
                 .catch(error => {
@@ -2298,7 +2352,40 @@ export default {
                     loader.hide();
                     that.$swal({
                         icon: "error",
-                        title: "Error Guardar Drogas Administradas",
+                        title: "Error Modificar Registro Administradas",
+                        text: error
+                    });
+                });
+        },
+        guardarRegistroInfusiones() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            let formNew = {
+                registro_anestesia_id: that.form.registro_anestesia_id,
+                infusiones: that.form.infusiones
+            };
+            url = "/modulos/cirugia/anestesia/guardar_registro_infusiones";
+
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    //Llamar metodo de parent para que actualice el grid.
+                    that.$swal({
+                            icon: "success",
+                            title: "Proceso realizado exitosamente",
+                            text: "Datos guardados correctamente."
+                        });
+                    that.validarImprimir = 1;
+                    that.$emit("RespuestaImprimir", that.validarImprimir);
+                })
+                .catch(error => {
+                    //Errores de validación
+                    loader.hide();
+                    that.$swal({
+                        icon: "error",
+                        title: "Error Guardar Infusiones",
                         text: error
                     });
                 });

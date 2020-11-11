@@ -82,7 +82,7 @@ class CreateTbRegistroAnestesiaTable extends Migration
                 $table->string('tecnicas_especiales', 100)->nullable();
                 $table->string('conducido_a', 100)->nullable();
                 $table->string('por', 100)->nullable();
-                $table->unsignedInteger('hora')->default(0);
+                $table->time('hora')->default('00:00:00')->nullable();
                 /* Datos para auditoria */
                 $table->string('des_campo1', 100)->nullable();
                 $table->string('des_campo2', 50)->nullable();

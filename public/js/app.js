@@ -3832,6 +3832,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -3841,6 +3865,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      validarImprimir: 0,
       selectedTipoPosiciones: "",
       tipoPosiciones: "",
       form: {
@@ -3849,6 +3874,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         id_tipo_posiciones: 0,
 
         /* Datos para modificar registro anestesico */
+        fchaDuracionAnestecia: '00:00',
+        fchaDuracionOperacion: '00:00',
         general: false,
         sistem_abierto: false,
         sistem_cerrado: false,
@@ -3911,15 +3938,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         /* Tecnicas Especiales */
         conducido_a: "",
         por: "",
-        hora: "",
+        hora: "00:00",
 
         /* Fin Datos para modificar registro anestesico */
 
         /* Datos para guardar en la tabla infusiones */
-        dextrosas: 0,
-        sangre: 0,
-        ringer: 0,
-        expansiones: 0,
+        infusiones: [{
+          descripcion: "DEXTROSAS",
+          name: "DEXTROSAS",
+          abreviatura: "D",
+          valor: 0
+        }, {
+          descripcion: "SANGRE",
+          name: "SANGRE",
+          abreviatura: "S",
+          valor: 0
+        }, {
+          descripcion: "RINGER",
+          name: "RINGER",
+          abreviatura: "R",
+          valor: 0
+        }, {
+          descripcion: "EXPANSIONES",
+          name: "EXPANSIONES",
+          abreviatura: "E",
+          valor: 0
+        }, {
+          descripcion: "SOLUCIONES SALINAS",
+          name: "SOLUCIONES_SALINAS",
+          abreviatura: "SS",
+          valor: 0
+        }],
         total: 0
         /* Fin Datos para guardar en la tabla infusiones */
 
@@ -4112,15 +4161,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * Cácular el valor final para las infusiones
      */
     total_infusiones: function total_infusiones(params) {
-      return this.form.total = +Number(this.form.sangre) + Number(this.form.expansiones) + Number(this.form.dextrosas) + Number(this.form.ringer);
+      var subTotal = 0;
+      this.form.infusiones.forEach(function (infusion) {
+        subTotal += +Number(infusion.valor);
+      });
+      return this.form.total = subTotal;
     }
   },
   mounted: function mounted() {
     var _this = this;
 
+    this.form.cirugia_id = this.$props.idSecCirPro;
     /**
      * Se empiezan a llenar los datos de la rejilla
      */
+
     this.llenarDatos();
     /**
      * Obtiene los datos [posiciones], [agentes]
@@ -4343,7 +4398,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       url = "/modulos/cirugia/anestesia/guardar_droga_administrada";
       var loader = that.$loading.show();
       axios.post(url, formNew).then(function (response) {
-        //Llamar metodo de parent para que actualice el grid.
         that.modifcarRegistroAnestesia();
         loader.hide();
       })["catch"](function (error) {
@@ -4363,14 +4417,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       url = "/modulos/cirugia/anestesia/modifcar_registro_anestesia";
       var loader = that.$loading.show();
       axios.post(url, this.form).then(function (response) {
-        //Llamar metodo de parent para que actualice el grid.
+        that.guardarRegistroInfusiones();
         loader.hide();
       })["catch"](function (error) {
         //Errores de validación
         loader.hide();
         that.$swal({
           icon: "error",
-          title: "Error Guardar Drogas Administradas",
+          title: "Error Modificar Registro Administradas",
+          text: error
+        });
+      });
+    },
+    guardarRegistroInfusiones: function guardarRegistroInfusiones() {
+      var that = this;
+      var url = "";
+      var mensaje = "";
+      var formNew = {
+        registro_anestesia_id: that.form.registro_anestesia_id,
+        infusiones: that.form.infusiones
+      };
+      url = "/modulos/cirugia/anestesia/guardar_registro_infusiones";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        //Llamar metodo de parent para que actualice el grid.
+        that.$swal({
+          icon: "success",
+          title: "Proceso realizado exitosamente",
+          text: "Datos guardados correctamente."
+        });
+        that.validarImprimir = 1;
+        that.$emit("RespuestaImprimir", that.validarImprimir);
+      })["catch"](function (error) {
+        //Errores de validación
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Error Guardar Infusiones",
           text: error
         });
       });
@@ -4940,7 +5023,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaImprimir: 0,
       form: {
         /* Datos del paciente */
-        frm_idCirugiaProgramada: "0001",
+        frm_idCirugiaProgramada: "",
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",
@@ -5067,8 +5150,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
-      if (this.respuestaFinProceso) {
-        window.open("/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" + this.form.frm_idCirugiaProgramada);
+      if (this.respuestaImprimir) {
+        window.open("/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" + this.form.frm_idCirugiaProgramada);
       }
     }
   }
@@ -56528,8 +56611,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.sistema_abierto,
-                              expression: "form.sistema_abierto"
+                              value: _vm.form.sistem_abierto,
+                              expression: "form.sistem_abierto"
                             }
                           ],
                           attrs: {
@@ -56538,13 +56621,13 @@ var render = function() {
                             id: "sistema-abierto"
                           },
                           domProps: {
-                            checked: Array.isArray(_vm.form.sistema_abierto)
-                              ? _vm._i(_vm.form.sistema_abierto, null) > -1
-                              : _vm.form.sistema_abierto
+                            checked: Array.isArray(_vm.form.sistem_abierto)
+                              ? _vm._i(_vm.form.sistem_abierto, null) > -1
+                              : _vm.form.sistem_abierto
                           },
                           on: {
                             change: function($event) {
-                              var $$a = _vm.form.sistema_abierto,
+                              var $$a = _vm.form.sistem_abierto,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? true : false
                               if (Array.isArray($$a)) {
@@ -56554,21 +56637,21 @@ var render = function() {
                                   $$i < 0 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "sistema_abierto",
+                                      "sistem_abierto",
                                       $$a.concat([$$v])
                                     )
                                 } else {
                                   $$i > -1 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "sistema_abierto",
+                                      "sistem_abierto",
                                       $$a
                                         .slice(0, $$i)
                                         .concat($$a.slice($$i + 1))
                                     )
                                 }
                               } else {
-                                _vm.$set(_vm.form, "sistema_abierto", $$c)
+                                _vm.$set(_vm.form, "sistem_abierto", $$c)
                               }
                             }
                           }
@@ -56701,19 +56784,21 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.cinc,
-                              expression: "form.cinc"
+                              value: _vm.form.cinc_aparatos_usados,
+                              expression: "form.cinc_aparatos_usados"
                             }
                           ],
                           attrs: { type: "checkbox", name: "cinc", id: "cinc" },
                           domProps: {
-                            checked: Array.isArray(_vm.form.cinc)
-                              ? _vm._i(_vm.form.cinc, null) > -1
-                              : _vm.form.cinc
+                            checked: Array.isArray(
+                              _vm.form.cinc_aparatos_usados
+                            )
+                              ? _vm._i(_vm.form.cinc_aparatos_usados, null) > -1
+                              : _vm.form.cinc_aparatos_usados
                           },
                           on: {
                             change: function($event) {
-                              var $$a = _vm.form.cinc,
+                              var $$a = _vm.form.cinc_aparatos_usados,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? true : false
                               if (Array.isArray($$a)) {
@@ -56723,21 +56808,21 @@ var render = function() {
                                   $$i < 0 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "cinc",
+                                      "cinc_aparatos_usados",
                                       $$a.concat([$$v])
                                     )
                                 } else {
                                   $$i > -1 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "cinc",
+                                      "cinc_aparatos_usados",
                                       $$a
                                         .slice(0, $$i)
                                         .concat($$a.slice($$i + 1))
                                     )
                                 }
                               } else {
-                                _vm.$set(_vm.form, "cinc", $$c)
+                                _vm.$set(_vm.form, "cinc_aparatos_usados", $$c)
                               }
                             }
                           }
@@ -56757,8 +56842,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.vaiiven,
-                              expression: "form.vaiiven"
+                              value: _vm.form.vaiiven_aparatos_usados,
+                              expression: "form.vaiiven_aparatos_usados"
                             }
                           ],
                           attrs: {
@@ -56767,13 +56852,16 @@ var render = function() {
                             id: "vaiiven"
                           },
                           domProps: {
-                            checked: Array.isArray(_vm.form.vaiiven)
-                              ? _vm._i(_vm.form.vaiiven, null) > -1
-                              : _vm.form.vaiiven
+                            checked: Array.isArray(
+                              _vm.form.vaiiven_aparatos_usados
+                            )
+                              ? _vm._i(_vm.form.vaiiven_aparatos_usados, null) >
+                                -1
+                              : _vm.form.vaiiven_aparatos_usados
                           },
                           on: {
                             change: function($event) {
-                              var $$a = _vm.form.vaiiven,
+                              var $$a = _vm.form.vaiiven_aparatos_usados,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? true : false
                               if (Array.isArray($$a)) {
@@ -56783,21 +56871,25 @@ var render = function() {
                                   $$i < 0 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "vaiiven",
+                                      "vaiiven_aparatos_usados",
                                       $$a.concat([$$v])
                                     )
                                 } else {
                                   $$i > -1 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "vaiiven",
+                                      "vaiiven_aparatos_usados",
                                       $$a
                                         .slice(0, $$i)
                                         .concat($$a.slice($$i + 1))
                                     )
                                 }
                               } else {
-                                _vm.$set(_vm.form, "vaiiven", $$c)
+                                _vm.$set(
+                                  _vm.form,
+                                  "vaiiven_aparatos_usados",
+                                  $$c
+                                )
                               }
                             }
                           }
@@ -56873,19 +56965,19 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.oral,
-                              expression: "form.oral"
+                              value: _vm.form.oral_inte_traqueal,
+                              expression: "form.oral_inte_traqueal"
                             }
                           ],
                           attrs: { type: "checkbox", name: "oral", id: "oral" },
                           domProps: {
-                            checked: Array.isArray(_vm.form.oral)
-                              ? _vm._i(_vm.form.oral, null) > -1
-                              : _vm.form.oral
+                            checked: Array.isArray(_vm.form.oral_inte_traqueal)
+                              ? _vm._i(_vm.form.oral_inte_traqueal, null) > -1
+                              : _vm.form.oral_inte_traqueal
                           },
                           on: {
                             change: function($event) {
-                              var $$a = _vm.form.oral,
+                              var $$a = _vm.form.oral_inte_traqueal,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? true : false
                               if (Array.isArray($$a)) {
@@ -56895,21 +56987,21 @@ var render = function() {
                                   $$i < 0 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "oral",
+                                      "oral_inte_traqueal",
                                       $$a.concat([$$v])
                                     )
                                 } else {
                                   $$i > -1 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "oral",
+                                      "oral_inte_traqueal",
                                       $$a
                                         .slice(0, $$i)
                                         .concat($$a.slice($$i + 1))
                                     )
                                 }
                               } else {
-                                _vm.$set(_vm.form, "oral", $$c)
+                                _vm.$set(_vm.form, "oral_inte_traqueal", $$c)
                               }
                             }
                           }
@@ -56929,8 +57021,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.nasal,
-                              expression: "form.nasal"
+                              value: _vm.form.nasal_inte_traqueal,
+                              expression: "form.nasal_inte_traqueal"
                             }
                           ],
                           attrs: {
@@ -56939,13 +57031,13 @@ var render = function() {
                             id: "nasal"
                           },
                           domProps: {
-                            checked: Array.isArray(_vm.form.nasal)
-                              ? _vm._i(_vm.form.nasal, null) > -1
-                              : _vm.form.nasal
+                            checked: Array.isArray(_vm.form.nasal_inte_traqueal)
+                              ? _vm._i(_vm.form.nasal_inte_traqueal, null) > -1
+                              : _vm.form.nasal_inte_traqueal
                           },
                           on: {
                             change: function($event) {
-                              var $$a = _vm.form.nasal,
+                              var $$a = _vm.form.nasal_inte_traqueal,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? true : false
                               if (Array.isArray($$a)) {
@@ -56955,28 +57047,143 @@ var render = function() {
                                   $$i < 0 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "nasal",
+                                      "nasal_inte_traqueal",
                                       $$a.concat([$$v])
                                     )
                                 } else {
                                   $$i > -1 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "nasal",
+                                      "nasal_inte_traqueal",
                                       $$a
                                         .slice(0, $$i)
                                         .concat($$a.slice($$i + 1))
                                     )
                                 }
                               } else {
-                                _vm.$set(_vm.form, "nasal", $$c)
+                                _vm.$set(_vm.form, "nasal_inte_traqueal", $$c)
                               }
                             }
                           }
                         })
                       ]),
                       _vm._v(" "),
-                      _vm._m(17)
+                      _c("div", { staticClass: "col-md-12 p-0" }, [
+                        _vm._m(17),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.rapido_inte_traqueal,
+                              expression: "form.rapido_inte_traqueal"
+                            }
+                          ],
+                          attrs: {
+                            type: "checkbox",
+                            name: "rapido",
+                            id: "rapido"
+                          },
+                          domProps: {
+                            checked: Array.isArray(
+                              _vm.form.rapido_inte_traqueal
+                            )
+                              ? _vm._i(_vm.form.rapido_inte_traqueal, null) > -1
+                              : _vm.form.rapido_inte_traqueal
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.form.rapido_inte_traqueal,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      _vm.form,
+                                      "rapido_inte_traqueal",
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      _vm.form,
+                                      "rapido_inte_traqueal",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(_vm.form, "rapido_inte_traqueal", $$c)
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "upper ml-2",
+                            attrs: { for: "lenta" }
+                          },
+                          [_vm._v("lenta")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.lenta_inte_traqueal,
+                              expression: "form.lenta_inte_traqueal"
+                            }
+                          ],
+                          attrs: {
+                            type: "checkbox",
+                            name: "lenta",
+                            id: "lenta"
+                          },
+                          domProps: {
+                            checked: Array.isArray(_vm.form.lenta_inte_traqueal)
+                              ? _vm._i(_vm.form.lenta_inte_traqueal, null) > -1
+                              : _vm.form.lenta_inte_traqueal
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.form.lenta_inte_traqueal,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      _vm.form,
+                                      "lenta_inte_traqueal",
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      _vm.form,
+                                      "lenta_inte_traqueal",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(_vm.form, "lenta_inte_traqueal", $$c)
+                              }
+                            }
+                          }
+                        })
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row border-b border-r" }, [
@@ -56994,11 +57201,7 @@ var render = function() {
                           ],
                           staticClass: "input-line",
                           staticStyle: { width: "100%" },
-                          attrs: {
-                            type: "number",
-                            name: "dextrosas",
-                            id: "dextrosas"
-                          },
+                          attrs: { type: "number", name: "turbo", id: "turbo" },
                           domProps: { value: _vm.form.turbo_inte_traqueal },
                           on: {
                             input: function($event) {
@@ -57415,11 +57618,7 @@ var render = function() {
                           ],
                           staticClass: "input-line",
                           staticStyle: { width: "100%" },
-                          attrs: {
-                            type: "text",
-                            name: "dextrosas",
-                            id: "dextrosas"
-                          },
+                          attrs: { type: "text", name: "con", id: "con" },
                           domProps: { value: _vm.form.con },
                           on: {
                             input: function($event) {
@@ -57556,8 +57755,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.epidural,
-                              expression: "form.epidural"
+                              value: _vm.form.epidural_caud,
+                              expression: "form.epidural_caud"
                             }
                           ],
                           attrs: {
@@ -57566,13 +57765,13 @@ var render = function() {
                             id: "epidural-caud"
                           },
                           domProps: {
-                            checked: Array.isArray(_vm.form.epidural)
-                              ? _vm._i(_vm.form.epidural, null) > -1
-                              : _vm.form.epidural
+                            checked: Array.isArray(_vm.form.epidural_caud)
+                              ? _vm._i(_vm.form.epidural_caud, null) > -1
+                              : _vm.form.epidural_caud
                           },
                           on: {
                             change: function($event) {
-                              var $$a = _vm.form.epidural,
+                              var $$a = _vm.form.epidural_caud,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? true : false
                               if (Array.isArray($$a)) {
@@ -57582,21 +57781,21 @@ var render = function() {
                                   $$i < 0 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "epidural",
+                                      "epidural_caud",
                                       $$a.concat([$$v])
                                     )
                                 } else {
                                   $$i > -1 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "epidural",
+                                      "epidural_caud",
                                       $$a
                                         .slice(0, $$i)
                                         .concat($$a.slice($$i + 1))
                                     )
                                 }
                               } else {
-                                _vm.$set(_vm.form, "epidural", $$c)
+                                _vm.$set(_vm.form, "epidural_caud", $$c)
                               }
                             }
                           }
@@ -57613,8 +57812,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.simple,
-                              expression: "form.simple"
+                              value: _vm.form.simple_altura_puncion,
+                              expression: "form.simple_altura_puncion"
                             }
                           ],
                           attrs: {
@@ -57623,13 +57822,16 @@ var render = function() {
                             id: "simple"
                           },
                           domProps: {
-                            checked: Array.isArray(_vm.form.simple)
-                              ? _vm._i(_vm.form.simple, null) > -1
-                              : _vm.form.simple
+                            checked: Array.isArray(
+                              _vm.form.simple_altura_puncion
+                            )
+                              ? _vm._i(_vm.form.simple_altura_puncion, null) >
+                                -1
+                              : _vm.form.simple_altura_puncion
                           },
                           on: {
                             change: function($event) {
-                              var $$a = _vm.form.simple,
+                              var $$a = _vm.form.simple_altura_puncion,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? true : false
                               if (Array.isArray($$a)) {
@@ -57639,21 +57841,21 @@ var render = function() {
                                   $$i < 0 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "simple",
+                                      "simple_altura_puncion",
                                       $$a.concat([$$v])
                                     )
                                 } else {
                                   $$i > -1 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "simple",
+                                      "simple_altura_puncion",
                                       $$a
                                         .slice(0, $$i)
                                         .concat($$a.slice($$i + 1))
                                     )
                                 }
                               } else {
-                                _vm.$set(_vm.form, "simple", $$c)
+                                _vm.$set(_vm.form, "simple_altura_puncion", $$c)
                               }
                             }
                           }
@@ -57670,8 +57872,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.continua,
-                              expression: "form.continua"
+                              value: _vm.form.continua_altura_puncion,
+                              expression: "form.continua_altura_puncion"
                             }
                           ],
                           attrs: {
@@ -57680,13 +57882,16 @@ var render = function() {
                             id: "continua"
                           },
                           domProps: {
-                            checked: Array.isArray(_vm.form.continua)
-                              ? _vm._i(_vm.form.continua, null) > -1
-                              : _vm.form.continua
+                            checked: Array.isArray(
+                              _vm.form.continua_altura_puncion
+                            )
+                              ? _vm._i(_vm.form.continua_altura_puncion, null) >
+                                -1
+                              : _vm.form.continua_altura_puncion
                           },
                           on: {
                             change: function($event) {
-                              var $$a = _vm.form.continua,
+                              var $$a = _vm.form.continua_altura_puncion,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? true : false
                               if (Array.isArray($$a)) {
@@ -57696,21 +57901,25 @@ var render = function() {
                                   $$i < 0 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "continua",
+                                      "continua_altura_puncion",
                                       $$a.concat([$$v])
                                     )
                                 } else {
                                   $$i > -1 &&
                                     _vm.$set(
                                       _vm.form,
-                                      "continua",
+                                      "continua_altura_puncion",
                                       $$a
                                         .slice(0, $$i)
                                         .concat($$a.slice($$i + 1))
                                     )
                                 }
                               } else {
-                                _vm.$set(_vm.form, "continua", $$c)
+                                _vm.$set(
+                                  _vm.form,
+                                  "continua_altura_puncion",
+                                  $$c
+                                )
                               }
                             }
                           }
@@ -57849,11 +58058,7 @@ var render = function() {
                           ],
                           staticClass: "input-line",
                           staticStyle: { width: "100%" },
-                          attrs: {
-                            type: "number",
-                            name: "dextrosas",
-                            id: "dextrosas"
-                          },
+                          attrs: { type: "number", name: "aguja", id: "aguja" },
                           domProps: { value: _vm.form.aguja },
                           on: {
                             input: function($event) {
@@ -57882,11 +58087,7 @@ var render = function() {
                           ],
                           staticClass: "input-line",
                           staticStyle: { width: "100%" },
-                          attrs: {
-                            type: "text",
-                            name: "dextrosas",
-                            id: "dextrosas"
-                          },
+                          attrs: { type: "text", name: "nivel", id: "nivel" },
                           domProps: { value: _vm.form.nivel },
                           on: {
                             input: function($event) {
@@ -58004,180 +58205,75 @@ var render = function() {
                 [
                   _vm._m(38),
                   _vm._v(" "),
+                  _vm._l(_vm.form.infusiones, function(infusion, index) {
+                    return _c(
+                      "div",
+                      { key: index, staticClass: "row border-b border-r" },
+                      [
+                        _c("span", { staticClass: "col-md-1 border-r" }, [
+                          _vm._v(" " + _vm._s(infusion.abreviatura) + " ")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "col-md-6 p-0 m-0 upper",
+                            attrs: { for: "sangre" }
+                          },
+                          [
+                            _c("span", { staticClass: "space-left" }, [
+                              _vm._v(" " + _vm._s(infusion.descripcion) + " ")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3 p-0" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: infusion.valor,
+                                expression: "infusion.valor"
+                              }
+                            ],
+                            staticClass: "input-line",
+                            staticStyle: { width: "100%" },
+                            attrs: {
+                              type: "number",
+                              name: "sangre",
+                              id: "sangre"
+                            },
+                            domProps: { value: infusion.valor },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(infusion, "valor", $event.target.value)
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "col-md-1 p-0 m-0",
+                            attrs: { for: "" }
+                          },
+                          [_vm._v("cc")]
+                        )
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
                   _c("div", { staticClass: "row border-b border-r" }, [
                     _c("span", { staticClass: "col-md-1 border-r" }, [
-                      _vm._v("D")
+                      _vm._v("T")
                     ]),
                     _vm._v(" "),
                     _vm._m(39),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-3 p-0" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.dextrosas,
-                            expression: "form.dextrosas"
-                          }
-                        ],
-                        staticClass: "input-line",
-                        staticStyle: { width: "100%" },
-                        attrs: {
-                          type: "number",
-                          name: "dextrosas",
-                          id: "dextrosas"
-                        },
-                        domProps: { value: _vm.form.dextrosas },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "dextrosas", $event.target.value)
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      { staticClass: "col-md-1 p-0 m-0", attrs: { for: "" } },
-                      [_vm._v("cc")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row border-b border-r" }, [
-                    _c("span", { staticClass: "col-md-1 border-r" }, [
-                      _vm._v("D")
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(40),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-3 p-0" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.sangre,
-                            expression: "form.sangre"
-                          }
-                        ],
-                        staticClass: "input-line",
-                        staticStyle: { width: "100%" },
-                        attrs: { type: "number", name: "sangre", id: "sangre" },
-                        domProps: { value: _vm.form.sangre },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "sangre", $event.target.value)
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      { staticClass: "col-md-1 p-0 m-0", attrs: { for: "" } },
-                      [_vm._v("cc")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row border-b border-r" }, [
-                    _c("span", { staticClass: "col-md-1 border-r" }, [
-                      _vm._v("R")
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(41),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-3 p-0" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.ringer,
-                            expression: "form.ringer"
-                          }
-                        ],
-                        staticClass: "input-line",
-                        staticStyle: { width: "100%" },
-                        attrs: { type: "number", name: "ringer", id: "ringer" },
-                        domProps: { value: _vm.form.ringer },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "ringer", $event.target.value)
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      { staticClass: "col-md-1 p-0 m-0", attrs: { for: "" } },
-                      [_vm._v("cc")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row border-b border-r" }, [
-                    _c("span", { staticClass: "col-md-1 border-r" }, [
-                      _vm._v("S")
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(42),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-3 p-0" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.expansiones,
-                            expression: "form.expansiones"
-                          }
-                        ],
-                        staticClass: "input-line",
-                        staticStyle: { width: "100%" },
-                        attrs: {
-                          type: "number",
-                          name: "expansiones",
-                          id: "expansiones"
-                        },
-                        domProps: { value: _vm.form.expansiones },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.form,
-                              "expansiones",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      { staticClass: "col-md-1 p-0 m-0", attrs: { for: "" } },
-                      [_vm._v("cc")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row border-b border-r" }, [
-                    _c("span", { staticClass: "col-md-1 border-r" }, [
-                      _vm._v("E")
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(43),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-3 p-0" }, [
                       _c("span", { attrs: { id: "total" } }, [
@@ -58192,7 +58288,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(44),
+                  _vm._m(40),
                   _vm._v(" "),
                   _c("div", { staticClass: "row border-b border-r" }, [
                     _c("div", { staticClass: "col-md-1" }),
@@ -58237,7 +58333,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(45),
+                  _vm._m(41),
                   _vm._v(" "),
                   _c("div", { staticClass: "row border-b border-r" }, [
                     _c(
@@ -58381,7 +58477,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(46),
+                  _vm._m(42),
                   _vm._v(" "),
                   _c("div", { staticClass: "row border-b border-r" }, [
                     _c("div", { staticClass: "col-md-12 p-0" }, [
@@ -58419,7 +58515,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
-                    _vm._m(47),
+                    _vm._m(43),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -58504,7 +58600,7 @@ var render = function() {
                       ],
                       staticClass: "input-line col-md-4",
                       attrs: {
-                        type: "text",
+                        type: "time",
                         name: "conducido_hora",
                         id: "conducido_hora"
                       },
@@ -58519,14 +58615,15 @@ var render = function() {
                       }
                     })
                   ])
-                ]
+                ],
+                2
               ),
               _vm._v(" "),
               _c("div", { staticClass: "col-lg-12 col-md-5 b-0 mt-3" }, [
-                _vm._m(48),
+                _vm._m(44),
                 _vm._v(" "),
                 _c("div", { staticClass: "row border-b pt-2 pb-2" }, [
-                  _vm._m(49),
+                  _vm._m(45),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-1 p-0" }, [
                     _c("input", {
@@ -58579,7 +58676,7 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _vm._m(50),
+                  _vm._m(46),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-1 p-0" }, [
                     _c("input", {
@@ -58634,7 +58731,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row border-b pt-2 pb-2" }, [
-                  _vm._m(51),
+                  _vm._m(47),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-1 p-0" }, [
                     _c("input", {
@@ -58749,7 +58846,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row border-b pt-2 pb-2" }, [
-                  _vm._m(52),
+                  _vm._m(48),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-1 p-0" }, [
                     _c("input", {
@@ -58817,8 +58914,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.nauseas_vomitos,
-                          expression: "form.nauseas_vomitos"
+                          value: _vm.form.nauses_vomitos,
+                          expression: "form.nauses_vomitos"
                         }
                       ],
                       attrs: {
@@ -58827,13 +58924,13 @@ var render = function() {
                         id: "nauseas-vomitos"
                       },
                       domProps: {
-                        checked: Array.isArray(_vm.form.nauseas_vomitos)
-                          ? _vm._i(_vm.form.nauseas_vomitos, null) > -1
-                          : _vm.form.nauseas_vomitos
+                        checked: Array.isArray(_vm.form.nauses_vomitos)
+                          ? _vm._i(_vm.form.nauses_vomitos, null) > -1
+                          : _vm.form.nauses_vomitos
                       },
                       on: {
                         change: function($event) {
-                          var $$a = _vm.form.nauseas_vomitos,
+                          var $$a = _vm.form.nauses_vomitos,
                             $$el = $event.target,
                             $$c = $$el.checked ? true : false
                           if (Array.isArray($$a)) {
@@ -58843,19 +58940,19 @@ var render = function() {
                               $$i < 0 &&
                                 _vm.$set(
                                   _vm.form,
-                                  "nauseas_vomitos",
+                                  "nauses_vomitos",
                                   $$a.concat([$$v])
                                 )
                             } else {
                               $$i > -1 &&
                                 _vm.$set(
                                   _vm.form,
-                                  "nauseas_vomitos",
+                                  "nauses_vomitos",
                                   $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                                 )
                             }
                           } else {
-                            _vm.$set(_vm.form, "nauseas_vomitos", $$c)
+                            _vm.$set(_vm.form, "nauses_vomitos", $$c)
                           }
                         }
                       }
@@ -58864,7 +58961,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row border-b pt-2 pb-2" }, [
-                  _vm._m(53),
+                  _vm._m(49),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-1 p-0" }, [
                     _c("input", {
@@ -58979,7 +59076,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row border-b pt-2 pb-2" }, [
-                  _vm._m(54),
+                  _vm._m(50),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-1 p-0" }, [
                     _c("input", {
@@ -59090,7 +59187,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row border-b pt-2 pb-2" }, [
-                  _vm._m(55),
+                  _vm._m(51),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-1 p-0" }, [
                     _c("input", {
@@ -59206,7 +59303,7 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _vm._m(56)
+                _vm._m(52)
               ])
             ])
           ])
@@ -59393,20 +59490,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12 p-0" }, [
-      _c("label", { staticClass: "upper", attrs: { for: "rapido" } }, [
-        _c("span", { staticClass: "space-left" }, [_vm._v("rapido")])
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { type: "checkbox", name: "rapido", id: "rapido" }
-      }),
-      _vm._v(" "),
-      _c("label", { staticClass: "upper ml-2", attrs: { for: "lenta" } }, [
-        _vm._v("lenta")
-      ]),
-      _vm._v(" "),
-      _c("input", { attrs: { type: "checkbox", name: "lenta", id: "lenta" } })
+    return _c("label", { staticClass: "upper", attrs: { for: "rapido" } }, [
+      _c("span", { staticClass: "space-left" }, [_vm._v("rapido")])
     ])
   },
   function() {
@@ -59415,7 +59500,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "label",
-      { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "dextrosas" } },
+      { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "turbo" } },
       [_c("span", { staticClass: "space-left" }, [_vm._v("TURBO No")])]
     )
   },
@@ -59497,7 +59582,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "label",
-      { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "dextrosas" } },
+      { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "con" } },
       [_c("span", { staticClass: "space-left" }, [_vm._v("CON:")])]
     )
   },
@@ -59596,7 +59681,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "label",
-      { staticClass: "col-md-6 p-0 m-0", attrs: { for: "dextrosas" } },
+      { staticClass: "col-md-6 p-0 m-0", attrs: { for: "aguja" } },
       [_c("span", { staticClass: "space-left" }, [_vm._v("AGUJA No")])]
     )
   },
@@ -59606,7 +59691,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "label",
-      { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "dextrosas" } },
+      { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "nivel" } },
       [_c("span", { staticClass: "space-left" }, [_vm._v("NIVEL")])]
     )
   },
@@ -59637,46 +59722,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "row border-b flex flex-center-x" }, [
       _c("span", [_vm._v("INFUSIONES")])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "label",
-      { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "dextrosas" } },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("dextrosas")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "label",
-      { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "sangre" } },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("sangre")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "label",
-      { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "ringer" } },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("ringer")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "label",
-      { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "expansiones" } },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("EXPANSIONES")])]
-    )
   },
   function() {
     var _vm = this
@@ -60082,6 +60127,11 @@ var render = function() {
                               attrs: {
                                 "id-sec-cir-pro":
                                   _vm.form.frm_idCirugiaProgramada
+                              },
+                              on: {
+                                RespuestaImprimir: function($event) {
+                                  _vm.respuestaImprimir = $event
+                                }
                               }
                             })
                           ]

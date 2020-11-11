@@ -17,12 +17,8 @@ class CreateTbInfusionesTable extends Migration
             Schema::connection('control_hospitalario_db_sql')->create('tb_infusiones', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 /* infusiones */
-                $table->unsignedInteger('dextrosas')->nullable();
-                $table->unsignedInteger('ringer')->nullable();
-                $table->unsignedInteger('sangre')->nullable();
-                $table->unsignedInteger('expansores')->nullable();
-                $table->unsignedInteger('total')->nullable();
-                $table->string('hemorragia')->nullable();
+                $table->string('descripcion')->nullable();
+                $table->string('name_system')->nullable();
                 /* Datos para auditoria */
                 $table->string('des_campo1', 100)->nullable();
                 $table->string('des_campo2', 50)->nullable();

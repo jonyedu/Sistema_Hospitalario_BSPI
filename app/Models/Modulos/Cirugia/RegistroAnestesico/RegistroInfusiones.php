@@ -20,7 +20,8 @@ class RegistroInfusiones extends Model
     protected $fillable = [
         'id',
         'infusiones_id',
-        'registro_anestecia_id',
+        'registro_anestesia_id',
+        'valor',
         'des_campo1',
         'des_campo2',
         'des_campo3',

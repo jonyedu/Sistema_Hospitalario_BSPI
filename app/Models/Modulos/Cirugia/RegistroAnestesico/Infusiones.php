@@ -19,11 +19,8 @@ class Infusiones extends Model
 
     protected $fillable = [
         'id',
-        'dextrosas',
-        'ringer',
-        'sangre',
-        'expansores',
-        'total',
+        'descripcion',
+        'name_system',
         'des_campo1',
         'des_campo2',
         'des_campo3',
