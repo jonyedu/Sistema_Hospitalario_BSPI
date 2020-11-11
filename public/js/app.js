@@ -3883,11 +3883,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     obtenerDatosAgentes: function obtenerDatosAgentes() {
       var _this2 = this;
 
-      /* let url = "/modulos/cirugia/anestesia/agentes"; */
-      var url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table";
-      axios
-      /* .get(url + "/agente") */
-      .get(url).then(function (response) {
+      var url = "/modulos/cirugia/anestesia/agentes";
+      /* let url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table"; */
+
+      axios.get(url + "/agente")
+      /* .get(url) */
+      .then(function (response) {
         /* console.log(response.data); */
         _this2.tabla_datos_grafica = response.data.tipoAgente;
       })["catch"](function (err) {
@@ -3901,11 +3902,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     obtenerDatosPosiciones: function obtenerDatosPosiciones() {
       var _this3 = this;
 
-      /* let url = "/modulos/cirugia/anestesia/agentes"; */
-      var url = "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table";
-      axios
-      /* .get(url + "/posicion") */
-      .get(url).then(function (response) {
+      var url = "/modulos/cirugia/anestesia/agentes";
+      /* let url =
+          "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table"; */
+
+      axios.get(url + "/posicion")
+      /* .get(url) */
+      .then(function (response) {
         console.log(response.data);
         _this3.posiciones = response.data.tipoPosiciones;
       })["catch"](function (err) {
@@ -4701,6 +4704,1170 @@ __webpack_require__.r(__webpack_exports__);
       if (this.respuestaFinProceso) {
         window.open("/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" + this.form.frm_idCirugiaProgramada);
       }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      prefijo: "",
+      isHidden: 'none',
+      listas: {
+        frm_idCirugiaProgramada: "",
+        chkentrada01: false,
+        chkentrada02: false,
+        chkentrada03: false,
+        chkentrada04: false,
+        chkentrada05: false,
+        chkentrada06: false,
+        chkentrada07: false,
+        chkquirurgica01: false,
+        chkquirurgica02: false,
+        chkquirurgica03: false,
+        chkquirurgica04: false,
+        chkquirurgica05: false,
+        chkquirurgica06: false,
+        chkquirurgica07: false,
+        chksalida01: false,
+        chksalida02: false,
+        chksalida03: false,
+        chksalida04: false,
+        chksalida05: false,
+        user_id: "",
+        cargo: "",
+        observacion: "",
+        firma: ""
+      },
+      form: {
+        /* Datos del paciente */
+        // frm_idCirugiaProgramada: "",
+        frm_paciente: "",
+        frm_cirujano: "",
+        frm_anestesiologo: "",
+        frm_quirofano: "",
+        frm_procedimiento: ""
+      }
+    };
+  },
+  methods: {
+    /* Metodos para Llamar al Modal y la Tabla */
+    mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
+      this.$modal.show("ListaCirugiaProgramadaPaciente");
+    },
+    handleSeleccionarClick: function handleSeleccionarClick(value) {
+      this.listas.frm_idCirugiaProgramada = value.SecCirPro;
+      this.form.frm_paciente = value.NombrePaciente;
+      this.form.frm_cirujano = value.Cirujano;
+      this.form.frm_anestesiologo = value.Anestesiologo;
+      this.form.frm_quirofano = value.Quirofano;
+      this.form.frm_procedimiento = value.Procedimiento;
+      this.$modal.hide("ListaCirugiaProgramadaPaciente"); // if (this.$refs.revisionSistema != null) {
+      //     this.$refs.revisionSistema.cargarRevisionSistema();
+      // }
+
+      this.cargarLista(value.SecCirPro);
+    },
+    cargarLista: function cargarLista(value) {
+      var that = this;
+      var url = "/modulos/cirugia/lista_verificacion/buscarpaciente/" + value; // var loader = that.$loading.show();
+
+      axios.get(url).then(function (response) {
+        if (response.data.listaValoracion) {
+          //   this.$swal({
+          //     icon: "warning",
+          //     title: "Paciente a Modificar",
+          //     text: "."
+          // }),
+          that.listas.chkentrada01 = Boolean(Number(response.data.listaValoracion.chkentrada01));
+          that.listas.chkentrada02 = Boolean(Number(response.data.listaValoracion.chkentrada02));
+          that.listas.chkentrada03 = Boolean(Number(response.data.listaValoracion.chkentrada03));
+          that.listas.chkentrada04 = Boolean(Number(response.data.listaValoracion.chkentrada04));
+          that.listas.chkentrada05 = Boolean(Number(response.data.listaValoracion.chkentrada05));
+          that.listas.chkentrada06 = Boolean(Number(response.data.listaValoracion.chkentrada06));
+          that.listas.chkentrada07 = Boolean(Number(response.data.listaValoracion.chkentrada07));
+          that.listas.chkquirurgica01 = Boolean(Number(response.data.listaValoracion.chkquirurgica01));
+          that.listas.chkquirurgica02 = Boolean(Number(response.data.listaValoracion.chkquirurgica02));
+          that.listas.chkquirurgica03 = Boolean(Number(response.data.listaValoracion.chkquirurgica03));
+          that.listas.chkquirurgica04 = Boolean(Number(response.data.listaValoracion.chkquirurgica04));
+          that.listas.chkquirurgica05 = Boolean(Number(response.data.listaValoracion.chkquirurgica05));
+          that.listas.chkquirurgica06 = Boolean(Number(response.data.listaValoracion.chkquirurgica06));
+          that.listas.chkquirurgica07 = Boolean(Number(response.data.listaValoracion.chkquirurgica07));
+          that.listas.chksalida01 = Boolean(Number(response.data.listaValoracion.chksalida01));
+          that.listas.chksalida02 = Boolean(Number(response.data.listaValoracion.chksalida02));
+          that.listas.chksalida03 = Boolean(Number(response.data.listaValoracion.chksalida03));
+          that.listas.chksalida04 = Boolean(Number(response.data.listaValoracion.chksalida04));
+          that.listas.chksalida05 = Boolean(Number(response.data.listaValoracion.chksalida05)); // user_id: "",
+          // cargo: "",
+
+          that.listas.observacion = response.data.listaValoracion.observacion; //firma: ""
+
+          that.$swal({
+            icon: "success",
+            title: "Paciente a Modificar",
+            text: "."
+          }), that.isHidden = 'block';
+        } else {
+          that.$swal({
+            icon: "success",
+            title: "Paciente Nuevo",
+            text: "."
+          });
+          that.isHidden = 'none';
+        }
+      })["catch"](function (error) {
+        //Errores
+        that.$swal({
+          icon: "success",
+          title: "Paciente Nuevo",
+          text: "."
+        });
+        that.isHidden = 'none';
+      });
+    },
+    guardarLista: function guardarLista() {
+      var that = this; // var loader = that.$loading.show();
+
+      var ListaInsert = this.listas; //console.log(this.listas);
+
+      this.listas = {
+        frm_idCirugiaProgramada: "",
+        chkentrada01: false,
+        chkentrada02: false,
+        chkentrada03: false,
+        chkentrada04: false,
+        chkentrada05: false,
+        chkentrada06: false,
+        chkentrada07: false,
+        chkquirurgica01: false,
+        chkquirurgica02: false,
+        chkquirurgica03: false,
+        chkquirurgica04: false,
+        chkquirurgica05: false,
+        chkquirurgica06: false,
+        chkquirurgica07: false,
+        chksalida01: false,
+        chksalida02: false,
+        chksalida03: false,
+        chksalida04: false,
+        chksalida05: false,
+        user_id: "",
+        cargo: "",
+        observacion: "",
+        firma: ""
+      }, this.form = {
+        /* Datos del paciente */
+        // frm_idCirugiaProgramada: "",
+        frm_paciente: "",
+        frm_cirujano: "",
+        frm_anestesiologo: "",
+        frm_quirofano: "",
+        frm_procedimiento: ""
+      };
+      axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
+        //  loader.hide();
+        that.$swal({
+          icon: "success",
+          title: "Proceso Realizado con Exito",
+          text: "."
+        });
+      }); // aui
+    },
+    llamarMetodoImprimir: function llamarMetodoImprimir() {
+      window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.form.frm_idCirugiaProgramada);
     }
   }
 });
@@ -57301,6 +58468,2543 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue?vue&type=template&id=f59d3608&":
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue?vue&type=template&id=f59d3608& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "content-wrapper" }, [
+    _c("div", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c(
+          "div",
+          { staticClass: "row mb-2" },
+          [
+            _c("div", { staticClass: "col-sm-12" }, [
+              _c("ol", { staticClass: "breadcrumb float-sm-left" }, [
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        staticStyle: { "margin-top": "-9px" },
+                        attrs: { to: _vm.prefijo }
+                      },
+                      [_vm._v("Home")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1)
+              ])
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-lg-12 col-md-12 col-sm-12 text-right"
+                      },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "float-right" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-outline-primary",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.mostrarModalListaCirugiaPaciente()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                                    Nuevo\n                                                "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-outline-primary",
+                                  style: { display: _vm.isHidden },
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.llamarMetodoImprimir()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                                    Imprimir\n                                                "
+                                  )
+                                ]
+                              )
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-lg-12 col-md-12 col-sm-12 text-left"
+                      },
+                      [
+                        _c(
+                          "form",
+                          {
+                            attrs: { method: "POST" },
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.guardarLista($event)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "text-left col-lg-12 col-md-12 col-sm-12"
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "alert alert-success alert-dismissible fade show",
+                                        attrs: { role: "alert" }
+                                      },
+                                      [
+                                        _c("div", { staticClass: "row" }, [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm.listas
+                                                    .frm_idCirugiaProgramada,
+                                                expression:
+                                                  "\n                                                                    listas.frm_idCirugiaProgramada\n                                                                "
+                                              }
+                                            ],
+                                            attrs: {
+                                              type: "hidden",
+                                              id: "SecCirPro",
+                                              name: "SecCirPro"
+                                            },
+                                            domProps: {
+                                              value:
+                                                _vm.listas
+                                                  .frm_idCirugiaProgramada
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.listas,
+                                                  "frm_idCirugiaProgramada",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "col-sm-6 text-left"
+                                            },
+                                            [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass: "col-form-label"
+                                                },
+                                                [_vm._v("Paciente:")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", {
+                                                staticClass: "text-left",
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    _vm.form.frm_paciente
+                                                  )
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "col-sm-6 text-left"
+                                            },
+                                            [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass: "col-form-label"
+                                                },
+                                                [_vm._v("Cirujano:")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", {
+                                                staticClass: "text-left",
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    _vm.form.frm_cirujano
+                                                  )
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "col-sm-6 text-left"
+                                            },
+                                            [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass: "col-form-label"
+                                                },
+                                                [_vm._v("Anestesiologo:")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", {
+                                                staticClass: "text-left",
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    _vm.form.frm_anestesiologo
+                                                  )
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "col-sm-6 text-left"
+                                            },
+                                            [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass: "col-form-label"
+                                                },
+                                                [_vm._v("Quirófano:")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", {
+                                                staticClass: "text-left",
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    _vm.form.frm_quirofano
+                                                  )
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "col-sm-12 text-left"
+                                            },
+                                            [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass: "col-form-label"
+                                                },
+                                                [_vm._v("Procedimiento:")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", {
+                                                staticClass: "text-left",
+                                                domProps: {
+                                                  textContent: _vm._s(
+                                                    _vm.form.frm_procedimiento
+                                                  )
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _vm._m(2)
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "card card-default collapsed-card card-warning"
+                              },
+                              [
+                                _vm._m(3),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "card-body",
+                                    staticStyle: { display: "none" }
+                                  },
+                                  [
+                                    _c("div", { staticClass: "row" }, [
+                                      _c("div", { staticClass: "col-md-6" }, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkentrada01,
+                                                  expression:
+                                                    "\n                                                                        listas.chkentrada01\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chkentrada01",
+                                                id: "chkentrada01"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkentrada01
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas.chkentrada01,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkentrada01
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas.chkentrada01,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada01",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada01",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkentrada01",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: { for: "chkentrada01" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "EL\n                                                                    PACIENTE\n                                                                    HA\n                                                                    CONFIRMADO"
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _vm._m(4)
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkentrada02,
+                                                  expression:
+                                                    "\n                                                                        listas.chkentrada02\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chkentrada02",
+                                                id: "chkentrada02"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkentrada02
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas.chkentrada02,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkentrada02
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas.chkentrada02,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada02",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada02",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkentrada02",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: { for: "chkentrada02" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "DEMARCACION\n                                                                    DEL\n                                                                    SITIO/NO\n                                                                    PROCEDE"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkentrada03,
+                                                  expression:
+                                                    "\n                                                                        listas.chkentrada03\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chkentrada03",
+                                                id: "chkentrada03"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkentrada03
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas.chkentrada03,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkentrada03
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas.chkentrada03,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada03",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada03",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkentrada03",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: { for: "chkentrada03" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "SE HA\n                                                                    COMPLEMENTADO\n                                                                    EL\n                                                                    CONTROL\n                                                                    DE LA\n                                                                    SEGURIDAD\n                                                                    DE LA\n                                                                    ANESTESIA"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "col-md-6" }, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkentrada04,
+                                                  expression:
+                                                    "\n                                                                        listas.chkentrada04\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chkentrada04",
+                                                id: "chkentrada04"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkentrada04
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas.chkentrada04,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkentrada04
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas.chkentrada04,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada04",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada04",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkentrada04",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: { for: "chkentrada04" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "PULSIOXIMETRO\n                                                                    COLOCADO\n                                                                    Y EN\n                                                                    FUNCIONAMIENTO"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkentrada05,
+                                                  expression:
+                                                    "\n                                                                        listas.chkentrada05\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                id: "chkentrada05",
+                                                name: "chkentrada05"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkentrada05
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas.chkentrada05,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkentrada05
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas.chkentrada05,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada05",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada05",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkentrada05",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: { for: "chkentrada05" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "TIENE\n                                                                    EL\n                                                                    PACIENTE:\n                                                                    ALERGIAS\n                                                                    CONOCIDAD?"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkentrada06,
+                                                  expression:
+                                                    "\n                                                                        listas.chkentrada06\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chkentrada06",
+                                                id: "chkentrada06"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkentrada06
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas.chkentrada06,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkentrada06
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas.chkentrada06,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada06",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada06",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkentrada06",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: { for: "chkentrada06" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "VIA\n                                                                    AÉREA\n                                                                    DIFICIL/RIESGO\n                                                                    DE\n                                                                    ASPIRACION\n                                                                "
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _vm._m(5)
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkentrada07,
+                                                  expression:
+                                                    "\n                                                                        listas.chkentrada07\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chkentrada07",
+                                                id: "chkentrada07"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkentrada07
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas.chkentrada07,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkentrada07
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas.chkentrada07,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada07",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkentrada07",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkentrada07",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: { for: "chkentrada07" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "RIESGO\n                                                                    DE\n                                                                    HEMORRAGIA\n                                                                    > 500 ML\n                                                                    (7ML VKG\n                                                                    EN\n                                                                    NIÑOS)?"
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _vm._m(6)
+                                          ]
+                                        )
+                                      ])
+                                    ])
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "card card-default collapsed-card card-blue"
+                              },
+                              [
+                                _vm._m(7),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "card-body",
+                                    staticStyle: { display: "none" }
+                                  },
+                                  [
+                                    _c("div", { staticClass: "row" }, [
+                                      _c("div", { staticClass: "col-md-6" }, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkquirurgica01,
+                                                  expression:
+                                                    "\n                                                                        listas.chkquirurgica01\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chkquirurgica01",
+                                                id: "chkquirurgica01"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkquirurgica01
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas
+                                                        .chkquirurgica01,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkquirurgica01
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas
+                                                        .chkquirurgica01,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica01",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica01",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkquirurgica01",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: {
+                                                  for: "chkquirurgica01"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "CONFIRMA\n                                                                    QUE\n                                                                    TODOS\n                                                                    LOS\n                                                                    MIENBROS\n                                                                    DEL\n                                                                    EQUIPO\n                                                                    SE HAYAN\n                                                                    PRESENTADO\n                                                                    POR SU\n                                                                    NOMBRE Y\n                                                                    FUNCIÓN"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkquirurgica02,
+                                                  expression:
+                                                    "\n                                                                        listas.chkquirurgica02\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chkquirurgica02",
+                                                id: "chkquirurgica02"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkquirurgica02
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas
+                                                        .chkquirurgica02,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkquirurgica02
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas
+                                                        .chkquirurgica02,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica02",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica02",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkquirurgica02",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: {
+                                                  for: "chkquirurgica02"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "CIRUJANO,\n                                                                    ANESTESISTA\n                                                                    Y\n                                                                    ENFERMERO\n                                                                    CONFIRMAN\n                                                                    VERBALMENTE:"
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _vm._m(8)
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c(
+                                              "label",
+                                              {
+                                                attrs: {
+                                                  for: "chkquirurgica03"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "PREVISIÓN\n                                                                    DE\n                                                                    EVENTOS\n                                                                    CRÍTICOS"
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkquirurgica03,
+                                                  expression:
+                                                    "\n                                                                        listas.chkquirurgica03\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chkquirurgica03",
+                                                id: "chkquirurgica03"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkquirurgica03
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas
+                                                        .chkquirurgica03,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkquirurgica03
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas
+                                                        .chkquirurgica03,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica03",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica03",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkquirurgica03",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: {
+                                                  for: "chkquirurgica03"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "EL\n                                                                    CIRUJANO\n                                                                    REVISA:\n                                                                    LOS\n                                                                    PASOS\n                                                                    CRITICOS\n                                                                    O\n                                                                    IMPREVISTO\n                                                                    LA\n                                                                    DURACION\n                                                                    DE LA\n                                                                    OPERACION\n                                                                    Y LA\n                                                                    PERDIDA\n                                                                    DE\n                                                                    SANGRE\n                                                                    PERVISTA"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "col-md-6" }, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkquirurgica04,
+                                                  expression:
+                                                    "\n                                                                        listas.chkquirurgica04\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chkquirurgica04",
+                                                id: "chkquirurgica04"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkquirurgica04
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas
+                                                        .chkquirurgica04,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkquirurgica04
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas
+                                                        .chkquirurgica04,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica04",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica04",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkquirurgica04",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: {
+                                                  for: "chkquirurgica04"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "EL\n                                                                    EQUIPO\n                                                                    DE\n                                                                    ANESTESIA\n                                                                    REVISA:\n                                                                    SI EL\n                                                                    PACIENTE\n                                                                    PRESENTA\n                                                                    ALGUN\n                                                                    PROBLEMA\n                                                                    ESPECIFICO"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkquirurgica05,
+                                                  expression:
+                                                    "\n                                                                        listas.chkquirurgica05\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chkquirurgica05",
+                                                id: "chkquirurgica05"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkquirurgica05
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas
+                                                        .chkquirurgica05,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkquirurgica05
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas
+                                                        .chkquirurgica05,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica05",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica05",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkquirurgica05",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: {
+                                                  for: "chkquirurgica05"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "EL\n                                                                    EQUIPO\n                                                                    DE\n                                                                    ENFERMERIA\n                                                                    REVISA:\n                                                                    SI SE HA\n                                                                    CONFIRMADO\n                                                                    LA\n                                                                    ESTERILIDAD\n                                                                    (CON\n                                                                    RESULTADOS\n                                                                    DE LOS\n                                                                    INDICADORES;\n                                                                    Y SI\n                                                                    EXISTEN\n                                                                    DUDAS O\n                                                                    PROBLEMAS\n                                                                    RELACIONADOS\n                                                                    CON EL\n                                                                    INSTRUMENTAL\n                                                                    Y LOS\n                                                                    EQUIPOS"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkquirurgica06,
+                                                  expression:
+                                                    "\n                                                                        listas.chkquirurgica06\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chkquirurgica06",
+                                                id: "chkquirurgica06"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkquirurgica06
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas
+                                                        .chkquirurgica06,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkquirurgica06
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas
+                                                        .chkquirurgica06,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica06",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica06",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkquirurgica06",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: {
+                                                  for: "chkquirurgica06"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "SI SE\n                                                                    HA\n                                                                    ADMINISTRADO\n                                                                    PROFILAXIS\n                                                                    ANTIBIOTICA\n                                                                    EN LOS\n                                                                "
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value:
+                                                    _vm.listas.chkquirurgica07,
+                                                  expression:
+                                                    "\n                                                                        listas.chkquirurgica07\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chkquirurgica07",
+                                                id: "chkquirurgica07"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chkquirurgica07
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas
+                                                        .chkquirurgica07,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chkquirurgica07
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas
+                                                        .chkquirurgica07,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica07",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chkquirurgica07",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chkquirurgica07",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: {
+                                                  for: "chkquirurgica07"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "PUEDEN\n                                                                    VISUALIZAR\n                                                                    LAS\n                                                                    IMAGENES\n                                                                    DIAGNOSTICADAS"
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _vm._m(9)
+                                          ]
+                                        )
+                                      ])
+                                    ])
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "card card-default collapsed-card card-green"
+                              },
+                              [
+                                _vm._m(10),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "card-body",
+                                    staticStyle: { display: "none" }
+                                  },
+                                  [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "card-blue",
+                                        attrs: { for: "" }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                                        EL ENFERMERO\n                                                        CONFIRMA VERBALMENTE\n                                                        CON EL EQUIPO:\n                                                    "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "row" }, [
+                                      _c("div", { staticClass: "col-md-6" }, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.listas.chksalida01,
+                                                  expression:
+                                                    "\n                                                                        listas.chksalida01\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chksalida01",
+                                                id: "chksalida01"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chksalida01
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas.chksalida01,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chksalida01
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas.chksalida01,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chksalida01",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chksalida01",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chksalida01",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: { for: "chksalida01" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "EL\n                                                                    NOMBRE\n                                                                    DEL\n                                                                    PROCEDIMIENTO\n                                                                    REALIZADO."
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.listas.chksalida02,
+                                                  expression:
+                                                    "\n                                                                        listas.chksalida02\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chksalida02",
+                                                id: "chksalida02"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chksalida02
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas.chksalida02,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chksalida02
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas.chksalida02,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chksalida02",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chksalida02",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chksalida02",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: { for: "chksalida02" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                                    QUE LOS\n                                                                    RECUENTOS\n                                                                    DE\n                                                                    INSTRUMENTOS,\n                                                                    GASAS\n                                                                    AGUJAS\n                                                                    SON\n                                                                    CORRECTOS"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.listas.chksalida03,
+                                                  expression:
+                                                    "\n                                                                        listas.chksalida03\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chksalida03",
+                                                id: "chksalida03"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chksalida03
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas.chksalida03,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chksalida03
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas.chksalida03,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chksalida03",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chksalida03",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chksalida03",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: { for: "chksalida03" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "EL\n                                                                    ETIQUETADO\n                                                                    DE LAS\n                                                                    MUESTRAS\n                                                                    (QUE\n                                                                    FIGURE\n                                                                    EL\n                                                                    NOMBRE\n                                                                    DEL\n                                                                    PACIENTE)"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "col-md-6" }, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.listas.chksalida04,
+                                                  expression:
+                                                    "\n                                                                        listas.chksalida04\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chksalida04",
+                                                id: "chksalida04"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chksalida04
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas.chksalida04,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chksalida04
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas.chksalida04,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chksalida04",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chksalida04",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chksalida04",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: { for: "chksalida04" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "SI HAY\n                                                                    PROBLEMAS\n                                                                    QUE\n                                                                    RESOLVER\n                                                                    RELACIONADOS\n                                                                    CON EL\n                                                                    INSTRUMENTAL\n                                                                    Y LOS\n                                                                    EQUIPOS"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "custom-control custom-checkbox"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.listas.chksalida05,
+                                                  expression:
+                                                    "\n                                                                        listas.chksalida05\n                                                                    "
+                                                }
+                                              ],
+                                              staticClass:
+                                                "custom-control-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                name: "chksalida05",
+                                                id: "chksalida05"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.listas.chksalida05
+                                                )
+                                                  ? _vm._i(
+                                                      _vm.listas.chksalida05,
+                                                      null
+                                                    ) > -1
+                                                  : _vm.listas.chksalida05
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  var $$a =
+                                                      _vm.listas.chksalida05,
+                                                    $$el = $event.target,
+                                                    $$c = $$el.checked
+                                                      ? true
+                                                      : false
+                                                  if (Array.isArray($$a)) {
+                                                    var $$v = null,
+                                                      $$i = _vm._i($$a, $$v)
+                                                    if ($$el.checked) {
+                                                      $$i < 0 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chksalida05",
+                                                          $$a.concat([$$v])
+                                                        )
+                                                    } else {
+                                                      $$i > -1 &&
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "chksalida05",
+                                                          $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            )
+                                                        )
+                                                    }
+                                                  } else {
+                                                    _vm.$set(
+                                                      _vm.listas,
+                                                      "chksalida05",
+                                                      $$c
+                                                    )
+                                                  }
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "custom-control-label",
+                                                attrs: { for: "chksalida05" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "EL\n                                                                    CIRUJANO,\n                                                                    EL\n                                                                    ANESTESISTA\n                                                                    Y EL\n                                                                    ENFERMERO\n                                                                    REVISAN\n                                                                    LOS\n                                                                    PRINCIPALES\n                                                                    ASPECTOS\n                                                                    DE LA\n                                                                    RECUPERACION\n                                                                    Y EL\n                                                                    TRATAMIENTO\n                                                                    DEL\n                                                                    PACIENTE"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ])
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "card card-info" }, [
+                              _vm._m(11),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "card-body" }, [
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c("label", [_vm._v("Observacion")]),
+                                  _vm._v(" "),
+                                  _c("textarea", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.listas.observacion,
+                                        expression:
+                                          "\n                                                                listas.observacion\n                                                            "
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      rows: "3",
+                                      placeholder: "Enter ...",
+                                      name: "observacion",
+                                      id: "observacion"
+                                    },
+                                    domProps: { value: _vm.listas.observacion },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.listas,
+                                          "observacion",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(12)
+                          ]
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "modal",
+              {
+                attrs: {
+                  width: "65%",
+                  height: "auto",
+                  scrollable: true,
+                  name: "ListaCirugiaProgramadaPaciente"
+                }
+              },
+              [
+                _c("lista-cirugia-programa-paciente", {
+                  ref: "ListaCirugiaProgramadaPaciente",
+                  on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("p", [_vm._v("/")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("p", { staticStyle: { "margin-left": "10px" } }, [
+        _vm._v("Listas de Verificacion")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [
+        _vm._v(
+          "\n                                                        Antes de la\n                                                        Inducción de la\n                                                        anestesia (Entrada)\n                                                    "
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-tool",
+            attrs: { type: "button", "data-card-widget": "collapse" }
+          },
+          [_c("i", { staticClass: "fas fa-plus" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-tool",
+            attrs: { type: "button", "data-card-widget": "remove" }
+          },
+          [_c("i", { staticClass: "fas fa-times" })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c("li", [
+        _vm._v(
+          "\n                                                                        Su\n                                                                        Identidad\n                                                                    "
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v(
+          "\n                                                                        El\n                                                                        Sitio\n                                                                        Quirurgico\n                                                                    "
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v(
+          "\n                                                                        El\n                                                                        Procedimiento\n                                                                    "
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v(
+          "\n                                                                        Su\n                                                                        Consentimiento\n                                                                    "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c("li", [
+        _vm._v(
+          "\n                                                                        SI\n                                                                        HAY\n                                                                        INSTRUMENTAL\n                                                                        Y\n                                                                        EQUIPOS/AYUDA\n                                                                        DISPONIBLE\n                                                                    "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c("li", [
+        _vm._v(
+          "\n                                                                        SI,\n                                                                        Y SE\n                                                                        HA\n                                                                        PREVISTO\n                                                                        LA\n                                                                        DISPONIBILIDAD\n                                                                        DE\n                                                                        ACCESO\n                                                                        INTRAVENOSO\n                                                                        Y\n                                                                        LIQUIDOS\n                                                                        ADECUADOS\n                                                                    "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [
+        _vm._v(
+          "\n                                                        ANTES DE A INCISIÓN\n                                                        CUTÁNEA (PAUSA\n                                                        QUIRURGICA)\n                                                    "
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-tool",
+            attrs: { type: "button", "data-card-widget": "collapse" }
+          },
+          [_c("i", { staticClass: "fas fa-plus" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-tool",
+            attrs: { type: "button", "data-card-widget": "remove" }
+          },
+          [_c("i", { staticClass: "fas fa-times" })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c("li", [
+        _vm._v(
+          "\n                                                                        La\n                                                                        Identidad\n                                                                        del\n                                                                        Paciente\n                                                                    "
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v(
+          "\n                                                                        El\n                                                                        Sitio\n                                                                        Quirurgico\n                                                                    "
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v(
+          "\n                                                                        El\n                                                                        Procedimiento\n                                                                    "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c("li", [
+        _vm._v(
+          "\n                                                                        NO,\n                                                                        NO\n                                                                        PROCEDE\n                                                                    "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [
+        _vm._v(
+          "\n                                                        ANTES DEL QUE\n                                                        PACIENTE SALGA DEL\n                                                        QUIRÓFANO(SALIDA)\n                                                    "
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-tool",
+            attrs: { type: "button", "data-card-widget": "collapse" }
+          },
+          [_c("i", { staticClass: "fas fa-plus" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-tool",
+            attrs: { type: "button", "data-card-widget": "remove" }
+          },
+          [_c("i", { staticClass: "fas fa-times" })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [
+        _vm._v(
+          "\n                                                        Observacion\n                                                    "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [
+          _vm._v(
+            "\n                                                    Enviar\n                                                "
+          )
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=template&id=5175b7b1&":
 /*!*******************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue?vue&type=template&id=5175b7b1& ***!
@@ -84333,6 +88037,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ListasComponent_vue_vue_type_template_id_f59d3608___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListasComponent.vue?vue&type=template&id=f59d3608& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue?vue&type=template&id=f59d3608&");
+/* harmony import */ var _ListasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListasComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ListasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ListasComponent_vue_vue_type_template_id_f59d3608___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ListasComponent_vue_vue_type_template_id_f59d3608___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListasComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue?vue&type=template&id=f59d3608&":
+/*!***********************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue?vue&type=template&id=f59d3608& ***!
+  \***********************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListasComponent_vue_vue_type_template_id_f59d3608___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListasComponent.vue?vue&type=template&id=f59d3608& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue?vue&type=template&id=f59d3608&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListasComponent_vue_vue_type_template_id_f59d3608___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListasComponent_vue_vue_type_template_id_f59d3608___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue":
 /*!******************************************************************************************!*\
   !*** ./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue ***!
@@ -85586,6 +89359,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Modulos_Cirugia_anestesia_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/index */ "./resources/js/components/Modulos/Cirugia/anestesia/index.vue");
 /* harmony import */ var _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_agente/TipoAgente */ "./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue");
 /* harmony import */ var _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue");
+/* harmony import */ var _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/ListasComponent */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue");
 
 
  //Parametrizacion
@@ -85596,6 +89370,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+ //import emplo from "./components/ejenplo";
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 var prefijo = _variables__WEBPACK_IMPORTED_MODULE_1__["prefix"];
@@ -85620,6 +89396,9 @@ var prefijo = _variables__WEBPACK_IMPORTED_MODULE_1__["prefix"];
   }, {
     path: prefijo + "/modulos/cirugia/tipo_posiciones/mostrar_tipo_posiciones",
     component: _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }, {
+    path: prefijo + "/modulos/cirugia/lista_verificacion/mostrar_tipo_lista",
+    component: _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
   }],
   mode: "history" //Evita que aparezca # en la ruta
 
@@ -85648,7 +89427,7 @@ var prefix = "/LeoBecerra";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jonat\OneDrive\TrabajoBSPI\Proyecto\Sistema_Hospitalario_BSPI\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Sistema_Hospitalario_BSPI\Sistema_Hospitalario_BSPI\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ })

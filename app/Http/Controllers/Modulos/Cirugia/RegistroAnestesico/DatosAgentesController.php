@@ -13,15 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class DatosAgentesController extends Controller
 {
-    /* Echo por mi */
-    /* public function obtenerTipoAgente(){
-        try {
-            return  response()->json([TipoAgente::cargarTipoAgenteTabla()], 200);
-        } catch (Exception $e) {
-            return response()->json(['mensaje' => $e->getMessage()], 500);
-        }
-    } */
-
     /**
      *
      */

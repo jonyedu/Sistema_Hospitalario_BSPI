@@ -40,6 +40,10 @@ class CreateTbRevisionSistemaTable extends Migration
                 $table->unsignedInteger('ulcera')->default(0);
                 $table->unsignedInteger('estomagoLleno')->default(0);
                 $table->unsignedInteger('otrosGastrointestinal')->default(0);
+                $table->unsignedInteger('diabetes')->default(0);
+                $table->unsignedInteger('hipertiroidismo')->default(0);
+                $table->unsignedInteger('obecidad')->default(0);
+                $table->unsignedInteger('otrosSistemaEndocrima')->default(0);
                 $table->string('des_campo1', 100)->nullable();
                 $table->string('des_campo2', 50)->nullable();
                 $table->decimal('des_campo3', 10,2)->nullable();

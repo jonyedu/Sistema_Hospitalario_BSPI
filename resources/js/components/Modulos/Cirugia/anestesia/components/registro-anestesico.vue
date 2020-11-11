@@ -1842,11 +1842,11 @@ export default {
          * Obtener agentes
          */
         obtenerDatosAgentes: function() {
-            /* let url = "/modulos/cirugia/anestesia/agentes"; */
-            let url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table";
+            let url = "/modulos/cirugia/anestesia/agentes";
+            /* let url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table"; */
             axios
-                /* .get(url + "/agente") */
-                .get(url)
+                .get(url + "/agente")
+                /* .get(url) */
                 .then(response => {
                     /* console.log(response.data); */
                     this.tabla_datos_grafica = response.data.tipoAgente;
@@ -1857,12 +1857,12 @@ export default {
          * Obtener posiciones
          */
         obtenerDatosPosiciones: function() {
-            /* let url = "/modulos/cirugia/anestesia/agentes"; */
-            let url =
-                "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table";
+            let url = "/modulos/cirugia/anestesia/agentes";
+            /* let url =
+                "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table"; */
             axios
-                /* .get(url + "/posicion") */
-                .get(url)
+                .get(url + "/posicion")
+                /* .get(url) */
                 .then(response => {
                     console.log(response.data);
                     this.posiciones = response.data.tipoPosiciones;
