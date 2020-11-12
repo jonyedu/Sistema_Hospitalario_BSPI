@@ -18,6 +18,7 @@ class CreateTbRegistroInfusionesTable extends Migration
                 $table->bigIncrements('id');
                 $table->unsignedInteger('infusiones_id');
                 $table->unsignedInteger('registro_anestesia_id');
+                $table->unsignedInteger('valor');
                 /* Datos para auditoria */
                 $table->string('des_campo1', 100)->nullable();
                 $table->string('des_campo2', 50)->nullable();

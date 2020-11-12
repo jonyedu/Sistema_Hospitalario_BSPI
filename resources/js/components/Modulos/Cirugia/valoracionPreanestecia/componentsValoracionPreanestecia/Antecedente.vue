@@ -1067,7 +1067,7 @@ export default {
                             title: "Proceso realizado exitosamente",
                             text: that.mensaje
                         }); */
-                        //that.cargarAtencionMotivo();
+                        that.cargarAntecedente();
                     })
                     .catch(error => {
                         if (error.response.status === 421) {

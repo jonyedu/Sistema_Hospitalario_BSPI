@@ -134,7 +134,7 @@
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <template v-if="form.frm_idCirugiaProgramada != null">
-                                <registro-anestesico :id-sec-cir-pro="form.frm_idCirugiaProgramada"></registro-anestesico>
+                                <registro-anestesico @RespuestaImprimir="respuestaImprimir= $event" :id-sec-cir-pro="form.frm_idCirugiaProgramada"></registro-anestesico>
                                 <!-- <div> -->
 
                                 <!-- </div> -->
@@ -175,7 +175,7 @@ export default {
             respuestaImprimir: 0,
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "0001",
+                frm_idCirugiaProgramada: "",
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
@@ -291,9 +291,9 @@ export default {
             }
         },
         llamarMetodoImprimir() {
-            if (this.respuestaFinProceso) {
+            if (this.respuestaImprimir) {
                 window.open(
-                    "/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" +
+                    "/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" +
                     this.form.frm_idCirugiaProgramada
                 );
             }

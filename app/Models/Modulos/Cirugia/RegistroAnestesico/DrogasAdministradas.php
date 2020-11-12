@@ -20,7 +20,7 @@ class DrogasAdministradas extends Model
     protected $fillable = [
         'id',
         'descripcion',
-        'registro_anestecia_id',
+        'registro_anestesia_id',
         'des_campo1',
         'des_campo2',
         'des_campo3',

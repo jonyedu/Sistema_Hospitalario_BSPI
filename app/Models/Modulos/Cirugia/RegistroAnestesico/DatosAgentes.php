@@ -26,7 +26,7 @@ class DatosAgentes extends Model
         'agente_id',
         'indice_hora',
         'indice_min',
-        'img_url',
+        'valor',
         'usu_created_update'
     ];
 }

@@ -19,8 +19,10 @@ class DatosPosiciones extends Model
 
     protected $fillable = [
         'id',
-        'registro_anestecia_id',
-        'hora_min_segundo',
+        'registro_anestesia_id',
+        'hora',
+        'min',
+        'segundos',
         'posicion_id',
         'indice_hora',
         'indice_min',

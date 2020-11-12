@@ -239,7 +239,7 @@ export default {
             respuestaCargarDatos: 0,
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "0002",
+                frm_idCirugiaProgramada: "2890",
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
@@ -317,10 +317,12 @@ export default {
             //Se debera realizar las validaciones respectivas para cada tab
             this.setFormTitle(nextIndex);
 
-            if (typeof this.guardarModificar() === "function") {
+            /* if (typeof this.onChangeTab() === "function") {
+                alert("entra");
                 //Es seguro ejecutar la función
                 this.guardarModificar(prevIndex);
-            }
+            } */
+            this.guardarModificar(prevIndex);
         },
         setFormTitle(index) {
             switch (index) {

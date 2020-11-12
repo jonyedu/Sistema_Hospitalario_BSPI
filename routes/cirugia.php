@@ -43,6 +43,8 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::post('guardar_modificar_examen_fisico', 'ExamenFisicoApiController@guardarModificarExamenFisico');
 
         /* Paraclinico */
+        //Cargar Combobox Tipo Sangre
+        Route::get('cargar_tipo_sangre_combo_box', 'ParaclinicoApiController@cargarTipoSangreComboBox');
         //Cargar en los Campos
         Route::get('cargar_paraclinico_campo/{idSecCirPro}', 'ParaclinicoApiController@cargarParaclinicoCampo');
         //Guardar o Modificar
@@ -51,17 +53,18 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
 
     /* SubModulo anestesia */
     Route::namespace('Modulos\Cirugia\RegistroAnestesico')->prefix('anestesia')->group(function () {
-        /* Echo por mi */
-
-        /* Fin Echo por mi */
-
         Route::post('registro/post', 'RegistroAnestesiaController@store');
         Route::post('agentes/guardado/{registro_id}', 'DatosAgentesController@guardarDatosAgentes');
         Route::get('agentes/{tipo}', 'DatosAgentesController@obtenerAgenteAnestesiaJson');
-
         Route::post('registrar', 'DatosAgentesController@guardarDatosAgentes');
-
         Route::post('registro_tipo_agente/post', 'TipoAgenteAnestesiaController@store');
+
+        Route::get('cargar_tipo_posiciones_combo_box', 'AgenteAnestesiaController@cargarAgenteTipoPosicionComboBox');
+        Route::post('guardar_droga_administrada', 'DrogasAdministradasController@guardarDrogaAdministradas');
+        Route::post('modifcar_registro_anestesia', 'RegistroAnestesiaController@modifcarRegistroAnestesia');
+        Route::post('guardar_registro_infusiones', 'RegistroInfusionesController@guardarRegistroInfusiones');
+        Route::get('cargar_pdf_formulario_registro_anestesia/{idSecCirPro}', 'RegistroAnestesiaController@cargarPdfFormularioRegistroAnestesia');
+
     });
 
     /* SubModulo Tipo Agente */

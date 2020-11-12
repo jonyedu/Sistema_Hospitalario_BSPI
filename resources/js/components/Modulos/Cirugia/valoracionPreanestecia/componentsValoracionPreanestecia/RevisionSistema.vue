@@ -1,7 +1,6 @@
 <template>
     <div class="col-md-12">
         <div class="card card-warning">
-
             <div class="card-body">
                 <form role="form">
                     <div class="row">
@@ -60,7 +59,8 @@
                                                         <label
                                                             class="custom-control-label"
                                                             for="defaultInline2"
-                                                            >Enf. Coronaria</label
+                                                            >Enf.
+                                                            Coronaria</label
                                                         >
                                                     </div>
                                                 </div>
@@ -131,7 +131,8 @@
                                                         <label
                                                             class="custom-control-label"
                                                             for="defaultInline5"
-                                                            >Enf. Valvular</label
+                                                            >Enf.
+                                                            Valvular</label
                                                         >
                                                     </div>
                                                 </div>
@@ -206,7 +207,9 @@
                                                             @click="
                                                                 validarChkEpoc()
                                                             "
-                                                            v-model="chk.chk_epoc"
+                                                            v-model="
+                                                                chk.chk_epoc
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -228,7 +231,9 @@
                                                             @click="
                                                                 validarChkAsma()
                                                             "
-                                                            v-model="chk.chk_asma"
+                                                            v-model="
+                                                                chk.chk_asma
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -246,8 +251,12 @@
                                                             type="checkbox"
                                                             class="custom-control-input"
                                                             id="defaultInline10"
-                                                            @click="validarChkTbc()"
-                                                            v-model="chk.chk_tbc"
+                                                            @click="
+                                                                validarChkTbc()
+                                                            "
+                                                            v-model="
+                                                                chk.chk_tbc
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -326,8 +335,12 @@
                                                             type="checkbox"
                                                             class="custom-control-input"
                                                             id="defaultInline13"
-                                                            @click="validarChkEcv()"
-                                                            v-model="chk.chk_ecv"
+                                                            @click="
+                                                                validarChkEcv()
+                                                            "
+                                                            v-model="
+                                                                chk.chk_ecv
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -429,8 +442,12 @@
                                                             class="custom-control-input"
                                                             id="defaultInline17"
                                                             value="1"
-                                                            @click="validarChkIra()"
-                                                            v-model="chk.chk_ira"
+                                                            @click="
+                                                                validarChkIra()
+                                                            "
+                                                            v-model="
+                                                                chk.chk_ira
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -473,8 +490,12 @@
                                                             type="checkbox"
                                                             class="custom-control-input"
                                                             id="defaultInline19"
-                                                            @click="validarChkIrc()"
-                                                            v-model="chk.chk_irc"
+                                                            @click="
+                                                                validarChkIrc()
+                                                            "
+                                                            v-model="
+                                                                chk.chk_irc
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -532,7 +553,9 @@
                                                             @click="
                                                                 validarChkUlcera()
                                                             "
-                                                            v-model="chk.chk_ulcera"
+                                                            v-model="
+                                                                chk.chk_ulcera
+                                                            "
                                                         />
                                                         <label
                                                             class="custom-control-label"
@@ -561,7 +584,8 @@
                                                         <label
                                                             class="custom-control-label"
                                                             for="defaultInline22"
-                                                            >Estomago Lleno</label
+                                                            >Estomago
+                                                            Lleno</label
                                                         >
                                                     </div>
                                                 </div>
@@ -584,6 +608,113 @@
                                                         <label
                                                             class="custom-control-label"
                                                             for="defaultInline23"
+                                                        >
+                                                            Otros
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Sistema Endocrima -->
+                                    <div
+                                        class="card"
+                                        style="background-color: #C8C8C5;"
+                                    >
+                                        <div class="card-body mt-2 ml-2">
+                                            <label>Sistema Endocrima</label>
+                                            <div class="row">
+                                                <!-- Diabetes -->
+                                                <div class="col-sm-3">
+                                                    <div
+                                                        class="custom-control custom-checkbox custom-control-inline"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            class="custom-control-input"
+                                                            id="defaultInline24"
+                                                            value="1"
+                                                            @click="
+                                                                validarChkDiabetes()
+                                                            "
+                                                            v-model="
+                                                                chk.chk_diabetes
+                                                            "
+                                                        />
+                                                        <label
+                                                            class="custom-control-label"
+                                                            for="defaultInline24"
+                                                            >Diabetes</label
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <!-- Hipertiroidismo -->
+                                                <div class="col-sm-3">
+                                                    <div></div>
+                                                    <div
+                                                        class="custom-control custom-checkbox custom-control-inline"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            class="custom-control-input"
+                                                            id="defaultInline25"
+                                                            @click="
+                                                                validarChkHipertiroidismo()
+                                                            "
+                                                            v-model="
+                                                                chk.chk_hipertiroidismo
+                                                            "
+                                                        />
+                                                        <label
+                                                            class="custom-control-label"
+                                                            for="defaultInline25"
+                                                            >Hipertiroidismo</label
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <!-- Obecidad -->
+                                                <div class="col-sm-3">
+                                                    <div
+                                                        class="custom-control custom-checkbox custom-control-inline"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            class="custom-control-input"
+                                                            id="defaultInline26"
+                                                            @click="
+                                                                validarChkObecidad()
+                                                            "
+                                                            v-model="
+                                                                chk.chk_obecidad
+                                                            "
+                                                        />
+                                                        <label
+                                                            class="custom-control-label"
+                                                            for="defaultInline26"
+                                                        >
+                                                            Obecidad
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <!-- Otros -->
+                                                <div class="col-sm-3">
+                                                    <div
+                                                        class="custom-control custom-checkbox custom-control-inline"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            class="custom-control-input"
+                                                            id="defaultInline27"
+                                                            @click="
+                                                                validarChkOtrosSistemaEndocrima()
+                                                            "
+                                                            v-model="
+                                                                chk.chk_otrosSistemaEndocrima
+                                                            "
+                                                        />
+                                                        <label
+                                                            class="custom-control-label"
+                                                            for="defaultInline27"
                                                         >
                                                             Otros
                                                         </label>
@@ -648,6 +779,12 @@ export default {
                 chk_ulcera: 0,
                 chk_estomagoLleno: 0,
                 chk_otrosGastrointestinal: 0,
+
+                /* Sistema Endocrima */
+                chk_diabetes: 0,
+                chk_hipertiroidismo: 0,
+                chk_obecidad: 0,
+                chk_otrosSistemaEndocrima: 0
             },
             form: {
                 frm_idCirugiaProgramada: "",
@@ -685,6 +822,12 @@ export default {
                 frm_ulcera: 0,
                 frm_estomagoLleno: 0,
                 frm_otrosGastrointestinal: 0,
+
+                /* Sistema Endocrima */
+                frm_diabetes: 0,
+                frm_hipertiroidismo: 0,
+                frm_obecidad: 0,
+                frm_otrosSistemaEndocrima: 0
             }
         };
     },
@@ -720,31 +863,33 @@ export default {
         ); */
     },
     methods: {
-        validarForm(){
+        validarForm() {
             //Se comprueba que un checkbox tenga data
-            let keys= Object.keys(this.chk);
-            let poseeSeleccionCheck=false;
+            let keys = Object.keys(this.chk);
+            let poseeSeleccionCheck = false;
             keys.forEach(element => {
-                if(this.chk[element]){
-                    poseeSeleccionCheck=true;
+                if (this.chk[element]) {
+                    poseeSeleccionCheck = true;
                 }
             });
-            if(!poseeSeleccionCheck){
+            if (!poseeSeleccionCheck) {
                 this.$swal({
-                        icon: "warning",
-                        title: "Existen campos requeridos",
-                        text: "Debe seleccionar por lo menos un motivo"
-                    });
+                    icon: "warning",
+                    title: "Existen campos requeridos",
+                    text: "Debe seleccionar por lo menos un motivo"
+                });
                 return false;
-            }else{
-                if(this.form.descripcion=='' || this.form.descripcion==null){
+            } else {
+                if (
+                    this.form.descripcion == "" ||
+                    this.form.descripcion == null
+                ) {
                     this.$swal({
                         icon: "warning",
                         title: "Existen campos requeridos",
                         text: "La descripción no debe estar vacia"
                     });
                     return false;
-
                 }
             }
             return true;
@@ -753,97 +898,157 @@ export default {
         cargarRevisionSistema: function() {
             let that = this;
             let url =
-                "/modulos/cirugia/valoracionPreanestecia/cargar_revision_sistema_campo/" +that.$props.idSecCirPro;
+                "/modulos/cirugia/valoracionPreanestecia/cargar_revision_sistema_campo/" +
+                that.$props.idSecCirPro;
             var loader = that.$loading.show();
             axios
                 .get(url)
                 .then(function(response) {
                     //Obtiene los datos de Motivo Antecedentes
-                    if(response.data.revisionSistema!=null && response.data.revisionSistema!=undefined){
+                    if (
+                        response.data.revisionSistema != null &&
+                        response.data.revisionSistema != undefined
+                    ) {
                         /* Cardiovascular */
-                        that.chk.chk_hipertension = +response.data.revisionSistema.hipertension;
-                        that.form.frm_hipertension = +response.data.revisionSistema.hipertension;
+                        that.chk.chk_hipertension = +response.data
+                            .revisionSistema.hipertension;
+                        that.form.frm_hipertension = +response.data
+                            .revisionSistema.hipertension;
 
-                        that.chk.chk_enfCoronaria = +response.data.revisionSistema.enfCoronaria;
-                        that.form.frm_enfCoronaria = +response.data.revisionSistema.enfCoronaria;
+                        that.chk.chk_enfCoronaria = +response.data
+                            .revisionSistema.enfCoronaria;
+                        that.form.frm_enfCoronaria = +response.data
+                            .revisionSistema.enfCoronaria;
 
-                        that.chk.chk_arritmias = +response.data.revisionSistema.arritmias;
-                        that.form.frm_arritmias = +response.data.revisionSistema.arritmias;
+                        that.chk.chk_arritmias = +response.data.revisionSistema
+                            .arritmias;
+                        that.form.frm_arritmias = +response.data.revisionSistema
+                            .arritmias;
 
-                        that.chk.chk_otrosCardiovascular = +response.data.revisionSistema.otrosCardiovascular;
-                        that.form.frm_otrosCardiovascular = +response.data.revisionSistema.otrosCardiovascular;
+                        that.chk.chk_otrosCardiovascular = +response.data
+                            .revisionSistema.otrosCardiovascular;
+                        that.form.frm_otrosCardiovascular = +response.data
+                            .revisionSistema.otrosCardiovascular;
 
-                        that.chk.chk_enfValvular= +response.data.revisionSistema.enfValvular;
-                        that.form.frm_enfValvular = +response.data.revisionSistema.enfValvular;
+                        that.chk.chk_enfValvular = +response.data
+                            .revisionSistema.enfValvular;
+                        that.form.frm_enfValvular = +response.data
+                            .revisionSistema.enfValvular;
 
-                        that.chk.chk_varices = +response.data.revisionSistema.varices;
-                        that.form.frm_varices = +response.data.revisionSistema.varices;
+                        that.chk.chk_varices = +response.data.revisionSistema
+                            .varices;
+                        that.form.frm_varices = +response.data.revisionSistema
+                            .varices;
 
-                        that.chk.chk_claudicacion = +response.data.revisionSistema.claudicacion;
-                        that.form.frm_claudicacion = +response.data.revisionSistema.claudicacion;
+                        that.chk.chk_claudicacion = +response.data
+                            .revisionSistema.claudicacion;
+                        that.form.frm_claudicacion = +response.data
+                            .revisionSistema.claudicacion;
 
                         /* Respiratorio */
                         that.chk.chk_epoc = +response.data.revisionSistema.epoc;
-                        that.form.frm_epoc = +response.data.revisionSistema.epoc;
+                        that.form.frm_epoc = +response.data.revisionSistema
+                            .epoc;
 
                         that.chk.chk_asma = +response.data.revisionSistema.asma;
-                        that.form.frm_asma = +response.data.revisionSistema.asma;
+                        that.form.frm_asma = +response.data.revisionSistema
+                            .asma;
 
                         that.chk.chk_tbc = +response.data.revisionSistema.tbc;
                         that.form.frm_tbc = +response.data.revisionSistema.tbc;
 
-                        that.chk.chk_otrosRespiratorio = +response.data.revisionSistema.otrosRespiratorio;
-                        that.form.frm_otrosRespiratorio = +response.data.revisionSistema.otrosRespiratorio;
+                        that.chk.chk_otrosRespiratorio = +response.data
+                            .revisionSistema.otrosRespiratorio;
+                        that.form.frm_otrosRespiratorio = +response.data
+                            .revisionSistema.otrosRespiratorio;
 
                         /* Neurologico */
-                        that.chk.chk_convulsiones = +response.data.revisionSistema.convulsiones;
-                        that.form.frm_convulsiones = +response.data.revisionSistema.convulsiones;
+                        that.chk.chk_convulsiones = +response.data
+                            .revisionSistema.convulsiones;
+                        that.form.frm_convulsiones = +response.data
+                            .revisionSistema.convulsiones;
 
                         that.chk.chk_ecv = +response.data.revisionSistema.ecv;
                         that.form.frm_ecv = +response.data.revisionSistema.ecv;
 
-                        that.chk.chk_meningitis = +response.data.revisionSistema.meningitis;
-                        that.form.frm_meningitis = +response.data.revisionSistema.meningitis;
+                        that.chk.chk_meningitis = +response.data.revisionSistema
+                            .meningitis;
+                        that.form.frm_meningitis = +response.data
+                            .revisionSistema.meningitis;
 
-                        that.chk.chk_enfMental = +response.data.revisionSistema.enfMental;
-                        that.form.frm_enfMental = +response.data.revisionSistema.enfMental;
+                        that.chk.chk_enfMental = +response.data.revisionSistema
+                            .enfMental;
+                        that.form.frm_enfMental = +response.data.revisionSistema
+                            .enfMental;
 
-                        that.chk.chk_otrosNeurologico = +response.data.revisionSistema.otrosNeurologico;
-                        that.form.frm_otrosNeurologico = +response.data.revisionSistema.otrosNeurologico;
+                        that.chk.chk_otrosNeurologico = +response.data
+                            .revisionSistema.otrosNeurologico;
+                        that.form.frm_otrosNeurologico = +response.data
+                            .revisionSistema.otrosNeurologico;
 
                         /* Nefrológico */
                         that.chk.chk_ira = +response.data.revisionSistema.ira;
                         that.form.frm_ira = +response.data.revisionSistema.ira;
 
-                        that.chk.chk_infeccionUnitaria = +response.data.revisionSistema.infeccionUnitaria;
-                        that.form.frm_infeccionUnitaria = +response.data.revisionSistema.infeccionUnitaria;
+                        that.chk.chk_infeccionUnitaria = +response.data
+                            .revisionSistema.infeccionUnitaria;
+                        that.form.frm_infeccionUnitaria = +response.data
+                            .revisionSistema.infeccionUnitaria;
 
                         that.chk.chk_irc = +response.data.revisionSistema.irc;
                         that.form.frm_irc = +response.data.revisionSistema.irc;
 
-                        that.chk.chk_otrosNefrologicos = +response.data.revisionSistema.otrosNefrologicos;
-                        that.form.frm_otrosNefrologicos = +response.data.revisionSistema.otrosNefrologicos;
+                        that.chk.chk_otrosNefrologicos = +response.data
+                            .revisionSistema.otrosNefrologicos;
+                        that.form.frm_otrosNefrologicos = +response.data
+                            .revisionSistema.otrosNefrologicos;
 
                         /* Gastrointestinal */
-                        that.chk.chk_ulcera = +response.data.revisionSistema.ulcera;
-                        that.form.frm_ulcera = +response.data.revisionSistema.ulcera;
+                        that.chk.chk_ulcera = +response.data.revisionSistema
+                            .ulcera;
+                        that.form.frm_ulcera = +response.data.revisionSistema
+                            .ulcera;
 
-                        that.chk.chk_estomagoLleno = +response.data.revisionSistema.estomagoLleno;
-                        that.form.frm_estomagoLleno = +response.data.revisionSistema.estomagoLleno;
+                        that.chk.chk_estomagoLleno = +response.data
+                            .revisionSistema.estomagoLleno;
+                        that.form.frm_estomagoLleno = +response.data
+                            .revisionSistema.estomagoLleno;
 
-                        that.chk.chk_otrosGastrointestinal = +response.data.revisionSistema.otrosGastrointestinal;
-                        that.form.frm_otrosGastrointestinal = +response.data.revisionSistema.otrosGastrointestinal;
+                        that.chk.chk_otrosGastrointestinal = +response.data
+                            .revisionSistema.otrosGastrointestinal;
+                        that.form.frm_otrosGastrointestinal = +response.data
+                            .revisionSistema.otrosGastrointestinal;
 
-                        that.validarCargarDatos= 1;
+                        /* Sistema Endocrima */
+                        that.chk.chk_diabetes = +response.data.revisionSistema
+                            .diabetes;
+                        that.form.frm_diabetes = +response.data.revisionSistema
+                            .diabetes;
+
+                        that.chk.chk_hipertiroidismo = +response.data
+                            .revisionSistema.hipertiroidismo;
+                        that.form.frm_hipertiroidismo = +response.data
+                            .revisionSistema.hipertiroidismo;
+
+                        that.chk.chk_obecidad = +response.data
+                            .revisionSistema.obecidad;
+                        that.form.frm_obecidad = +response.data
+                            .revisionSistema.obecidad;
+
+                        that.chk.chk_otrosSistemaEndocrima = +response.data
+                            .revisionSistema.otrosSistemaEndocrima;
+                        that.form.frm_otrosSistemaEndocrima = +response.data
+                            .revisionSistema.otrosSistemaEndocrima;
+
+                        that.validarCargarDatos = 1;
                         that.respuestaImprimir = 1;
-                    }else{
-                        that.validarCargarDatos= 0;
+                    } else {
+                        that.validarCargarDatos = 0;
                         that.respuestaImprimir = 0;
                     }
-                    that.$emit("ValidarCargarDatos",that.validarCargarDatos);
-                    that.$emit("RespuestaImprimir",that.respuestaImprimir);
-                    loader.hide()
-
+                    that.$emit("ValidarCargarDatos", that.validarCargarDatos);
+                    that.$emit("RespuestaImprimir", that.respuestaImprimir);
+                    loader.hide();
                 })
                 .catch(error => {
                     //Errores
@@ -857,7 +1062,10 @@ export default {
         },
         //Metodo para guardar o modificar los datos de motivo antecedente
         guardarModificar: function() {
-            if (this.$props.idSecCirPro != "" || this.$props.idSecCirPro != null) {
+            if (
+                this.$props.idSecCirPro != "" ||
+                this.$props.idSecCirPro != null
+            ) {
                 let idCirugiaProgramada = this.$props.idSecCirPro;
                 let url =
                     "/modulos/cirugia/valoracionPreanestecia/guardar_modificar_revision_sistema";
@@ -899,7 +1107,7 @@ export default {
                 }); */
             }
         },
-                /* Cardiovascular */
+        /* Cardiovascular */
         validarChkHipertension() {
             if (this.chk.chk_hipertension) {
                 this.form.frm_hipertension = 0;
@@ -1079,6 +1287,37 @@ export default {
                 this.form.frm_otrosGastrointestinal = 1;
             }
         },
+        /* Fin Gastrointestinal */
+        /* Inicio Sistema Endocrima */
+        validarChkDiabetes() {
+            if (this.chk.chk_diabetes) {
+                this.form.frm_diabetes = 0;
+            } else {
+                this.form.frm_diabetes = 1;
+            }
+        },
+        validarChkHipertiroidismo() {
+            if (this.chk.chk_hipertiroidismo) {
+                this.form.frm_hipertiroidismo = 0;
+            } else {
+                this.form.frm_hipertiroidismo = 1;
+            }
+        },
+        validarChkObecidad() {
+            if (this.chk.chk_obecidad) {
+                this.form.frm_obecidad = 0;
+            } else {
+                this.form.frm_obecidad = 1;
+            }
+        },
+        validarChkOtrosSistemaEndocrima() {
+            if (this.chk.chk_otrosSistemaEndocrima) {
+                this.form.frm_otrosSistemaEndocrima = 0;
+            } else {
+                this.form.frm_otrosSistemaEndocrima = 1;
+            }
+        },
+        /* Fin Sistema Endocrima */
     }
 };
 </script>

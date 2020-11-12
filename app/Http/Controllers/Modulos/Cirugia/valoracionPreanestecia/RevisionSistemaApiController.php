@@ -61,6 +61,10 @@ class RevisionSistemaApiController extends Controller
                     'ulcera' => $request->input('frm_ulcera'),
                     'estomagoLleno' => $request->input('frm_estomagoLleno'),
                     'otrosGastrointestinal' => $request->input('frm_otrosGastrointestinal'),
+                    'diabetes' => $request->input('frm_diabetes'),
+                    'hipertiroidismo' => $request->input('frm_hipertiroidismo'),
+                    'obecidad' => $request->input('frm_obecidad'),
+                    'otrosSistemaEndocrima' => $request->input('frm_otrosSistemaEndocrima'),
                     'usu_created_update' => $user->id,
                     'pcip' => $_SERVER["REMOTE_ADDR"],
                     'status' => '1'
