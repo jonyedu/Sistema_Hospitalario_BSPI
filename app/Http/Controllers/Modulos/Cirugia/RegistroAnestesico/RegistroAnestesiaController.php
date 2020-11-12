@@ -129,6 +129,8 @@ class RegistroAnestesiaController extends Controller
                     }
                 }
 
+                //$resultado = obtenerDatoGraficaRegistroAnestesia();
+
 
                 $datosValoracionPreanestesica = RevisionSistema::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
@@ -138,7 +140,8 @@ class RegistroAnestesiaController extends Controller
                 $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia', [
                     'datosPaciente' => $datosPaciente,
                     'edadPaciente' => $edadPaciente,
-                    'datosValoracionPreanestesica' => $datosValoracionPreanestesica
+                    'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
+                    /* 'resultado' => $resultado */
                 ]);
 
                 return $pdf->stream($nombreArchivo);
