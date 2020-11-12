@@ -1215,7 +1215,7 @@ export default {
              
                 window.open(
                     "/modulos/cirugia/lista_verificacion/mostrarreporte/" +
-                        this.form.frm_idCirugiaProgramada
+                        this.listas.frm_idCirugiaProgramada
                 );
              
         }

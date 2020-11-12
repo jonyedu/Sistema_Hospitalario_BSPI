@@ -184,7 +184,8 @@
             <table width="235px" border="0" cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr>
-                        <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;EL&nbsp;PACIENTE&nbsp;HA&nbsp;CONFIRMADO</span>
+                        <td align="left"><span
+                                class="fc1id6vxwv5zds-2">&nbsp;EL&nbsp;PACIENTE&nbsp;HA&nbsp;CONFIRMADO</span>
                         </td>
                     </tr>
                 </tbody>
@@ -242,7 +243,8 @@
                 <tbody>
                     <tr>
                         <td align="left"><span
-                                class="fc1id6vxwv5zds-2">&nbsp;DEMARCACION&nbsp;DEL&nbsp;SITIO/NO&nbsp;PROCEDE</span></td>
+                                class="fc1id6vxwv5zds-2">&nbsp;DEMARCACION&nbsp;DEL&nbsp;SITIO/NO&nbsp;PROCEDE</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -262,7 +264,8 @@
         <table width="235px" border="0" cellpadding="0" cellspacing="0">
             <tbody>
                 <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;SEGURIDAD&nbsp;DE&nbsp;LA&nbsp;ANESTESIA</span></td>
+                    <td align="left"><span
+                            class="fc1id6vxwv5zds-2">&nbsp;SEGURIDAD&nbsp;DE&nbsp;LA&nbsp;ANESTESIA</span></td>
                 </tr>
             </tbody>
         </table>
@@ -319,10 +322,10 @@
                 <tr>
                     <td align="center"><span class="fc1id6vxwv5zds-1">x1</span></td>
                 </tr>
-                
+
             </tbody>
         </table>
-        
+
     </div>
     <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:0px;left:33px;width:19px;height:20px;">
         <div style="top:400px;margin-top:-7px;width:100%;">
@@ -432,10 +435,10 @@
                 </tr>
             </tbody>
         </table>
-        
+
         &nbsp;
         <table width="235px" border="0" cellpadding="0" cellspacing="0">
-            
+
             <tbody>
                 <tr>
                     <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;NO</span></td>
@@ -514,7 +517,8 @@
         <table width="235px" border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td align="left"><span
-                        class="fc1id6vxwv5zds-2">&nbsp;CONFIRMAR&nbsp;QUE&nbsp;TODOS&nbsp;LOS&nbsp;MIEMBROS&nbsp;</span></td>
+                        class="fc1id6vxwv5zds-2">&nbsp;CONFIRMAR&nbsp;QUE&nbsp;TODOS&nbsp;LOS&nbsp;MIEMBROS&nbsp;</span>
+                </td>
             </tr>
             <tr>
                 <td align="left"><span
@@ -534,7 +538,8 @@
         <table width="235px" border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td align="left"><span
-                        class="fc1id6vxwv5zds-2">&nbsp;CIRUJANO,&nbsp;ANESTESISTA&nbsp;Y&nbsp;ENFERMERO&nbsp;</span></td>
+                        class="fc1id6vxwv5zds-2">&nbsp;CIRUJANO,&nbsp;ANESTESISTA&nbsp;Y&nbsp;ENFERMERO&nbsp;</span>
+                </td>
             </tr>
             <tr>
                 <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;CONFIRMAN&nbsp;VERBALMENTE:</span></td>
@@ -571,7 +576,8 @@
     <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:160px;left:306px;width:235px;height:80px;">
         <div style="top:160px;margin-top:-35px;width:100%;">
             <table width="235px" border="0" cellpadding="0" cellspacing="0">
-                <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;PREVISION&nbsp;DE&nbsp;EVENTOS&nbsp;CRÍTICOS</span></td>
+                <td align="left"><span
+                        class="fc1id6vxwv5zds-2">&nbsp;PREVISION&nbsp;DE&nbsp;EVENTOS&nbsp;CRÍTICOS</span></td>
             </table>
             <table width="235px" border="0" cellpadding="0" cellspacing="0">
                 <td align="left"><span
@@ -611,7 +617,8 @@
                 </tr>
                 <tr>
                     <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;PACIENTE&nbsp;PRESENTA&nbsp;ALGUN&nbsp;PROBLEMA&nbsp;</span></td>
+                            class="fc1id6vxwv5zds-2">&nbsp;PACIENTE&nbsp;PRESENTA&nbsp;ALGUN&nbsp;PROBLEMA&nbsp;</span>
+                    </td>
                 </tr>
                 <tr>
                     <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;ESPECIFICO</span></td>
@@ -635,10 +642,12 @@
                 </tr>
                 <tr>
                     <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;CONFIRMADO&nbsp;LA&nbsp;ESTERILIDAD&nbsp;(CON&nbsp;</span></td>
+                            class="fc1id6vxwv5zds-2">&nbsp;CONFIRMADO&nbsp;LA&nbsp;ESTERILIDAD&nbsp;(CON&nbsp;</span>
+                    </td>
                 </tr>
                 <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;RESULTADOS&nbsp;DE&nbsp;LOS&nbsp;INDICADORES)</span>
+                    <td align="left"><span
+                            class="fc1id6vxwv5zds-2">&nbsp;RESULTADOS&nbsp;DE&nbsp;LOS&nbsp;INDICADORES)</span>
                     </td>
                 </tr>
             </table>
@@ -670,10 +679,12 @@
             <table width="235px" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;SE&nbsp;HA&nbsp;ADMINISTRADO&nbsp;PROFILAXIS&nbsp;</span></td>
+                            class="fc1id6vxwv5zds-2">&nbsp;SE&nbsp;HA&nbsp;ADMINISTRADO&nbsp;PROFILAXIS&nbsp;</span>
+                    </td>
                 </tr>
                 <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;ANTIBIOTICA&nbsp;EN&nbsp;LOS&nbsp;..</span></td>
+                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;ANTIBIOTICA&nbsp;EN&nbsp;LOS&nbsp;..</span>
+                    </td>
                 </tr>
             </table>
             <table width="235px" border="0" cellpadding="0" cellspacing="0">
@@ -705,7 +716,8 @@
             <table width="235px" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;PUEDEN&nbsp;VISUALIZARSE&nbsp;LAS&nbsp;IMAGENES&nbsp;</span></td>
+                            class="fc1id6vxwv5zds-2">&nbsp;PUEDEN&nbsp;VISUALIZARSE&nbsp;LAS&nbsp;IMAGENES&nbsp;</span>
+                    </td>
                 </tr>
                 <tr>
                     <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;DIAGNOSTICADAS</span></td>
@@ -745,23 +757,193 @@
             </table>
         </div>
     </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:191px;left:536px;width:28px;height:21px;"><table width="18px" border="0" cellpadding="0" cellspacing="0"><td align="center"><span class="fc1id6vxwv5zds-1">x</span></td></table></div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:190px;left:564px;width:198px;height:27px;clip:rect(0px,198px,27px,0px);"><table width="198px" border="0" cellpadding="0" cellspacing="0"><tr><td align="left"><span class="fc1id6vxwv5zds-2">EL&nbsp;NOMBRE&nbsp;DEL&nbsp;PROCEDIMIENTO&nbsp;</span></td></tr><tr><td align="left"><span class="fc1id6vxwv5zds-2">REALIZADO</span></td></tr></table></div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:232px;left:566px;width:198px;height:52px;clip:rect(0px,196px,52px,0px);"><div style="top:50%;margin-top:-21px;width:100%;"><table width="198px" border="0" cellpadding="0" cellspacing="0"><tr><td align="left"><span class="fc1id6vxwv5zds-2">QUE&nbsp;LOS&nbsp;RECUENTOS&nbsp;DE&nbsp;</span></td></tr><tr><td align="left"><span class="fc1id6vxwv5zds-2">INSTRUMENTOS,&nbsp;GASAS&nbsp;Y&nbsp;AGUJAS&nbsp;</span></td></tr><tr><td align="left"><span class="fc1id6vxwv5zds-2">SON&nbsp;CORRECTOS(O&nbsp;NO&nbsp;PROCEDEN)</span></td></tr></table></div></div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:245px;left:538px;width:28px;height:21px;"><table width="18px" border="0" cellpadding="0" cellspacing="0"><td align="center"><span class="fc1id6vxwv5zds-1">x</span></td></table></div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:301px;left:537px;width:28px;height:21px;"><table width="18px" border="0" cellpadding="0" cellspacing="0"><td align="center"><span class="fc1id6vxwv5zds-1">x</span></td></table></div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:294px;left:565px;width:198px;height:40px;clip:rect(0px,197px,40px,0px);"><table width="198px" border="0" cellpadding="0" cellspacing="0"><tr><td align="left"><span class="fc1id6vxwv5zds-2">EL&nbsp;ETIQUETADO&nbsp;DE&nbsp;LAS&nbsp;</span></td></tr><tr><td align="left"><span class="fc1id6vxwv5zds-2">MUESTRAS(QUE&nbsp;FIGURE&nbsp;EL&nbsp;NOMBRE&nbsp;</span></td></tr><tr><td align="left"><span class="fc1id6vxwv5zds-2">DEL&nbsp;PACIENTE)</span></td></tr></table></div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:343px;left:564px;width:198px;height:40px;"><table width="198px" border="0" cellpadding="0" cellspacing="0"><tr><td align="left"><span class="fc1id6vxwv5zds-2">SI&nbsp;HAY&nbsp;PROBLEMAS&nbsp;QUE&nbsp;RESOLVER&nbsp;</span></td></tr><tr><td align="left"><span class="fc1id6vxwv5zds-2">RELACIONADOS&nbsp;CON&nbsp;EL&nbsp;</span></td></tr><tr><td align="left"><span class="fc1id6vxwv5zds-2">INSTRUMENTAL&nbsp;Y&nbsp;LOS&nbsp;EQUIPOS</span></td></tr></table></div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:349px;left:536px;width:28px;height:21px;"><table width="18px" border="0" cellpadding="0" cellspacing="0"><td align="center"><span class="fc1id6vxwv5zds-1">x</span></td></table></div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:393px;left:565px;width:198px;height:77px;clip:rect(0px,197px,77px,0px);"><div style="top:50%;margin-top:-35px;width:100%;"><table width="198px" border="0" cellpadding="0" cellspacing="0"><tr><td align="left"><span class="fc1id6vxwv5zds-2">EL&nbsp;CIRUJANO,&nbsp;EL&nbsp;ANESTESISTA&nbsp;Y&nbsp;EL&nbsp;</span></td></tr><tr><td align="left"><span class="fc1id6vxwv5zds-2">ENFERMERO&nbsp;REVISAN&nbsp;LOS&nbsp;</span></td></tr><tr><td align="left"><span class="fc1id6vxwv5zds-2">PRINCIPALES&nbsp;ASPECTOS&nbsp;DE&nbsp;LA&nbsp;</span></td></tr><tr><td align="left"><span class="fc1id6vxwv5zds-2">RECUPERACIÓN&nbsp;Y&nbsp;EL&nbsp;TRATAMIENTO&nbsp;</span></td></tr><tr><td align="left"><span class="fc1id6vxwv5zds-2">DEL&nbsp;PACIENTE</span></td></tr></table></div></div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:400px;left:537px;width:28px;height:21px;"><table width="18px" border="0" cellpadding="0" cellspacing="0"><td align="center"><span class="fc1id6vxwv5zds-1">x</span></td></table></div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:507px;left:545px;width:214px;height:17px;"><div style="top:50%;margin-top:-7px;width:100%;"><table width="214px" border="0" cellpadding="0" cellspacing="0"><td align="left"><span class="fc1id6vxwv5zds-2">NOMBRE&nbsp;DE&nbsp;LA&nbsp;PERSONA&nbsp;RESPONSABLE</span></td></table></div></div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:623px;left:547px;width:214px;height:17px;"><div style="top:50%;margin-top:-7px;width:100%;"><table width="214px" border="0" cellpadding="0" cellspacing="0"><td align="left"><span class="fc1id6vxwv5zds-2">FIRMA&nbsp;DE&nbsp;LA&nbsp;PERSONA&nbsp;RESPONSABLE</span></td></table></div></div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:677px;left:619px;width:44px;height:17px;"><div style="top:50%;margin-top:-7px;width:100%;"><table width="44px" border="0" cellpadding="0" cellspacing="0"><td align="left"><span class="fc1id6vxwv5zds-2">CARGO</span></td></table></div></div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:735px;left:627px;width:129px;height:17px;"><div style="top:50%;margin-top:-7px;width:100%;"><table width="129px" border="0" cellpadding="0" cellspacing="0"><td align="left"><span class="fc1id6vxwv5zds-2">FECHA&nbsp;:...........</span></td></table></div></div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:677px;left:22px;width:509px;height:66px;"><div style="top:50%;margin-top:-21px;width:100%;"><table width="498px" border="0" cellpadding="0" cellspacing="0"><tr><td align="left"><span class="fc1id6vxwv5zds-2">EL&nbsp;EQUIPO&nbsp;DE&nbsp;ANESTESIA&nbsp;REVISA,&nbsp;SI&nbsp;SE&nbsp;HA&nbsp;CONFIRMADO&nbsp;LA&nbsp;ESTERILIDAD&nbsp;(CON&nbsp;RESULTADOS&nbsp;</span></td></tr><tr><td align="left"><span class="fc1id6vxwv5zds-2">DE&nbsp;LOS&nbsp;INDICADORES)</span></td></tr></table><table width="498px" border="0" cellpadding="0" cellspacing="0"><td align="center"><span class="fc1id6vxwv5zds-2">Y&nbsp;SI&nbsp;EXISTEN&nbsp;DUDAS&nbsp;O&nbsp;PROBLEMAS&nbsp;RELACIONADO&nbsp;CON&nbsp;EL&nbsp;INSTRUMENTAL&nbsp;Y&nbsp;LOS&nbsp;EQUIPOS.</span></td></table></div></div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:654px;left:24px;width:97px;height:20px;"><div style="top:50%;margin-top:-7px;width:100%;"><table width="97px" border="0" cellpadding="0" cellspacing="0"><td align="left"><span class="fc1id6vxwv5zds-2">Observacion</span></td></table></div></div>
-    
+    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:150px;left:540px;width:220px;height:32px;">
+        <div style="top:20px;margin-top:-14px;width:100%;">
+            <table width="220px" border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td align="left"><span class="fc1id6vxwv5zds-2">EL&nbsp;ENFERMERO&nbsp;CONFIRMA&nbsp;</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left"><span class="fc1id6vxwv5zds-2">VERBALMENTE&nbsp;CON&nbsp;EL&nbsp;EQUIPO:</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:191px;left:536px;width:28px;height:21px;">
+        <table width="18px" border="0" cellpadding="0" cellspacing="0">
+            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
+        </table>
+    </div>
+    <div class="ad1id6vxwv5zds-0" nowrap="true"
+        style="z-index:25;top:190px;left:564px;width:198px;height:27px;clip:rect(0px,198px,27px,0px);">
+        <table width="198px" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="left"><span
+                        class="fc1id6vxwv5zds-2">&nbsp;EL&nbsp;NOMBRE&nbsp;DEL&nbsp;PROCEDIMIENTO&nbsp;</span>
+                </td>
+            </tr>
+            <tr>
+                <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;REALIZADO</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="ad1id6vxwv5zds-0" nowrap="true"
+        style="z-index:25;top:130px;left:566px;width:160px;height:52px;clip:rect(0px,196px,52px,0px);">
+        <div style="top:130px;margin-top:-21px;width:100%;">
+            <table width="198px" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="left"><span
+                            class="fc1id6vxwv5zds-2">&nbsp;QUE&nbsp;LOS&nbsp;RECUENTOS&nbsp;DE&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left"><span
+                            class="fc1id6vxwv5zds-2">&nbsp;INSTRUMENTOS,&nbsp;GASAS&nbsp;Y&nbsp;AGUJAS&nbsp;</span></td>
+                </tr>
+                <tr>
+                    <td align="left"><span
+                            class="fc1id6vxwv5zds-2">&nbsp;SON&nbsp;CORRECTOS(O&nbsp;NO&nbsp;PROCEDEN)</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:245px;left:538px;width:28px;height:21px;">
+        <table width="18px" border="0" cellpadding="0" cellspacing="0">
+            <td align="center"><span class="fc1id6vxwv5zds-1">x </span></td>
+        </table>
+    </div>
+    &nbsp;
+    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:301px;left:537px;width:28px;height:21px;">
+        <table width="18px" border="0" cellpadding="0" cellspacing="0">
+            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
+        </table>
+    </div>
+    <div class="ad1id6vxwv5zds-0" nowrap="true"
+        style="z-index:25;top:294px;left:565px;width:198px;height:40px;clip:rect(0px,197px,40px,0px);">
+        <table width="198px" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="left"><span class="fc1id6vxwv5zds-2">EL&nbsp;ETIQUETADO&nbsp;DE&nbsp;LAS&nbsp;</span></td>
+            </tr>
+            <tr>
+                <td align="left"><span
+                        class="fc1id6vxwv5zds-2">MUESTRAS(QUE&nbsp;FIGURE&nbsp;EL&nbsp;NOMBRE&nbsp;</span></td>
+            </tr>
+            <tr>
+                <td align="left"><span class="fc1id6vxwv5zds-2">DEL&nbsp;PACIENTE)</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:343px;left:564px;width:198px;height:40px;">
+        <table width="198px" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="left"><span
+                        class="fc1id6vxwv5zds-2">SI&nbsp;HAY&nbsp;PROBLEMAS&nbsp;QUE&nbsp;RESOLVER&nbsp;</span></td>
+            </tr>
+            <tr>
+                <td align="left"><span class="fc1id6vxwv5zds-2">RELACIONADOS&nbsp;CON&nbsp;EL&nbsp;</span></td>
+            </tr>
+            <tr>
+                <td align="left"><span class="fc1id6vxwv5zds-2">INSTRUMENTAL&nbsp;Y&nbsp;LOS&nbsp;EQUIPOS</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:349px;left:536px;width:28px;height:21px;">
+        <table width="18px" border="0" cellpadding="0" cellspacing="0">
+            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
+        </table>
+    </div>
+    <div class="ad1id6vxwv5zds-0" nowrap="true"
+        style="z-index:25;top:220px;left:565px;width:198px;height:77px;clip:rect(0px,197px,77px,0px);">
+        <div style="top:220px;margin-top:-35px;width:100%;">
+            <table width="198px" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="left"><span class="fc1id6vxwv5zds-2">
+                            EL&nbsp;CIRUJANO,&nbsp;EL&nbsp;ANESTESISTA&nbsp;Y&nbsp;EL&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="fc1id6vxwv5zds-2">ENFERMERO&nbsp;REVISAN&nbsp;LOS&nbsp;</span></td>
+                </tr>
+                <tr>
+                    <td align="left"><span
+                            class="fc1id6vxwv5zds-2">PRINCIPALES&nbsp;ASPECTOS&nbsp;DE&nbsp;LA&nbsp;</span></td>
+                </tr>
+                <tr>
+                    <td align="left"><span
+                            class="fc1id6vxwv5zds-2">RECUPERACIÓN&nbsp;Y&nbsp;EL&nbsp;TRATAMIENTO&nbsp;</span></td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="fc1id6vxwv5zds-2">DEL&nbsp;PACIENTE</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:400px;left:537px;width:28px;height:21px;">
+        <table width="18px" border="0" cellpadding="0" cellspacing="0">
+            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
+        </table>
+    </div>
+    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:260px;left:545px;width:214px;height:17px;">
+        <div style="top:260px;margin-top:-7px;width:100%;">
+            <table width="214px" border="0" cellpadding="0" cellspacing="0">
+                <td align="left"><span
+                        class="fc1id6vxwv5zds-2">NOMBRE&nbsp;DE&nbsp;LA&nbsp;PERSONA&nbsp;RESPONSABLE</span></td>
+            </table>
+        </div>
+    </div>
+    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:290px;left:547px;width:214px;height:17px;">
+        <div style="top:290px;margin-top:-7px;width:100%;">
+            <table width="214px" border="0" cellpadding="0" cellspacing="0">
+                <td align="left"><span
+                        class="fc1id6vxwv5zds-2">FIRMA&nbsp;DE&nbsp;LA&nbsp;PERSONA&nbsp;RESPONSABLE</span></td>
+            </table>
+        </div>
+    </div>
+    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:320px;left:619px;width:44px;height:17px;">
+        <div style="top:320px;margin-top:-7px;width:100%;">
+            <table width="44px" border="0" cellpadding="0" cellspacing="0">
+                <td align="left"><span class="fc1id6vxwv5zds-2">CARGO</span></td>
+            </table>
+        </div>
+    </div>
+    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:340px;left:627px;width:129px;height:17px;">
+        <div style="top:340px;margin-top:-7px;width:100%;">
+            <table width="129px" border="0" cellpadding="0" cellspacing="0">
+                <td align="left"><span class="fc1id6vxwv5zds-2">FECHA&nbsp;:...........</span></td>
+            </table>
+        </div>
+    </div>
+   <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:677px;left:22px;width:509px;height:66px;">
+      <textarea name="" id="" cols="30" rows="10"    >
+          sadsas
+          sdaf
+
+          sdafas
+          df
+
+          s
+          fsdfsadfsdf
+          sdfasdfasdfasdf
+          asdfasdfdsf
+
+      </textarea>
+    </div>
+
+
+    {{-- este --}}
+    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:330px;left:24px;width:97px;height:20px;">
+        <div style="top:330px;margin-top:-7px;width:100%;">
+            <table width="97px" border="0" cellpadding="0" cellspacing="0">
+                <td align="left"><span class="fc1id6vxwv5zds-2">Observacion</span></td>
+            </table>
+        </div>
+    </div>
+
 </body>
 
 

@@ -5867,7 +5867,7 @@ __webpack_require__.r(__webpack_exports__);
       }); // aui
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
-      window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.form.frm_idCirugiaProgramada);
+      window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.frm_idCirugiaProgramada);
     }
   }
 });
