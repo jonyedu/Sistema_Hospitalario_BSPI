@@ -84,4 +84,17 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::post('guardar_tipo_posiciones', 'TipoPosicionesController@guardarTipoPosiciones');
         Route::delete('eliminar_tipo_posiciones/{id}', 'TipoPosicionesController@eliminarTipoPosiciones');
     });
+
+    /* Lista de Verificacion */
+    Route::namespace('Modulos\Cirugia\ListaVerificacion')->prefix('lista_verificacion')->group(function () {
+        Route::post('ListarValoracion','ListaValoracionController@create');
+        Route::get('buscarpaciente/{id}','ListaValoracionController@show');
+        Route::get('mostrarreporte/{id}','ListaValoracionController@mostrarr'); 
+    
+        // Route::get('cargar_tipo_posiciones_table', 'TipoPosicionesController@cargarTipoPosicionesTabla');
+        // Route::post('guardar_archivo_tipo_posiciones', 'TipoPosicionesController@guardarModificarArchivo');
+        // Route::post('modificar_tipo_posiciones', 'TipoPosicionesController@modificarTipoPosiciones');
+        // Route::post('guardar_tipo_posiciones', 'TipoPosicionesController@guardarTipoPosiciones');
+        // Route::delete('eliminar_tipo_posiciones/{id}', 'TipoPosicionesController@eliminarTipoPosiciones');
+    });
 });

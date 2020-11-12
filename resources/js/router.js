@@ -12,6 +12,11 @@ import IndexAnestesia from "./components/Modulos/Cirugia/anestesia/index";
 
 import TipoAgente from "./components/Modulos/Cirugia/tipo_agente/TipoAgente";
 import TipoPosiciones from "./components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones";
+import ListaVerificacion from "./components/Modulos/Cirugia/lista_verificacion/ListasComponent";
+
+//import emplo from "./components/ejenplo";
+
+
 
 Vue.use(VueRouter);
 let prefijo = prefix;
@@ -54,6 +59,12 @@ export default new VueRouter({
                 prefijo +
                 "/modulos/cirugia/tipo_posiciones/mostrar_tipo_posiciones",
             component: TipoPosiciones
+        },
+        {
+            path:
+                prefijo +
+                "/modulos/cirugia/lista_verificacion/mostrar_tipo_lista",
+            component: ListaVerificacion
         },
     ],
     mode: "history" //Evita que aparezca # en la ruta
