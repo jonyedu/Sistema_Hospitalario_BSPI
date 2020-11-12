@@ -5020,10 +5020,10 @@ __webpack_require__.r(__webpack_exports__);
       //cirugia_id: 0,
       titulo_seleccionado: "Registro de anestecia",
       respuestaFinProceso: 0,
-      respuestaImprimir: 0,
+      respuestaImprimir: 1,
       form: {
         /* Datos del paciente */
-        frm_idCirugiaProgramada: "",
+        frm_idCirugiaProgramada: "0001",
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",

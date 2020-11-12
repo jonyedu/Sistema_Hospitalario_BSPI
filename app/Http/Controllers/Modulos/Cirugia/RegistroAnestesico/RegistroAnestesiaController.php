@@ -121,8 +121,8 @@ class RegistroAnestesiaController extends Controller
                 $datosPaciente = [];
                 $edadPaciente = 0;
 
-                $datosPaciente = DB::connection('admin_db_sql')
-                    ->select("exec SpAdm_CirugiasProgramdasConsultar '" . $idSecCirPro . "','','DP' ");
+                /* $datosPaciente = DB::connection('admin_db_sql')
+                    ->select("exec SpAdm_CirugiasProgramdasConsultar '" . $idSecCirPro . "','','DP' "); */
                 if (sizeof($datosPaciente) > 0) {
                     foreach ($datosPaciente as $paciente) {
                         $edadPaciente = $this->calculaEdad($paciente->Fecha_nacimiento);

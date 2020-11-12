@@ -94,6 +94,10 @@
         th {
             border: 1px solid #000000;
         }
+
+        .table{
+
+        }
     </style>
     <!-- Icono de la Pestaña -->
     <link rel="shortcut icon" href="{{public_path('img/icono.png') }}">
