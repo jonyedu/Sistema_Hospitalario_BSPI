@@ -82,4 +82,29 @@ class RegistroAnestesia extends Model
         'status',
     ];
 
+    public function drogaAdministrada()
+    {
+        return $this->hasOne('App\Models\Modulos\Cirugia\RegistroAnestesico\DrogasAdministradas', 'id', 'registro_anestesia_id');
+    }
+
+    public function registroInfusion()
+    {
+        return $this->hasOne('App\Models\Modulos\Cirugia\RegistroAnestesico\RegistroInfusiones', 'id', 'registro_anestesia_id');
+    }
+
+    public function datoAgente()
+    {
+        return $this->hasOne('App\Models\Modulos\Cirugia\RegistroAnestesico\DatosAgentes', 'id', 'registro_anestesia_id');
+    }
+
+    public function datoRespiracion()
+    {
+        return $this->hasOne('App\Models\Modulos\Cirugia\RegistroAnestesico\DatosRespiracion', 'id', 'registro_anestesia_id');
+    }
+
+    public function datoPosicion()
+    {
+        return $this->hasOne('App\Models\Modulos\Cirugia\RegistroAnestesico\DatosPosiciones', 'id', 'registro_anestesia_id');
+    }
+
 }

@@ -1,15 +1,16 @@
 <?php
 function obtenerDatoGraficaRegistroAnestesia()
 {
-    $columna = 12;
-    $fila = 23;
+    $data = [];
+    $columna = 60;
+    $fila = 29;
     echo '<div class="tableBorderAll" style="top:140px;">';
-    echo    '<table class="tableStyleCollapse">';
+    echo    '<table class="tableStyleCollapse" style="width:100%;">';
 
     for ($fil = 0; $fil < $fila; $fil++) {
         echo        '<tr>';
         for ($col = 0; $col < $columna; $col++) {
-            echo            '<td style="width:200px;height="200px"></td>';
+            echo            '<td style="height:1%;"></td>';
         }
         echo        '</tr>';
     }

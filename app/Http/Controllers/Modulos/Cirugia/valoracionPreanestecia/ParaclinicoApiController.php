@@ -27,6 +27,7 @@ class ParaclinicoApiController extends Controller
         if ($idSecCirPro !== '' && isset($idSecCirPro)) {
             try {
                 $paraclinico = Paraclinico::where('SecCirPro', $idSecCirPro)
+                ->with('tipoSangre')
                 ->where('status', '1')
                 ->first();
                 return  response()->json(['paraclinico' => $paraclinico], 200);

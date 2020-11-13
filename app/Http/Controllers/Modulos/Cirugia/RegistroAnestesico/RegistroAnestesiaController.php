@@ -17,6 +17,26 @@ class RegistroAnestesiaController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+        $cirugia_id = $request->input('cirugia_id');
+        $registro_anestesia_id = $request->input('registro_anestesia_id');
+
+        $idRegistroAnestesico = RegistroAnestesia::where('SecCirPro', $cirugia_id)
+            ->where('id', $registro_anestesia_id)
+            ->with(['datoAgente' => function ($i) {
+                $i->where('indice_hora', 4);
+            }])
+            ->first();
+
+        if ($idRegistroAnestesico == null) {
+            $registroAnestesico = RegistroAnestesia::create(
+                [
+                    'SecCirPro' => $request->input('cirugia_id'),
+                    'usu_created_update' => $user->id,
+                ]
+            );
+        }else{
+
+        }
         $registroAnestesico = RegistroAnestesia::create(
             [
                 'SecCirPro' => $request->input('cirugia_id'),

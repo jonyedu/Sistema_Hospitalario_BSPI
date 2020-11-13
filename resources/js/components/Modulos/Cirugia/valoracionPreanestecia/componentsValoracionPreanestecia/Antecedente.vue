@@ -23,7 +23,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline24"
+                                                            id="defaultInline28"
                                                             value="1"
                                                             @click="
                                                                 validarChkQuirurgico()
@@ -34,7 +34,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline24"
+                                                            for="defaultInline28"
                                                             >Quirúrgico</label
                                                         >
                                                     </div>
@@ -47,7 +47,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline25"
+                                                            id="defaultInline29"
                                                             @click="
                                                                 validarChkTraumatico()
                                                             "
@@ -57,7 +57,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline25"
+                                                            for="defaultInline29"
                                                             >Traumático</label
                                                         >
                                                     </div>
@@ -141,7 +141,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline26"
+                                                            id="defaultInline30"
                                                             value="1"
                                                             @click="
                                                                 validarChkAlergia()
@@ -152,7 +152,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline26"
+                                                            for="defaultInline30"
                                                             >Alergias</label
                                                         >
                                                     </div>
@@ -170,7 +170,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline27"
+                                                            id="defaultInline31"
                                                             value="1"
                                                             @click="
                                                                 validarChkTabaco()
@@ -179,7 +179,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline27"
+                                                            for="defaultInline31"
                                                             >Tabaco</label
                                                         >
                                                     </div>
@@ -192,7 +192,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline28"
+                                                            id="defaultInline32"
                                                             value="1"
                                                             @click="
                                                                 validarChkCocaina()
@@ -203,7 +203,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline28"
+                                                            for="defaultInline32"
                                                             >Cocaina</label
                                                         >
                                                     </div>
@@ -216,7 +216,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline29"
+                                                            id="defaultInline33"
                                                             value="1"
                                                             @click="
                                                                 validarChkMarihuana()
@@ -227,7 +227,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline29"
+                                                            for="defaultInline33"
                                                             >Marihuana</label
                                                         >
                                                     </div>
@@ -242,7 +242,7 @@
                                                                 <input
                                                                     type="checkbox"
                                                                     class="custom-control-input"
-                                                                    id="defaultInline30"
+                                                                    id="defaultInline34"
                                                                     value="1"
                                                                     @click="
                                                                         validarChkOtrosToxico()
@@ -253,7 +253,7 @@
                                                                 />
                                                                 <label
                                                                     class="custom-control-label"
-                                                                    for="defaultInline30"
+                                                                    for="defaultInline34"
                                                                     >Otros</label
                                                                 >
                                                             </div>
@@ -388,7 +388,7 @@
                                                                 <input
                                                                     type="checkbox"
                                                                     class="custom-control-input"
-                                                                    id="defaultInline31"
+                                                                    id="defaultInline35"
                                                                     value="1"
                                                                     @click="
                                                                         validarChkFamiliar()
@@ -399,7 +399,7 @@
                                                                 />
                                                                 <label
                                                                     class="custom-control-label"
-                                                                    for="defaultInline31"
+                                                                    for="defaultInline35"
                                                                     >Familiares</label
                                                                 >
                                                             </div>
@@ -440,7 +440,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline32"
+                                                            id="defaultInline36"
                                                             value="1"
                                                             @click="
                                                                 validarChkEsteroide()
@@ -451,7 +451,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline32"
+                                                            for="defaultInline36"
                                                             >Esteroides</label
                                                         >
                                                     </div>
@@ -464,7 +464,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline33"
+                                                            id="defaultInline37"
                                                             value="1"
                                                             @click="
                                                                 validarChkAines()
@@ -473,7 +473,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline33"
+                                                            for="defaultInline37"
                                                             >AINES</label
                                                         >
                                                     </div>
@@ -486,7 +486,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline34"
+                                                            id="defaultInline38"
                                                             value="1"
                                                             @click="
                                                                 validarChkIeca()
@@ -495,7 +495,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline34"
+                                                            for="defaultInline38"
                                                             >IECA</label
                                                         >
                                                     </div>
@@ -508,7 +508,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline35"
+                                                            id="defaultInline39"
                                                             value="1"
                                                             @click="
                                                                 validarChkInetropico()
@@ -519,7 +519,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline35"
+                                                            for="defaultInline39"
                                                             >Inetrópicos</label
                                                         >
                                                     </div>
@@ -532,7 +532,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline36"
+                                                            id="defaultInline40"
                                                             value="1"
                                                             @click="
                                                                 validarChkAntiH2()
@@ -543,7 +543,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline36"
+                                                            for="defaultInline40"
                                                             >AntiH2</label
                                                         >
                                                     </div>
@@ -556,14 +556,14 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline37"
+                                                            id="defaultInline41"
                                                             value="1"
                                                             @click="validarChkAsa()"
                                                             v-model="chk.chk_asa"
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline37"
+                                                            for="defaultInline41"
                                                             >ASA</label
                                                         >
                                                     </div>
@@ -576,7 +576,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline38"
+                                                            id="defaultInline42"
                                                             value="1"
                                                             @click="
                                                                 validarChkAntibiotico()
@@ -587,7 +587,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline38"
+                                                            for="defaultInline42"
                                                             >Antibióticos</label
                                                         >
                                                     </div>
@@ -600,7 +600,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline39"
+                                                            id="defaultInline43"
                                                             value="1"
                                                             @click="
                                                                 validarChkBetabloqueador()
@@ -611,7 +611,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline39"
+                                                            for="defaultInline43"
                                                             >Betabloqueadores</label
                                                         >
                                                     </div>
@@ -624,7 +624,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline40"
+                                                            id="defaultInline44"
                                                             value="1"
                                                             @click="
                                                                 validarChkDiuretico()
@@ -635,7 +635,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline40"
+                                                            for="defaultInline44"
                                                             >Diuréticos</label
                                                         >
                                                     </div>
@@ -648,7 +648,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline41"
+                                                            id="defaultInline45"
                                                             value="1"
                                                             @click="
                                                                 validarChkAnticoagulante()
@@ -659,7 +659,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline41"
+                                                            for="defaultInline45"
                                                             >Anticoagulantes</label
                                                         >
                                                     </div>
@@ -672,7 +672,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline42"
+                                                            id="defaultInline46"
                                                             value="1"
                                                             @click="
                                                                 validarChkCalcioantagonista()
@@ -683,7 +683,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline42"
+                                                            for="defaultInline46"
                                                             >Calcioantagonistas</label
                                                         >
                                                     </div>
@@ -696,7 +696,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline43"
+                                                            id="defaultInline47"
                                                             value="1"
                                                             @click="
                                                                 validarChkAcos()
@@ -705,7 +705,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline43"
+                                                            for="defaultInline47"
                                                             >ACOS</label
                                                         >
                                                     </div>
@@ -718,7 +718,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline44"
+                                                            id="defaultInline48"
                                                             value="1"
                                                             @click="
                                                                 validarChkAnticolinesterasico()
@@ -729,7 +729,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline44"
+                                                            for="defaultInline48"
                                                             >Anticolinesterásico</label
                                                         >
                                                     </div>
@@ -744,7 +744,7 @@
                                                                 <input
                                                                     type="checkbox"
                                                                     class="custom-control-input"
-                                                                    id="defaultInline45"
+                                                                    id="defaultInline49"
                                                                     value="1"
                                                                     @click="
                                                                         validarChkOtrasDroga()
@@ -755,7 +755,7 @@
                                                                 />
                                                                 <label
                                                                     class="custom-control-label"
-                                                                    for="defaultInline45"
+                                                                    for="defaultInline49"
                                                                     >Otros</label
                                                                 >
                                                             </div>

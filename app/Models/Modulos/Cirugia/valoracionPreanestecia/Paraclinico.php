@@ -55,6 +55,6 @@ class Paraclinico extends Model
 
     public function tipoSangre()
     {
-        return $this->hasOne('App\GestionHospitalaria\AdministracionDeFarmacia\ProductosDetalle', 'PRODUCTO_DETALLE_COD', 'PRODUCTO_DETALLE_COD');
+        return $this->hasOne('App\Models\Modulos\Parametrizacion\TipoSangre\TipoSangre', 'codigo', 'id_tipo_sangre');
     }
 }

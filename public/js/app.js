@@ -4201,6 +4201,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             _this.indice_hora += 1; // Si la hora se ha completado, se agrega otro objeto de horas al arreglo de datos
 
             _this.agregarHora();
+
+            var validar5 = false;
+            var multiplo5 = _this.indice_hora % 5;
+
+            if (multiplo5 == 0) {
+              validar5 = true;
+            }
+
+            if (validar5) {
+              validar5 = false; //llamar metodo del controlador y despues actualzizar la variable del ID de registro anestesico
+            }
           }
         } else {
           _this.minutes += 1;
@@ -4576,7 +4587,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
-     * Agrega datos
+     * Agrega datos a la rejilla
      */
     agregarDatos: function agregarDatos(campo) {
       // console.log(campo);
@@ -11464,7 +11475,8 @@ __webpack_require__.r(__webpack_exports__);
           that.form.frm_tpt = +response.data.paraclinico.tpt;
           that.chk.chk_mg = +response.data.paraclinico.mg;
           that.form.frm_mg = +response.data.paraclinico.mg;
-          that.form.frm_id_tipo_sangre = +response.data.paraclinico.id_tipo_sangre;
+          that.form.frm_id_tipo_sangre = +response.data.paraclinico.tipo_sangre.codigo;
+          that.selectedTipoSangre = response.data.paraclinico.tipo_sangre.descripcion;
           /* Gineco-Obstétricos */
 
           that.form.frm_ekg = response.data.paraclinico.ekg;
@@ -65392,7 +65404,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline24",
+                                    id: "defaultInline28",
                                     value: "1"
                                   },
                                   domProps: {
@@ -65441,7 +65453,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline24" }
+                                    attrs: { for: "defaultInline28" }
                                   },
                                   [_vm._v("Quirúrgico")]
                                 )
@@ -65470,7 +65482,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline25"
+                                    id: "defaultInline29"
                                   },
                                   domProps: {
                                     checked: Array.isArray(
@@ -65519,7 +65531,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline25" }
+                                    attrs: { for: "defaultInline29" }
                                   },
                                   [_vm._v("Traumático")]
                                 )
@@ -65674,7 +65686,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline26",
+                                    id: "defaultInline30",
                                     value: "1"
                                   },
                                   domProps: {
@@ -65721,7 +65733,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline26" }
+                                    attrs: { for: "defaultInline30" }
                                   },
                                   [_vm._v("Alergias")]
                                 )
@@ -65754,7 +65766,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline27",
+                                    id: "defaultInline31",
                                     value: "1"
                                   },
                                   domProps: {
@@ -65801,7 +65813,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline27" }
+                                    attrs: { for: "defaultInline31" }
                                   },
                                   [_vm._v("Tabaco")]
                                 )
@@ -65830,7 +65842,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline28",
+                                    id: "defaultInline32",
                                     value: "1"
                                   },
                                   domProps: {
@@ -65877,7 +65889,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline28" }
+                                    attrs: { for: "defaultInline32" }
                                   },
                                   [_vm._v("Cocaina")]
                                 )
@@ -65906,7 +65918,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline29",
+                                    id: "defaultInline33",
                                     value: "1"
                                   },
                                   domProps: {
@@ -65955,7 +65967,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline29" }
+                                    attrs: { for: "defaultInline33" }
                                   },
                                   [_vm._v("Marihuana")]
                                 )
@@ -65986,7 +65998,7 @@ var render = function() {
                                       staticClass: "custom-control-input",
                                       attrs: {
                                         type: "checkbox",
-                                        id: "defaultInline30",
+                                        id: "defaultInline34",
                                         value: "1"
                                       },
                                       domProps: {
@@ -66042,7 +66054,7 @@ var render = function() {
                                       "label",
                                       {
                                         staticClass: "custom-control-label",
-                                        attrs: { for: "defaultInline30" }
+                                        attrs: { for: "defaultInline34" }
                                       },
                                       [_vm._v("Otros")]
                                     )
@@ -66321,7 +66333,7 @@ var render = function() {
                                       staticClass: "custom-control-input",
                                       attrs: {
                                         type: "checkbox",
-                                        id: "defaultInline31",
+                                        id: "defaultInline35",
                                         value: "1"
                                       },
                                       domProps: {
@@ -66375,7 +66387,7 @@ var render = function() {
                                       "label",
                                       {
                                         staticClass: "custom-control-label",
-                                        attrs: { for: "defaultInline31" }
+                                        attrs: { for: "defaultInline35" }
                                       },
                                       [_vm._v("Familiares")]
                                     )
@@ -66456,7 +66468,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline32",
+                                    id: "defaultInline36",
                                     value: "1"
                                   },
                                   domProps: {
@@ -66505,7 +66517,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline32" }
+                                    attrs: { for: "defaultInline36" }
                                   },
                                   [_vm._v("Esteroides")]
                                 )
@@ -66533,7 +66545,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline33",
+                                    id: "defaultInline37",
                                     value: "1"
                                   },
                                   domProps: {
@@ -66580,7 +66592,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline33" }
+                                    attrs: { for: "defaultInline37" }
                                   },
                                   [_vm._v("AINES")]
                                 )
@@ -66608,7 +66620,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline34",
+                                    id: "defaultInline38",
                                     value: "1"
                                   },
                                   domProps: {
@@ -66655,7 +66667,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline34" }
+                                    attrs: { for: "defaultInline38" }
                                   },
                                   [_vm._v("IECA")]
                                 )
@@ -66684,7 +66696,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline35",
+                                    id: "defaultInline39",
                                     value: "1"
                                   },
                                   domProps: {
@@ -66733,7 +66745,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline35" }
+                                    attrs: { for: "defaultInline39" }
                                   },
                                   [_vm._v("Inetrópicos")]
                                 )
@@ -66762,7 +66774,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline36",
+                                    id: "defaultInline40",
                                     value: "1"
                                   },
                                   domProps: {
@@ -66809,7 +66821,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline36" }
+                                    attrs: { for: "defaultInline40" }
                                   },
                                   [_vm._v("AntiH2")]
                                 )
@@ -66837,7 +66849,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline37",
+                                    id: "defaultInline41",
                                     value: "1"
                                   },
                                   domProps: {
@@ -66884,7 +66896,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline37" }
+                                    attrs: { for: "defaultInline41" }
                                   },
                                   [_vm._v("ASA")]
                                 )
@@ -66913,7 +66925,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline38",
+                                    id: "defaultInline42",
                                     value: "1"
                                   },
                                   domProps: {
@@ -66967,7 +66979,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline38" }
+                                    attrs: { for: "defaultInline42" }
                                   },
                                   [_vm._v("Antibióticos")]
                                 )
@@ -66996,7 +67008,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline39",
+                                    id: "defaultInline43",
                                     value: "1"
                                   },
                                   domProps: {
@@ -67052,7 +67064,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline39" }
+                                    attrs: { for: "defaultInline43" }
                                   },
                                   [_vm._v("Betabloqueadores")]
                                 )
@@ -67081,7 +67093,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline40",
+                                    id: "defaultInline44",
                                     value: "1"
                                   },
                                   domProps: {
@@ -67130,7 +67142,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline40" }
+                                    attrs: { for: "defaultInline44" }
                                   },
                                   [_vm._v("Diuréticos")]
                                 )
@@ -67159,7 +67171,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline41",
+                                    id: "defaultInline45",
                                     value: "1"
                                   },
                                   domProps: {
@@ -67215,7 +67227,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline41" }
+                                    attrs: { for: "defaultInline45" }
                                   },
                                   [_vm._v("Anticoagulantes")]
                                 )
@@ -67244,7 +67256,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline42",
+                                    id: "defaultInline46",
                                     value: "1"
                                   },
                                   domProps: {
@@ -67300,7 +67312,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline42" }
+                                    attrs: { for: "defaultInline46" }
                                   },
                                   [_vm._v("Calcioantagonistas")]
                                 )
@@ -67328,7 +67340,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline43",
+                                    id: "defaultInline47",
                                     value: "1"
                                   },
                                   domProps: {
@@ -67375,7 +67387,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline43" }
+                                    attrs: { for: "defaultInline47" }
                                   },
                                   [_vm._v("ACOS")]
                                 )
@@ -67404,7 +67416,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline44",
+                                    id: "defaultInline48",
                                     value: "1"
                                   },
                                   domProps: {
@@ -67460,7 +67472,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline44" }
+                                    attrs: { for: "defaultInline48" }
                                   },
                                   [_vm._v("Anticolinesterásico")]
                                 )
@@ -67491,7 +67503,7 @@ var render = function() {
                                       staticClass: "custom-control-input",
                                       attrs: {
                                         type: "checkbox",
-                                        id: "defaultInline45",
+                                        id: "defaultInline49",
                                         value: "1"
                                       },
                                       domProps: {
@@ -67547,7 +67559,7 @@ var render = function() {
                                       "label",
                                       {
                                         staticClass: "custom-control-label",
-                                        attrs: { for: "defaultInline45" }
+                                        attrs: { for: "defaultInline49" }
                                       },
                                       [_vm._v("Otros")]
                                     )
@@ -67988,7 +68000,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline46",
+                                    id: "defaultInline50",
                                     value: "1"
                                   },
                                   domProps: {
@@ -68042,7 +68054,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline46" }
+                                    attrs: { for: "defaultInline50" }
                                   },
                                   [_vm._v("Cuello Corto")]
                                 )
@@ -68290,7 +68302,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline47",
+                                    id: "defaultInline51",
                                     value: "1"
                                   },
                                   domProps: {
@@ -68337,7 +68349,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline47" }
+                                    attrs: { for: "defaultInline51" }
                                   },
                                   [
                                     _vm._v(
@@ -68369,7 +68381,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline48",
+                                    id: "defaultInline52",
                                     value: "1"
                                   },
                                   domProps: {
@@ -68416,7 +68428,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline48" }
+                                    attrs: { for: "defaultInline52" }
                                   },
                                   [
                                     _vm._v(
@@ -68448,7 +68460,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline49",
+                                    id: "defaultInline53",
                                     value: "1"
                                   },
                                   domProps: {
@@ -68495,7 +68507,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline49" }
+                                    attrs: { for: "defaultInline53" }
                                   },
                                   [
                                     _vm._v(
@@ -68527,7 +68539,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline50",
+                                    id: "defaultInline54",
                                     value: "1"
                                   },
                                   domProps: {
@@ -68574,7 +68586,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline50" }
+                                    attrs: { for: "defaultInline54" }
                                   },
                                   [
                                     _vm._v(
@@ -68607,7 +68619,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline51",
+                                    id: "defaultInline55",
                                     value: "1"
                                   },
                                   domProps: {
@@ -68664,7 +68676,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline51" }
+                                    attrs: { for: "defaultInline55" }
                                   },
                                   [
                                     _vm._v(
@@ -68874,7 +68886,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline52",
+                                    id: "defaultInline56",
                                     value: "1"
                                   },
                                   domProps: {
@@ -68921,7 +68933,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline52" }
+                                    attrs: { for: "defaultInline56" }
                                   },
                                   [_vm._v("Edéntulo")]
                                 )
@@ -68950,7 +68962,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline53",
+                                    id: "defaultInline57",
                                     value: "1"
                                   },
                                   domProps: {
@@ -68997,7 +69009,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline53" }
+                                    attrs: { for: "defaultInline57" }
                                   },
                                   [_vm._v("Prótesis")]
                                 )
@@ -69456,7 +69468,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline54",
+                                    id: "defaultInline58",
                                     value: "1"
                                   },
                                   domProps: {
@@ -69503,7 +69515,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline54" }
+                                    attrs: { for: "defaultInline58" }
                                   },
                                   [_vm._v("Hb")]
                                 )
@@ -69532,7 +69544,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline55",
+                                    id: "defaultInline59",
                                     value: "1"
                                   },
                                   domProps: {
@@ -69579,7 +69591,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline55" }
+                                    attrs: { for: "defaultInline59" }
                                   },
                                   [_vm._v("Hcto")]
                                 )
@@ -69608,7 +69620,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline56",
+                                    id: "defaultInline60",
                                     value: "1"
                                   },
                                   domProps: {
@@ -69657,7 +69669,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline56" }
+                                    attrs: { for: "defaultInline60" }
                                   },
                                   [_vm._v("Leucocitos")]
                                 )
@@ -69685,7 +69697,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline57",
+                                    id: "defaultInline61",
                                     value: "1"
                                   },
                                   domProps: {
@@ -69732,7 +69744,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline57" }
+                                    attrs: { for: "defaultInline61" }
                                   },
                                   [_vm._v("Na")]
                                 )
@@ -69760,7 +69772,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline58",
+                                    id: "defaultInline62",
                                     value: "1"
                                   },
                                   domProps: {
@@ -69807,7 +69819,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline58" }
+                                    attrs: { for: "defaultInline62" }
                                   },
                                   [_vm._v("CI")]
                                 )
@@ -69835,7 +69847,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline59",
+                                    id: "defaultInline63",
                                     value: "1"
                                   },
                                   domProps: {
@@ -69882,7 +69894,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline59" }
+                                    attrs: { for: "defaultInline63" }
                                   },
                                   [_vm._v("K")]
                                 )
@@ -69910,7 +69922,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline60",
+                                    id: "defaultInline64",
                                     value: "1"
                                   },
                                   domProps: {
@@ -69957,7 +69969,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline60" }
+                                    attrs: { for: "defaultInline64" }
                                   },
                                   [_vm._v("Ca")]
                                 )
@@ -69986,7 +69998,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline61",
+                                    id: "defaultInline65",
                                     value: "1"
                                   },
                                   domProps: {
@@ -70033,7 +70045,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline61" }
+                                    attrs: { for: "defaultInline65" }
                                   },
                                   [_vm._v("BUN")]
                                 )
@@ -70062,7 +70074,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline62",
+                                    id: "defaultInline66",
                                     value: "1"
                                   },
                                   domProps: {
@@ -70109,7 +70121,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline62" }
+                                    attrs: { for: "defaultInline66" }
                                   },
                                   [_vm._v("Creati")]
                                 )
@@ -70138,7 +70150,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline63",
+                                    id: "defaultInline67",
                                     value: "1"
                                   },
                                   domProps: {
@@ -70185,7 +70197,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline63" }
+                                    attrs: { for: "defaultInline67" }
                                   },
                                   [_vm._v("Glicemia")]
                                 )
@@ -70214,7 +70226,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline64",
+                                    id: "defaultInline68",
                                     value: "1"
                                   },
                                   domProps: {
@@ -70261,7 +70273,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline64" }
+                                    attrs: { for: "defaultInline68" }
                                   },
                                   [_vm._v("Plaquetas")]
                                 )
@@ -70289,7 +70301,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline65",
+                                    id: "defaultInline69",
                                     value: "1"
                                   },
                                   domProps: {
@@ -70336,7 +70348,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline65" }
+                                    attrs: { for: "defaultInline69" }
                                   },
                                   [_vm._v("T.P.")]
                                 )
@@ -70365,7 +70377,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline66",
+                                    id: "defaultInline70",
                                     value: "1"
                                   },
                                   domProps: {
@@ -70412,7 +70424,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline66" }
+                                    attrs: { for: "defaultInline70" }
                                   },
                                   [_vm._v("T.P.T")]
                                 )
@@ -70443,7 +70455,7 @@ var render = function() {
                                       staticClass: "custom-control-input",
                                       attrs: {
                                         type: "checkbox",
-                                        id: "defaultInline67",
+                                        id: "defaultInline71",
                                         value: "1"
                                       },
                                       domProps: {
@@ -70490,7 +70502,7 @@ var render = function() {
                                       "label",
                                       {
                                         staticClass: "custom-control-label",
-                                        attrs: { for: "defaultInline67" }
+                                        attrs: { for: "defaultInline71" }
                                       },
                                       [_vm._v("Mg")]
                                     )
@@ -70709,7 +70721,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline68",
+                                    id: "defaultInline72",
                                     value: "1"
                                   },
                                   domProps: {
@@ -70756,7 +70768,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline68" }
+                                    attrs: { for: "defaultInline72" }
                                   },
                                   [
                                     _vm._v(
@@ -70789,7 +70801,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline69",
+                                    id: "defaultInline73",
                                     value: "1"
                                   },
                                   domProps: {
@@ -70836,7 +70848,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline69" }
+                                    attrs: { for: "defaultInline73" }
                                   },
                                   [
                                     _vm._v(
@@ -70869,7 +70881,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline70",
+                                    id: "defaultInline74",
                                     value: "1"
                                   },
                                   domProps: {
@@ -70916,7 +70928,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline70" }
+                                    attrs: { for: "defaultInline74" }
                                   },
                                   [
                                     _vm._v(
@@ -70949,7 +70961,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline71",
+                                    id: "defaultInline75",
                                     value: "1"
                                   },
                                   domProps: {
@@ -70996,7 +71008,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline71" }
+                                    attrs: { for: "defaultInline75" }
                                   },
                                   [
                                     _vm._v(
@@ -71029,7 +71041,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline72",
+                                    id: "defaultInline76",
                                     value: "1"
                                   },
                                   domProps: {
@@ -71076,7 +71088,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline72" }
+                                    attrs: { for: "defaultInline76" }
                                   },
                                   [
                                     _vm._v(
@@ -71108,7 +71120,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline73",
+                                    id: "defaultInline77",
                                     value: "1"
                                   },
                                   domProps: {
@@ -71155,7 +71167,7 @@ var render = function() {
                                   "label",
                                   {
                                     staticClass: "custom-control-label",
-                                    attrs: { for: "defaultInline73" }
+                                    attrs: { for: "defaultInline77" }
                                   },
                                   [
                                     _vm._v(
@@ -71195,7 +71207,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline74",
+                                    id: "defaultInline78",
                                     value: "1"
                                   },
                                   domProps: {
@@ -71245,7 +71257,7 @@ var render = function() {
                                   {
                                     staticClass: "custom-control-label",
                                     staticStyle: { "font-weight": "normal" },
-                                    attrs: { for: "defaultInline74" }
+                                    attrs: { for: "defaultInline78" }
                                   },
                                   [
                                     _vm._v(
@@ -71280,7 +71292,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline75",
+                                    id: "defaultInline79",
                                     value: "1"
                                   },
                                   domProps: {
@@ -71330,7 +71342,7 @@ var render = function() {
                                   {
                                     staticClass: "custom-control-label",
                                     staticStyle: { "font-weight": "normal" },
-                                    attrs: { for: "defaultInline75" }
+                                    attrs: { for: "defaultInline79" }
                                   },
                                   [
                                     _vm._v(
@@ -71365,7 +71377,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline76",
+                                    id: "defaultInline80",
                                     value: "1"
                                   },
                                   domProps: {
@@ -71415,7 +71427,7 @@ var render = function() {
                                   {
                                     staticClass: "custom-control-label",
                                     staticStyle: { "font-weight": "normal" },
-                                    attrs: { for: "defaultInline76" }
+                                    attrs: { for: "defaultInline80" }
                                   },
                                   [
                                     _vm._v(
@@ -71450,7 +71462,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline77",
+                                    id: "defaultInline81",
                                     value: "1"
                                   },
                                   domProps: {
@@ -71500,7 +71512,7 @@ var render = function() {
                                   {
                                     staticClass: "custom-control-label",
                                     staticStyle: { "font-weight": "normal" },
-                                    attrs: { for: "defaultInline77" }
+                                    attrs: { for: "defaultInline81" }
                                   },
                                   [
                                     _vm._v(
@@ -71535,7 +71547,7 @@ var render = function() {
                                   staticClass: "custom-control-input",
                                   attrs: {
                                     type: "checkbox",
-                                    id: "defaultInline78",
+                                    id: "defaultInline82",
                                     value: "1"
                                   },
                                   domProps: {
@@ -71585,7 +71597,7 @@ var render = function() {
                                   {
                                     staticClass: "custom-control-label",
                                     staticStyle: { "font-weight": "normal" },
-                                    attrs: { for: "defaultInline78" }
+                                    attrs: { for: "defaultInline82" }
                                   },
                                   [
                                     _vm._v(

@@ -2158,6 +2158,18 @@ export default {
                         this.indice_hora += 1;
                         // Si la hora se ha completado, se agrega otro objeto de horas al arreglo de datos
                         this.agregarHora();
+
+                        let validar5 = false;
+                        let multiplo5 = this.indice_hora % 5;
+
+                        if(multiplo5 == 0){
+                            validar5 = true;
+                        }
+
+                        if(validar5){
+                            validar5 = false;
+                            //llamar metodo del controlador y despues actualzizar la variable del ID de registro anestesico
+                        }
                     }
                 } else {
                     this.minutes += 1;
@@ -2507,7 +2519,7 @@ export default {
         },
 
         /**
-         * Agrega datos
+         * Agrega datos a la rejilla
          */
         agregarDatos: function(campo) {
             // console.log(campo);
