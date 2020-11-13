@@ -105,16 +105,23 @@
             src="{{ public_path('img/logoreport1.png') }}" border="0" width="105px" height="77px"></div>
     <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:1px;left:630px;width:92px;height:94px;"><img
             src="{{ public_path('img/oms.png') }}" border="0" width="92px" height="94px"></div>
+      {{-- inicio recorrido       --}}
+       
+          
+      @foreach ($datosPaciente as $item)
+          
+      
+
     <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:33px;left:124px;width:511px;height:16px;">
         <table width="511px" border="0" cellpadding="0" cellspacing="0">
             <td align="left"><span class="fc1id6vxwv5zds-0">Nombre del Paciente :
-                    ..............................................................................................................................</span>
+            {{ $item->CirProNomPac }}</span>
             </td>
         </table>
     </div>
     <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:62px;left:126px;width:168px;height:16px;">
         <table width="168px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id6vxwv5zds-0">No. de Historia Clinica:...............</span></td>
+            <td align="left"><span class="fc1id6vxwv5zds-0">No. de Historia Clinica: {{ $item->historiac }}</span></td>
         </table>
     </div>
     <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:62px;left:296px;width:77px;height:16px;">
@@ -124,20 +131,20 @@
     </div>
     <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:61px;left:377px;width:124px;height:16px;">
         <table width="124px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id6vxwv5zds-0">No.Quirofano:...............</span></td>
+            <td align="left"><span class="fc1id6vxwv5zds-0">No.Quirofano: {{ $item->CirProQuirofano }}</span></td>
         </table>
     </div>
     <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:61px;left:507px;width:124px;height:16px;">
         <table width="124px" border="0" cellpadding="0" cellspacing="0">
             <tr>
-                <td align="left"><span class="fc1id6vxwv5zds-0">Fecha:..............................</span></td>
+                <td align="left"><span class="fc1id6vxwv5zds-0">Fecha: {{ $item->created_at }}<span></td>
             </tr>
         </table>
     </div>
     <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:81px;left:128px;width:511px;height:16px;">
         <table width="511px" border="0" cellpadding="0" cellspacing="0">
             <tr>
-                <td align="left"><span class="fc1id6vxwv5zds-0">Procedimiento:</span>
+                <td align="left"><span class="fc1id6vxwv5zds-0">Procedimiento: {{ $item->CirProProcedimiento }}</span>
                 </td>
             </tr>
         </table>
@@ -164,21 +171,20 @@
         <table width="18px" border="0" cellpadding="0" cellspacing="0">
             <tbody>
                 <tr>
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
+                    @if ( $item->chkentrada01==NULL)
+                    <td align="center"><span class="fc1id6vxwv5zds-1"> </span></td> 
+                    @else
+                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td> 
+                    @endif
+
+                    
+
                 </tr>
             </tbody>
         </table>
     </div>
-    {{-- chec 1 --}}
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:141px;left:3px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    {
+   
     <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:144px;left:35px;width:235px;height:16px;">
         <div style="top:10PX;margin-top:-7px;width:100%;">
             <table width="235px" border="0" cellpadding="0" cellspacing="0">
@@ -227,11 +233,20 @@
             </tbody>
         </table>
     </div>
+    {{-- chec 2 --}}
     <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:246px;left:1px;width:28px;height:21px;">
         <table width="18px" border="0" cellpadding="0" cellspacing="0">
             <tbody>
+                
                 <tr>
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
+
+                    @if ( $item->chkentrada02==NULL)
+                    <td align="center"><span class="fc1id6vxwv5zds-1"> </span></td> 
+                    @else
+                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td> 
+                    @endif
+
+                    
                 </tr>
             </tbody>
         </table>
@@ -275,7 +290,13 @@
         <table width="18px" border="0" cellpadding="0" cellspacing="0">
             <tbody>
                 <tr>
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
+                    @if ( $item->chkentrada03==NULL)
+                    <td align="center"><span class="fc1id6vxwv5zds-1"> </span></td> 
+                    @else
+                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td> 
+                    @endif
+
+                    
                 </tr>
             </tbody>
         </table>
@@ -285,7 +306,7 @@
         <table width="18px" border="0" cellpadding="0" cellspacing="0">
             <tbody>
                 <tr>
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
+                    <td align="center"><span class="fc1id6vxwv5zds-1">0</span></td>
                 </tr>
             </tbody>
         </table>
@@ -943,7 +964,7 @@
             </table>
         </div>
     </div>
-
+    @endforeach
 </body>
 
 

@@ -4002,7 +4002,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       tabla_datos_grafica: [],
       // Datos de grados, estáticos
       datos_grados: [40, 38, 36, 34, 32, 30, 28, 26],
-      // Control de la rejilla, cada objeto tiene X filas, cada fila tiene un arreglo de 4 objetos (representan la hora separada en partes por 15 minutos de la hora)[adicional, cada objeto de 15 min tiene los datos de la posición de paciente], cada objeto de 15 minutos tiene su arreglo que representa sus 15 minutos separados en 5 minutos, cada objeto de 5  minutos tiene los valores de los agentes
+      // Control de la rejilla, cada objeto tiene X filas, cada fila tiene un arreglo de 4 objetos 
+      //(representan la hora separada en partes por 15 minutos de la hora)[adicional, 
+      //cada objeto de 15 min tiene los datos de la posición de paciente], cada objeto de 15 
+      //minutos tiene su arreglo que representa sus 15 minutos separados en 5 minutos, 
+      //cada objeto de 5  minutos tiene los valores de los agentes
       lista_horas_avanzadas_v: [],
       // DATOS numéricos para los valores de la anestesia
       valoresAnestecia_v: [{
@@ -4075,7 +4079,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         inicio: 0,
         fin: 10
       }],
-      // índice que indica donde empieza el registro de los agentes ya que hay filas extras antes de cada ítem del agente
+      // índice que indica donde empieza el registro de los agentes ya que hay filas 
+      //extras antes de cada ítem del agente
       index_points: 5,
       counter: 0,
       // El proceso se ha iniciado
@@ -4198,7 +4203,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           _this.minutes = 0;
 
           if (_this.iniciado) {
-            _this.indice_hora += 1; // Si la hora se ha completado, se agrega otro objeto de horas al arreglo de datos
+            _this.indice_hora += 1; // Si la hora se ha completado, se agrega otro objeto de horas al 
+            //arreglo de datos
 
             _this.agregarHora();
           }
