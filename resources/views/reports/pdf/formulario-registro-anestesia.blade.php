@@ -85,15 +85,15 @@
 
         /* Me une los bordes de la tabla */
         .tableStyleCollapse {
-            width: 100%;
             border-collapse: collapse;
         }
 
         /* Me pinta los bordes al td y th */
-        .tableBorderAll td,
-        th {
+        .tableBorderAll td {
             border: 1px solid #000000;
         }
+
+
     </style>
     <!-- Icono de la Pestaña -->
     <link rel="shortcut icon" href="{{public_path('img/icono.png') }}">
@@ -225,8 +225,12 @@
         </table>
     </div>
 
+    <div>
+        {!!obtenerDatoGraficaRegistroAnestesia()!!}
+    </div>
+
     <!-- Cardiovasculares -->
-    <div class="tableBorderAll" style="top:160px;border: #000000 1px solid;">
+    <!-- <div class="tableBorderAll" style="top:300px;border: #000000 1px solid;">
         <table class="tableStyleCollapse">
             <tr>
                 <td colspan=6>DROGAS ADMINISTRATIVA</td>
@@ -278,7 +282,7 @@
                 <td>x</td>
             </tr>
         </table>
-    </div>
+    </div> -->
 
 
 </body>
