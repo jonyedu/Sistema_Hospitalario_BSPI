@@ -1925,35 +1925,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    columnsData: {
-      type: Object
-    }
-  },
   data: function data() {
     return {
-      tipoPersonal: ""
+      user: {}
     };
   },
-  mounted: function mounted() {//getTipoPersonal();
+  mounted: function mounted() {
+    this.user = this.$attrs.user;
   },
-  methods: {
-    getTipoPersonal: function getTipoPersonal() {
-      var that = this;
-      var url = "/gestion_hospitalaria/personalMedico/verTipoPersonalMedico";
-      axios.get(url).then(function (response) {
-        that.tipoPersonal = response.data.tipoMedico;
-      })["catch"](function (error) {
-        //Errores
-        loader.hide();
-        that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
-        });
-      });
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -3789,6 +3769,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
     }
   },
   data: function data() {
@@ -4184,6 +4167,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    consultarSello: function consultarSello() {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/cirugia/anestesia/cargar_sello/" + that.$props.user.codigo_usu;
+      axios.get(url).then(function (response) {
+        alert(response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO);
+        that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+        loader.hide();
+      });
+    },
     getNewIdRegistroAnestesia: function getNewIdRegistroAnestesia() {
       if (this.iniciado) return;
       this.iniciado = true;
@@ -4309,15 +4310,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.abrupt("return");
 
               case 2:
-                this.iniciado = true; //Guardar datos en la tabla tb_registro_anestesia
+                this.iniciado = true;
+                this.consultarSello(); //Guardar datos en la tabla tb_registro_anestesia
 
                 url = "/modulos/cirugia/anestesia/registro/post";
-                _context2.next = 6;
+                _context2.next = 7;
                 return axios.post(url, this.form).then(function (response) {
                   _this6.form.registro_anestesia_id = response.data.id;
                 });
 
-              case 6:
+              case 7:
                 $id = _context2.sent;
                 //Guardar datos en la tabla tb_tipo_agente_anestesia
                 // let urlTip = "/modulos/cirugia/anestesia/registro_tipo_agente/post";
@@ -4330,7 +4332,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   tipo: this.system_agente
                 });
 
-              case 8:
+              case 9:
               case "end":
                 return _context2.stop();
             }
@@ -5007,6 +5009,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
   data: function data() {
     return {
       prefijo: "",
@@ -5027,6 +5034,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    /*  var user = this.$attrs;
+     console.log(user); */
+
     /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
     let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
         .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
@@ -56456,7 +56466,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("router-view")
+  return _c("router-view", { attrs: { user: _vm.user } })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -61884,6 +61894,7 @@ var render = function() {
                         ? [
                             _c("registro-anestesico", {
                               attrs: {
+                                user: _vm.user,
                                 "id-sec-cir-pro":
                                   _vm.form.frm_idCirugiaProgramada
                               },

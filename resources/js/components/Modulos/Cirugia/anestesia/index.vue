@@ -134,7 +134,7 @@
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <template v-if="form.frm_idCirugiaProgramada != null">
-                                <registro-anestesico @RespuestaImprimir="respuestaImprimir= $event" :id-sec-cir-pro="form.frm_idCirugiaProgramada"></registro-anestesico>
+                                <registro-anestesico :user="user" @RespuestaImprimir="respuestaImprimir= $event" :id-sec-cir-pro="form.frm_idCirugiaProgramada"></registro-anestesico>
                                 <!-- <div> -->
 
                                 <!-- </div> -->
@@ -165,7 +165,11 @@
 <script>
 import { prefix } from "../../../../variables";
 export default {
-
+    props: {
+        user: {
+            type: Object
+        },
+    },
     data: function() {
         return {
             prefijo: "",
@@ -186,6 +190,8 @@ export default {
         };
     },
     mounted: function() {
+       /*  var user = this.$attrs;
+        console.log(user); */
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
         let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
             .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Modulos\Cirugia\RegistroAnestesico;
 use App\Http\Controllers\Controller;
 use App\Models\Modulos\Cirugia\RegistroAnestesico\RegistroAnestesia;
 use App\Models\Modulos\Cirugia\valoracionPreanestecia\RevisionSistema;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,18 @@ use DateTime;
 
 class RegistroAnestesiaController extends Controller
 {
+    public function cargarSello($codigo_usu)
+    {
+        try {
+            $sello = User::where('codigo_usu', $codigo_usu)
+                ->with('seguridadMedico.medico.medicoSellos')
+                ->first();
+            return  response()->json(['sello' => $sello], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+
     public function store(Request $request)
     {
         $user = Auth::user();
@@ -34,8 +47,7 @@ class RegistroAnestesiaController extends Controller
                     'usu_created_update' => $user->id,
                 ]
             );
-        }else{
-
+        } else {
         }
         $registroAnestesico = RegistroAnestesia::create(
             [

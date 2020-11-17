@@ -1807,7 +1807,10 @@ export default {
         idSecCirPro: {
             type: String,
             required: true
-        }
+        },
+        user: {
+            type: Object
+        },
     },
     data: function() {
         return {
@@ -2118,6 +2121,28 @@ export default {
             this.imgGrafica = await this.$html2canvas(la, optiones);
             this.iniciado = false;
         },
+        consultarSello() {
+            let that = this;
+            var loader = that.$loading.show();
+            let url =
+                "/modulos/cirugia/anestesia/cargar_sello/" + that.$props.user.codigo_usu;
+            axios
+                .get(url)
+                .then(function(response) {
+                    alert(response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO);
+                    that.rutaSello =  "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    });
+                    loader.hide();
+                });
+        },
         getNewIdRegistroAnestesia() {
             if (this.iniciado) return;
             this.iniciado = true;
@@ -2229,6 +2254,8 @@ export default {
         start_time: async function(event) {
             if (this.iniciado) return;
             this.iniciado = true;
+
+            this.consultarSello();
 
             //Guardar datos en la tabla tb_registro_anestesia
             let url = "/modulos/cirugia/anestesia/registro/post";

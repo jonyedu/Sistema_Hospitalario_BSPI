@@ -117,6 +117,19 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'imagenes_db_sql' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST_IMAGENES', 'localhost'),
+            //'port' => env('DB_PORT_IMAGENES', '1433'),
+            'database' => env('DB_DATABASE_IMAGENES', 'forge'),
+            'username' => env('DB_USERNAME_IMAGENES', 'forge'),
+            'password' => env('DB_PASSWORD_IMAGENES', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+
     ],
 
     /*

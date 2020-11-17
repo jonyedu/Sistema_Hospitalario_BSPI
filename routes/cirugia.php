@@ -64,6 +64,7 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::post('modifcar_registro_anestesia', 'RegistroAnestesiaController@modifcarRegistroAnestesia');
         Route::post('guardar_registro_infusiones', 'RegistroInfusionesController@guardarRegistroInfusiones');
         Route::get('cargar_pdf_formulario_registro_anestesia/{idSecCirPro}', 'RegistroAnestesiaController@cargarPdfFormularioRegistroAnestesia');
+        Route::get('cargar_sello/{codigo_usu}', 'RegistroAnestesiaController@cargarSello');
 
     });
 
@@ -89,8 +90,8 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
     Route::namespace('Modulos\Cirugia\ListaVerificacion')->prefix('lista_verificacion')->group(function () {
         Route::post('ListarValoracion','ListaValoracionController@create');
         Route::get('buscarpaciente/{id}','ListaValoracionController@show');
-        Route::get('mostrarreporte/{id}','ListaValoracionController@mostrarr'); 
-    
+        Route::get('mostrarreporte/{id}','ListaValoracionController@mostrarr');
+
         // Route::get('cargar_tipo_posiciones_table', 'TipoPosicionesController@cargarTipoPosicionesTabla');
         // Route::post('guardar_archivo_tipo_posiciones', 'TipoPosicionesController@guardarModificarArchivo');
         // Route::post('modificar_tipo_posiciones', 'TipoPosicionesController@modificarTipoPosiciones');
