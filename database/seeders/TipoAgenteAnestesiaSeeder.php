@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Modulos\Cirugia\TipoAgente\TipoAgente;
+use App\Models\Modulos\Cirugia\RegistroAnestesico\TipoAgenteAnestesia;
 use Illuminate\Database\Seeder;
 
 class TipoAgenteAnestesiaSeeder extends Seeder
@@ -14,14 +14,14 @@ class TipoAgenteAnestesiaSeeder extends Seeder
      */
     public function run()
     {
-        TipoAgente::create([
+        TipoAgenteAnestesia::create([
             'descripcion' => 'Agentes',
             'name_system' => 'agente',
             'usu_created_update' => '1',
             'pcip' => '0.0.0.0',
             'status' => '1'
         ]);
-        TipoAgente::create([
+        TipoAgenteAnestesia::create([
             'descripcion' => 'Posiciones',
             'name_system' => 'posicion',
             'usu_created_update' => '1',

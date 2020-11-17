@@ -11,6 +11,9 @@ import VueSweetalert2 from "vue-sweetalert2";
 import vSelect from "vue-select";
 import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import Paintable from 'vue-paintable';
+import VueHtml2Canvas from 'vue-html2canvas';
+import RegeneratorRuntime from "regenerator-runtime";
 import App from "./components/App";
 import { funcionesGlobales } from "./funciones.js";
 import swal from 'sweetalert2';
@@ -30,7 +33,22 @@ Vue.use(VueRouter);
 Vue.use(VueSweetalert2, options);
 Vue.use(VueGoodTablePlugin);
 Vue.use(VModal);
-Vue.use(VueFormWizard)
+Vue.use(VueFormWizard);
+Vue.use(VueHtml2Canvas);
+Vue.use(RegeneratorRuntime);
+Vue.use(Paintable, {
+    // optional methods
+    setItem(key, image) {
+      localStorage.setItem(key, image);
+    },
+    // you also can use async
+    getItem(key) {
+      return localStorage.getItem(key);
+    },
+    removeItem(key) {
+      localStorage.removeItem(key);
+    }
+});
 
 Vue.component("v-select", vSelect);
 
@@ -42,6 +60,16 @@ Vue.component(
 Vue.component(
     "vuetable-component",
     require("./components/componentesGenerales/VueTableComponent.vue").default
+);
+
+Vue.component(
+    "vue-painttable",
+    require("./components/componentesGenerales/VuePaintableComponent.vue").default
+);
+
+Vue.component(
+    "prueba",
+    require("./components/Prueba.vue").default
 );
 
 //Modulo de Parametrizacion

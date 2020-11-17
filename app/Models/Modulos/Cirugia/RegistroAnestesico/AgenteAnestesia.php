@@ -21,6 +21,7 @@ class AgenteAnestesia extends Model
         'id',
         'descripcion',
         'name_system',
+        'img_url',
         'tipo_id',
         'des_campo1',
         'des_campo2',
