@@ -87,6 +87,7 @@
                                 type="radio"
                                 name="respiracion_esp"
                                 id="respiracion_esp"
+                                value="ESP"
                                 v-model="
                                     valoresFormulario.respiracion.descripcion
                                 "
@@ -104,6 +105,7 @@
                                 type="radio"
                                 name="respiracion_asis"
                                 id="respiracion_asis"
+                                value="ASIS"
                                 v-model="
                                     valoresFormulario.respiracion.descripcion
                                 "
@@ -121,19 +123,39 @@
                                 type="radio"
                                 name="respiracion_cont"
                                 id="respiracion_cont"
+                                value="CONT"
                                 v-model="
                                     valoresFormulario.respiracion.descripcion
                                 "
                             />
                         </div>
                     </div>
+                    <!-- Valor -->
+                    <!-- <div class="row">
+                        <div class="col-md-12 flex flex-center-x pt-2 pb-4">
+                            <div class="row">
+                                <label for="ta_value" class="mr-2 col-12"
+                                    >Valor</label
+                                >
+                                <input
+                                    class="input-registro col-12 text-center"
+                                    type="text"
+                                    name="ta_value"
+                                    id="ta_value"
+                                    v-model="
+                                        valoresFormulario.respiracion.valor
+                                    "
+                                />
+                            </div>
+                        </div>
+                    </div> -->
                 </div>
                 <!-- TEMPERATURA -->
                 <div
                     class="col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
                 >
                     <label for="valor_temperatura" class="mr-2"
-                        >TEMPERATURA</label
+                        >TEMPERATURAx</label
                     >
                     <input
                         class="input-registro text-center"
@@ -226,300 +248,289 @@
             </div>
 
             <div v-if="iniciado">
-                <div ref="printMe">
-                    <div class="row border-t flex-center-x">
-                        <span class="">Registro anestésico</span>
-                    </div>
-                    <div class="border-t row">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 col-4">
-                                    <div
-                                        class="border-b row ml-2"
-                                        style="background: transparent"
-                                    >
-                                        AGENTE/HORA
-                                    </div>
-                                    <div
-                                        class="row he25 border-b border-r"
-                                        v-for="(text, index) of agentes_text"
-                                        :key="index"
-                                    >
-                                        <!-- Se crea varios input para Agente/Hora -->
-                                        <input
-                                            type="text"
-                                            v-model="
-                                                agentes_text[index].descripcion
-                                            "
-                                            style="width:100%"
-                                        />
-                                    </div>
-                                    <!-- Agente hora -->
-                                    <div class="row">
-                                        <!-- Seccion donde muestra los tipos de agentes -->
-                                        <div
-                                            class="col-8"
-                                            id="tabla-datos-grafica"
-                                        >
-                                            <div
-                                                class="row mt-2 mb-2"
-                                                v-for="(item,
-                                                index) of tabla_datos_grafica"
-                                                :key="index"
-                                            >
-                                                <!-- {{item}} -->
-                                                <div class="col-9">
-                                                    {{ item.descripcion }}
-                                                </div>
-                                                <div class="col-3">
-                                                    <img
-                                                        v-if="item.img_url"
-                                                        width="15"
-                                                        :src="
-                                                            '/' + item.img_url
-                                                        "
-                                                        alt="no carga"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Muestra los valores en grados del arreglo datos_grados -->
-                                        <div class="col-2 p-0">
-                                            <div style="margin-top: 5.4rem">
-                                                <p
-                                                    style="margin-bottom:2.1rem"
-                                                    v-for="(item,
-                                                    index) of datos_grados"
-                                                    :key="index"
-                                                >
-                                                    {{ item }}&deg;
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <!-- Muestra los valores en Y 0..220 -->
-                                        <div class="col-2 p-0">
-                                            <div
-                                                v-for="(item,
-                                                index) of valoresAnestecia_v"
-                                                style="height: 1.80em"
-                                                :key="index"
-                                            >
-                                                {{ item.inicio }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- POSICION -->
-                                    <div
-                                        class="row border-r flex-x-end"
-                                        style="padding: 15px 5px"
-                                    >
-                                        <span>POSICION</span>
-                                    </div>
-                                </div>
-                                <!-- DATOS  -->
+                <div class="row border-t flex-center-x">
+                    <span class="">Registro anestésico</span>
+                </div>
+                <!-- Registro anestésico
+              <div class="row border-t">
+                  <div class="col-md-2 m-0 p-0">AGENTE / HORA</div>
+
+                  <div class="col-md-4 m-0 p-0">
+
+                  </div>
+                  <div class="col-md-6 m-0 p-0"></div>
+              </div>-->
+                <div class="border-t row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-4">
                                 <div
-                                    class="col-lg-9 col-md-8 col-8 overflow-x-hidden p-0"
+                                    class="border-b row"
+                                    style="background: transparent"
                                 >
-                                    <div
-                                        class="row no-wrap-flex ml-0"
-                                        style="height: 100% !important"
-                                    >
-                                        <!-- Cada hora -->
+                                    AGENTE/HORA
+                                </div>
+                                <div
+                                    class="row he25 border-b border-r"
+                                    v-for="(text, index) of agentes_text"
+                                    :key="index"
+                                >
+                                    <!-- Se crea varios input para Agente/Hora -->
+                                    <input
+                                        type="text"
+                                        name=""
+                                        id=""
+                                        v-model="
+                                            agentes_text[index].descripcion
+                                        "
+                                        style="width:100%"
+                                    />
+                                </div>
+                                <!-- Agente hora -->
+                                <div class="row">
+                                    <!-- Seccion donde muestra los tipos de agentes -->
+                                    <div class="col-8" id="tabla-datos-grafica">
                                         <div
+                                            class="row mt-2 mb-2"
                                             v-for="(item,
-                                            index) of lista_horas_avanzadas_v"
-                                            style="min-width: 270px"
+                                            index) of tabla_datos_grafica"
                                             :key="index"
                                         >
-                                            <div
-                                                :style="{
-                                                    minWidth: '240px',
-                                                    height: item.height
-                                                        ? item.height
-                                                        : '20px'
-                                                }"
-                                                class="border-b"
+                                            <!-- {{item}} -->
+                                            <div class="col-9">
+                                                {{ item.descripcion }}
+                                            </div>
+                                            <div class="col-3">
+                                                <img
+                                                    v-if="item.img_url"
+                                                    width="15"
+                                                    :src="'/' + item.img_url"
+                                                    alt="no carga"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Muestra los valores en grados del arreglo datos_grados -->
+                                    <div class="col-2 p-0">
+                                        <div style="margin-top: 5.4rem">
+                                            <p
+                                                style="margin-bottom:2.1rem"
+                                                v-for="(item,
+                                                index) of datos_grados"
+                                                :key="index"
                                             >
-                                                <!-- Cada fila de la hora -->
+                                                {{ item }}&deg;
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Muestra los valores en Y 0..220 -->
+                                    <div class="col-2 p-0">
+                                        <div
+                                            v-for="(item,
+                                            index) of valoresAnestecia_v"
+                                            style="height: 1.80em"
+                                            :key="index"
+                                        >
+                                            {{ item.inicio }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- POSICION -->
+                                <div
+                                    class="row border-r flex-x-end"
+                                    style="padding: 15px 5px"
+                                >
+                                    <span>POSICION</span>
+                                </div>
+                            </div>
+                            <!-- DATOS  -->
+                            <div
+                                class="col-lg-9 col-md-8 col-8 overflow-x-hidden p-0"
+                            >
+                                <div
+                                    class="row no-wrap-flex ml-0"
+                                    style="height: 100% !important"
+                                >
+                                    <!-- Cada hora -->
+                                    <div
+                                        v-for="(item,
+                                        index) of lista_horas_avanzadas_v"
+                                        style="min-width: 270px"
+                                        :key="index"
+                                    >
+                                        <div
+                                            :style="{
+                                                minWidth: '240px',
+                                                height: item.height
+                                                    ? item.height
+                                                    : '20px'
+                                            }"
+                                            class="border-b"
+                                        >
+                                            <!-- Cada fila de la hora -->
+                                            <div
+                                                v-for="(dato,
+                                                index_fila) of item.datos"
+                                                :style="dato.styles"
+                                                :key="index_fila"
+                                            >
                                                 <div
-                                                    v-for="(dato,
-                                                    index_fila) of item.datos"
-                                                    :style="dato.styles"
-                                                    :key="index_fila"
+                                                    :style="dato.style"
+                                                    :class="dato._class"
                                                 >
-                                                    <div
-                                                        :style="dato.style"
-                                                        :class="dato._class"
+                                                    <!-- Muestra los tiempos 0 15 30 45  -->
+                                                    <template
+                                                        v-if="dato.es_tiempo"
                                                     >
-                                                        <!-- Muestra los tiempos 0 15 30 45  -->
-                                                        <template
-                                                            v-if="
-                                                                dato.es_tiempo
+                                                        <div
+                                                            style="height: 25px; width: 100%"
+                                                            v-for="(columna,
+                                                            index_columna) of dato.columnasQuinceMin"
+                                                            :class="
+                                                                columna._class
                                                             "
+                                                            :key="index_columna"
                                                         >
                                                             <div
-                                                                style="height: 25px; width: 100%"
-                                                                v-for="(columna,
-                                                                index_columna) of dato.columnasQuinceMin"
-                                                                :class="
-                                                                    columna._class
-                                                                "
-                                                                :key="
-                                                                    index_columna
-                                                                "
+                                                                class="p-0 flex space-btw relative"
                                                             >
-                                                                <div
-                                                                    class="p-0 flex space-btw relative"
-                                                                >
-                                                                    <span
-                                                                        v-if="
-                                                                            columna.tiempo_inicio
-                                                                        "
-                                                                    >
-                                                                        {{
-                                                                            columna.tiempo_inicio
-                                                                        }}</span
-                                                                    >
-                                                                    <span
-                                                                        v-if="
-                                                                            !columna.tiempo_inicio
-                                                                        "
-                                                                        ><img
-                                                                            src="/img/icons/time_00.png"
-                                                                            alt=""
-                                                                            class="time-triangle-abs"
-                                                                    /></span>
-                                                                    <!-- <span > {{ columna.tiempo_fin }}</span> -->
-                                                                </div>
-                                                            </div>
-                                                        </template>
-                                                        <!-- Ingreso de datos de manera libre -->
-                                                        <!-- Aquí pones los datos que están arriba de la rejilla dond e se grafica -->
-                                                        <template
-                                                            v-if="dato.es_dato"
-                                                        >
-                                                            <div
-                                                                style="height: 25px"
-                                                                v-for="(columna,
-                                                                index_columna) of dato.columnasQuinceMin"
-                                                                :class="
-                                                                    columna._class
-                                                                "
-                                                                :key="
-                                                                    index_columna
-                                                                "
-                                                            >
-                                                                <div
+                                                                <span
                                                                     v-if="
-                                                                        dato.es_dato
+                                                                        columna.tiempo_inicio
                                                                     "
                                                                 >
-                                                                    <!-- {{ index_fila | json }} -->
-                                                                    <input
-                                                                        type="text"
-                                                                        style="width: 100%"
-                                                                        v-model="
-                                                                            agentes_text[
-                                                                                index_fila -
-                                                                                    1
-                                                                            ]
-                                                                                .valores[
-                                                                                index_columna +
-                                                                                    index *
-                                                                                        4
-                                                                            ]
+                                                                    {{
+                                                                        columna.tiempo_inicio
+                                                                    }}</span
+                                                                >
+                                                                <span
+                                                                    v-if="
+                                                                        !columna.tiempo_inicio
+                                                                    "
+                                                                    ><img
+                                                                        src="/img/icons/time_00.png"
+                                                                        alt=""
+                                                                        class="time-triangle-abs"
+                                                                /></span>
+                                                                <!-- <span > {{ columna.tiempo_fin }}</span> -->
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                    <!-- Ingreso de datos de manera libre -->
+                                                    <!-- Aquí pones los datos que están arriba de la rejilla dond e se grafica -->
+                                                    <template
+                                                        v-if="dato.es_dato"
+                                                    >
+                                                        <div
+                                                            style="height: 25px"
+                                                            v-for="(columna,
+                                                            index_columna) of dato.columnasQuinceMin"
+                                                            :class="
+                                                                columna._class
+                                                            "
+                                                            :key="index_columna"
+                                                        >
+                                                            <div
+                                                                v-if="
+                                                                    dato.es_dato
+                                                                "
+                                                            >
+                                                                <!-- {{ index_fila | json }} -->
+                                                                <input
+                                                                    type="text"
+                                                                    style="width: 100%"
+                                                                    v-model="
+                                                                        agentes_text[
+                                                                            index_fila -
+                                                                                1
+                                                                        ]
+                                                                            .valores[
+                                                                            index_columna +
+                                                                                index *
+                                                                                    4
+                                                                        ]
+                                                                    "
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </template>
+
+                                                    <template
+                                                        v-if="dato.es_agente"
+                                                    >
+                                                        <div
+                                                            style="height: 1.82em;grid-template-columns: 1fr 1fr 1fr;"
+                                                            v-for="(columna,
+                                                            index_columna) of dato.columnasQuinceMin"
+                                                            :class="
+                                                                columna._class
+                                                            "
+                                                            :key="index_columna"
+                                                        >
+                                                            <div
+                                                                v-for="(minutos_columna,
+                                                                index_minutos_columna) of columna.columnas"
+                                                                class="relative border-r"
+                                                                :key="
+                                                                    index_minutos_columna
+                                                                "
+                                                            >
+                                                                <!-- {{minutos_columna}} -->
+                                                                <template
+                                                                    v-if="
+                                                                        minutos_columna.agentes
+                                                                    "
+                                                                >
+                                                                    <img
+                                                                        v-for="(agente,
+                                                                        index_agente) of minutos_columna.agentes"
+                                                                        class="figure-celds"
+                                                                        :src="
+                                                                            '/' +
+                                                                                agente._src
+                                                                        "
+                                                                        alt=""
+                                                                        style="width: 20px"
+                                                                        :key="
+                                                                            index_agente
                                                                         "
                                                                     />
-                                                                </div>
+                                                                </template>
                                                             </div>
-                                                        </template>
-
-                                                        <template
-                                                            v-if="
-                                                                dato.es_agente
+                                                        </div>
+                                                    </template>
+                                                    <template
+                                                        v-if="dato.es_posicion"
+                                                    >
+                                                        <div
+                                                            style="height: 50px;grid-template-columns: 1fr 1fr 1fr;"
+                                                            v-for="(columna,
+                                                            index_columna) of dato.columnasQuinceMin"
+                                                            :class="
+                                                                columna._class
                                                             "
+                                                            :key="index_columna"
                                                         >
-                                                            <div
-                                                                style="height: 1.82em;grid-template-columns: 1fr 1fr 1fr;"
-                                                                v-for="(columna,
-                                                                index_columna) of dato.columnasQuinceMin"
-                                                                :class="
-                                                                    columna._class
+                                                            <!-- <div v-for="minutos_columna of columna.columnas" class="relative border-r border-b"> -->
+                                                            <img
+                                                                v-if="
+                                                                    columna
+                                                                        .posicion
+                                                                        .id != 0
                                                                 "
-                                                                :key="
-                                                                    index_columna
-                                                                "
-                                                            >
-                                                                <div
-                                                                    v-for="(minutos_columna,
-                                                                    index_minutos_columna) of columna.columnas"
-                                                                    class="relative border-r"
-                                                                    :key="
-                                                                        index_minutos_columna
-                                                                    "
-                                                                >
-                                                                    <!-- {{minutos_columna}} -->
-                                                                    <template
-                                                                        v-if="
-                                                                            minutos_columna.agentes
-                                                                        "
-                                                                    >
-                                                                        <img
-                                                                            v-for="(agente,
-                                                                            index_agente) of minutos_columna.agentes"
-                                                                            class="figure-celds"
-                                                                            :src="
-                                                                                '/' +
-                                                                                    agente._src
-                                                                            "
-                                                                            alt=""
-                                                                            style="width: 20px"
-                                                                            :key="
-                                                                                index_agente
-                                                                            "
-                                                                        />
-                                                                    </template>
-                                                                </div>
-                                                            </div>
-                                                        </template>
-                                                        <template
-                                                            v-if="
-                                                                dato.es_posicion
-                                                            "
-                                                        >
-                                                            <div
-                                                                style="height: 50px;grid-template-columns: 1fr 1fr 1fr;"
-                                                                v-for="(columna,
-                                                                index_columna) of dato.columnasQuinceMin"
-                                                                :class="
-                                                                    columna._class
-                                                                "
-                                                                :key="
-                                                                    index_columna
-                                                                "
-                                                            >
-                                                                <!-- <div v-for="minutos_columna of columna.columnas" class="relative border-r border-b"> -->
-                                                                <img
-                                                                    v-if="
+                                                                class="ml-3"
+                                                                :src="
+                                                                    '/' +
                                                                         columna
                                                                             .posicion
-                                                                            .id !=
-                                                                            0
-                                                                    "
-                                                                    class="ml-3"
-                                                                    :src="
-                                                                        '/' +
-                                                                            columna
-                                                                                .posicion
-                                                                                .img_url
-                                                                    "
-                                                                    alt=""
-                                                                    style="width: 70px"
-                                                                />
-                                                                <!-- </div> -->
-                                                            </div>
-                                                        </template>
-                                                    </div>
+                                                                            .img_url
+                                                                "
+                                                                alt=""
+                                                                style="width: 70px"
+                                                            />
+                                                            <!-- </div> -->
+                                                        </div>
+                                                    </template>
                                                 </div>
                                             </div>
                                         </div>
@@ -529,7 +540,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- DROGAS ADMINISTRADAS -->
+                <!--
+
+        -->
                 <div class="row border-t">
                     <div
                         class="col-lg-9 col-md-12 border-t mt-3"
@@ -554,6 +567,7 @@
                                             type="text"
                                             class="input-line"
                                             v-model="drogas_administradas[0]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -568,6 +582,7 @@
                                             type="text"
                                             class="input-line"
                                             v-model="drogas_administradas[1]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -582,6 +597,7 @@
                                             type="text"
                                             class="input-line"
                                             v-model="drogas_administradas[2]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -596,6 +612,7 @@
                                             type="text"
                                             class="input-line"
                                             v-model="drogas_administradas[3]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -609,7 +626,8 @@
                                         <input
                                             type="text"
                                             class="input-line"
-                                            v-model="drogas_administradas[4]"
+                                            v-model="drogas_administradas[3]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -625,7 +643,8 @@
                                         <input
                                             type="text"
                                             class="input-line"
-                                            v-model="drogas_administradas[5]"
+                                            v-model="drogas_administradas[4]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -639,7 +658,8 @@
                                         <input
                                             type="text"
                                             class="input-line"
-                                            v-model="drogas_administradas[6]"
+                                            v-model="drogas_administradas[5]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -653,7 +673,8 @@
                                         <input
                                             type="text"
                                             class="input-line"
-                                            v-model="drogas_administradas[7]"
+                                            v-model="drogas_administradas[6]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -667,7 +688,8 @@
                                         <input
                                             type="text"
                                             class="input-line"
-                                            v-model="drogas_administradas[8]"
+                                            v-model="drogas_administradas[6]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -681,7 +703,8 @@
                                         <input
                                             type="text"
                                             class="input-line"
-                                            v-model="drogas_administradas[9]"
+                                            v-model="drogas_administradas[7]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -697,7 +720,8 @@
                                         <input
                                             type="text"
                                             class="input-line"
-                                            v-model="drogas_administradas[10]"
+                                            v-model="drogas_administradas[8]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -711,7 +735,8 @@
                                         <input
                                             type="text"
                                             class="input-line"
-                                            v-model="drogas_administradas[11]"
+                                            v-model="drogas_administradas[9]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -725,7 +750,8 @@
                                         <input
                                             type="text"
                                             class="input-line"
-                                            v-model="drogas_administradas[12]"
+                                            v-model="drogas_administradas[9]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -739,7 +765,8 @@
                                         <input
                                             type="text"
                                             class="input-line"
-                                            v-model="drogas_administradas[13]"
+                                            v-model="drogas_administradas[10]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -753,7 +780,8 @@
                                         <input
                                             type="text"
                                             class="input-line"
-                                            v-model="drogas_administradas[14]"
+                                            v-model="drogas_administradas[10]"
+                                            name="drogas_administradas[]"
                                         />
                                     </div>
                                 </div>
@@ -911,9 +939,7 @@
                                             type="checkbox"
                                             name="vaiiven"
                                             id="vaiiven"
-                                            v-model="
-                                                form.vaiiven_aparatos_usados
-                                            "
+                                            v-model="form.vaiiven_aparatos_usados"
                                         />
                                     </div>
                                 </div>
@@ -1234,9 +1260,7 @@
                                             type="checkbox"
                                             name="continua"
                                             id="continua"
-                                            v-model="
-                                                form.continua_altura_puncion
-                                            "
+                                            v-model="form.continua_altura_puncion"
                                         />
                                     </div>
                                 </div>
@@ -1289,7 +1313,9 @@
                                 </div>
                                 <!-- AGUJA No -->
                                 <div class="row border-b border-r">
-                                    <label class="col-md-6 p-0 m-0" for="aguja"
+                                    <label
+                                        class="col-md-6 p-0 m-0"
+                                        for="aguja"
                                         ><span class="space-left"
                                             >AGUJA No</span
                                         ></label
@@ -1345,10 +1371,10 @@
                                 </div>
                                 <div class="row border-b">
                                     <label class="col-md-4 p-0 m-0" for=""
-                                        ><span class="space-left"
-                                            >POSICION PACIENTE</span
-                                        ></label
-                                    >
+                                            ><span class="space-left"
+                                                >POSICION PACIENTE</span
+                                            ></label
+                                        >
                                     <div class="col-lg-8 col-md-8 col-sm-8">
                                         <div class="form-group">
                                             <v-select
@@ -1356,9 +1382,7 @@
                                                 :value="form.id_tipo_posiciones"
                                                 :options="tipoPosiciones"
                                                 label="display"
-                                                @input="
-                                                    setSelectedTipoPosiciones
-                                                "
+                                                @input="setSelectedTipoPosiciones"
                                             >
                                                 <template slot="no-options"
                                                     >No existen datos</template
@@ -1376,29 +1400,108 @@
                         <div class="row border-b flex flex-center-x">
                             <span>INFUSIONES</span>
                         </div>
-                        <!-- Infusiones -->
-                        <div
-                            v-for="(infusion, index) in form.infusiones"
-                            :key="index"
-                            class="row border-b border-r"
-                        >
-                            <span class="col-md-1 border-r">
-                                {{ infusion.abreviatura }}
-                            </span>
-                            <label class="col-md-6 p-0 m-0 upper"><span class="space-left">
-                                    {{ infusion.descripcion }}
-                                </span></label
+                        <!-- DEXTROSAS -->
+                        <!-- <div class="row border-b border-r">
+                            <span class="col-md-1 border-r">D</span>
+                            <label
+                                class="col-md-6 p-0 m-0 upper"
+                                for="dextrosas"
+                                ><span class="space-left"
+                                    >dextrosas</span
+                                ></label
+                            >
+                            <div class="col-md-3 p-0">
+                                <input
+                                    class="input-line"
+                                    v-model="form.infusiones.dextrosas.valor"
+                                    type="number"
+                                    name="dextrosas"
+                                    id="dextrosas"
+                                    style="width: 100%"
+                                />
+                            </div>
+                            <label class="col-md-1 p-0 m-0" for="">cc</label>
+                        </div> -->
+                        <!-- SANGRE -->
+                        <div v-for="(infusion, index) in form.infusiones" :key="index" class="row border-b border-r">
+                            <span class="col-md-1 border-r"> {{infusion.abreviatura}} </span>
+                            <label class="col-md-6 p-0 m-0 upper" for="sangre"
+                                ><span class="space-left"> {{infusion.descripcion}} </span></label
                             >
                             <div class="col-md-3 p-0">
                                 <input
                                     class="input-line"
                                     v-model="infusion.valor"
                                     type="number"
+                                    name="sangre"
+                                    id="sangre"
                                     style="width: 100%"
                                 />
                             </div>
                             <label class="col-md-1 p-0 m-0" for="">cc</label>
                         </div>
+                        <!-- RINGER -->
+                        <!-- <div class="row border-b border-r">
+                            <span class="col-md-1 border-r">R</span>
+                            <label class="col-md-6 p-0 m-0 upper" for="ringer"
+                                ><span class="space-left">ringer</span></label
+                            >
+                            <div class="col-md-3 p-0">
+                                <input
+                                    class="input-line"
+                                    v-model="form.infusiones.ringer.valor"
+                                    type="number"
+                                    name="ringer"
+                                    id="ringer"
+                                    style="width: 100%"
+                                />
+                            </div>
+                            <label class="col-md-1 p-0 m-0" for="">cc</label>
+                        </div> -->
+                        <!-- EXPANSIONES -->
+                        <!-- <div class="row border-b border-r">
+                            <span class="col-md-1 border-r">E</span>
+                            <label
+                                class="col-md-6 p-0 m-0 upper"
+                                for="expansiones"
+                                ><span class="space-left"
+                                    >EXPANSIONES</span
+                                ></label
+                            >
+                            <div class="col-md-3 p-0">
+                                <input
+                                    class="input-line"
+                                    type="number"
+                                    v-model="form.infusiones.expansiones.valor"
+                                    name="expansiones"
+                                    id="expansiones"
+                                    style="width: 100%"
+                                />
+                            </div>
+                            <label class="col-md-1 p-0 m-0" for="">cc</label>
+                        </div> -->
+                        <!-- SOLUCIONES SALINAS -->
+                        <!-- <div class="row border-b border-r">
+                            <span class="col-md-1 border-r">S</span>
+                            <label
+                                class="col-md-6 p-0 m-0 upper"
+                                for="solucionesSalinas"
+                                ><span class="space-left"
+                                    >SOLUCIONES SALINAS</span
+                                ></label
+                            >
+                            <div class="col-md-3 p-0">
+                                <input
+                                    class="input-line"
+                                    type="number"
+                                    v-model="form.infusiones.soluciones_salinas.valor"
+                                    name="solucionesSalinas"
+                                    id="solucionesSalinas"
+                                    style="width: 100%"
+                                />
+                            </div>
+                            <label class="col-md-1 p-0 m-0" for="">cc</label>
+                        </div> -->
                         <!-- TOTAL -->
                         <div class="row border-b border-r">
                             <span class="col-md-1 border-r">T</span>
@@ -1751,26 +1854,6 @@
                         <div class="">
                             <div class="" style="height: 70px"></div>
                             <div class="flex flex-y">
-                                <span
-                                    class="col-md-5 text-center"
-                                    style="margin: auto"
-                                >
-                                    <vue-painttable
-                                        @getOutput="form.imgFirma = $event"
-                                        @RespuestaImgFirma="
-                                            validarImgFirma = $event
-                                        "
-                                        :hidePaintable="true"
-                                        :isFirstPaintable="isFirstPaintable"
-                                        :disableNavigation="true"
-                                        :showUndoRedo="false"
-                                        :showLineWidth="false"
-                                        :rutaImagen="rutaSello"
-                                        :width="800"
-                                        :height="800"
-                                        ref="paintFirma"
-                                    ></vue-painttable>
-                                </span>
                                 <span class="col-md-12 text-center"
                                     >______________________________________________</span
                                 >
@@ -1784,6 +1867,9 @@
             </div>
         </div>
         <br />
+        <!-- <div v-for="(f,index) of posiciones" :key="index">
+      (2, '{{ f.descripcion }}', '{{ f.descripcion }}', '{{ f.img_url }}',1),
+    </div> -->
     </div>
 </template>
 
@@ -1793,17 +1879,10 @@ export default {
         idSecCirPro: {
             type: String,
             required: true
-        },
-        user: {
-            type: Object
-        },
+        }
     },
     data: function() {
         return {
-            validarImgFirma: 0,
-            isFirstPaintable: "firmaAnestesiologo",
-            rutaSello: "/img/selloFirma.png",
-
             validarImprimir: 0,
             selectedTipoPosiciones: "",
             tipoPosiciones: "",
@@ -1812,63 +1891,63 @@ export default {
                 registro_anestesia_id: 0,
                 id_tipo_posiciones: 0,
                 /* Datos para modificar registro anestesico */
-                fchaDuracionAnestecia: "00:00",
-                fchaDuracionOperacion: "00:00",
-                general: 0,
-                sistem_abierto: 0,
-                sistem_cerrado: 0,
-                sistem_semi_cerr: 0,
-                cinc_aparatos_usados: 0,
-                vaiiven_aparatos_usados: 0,
-                mascara: 0,
+                fchaDuracionAnestecia: '00:00',
+                fchaDuracionOperacion: '00:00',
+                general: false,
+                sistem_abierto: false,
+                sistem_cerrado: false,
+                sistem_semi_cerr: false,
+                cinc_aparatos_usados: false,
+                vaiiven_aparatos_usados: false,
+                mascara: false,
                 //seccion 1
-                oral_inte_traqueal: 0,
-                nasal_inte_traqueal: 0,
-                rapido_inte_traqueal: 0,
-                lenta_inte_traqueal: 0,
+                oral_inte_traqueal: false,
+                nasal_inte_traqueal: false,
+                rapido_inte_traqueal: false,
+                lenta_inte_traqueal: false,
                 turbo_inte_traqueal: 0,
-                manguito_inflam_inte_traqueal: 0,
-                taponamiento_inte_traqueal: 0,
-                asist_topica_inte_traqueal: 0,
-                asist_tranboral_inte_traqueal: 0,
+                manguito_inflam_inte_traqueal: false,
+                taponamiento_inte_traqueal: false,
+                asist_topica_inte_traqueal: false,
+                asist_tranboral_inte_traqueal: false,
                 //seccion 2
-                conductiva: 0,
-                asepsia_piel: 0,
+                conductiva: false,
+                asepsia_piel: false,
                 con: "",
-                habon: 0,
-                raquidea: 0,
-                epidural_caud: 0,
+                habon: false,
+                raquidea: false,
+                epidural_caud: false,
                 //seccion 3
-                simple_altura_puncion: 0,
-                continua_altura_puncion: 0,
+                simple_altura_puncion: false,
+                continua_altura_puncion: false,
                 //seccion 4
-                puncion_lat: 0,
-                linea_media: 0,
+                puncion_lat: false,
+                linea_media: false,
                 //seccion 5
                 aguja: 0,
                 nivel: "",
-                hiperbara: 0,
+                hiperbara: false,
                 /* Complicaciones Operatorias */
-                hipotension: 0,
-                arritmias: 0,
-                depresion_respiratoria: 0,
-                perforacion_duramadre: 0,
-                dificultad_intubacion: 0,
-                nauses_vomitos: 0,
-                conductiva_insuficiente: 0,
-                laringo_espasmo: 0,
-                paro_cardiaco: 0,
-                ninguna: 0,
-                cambio_tecnica: 0,
+                hipotension: false,
+                arritmias: false,
+                depresion_respiratoria: false,
+                perforacion_duramadre: false,
+                dificultad_intubacion: false,
+                nauses_vomitos: false,
+                conductiva_insuficiente: false,
+                laringo_espasmo: false,
+                paro_cardiaco: false,
+                ninguna: false,
+                cambio_tecnica: false,
                 otros_complicaciones: "",
                 comentario: "",
                 /* Hemorragia */
                 hemorragia: 0,
                 /* Apagar */
-                min1: 0,
-                min5: 0,
-                min10: 0,
-                p_muerto: 0,
+                min1: false,
+                min5: false,
+                min10: false,
+                p_muerto: false,
                 /* Tecnicas Especiales */
                 conducido_a: "",
                 por: "",
@@ -1906,16 +1985,12 @@ export default {
                         name: "SOLUCIONES_SALINAS",
                         abreviatura: "SS",
                         valor: 0
-                    }
+                    },
                 ],
-                total: 0,
+                total:0,
                 /* Fin Datos para guardar en la tabla infusiones */
-
-                /* Datos para guardar firma */
-                imgFirma: null,
-                imgGrafica: null,
-                /* Fin Datos para guardar firma */
             },
+
             registro_id: 1,
             drogas_administradas: [],
             peso: "",
@@ -2057,10 +2132,10 @@ export default {
          */
         total_infusiones: function(params) {
             var subTotal = 0;
-            this.form.infusiones.forEach(function(infusion) {
-                subTotal += +Number(infusion.valor);
+            this.form.infusiones.forEach(function(infusion){
+                subTotal+= (+Number(infusion.valor));
             });
-            return (this.form.total = subTotal);
+            return this.form.total = subTotal;
         }
     },
     mounted: function() {
@@ -2089,12 +2164,6 @@ export default {
                         // Si la hora se ha completado, se agrega otro objeto de horas al 
                         //arreglo de datos
                         this.agregarHora();
-
-                        //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
-                        if (this.indice_hora % 5 == 0) {
-                            this.getNewIdRegistroAnestesia();
-                            this.getImgGrafica();
-                        }
                     }
                 } else {
                     this.minutes += 1;
@@ -2109,64 +2178,10 @@ export default {
     },
     beforeDestroy: function() {},
     methods: {
-        async getImgGrafica() {
-            const la = this.$refs.printMe;
-            const optiones = {
-                type: "dataURL"
-            };
-            this.form.imgGrafica = await this.$html2canvas(la, optiones);
-            this.guardarImgGrafica();
-            //
-            this.iniciado = false;
-        },
-        consultarSello() {
-            let that = this;
-            var loader = that.$loading.show();
-            let url =
-                "/modulos/cirugia/anestesia/cargar_sello/" + that.$props.user.codigo_usu;
-            axios
-                .get(url)
-                .then(function(response) {
-                    if(response.data.sello != null){
-                        that.rutaSello =  "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
-                    }
-                    loader.hide();
-                })
-                .catch(error => {
-                    //Errores
-                    that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    });
-                    loader.hide();
-                });
-        },
-        getNewIdRegistroAnestesia() {
-            if (this.iniciado) return;
-            this.iniciado = true;
-
-            let url = "/modulos/cirugia/anestesia/registro/post";
-            axios
-                .post(url, this.form)
-                .then(function(response) {
-                    this.form.registro_anestesia_id = response.data.id;
-                })
-                .catch(error => {
-                    //Errores
-                    that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    });
-                    loader.hide();
-                });
-        },
         setSelectedTipoPosiciones(value) {
             let that = this;
             var loader = that.$loading.show();
-            let url =
-                "/modulos/cirugia/anestesia/cargar_tipo_posiciones_combo_box";
+            let url = "/modulos/cirugia/anestesia/cargar_tipo_posiciones_combo_box";
             if (value != null) {
                 this.form.id_tipo_posiciones = value.id_tipo_posiciones;
             }
@@ -2176,9 +2191,7 @@ export default {
                     let tipoPosiciones = [];
                     response.data.tipoPosiciones.forEach(tiposPosiciones => {
                         let objeto = {};
-                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
-                            tiposPosiciones.descripcion
-                        );
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(tiposPosiciones.descripcion);
                         objeto.id_tipo_posiciones = tiposPosiciones.id;
                         tipoPosiciones.push(objeto);
                     });
@@ -2207,9 +2220,12 @@ export default {
          */
         obtenerDatosAgentes: function() {
             let url = "/modulos/cirugia/anestesia/agentes";
+            /* let url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table"; */
             axios
                 .get(url + "/agente")
+                /* .get(url) */
                 .then(response => {
+                    /* console.log(response.data); */
                     this.tabla_datos_grafica = response.data;
                 })
                 .catch(err => console.log(err));
@@ -2219,9 +2235,13 @@ export default {
          */
         obtenerDatosPosiciones: function() {
             let url = "/modulos/cirugia/anestesia/agentes";
+            /* let url =
+                "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table"; */
             axios
                 .get(url + "/posicion")
+                /* .get(url) */
                 .then(response => {
+                    console.log(response.data);
                     this.posiciones = response.data;
                 })
                 .catch(err => console.log(err));
@@ -2236,6 +2256,7 @@ export default {
                 this.registro_id;
             axios
                 .post(url, {
+                    // agente_id: this.form.agente_id,
                     registro_anestesia_id: this.form.registro_anestesia_id,
                     datos: datos,
                     tipo: tipo,
@@ -2253,8 +2274,6 @@ export default {
         start_time: async function(event) {
             if (this.iniciado) return;
             this.iniciado = true;
-
-            this.consultarSello();
 
             //Guardar datos en la tabla tb_registro_anestesia
             let url = "/modulos/cirugia/anestesia/registro/post";
@@ -2279,44 +2298,19 @@ export default {
          * Finaliza el proceso, aquí se deben enviar los demás datos para que el registro se edite
          */
         end_time: function() {
-            let that = this;
             if (!this.iniciado) return;
-            this.$swal({
-                title: "¿Desea cerrar el proceso?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Aceptar",
-                cancelButtonText: "Cancelar"
-            }).then(result => {
-                if (result.value) {
-                    if (this.validarImgFirma) {
-                        // Poner el dato al final de la rejilla cuando se haya finalizado
-                        this.agregaDatoEnRejilla(
-                            true,
-                            false,
-                            0,
-                            "img/icons/fin_anestecia.png",
-                            {
-                                system_name: "FIN-ANESTECIA",
-                                tipo: this.system_agente
-                            }
-                        );
+            if (!confirm("¿Desea cerrar el proceso?")) return;
+            this.iniciado = false;
 
-                        //Se guardan los datos a la base
-                        this.guardarDrograAdministrada();
-
-                        //Cambia el estado
-                    } else {
-                        this.$swal({
-                            icon: "warning",
-                            title: "Advertencia Firma",
-                            text: "Se necesita una firma por favor."
-                        });
-                    }
-                }
-            });
+            // Poner el dato al final de la rejilla cuando se haya finalizado
+            this.agregaDatoEnRejilla(
+                true,
+                false,
+                0,
+                "img/icons/fin_anestecia.png",
+                { system_name: "FIN-ANESTECIA", tipo: this.system_agente }
+            );
+            this.guardarDrograAdministrada();
         },
         guardarDrograAdministrada() {
             let that = this;
@@ -2384,13 +2378,13 @@ export default {
                 .post(url, formNew)
                 .then(function(response) {
                     //Llamar metodo de parent para que actualice el grid.
-                    /* that.$swal({
-                        icon: "success",
-                        title: "Proceso realizado exitosamente",
-                        text: "Datos guardados correctamente."
-                    }); */
-                    that.guardarFirmaPorAtencion();
-                    loader.hide();
+                    that.$swal({
+                            icon: "success",
+                            title: "Proceso realizado exitosamente",
+                            text: "Datos guardados correctamente."
+                        });
+                    that.validarImprimir = 1;
+                    that.$emit("RespuestaImprimir", that.validarImprimir);
                 })
                 .catch(error => {
                     //Errores de validación
@@ -2398,73 +2392,6 @@ export default {
                     that.$swal({
                         icon: "error",
                         title: "Error Guardar Infusiones",
-                        text: error
-                    });
-                });
-        },
-        guardarFirmaPorAtencion() {
-            let that = this;
-            let url = "";
-            let mensaje = "";
-            let formNew = {
-                cirugia_id: that.form.cirugia_id,
-                imgFirma: that.form.imgFirma
-            };
-            url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
-
-            var loader = that.$loading.show();
-            axios
-                .post(url, formNew)
-                .then(function(response) {
-                    //Llamar metodo de parent para que actualice el grid.
-                    /* that.$swal({
-                        icon: "success",
-                        title: "Proceso realizado exitosamente",
-                        text: "Datos guardados correctamente."
-                    }); */
-                    //that.getImgGrafica();
-                })
-                .catch(error => {
-                    //Errores de validación
-                    loader.hide();
-                    that.$swal({
-                        icon: "error",
-                        title: "Error Guardar Firma por Atención",
-                        text: error
-                    });
-                });
-        },
-        guardarImgGrafica() {
-            let that = this;
-            let url = "";
-            let mensaje = "";
-            let formNew = {
-                cirugia_id: that.form.cirugia_id,
-                registro_anestesia_id: that.form.registro_anestesia_id,
-                imgGrafica: that.form.imgGrafica
-            };
-            url = "/modulos/cirugia/anestesia/guardar_img_grafica";
-
-            var loader = that.$loading.show();
-            axios
-                .post(url, formNew)
-                .then(function(response) {
-                    //Llamar metodo de parent para que actualice el grid.
-                    that.$swal({
-                        icon: "success",
-                        title: "Proceso realizado exitosamente",
-                        text: "Datos guardados correctamente."
-                    });
-                    that.validarImprimir = 1;
-                    that.$emit("RespuestaImprimir", that.validarImprimir);
-                    loader.hide();
-                })
-                .catch(error => {
-                    //Errores de validación
-                    loader.hide();
-                    that.$swal({
-                        icon: "error",
-                        title: "Error Guardar Imagen Grafica",
                         text: error
                     });
                 });
@@ -2556,7 +2483,18 @@ export default {
                                         },
                                         adicional.tipo
                                     );
+                                    /*this.datos_anestecia_envio.push({
+                        tpo_ini     : is_tpo_init,
+                        tpo_fin     : is_tpo_fin,
+                        hora        : this.hour,
+                        minuto      : this.minutes,
+                        segundo     : this.seconds,
+                        valor       : valor,
+                        // id_agente   : ,
+                        name        : descripcion,
+                    });*/
                                 }
+
                                 return;
                             }
                         }
@@ -2575,7 +2513,7 @@ export default {
         },
 
         /**
-         * Agrega datos a la rejilla
+         * Agrega datos
          */
         agregarDatos: function(campo) {
             // console.log(campo);
@@ -2594,11 +2532,7 @@ export default {
             if (!this.iniciado) return;
             // img/icons/'+this.valoresFormulario.descripcion.toLowerCase()+'.png
             if (this.valoresFormulario.posicion.id == 0) {
-                this.$swal({
-                    icon: "warning",
-                    title: "Advertencia Campos Vacios",
-                    text: "Complete los campos por favor."
-                });
+                alert("Complete los campos");
                 return;
             }
             console.log(this.valoresFormulario);

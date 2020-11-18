@@ -30,4 +30,5 @@ class Infusiones extends Model
         'pcip',
         'status'
     ];
+   
 }

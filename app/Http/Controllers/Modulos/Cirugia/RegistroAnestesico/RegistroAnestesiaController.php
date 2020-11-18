@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Modulos\Cirugia\RegistroAnestesico;
 use App\Http\Controllers\Controller;
 use App\Models\Modulos\Cirugia\RegistroAnestesico\RegistroAnestesia;
 use App\Models\Modulos\Cirugia\valoracionPreanestecia\RevisionSistema;
-use App\Models\Modulos\FirmasPorAtencion;
-use App\Models\Modulos\GraficaPorCirugia;
+use App\Models\Modulos\Imagenes\FirmasPorAtencion;
+use App\Models\Modulos\Imagenes\GraficaPorCirugia;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -230,20 +230,23 @@ class RegistroAnestesiaController extends Controller
                 //$resultado = obtenerDatoGraficaRegistroAnestesia();
 
 
-                $datosValoracionPreanestesica = RevisionSistema::where('SecCirPro', $idSecCirPro)
+                $datosValoracionPreanestesica = RegistroAnestesia::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
-                    ->with('antecedente', 'examenFisico', 'paraclinico')
+                    ->with('drogaAdministradaRpt', 'regitroInfunsionRpt.infusionNameRpt')
                     ->first();
+                    //dd($datosValoracionPreanestesica);
 
-                $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia', [
-                    'datosPaciente' => $datosPaciente,
-                    'edadPaciente' => $edadPaciente,
-                    'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
-                    /* 'resultado' => $resultado */
-                ]);
+
+                 $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia', [  'datosValoracionPreanestesica' => $datosValoracionPreanestesica]);
+                //     'datosPaciente' => $datosPaciente,
+                //     'edadPaciente' => $edadPaciente,
+                //     'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
+                //     /* 'resultado' => $resultado */
+                //  ]);
 
                 return $pdf->stream($nombreArchivo);
                 //return PDF::loadFile('http://www.github.com')->stream('github.pdf');
+                //return  response()->json(['datosValoracionPreanestesica' => $datosValoracionPreanestesica], 200);
 
             } catch (Exception $e) {
                 return response()->json(['mensaje' => $e->getMessage()], 500);

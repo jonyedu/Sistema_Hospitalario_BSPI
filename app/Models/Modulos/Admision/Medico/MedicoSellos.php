@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Modulos;
+namespace App\Models\Modulos\Admision\Medico;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
