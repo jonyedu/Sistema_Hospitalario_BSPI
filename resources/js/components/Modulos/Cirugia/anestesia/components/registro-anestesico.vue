@@ -1756,7 +1756,7 @@
                                     style="margin: auto"
                                 >
                                     <vue-painttable
-                                        @getOutput="imgFirma = $event"
+                                        @getOutput="form.imgFirma = $event"
                                         @RespuestaImgFirma="
                                             validarImgFirma = $event
                                         "
@@ -1781,23 +1781,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row">
-                    <div class="col-lg-2 col-md-2 col-sm-2">
-                        <button
-                            type="button"
-                            class="btn btn-outline-success btn-block"
-                            @click="getImgGrafica()"
-                        >
-                            capturar foto
-                        </button>
-                    </div>
-                </div> -->
             </div>
         </div>
         <br />
-        <!-- <div v-for="(f,index) of posiciones" :key="index">
-      (2, '{{ f.descripcion }}', '{{ f.descripcion }}', '{{ f.img_url }}',1),
-    </div> -->
     </div>
 </template>
 
@@ -1817,8 +1803,7 @@ export default {
             validarImgFirma: 0,
             isFirstPaintable: "firmaAnestesiologo",
             rutaSello: "/img/selloFirma.png",
-            imgFirma: null,
-            imgGrafica: null,
+
             validarImprimir: 0,
             selectedTipoPosiciones: "",
             tipoPosiciones: "",
@@ -1923,8 +1908,13 @@ export default {
                         valor: 0
                     }
                 ],
-                total: 0
+                total: 0,
                 /* Fin Datos para guardar en la tabla infusiones */
+
+                /* Datos para guardar firma */
+                imgFirma: null,
+                imgGrafica: null,
+                /* Fin Datos para guardar firma */
             },
             registro_id: 1,
             drogas_administradas: [],
@@ -2118,7 +2108,9 @@ export default {
             const optiones = {
                 type: "dataURL"
             };
-            this.imgGrafica = await this.$html2canvas(la, optiones);
+            this.form.imgGrafica = await this.$html2canvas(la, optiones);
+            this.guardarImgGrafica();
+            //
             this.iniciado = false;
         },
         consultarSello() {
@@ -2129,8 +2121,9 @@ export default {
             axios
                 .get(url)
                 .then(function(response) {
-                    alert(response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO);
-                    that.rutaSello =  "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
+                    if(response.data.sello != null){
+                        that.rutaSello =  "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
+                    }
                     loader.hide();
                 })
                 .catch(error => {
@@ -2308,9 +2301,6 @@ export default {
                         //Se guardan los datos a la base
                         this.guardarDrograAdministrada();
 
-                        //Se captura la grafica y lo convierte en imagen
-                        this.getImgGrafica();
-
                         //Cambia el estado
                     } else {
                         this.$swal({
@@ -2388,13 +2378,13 @@ export default {
                 .post(url, formNew)
                 .then(function(response) {
                     //Llamar metodo de parent para que actualice el grid.
-                    that.$swal({
+                    /* that.$swal({
                         icon: "success",
                         title: "Proceso realizado exitosamente",
                         text: "Datos guardados correctamente."
-                    });
-                    that.validarImprimir = 1;
-                    that.$emit("RespuestaImprimir", that.validarImprimir);
+                    }); */
+                    that.guardarFirmaPorAtencion();
+                    loader.hide();
                 })
                 .catch(error => {
                     //Errores de validación
@@ -2402,6 +2392,73 @@ export default {
                     that.$swal({
                         icon: "error",
                         title: "Error Guardar Infusiones",
+                        text: error
+                    });
+                });
+        },
+        guardarFirmaPorAtencion() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            let formNew = {
+                cirugia_id: that.form.cirugia_id,
+                imgFirma: that.form.imgFirma
+            };
+            url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
+
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    //Llamar metodo de parent para que actualice el grid.
+                    /* that.$swal({
+                        icon: "success",
+                        title: "Proceso realizado exitosamente",
+                        text: "Datos guardados correctamente."
+                    }); */
+                    //that.getImgGrafica();
+                })
+                .catch(error => {
+                    //Errores de validación
+                    loader.hide();
+                    that.$swal({
+                        icon: "error",
+                        title: "Error Guardar Firma por Atención",
+                        text: error
+                    });
+                });
+        },
+        guardarImgGrafica() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            let formNew = {
+                cirugia_id: that.form.cirugia_id,
+                registro_anestesia_id: that.form.registro_anestesia_id,
+                imgGrafica: that.form.imgGrafica
+            };
+            url = "/modulos/cirugia/anestesia/guardar_img_grafica";
+
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    //Llamar metodo de parent para que actualice el grid.
+                    that.$swal({
+                        icon: "success",
+                        title: "Proceso realizado exitosamente",
+                        text: "Datos guardados correctamente."
+                    });
+                    that.validarImprimir = 1;
+                    that.$emit("RespuestaImprimir", that.validarImprimir);
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores de validación
+                    loader.hide();
+                    that.$swal({
+                        icon: "error",
+                        title: "Error Guardar Imagen Grafica",
                         text: error
                     });
                 });

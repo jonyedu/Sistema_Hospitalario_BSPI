@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Modulos\Cirugia\RegistroAnestesico;
 use App\Http\Controllers\Controller;
 use App\Models\Modulos\Cirugia\RegistroAnestesico\RegistroAnestesia;
 use App\Models\Modulos\Cirugia\valoracionPreanestecia\RevisionSistema;
+use App\Models\Modulos\FirmasPorAtencion;
+use App\Models\Modulos\GraficaPorCirugia;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -22,6 +24,70 @@ class RegistroAnestesiaController extends Controller
                 ->with('seguridadMedico.medico.medicoSellos')
                 ->first();
             return  response()->json(['sello' => $sello], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+    public function guardarFirmaPorAtencion(Request $request)
+    {
+        try {
+            $firma = null;
+            $user = Auth::user();
+            $data  = file_get_contents($request->input('imgFirma'));
+            $valor = base64_encode($data);
+            echo $valor;
+            //echo $valor;
+            $img = base64_decode($valor);
+            $firma = mb_convert_encoding($img, 'UTF-8', 'UTF-8');
+
+            //echo $firma;
+
+            //return;
+            //$firma = imagecreatefromstring($string);
+            //$string  = addslashes(file_get_contents($request->input('imgFirma')));
+            //echo $string;
+            //echo gettype(base64_encode($string));
+            //$str = "mensaje";
+            //$var = (binary) $str;
+            //echo gettype($var);
+            //$firma = base64_encode($string );
+            //$firma = imagecreatefromstring($data);
+            //$firma = base64_decode(addslashes($request->input('imgFirma')));
+            // $firma =base64_encode(file_get_contents($request->input('imgFirma')));
+            //$firma =  addslashes(file_get_contents(base64_decode($request->input('imgFirma'))));
+            FirmasPorAtencion::create([
+                'tipo_servicio' => 4,
+                'id_atencion' => $request->input('cirugia_id'),
+                'id_visita' => 0,
+                'id_tipo_documento' => 0,
+                'fecha_atencion' => date("Y-m-d H:i:s"),
+                'firma' => $img,
+                'status' => '1',
+                'usuario_ingreso' => $user->id,
+                'fecha_ingreso' => date("Y-m-d H:i:s"),
+                'pcname' => $_SERVER["REMOTE_ADDR"]
+            ]);
+            return  response()->json(['msj' => 'OK'], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+
+    public function guardarImnGrafica(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $grafica = addslashes(file_get_contents($request->input('imgGrafica')));
+            //$graficas = base64_decode($request->input('imgGrafica'));
+            GraficaPorCirugia::create([
+                'SecCirPro' => $request->input('cirugia_id'),
+                'registro_anestesia_id' => $request->input('registro_anestesia_id'),
+                'grafica' => $grafica,
+                'usu_created_update' => $user->id,
+                'pcip' => $_SERVER["REMOTE_ADDR"],
+                'status' => '1'
+            ]);
+            return  response()->json(['msj' => 'OK'], 200);
         } catch (Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);
         }
