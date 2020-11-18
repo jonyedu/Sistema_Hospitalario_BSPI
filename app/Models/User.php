@@ -27,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'codigo_usu'
     ];
 
     /**
@@ -58,4 +59,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function seguridadMedico()
+    {
+        return $this->hasOne(' App\Models\Modulos\Seguridad\Usuarios\SeguridadMedico', 'id', 'codigo_usu');
+    } 
+
+
+
 }

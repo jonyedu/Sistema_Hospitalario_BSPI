@@ -28,12 +28,8 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-6">
             <!-- Es para la barra superior, donde muestra el Dashboard -->
             @livewire('navigation-dropdown')
-        </div>
-    </div>
 
     <!-- Main Sidebar Container -->
     <div id="app">
@@ -55,7 +51,7 @@
                 </div>
 
 
-                <div class="col-lg-12 col-md-12 col-sm-8">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <!-- Contenido Principal -->
                     @yield('contenido')
                     <!-- Fin Contenido Principal -->

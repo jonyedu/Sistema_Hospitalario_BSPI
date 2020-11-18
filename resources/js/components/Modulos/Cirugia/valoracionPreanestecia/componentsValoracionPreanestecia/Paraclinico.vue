@@ -22,7 +22,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline54"
+                                                            id="defaultInline58"
                                                             value="1"
                                                             @click="
                                                                 validarChkHb()
@@ -31,7 +31,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline54"
+                                                            for="defaultInline58"
                                                             >Hb</label
                                                         >
                                                     </div>
@@ -44,7 +44,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline55"
+                                                            id="defaultInline59"
                                                             value="1"
                                                             @click="
                                                                 validarChkHcto()
@@ -55,7 +55,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline55"
+                                                            for="defaultInline59"
                                                             >Hcto</label
                                                         >
                                                     </div>
@@ -68,7 +68,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline56"
+                                                            id="defaultInline60"
                                                             value="1"
                                                             @click="
                                                                 validarChkLeucocito()
@@ -79,7 +79,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline56"
+                                                            for="defaultInline60"
                                                             >Leucocitos</label
                                                         >
                                                     </div>
@@ -92,7 +92,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline57"
+                                                            id="defaultInline61"
                                                             value="1"
                                                             @click="
                                                                 validarChkNa()
@@ -101,7 +101,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline57"
+                                                            for="defaultInline61"
                                                             >Na</label
                                                         >
                                                     </div>
@@ -114,7 +114,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline58"
+                                                            id="defaultInline62"
                                                             value="1"
                                                             @click="
                                                                 validarChkCi()
@@ -123,7 +123,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline58"
+                                                            for="defaultInline62"
                                                             >CI</label
                                                         >
                                                     </div>
@@ -136,7 +136,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline59"
+                                                            id="defaultInline63"
                                                             value="1"
                                                             @click="
                                                                 validarChkK()
@@ -145,7 +145,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline59"
+                                                            for="defaultInline63"
                                                             >K</label
                                                         >
                                                     </div>
@@ -158,7 +158,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline60"
+                                                            id="defaultInline64"
                                                             value="1"
                                                             @click="
                                                                 validarChkCa()
@@ -167,7 +167,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline60"
+                                                            for="defaultInline64"
                                                             >Ca</label
                                                         >
                                                     </div>
@@ -180,7 +180,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline61"
+                                                            id="defaultInline65"
                                                             value="1"
                                                             @click="
                                                                 validarChkBun()
@@ -191,7 +191,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline61"
+                                                            for="defaultInline65"
                                                             >BUN</label
                                                         >
                                                     </div>
@@ -204,7 +204,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline62"
+                                                            id="defaultInline66"
                                                             value="1"
                                                             @click="
                                                                 validarChkCreati()
@@ -215,7 +215,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline62"
+                                                            for="defaultInline66"
                                                             >Creati</label
                                                         >
                                                     </div>
@@ -228,7 +228,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline63"
+                                                            id="defaultInline67"
                                                             value="1"
                                                             @click="
                                                                 validarChkGlicemia()
@@ -239,7 +239,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline63"
+                                                            for="defaultInline67"
                                                             >Glicemia</label
                                                         >
                                                     </div>
@@ -252,7 +252,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline64"
+                                                            id="defaultInline68"
                                                             value="1"
                                                             @click="
                                                                 validarChkPlaqueta()
@@ -263,7 +263,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline64"
+                                                            for="defaultInline68"
                                                             >Plaquetas</label
                                                         >
                                                     </div>
@@ -276,7 +276,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline65"
+                                                            id="defaultInline69"
                                                             value="1"
                                                             @click="
                                                                 validarChkTp()
@@ -285,7 +285,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline65"
+                                                            for="defaultInline69"
                                                             >T.P.</label
                                                         >
                                                     </div>
@@ -298,7 +298,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline66"
+                                                            id="defaultInline70"
                                                             value="1"
                                                             @click="
                                                                 validarChkTpt()
@@ -309,7 +309,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline66"
+                                                            for="defaultInline70"
                                                             >T.P.T</label
                                                         >
                                                     </div>
@@ -324,7 +324,7 @@
                                                                 <input
                                                                     type="checkbox"
                                                                     class="custom-control-input"
-                                                                    id="defaultInline67"
+                                                                    id="defaultInline71"
                                                                     value="1"
                                                                     @click="
                                                                         validarChkMg()
@@ -335,7 +335,7 @@
                                                                 />
                                                                 <label
                                                                     class="custom-control-label"
-                                                                    for="defaultInline67"
+                                                                    for="defaultInline71"
                                                                     >Mg</label
                                                                 >
                                                             </div>
@@ -467,7 +467,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline68"
+                                                            id="defaultInline72"
                                                             value="1"
                                                             @click="
                                                                 validarChkAsa1()
@@ -478,7 +478,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline68"
+                                                            for="defaultInline72"
                                                             >ASA 1:
                                                         </label>
                                                     </div>
@@ -491,7 +491,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline69"
+                                                            id="defaultInline73"
                                                             value="1"
                                                             @click="
                                                                 validarChkAsa2()
@@ -502,7 +502,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline69"
+                                                            for="defaultInline73"
                                                             >ASA 2:
                                                         </label>
                                                     </div>
@@ -515,7 +515,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline70"
+                                                            id="defaultInline74"
                                                             value="1"
                                                             @click="
                                                                 validarChkAsa3()
@@ -526,7 +526,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline70"
+                                                            for="defaultInline74"
                                                             >ASA 3:
                                                         </label>
                                                     </div>
@@ -539,7 +539,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline71"
+                                                            id="defaultInline75"
                                                             value="1"
                                                             @click="
                                                                 validarChkAsa4()
@@ -550,7 +550,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline71"
+                                                            for="defaultInline75"
                                                             >ASA 4:
                                                         </label>
                                                     </div>
@@ -563,7 +563,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline72"
+                                                            id="defaultInline76"
                                                             value="1"
                                                             @click="
                                                                 validarChkAsa5()
@@ -574,7 +574,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline72"
+                                                            for="defaultInline76"
                                                             >ASA 5:
                                                         </label>
                                                     </div>
@@ -587,7 +587,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline73"
+                                                            id="defaultInline77"
                                                             value="1"
                                                             @click="
                                                                 validarChkU()
@@ -596,7 +596,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline73"
+                                                            for="defaultInline77"
                                                             >U
                                                         </label>
                                                     </div>
@@ -622,7 +622,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline74"
+                                                            id="defaultInline78"
                                                             value="1"
                                                             @click="
                                                                 validarChkCategoria1()
@@ -634,7 +634,7 @@
                                                         <label
                                                             style="font-weight: normal;"
                                                             class="custom-control-label"
-                                                            for="defaultInline74"
+                                                            for="defaultInline78"
                                                             >Riesgo mínimo
                                                             independiente de la
                                                             anestesia.
@@ -658,7 +658,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline75"
+                                                            id="defaultInline79"
                                                             value="1"
                                                             @click="
                                                                 validarChkCategoria2()
@@ -670,7 +670,7 @@
                                                         <label
                                                             style="font-weight: normal;"
                                                             class="custom-control-label"
-                                                            for="defaultInline75"
+                                                            for="defaultInline79"
                                                             >Procedimiento con
                                                             invasividad leve o
                                                             moderada. Pérdida
@@ -693,7 +693,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline76"
+                                                            id="defaultInline80"
                                                             value="1"
                                                             @click="
                                                                 validarChkCategoria3()
@@ -705,7 +705,7 @@
                                                         <label
                                                             style="font-weight: normal;"
                                                             class="custom-control-label"
-                                                            for="defaultInline76"
+                                                            for="defaultInline80"
                                                             >Procedimiento
                                                             moderado o
                                                             significamente
@@ -730,7 +730,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline77"
+                                                            id="defaultInline81"
                                                             value="1"
                                                             @click="
                                                                 validarChkCategoria4()
@@ -742,7 +742,7 @@
                                                         <label
                                                             style="font-weight: normal;"
                                                             class="custom-control-label"
-                                                            for="defaultInline77"
+                                                            for="defaultInline81"
                                                             >Procedimiento
                                                             altamente invasivo.
                                                             Pérdida sanguínea
@@ -765,7 +765,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline78"
+                                                            id="defaultInline82"
                                                             value="1"
                                                             @click="
                                                                 validarChkCategoria5()
@@ -777,7 +777,7 @@
                                                         <label
                                                             style="font-weight: normal;"
                                                             class="custom-control-label"
-                                                            for="defaultInline78"
+                                                            for="defaultInline82"
                                                             >Procedimiento
                                                             altamente invasivo.
                                                             Pérdida sanguínea
@@ -1073,7 +1073,8 @@ export default {
 
                         that.chk.chk_mg = +response.data.paraclinico.mg;
                         that.form.frm_mg = +response.data.paraclinico.mg;
-                        that.form.frm_id_tipo_sangre = +response.data.paraclinico.id_tipo_sangre;
+                        that.form.frm_id_tipo_sangre = +response.data.paraclinico.tipo_sangre.codigo;
+                        that.selectedTipoSangre = response.data.paraclinico.tipo_sangre.descripcion;
 
                         /* Gineco-Obstétricos */
                         that.form.frm_ekg = response.data.paraclinico.ekg;

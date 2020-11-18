@@ -164,7 +164,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline46"
+                                                            id="defaultInline50"
                                                             value="1"
                                                             @click="
                                                                 validarChkCuelloCorto()
@@ -175,7 +175,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline46"
+                                                            for="defaultInline50"
                                                             >Cuello Corto</label
                                                         >
                                                     </div>
@@ -306,7 +306,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline47"
+                                                            id="defaultInline51"
                                                             value="1"
                                                             @click="
                                                                 validarChkClase1()
@@ -315,7 +315,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline47"
+                                                            for="defaultInline51"
                                                             >Clase 1:Total
                                                             visibilidad de las
                                                             amígdalas, úvula y
@@ -331,7 +331,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline48"
+                                                            id="defaultInline52"
                                                             value="1"
                                                             @click="
                                                                 validarChkClase2()
@@ -340,7 +340,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline48"
+                                                            for="defaultInline52"
                                                             >Clase 2: Vilibilidad
                                                             del paladar duro y
                                                             blando, porción superior
@@ -357,7 +357,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline49"
+                                                            id="defaultInline53"
                                                             value="1"
                                                             @click="
                                                                 validarChkClase3()
@@ -366,7 +366,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline49"
+                                                            for="defaultInline53"
                                                             >Clase 3: Son visibles
                                                             el paladar duro y blando
                                                             y la base de la
@@ -382,7 +382,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline50"
+                                                            id="defaultInline54"
                                                             value="1"
                                                             @click="
                                                                 validarChkClase4()
@@ -391,7 +391,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline50"
+                                                            for="defaultInline54"
                                                             >Clase 4: Sólo visible
                                                             el paladar duro.</label
                                                         >
@@ -405,7 +405,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline51"
+                                                            id="defaultInline55"
                                                             value="1"
                                                             @click="
                                                                 validarChkIngurgitaciónYugular()
@@ -416,7 +416,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline51"
+                                                            for="defaultInline55"
                                                             >Ingurgitación
                                                             yugular</label
                                                         >
@@ -527,7 +527,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline52"
+                                                            id="defaultInline56"
                                                             value="1"
                                                             @click="
                                                                 validarChkEdentulo()
@@ -538,7 +538,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline52"
+                                                            for="defaultInline56"
                                                             >Edéntulo</label
                                                         >
                                                     </div>
@@ -551,7 +551,7 @@
                                                         <input
                                                             type="checkbox"
                                                             class="custom-control-input"
-                                                            id="defaultInline53"
+                                                            id="defaultInline57"
                                                             value="1"
                                                             @click="
                                                                 validarChkProtesis()
@@ -562,7 +562,7 @@
                                                         />
                                                         <label
                                                             class="custom-control-label"
-                                                            for="defaultInline53"
+                                                            for="defaultInline57"
                                                             >Prótesis</label
                                                         >
                                                     </div>

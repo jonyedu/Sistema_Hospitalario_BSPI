@@ -11,7 +11,7 @@ class TipoAgenteAnestesia extends Model
     /**
      * @var string
      */
-    protected $table = 'tb_registro_infusiones';
+    protected $table = 'tb_tipo_agente_anestesia';
     /**
      * @var string
      */
@@ -19,8 +19,8 @@ class TipoAgenteAnestesia extends Model
 
     protected $fillable = [
         'id',
-        'infusiones_id',
-        'registro_anestecia_id',
+        'descripcion',
+        'name_system',
         'des_campo1',
         'des_campo2',
         'des_campo3',

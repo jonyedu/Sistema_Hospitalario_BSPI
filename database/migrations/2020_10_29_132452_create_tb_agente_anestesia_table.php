@@ -25,11 +25,10 @@ class CreateTbAgenteAnestesiaTable extends Migration
                 $table->string('des_campo1', 100)->nullable();
                 $table->string('des_campo2', 50)->nullable();
                 $table->decimal('des_campo3', 10,2)->nullable();
-                $table->unsignedInteger('created_by')->nullable();
-                $table->unsignedInteger('updated_by')->nullable();
+                $table->string('usu_created_update');
                 $table->timestamps();
                 $table->string('pcip')->nullable();
-                $table->unsignedInteger('status')->default(1);
+                $table->unsignedInteger('status')->nullable();
             });
         }
     }

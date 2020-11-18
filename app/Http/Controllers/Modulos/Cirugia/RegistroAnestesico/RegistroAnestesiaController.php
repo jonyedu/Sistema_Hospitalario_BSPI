@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Modulos\Cirugia\RegistroAnestesico;
 use App\Http\Controllers\Controller;
 use App\Models\Modulos\Cirugia\RegistroAnestesico\RegistroAnestesia;
 use App\Models\Modulos\Cirugia\valoracionPreanestecia\RevisionSistema;
+
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,9 +16,40 @@ use DateTime;
 
 class RegistroAnestesiaController extends Controller
 {
+    public function cargarSello($codigo_usu)
+    {
+        try {
+            $sello = User::where('codigo_usu', $codigo_usu)
+                ->with('seguridadMedico.medico.medicoSellos')
+                ->first();
+            return  response()->json(['sello' => $sello], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+
     public function store(Request $request)
     {
         $user = Auth::user();
+        $cirugia_id = $request->input('cirugia_id');
+        $registro_anestesia_id = $request->input('registro_anestesia_id');
+
+        $idRegistroAnestesico = RegistroAnestesia::where('SecCirPro', $cirugia_id)
+            ->where('id', $registro_anestesia_id)
+            ->with(['datoAgente' => function ($i) {
+                $i->where('indice_hora', 4);
+            }])
+            ->first();
+
+        if ($idRegistroAnestesico == null) {
+            $registroAnestesico = RegistroAnestesia::create(
+                [
+                    'SecCirPro' => $request->input('cirugia_id'),
+                    'usu_created_update' => $user->id,
+                ]
+            );
+        } else {
+        }
         $registroAnestesico = RegistroAnestesia::create(
             [
                 'SecCirPro' => $request->input('cirugia_id'),
@@ -132,20 +165,23 @@ class RegistroAnestesiaController extends Controller
                 //$resultado = obtenerDatoGraficaRegistroAnestesia();
 
 
-                $datosValoracionPreanestesica = RevisionSistema::where('SecCirPro', $idSecCirPro)
+                $datosValoracionPreanestesica = RegistroAnestesia::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
-                    ->with('antecedente', 'examenFisico', 'paraclinico')
+                    ->with('drogaAdministradaRpt', 'regitroInfunsionRpt.infusionNameRpt')
                     ->first();
+                    //dd($datosValoracionPreanestesica);
 
-                $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia', [
-                    'datosPaciente' => $datosPaciente,
-                    'edadPaciente' => $edadPaciente,
-                    'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
-                    /* 'resultado' => $resultado */
-                 ]);
+
+                 $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia', [  'datosValoracionPreanestesica' => $datosValoracionPreanestesica]);
+                //     'datosPaciente' => $datosPaciente,
+                //     'edadPaciente' => $edadPaciente,
+                //     'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
+                //     /* 'resultado' => $resultado */
+                //  ]);
 
                 return $pdf->stream($nombreArchivo);
                 //return PDF::loadFile('http://www.github.com')->stream('github.pdf');
+                //return  response()->json(['datosValoracionPreanestesica' => $datosValoracionPreanestesica], 200);
 
             } catch (Exception $e) {
                 return response()->json(['mensaje' => $e->getMessage()], 500);

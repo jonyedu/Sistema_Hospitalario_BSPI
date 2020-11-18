@@ -31,4 +31,8 @@ class RegistroInfusiones extends Model
         'pcip',
         'status'
     ];
+    public function infusionNameRpt()
+    {
+        return $this->hasOne('App\Models\Modulos\Cirugia\RegistroAnestesico\Infusiones', 'id', 'infusiones_id');
+    }
 }
