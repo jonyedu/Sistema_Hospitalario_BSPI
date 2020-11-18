@@ -14,8 +14,10 @@ class tb_listado_verificacion extends Model
     protected $connection = 'control_hospitalario_db_sql';
     protected $table = 'tb_listado_verificaciones';
     protected $primaryKey = 'SecCirPro';
+    
 
     public function ListarValoracion(){
-        return "";
+        //return "";
+        return $this->hasOne('App\Models\Modulos\Cirugia\valoracionPreanestecia\Antecedente', 'SecCirPro', 'SecCirPro');
     }
 }

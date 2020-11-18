@@ -80,6 +80,7 @@ class ListaValoracionController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
@@ -93,7 +94,7 @@ class ListaValoracionController extends Controller
         //
         try {
             //code...
-            $listaValoracion = tb_listado_verificacion::findOrFail($id);
+            $listaValoracion = tb_listado_verificacion::findOrFail($id)->with('ListarValoracion');
             // tbValoracion__::findOrFail($id);
             //dd($listaValoracion);
             if ($listaValoracion) {

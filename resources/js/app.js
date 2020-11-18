@@ -82,7 +82,7 @@ Vue.component(
 
 Vue.component(
     "registro-anestesico",
-    require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue").default
+    require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue").default
 );
 
 Vue.component(

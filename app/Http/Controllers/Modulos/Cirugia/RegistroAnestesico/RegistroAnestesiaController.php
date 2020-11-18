@@ -142,7 +142,7 @@ class RegistroAnestesiaController extends Controller
                     'edadPaciente' => $edadPaciente,
                     'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
                     /* 'resultado' => $resultado */
-                ]);
+                 ]);
 
                 return $pdf->stream($nombreArchivo);
                 //return PDF::loadFile('http://www.github.com')->stream('github.pdf');
