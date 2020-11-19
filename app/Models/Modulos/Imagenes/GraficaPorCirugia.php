@@ -11,7 +11,7 @@ class GraficaPorCirugia extends Model
     /**
      * @var string
      */
-    protected $table = 'tbGraficaPorCirugia';
+    protected $table = 'tb_grafica_por_cirugia';
     /**
      * @var string
      */

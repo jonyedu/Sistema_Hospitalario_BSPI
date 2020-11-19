@@ -31,37 +31,15 @@ class RegistroAnestesiaController extends Controller
     public function guardarFirmaPorAtencion(Request $request)
     {
         try {
-            $firma = null;
             $user = Auth::user();
-            $data  = file_get_contents($request->input('imgFirma'));
-            $valor = base64_encode($data);
-            echo $valor;
-            //echo $valor;
-            $img = base64_decode($valor);
-            $firma = mb_convert_encoding($img, 'UTF-8', 'UTF-8');
-
-            //echo $firma;
-
-            //return;
-            //$firma = imagecreatefromstring($string);
-            //$string  = addslashes(file_get_contents($request->input('imgFirma')));
-            //echo $string;
-            //echo gettype(base64_encode($string));
-            //$str = "mensaje";
-            //$var = (binary) $str;
-            //echo gettype($var);
-            //$firma = base64_encode($string );
-            //$firma = imagecreatefromstring($data);
-            //$firma = base64_decode(addslashes($request->input('imgFirma')));
-            // $firma =base64_encode(file_get_contents($request->input('imgFirma')));
-            //$firma =  addslashes(file_get_contents(base64_decode($request->input('imgFirma'))));
+            $firma = convertBase64ToBinary($request->input('imgFirma'));
             FirmasPorAtencion::create([
                 'tipo_servicio' => 4,
                 'id_atencion' => $request->input('cirugia_id'),
                 'id_visita' => 0,
                 'id_tipo_documento' => 0,
                 'fecha_atencion' => date("Y-m-d H:i:s"),
-                'firma' => $img,
+                'firma' => $firma,
                 'status' => '1',
                 'usuario_ingreso' => $user->id,
                 'fecha_ingreso' => date("Y-m-d H:i:s"),
@@ -78,7 +56,7 @@ class RegistroAnestesiaController extends Controller
         try {
             $user = Auth::user();
             $grafica = addslashes(file_get_contents($request->input('imgGrafica')));
-            //$graficas = base64_decode($request->input('imgGrafica'));
+            $grafica = convertBase64ToBinary($request->input('imgGrafica'));
             GraficaPorCirugia::create([
                 'SecCirPro' => $request->input('cirugia_id'),
                 'registro_anestesia_id' => $request->input('registro_anestesia_id'),

@@ -1,6 +1,7 @@
 <?php
 
 use App\DatosGenerales\Generalidades\IdentificacionesYUsuario;
+use Illuminate\Support\Facades\DB;
 
 date_default_timezone_set("America/Guayaquil");
 /* function getNumeroAleatorioUser()
@@ -21,6 +22,13 @@ date_default_timezone_set("America/Guayaquil");
 
     return $numero_nuevo;
 } */
+function convertBase64ToBinary($data){
+    $img  = addslashes(file_get_contents($data));
+    $base = base64_decode($img);
+    $binary = DB::raw('CONVERT(VARBINARY(MAX), 0x' . bin2hex($base) . ')');
+    return $binary;
+}
+
 function getNumeroAleatorio()
 {
     $w_n01 = mt_rand(0, 9);

@@ -179,7 +179,7 @@ export default {
             respuestaImprimir: 1,
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "",
+                frm_idCirugiaProgramada: "0001",
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
@@ -229,7 +229,7 @@ export default {
             if (this.$refs.revisionSistema != null) {
                 this.$refs.revisionSistema.cargarRevisionSistema();
             }
-        }, 
+        },
         /* Fin para llamar al Modal y la Tabla */
 
         /* Metodos para los form-wizard */
