@@ -37,6 +37,6 @@ class SeguridadMedico extends Model
 
     public function medico()
     {
-        return $this->hasOne('App\Models\Modulos\Medico', 'id', 'medico');
+        return $this->hasOne('App\Models\Modulos\Admision\Medico\Medico', 'id', 'medico');
     }
 }

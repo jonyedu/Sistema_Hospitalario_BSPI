@@ -226,7 +226,7 @@
         </table>
     </div>
     <!-- Cardiovasculares -->
-    <div class="tableGeneral" style="top:160px;border: #000000 1px solid;">
+    <div class="tableGeneral" style="top:155px;border: #000000 1px solid;">
         <table class="tableStyleAll">
             <tr>
                 <td style="height: 25px;" colspan=25>Cardiovasculares</td>
@@ -397,7 +397,7 @@
         </table>
     </div>
     <!-- Respiratorio -->
-    <div class="tableGeneral" style="top:245px;border: #000000 1px solid;">
+    <div class="tableGeneral" style="top:235px;border: #000000 1px solid;">
         <table class="tableStyleAll">
             <tr>
                 <td style="height: 25px;" colspan=25>Respiratorio</td>
@@ -499,7 +499,7 @@
         </table>
     </div>
     <!-- Neurológico -->
-    <div class="tableGeneral" style="top:310px;border: #000000 1px solid;">
+    <div class="tableGeneral" style="top:297px;border: #000000 1px solid;">
         <table class="tableStyleAll">
             <tr>
                 <td style="height: 25px;" colspan=25>Neurológico</td>
@@ -627,7 +627,7 @@
         </table>
     </div>
     <!-- Nefrológicos -->
-    <div class="tableGeneral" style="top:395px;border: #000000 1px solid;">
+    <div class="tableGeneral" style="top:378px;border: #000000 1px solid;">
         <table class="tableStyleAll">
             <tr>
                 <td style="height: 25px;" colspan=25>Nefrológicos</td>
@@ -729,10 +729,10 @@
         </table>
     </div>
     <!-- Gastrointestinal -->
-    <div class="tableGeneral" style="top:460px;border: #000000 1px solid;">
+    <div class="tableGeneral" style="top:441px;border: #000000 1px solid;">
         <table class="tableStyleAll">
             <tr>
-                <td style="height: 25px;" colspan=25>Cardiovasculares</td>
+                <td style="height: 25px;" colspan=25>Gastrointestinal</td>
             </tr>
             <tr>
                 <!-- Validar Ulcera -->
@@ -814,16 +814,118 @@
             </tr>
         </table>
     </div>
+    <!-- Sistema Endocrima -->
+    <div class="tableGeneral" style="top:504px;border: #000000 1px solid;">
+        <table class="tableStyleAll">
+            <tr>
+                <td style="height: 25px;" colspan=25>Sistema Endocrima </td>
+            </tr>
+            <tr>
+                <!-- Validacion Diabetes -->
+                <td style="width:5px;color:white;">x</td>
+                <td style="width:60px;">Diabetes</td>
+                @if($datosValoracionPreanestesica != null)
+                    @if($datosValoracionPreanestesica->diabetes)
+                        <td style="width:10px;">Si</td>
+                        <th style="width:10px;">X</th>
+                        <td style="width:10px;">No</td>
+                        <th style="width:10px;color:#ccffcc;">X</th>
+                    @else
+                        <td style="width:10px;">Si</td>
+                        <th style="width:10px;color:#ccffcc;">X</th>
+                        <td style="width:10px;">No</td>
+                        <th style="width:10px;">X</th>
+                    @endif
+                @else
+                    <td style="width:10px;">Si</td>
+                    <th style="width:10px;color:#ccffcc;">X</th>
+                    <td style="width:10px;">No</td>
+                    <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                <!-- Fin Validacion Diabetes -->
+                <!-- Validacion Hipertiroidismo -->
+                <td style="width:20px;color:white;">x</td>
+                <td style="width:60px;">Hipertiroidismo</td>
+                @if($datosValoracionPreanestesica != null)
+                    @if($datosValoracionPreanestesica->hipertiroidismo )
+                        <td style="width:10px;">Si</td>
+                        <th style="width:10px;">X</th>
+                        <td style="width:10px;">No</td>
+                        <th style="width:10px;color:#ccffcc;">X</th>
+                    @else
+                        <td style="width:10px;">Si</td>
+                        <th style="width:10px;color:#ccffcc;">X</th>
+                        <td style="width:10px;">No</td>
+                        <th style="width:10px;">X</th>
+                    @endif
+                @else
+                    <td style="width:10px;">Si</td>
+                    <th style="width:10px;color:#ccffcc;">X</th>
+                    <td style="width:10px;">No</td>
+                    <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                <!-- Fin Validacion Hipertiroidismo -->
+                <!-- Validacion Obecidad -->
+                <td style="width:20px;color:white;">x</td>
+                <td style="width:60px;">Obecidad</td>
+                @if($datosValoracionPreanestesica != null)
+                    @if($datosValoracionPreanestesica->obecidad)
+                        <td style="width:10px;">Si</td>
+                        <th style="width:10px;">X</th>
+                        <td style="width:10px;">No</td>
+                        <th style="width:10px;color:#ccffcc;">X</th>
+                    @else
+                        <td style="width:10px;">Si</td>
+                        <th style="width:10px;color:#ccffcc;">X</th>
+                        <td style="width:10px;">No</td>
+                        <th style="width:10px;">X</th>
+                    @endif
+                @else
+                    <td style="width:10px;">Si</td>
+                    <th style="width:10px;color:#ccffcc;">X</th>
+                    <td style="width:10px;">No</td>
+                    <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                <!-- Fin Validacion Obecidad -->
+                <!-- Validacion Otros Otros istema Endocrima -->
+                <td style="width:20px;color:white;">x</td>
+                <td style="width:60px;">Otros</td>
+                @if($datosValoracionPreanestesica != null)
+                    @if($datosValoracionPreanestesica->otrosSistemaEndocrima)
+                        <td style="width:10px;">Si</td>
+                        <th style="width:10px;">X</th>
+                        <td style="width:10px;">No</td>
+                        <th style="width:10px;color:#ccffcc;">X</th>
+                    @else
+                        <td style="width:10px;">Si</td>
+                        <th style="width:10px;color:#ccffcc;">X</th>
+                        <td style="width:10px;">No</td>
+                        <th style="width:10px;">X</th>
+                    @endif
+                @else
+                    <td style="width:10px;">Si</td>
+                    <th style="width:10px;color:#ccffcc;">X</th>
+                    <td style="width:10px;">No</td>
+                    <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                <!-- Fin Validacion Otros istema Endocrima -->
+                <td style="width:5px;color:white;">x</td>
+            </tr>
+            <tr>
+                <td style="height:1px;color:white;" colspan=25>x</td>
+            </tr>
+        </table>
+    </div>
 
     <!-- ANTECEDENTES -->
-    <div class="tablePaciente" style="top:530px;">
+    <div class="tablePaciente" style="top:570px;">
         <table class="tableStyleAll">
             <tr>
                 <th>ANTECEDENTES</th>
             </tr>
         </table>
     </div>
-    <div class="tableGeneral" style="top:555px;border: #000000 1px solid;">
+    <div class="tableGeneral" style="top:590px;border: #000000 1px solid;">
         <table class="tableStyleAll">
             <tr>
                 <td style="height: 10px;color:white;" colspan=17>x</td>
@@ -1292,7 +1394,7 @@
     </div>
 
     <!-- EXAMEN FISICO -->
-    <div class="tablePaciente" style="top:775px;">
+    <div class="tablePaciente" style="top:800px;">
         <table class="tableStyleAll">
             <tr>
                 <th>EXAMEN FISICO</th>
@@ -1300,7 +1402,7 @@
         </table>
     </div>
 
-    <div class="tableGeneral" style="top:800px;border: #000000 1px solid;">
+    <div class="tableGeneral" style="top:820px;border: #000000 1px solid;">
         <!-- PA, PC, etc -->
         <table class="tableStyleAll">
             <tr>
@@ -1780,7 +1882,7 @@
     </div>
 
     <!-- PARACLINICO -->
-    <div class="tablePaciente" style="top:255px;">
+    <div class="tablePaciente" style="top:245px;">
         <table class="tableStyleAll">
             <tr>
                 <th>PARACLINICO</th>
@@ -1788,7 +1890,7 @@
         </table>
     </div>
     <!-- Partes Hb, Hcto, etc -->
-    <div class="tableGeneral tableParaclinico" style="top:280px;border: #000000 1px solid;">
+    <div class="tableGeneral tableParaclinico" style="top:268px;border: #000000 1px solid;">
         <table class="tableStyleAll">
             <tr>
                 <td style="width:40px;text-align: center;">Hb</td>
@@ -1934,11 +2036,35 @@
                     <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
             </tr>
+            <tr>
+                <td style="width:40px;text-align: center;">Tipo Sangre</td>
+                @if($datosValoracionPreanestesica != null)
+                    @if($datosValoracionPreanestesica->paraclinico->tipoSangre != null)
+                        <th style="width:40px;text-align: center;"> {{$datosValoracionPreanestesica->paraclinico->tipoSangre->descripcion }}</th>
+                    @else
+                    <th style="width:10px;color:#ccffcc;">X</th>
+                    @endif
+                @else
+                    <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+            </tr>
         </table>
     </div>
 
     <!-- E.K.G, Ecocardiograma -->
-    <div class="tableGeneral" style="top:325px;border: #000000 1px solid;">
+    <div class="tableGeneral" style="top:330px;border: #000000 1px solid;">
         <table class="tableStyleAll">
             <tr>
                 <td style="width:5px;color:white;">x</td>
@@ -2243,7 +2369,7 @@
     </div>
 
     <!-- OBSERVACIONES -->
-    <div class="tableGeneral" style="top:825px;border: #000000 1px solid;">
+    <div class="tableGeneral" style="top:805px;border: #000000 1px solid;">
         <table class="tableStyleAll">
             <tr>
                 <td style="width:5px;color:white;">x</td>

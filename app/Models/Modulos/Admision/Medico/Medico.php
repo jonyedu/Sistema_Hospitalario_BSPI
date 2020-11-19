@@ -50,6 +50,6 @@ class Medico extends Model
 
     public function medicoSellos()
     {
-        return $this->hasOne('App\Models\Modulos\MedicoSellos', 'medico', 'id');
+        return $this->hasOne('App\Models\Modulos\Admision\Medico\MedicoSellos', 'medico', 'id');
     }
 }

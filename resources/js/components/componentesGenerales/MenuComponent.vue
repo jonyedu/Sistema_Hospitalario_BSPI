@@ -44,27 +44,6 @@
                     </li>
                 </ul>
             </li>
-           <!--  <li class="nav-item has-treeview">
-                <a class="nav-link" href="">
-                    <i class="nav-icon fas fa-copy"></i>
-                    <p>
-                        Prueba
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <router-link
-                            :to="
-                                prefijo +
-                                    '/modulos/cirugia/valoracionPreanestecia/mostrar_valoracion_preanestesica'
-                            "
-                            class="nav-link"
-                            >Valoracion Preanestesica</router-link
-                        >
-                    </li>
-                </ul>
-            </li> -->
         </ul>
     </nav>
 </template>
@@ -95,9 +74,12 @@ export default {
                     let modulos = [];
                     modulos = response.data.modulo;
                     that.modulos = modulos;
+                    //alert(that.sub_modulos.length)
+                    if (that.sub_modulos.length == 0) {
+                        if(response.data.modulo[0] != null){
+                            that.cargarSubModulos(response.data.modulo[0].codigo);
+                        }
 
-                    if (response.data.modulo[0].codigo != null) {
-                        that.cargarSubModulos(response.data.modulo[0].codigo);
                     }
                 })
                 .catch(error => {

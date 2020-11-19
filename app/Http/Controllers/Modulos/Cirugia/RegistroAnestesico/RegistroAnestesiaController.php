@@ -23,6 +23,7 @@ class RegistroAnestesiaController extends Controller
             $sello = User::where('codigo_usu', $codigo_usu)
                 ->with('seguridadMedico.medico.medicoSellos')
                 ->first();
+            //$grafica = GraficaPorCirugia::where('SecCirPro', 1)->first();
             return  response()->json(['sello' => $sello], 200);
         } catch (Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);
@@ -212,10 +213,10 @@ class RegistroAnestesiaController extends Controller
                     ->where('status', '1')
                     ->with('drogaAdministradaRpt', 'regitroInfunsionRpt.infusionNameRpt')
                     ->first();
-                    //dd($datosValoracionPreanestesica);
+                //dd($datosValoracionPreanestesica);
 
 
-                 $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia', [  'datosValoracionPreanestesica' => $datosValoracionPreanestesica]);
+                $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia', ['datosValoracionPreanestesica' => $datosValoracionPreanestesica]);
                 //     'datosPaciente' => $datosPaciente,
                 //     'edadPaciente' => $edadPaciente,
                 //     'datosValoracionPreanestesica' => $datosValoracionPreanestesica,

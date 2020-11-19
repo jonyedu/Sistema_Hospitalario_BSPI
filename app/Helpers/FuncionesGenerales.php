@@ -23,9 +23,8 @@ date_default_timezone_set("America/Guayaquil");
     return $numero_nuevo;
 } */
 function convertBase64ToBinary($data){
-    $img  = addslashes(file_get_contents($data));
-    $base = base64_decode($img);
-    $binary = DB::raw('CONVERT(VARBINARY(MAX), 0x' . bin2hex($base) . ')');
+    $img  = file_get_contents($data);
+    $binary = DB::raw('CONVERT(VARBINARY(MAX), 0x' . bin2hex($img) . ')');
     return $binary;
 }
 

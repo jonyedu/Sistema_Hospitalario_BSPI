@@ -30,4 +30,17 @@ class GraficaPorCirugia extends Model
         'pcip',
         'status',
     ];
+
+    protected $hidden = [
+        'grafica',
+    ];
+
+    protected $appends = [
+        'GRAFICAS'
+    ];
+
+    public function getGRAFICASattribute()
+    {
+        return base64_encode($this->grafica);
+    }
 }

@@ -233,7 +233,6 @@
                     />
                 </paintable>
             </div>
-            <img :src="output" />
         </div>
     </div>
 </template>

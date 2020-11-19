@@ -87,6 +87,7 @@
                                 type="radio"
                                 name="respiracion_esp"
                                 id="respiracion_esp"
+                                value="ESP"
                                 v-model="
                                     valoresFormulario.respiracion.descripcion
                                 "
@@ -104,6 +105,7 @@
                                 type="radio"
                                 name="respiracion_asis"
                                 id="respiracion_asis"
+                                value="ASIS"
                                 v-model="
                                     valoresFormulario.respiracion.descripcion
                                 "
@@ -121,6 +123,7 @@
                                 type="radio"
                                 name="respiracion_cont"
                                 id="respiracion_cont"
+                                value="CONT"
                                 v-model="
                                     valoresFormulario.respiracion.descripcion
                                 "
@@ -2210,7 +2213,15 @@ export default {
                 .then(response => {
                     this.tabla_datos_grafica = response.data;
                 })
-                .catch(err => console.log(err));
+                .catch(error => {
+                    //Errores
+                    that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    });
+                    loader.hide();
+                });
         },
         /**
          * Obtener posiciones
@@ -2222,7 +2233,15 @@ export default {
                 .then(response => {
                     this.posiciones = response.data;
                 })
-                .catch(err => console.log(err));
+                .catch(error => {
+                    //Errores
+                    that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    });
+                    loader.hide();
+                });
         },
         /**
          * Método para enviar datos de la rejilla (agentes), cada que se registen (pasando 5 min)
@@ -2240,10 +2259,18 @@ export default {
                     SecCirPro: this.form.cirugia_id
                 })
                 .then(response => {
-                    console.log(response.data);
+                    ///console.log(response.data);
                     this.datos_server = response.data;
                 })
-                .catch(err => console.log(err));
+                .catch(error => {
+                    //Errores
+                    that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    });
+                    loader.hide();
+                });
         },
         /**
          * Inicio de la recolección de datos
@@ -2601,14 +2628,15 @@ export default {
                 });
                 return;
             }
-            console.log(this.valoresFormulario);
+            //console.log(this.valoresFormulario);
             this.agregarDatos(this.valoresFormulario.ta_max);
             this.agregarDatos(this.valoresFormulario.ta_min);
 
             this.agregarDatos(this.valoresFormulario.valor_pulso);
             // debugger
             this.agregarDatoRespiracion();
-            // this.agregarDatos(this.valoresFormulario.respiracion);
+            //this.agregarDatos(this.valoresFormulario.respiracion);
+            //this.agregarDatos(this.valoresFormulario.temperatura);
 
             // Agregar posición en la rejilla
             let post_text = this.posiciones.find(

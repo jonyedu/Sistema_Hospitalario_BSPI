@@ -179,7 +179,7 @@ export default {
             respuestaImprimir: 1,
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "0001",
+                frm_idCirugiaProgramada: "",
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",

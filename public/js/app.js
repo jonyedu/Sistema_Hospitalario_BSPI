@@ -3750,6 +3750,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -4247,8 +4250,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var url = "/modulos/cirugia/anestesia/agentes";
       axios.get(url + "/agente").then(function (response) {
         _this3.tabla_datos_grafica = response.data;
-      })["catch"](function (err) {
-        return console.log(err);
+      })["catch"](function (error) {
+        //Errores
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+        loader.hide();
       });
     },
 
@@ -4261,8 +4270,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var url = "/modulos/cirugia/anestesia/agentes";
       axios.get(url + "/posicion").then(function (response) {
         _this4.posiciones = response.data;
-      })["catch"](function (err) {
-        return console.log(err);
+      })["catch"](function (error) {
+        //Errores
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+        loader.hide();
       });
     },
 
@@ -4282,10 +4297,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         tipo: tipo,
         SecCirPro: this.form.cirugia_id
       }).then(function (response) {
-        console.log(response.data);
+        ///console.log(response.data);
         _this5.datos_server = response.data;
-      })["catch"](function (err) {
-        return console.log(err);
+      })["catch"](function (error) {
+        //Errores
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+        loader.hide();
       });
     },
 
@@ -4651,14 +4672,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           text: "Complete los campos por favor."
         });
         return;
-      }
+      } //console.log(this.valoresFormulario);
 
-      console.log(this.valoresFormulario);
+
       this.agregarDatos(this.valoresFormulario.ta_max);
       this.agregarDatos(this.valoresFormulario.ta_min);
       this.agregarDatos(this.valoresFormulario.valor_pulso); // debugger
 
-      this.agregarDatoRespiracion(); // this.agregarDatos(this.valoresFormulario.respiracion);
+      this.agregarDatoRespiracion(); //this.agregarDatos(this.valoresFormulario.respiracion);
+      //this.agregarDatos(this.valoresFormulario.temperatura);
       // Agregar posición en la rejilla
 
       var post_text = this.posiciones.find(function (e) {
@@ -5082,7 +5104,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaImprimir: 1,
       form: {
         /* Datos del paciente */
-        frm_idCirugiaProgramada: "0001",
+        frm_idCirugiaProgramada: "",
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",
@@ -14303,27 +14325,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -14347,10 +14348,12 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(url).then(function (response) {
         var modulos = [];
         modulos = response.data.modulo;
-        that.modulos = modulos;
+        that.modulos = modulos; //alert(that.sub_modulos.length)
 
-        if (response.data.modulo[0].codigo != null) {
-          that.cargarSubModulos(response.data.modulo[0].codigo);
+        if (that.sub_modulos.length == 0) {
+          if (response.data.modulo[0] != null) {
+            that.cargarSubModulos(response.data.modulo[0].codigo);
+          }
         }
       })["catch"](function (error) {
         //Errores
@@ -14399,7 +14402,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -56748,12 +56750,13 @@ var render = function() {
                       attrs: {
                         type: "radio",
                         name: "respiracion_esp",
-                        id: "respiracion_esp"
+                        id: "respiracion_esp",
+                        value: "ESP"
                       },
                       domProps: {
                         checked: _vm._q(
                           _vm.valoresFormulario.respiracion.descripcion,
-                          null
+                          "ESP"
                         )
                       },
                       on: {
@@ -56761,7 +56764,7 @@ var render = function() {
                           return _vm.$set(
                             _vm.valoresFormulario.respiracion,
                             "descripcion",
-                            null
+                            "ESP"
                           )
                         }
                       }
@@ -56799,12 +56802,13 @@ var render = function() {
                       attrs: {
                         type: "radio",
                         name: "respiracion_asis",
-                        id: "respiracion_asis"
+                        id: "respiracion_asis",
+                        value: "ASIS"
                       },
                       domProps: {
                         checked: _vm._q(
                           _vm.valoresFormulario.respiracion.descripcion,
-                          null
+                          "ASIS"
                         )
                       },
                       on: {
@@ -56812,7 +56816,7 @@ var render = function() {
                           return _vm.$set(
                             _vm.valoresFormulario.respiracion,
                             "descripcion",
-                            null
+                            "ASIS"
                           )
                         }
                       }
@@ -56850,12 +56854,13 @@ var render = function() {
                       attrs: {
                         type: "radio",
                         name: "respiracion_cont",
-                        id: "respiracion_cont"
+                        id: "respiracion_cont",
+                        value: "CONT"
                       },
                       domProps: {
                         checked: _vm._q(
                           _vm.valoresFormulario.respiracion.descripcion,
-                          null
+                          "CONT"
                         )
                       },
                       on: {
@@ -56863,7 +56868,7 @@ var render = function() {
                           return _vm.$set(
                             _vm.valoresFormulario.respiracion,
                             "descripcion",
-                            null
+                            "CONT"
                           )
                         }
                       }
@@ -76373,9 +76378,7 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("img", { attrs: { src: _vm.output } })
+      )
     ])
   ])
 }
