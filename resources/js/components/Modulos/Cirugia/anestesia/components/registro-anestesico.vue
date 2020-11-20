@@ -1848,8 +1848,7 @@ export default {
         return {
             validarImgFirma: 0,
             isFirstPaintable: "firmaAnestesiologo",
-            rutaSello: "/img/selloFirma.png",
-
+            rutaSello: "",
             validarImprimir: 0,
             selectedTipoPosiciones: "",
             tipoPosiciones: "",

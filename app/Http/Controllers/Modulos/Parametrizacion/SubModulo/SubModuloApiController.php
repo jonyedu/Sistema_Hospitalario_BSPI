@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Modulos\Parametrizacion\SubModulo;
 
 use App\Http\Controllers\Controller;
+use App\Models\Modulos\Parametrizacion\SubModulo\SgOpcionAplicacion;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

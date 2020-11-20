@@ -3810,7 +3810,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       validarImgFirma: 0,
       isFirstPaintable: "firmaAnestesiologo",
-      rutaSello: "/img/selloFirma.png",
+      rutaSello: "",
       validarImprimir: 0,
       selectedTipoPosiciones: "",
       tipoPosiciones: "",
@@ -14423,7 +14423,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -14433,43 +14432,23 @@ __webpack_require__.r(__webpack_exports__);
       id_sub_menu: 0,
       prefijo: "",
       modulos: [],
-      sub_modulos: []
+      sub_modulos: [],
+      menus: []
     };
   },
   mounted: function mounted() {
-    this.cargarModulos();
+    //this.cargarModulos();
+    this.cargarMenu();
     this.prefijo = _variables__WEBPACK_IMPORTED_MODULE_0__["prefix"];
   },
   methods: {
-    cargarModulos: function cargarModulos() {
+    cargarMenu: function cargarMenu() {
       var that = this;
-      var url = "/modulos/parametrizacion/modulo/cargar_modulo_combo_box";
+      var url = "/modulos/parametrizacion/modulo/cargar_menu";
       axios.get(url).then(function (response) {
-        var modulos = [];
-        modulos = response.data.modulo;
-        that.modulos = modulos; //alert(that.sub_modulos.length)
-
-        if (that.sub_modulos.length == 0) {
-          if (response.data.modulo[0] != null) {
-            that.cargarSubModulos(response.data.modulo[0].codigo);
-          }
-        }
-      })["catch"](function (error) {
-        //Errores
-        that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
-        });
-      });
-    },
-    cargarSubModulos: function cargarSubModulos(id) {
-      var that = this;
-      var url = "/modulos/parametrizacion/sub_modulo/cargar_sub_modulo_combo_box/" + id;
-      axios.get(url).then(function (response) {
-        var subModulo = [];
-        subModulo = response.data.subModulo;
-        that.sub_modulos = subModulo;
+        var menus = [];
+        menus = response.data.menus;
+        that.menus = menus;
       })["catch"](function (error) {
         //Errores
         that.$swal({
@@ -14479,6 +14458,54 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     }
+    /* cargarModulos() {
+        let that = this;
+        let url = "/modulos/parametrizacion/modulo/cargar_modulo_combo_box";
+        axios
+            .get(url)
+            .then(function(response) {
+                let modulos = [];
+                modulos = response.data.modulo;
+                that.modulos = modulos;
+                //alert(that.sub_modulos.length)
+                if (that.sub_modulos.length == 0) {
+                    if(response.data.modulo[0] != null){
+                        that.cargarSubModulos(response.data.modulo[0].codigo);
+                    }
+                 }
+            })
+            .catch(error => {
+                //Errores
+                that.$swal({
+                    icon: "error",
+                    title: "Existe un error",
+                    text: error
+                });
+            });
+    }, */
+
+    /* cargarSubModulos(id) {
+        let that = this;
+        let url =
+            "/modulos/parametrizacion/sub_modulo/cargar_sub_modulo_combo_box/" +
+            id;
+        axios
+            .get(url)
+            .then(function(response) {
+                let subModulo = [];
+                subModulo = response.data.subModulo;
+                that.sub_modulos = subModulo;
+            })
+            .catch(error => {
+                //Errores
+                that.$swal({
+                    icon: "error",
+                    title: "Existe un error",
+                    text: error
+                });
+            });
+    } */
+
   }
 });
 
@@ -76127,18 +76154,10 @@ var render = function() {
           "data-accordion": "false"
         }
       },
-      _vm._l(_vm.modulos, function(gestion, index) {
+      _vm._l(_vm.menus, function(gestion, index) {
         return _c(
           "li",
-          {
-            key: index,
-            staticClass: "nav-item has-treeview",
-            on: {
-              click: function($event) {
-                return _vm.cargarSubModulos(gestion.codigo)
-              }
-            }
-          },
+          { key: index, staticClass: "nav-item has-treeview" },
           [
             _c("a", { staticClass: "nav-link" }, [
               _c("i", { class: gestion.imagen }),
@@ -76157,7 +76176,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._l(_vm.sub_modulos, function(gestion, index) {
+            _vm._l(gestion.sub_modulo, function(subMenu, index) {
               return _c("ul", { key: index, staticClass: "nav nav-treeview" }, [
                 _c(
                   "li",
@@ -76167,17 +76186,17 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "nav-link ml-3",
-                        attrs: { to: _vm.prefijo + gestion.route }
+                        attrs: { to: _vm.prefijo + subMenu.route }
                       },
                       [
-                        _c("i", { class: gestion.imagen }),
+                        _c("i", { class: subMenu.imagen }),
                         _vm._v(" "),
                         _c("p", [
                           _vm._v(
                             "\n                            " +
                               _vm._s(
                                 _vm.$funcionesGlobales.toCapitalFirstAllWords(
-                                  gestion.descripcion
+                                  subMenu.descripcion
                                 )
                               ) +
                               "\n                        "
