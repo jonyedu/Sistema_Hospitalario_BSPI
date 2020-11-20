@@ -17,14 +17,14 @@
                                 <i class="fas fa-file-signature"></i>
                             </button>
                             <template v-if="isActive">
-                                <button
+                                <!-- <button
                                     type="button"
                                     class="btn btn-outline-success"
                                     @click="$refs.paintable.cancelDrawing"
                                 >
-                                    <!-- Cancelar -->
+                                    Cancelar
                                     <i class="fas fa-ban"></i>
-                                </button>
+                                </button> -->
                                 <button
                                     type="button"
                                     class="btn btn-outline-success"

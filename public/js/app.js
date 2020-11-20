@@ -3753,6 +3753,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -3771,6 +3814,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       validarImprimir: 0,
       selectedTipoPosiciones: "",
       tipoPosiciones: "",
+      chk: {
+        temperatura: 0,
+        feto: 0,
+        pares_venosa: 0,
+        torniquete: 0
+      },
       form: {
         cirugia_id: 0,
         registro_anestesia_id: 0,
@@ -3996,6 +4045,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       iniciado: false,
       // Contador de horas
       indice_hora: 0,
+      indice_minuto: 0,
       // Texto adicional ubicados en las primeras columnas de las rejillas
       agentes_text: [{
         descripcion: "",
@@ -4039,7 +4089,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         temperatura: {
           habilitado: false,
           ruta_img: "img/icons/temperatura.png",
-          descripcion: "TA MAX",
+          descripcion: "TEMPERATURA",
           valor: 0
         },
         feto: {
@@ -4106,6 +4156,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (_this.seconds >= 59) {
         _this.seconds = 0;
+
+        if (_this.iniciado) {
+          if (_this.minutes % 5 == 0) {
+            _this.indice_minuto += 15;
+          }
+        }
 
         if (_this.minutes >= 59) {
           _this.hour += 1;
@@ -4289,6 +4345,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       var datos = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var tipo = arguments.length > 1 ? arguments[1] : undefined;
+      var that = this; //var loader = that.$loading.show();
+
       this.form.cirugia_id = this.$props.idSecCirPro;
       var url = "/modulos/cirugia/anestesia/agentes/guardado/" + this.registro_id;
       axios.post(url, {
@@ -4298,15 +4356,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         SecCirPro: this.form.cirugia_id
       }).then(function (response) {
         ///console.log(response.data);
-        _this5.datos_server = response.data;
+        _this5.datos_server = response.data; //loader.hide();
       })["catch"](function (error) {
         //Errores
         that.$swal({
           icon: "error",
           title: "Existe un error",
           text: error
-        });
-        loader.hide();
+        }); //loader.hide();
       });
     },
 
@@ -4539,6 +4596,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         });
       });
     },
+    guardarModificarAgenteText: function guardarModificarAgenteText() {
+      var that = this;
+      var url = "";
+      var formNew = {
+        datos: that.agentes_text,
+        registro_anestesia_id: that.form.registro_anestesia_id,
+        hora: that.hour,
+        minuto: that.minutes,
+        indice_minuto: that.indice_minuto
+      };
+      url = "/modulos/cirugia/anestesia/guardar_modificar_agente_text";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        //that.modifcarRegistroAnestesia();
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores de validación
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Error Guardar Agente Text",
+          text: error
+        });
+      });
+    },
 
     /**
      * Método para pintar el dato en una rejilla y enviar ese dato al servidor
@@ -4680,8 +4762,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.agregarDatos(this.valoresFormulario.valor_pulso); // debugger
 
       this.agregarDatoRespiracion(); //this.agregarDatos(this.valoresFormulario.respiracion);
-      //this.agregarDatos(this.valoresFormulario.temperatura);
-      // Agregar posición en la rejilla
+
+      if (this.chk.temperatura) {
+        this.agregarDatos(this.valoresFormulario.temperatura);
+      }
+
+      if (this.chk.feto) {
+        this.agregarDatos(this.valoresFormulario.feto);
+      }
+
+      if (this.chk.pares_venosa) {
+        this.agregarDatos(this.valoresFormulario.pares_venosa);
+      }
+
+      if (this.chk.torniquete) {
+        this.agregarDatos(this.valoresFormulario.torniquete);
+      } //Aqui va el metodo de guardar los text
+
+
+      this.guardarModificarAgenteText(); // Agregar posición en la rejilla
 
       var post_text = this.posiciones.find(function (e) {
         return e.id == _this8.valoresFormulario.posicion.id;
@@ -56886,9 +56985,67 @@ var render = function() {
               },
               [
                 _c(
-                  "label",
-                  { staticClass: "mr-2", attrs: { for: "valor_temperatura" } },
-                  [_vm._v("TEMPERATURA")]
+                  "div",
+                  {
+                    staticClass:
+                      "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                  },
+                  [
+                    _c(
+                      "label",
+                      { staticClass: "mr-2", attrs: { for: "temperatura" } },
+                      [_vm._v("TEMPERATURA")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.chk.temperatura,
+                          expression: "chk.temperatura"
+                        }
+                      ],
+                      attrs: {
+                        type: "checkbox",
+                        name: "temperatura",
+                        id: "temperatura"
+                      },
+                      domProps: {
+                        checked: Array.isArray(_vm.chk.temperatura)
+                          ? _vm._i(_vm.chk.temperatura, null) > -1
+                          : _vm.chk.temperatura
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.chk.temperatura,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "temperatura",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "temperatura",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.chk, "temperatura", $$c)
+                          }
+                        }
+                      }
+                    })
+                  ]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -56931,9 +57088,59 @@ var render = function() {
               },
               [
                 _c(
-                  "label",
-                  { staticClass: "mr-2", attrs: { for: "valor_feto" } },
-                  [_vm._v("FETO")]
+                  "div",
+                  {
+                    staticClass:
+                      "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                  },
+                  [
+                    _c(
+                      "label",
+                      { staticClass: "mr-2", attrs: { for: "feto" } },
+                      [_vm._v("FETO")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.chk.feto,
+                          expression: "chk.feto"
+                        }
+                      ],
+                      attrs: { type: "checkbox", name: "feto", id: "feto" },
+                      domProps: {
+                        checked: Array.isArray(_vm.chk.feto)
+                          ? _vm._i(_vm.chk.feto, null) > -1
+                          : _vm.chk.feto
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.chk.feto,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(_vm.chk, "feto", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "feto",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.chk, "feto", $$c)
+                          }
+                        }
+                      }
+                    })
+                  ]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -56972,9 +57179,67 @@ var render = function() {
               },
               [
                 _c(
-                  "label",
-                  { staticClass: "mr-2", attrs: { for: "valor_pres_venosa" } },
-                  [_vm._v("PRES VENOSA")]
+                  "div",
+                  {
+                    staticClass:
+                      "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                  },
+                  [
+                    _c(
+                      "label",
+                      { staticClass: "mr-2", attrs: { for: "pares_venosa" } },
+                      [_vm._v("PRES VENOSA")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.chk.pares_venosa,
+                          expression: "chk.pares_venosa"
+                        }
+                      ],
+                      attrs: {
+                        type: "checkbox",
+                        name: "pares_venosa",
+                        id: "pares_venosa"
+                      },
+                      domProps: {
+                        checked: Array.isArray(_vm.chk.pares_venosa)
+                          ? _vm._i(_vm.chk.pares_venosa, null) > -1
+                          : _vm.chk.pares_venosa
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.chk.pares_venosa,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "pares_venosa",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "pares_venosa",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.chk, "pares_venosa", $$c)
+                          }
+                        }
+                      }
+                    })
+                  ]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -57017,9 +57282,67 @@ var render = function() {
               },
               [
                 _c(
-                  "label",
-                  { staticClass: "mr-2", attrs: { for: "valor_torniquete" } },
-                  [_vm._v("TORNIQUETE")]
+                  "div",
+                  {
+                    staticClass:
+                      "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                  },
+                  [
+                    _c(
+                      "label",
+                      { staticClass: "mr-2", attrs: { for: "torniquete" } },
+                      [_vm._v("TORNIQUETE")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.chk.torniquete,
+                          expression: "chk.torniquete"
+                        }
+                      ],
+                      attrs: {
+                        type: "checkbox",
+                        name: "torniquete",
+                        id: "torniquete"
+                      },
+                      domProps: {
+                        checked: Array.isArray(_vm.chk.torniquete)
+                          ? _vm._i(_vm.chk.torniquete, null) > -1
+                          : _vm.chk.torniquete
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.chk.torniquete,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "torniquete",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "torniquete",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.chk, "torniquete", $$c)
+                          }
+                        }
+                      }
+                    })
+                  ]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -75926,16 +76249,6 @@ var render = function() {
                       _vm._v(" "),
                       _vm.isActive
                         ? [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-outline-success",
-                                attrs: { type: "button" },
-                                on: { click: _vm.$refs.paintable.cancelDrawing }
-                              },
-                              [_c("i", { staticClass: "fas fa-ban" })]
-                            ),
-                            _vm._v(" "),
                             _c(
                               "button",
                               {

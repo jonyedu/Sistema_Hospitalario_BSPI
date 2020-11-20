@@ -135,9 +135,19 @@
                 <div
                     class="col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
                 >
-                    <label for="valor_temperatura" class="mr-2"
-                        >TEMPERATURA</label
+                    <div
+                        class="col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
                     >
+                        <label for="temperatura" class="mr-2"
+                            >TEMPERATURA</label
+                        >
+                        <input
+                            type="checkbox"
+                            name="temperatura"
+                            id="temperatura"
+                            v-model="chk.temperatura"
+                        />
+                    </div>
                     <input
                         class="input-registro text-center"
                         type="text"
@@ -150,7 +160,19 @@
                 <div
                     class="col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
                 >
-                    <label for="valor_feto" class="mr-2">FETO</label>
+                    <div
+                        class="col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                    >
+                        <label for="feto" class="mr-2"
+                            >FETO</label
+                        >
+                        <input
+                            type="checkbox"
+                            name="feto"
+                            id="feto"
+                            v-model="chk.feto"
+                        />
+                    </div>
                     <input
                         class="input-registro text-center"
                         type="text"
@@ -163,9 +185,19 @@
                 <div
                     class="col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
                 >
-                    <label for="valor_pres_venosa" class="mr-2"
-                        >PRES VENOSA</label
+                    <div
+                        class="col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
                     >
+                        <label for="pares_venosa" class="mr-2"
+                            >PRES VENOSA</label
+                        >
+                        <input
+                            type="checkbox"
+                            name="pares_venosa"
+                            id="pares_venosa"
+                            v-model="chk.pares_venosa"
+                        />
+                    </div>
                     <input
                         class="input-registro text-center"
                         type="text"
@@ -178,9 +210,19 @@
                 <div
                     class="col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
                 >
-                    <label for="valor_torniquete" class="mr-2"
-                        >TORNIQUETE</label
+                    <div
+                        class="col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
                     >
+                        <label for="torniquete" class="mr-2"
+                            >TORNIQUETE</label
+                        >
+                        <input
+                            type="checkbox"
+                            name="torniquete"
+                            id="torniquete"
+                            v-model="chk.torniquete"
+                        />
+                    </div>
                     <input
                         class="input-registro text-center"
                         type="text"
@@ -1388,7 +1430,8 @@
                             <span class="col-md-1 border-r">
                                 {{ infusion.abreviatura }}
                             </span>
-                            <label class="col-md-6 p-0 m-0 upper"><span class="space-left">
+                            <label class="col-md-6 p-0 m-0 upper"
+                                ><span class="space-left">
                                     {{ infusion.descripcion }}
                                 </span></label
                             >
@@ -1799,7 +1842,7 @@ export default {
         },
         user: {
             type: Object
-        },
+        }
     },
     data: function() {
         return {
@@ -1810,6 +1853,12 @@ export default {
             validarImprimir: 0,
             selectedTipoPosiciones: "",
             tipoPosiciones: "",
+            chk:{
+                temperatura:0,
+                feto:0,
+                pares_venosa:0,
+                torniquete:0
+            },
             form: {
                 cirugia_id: 0,
                 registro_anestesia_id: 0,
@@ -1916,7 +1965,7 @@ export default {
 
                 /* Datos para guardar firma */
                 imgFirma: null,
-                imgGrafica: null,
+                imgGrafica: null
                 /* Fin Datos para guardar firma */
             },
             registro_id: 1,
@@ -1986,6 +2035,7 @@ export default {
             iniciado: false,
             // Contador de horas
             indice_hora: 0,
+            indice_minuto: 0,
             // Texto adicional ubicados en las primeras columnas de las rejillas
             agentes_text: [
                 { descripcion: "", valores: [] },
@@ -2022,7 +2072,7 @@ export default {
                 temperatura: {
                     habilitado: false,
                     ruta_img: "img/icons/temperatura.png",
-                    descripcion: "TA MAX",
+                    descripcion: "TEMPERATURA",
                     valor: 0
                 },
                 feto: {
@@ -2084,6 +2134,12 @@ export default {
             this.seconds += 1;
             if (this.seconds >= 59) {
                 this.seconds = 0;
+                if (this.iniciado) {
+                    if (this.minutes % 5 == 0) {
+                        this.indice_minuto += 15;
+                    }
+
+                }
                 if (this.minutes >= 59) {
                     this.hour += 1;
                     this.minutes = 0;
@@ -2124,12 +2180,16 @@ export default {
             let that = this;
             var loader = that.$loading.show();
             let url =
-                "/modulos/cirugia/anestesia/cargar_sello/" + that.$props.user.codigo_usu;
+                "/modulos/cirugia/anestesia/cargar_sello/" +
+                that.$props.user.codigo_usu;
             axios
                 .get(url)
                 .then(function(response) {
-                    if(response.data.sello != null){
-                        that.rutaSello =  "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
+                    if (response.data.sello != null) {
+                        that.rutaSello =
+                            "data:image/jpeg;base64," +
+                            response.data.sello.seguridad_medico.medico
+                                .medico_sellos.IMAGEN_SELLO;
                     }
                     loader.hide();
                 })
@@ -2247,6 +2307,8 @@ export default {
          * Método para enviar datos de la rejilla (agentes), cada que se registen (pasando 5 min)
          */
         enviarDatosAgente(datos = {}, tipo) {
+            let that = this;
+            //var loader = that.$loading.show();
             this.form.cirugia_id = this.$props.idSecCirPro;
             let url =
                 "/modulos/cirugia/anestesia/agentes/guardado/" +
@@ -2261,6 +2323,7 @@ export default {
                 .then(response => {
                     ///console.log(response.data);
                     this.datos_server = response.data;
+                    //loader.hide();
                 })
                 .catch(error => {
                     //Errores
@@ -2269,7 +2332,7 @@ export default {
                         title: "Existe un error",
                         text: error
                     });
-                    loader.hide();
+                    //loader.hide();
                 });
         },
         /**
@@ -2496,6 +2559,34 @@ export default {
                     });
                 });
         },
+        guardarModificarAgenteText() {
+            let that = this;
+            let url = "";
+            let formNew = {
+                datos: that.agentes_text,
+                registro_anestesia_id: that.form.registro_anestesia_id,
+                hora: that.hour,
+                minuto: that.minutes,
+                indice_minuto: that.indice_minuto,
+            };
+            url = "/modulos/cirugia/anestesia/guardar_modificar_agente_text";
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    //that.modifcarRegistroAnestesia();
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores de validación
+                    loader.hide();
+                    that.$swal({
+                        icon: "error",
+                        title: "Error Guardar Agente Text",
+                        text: error
+                    });
+                });
+        },
         /**
          * Método para pintar el dato en una rejilla y enviar ese dato al servidor
          * @param is_tpo_init
@@ -2633,10 +2724,29 @@ export default {
             this.agregarDatos(this.valoresFormulario.ta_min);
 
             this.agregarDatos(this.valoresFormulario.valor_pulso);
+
             // debugger
             this.agregarDatoRespiracion();
             //this.agregarDatos(this.valoresFormulario.respiracion);
-            //this.agregarDatos(this.valoresFormulario.temperatura);
+
+            if(this.chk.temperatura){
+                this.agregarDatos(this.valoresFormulario.temperatura);
+            }
+
+            if(this.chk.feto){
+                this.agregarDatos(this.valoresFormulario.feto);
+            }
+
+            if(this.chk.pares_venosa){
+                this.agregarDatos(this.valoresFormulario.pares_venosa);
+            }
+
+            if(this.chk.torniquete){
+                this.agregarDatos(this.valoresFormulario.torniquete);
+            }
+
+            //Aqui va el metodo de guardar los text
+            this.guardarModificarAgenteText();
 
             // Agregar posición en la rejilla
             let post_text = this.posiciones.find(

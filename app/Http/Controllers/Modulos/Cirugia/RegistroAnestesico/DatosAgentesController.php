@@ -35,7 +35,8 @@ class DatosAgentesController extends Controller
         }
 
         $datos->registro_anestesia_id = $request->input('registro_anestesia_id');
-        echo $datos->name;
+        //echo $datos->name;
+
         switch ($request->input('tipo')) {
             case 'respiracion':
                 # respiración
