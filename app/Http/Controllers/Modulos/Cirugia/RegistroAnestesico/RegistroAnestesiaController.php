@@ -244,7 +244,7 @@ class RegistroAnestesiaController extends Controller
                 //     /* 'resultado' => $resultado */
                 //  ]);
 
-                return $pdf->stream($nombreArchivo);
+                return $pdf->stream($nombreArchivo); 
                 //return PDF::loadFile('http://www.github.com')->stream('github.pdf');
                 //return  response()->json(['datosValoracionPreanestesica' => $datosValoracionPreanestesica], 200);
 

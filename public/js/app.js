@@ -3750,8 +3750,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-<<<<<<< HEAD
-=======
 //
 //
 //
@@ -3838,7 +3836,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
->>>>>>> 2148192edd60054ad8fa25e2f2a881575dd28380
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -3848,12 +3845,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-<<<<<<< HEAD
-      validarImgFirma: 0,
-      isFirstPaintable: "firmaAnestesiologo",
-      rutaSello: "/img/selloFirma.png",
-=======
->>>>>>> 2148192edd60054ad8fa25e2f2a881575dd28380
       validarImprimir: 0,
       selectedTipoPosiciones: "",
       tipoPosiciones: "",
@@ -3958,14 +3949,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           abreviatura: "SS",
           valor: 0
         }],
-        total: 0,
-
+        total: 0
         /* Fin Datos para guardar en la tabla infusiones */
-
-        /* Datos para guardar firma */
-        imgFirma: null,
-        imgGrafica: null
-        /* Fin Datos para guardar firma */
 
       },
       registro_id: 1,
@@ -4217,77 +4202,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
-<<<<<<< HEAD
-    getImgGrafica: function getImgGrafica() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var la, optiones;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                la = _this2.$refs.printMe;
-                optiones = {
-                  type: "dataURL"
-                };
-                _context.next = 4;
-                return _this2.$html2canvas(la, optiones);
-
-              case 4:
-                _this2.form.imgGrafica = _context.sent;
-
-                _this2.guardarImgGrafica(); //
-
-
-                _this2.iniciado = false;
-
-              case 7:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    consultarSello: function consultarSello() {
-      var that = this;
-      var loader = that.$loading.show();
-      var url = "/modulos/cirugia/anestesia/cargar_sello/" + that.$props.user.codigo_usu;
-      axios.get(url).then(function (response) {
-        if (response.data.sello != null) {
-          that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
-        }
-
-        loader.hide();
-      })["catch"](function (error) {
-        //Errores
-        that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
-        });
-        loader.hide();
-      });
-    },
-    getNewIdRegistroAnestesia: function getNewIdRegistroAnestesia() {
-      if (this.iniciado) return;
-      this.iniciado = true;
-      var url = "/modulos/cirugia/anestesia/registro/post";
-      axios.post(url, this.form).then(function (response) {
-        this.form.registro_anestesia_id = response.data.id;
-      })["catch"](function (error) {
-        //Errores
-        that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
-        });
-        loader.hide();
-      });
-    },
-=======
->>>>>>> 2148192edd60054ad8fa25e2f2a881575dd28380
     setSelectedTipoPosiciones: function setSelectedTipoPosiciones(value) {
       var that = this;
       var loader = that.$loading.show();
@@ -4450,43 +4364,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
     end_time: function end_time() {
       if (!this.iniciado) return;
-<<<<<<< HEAD
-      this.$swal({
-        title: "¿Desea cerrar el proceso?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Aceptar",
-        cancelButtonText: "Cancelar"
-      }).then(function (result) {
-        if (result.value) {
-          if (_this7.validarImgFirma) {
-            // Poner el dato al final de la rejilla cuando se haya finalizado
-            _this7.agregaDatoEnRejilla(true, false, 0, "img/icons/fin_anestecia.png", {
-              system_name: "FIN-ANESTECIA",
-              tipo: _this7.system_agente
-            }); //Se guardan los datos a la base
-
-
-            _this7.guardarDrograAdministrada(); //Cambia el estado
-
-          } else {
-            _this7.$swal({
-              icon: "warning",
-              title: "Advertencia Firma",
-              text: "Se necesita una firma por favor."
-            });
-          }
-        }
-=======
       if (!confirm("¿Desea cerrar el proceso?")) return;
       this.iniciado = false; // Poner el dato al final de la rejilla cuando se haya finalizado
 
       this.agregaDatoEnRejilla(true, false, 0, "img/icons/fin_anestecia.png", {
         system_name: "FIN-ANESTECIA",
         tipo: this.system_agente
->>>>>>> 2148192edd60054ad8fa25e2f2a881575dd28380
       });
       this.guardarDrograAdministrada();
     },
@@ -4544,65 +4427,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var loader = that.$loading.show();
       axios.post(url, formNew).then(function (response) {
         //Llamar metodo de parent para que actualice el grid.
-
-        /* that.$swal({
-            icon: "success",
-            title: "Proceso realizado exitosamente",
-            text: "Datos guardados correctamente."
-        }); */
-        that.guardarFirmaPorAtencion();
-        loader.hide();
-      })["catch"](function (error) {
-        //Errores de validación
-        loader.hide();
-        that.$swal({
-          icon: "error",
-          title: "Error Guardar Infusiones",
-          text: error
-        });
-      });
-    },
-    guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
-      var that = this;
-      var url = "";
-      var mensaje = "";
-      var formNew = {
-        cirugia_id: that.form.cirugia_id,
-        imgFirma: that.form.imgFirma
-      };
-      url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
-      var loader = that.$loading.show();
-      axios.post(url, formNew).then(function (response) {//Llamar metodo de parent para que actualice el grid.
-
-        /* that.$swal({
-            icon: "success",
-            title: "Proceso realizado exitosamente",
-            text: "Datos guardados correctamente."
-        }); */
-        //that.getImgGrafica();
-      })["catch"](function (error) {
-        //Errores de validación
-        loader.hide();
-        that.$swal({
-          icon: "error",
-          title: "Error Guardar Firma por Atención",
-          text: error
-        });
-      });
-    },
-    guardarImgGrafica: function guardarImgGrafica() {
-      var that = this;
-      var url = "";
-      var mensaje = "";
-      var formNew = {
-        cirugia_id: that.form.cirugia_id,
-        registro_anestesia_id: that.form.registro_anestesia_id,
-        imgGrafica: that.form.imgGrafica
-      };
-      url = "/modulos/cirugia/anestesia/guardar_img_grafica";
-      var loader = that.$loading.show();
-      axios.post(url, formNew).then(function (response) {
-        //Llamar metodo de parent para que actualice el grid.
         that.$swal({
           icon: "success",
           title: "Proceso realizado exitosamente",
@@ -4610,13 +4434,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         });
         that.validarImprimir = 1;
         that.$emit("RespuestaImprimir", that.validarImprimir);
-        loader.hide();
       })["catch"](function (error) {
         //Errores de validación
         loader.hide();
         that.$swal({
           icon: "error",
-          title: "Error Guardar Imagen Grafica",
+          title: "Error Guardar Infusiones",
           text: error
         });
       });
@@ -61254,55 +61077,7 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-<<<<<<< HEAD
-                _c("div", {}, [
-                  _c("div", { staticStyle: { height: "70px" } }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flex flex-y" }, [
-                    _c(
-                      "span",
-                      {
-                        staticClass: "col-md-5 text-center",
-                        staticStyle: { margin: "auto" }
-                      },
-                      [
-                        _c("vue-painttable", {
-                          ref: "paintFirma",
-                          attrs: {
-                            hidePaintable: true,
-                            isFirstPaintable: _vm.isFirstPaintable,
-                            disableNavigation: true,
-                            showUndoRedo: false,
-                            showLineWidth: false,
-                            rutaImagen: _vm.rutaSello,
-                            width: 800,
-                            height: 800
-                          },
-                          on: {
-                            getOutput: function($event) {
-                              _vm.form.imgFirma = $event
-                            },
-                            RespuestaImgFirma: function($event) {
-                              _vm.validarImgFirma = $event
-                            }
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "col-md-12 text-center" }, [
-                      _vm._v("______________________________________________")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "col-md-12 text-center" }, [
-                      _vm._v("FIRMA DEL ANESTESIOLOGO:")
-                    ])
-                  ])
-                ])
-=======
                 _vm._m(52)
->>>>>>> 2148192edd60054ad8fa25e2f2a881575dd28380
               ])
             ])
           ])

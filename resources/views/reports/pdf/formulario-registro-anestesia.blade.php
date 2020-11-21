@@ -351,7 +351,7 @@
     <div
         style="z-index:15;top:940px;left:169px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:123px;">
     </div>
-    <div style="z-index:3;clip:rect(0px,760px,347px,0px);top:0px;left:0px;width:760px;height:347px;"></div
+    <div style="z-index:3;clip:rect(0px,760px,347px,0px);top:0px;left:0px;width:760px;height:347px;"></div>
         {{-- aqui finaliza el codigo --}} <div
         style="z-index:3;clip:rect(0px,760px,347px,0px);top:0px;left:0px;width:760px;height:347px;">
     </div>
@@ -638,11 +638,18 @@
         </table>
     </div>
     <div style="z-index:3;clip:rect(0px,760px,509px,0px);top:477px;left:0px;width:760px;height:509px;"></div>
-    {{-- aqui empienza el cuerpo --}}
+    {{-- 
+    ***********************************************************
+    ***********************************************************
+    *************aqui empienza el cuerpo***********************
+    *********************************************************** --}}
+  
+
+
 
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:489px;left:173px;width:263px;height:15px;">
         <table width="263px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-1">DROGAS&nbsp;ADMINISTRADAS</span></td>
+            <td align="left"><span class="fc1id88d10we5ps-1">DROGAS&nbsp;ADMINISTRADAS </span></td>
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:492px;left:659px;width:92px;height:15px;">
@@ -736,64 +743,136 @@
         </table>
     </div>
     {{-- AQUI EMPIEZA LOS TIPOS --}}
+    {{-- @foreach ($datosValoracionPreanestesica->drogaAdministradaRpt as $item) --}}
+    
+
+  
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:543px;left:32px;width:158px;height:15px;">
         <table width="158px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-2">TIPO&nbsp;1...........................</span></td>
+            @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[0]->descripcion==NULL)
+            <td align="left"><span class="fc1id88d10we5ps-2">--</span></td>
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-2">  {{ $datosValoracionPreanestesica->drogaAdministradaRpt[0]->descripcion }}</span></td>
+            @endif
+            
+           
+            
         </table>
     </div>
+   
+   {{-- @endforeach --}}
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:569px;left:34px;width:158px;height:15px;">
         <table width="158px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-2">TIPO&nbsp;1...........................</span></td>
+
+            @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[1]->descripcion==NULL)
+            <td align="left"><span class="fc1id88d10we5ps-2">--</span></td>
+            
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-2">  {{ $datosValoracionPreanestesica->drogaAdministradaRpt[1]->descripcion }}</span></td>
+            @endif
+
+
+
+
+            
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:593px;left:36px;width:158px;height:15px;">
         <table width="158px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-2">TIPO&nbsp;1...........................</span></td>
+            @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[2]->descripcion==NULL)
+            <td align="left"><span class="fc1id88d10we5ps-2">--</span></td>
+            
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-2">  {{ $datosValoracionPreanestesica->drogaAdministradaRpt[2]->descripcion }}</span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:517px;left:222px;width:158px;height:15px;">
         <table width="158px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-2">TIPO&nbsp;1...........................</span></td>
+            @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[3]->descripcion==NULL)
+            <td align="left"><span class="fc1id88d10we5ps-2">--</span></td>
+            
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-2">  {{ $datosValoracionPreanestesica->drogaAdministradaRpt[3]->descripcion }}</span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:542px;left:221px;width:158px;height:15px;">
         <table width="158px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-2">TIPO&nbsp;1...........................</span></td>
+            @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[4]->descripcion==NULL)
+            <td align="left"><span class="fc1id88d10we5ps-2">--</span></td>
+            
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-2">  {{ $datosValoracionPreanestesica->drogaAdministradaRpt[4]->descripcion }}</span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:568px;left:222px;width:158px;height:15px;">
         <table width="158px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-2">TIPO&nbsp;1...........................</span></td>
+            @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[5]->descripcion==NULL)
+            <td align="left"><span class="fc1id88d10we5ps-2">--</span></td>
+            
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-2">  {{ $datosValoracionPreanestesica->drogaAdministradaRpt[5]->descripcion }}</span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:592px;left:223px;width:158px;height:15px;">
         <table width="158px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-2">TIPO&nbsp;1...........................</span></td>
+            @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[6]->descripcion==NULL)
+            <td align="left"><span class="fc1id88d10we5ps-2">--</span></td>
+            
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-2">  {{ $datosValoracionPreanestesica->drogaAdministradaRpt[6]->descripcion }}</span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:517px;left:426px;width:129px;height:15px;">
         <table width="129px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-2">TIPO&nbsp;1....................</span></td>
+            @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[7]->descripcion==NULL)
+            <td align="left"><span class="fc1id88d10we5ps-2">--</span></td>
+            
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-2">  {{ $datosValoracionPreanestesica->drogaAdministradaRpt[7]->descripcion }}</span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:543px;left:428px;width:129px;height:15px;">
         <table width="129px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-2">TIPO&nbsp;1....................</span></td>
+            @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[8]->descripcion==NULL)
+            <td align="left"><span class="fc1id88d10we5ps-2">--</span></td>
+            
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-2">  {{ $datosValoracionPreanestesica->drogaAdministradaRpt[8]->descripcion }}</span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:568px;left:427px;width:129px;height:15px;">
         <table width="129px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-2">TIPO&nbsp;1....................</span></td>
+            @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[9]->descripcion==NULL)
+            <td align="left"><span class="fc1id88d10we5ps-2">--</span></td>
+            
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-2">  {{ $datosValoracionPreanestesica->drogaAdministradaRpt[9]->descripcion }}</span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:591px;left:428px;width:129px;height:15px;">
         <table width="129px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-2">TIPO&nbsp;11....................</span></td>
+            @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[10]->descripcion==NULL)
+            <td align="left"><span class="fc1id88d10we5ps-2">--</span></td>
+            
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-2">  {{ $datosValoracionPreanestesica->drogaAdministradaRpt[10]->descripcion }}</span></td>
+            @endif
         </table>
     </div>
+ 
+        {{-- finaliza los tipo  --}}
+
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:513px;left:565px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            <td align="center"><span class="fc1id88d10we5ps-2">X0</span></td>
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:541px;left:565px;width:22px;height:17px;">
@@ -826,6 +905,7 @@
             <td align="center"><span class="fc1id88d10we5ps-1">COMPLICACIONES&nbsp;OPERATORIA</span></td>
         </table>
     </div>
+    {{-- GENERAL --}}
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:637px;left:8px;width:98px;height:15px;">
         <table width="98px" border="0" cellpadding="0" cellspacing="0">
             <td align="left"><span class="fc1id88d10we5ps-3">GENERAL</span></td>
@@ -833,12 +913,22 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:636px;left:145px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->general==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
+            
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:660px;left:145px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->sistem_abierto==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
+            
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:660px;left:8px;width:108px;height:15px;">
@@ -846,9 +936,13 @@
             <td align="left"><span class="fc1id88d10we5ps-3">SISTEM&nbsp;ABIERTO</span></td>
         </table>
     </div>
-    <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:685px;left:144px;width:22px;height:17px;">
+    <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:685px;left:145px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->sistem_cerrado==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:685px;left:7px;width:116px;height:15px;">
@@ -856,9 +950,13 @@
             <td align="left"><span class="fc1id88d10we5ps-3">SISTEMA&nbsp;CERRADO</span></td>
         </table>
     </div>
-    <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:708px;left:143px;width:22px;height:17px;">
+    <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:708px;left:145px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->sistem_semi_cerr==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:708px;left:6px;width:134px;height:15px;">
@@ -868,7 +966,11 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:742px;left:51px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->cinc_aparatos_usados==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:729px;left:3px;width:159px;height:15px;">
@@ -883,12 +985,16 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:743px;left:135px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->vaiiven_aparatos_usados==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:743px;left:91px;width:39px;height:15px;">
         <table width="39px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-3">CINC</span></td>
+            <td align="left"><span class="fc1id88d10we5ps-3">VAIVEN</span></td>
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:767px;left:58px;width:71px;height:15px;">
@@ -896,14 +1002,25 @@
             <td align="left"><span class="fc1id88d10we5ps-3">MASCARA</span></td>
         </table>
     </div>
-    <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:765px;left:134px;width:22px;height:17px;">
+    <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:765px;left:135px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->mascara==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
+
+    {{-- CONDUCTIVA --}}
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:635px;left:268px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->conductiva==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
+            
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:635px;left:172px;width:91px;height:15px;">
@@ -913,7 +1030,12 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:660px;left:267px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->asepsia_piel==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
+            
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:661px;left:174px;width:91px;height:15px;">
@@ -924,7 +1046,12 @@
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:682px;left:205px;width:84px;height:17px;">
         <table width="74px" border="0" cellpadding="0" cellspacing="0">
             <tr>
+                @if ( $datosValoracionPreanestesica->con==NULL)
                 <td align="center"><span class="fc1id88d10we5ps-2">......................</span></td>
+                @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> {{ $datosValoracionPreanestesica->con}}</span></td>
+                @endif
+                
             </tr>
         </table>
     </div>
@@ -936,7 +1063,12 @@
        {{-- arritmias --}}
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:636px;left:720px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">X0</span></td>
+            @if ( $datosValoracionPreanestesica->arritmias==1)
+            <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
+            
         </table>
     </div>
  
@@ -955,7 +1087,11 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:658px;left:720px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->perforacion_duramadre==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
      {{-- nauses --}}
@@ -966,7 +1102,11 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:680px;left:720px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->nauses_vomitos==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
      {{-- larigno --}}
@@ -977,7 +1117,11 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:701px;left:720px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->aringo_espasmo==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
      {{-- nunguna --}}
@@ -988,13 +1132,22 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:723px;left:720px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->ninguna==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
      {{-- hipo --}}
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:638px;left:574px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->hipotension==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
+            {{-- <td align="center"><span class="fc1id88d10we5ps-2">X4</span></td> --}}
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:641px;left:458px;width:103px;height:15px;">
@@ -1005,22 +1158,43 @@
      {{-- nunguna --}}
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:658px;left:574px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            {{-- depresion --}}
+            @if ( $datosValoracionPreanestesica->depresion_respiratoria==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
+             
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:679px;left:574px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+              {{-- dificultad --}}
+              @if ( $datosValoracionPreanestesica->dificultad_intubacion==1)
+              <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+              @else
+              <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+              @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:701px;left:573px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+              {{-- conductiva insuf --}}
+              @if ( $datosValoracionPreanestesica->conductiva_insuficiente==1)
+              <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+              @else
+              <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+              @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:721px;left:573px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+              {{-- paro cardiaco --}}
+              @if ( $datosValoracionPreanestesica->paro_cardiaco==1)
+              <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+              @else
+              <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+              @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:660px;left:459px;width:116px;height:15px;">
@@ -1047,7 +1221,11 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:742px;left:573px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @if ( $datosValoracionPreanestesica->cambio_tecnica==1)
+              <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+              @else
+              <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+              @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:744px;left:459px;width:112px;height:15px;">
@@ -1095,29 +1273,62 @@
             <td align="left"><span class="fc1id88d10we5ps-3">EXPANSORES</span></td>
         </table>
     </div>
+    {{-- <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:723px;left:313px;width:73px;height:15px;">
+        <table width="73px" border="0" cellpadding="0" cellspacing="0">
+            <td align="left"><span class="fc1id88d10we5ps-3">SOLUCION SALINAS</span></td>
+        </table>
+    </div> --}}
+    {{-- INFUSIONES --}}
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:637px;left:407px;width:34px;height:17px;">
         <table width="23px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">100</span></td>
+            @if ( $datosValoracionPreanestesica->regitroInfunsionRpt[0]->valor ==null)
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @else
+        <td align="center"><span class="fc1id88d10we5ps-2">{{ $datosValoracionPreanestesica->regitroInfunsionRpt[0]->valor }}</span></td>
+            @endif
+
+            
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:658px;left:407px;width:34px;height:17px;">
         <table width="23px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">100</span></td>
+            @if ( $datosValoracionPreanestesica->regitroInfunsionRpt[1]->valor ==null)
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @else
+        <td align="center"><span class="fc1id88d10we5ps-2">{{ $datosValoracionPreanestesica->regitroInfunsionRpt[1]->valor }}</span></td>
+            @endif
+
+           
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:680px;left:407px;width:34px;height:17px;">
         <table width="23px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">100</span></td>
+            @if ( $datosValoracionPreanestesica->regitroInfunsionRpt[2]->valor ==null)
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @else
+        <td align="center"><span class="fc1id88d10we5ps-2">{{ $datosValoracionPreanestesica->regitroInfunsionRpt[2]->valor }}</span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:702px;left:407px;width:34px;height:17px;">
         <table width="23px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">100</span></td>
+            @if ( $datosValoracionPreanestesica->regitroInfunsionRpt[3]->valor ==null)
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @else
+        <td align="center"><span class="fc1id88d10we5ps-2">{{ $datosValoracionPreanestesica->regitroInfunsionRpt[3]->valor }}</span></td>
+            @endif
         </table>
     </div>
+
+    {{-- termna --}}
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:701px;left:265px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->habon==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
+             
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:703px;left:175px;width:86px;height:15px;">
@@ -1127,7 +1338,11 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:723px;left:265px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->raquidea==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:725px;left:175px;width:86px;height:15px;">
@@ -1137,7 +1352,11 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:745px;left:265px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->epidural_caud==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:747px;left:173px;width:86px;height:15px;">
@@ -1145,6 +1364,8 @@
             <td align="left"><span class="fc1id88d10we5ps-3">EPIDURAL&nbsp;CAUD</span></td>
         </table>
     </div>
+
+    {{-- TOTAL DE SOLUCIONES SUMAR INFUNCIONES  --}}
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:722px;left:338px;width:109px;height:17px;">
         <table width="99px" border="0" cellpadding="0" cellspacing="0">
             <tr>
@@ -1152,6 +1373,7 @@
             </tr>
         </table>
     </div>
+    {{-- SI UIERES AGREGAR SOLUCION SS --}}
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:723px;left:294px;width:41px;height:15px;">
         <table width="41px" border="0" cellpadding="0" cellspacing="0">
             <td align="left"><span class="fc1id88d10we5ps-3">TOTAL</span></td>
@@ -1164,7 +1386,12 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:765px;left:265px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->simple_altura_puncion==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
+            
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:767px;left:174px;width:86px;height:15px;">
@@ -1174,7 +1401,11 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:784px;left:265px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->continua_altura_puncion==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:786px;left:174px;width:86px;height:15px;">
@@ -1182,9 +1413,14 @@
             <td align="left"><span class="fc1id88d10we5ps-3">CONTINUA</span></td>
         </table>
     </div>
+    {{-- HERMORRAGIAS --}}
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:765px;left:340px;width:34px;height:17px;">
         <table width="23px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">100</span></td>
+            @if ( $datosValoracionPreanestesica->hemorragia==null)
+            <td align="center"><span class="fc1id88d10we5ps-2">0</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> {{$datosValoracionPreanestesica->hemorragia}}</span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:765px;left:384px;width:65px;height:15px;">
@@ -1200,8 +1436,13 @@
      {{-- otros --}}
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:765px;left:518px;width:200px;height:17px;">
         <table width="226px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span
-                    class="fc1id88d10we5ps-2">..........................................................</span></td>
+            @if ( $datosValoracionPreanestesica->otros_complicaciones==null)
+            <td align="center"><span class="fc1id88d10we5ps-2">..........................................................</span></td>
+            @else
+          
+            <td align="center"><span class="fc1id88d10we5ps-2"> {{$datosValoracionPreanestesica->otros_complicaciones}}</span></td>
+            @endif
+           
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:768px;left:459px;width:41px;height:15px;">
@@ -1216,7 +1457,12 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:809px;left:56px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->oral_inte_traqueal==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
+            
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:811px;left:9px;width:31px;height:15px;">
@@ -1224,9 +1470,13 @@
             <td align="left"><span class="fc1id88d10we5ps-3">ORAL</span></td>
         </table>
     </div>
-    <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:832px;left:55px;width:22px;height:17px;">
+    <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:832px;left:56px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @if ( $datosValoracionPreanestesica->rapido_inte_traqueal==1)
+            <td align="center"><span class="fc1id88d10we5ps-3">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-3"> </span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:833px;left:8px;width:42px;height:15px;">
@@ -1234,19 +1484,29 @@
             <td align="left"><span class="fc1id88d10we5ps-3">RAPIDO</span></td>
         </table>
     </div>
-    <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:813px;left:137px;width:22px;height:17px;">
+    <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:809px;left:138px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @if ( $datosValoracionPreanestesica->nasal_inte_traqueal==1)
+            <td align="center"><span class="fc1id88d10we5ps-3">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-3"> </span></td>
+            @endif
+          
         </table>
     </div>
-    <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:815px;left:97px;width:38px;height:15px;">
+    <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:811px;left:97px;width:38px;height:15px;">
         <table width="38px" border="0" cellpadding="0" cellspacing="0">
             <td align="left"><span class="fc1id88d10we5ps-3">NASAL</span></td>
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:831px;left:138px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @if ( $datosValoracionPreanestesica->lenta_inte_traqueal==1)
+            <td align="center"><span class="fc1id88d10we5ps-3">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-3"> </span></td>
+            @endif
+           
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:833px;left:94px;width:40px;height:15px;">
@@ -1257,7 +1517,13 @@
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:853px;left:58px;width:109px;height:17px;">
         <table width="99px" border="0" cellpadding="0" cellspacing="0">
             <tr>
-                <td align="center"><span class="fc1id88d10we5ps-2">.............................</span></td>
+                @if ( $datosValoracionPreanestesica->turbo_inte_traqueal==1)
+                <td align="center"><span class="fc1id88d10we5ps-3">X</span></td>
+                @else
+                <td align="center"><span class="fc1id88d10we5ps-3"> </span></td>
+                @endif
+              
+                {{-- <td align="center"><span class="fc1id88d10we5ps-2">.............................</span></td> --}}
             </tr>
         </table>
     </div>
@@ -1268,7 +1534,12 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:873px;left:137px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->turbo_inte_traqueal==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
+           
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:876px;left:7px;width:108px;height:15px;">
@@ -1278,7 +1549,12 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:894px;left:137px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->taponamiento_inte_traqueal==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
+            
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:897px;left:7px;width:108px;height:15px;">
@@ -1288,7 +1564,11 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:915px;left:137px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->asist_topica_inte_traqueal==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:918px;left:7px;width:108px;height:15px;">
@@ -1298,7 +1578,11 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:934px;left:137px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->asist_tranboral_inte_traqueal==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:937px;left:8px;width:108px;height:15px;">
@@ -1333,22 +1617,22 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:817px;left:291px;width:34px;height:17px;">
         <table width="23px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">100</span></td>
+            <td align="center"><span class="fc1id88d10we5ps-2">1m</span></td>
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:816px;left:336px;width:34px;height:17px;">
         <table width="23px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">100</span></td>
+            <td align="center"><span class="fc1id88d10we5ps-2">5m</span></td>
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:816px;left:373px;width:34px;height:17px;">
         <table width="23px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">100</span></td>
+            <td align="center"><span class="fc1id88d10we5ps-2">10mi</span></td>
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:817px;left:415px;width:34px;height:17px;">
         <table width="23px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">100</span></td>
+            <td align="center"><span class="fc1id88d10we5ps-2">puert</span></td>
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:841px;left:298px;width:147px;height:15px;">
@@ -1358,17 +1642,26 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:839px;left:266px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->puncion_lat==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
+             
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:841px;left:176px;width:86px;height:15px;">
         <table width="86px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-3">FUNCION&nbsp;LAT</span></td>
+            <td align="left"><span class="fc1id88d10we5ps-3">PUNCION&nbsp;LAT</span></td>
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:859px;left:267px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->linea_media==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:861px;left:176px;width:86px;height:15px;">
@@ -1383,12 +1676,21 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:880px;left:267px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @if ( $datosValoracionPreanestesica->aguja==null)
+            <td align="center"><span class="fc1id88d10we5ps-2">0</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2">{{ $datosValoracionPreanestesica->aguja }} </span></td>
+            @endif
+            
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:900px;left:266px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @if ( $datosValoracionPreanestesica->nivel==null)
+            <td align="center"><span class="fc1id88d10we5ps-2">0</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2">{{ $datosValoracionPreanestesica->nivel }} </span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:902px;left:176px;width:86px;height:15px;">
@@ -1398,7 +1700,11 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:921px;left:266px;width:22px;height:17px;">
         <table width="12px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->hiperbara==1)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+            <td align="center"><span class="fc1id88d10we5ps-2"> </span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:921px;left:176px;width:86px;height:15px;">
@@ -1413,7 +1719,11 @@
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:956px;left:177px;width:108px;height:17px;">
         <table width="98px" border="0" cellpadding="0" cellspacing="0">
+            @if ( $datosValoracionPreanestesica->id_tipo_posiciones==null)
             <td align="center"><span class="fc1id88d10we5ps-2">X</span></td>
+            @else
+        <td align="center"><span class="fc1id88d10we5ps-2">{{ $datosValoracionPreanestesica->id_tipo_posiciones }}</span></td>
+            @endif
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:885px;left:295px;width:86px;height:15px;">
@@ -1423,7 +1733,12 @@
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:906px;left:296px;width:156px;height:15px;">
         <table width="156px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-3">SLALALALALALALA</span></td>
+            @if ( $datosValoracionPreanestesica->conducido_a==null)
+            <td align="left"><span class="fc1id88d10we5ps-3"> </span></td>
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-3">{{ $datosValoracionPreanestesica->conducido_a }}</span></td>
+            @endif
+          
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:927px;left:298px;width:38px;height:15px;">
@@ -1433,7 +1748,12 @@
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:926px;left:339px;width:86px;height:15px;">
         <table width="86px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-3">POR&nbsp;PORPOR&nbsp;</span></td>
+            @if ( $datosValoracionPreanestesica->por==null)
+            <td align="left"><span class="fc1id88d10we5ps-3"> </span></td>
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-3">{{ $datosValoracionPreanestesica->por }}</span></td>
+            @endif
+           
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:956px;left:298px;width:38px;height:15px;">
@@ -1443,7 +1763,12 @@
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:956px;left:341px;width:86px;height:15px;">
         <table width="86px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id88d10we5ps-3">POR&nbsp;PORHORA</span></td>
+            @if ( $datosValoracionPreanestesica->hora==null)
+            <td align="left"><span class="fc1id88d10we5ps-3"> </span></td>
+            @else
+            <td align="left"><span class="fc1id88d10we5ps-3">{{ $datosValoracionPreanestesica->hora }}</span></td>
+            @endif
+            
         </table>
     </div>
     <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:792px;left:461px;width:147px;height:15px;">
@@ -1452,10 +1777,35 @@
         </table>
     </div>
     <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:810px;left:460px;width:280px;height:62px;">
-        <div style="top:100%;margin-top:-16px;width:100%;">
+        <div style="top:20px;margin-top:-16px;width:100%;">
             <table width="280px" border="0" cellpadding="0" cellspacing="0">
-                <td align="left"><span
-                        class="fc1id88d10we5ps-2">..........................................................</span></td>
+                @if ( $datosValoracionPreanestesica->comentario==null)
+                <td align="left"><span class="fc1id88d10we5ps-2">  </span></td>
+                 
+                @else
+                <td align="left"><span class="fc1id88d10we5ps-3">{{ $datosValoracionPreanestesica->comentario }}xxxxxxxxxxxxxxxxx</span></td>
+                @endif
+                
+            </table>
+        </div>
+    </div>
+
+
+    <div class="ad1id88d10wedfk-0" nowrap="true" style="z-index:25;top:890px;left:461px;width:147px;height:15px;">
+        <table width="147px" border="0" cellpadding="0" cellspacing="0">
+            <td align="left"><span class="fc1id88d10we5ps-3">COMENTARIOS</span></td>
+        </table>
+    </div>
+    <div class="ad1id88d10wedfk-1" nowrap="true" style="z-index:25;top:910px;left:460px;width:280px;height:62px;">
+        <div style="top:20px;margin-top:-16px;width:100%;">
+            <table width="280px" border="0" cellpadding="0" cellspacing="0">
+                @if ( $datosValoracionPreanestesica->comentario==null)
+                <td align="left"><span class="fc1id88d10we5ps-2">  </span></td>
+                 
+                @else
+                <td align="left"><span class="fc1id88d10we5ps-3">{{ $datosValoracionPreanestesica->comentario }}xxxxxxxxxxxxxxxxx</span></td>
+                @endif
+                
             </table>
         </div>
     </div>
