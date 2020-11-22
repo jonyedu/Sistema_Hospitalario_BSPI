@@ -4,7 +4,7 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
                         <ol class="breadcrumb float-sm-left">
                             <li>
                                 <router-link
@@ -15,10 +15,13 @@
                                 >
                             </li>
                             <li><p>/</p></li>
-                            <li><p style="margin-left:10px"><span v-text="titulo_seleccionado"></span></p></li>
+                            <li>
+                                <p style="margin-left:10px">
+                                    <span v-text="titulo_seleccionado"></span>
+                                </p>
+                            </li>
                         </ol>
                     </div>
-                    &nbsp;
                     <!-- Seccion de los menu de botones: Historial clínico, Nueva, Guardar, etc y la Tabla Historial Clinico-->
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
@@ -38,7 +41,6 @@
                                             >
                                                 Nuevo
                                             </button>
-
                                             <template v-if="respuestaImprimir">
                                                 <button
                                                     type="button"
@@ -133,11 +135,18 @@
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                            <template v-if="form.frm_idCirugiaProgramada != null">
-                                <registro-anestesico :user="user" @RespuestaImprimir="respuestaImprimir= $event" :id-sec-cir-pro="form.frm_idCirugiaProgramada"></registro-anestesico>
-                                <!-- <div> -->
-
-                                <!-- </div> -->
+                            <template
+                                v-if="form.frm_idCirugiaProgramada != null"
+                            >
+                                <registro-anestesico
+                                    :user="user"
+                                    @RespuestaImprimir="
+                                        respuestaImprimir = $event
+                                    "
+                                    :id-sec-cir-pro="
+                                        form.frm_idCirugiaProgramada
+                                    "
+                                ></registro-anestesico>
                             </template>
                         </div>
                     </div>
@@ -168,7 +177,7 @@ export default {
     props: {
         user: {
             type: Object
-        },
+        }
     },
     data: function() {
         return {
@@ -179,18 +188,18 @@ export default {
             respuestaImprimir: 1,
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "",
+                frm_idCirugiaProgramada: "0001",
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
                 frm_quirofano: "",
                 frm_procedimiento: ""
             },
-            paciente : null
+            paciente: null
         };
     },
     mounted: function() {
-       /*  var user = this.$attrs;
+        /*  var user = this.$attrs;
         console.log(user); */
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
         let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
@@ -300,7 +309,7 @@ export default {
             if (this.respuestaImprimir) {
                 window.open(
                     "/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" +
-                    this.form.frm_idCirugiaProgramada
+                        this.form.frm_idCirugiaProgramada
                 );
             }
         }
