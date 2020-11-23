@@ -24,10 +24,28 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
+        'nombre',
+        'apellido',
+        'usuario',
         'password',
-        'codigo_usu'
+        'perfil',
+        'profesion',
+        'abreviatura',
+        'email_verified_at',
+        'remember_token',
+        'current_team_id',
+        'profile_photo_path',
+        'des_campo1',
+        'des_campo2',
+        'des_campo3',
+        'usu_created_update',
+        'created_at',
+        'updated_at',
+        'pcip',
+        'status',
     ];
 
     /**
