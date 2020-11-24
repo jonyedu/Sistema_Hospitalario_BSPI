@@ -163,9 +163,7 @@
                     <div
                         class="col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
                     >
-                        <label for="feto" class="mr-2"
-                            >FETO</label
-                        >
+                        <label for="feto" class="mr-2">FETO</label>
                         <input
                             type="checkbox"
                             name="feto"
@@ -213,9 +211,7 @@
                     <div
                         class="col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
                     >
-                        <label for="torniquete" class="mr-2"
-                            >TORNIQUETE</label
-                        >
+                        <label for="torniquete" class="mr-2">TORNIQUETE</label>
                         <input
                             type="checkbox"
                             name="torniquete"
@@ -1829,7 +1825,7 @@
                 </div>
             </div>
         </div>
-        <br />
+        <FlashMessage></FlashMessage>
     </div>
 </template>
 
@@ -1852,11 +1848,11 @@ export default {
             validarImprimir: 0,
             selectedTipoPosiciones: "",
             tipoPosiciones: "",
-            chk:{
-                temperatura:0,
-                feto:0,
-                pares_venosa:0,
-                torniquete:0
+            chk: {
+                temperatura: 0,
+                feto: 0,
+                pares_venosa: 0,
+                torniquete: 0
             },
             form: {
                 cirugia_id: 0,
@@ -2137,7 +2133,6 @@ export default {
                     if (this.minutes % 5 == 0) {
                         this.indice_minuto += 15;
                     }
-
                 }
                 if (this.minutes >= 59) {
                     this.hour += 1;
@@ -2538,14 +2533,7 @@ export default {
                 .post(url, formNew)
                 .then(function(response) {
                     //Llamar metodo de parent para que actualice el grid.
-                    that.$swal({
-                        icon: "success",
-                        title: "Proceso realizado exitosamente",
-                        text: "Datos guardados correctamente."
-                    });
-                    that.validarImprimir = 1;
-                    that.$emit("RespuestaImprimir", that.validarImprimir);
-                    that.iniciado = false;
+                    that.guardarModificarAgenteText();
                     loader.hide();
                 })
                 .catch(error => {
@@ -2566,14 +2554,21 @@ export default {
                 registro_anestesia_id: that.form.registro_anestesia_id,
                 hora: that.hour,
                 minuto: that.minutes,
-                indice_minuto: that.indice_minuto,
+                indice_minuto: that.indice_minuto
             };
             url = "/modulos/cirugia/anestesia/guardar_modificar_agente_text";
             var loader = that.$loading.show();
             axios
                 .post(url, formNew)
                 .then(function(response) {
-                    //that.modifcarRegistroAnestesia();
+                    that.$swal({
+                        icon: "success",
+                        title: "Proceso realizado exitosamente",
+                        text: "Datos guardados correctamente."
+                    });
+                    that.validarImprimir = 1;
+                    that.$emit("RespuestaImprimir", that.validarImprimir);
+                    that.iniciado = false;
                     loader.hide();
                 })
                 .catch(error => {
@@ -2711,11 +2706,22 @@ export default {
             if (!this.iniciado) return;
             // img/icons/'+this.valoresFormulario.descripcion.toLowerCase()+'.png
             if (this.valoresFormulario.posicion.id == 0) {
-                this.$swal({
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia Campos Vacios",
+                    message: "Complete los campos por favor.",
+                    time: 10000,
+                    customStyle: {
+                        flashMessageStyle: {
+                            background: "linear-gradient(#e66465, #9198e5)"
+                        },
+                    }
+                });
+                /* this.$swal({
                     icon: "warning",
                     title: "Advertencia Campos Vacios",
                     text: "Complete los campos por favor."
-                });
+                }); */
                 return;
             }
             //console.log(this.valoresFormulario);
@@ -2728,24 +2734,24 @@ export default {
             this.agregarDatoRespiracion();
             //this.agregarDatos(this.valoresFormulario.respiracion);
 
-            if(this.chk.temperatura){
+            if (this.chk.temperatura) {
                 this.agregarDatos(this.valoresFormulario.temperatura);
             }
 
-            if(this.chk.feto){
+            if (this.chk.feto) {
                 this.agregarDatos(this.valoresFormulario.feto);
             }
 
-            if(this.chk.pares_venosa){
+            if (this.chk.pares_venosa) {
                 this.agregarDatos(this.valoresFormulario.pares_venosa);
             }
 
-            if(this.chk.torniquete){
+            if (this.chk.torniquete) {
                 this.agregarDatos(this.valoresFormulario.torniquete);
             }
 
             //Aqui va el metodo de guardar los text
-            this.guardarModificarAgenteText();
+            //this.guardarModificarAgenteText();
 
             // Agregar posición en la rejilla
             let post_text = this.posiciones.find(

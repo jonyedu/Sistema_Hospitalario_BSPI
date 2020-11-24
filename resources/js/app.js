@@ -14,6 +14,7 @@ import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import Paintable from 'vue-paintable';
 import VueHtml2Canvas from 'vue-html2canvas';
 import RegeneratorRuntime from "regenerator-runtime";
+import FlashMessage from '@smartweb/vue-flash-message';
 import App from "./components/App";
 import { funcionesGlobales } from "./funciones.js";
 import swal from 'sweetalert2';
@@ -49,6 +50,7 @@ Vue.use(Paintable, {
       localStorage.removeItem(key);
     }
 });
+Vue.use(FlashMessage);
 
 Vue.component("v-select", vSelect);
 

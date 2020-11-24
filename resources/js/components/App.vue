@@ -1,5 +1,6 @@
 <template>
-    <router-view :user="user"></router-view>
+    <router-view :user="user">
+    </router-view>
 </template>
 
 <script>
