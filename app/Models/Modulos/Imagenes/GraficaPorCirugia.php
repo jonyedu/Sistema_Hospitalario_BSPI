@@ -43,4 +43,5 @@ class GraficaPorCirugia extends Model
     {
         return base64_encode($this->grafica);
     }
+   
 }

@@ -1856,7 +1856,7 @@
                                 name=""
                                 id=""
                                 class="col-md-12"
-                                rows="3"
+                                rows="3" 
                                 v-model="form.comentario"
                             ></textarea>
                         </div>
