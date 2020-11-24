@@ -229,7 +229,7 @@ export default {
             if (this.$refs.revisionSistema != null) {
                 this.$refs.revisionSistema.cargarRevisionSistema();
             }
-        }, 
+        },
         /* Fin para llamar al Modal y la Tabla */
 
         /* Metodos para los form-wizard */

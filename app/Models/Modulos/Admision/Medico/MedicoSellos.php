@@ -37,6 +37,7 @@ class MedicoSellos extends Model
 
     public function getIMAGENSELLOattribute()
     {
+        //return  date_diff(date('Y-m-d H:i:s'), $this->fecha); 
         return base64_encode($this->imagen);
     }
 }

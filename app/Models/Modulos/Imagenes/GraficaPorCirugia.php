@@ -11,7 +11,7 @@ class GraficaPorCirugia extends Model
     /**
      * @var string
      */
-    protected $table = 'tbGraficaPorCirugia';
+    protected $table = 'tb_grafica_por_cirugia';
     /**
      * @var string
      */
@@ -30,4 +30,18 @@ class GraficaPorCirugia extends Model
         'pcip',
         'status',
     ];
+
+    protected $hidden = [
+        'grafica',
+    ];
+
+    protected $appends = [
+        'GRAFICAS'
+    ];
+
+    public function getGRAFICASattribute()
+    {
+        return base64_encode($this->grafica);
+    }
+   
 }

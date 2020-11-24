@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Modulos\Cirugia\RegistroAnestesico;
 
 use App\Http\Controllers\Controller;
 use App\Models\Modulos\Cirugia\RegistroAnestesico\RegistroAnestesia;
-use App\Models\Modulos\Cirugia\valoracionPreanestecia\RevisionSistema;
+use App\Models\Modulos\Cirugia\CirugiaProgramadas;
 use App\Models\Modulos\Imagenes\FirmasPorAtencion;
 use App\Models\Modulos\Imagenes\GraficaPorCirugia;
 use App\Models\User;
@@ -23,6 +23,7 @@ class RegistroAnestesiaController extends Controller
             $sello = User::where('codigo_usu', $codigo_usu)
                 ->with('seguridadMedico.medico.medicoSellos')
                 ->first();
+            //$grafica = GraficaPorCirugia::where('SecCirPro', 1)->first();
             return  response()->json(['sello' => $sello], 200);
         } catch (Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);
@@ -31,37 +32,15 @@ class RegistroAnestesiaController extends Controller
     public function guardarFirmaPorAtencion(Request $request)
     {
         try {
-            $firma = null;
             $user = Auth::user();
-            $data  = file_get_contents($request->input('imgFirma'));
-            $valor = base64_encode($data);
-            echo $valor;
-            //echo $valor;
-            $img = base64_decode($valor);
-            $firma = mb_convert_encoding($img, 'UTF-8', 'UTF-8');
-
-            //echo $firma;
-
-            //return;
-            //$firma = imagecreatefromstring($string);
-            //$string  = addslashes(file_get_contents($request->input('imgFirma')));
-            //echo $string;
-            //echo gettype(base64_encode($string));
-            //$str = "mensaje";
-            //$var = (binary) $str;
-            //echo gettype($var);
-            //$firma = base64_encode($string );
-            //$firma = imagecreatefromstring($data);
-            //$firma = base64_decode(addslashes($request->input('imgFirma')));
-            // $firma =base64_encode(file_get_contents($request->input('imgFirma')));
-            //$firma =  addslashes(file_get_contents(base64_decode($request->input('imgFirma'))));
+            $firma = convertBase64ToBinary($request->input('imgFirma'));
             FirmasPorAtencion::create([
                 'tipo_servicio' => 4,
                 'id_atencion' => $request->input('cirugia_id'),
                 'id_visita' => 0,
                 'id_tipo_documento' => 0,
                 'fecha_atencion' => date("Y-m-d H:i:s"),
-                'firma' => $img,
+                'firma' => $firma,
                 'status' => '1',
                 'usuario_ingreso' => $user->id,
                 'fecha_ingreso' => date("Y-m-d H:i:s"),
@@ -78,7 +57,7 @@ class RegistroAnestesiaController extends Controller
         try {
             $user = Auth::user();
             $grafica = addslashes(file_get_contents($request->input('imgGrafica')));
-            //$graficas = base64_decode($request->input('imgGrafica'));
+            $grafica = convertBase64ToBinary($request->input('imgGrafica'));
             GraficaPorCirugia::create([
                 'SecCirPro' => $request->input('cirugia_id'),
                 'registro_anestesia_id' => $request->input('registro_anestesia_id'),
@@ -214,39 +193,25 @@ class RegistroAnestesiaController extends Controller
     {
         if ($idSecCirPro !== '' && isset($idSecCirPro)) {
             try {
-                //Variables
-                $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
-                $datosPaciente = [];
-                $edadPaciente = 0;
 
-                /* $datosPaciente = DB::connection('admin_db_sql')
-                    ->select("exec SpAdm_CirugiasProgramdasConsultar '" . $idSecCirPro . "','','DP' "); */
-                if (sizeof($datosPaciente) > 0) {
-                    foreach ($datosPaciente as $paciente) {
-                        $edadPaciente = $this->calculaEdad($paciente->Fecha_nacimiento);
-                    }
-                }
-
-                //$resultado = obtenerDatoGraficaRegistroAnestesia();
+                // CARGA DATOS DE EL REGISTRO DE ANESTESIA
+              
+                //  $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
+                
+                // $datosValoracionPreanestesica = RegistroAnestesia::where('SecCirPro', $idSecCirPro)
+                //     ->where('status', '1')
+                //     ->with('drogaAdministradaRpt','graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt')
+                //     ->first();
+                //   $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia',['datosValoracionPreanestesica' => $datosValoracionPreanestesica]);
+                //  return $pdf->stream($nombreArchivo); 
+                 //FINALIZA CARGA DATOS DE EL REGISTRO DE ANESTESIA
 
 
-                $datosValoracionPreanestesica = RegistroAnestesia::where('SecCirPro', $idSecCirPro)
-                    ->where('status', '1')
-                    ->with('drogaAdministradaRpt', 'regitroInfunsionRpt.infusionNameRpt')
-                    ->first();
-                    //dd($datosValoracionPreanestesica);
 
-
-                 $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia', [  'datosValoracionPreanestesica' => $datosValoracionPreanestesica]);
-                //     'datosPaciente' => $datosPaciente,
-                //     'edadPaciente' => $edadPaciente,
-                //     'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
-                //     /* 'resultado' => $resultado */
-                //  ]);
-
-                return $pdf->stream($nombreArchivo); 
-                //return PDF::loadFile('http://www.github.com')->stream('github.pdf');
-                //return  response()->json(['datosValoracionPreanestesica' => $datosValoracionPreanestesica], 200);
+                 $datosValoracionPreanestesica = CirugiaProgramadas::where('CirProFecPro', $idSecCirPro)
+                 ->with('pacienteLista','pacienteHospitalizacion') 
+                 ->get();
+               return  response()->json(['datosValoracionPreanestesica' => $datosValoracionPreanestesica], 200);
 
             } catch (Exception $e) {
                 return response()->json(['mensaje' => $e->getMessage()], 500);

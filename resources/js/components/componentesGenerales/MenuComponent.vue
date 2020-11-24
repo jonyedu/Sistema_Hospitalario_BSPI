@@ -8,9 +8,8 @@
         >
             <li
                 class="nav-item has-treeview"
-                v-for="(gestion, index) in modulos"
+                v-for="(gestion, index) in menus"
                 :key="index"
-                v-on:click="cargarSubModulos(gestion.codigo)"
             >
                 <a class="nav-link">
                     <i :class="gestion.imagen"></i>
@@ -25,18 +24,18 @@
                 </a>
                 <ul
                     class="nav nav-treeview"
-                    v-for="(gestion, index) in sub_modulos"
+                    v-for="(subMenu, index) in gestion.sub_modulo"
                     :key="index"
                 >
                     <li class="nav-item">
                         <router-link
-                            :to="prefijo + gestion.route"
+                            :to="prefijo + subMenu.route"
                             class="nav-link ml-3"
-                            ><i :class="gestion.imagen"> </i>
+                            ><i :class="subMenu.imagen"> </i>
                             <p>
                                 {{
                                     $funcionesGlobales.toCapitalFirstAllWords(
-                                        gestion.descripcion
+                                        subMenu.descripcion
                                     )
                                 }}
                             </p>
@@ -44,27 +43,6 @@
                     </li>
                 </ul>
             </li>
-           <!--  <li class="nav-item has-treeview">
-                <a class="nav-link" href="">
-                    <i class="nav-icon fas fa-copy"></i>
-                    <p>
-                        Prueba
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <router-link
-                            :to="
-                                prefijo +
-                                    '/modulos/cirugia/valoracionPreanestecia/mostrar_valoracion_preanestesica'
-                            "
-                            class="nav-link"
-                            >Valoracion Preanestesica</router-link
-                        >
-                    </li>
-                </ul>
-            </li> -->
         </ul>
     </nav>
 </template>
@@ -78,27 +56,25 @@ export default {
             id_sub_menu: 0,
             prefijo: "",
             modulos: [],
-            sub_modulos: []
+            sub_modulos: [],
+            menus: [],
         };
     },
     mounted: function() {
-        this.cargarModulos();
+        //this.cargarModulos();
+        this.cargarMenu();
         this.prefijo = prefix;
     },
     methods: {
-        cargarModulos() {
+        cargarMenu() {
             let that = this;
-            let url = "/modulos/parametrizacion/modulo/cargar_modulo_combo_box";
+            let url = "/modulos/parametrizacion/modulo/cargar_menu";
             axios
                 .get(url)
                 .then(function(response) {
-                    let modulos = [];
-                    modulos = response.data.modulo;
-                    that.modulos = modulos;
-
-                    if (response.data.modulo[0].codigo != null) {
-                        that.cargarSubModulos(response.data.modulo[0].codigo);
-                    }
+                    let menus= [];
+                    menus = response.data.menus;
+                    that.menus = menus;
                 })
                 .catch(error => {
                     //Errores
@@ -109,7 +85,33 @@ export default {
                     });
                 });
         },
-        cargarSubModulos(id) {
+        /* cargarModulos() {
+            let that = this;
+            let url = "/modulos/parametrizacion/modulo/cargar_modulo_combo_box";
+            axios
+                .get(url)
+                .then(function(response) {
+                    let modulos = [];
+                    modulos = response.data.modulo;
+                    that.modulos = modulos;
+                    //alert(that.sub_modulos.length)
+                    if (that.sub_modulos.length == 0) {
+                        if(response.data.modulo[0] != null){
+                            that.cargarSubModulos(response.data.modulo[0].codigo);
+                        }
+
+                    }
+                })
+                .catch(error => {
+                    //Errores
+                    that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    });
+                });
+        }, */
+        /* cargarSubModulos(id) {
             let that = this;
             let url =
                 "/modulos/parametrizacion/sub_modulo/cargar_sub_modulo_combo_box/" +
@@ -129,7 +131,7 @@ export default {
                         text: error
                     });
                 });
-        }
+        } */
     }
 };
 </script>

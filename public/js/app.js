@@ -1938,10 +1938,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3796,113 +3796,85 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
     }
   },
   data: function data() {
     return {
+      validarImgFirma: 0,
+      isFirstPaintable: "firmaAnestesiologo",
+      rutaSello: "",
       validarImprimir: 0,
       selectedTipoPosiciones: "",
       tipoPosiciones: "",
+      chk: {
+        temperatura: 0,
+        feto: 0,
+        pares_venosa: 0,
+        torniquete: 0
+      },
       form: {
         cirugia_id: 0,
         registro_anestesia_id: 0,
         id_tipo_posiciones: 0,
 
         /* Datos para modificar registro anestesico */
-        fchaDuracionAnestecia: '00:00',
-        fchaDuracionOperacion: '00:00',
-        general: false,
-        sistem_abierto: false,
-        sistem_cerrado: false,
-        sistem_semi_cerr: false,
-        cinc_aparatos_usados: false,
-        vaiiven_aparatos_usados: false,
-        mascara: false,
+        fchaDuracionAnestecia: "00:00",
+        fchaDuracionOperacion: "00:00",
+        general: 0,
+        sistem_abierto: 0,
+        sistem_cerrado: 0,
+        sistem_semi_cerr: 0,
+        cinc_aparatos_usados: 0,
+        vaiiven_aparatos_usados: 0,
+        mascara: 0,
         //seccion 1
-        oral_inte_traqueal: false,
-        nasal_inte_traqueal: false,
-        rapido_inte_traqueal: false,
-        lenta_inte_traqueal: false,
+        oral_inte_traqueal: 0,
+        nasal_inte_traqueal: 0,
+        rapido_inte_traqueal: 0,
+        lenta_inte_traqueal: 0,
         turbo_inte_traqueal: 0,
-        manguito_inflam_inte_traqueal: false,
-        taponamiento_inte_traqueal: false,
-        asist_topica_inte_traqueal: false,
-        asist_tranboral_inte_traqueal: false,
+        manguito_inflam_inte_traqueal: 0,
+        taponamiento_inte_traqueal: 0,
+        asist_topica_inte_traqueal: 0,
+        asist_tranboral_inte_traqueal: 0,
         //seccion 2
-        conductiva: false,
-        asepsia_piel: false,
+        conductiva: 0,
+        asepsia_piel: 0,
         con: "",
-        habon: false,
-        raquidea: false,
-        epidural_caud: false,
+        habon: 0,
+        raquidea: 0,
+        epidural_caud: 0,
         //seccion 3
-        simple_altura_puncion: false,
-        continua_altura_puncion: false,
+        simple_altura_puncion: 0,
+        continua_altura_puncion: 0,
         //seccion 4
-        puncion_lat: false,
-        linea_media: false,
+        puncion_lat: 0,
+        linea_media: 0,
         //seccion 5
         aguja: 0,
         nivel: "",
-        hiperbara: false,
+        hiperbara: 0,
 
         /* Complicaciones Operatorias */
-        hipotension: false,
-        arritmias: false,
-        depresion_respiratoria: false,
-        perforacion_duramadre: false,
-        dificultad_intubacion: false,
-        nauses_vomitos: false,
-        conductiva_insuficiente: false,
-        laringo_espasmo: false,
-        paro_cardiaco: false,
-        ninguna: false,
-        cambio_tecnica: false,
+        hipotension: 0,
+        arritmias: 0,
+        depresion_respiratoria: 0,
+        perforacion_duramadre: 0,
+        dificultad_intubacion: 0,
+        nauses_vomitos: 0,
+        conductiva_insuficiente: 0,
+        laringo_espasmo: 0,
+        paro_cardiaco: 0,
+        ninguna: 0,
+        cambio_tecnica: 0,
         otros_complicaciones: "",
         comentario: "",
 
@@ -3910,10 +3882,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         hemorragia: 0,
 
         /* Apagar */
-        min1: false,
-        min5: false,
-        min10: false,
-        p_muerto: false,
+        min1: 0,
+        min5: 0,
+        min10: 0,
+        p_muerto: 0,
 
         /* Tecnicas Especiales */
         conducido_a: "",
@@ -3949,8 +3921,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           abreviatura: "SS",
           valor: 0
         }],
-        total: 0
+        total: 0,
+
         /* Fin Datos para guardar en la tabla infusiones */
+
+        /* Datos para guardar firma */
+        imgFirma: null,
+        imgGrafica: null
+        /* Fin Datos para guardar firma */
 
       },
       registro_id: 1,
@@ -3982,10 +3960,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       tabla_datos_grafica: [],
       // Datos de grados, estáticos
       datos_grados: [40, 38, 36, 34, 32, 30, 28, 26],
-      // Control de la rejilla, cada objeto tiene X filas, cada fila tiene un arreglo de 4 objetos 
-      //(representan la hora separada en partes por 15 minutos de la hora)[adicional, 
-      //cada objeto de 15 min tiene los datos de la posición de paciente], cada objeto de 15 
-      //minutos tiene su arreglo que representa sus 15 minutos separados en 5 minutos, 
+      // Control de la rejilla, cada objeto tiene X filas, cada fila tiene un arreglo de 4 objetos
+      //(representan la hora separada en partes por 15 minutos de la hora)[adicional,
+      //cada objeto de 15 min tiene los datos de la posición de paciente], cada objeto de 15
+      //minutos tiene su arreglo que representa sus 15 minutos separados en 5 minutos,
       //cada objeto de 5  minutos tiene los valores de los agentes
       lista_horas_avanzadas_v: [],
       // DATOS numéricos para los valores de la anestesia
@@ -4059,7 +4037,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         inicio: 0,
         fin: 10
       }],
-      // índice que indica donde empieza el registro de los agentes ya que hay filas 
+      // índice que indica donde empieza el registro de los agentes ya que hay filas
       //extras antes de cada ítem del agente
       index_points: 5,
       counter: 0,
@@ -4067,6 +4045,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       iniciado: false,
       // Contador de horas
       indice_hora: 0,
+      indice_minuto: 0,
       // Texto adicional ubicados en las primeras columnas de las rejillas
       agentes_text: [{
         descripcion: "",
@@ -4110,7 +4089,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         temperatura: {
           habilitado: false,
           ruta_img: "img/icons/temperatura.png",
-          descripcion: "TA MAX",
+          descripcion: "TEMPERATURA",
           valor: 0
         },
         feto: {
@@ -4178,15 +4157,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (_this.seconds >= 59) {
         _this.seconds = 0;
 
+        if (_this.iniciado) {
+          if (_this.minutes % 5 == 0) {
+            _this.indice_minuto += 15;
+          }
+        }
+
         if (_this.minutes >= 59) {
           _this.hour += 1;
           _this.minutes = 0;
 
           if (_this.iniciado) {
-            _this.indice_hora += 1; // Si la hora se ha completado, se agrega otro objeto de horas al 
+            _this.indice_hora += 1; // Si la hora se ha completado, se agrega otro objeto de horas al
             //arreglo de datos
 
-            _this.agregarHora();
+            _this.agregarHora(); //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
+
+
+            if (_this.indice_hora % 5 == 0) {
+              _this.getNewIdRegistroAnestesia();
+
+              _this.getImgGrafica();
+            }
           }
         } else {
           _this.minutes += 1;
@@ -4202,6 +4194,71 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
+    getImgGrafica: function getImgGrafica() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var la, optiones;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                la = _this2.$refs.printMe;
+                optiones = {
+                  type: "dataURL"
+                };
+                _context.next = 4;
+                return _this2.$html2canvas(la, optiones);
+
+              case 4:
+                _this2.form.imgGrafica = _context.sent;
+
+                _this2.guardarImgGrafica();
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    consultarSello: function consultarSello() {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/cirugia/anestesia/cargar_sello/" + that.$props.user.codigo_usu;
+      axios.get(url).then(function (response) {
+        if (response.data.sello != null) {
+          that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
+        }
+
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+        loader.hide();
+      });
+    },
+    getNewIdRegistroAnestesia: function getNewIdRegistroAnestesia() {
+      if (this.iniciado) return;
+      this.iniciado = true;
+      var url = "/modulos/cirugia/anestesia/registro/post";
+      axios.post(url, this.form).then(function (response) {
+        this.form.registro_anestesia_id = response.data.id;
+      })["catch"](function (error) {
+        //Errores
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+        loader.hide();
+      });
+    },
     setSelectedTipoPosiciones: function setSelectedTipoPosiciones(value) {
       var that = this;
       var loader = that.$loading.show();
@@ -4244,18 +4301,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * Obtener agentes
      */
     obtenerDatosAgentes: function obtenerDatosAgentes() {
-      var _this2 = this;
+      var _this3 = this;
 
       var url = "/modulos/cirugia/anestesia/agentes";
-      /* let url = "/modulos/cirugia/tipo_agente/cargar_tipo_agente_table"; */
-
-      axios.get(url + "/agente")
-      /* .get(url) */
-      .then(function (response) {
-        /* console.log(response.data); */
-        _this2.tabla_datos_grafica = response.data;
-      })["catch"](function (err) {
-        return console.log(err);
+      axios.get(url + "/agente").then(function (response) {
+        _this3.tabla_datos_grafica = response.data;
+      })["catch"](function (error) {
+        //Errores
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+        loader.hide();
       });
     },
 
@@ -4263,19 +4321,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * Obtener posiciones
      */
     obtenerDatosPosiciones: function obtenerDatosPosiciones() {
-      var _this3 = this;
+      var _this4 = this;
 
       var url = "/modulos/cirugia/anestesia/agentes";
-      /* let url =
-          "/modulos/cirugia/tipo_posiciones/cargar_tipo_posiciones_table"; */
-
-      axios.get(url + "/posicion")
-      /* .get(url) */
-      .then(function (response) {
-        console.log(response.data);
-        _this3.posiciones = response.data;
-      })["catch"](function (err) {
-        return console.log(err);
+      axios.get(url + "/posicion").then(function (response) {
+        _this4.posiciones = response.data;
+      })["catch"](function (error) {
+        //Errores
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        });
+        loader.hide();
       });
     },
 
@@ -4283,23 +4341,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * Método para enviar datos de la rejilla (agentes), cada que se registen (pasando 5 min)
      */
     enviarDatosAgente: function enviarDatosAgente() {
-      var _this4 = this;
+      var _this5 = this;
 
       var datos = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var tipo = arguments.length > 1 ? arguments[1] : undefined;
+      var that = this; //var loader = that.$loading.show();
+
       this.form.cirugia_id = this.$props.idSecCirPro;
       var url = "/modulos/cirugia/anestesia/agentes/guardado/" + this.registro_id;
       axios.post(url, {
-        // agente_id: this.form.agente_id,
         registro_anestesia_id: this.form.registro_anestesia_id,
         datos: datos,
         tipo: tipo,
         SecCirPro: this.form.cirugia_id
       }).then(function (response) {
-        console.log(response.data);
-        _this4.datos_server = response.data;
-      })["catch"](function (err) {
-        return console.log(err);
+        ///console.log(response.data);
+        _this5.datos_server = response.data; //loader.hide();
+      })["catch"](function (error) {
+        //Errores
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+        }); //loader.hide();
       });
     },
 
@@ -4307,32 +4371,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * Inicio de la recolección de datos
      */
     start_time: function () {
-      var _start_time = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event) {
-        var _this5 = this;
+      var _start_time = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(event) {
+        var _this6 = this;
 
         var url, $id;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 if (!this.iniciado) {
-                  _context.next = 2;
+                  _context2.next = 2;
                   break;
                 }
 
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
               case 2:
-                this.iniciado = true; //Guardar datos en la tabla tb_registro_anestesia
+                this.iniciado = true;
+                this.consultarSello(); //Guardar datos en la tabla tb_registro_anestesia
 
                 url = "/modulos/cirugia/anestesia/registro/post";
-                _context.next = 6;
+                _context2.next = 7;
                 return axios.post(url, this.form).then(function (response) {
-                  _this5.form.registro_anestesia_id = response.data.id;
+                  _this6.form.registro_anestesia_id = response.data.id;
                 });
 
-              case 6:
-                $id = _context.sent;
+              case 7:
+                $id = _context2.sent;
                 //Guardar datos en la tabla tb_tipo_agente_anestesia
                 // let urlTip = "/modulos/cirugia/anestesia/registro_tipo_agente/post";
                 // axios.post(urlTip, this.form).then(response => {
@@ -4344,12 +4409,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   tipo: this.system_agente
                 });
 
-              case 8:
+              case 9:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       function start_time(_x) {
@@ -4363,15 +4428,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * Finaliza el proceso, aquí se deben enviar los demás datos para que el registro se edite
      */
     end_time: function end_time() {
-      if (!this.iniciado) return;
-      if (!confirm("¿Desea cerrar el proceso?")) return;
-      this.iniciado = false; // Poner el dato al final de la rejilla cuando se haya finalizado
+      var _this7 = this;
 
-      this.agregaDatoEnRejilla(true, false, 0, "img/icons/fin_anestecia.png", {
-        system_name: "FIN-ANESTECIA",
-        tipo: this.system_agente
+      var that = this;
+      if (!this.iniciado) return;
+      this.$swal({
+        title: "¿Desea cerrar el proceso?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar"
+      }).then(function (result) {
+        if (result.value) {
+          if (_this7.validarImgFirma) {
+            // Poner el dato al final de la rejilla cuando se haya finalizado
+            _this7.agregaDatoEnRejilla(true, false, 0, "img/icons/fin_anestecia.png", {
+              system_name: "FIN-ANESTECIA",
+              tipo: _this7.system_agente
+            }); //Se guardan los datos a la base
+
+
+            _this7.guardarDrograAdministrada(); //Cambia el estado
+
+          } else {
+            _this7.$swal({
+              icon: "warning",
+              title: "Advertencia Firma",
+              text: "Se necesita una firma por favor."
+            });
+          }
+        }
       });
-      this.guardarDrograAdministrada();
     },
     guardarDrograAdministrada: function guardarDrograAdministrada() {
       var that = this;
@@ -4427,6 +4516,67 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var loader = that.$loading.show();
       axios.post(url, formNew).then(function (response) {
         //Llamar metodo de parent para que actualice el grid.
+
+        /* that.$swal({
+            icon: "success",
+            title: "Proceso realizado exitosamente",
+            text: "Datos guardados correctamente."
+        }); */
+        that.guardarFirmaPorAtencion();
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores de validación
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Error Guardar Infusiones",
+          text: error
+        });
+      });
+    },
+    guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
+      var that = this;
+      var url = "";
+      var mensaje = "";
+      var formNew = {
+        cirugia_id: that.form.cirugia_id,
+        imgFirma: that.form.imgFirma
+      };
+      url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        //Llamar metodo de parent para que actualice el grid.
+
+        /* that.$swal({
+            icon: "success",
+            title: "Proceso realizado exitosamente",
+            text: "Datos guardados correctamente."
+        }); */
+        loader.hide();
+        that.getImgGrafica();
+      })["catch"](function (error) {
+        //Errores de validación
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Error Guardar Firma por Atención",
+          text: error
+        });
+      });
+    },
+    guardarImgGrafica: function guardarImgGrafica() {
+      var that = this;
+      var url = "";
+      var mensaje = "";
+      var formNew = {
+        cirugia_id: that.form.cirugia_id,
+        registro_anestesia_id: that.form.registro_anestesia_id,
+        imgGrafica: that.form.imgGrafica
+      };
+      url = "/modulos/cirugia/anestesia/guardar_img_grafica";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        //Llamar metodo de parent para que actualice el grid.
         that.$swal({
           icon: "success",
           title: "Proceso realizado exitosamente",
@@ -4434,12 +4584,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         });
         that.validarImprimir = 1;
         that.$emit("RespuestaImprimir", that.validarImprimir);
+        that.iniciado = false;
+        loader.hide();
       })["catch"](function (error) {
         //Errores de validación
         loader.hide();
         that.$swal({
           icon: "error",
-          title: "Error Guardar Infusiones",
+          title: "Error Guardar Imagen Grafica",
+          text: error
+        });
+      });
+    },
+    guardarModificarAgenteText: function guardarModificarAgenteText() {
+      var that = this;
+      var url = "";
+      var formNew = {
+        datos: that.agentes_text,
+        registro_anestesia_id: that.form.registro_anestesia_id,
+        hora: that.hour,
+        minuto: that.minutes,
+        indice_minuto: that.indice_minuto
+      };
+      url = "/modulos/cirugia/anestesia/guardar_modificar_agente_text";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        //that.modifcarRegistroAnestesia();
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores de validación
+        loader.hide();
+        that.$swal({
+          icon: "error",
+          title: "Error Guardar Agente Text",
           text: error
         });
       });
@@ -4521,16 +4698,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                         name: adicional.system_name,
                         indice_hora: this.indice_hora
                       }, adicional.tipo);
-                      /*this.datos_anestecia_envio.push({
-                      tpo_ini     : is_tpo_init,
-                      tpo_fin     : is_tpo_fin,
-                      hora        : this.hour,
-                      minuto      : this.minutes,
-                      segundo     : this.seconds,
-                      valor       : valor,
-                      // id_agente   : ,
-                      name        : descripcion,
-                      });*/
                     }
 
                     return;
@@ -4562,7 +4729,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
 
     /**
-     * Agrega datos
+     * Agrega datos a la rejilla
      */
     agregarDatos: function agregarDatos(campo) {
       // console.log(campo);
@@ -4576,31 +4743,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      *
      */
     obtenerDatosFormulario: function obtenerDatosFormulario() {
-      var _this6 = this;
+      var _this8 = this;
 
       if (!this.iniciado) return; // img/icons/'+this.valoresFormulario.descripcion.toLowerCase()+'.png
 
       if (this.valoresFormulario.posicion.id == 0) {
-        alert("Complete los campos");
+        this.$swal({
+          icon: "warning",
+          title: "Advertencia Campos Vacios",
+          text: "Complete los campos por favor."
+        });
         return;
-      }
+      } //console.log(this.valoresFormulario);
 
-      console.log(this.valoresFormulario);
+
       this.agregarDatos(this.valoresFormulario.ta_max);
       this.agregarDatos(this.valoresFormulario.ta_min);
       this.agregarDatos(this.valoresFormulario.valor_pulso); // debugger
 
-      this.agregarDatoRespiracion(); // this.agregarDatos(this.valoresFormulario.respiracion);
-      // Agregar posición en la rejilla
+      this.agregarDatoRespiracion(); //this.agregarDatos(this.valoresFormulario.respiracion);
+
+      if (this.chk.temperatura) {
+        this.agregarDatos(this.valoresFormulario.temperatura);
+      }
+
+      if (this.chk.feto) {
+        this.agregarDatos(this.valoresFormulario.feto);
+      }
+
+      if (this.chk.pares_venosa) {
+        this.agregarDatos(this.valoresFormulario.pares_venosa);
+      }
+
+      if (this.chk.torniquete) {
+        this.agregarDatos(this.valoresFormulario.torniquete);
+      } //Aqui va el metodo de guardar los text
+
+
+      this.guardarModificarAgenteText(); // Agregar posición en la rejilla
 
       var post_text = this.posiciones.find(function (e) {
-        return e.id == _this6.valoresFormulario.posicion.id;
+        return e.id == _this8.valoresFormulario.posicion.id;
       });
       this.agregaDatoEnRejilla(false, false, 0, "", {
         system_name: post_text ? post_text.name_system : "",
         tipo: this.system_posicion
       }, this.lista_horas_avanzadas_v[this.indice_hora].datos.length - 2 - this.index_points, true, this.posiciones.find(function (pos) {
-        return pos.id == _this6.valoresFormulario.posicion.id;
+        return pos.id == _this8.valoresFormulario.posicion.id;
       }));
     },
     agregarDatoRespiracion: function agregarDatoRespiracion() {
@@ -14234,28 +14423,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -14265,41 +14432,23 @@ __webpack_require__.r(__webpack_exports__);
       id_sub_menu: 0,
       prefijo: "",
       modulos: [],
-      sub_modulos: []
+      sub_modulos: [],
+      menus: []
     };
   },
   mounted: function mounted() {
-    this.cargarModulos();
+    //this.cargarModulos();
+    this.cargarMenu();
     this.prefijo = _variables__WEBPACK_IMPORTED_MODULE_0__["prefix"];
   },
   methods: {
-    cargarModulos: function cargarModulos() {
+    cargarMenu: function cargarMenu() {
       var that = this;
-      var url = "/modulos/parametrizacion/modulo/cargar_modulo_combo_box";
+      var url = "/modulos/parametrizacion/modulo/cargar_menu";
       axios.get(url).then(function (response) {
-        var modulos = [];
-        modulos = response.data.modulo;
-        that.modulos = modulos;
-
-        if (response.data.modulo[0].codigo != null) {
-          that.cargarSubModulos(response.data.modulo[0].codigo);
-        }
-      })["catch"](function (error) {
-        //Errores
-        that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
-        });
-      });
-    },
-    cargarSubModulos: function cargarSubModulos(id) {
-      var that = this;
-      var url = "/modulos/parametrizacion/sub_modulo/cargar_sub_modulo_combo_box/" + id;
-      axios.get(url).then(function (response) {
-        var subModulo = [];
-        subModulo = response.data.subModulo;
-        that.sub_modulos = subModulo;
+        var menus = [];
+        menus = response.data.menus;
+        that.menus = menus;
       })["catch"](function (error) {
         //Errores
         that.$swal({
@@ -14309,6 +14458,54 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     }
+    /* cargarModulos() {
+        let that = this;
+        let url = "/modulos/parametrizacion/modulo/cargar_modulo_combo_box";
+        axios
+            .get(url)
+            .then(function(response) {
+                let modulos = [];
+                modulos = response.data.modulo;
+                that.modulos = modulos;
+                //alert(that.sub_modulos.length)
+                if (that.sub_modulos.length == 0) {
+                    if(response.data.modulo[0] != null){
+                        that.cargarSubModulos(response.data.modulo[0].codigo);
+                    }
+                  }
+            })
+            .catch(error => {
+                //Errores
+                that.$swal({
+                    icon: "error",
+                    title: "Existe un error",
+                    text: error
+                });
+            });
+    }, */
+
+    /* cargarSubModulos(id) {
+        let that = this;
+        let url =
+            "/modulos/parametrizacion/sub_modulo/cargar_sub_modulo_combo_box/" +
+            id;
+        axios
+            .get(url)
+            .then(function(response) {
+                let subModulo = [];
+                subModulo = response.data.subModulo;
+                that.sub_modulos = subModulo;
+            })
+            .catch(error => {
+                //Errores
+                that.$swal({
+                    icon: "error",
+                    title: "Existe un error",
+                    text: error
+                });
+            });
+    } */
+
   }
 });
 
@@ -14331,7 +14528,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -15317,10 +15513,10 @@ exports.push([module.i, ".v-select{position:relative;font-family:inherit}.v-sele
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=style&index=0&lang=css&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=style&index=0&lang=css& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33759,15 +33955,15 @@ try {
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=style&index=0&lang=css&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=style&index=0&lang=css& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico-copy.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=style&index=0&lang=css&");
+var content = __webpack_require__(/*! !../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -56473,10 +56669,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=template&id=f5b82846&":
-/*!****************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=template&id=f5b82846& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&":
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -56816,9 +57012,67 @@ var render = function() {
               },
               [
                 _c(
-                  "label",
-                  { staticClass: "mr-2", attrs: { for: "valor_temperatura" } },
-                  [_vm._v("TEMPERATURAx")]
+                  "div",
+                  {
+                    staticClass:
+                      "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                  },
+                  [
+                    _c(
+                      "label",
+                      { staticClass: "mr-2", attrs: { for: "temperatura" } },
+                      [_vm._v("TEMPERATURA")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.chk.temperatura,
+                          expression: "chk.temperatura"
+                        }
+                      ],
+                      attrs: {
+                        type: "checkbox",
+                        name: "temperatura",
+                        id: "temperatura"
+                      },
+                      domProps: {
+                        checked: Array.isArray(_vm.chk.temperatura)
+                          ? _vm._i(_vm.chk.temperatura, null) > -1
+                          : _vm.chk.temperatura
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.chk.temperatura,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "temperatura",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "temperatura",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.chk, "temperatura", $$c)
+                          }
+                        }
+                      }
+                    })
+                  ]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -56861,9 +57115,59 @@ var render = function() {
               },
               [
                 _c(
-                  "label",
-                  { staticClass: "mr-2", attrs: { for: "valor_feto" } },
-                  [_vm._v("FETO")]
+                  "div",
+                  {
+                    staticClass:
+                      "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                  },
+                  [
+                    _c(
+                      "label",
+                      { staticClass: "mr-2", attrs: { for: "feto" } },
+                      [_vm._v("FETO")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.chk.feto,
+                          expression: "chk.feto"
+                        }
+                      ],
+                      attrs: { type: "checkbox", name: "feto", id: "feto" },
+                      domProps: {
+                        checked: Array.isArray(_vm.chk.feto)
+                          ? _vm._i(_vm.chk.feto, null) > -1
+                          : _vm.chk.feto
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.chk.feto,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(_vm.chk, "feto", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "feto",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.chk, "feto", $$c)
+                          }
+                        }
+                      }
+                    })
+                  ]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -56902,9 +57206,67 @@ var render = function() {
               },
               [
                 _c(
-                  "label",
-                  { staticClass: "mr-2", attrs: { for: "valor_pres_venosa" } },
-                  [_vm._v("PRES VENOSA")]
+                  "div",
+                  {
+                    staticClass:
+                      "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                  },
+                  [
+                    _c(
+                      "label",
+                      { staticClass: "mr-2", attrs: { for: "pares_venosa" } },
+                      [_vm._v("PRES VENOSA")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.chk.pares_venosa,
+                          expression: "chk.pares_venosa"
+                        }
+                      ],
+                      attrs: {
+                        type: "checkbox",
+                        name: "pares_venosa",
+                        id: "pares_venosa"
+                      },
+                      domProps: {
+                        checked: Array.isArray(_vm.chk.pares_venosa)
+                          ? _vm._i(_vm.chk.pares_venosa, null) > -1
+                          : _vm.chk.pares_venosa
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.chk.pares_venosa,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "pares_venosa",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "pares_venosa",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.chk, "pares_venosa", $$c)
+                          }
+                        }
+                      }
+                    })
+                  ]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -56947,9 +57309,67 @@ var render = function() {
               },
               [
                 _c(
-                  "label",
-                  { staticClass: "mr-2", attrs: { for: "valor_torniquete" } },
-                  [_vm._v("TORNIQUETE")]
+                  "div",
+                  {
+                    staticClass:
+                      "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                  },
+                  [
+                    _c(
+                      "label",
+                      { staticClass: "mr-2", attrs: { for: "torniquete" } },
+                      [_vm._v("TORNIQUETE")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.chk.torniquete,
+                          expression: "chk.torniquete"
+                        }
+                      ],
+                      attrs: {
+                        type: "checkbox",
+                        name: "torniquete",
+                        id: "torniquete"
+                      },
+                      domProps: {
+                        checked: Array.isArray(_vm.chk.torniquete)
+                          ? _vm._i(_vm.chk.torniquete, null) > -1
+                          : _vm.chk.torniquete
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.chk.torniquete,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "torniquete",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.chk,
+                                  "torniquete",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.chk, "torniquete", $$c)
+                          }
+                        }
+                      }
+                    })
+                  ]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -57073,124 +57493,151 @@ var render = function() {
       _vm._v(" "),
       _vm.iniciado
         ? _c("div", [
-            _vm._m(3),
-            _vm._v(" "),
-            _c("div", { staticClass: "border-t row" }, [
-              _c("div", { staticClass: "col-12" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-lg-3 col-md-4 col-4" },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "border-b row",
-                          staticStyle: { background: "transparent" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                AGENTE/HORA\n                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _vm._l(_vm.agentes_text, function(text, index) {
-                        return _c(
-                          "div",
-                          {
-                            key: index,
-                            staticClass: "row he25 border-b border-r"
-                          },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.agentes_text[index].descripcion,
-                                  expression:
-                                    "\n                                        agentes_text[index].descripcion\n                                    "
-                                }
-                              ],
-                              staticStyle: { width: "100%" },
-                              attrs: { type: "text", name: "", id: "" },
-                              domProps: {
-                                value: _vm.agentes_text[index].descripcion
-                              },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.agentes_text[index],
-                                    "descripcion",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            })
-                          ]
-                        )
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
+            _c("div", { ref: "printMe" }, [
+              _vm._m(3),
+              _vm._v(" "),
+              _c("div", { staticClass: "border-t row" }, [
+                _c("div", { staticClass: "col-12" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-3 col-md-4 col-4" },
+                      [
                         _c(
                           "div",
                           {
-                            staticClass: "col-8",
-                            attrs: { id: "tabla-datos-grafica" }
+                            staticClass: "border-b row ml-2",
+                            staticStyle: { background: "transparent" }
                           },
-                          _vm._l(_vm.tabla_datos_grafica, function(
-                            item,
-                            index
-                          ) {
-                            return _c(
-                              "div",
-                              { key: index, staticClass: "row mt-2 mb-2" },
-                              [
-                                _c("div", { staticClass: "col-9" }, [
-                                  _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(item.descripcion) +
-                                      "\n                                        "
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "col-3" }, [
-                                  item.img_url
-                                    ? _c("img", {
-                                        attrs: {
-                                          width: "15",
-                                          src: "/" + item.img_url,
-                                          alt: "no carga"
-                                        }
-                                      })
-                                    : _vm._e()
-                                ])
-                              ]
+                          [
+                            _vm._v(
+                              "\n                                    AGENTE/HORA\n                                "
                             )
-                          }),
-                          0
+                          ]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-2 p-0" }, [
+                        _vm._l(_vm.agentes_text, function(text, index) {
+                          return _c(
+                            "div",
+                            {
+                              key: index,
+                              staticClass: "row he25 border-b border-r"
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.agentes_text[index].descripcion,
+                                    expression:
+                                      "\n                                            agentes_text[index].descripcion\n                                        "
+                                  }
+                                ],
+                                staticStyle: { width: "100%" },
+                                attrs: { type: "text" },
+                                domProps: {
+                                  value: _vm.agentes_text[index].descripcion
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.agentes_text[index],
+                                      "descripcion",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]
+                          )
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
                           _c(
                             "div",
-                            { staticStyle: { "margin-top": "5.4rem" } },
-                            _vm._l(_vm.datos_grados, function(item, index) {
+                            {
+                              staticClass: "col-8",
+                              attrs: { id: "tabla-datos-grafica" }
+                            },
+                            _vm._l(_vm.tabla_datos_grafica, function(
+                              item,
+                              index
+                            ) {
                               return _c(
-                                "p",
+                                "div",
+                                { key: index, staticClass: "row mt-2 mb-2" },
+                                [
+                                  _c("div", { staticClass: "col-9" }, [
+                                    _vm._v(
+                                      "\n                                                " +
+                                        _vm._s(item.descripcion) +
+                                        "\n                                            "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-3" }, [
+                                    item.img_url
+                                      ? _c("img", {
+                                          attrs: {
+                                            width: "15",
+                                            src: "/" + item.img_url,
+                                            alt: "no carga"
+                                          }
+                                        })
+                                      : _vm._e()
+                                  ])
+                                ]
+                              )
+                            }),
+                            0
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-2 p-0" }, [
+                            _c(
+                              "div",
+                              { staticStyle: { "margin-top": "5.4rem" } },
+                              _vm._l(_vm.datos_grados, function(item, index) {
+                                return _c(
+                                  "p",
+                                  {
+                                    key: index,
+                                    staticStyle: { "margin-bottom": "2.1rem" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                                " +
+                                        _vm._s(item) +
+                                        "°\n                                            "
+                                    )
+                                  ]
+                                )
+                              }),
+                              0
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-2 p-0" },
+                            _vm._l(_vm.valoresAnestecia_v, function(
+                              item,
+                              index
+                            ) {
+                              return _c(
+                                "div",
                                 {
                                   key: index,
-                                  staticStyle: { "margin-bottom": "2.1rem" }
+                                  staticStyle: { height: "1.80em" }
                                 },
                                 [
                                   _vm._v(
                                     "\n                                            " +
-                                      _vm._s(item) +
-                                      "°\n                                        "
+                                      _vm._s(item.inicio) +
+                                      "\n                                        "
                                   )
                                 ]
                               )
@@ -57199,158 +57646,163 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
+                        _vm._m(4)
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-lg-9 col-md-8 col-8 overflow-x-hidden p-0"
+                      },
+                      [
                         _c(
                           "div",
-                          { staticClass: "col-2 p-0" },
-                          _vm._l(_vm.valoresAnestecia_v, function(item, index) {
+                          {
+                            staticClass: "row no-wrap-flex ml-0",
+                            staticStyle: { height: "100% !important" }
+                          },
+                          _vm._l(_vm.lista_horas_avanzadas_v, function(
+                            item,
+                            index
+                          ) {
                             return _c(
                               "div",
-                              { key: index, staticStyle: { height: "1.80em" } },
+                              {
+                                key: index,
+                                staticStyle: { "min-width": "270px" }
+                              },
                               [
-                                _vm._v(
-                                  "\n                                        " +
-                                    _vm._s(item.inicio) +
-                                    "\n                                    "
-                                )
-                              ]
-                            )
-                          }),
-                          0
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(4)
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "col-lg-9 col-md-8 col-8 overflow-x-hidden p-0"
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "row no-wrap-flex ml-0",
-                          staticStyle: { height: "100% !important" }
-                        },
-                        _vm._l(_vm.lista_horas_avanzadas_v, function(
-                          item,
-                          index
-                        ) {
-                          return _c(
-                            "div",
-                            {
-                              key: index,
-                              staticStyle: { "min-width": "270px" }
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "border-b",
-                                  style: {
-                                    minWidth: "240px",
-                                    height: item.height ? item.height : "20px"
-                                  }
-                                },
-                                _vm._l(item.datos, function(dato, index_fila) {
-                                  return _c(
-                                    "div",
-                                    { key: index_fila, style: dato.styles },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          class: dato._class,
-                                          style: dato.style
-                                        },
-                                        [
-                                          dato.es_tiempo
-                                            ? _vm._l(
-                                                dato.columnasQuinceMin,
-                                                function(
-                                                  columna,
-                                                  index_columna
-                                                ) {
-                                                  return _c(
-                                                    "div",
-                                                    {
-                                                      key: index_columna,
-                                                      class: columna._class,
-                                                      staticStyle: {
-                                                        height: "25px",
-                                                        width: "100%"
-                                                      }
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "p-0 flex space-btw relative"
-                                                        },
-                                                        [
-                                                          columna.tiempo_inicio
-                                                            ? _c("span", [
-                                                                _vm._v(
-                                                                  "\n                                                                " +
-                                                                    _vm._s(
-                                                                      columna.tiempo_inicio
-                                                                    )
-                                                                )
-                                                              ])
-                                                            : _vm._e(),
-                                                          _vm._v(" "),
-                                                          !columna.tiempo_inicio
-                                                            ? _c("span", [
-                                                                _c("img", {
-                                                                  staticClass:
-                                                                    "time-triangle-abs",
-                                                                  attrs: {
-                                                                    src:
-                                                                      "/img/icons/time_00.png",
-                                                                    alt: ""
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "border-b",
+                                    style: {
+                                      minWidth: "240px",
+                                      height: item.height ? item.height : "20px"
+                                    }
+                                  },
+                                  _vm._l(item.datos, function(
+                                    dato,
+                                    index_fila
+                                  ) {
+                                    return _c(
+                                      "div",
+                                      { key: index_fila, style: dato.styles },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            class: dato._class,
+                                            style: dato.style
+                                          },
+                                          [
+                                            dato.es_tiempo
+                                              ? _vm._l(
+                                                  dato.columnasQuinceMin,
+                                                  function(
+                                                    columna,
+                                                    index_columna
+                                                  ) {
+                                                    return _c(
+                                                      "div",
+                                                      {
+                                                        key: index_columna,
+                                                        class: columna._class,
+                                                        staticStyle: {
+                                                          height: "25px",
+                                                          width: "100%"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "p-0 flex space-btw relative"
+                                                          },
+                                                          [
+                                                            columna.tiempo_inicio
+                                                              ? _c("span", [
+                                                                  _vm._v(
+                                                                    "\n                                                                    " +
+                                                                      _vm._s(
+                                                                        columna.tiempo_inicio
+                                                                      )
+                                                                  )
+                                                                ])
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            !columna.tiempo_inicio
+                                                              ? _c("span", [
+                                                                  _c("img", {
+                                                                    staticClass:
+                                                                      "time-triangle-abs",
+                                                                    attrs: {
+                                                                      src:
+                                                                        "/img/icons/time_00.png",
+                                                                      alt: ""
+                                                                    }
+                                                                  })
+                                                                ])
+                                                              : _vm._e()
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  }
+                                                )
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            dato.es_dato
+                                              ? _vm._l(
+                                                  dato.columnasQuinceMin,
+                                                  function(
+                                                    columna,
+                                                    index_columna
+                                                  ) {
+                                                    return _c(
+                                                      "div",
+                                                      {
+                                                        key: index_columna,
+                                                        class: columna._class,
+                                                        staticStyle: {
+                                                          height: "25px"
+                                                        }
+                                                      },
+                                                      [
+                                                        dato.es_dato
+                                                          ? _c("div", [
+                                                              _c("input", {
+                                                                directives: [
+                                                                  {
+                                                                    name:
+                                                                      "model",
+                                                                    rawName:
+                                                                      "v-model",
+                                                                    value:
+                                                                      _vm
+                                                                        .agentes_text[
+                                                                        index_fila -
+                                                                          1
+                                                                      ].valores[
+                                                                        index_columna +
+                                                                          index *
+                                                                            4
+                                                                      ],
+                                                                    expression:
+                                                                      "\n                                                                        agentes_text[\n                                                                            index_fila -\n                                                                                1\n                                                                        ]\n                                                                            .valores[\n                                                                            index_columna +\n                                                                                index *\n                                                                                    4\n                                                                        ]\n                                                                    "
                                                                   }
-                                                                })
-                                                              ])
-                                                            : _vm._e()
-                                                        ]
-                                                      )
-                                                    ]
-                                                  )
-                                                }
-                                              )
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          dato.es_dato
-                                            ? _vm._l(
-                                                dato.columnasQuinceMin,
-                                                function(
-                                                  columna,
-                                                  index_columna
-                                                ) {
-                                                  return _c(
-                                                    "div",
-                                                    {
-                                                      key: index_columna,
-                                                      class: columna._class,
-                                                      staticStyle: {
-                                                        height: "25px"
-                                                      }
-                                                    },
-                                                    [
-                                                      dato.es_dato
-                                                        ? _c("div", [
-                                                            _c("input", {
-                                                              directives: [
-                                                                {
-                                                                  name: "model",
-                                                                  rawName:
-                                                                    "v-model",
+                                                                ],
+                                                                staticStyle: {
+                                                                  width: "100%"
+                                                                },
+                                                                attrs: {
+                                                                  type: "text"
+                                                                },
+                                                                domProps: {
                                                                   value:
                                                                     _vm
                                                                       .agentes_text[
@@ -57360,188 +57812,172 @@ var render = function() {
                                                                       index_columna +
                                                                         index *
                                                                           4
-                                                                    ],
-                                                                  expression:
-                                                                    "\n                                                                    agentes_text[\n                                                                        index_fila -\n                                                                            1\n                                                                    ]\n                                                                        .valores[\n                                                                        index_columna +\n                                                                            index *\n                                                                                4\n                                                                    ]\n                                                                "
-                                                                }
-                                                              ],
-                                                              staticStyle: {
-                                                                width: "100%"
-                                                              },
-                                                              attrs: {
-                                                                type: "text"
-                                                              },
-                                                              domProps: {
-                                                                value:
-                                                                  _vm
-                                                                    .agentes_text[
-                                                                    index_fila -
-                                                                      1
-                                                                  ].valores[
-                                                                    index_columna +
-                                                                      index * 4
-                                                                  ]
-                                                              },
-                                                              on: {
-                                                                input: function(
-                                                                  $event
-                                                                ) {
-                                                                  if (
+                                                                    ]
+                                                                },
+                                                                on: {
+                                                                  input: function(
                                                                     $event
-                                                                      .target
-                                                                      .composing
                                                                   ) {
-                                                                    return
-                                                                  }
-                                                                  _vm.$set(
-                                                                    _vm
-                                                                      .agentes_text[
-                                                                      index_fila -
-                                                                        1
-                                                                    ].valores,
-                                                                    index_columna +
-                                                                      index * 4,
-                                                                    $event
-                                                                      .target
-                                                                      .value
-                                                                  )
-                                                                }
-                                                              }
-                                                            })
-                                                          ])
-                                                        : _vm._e()
-                                                    ]
-                                                  )
-                                                }
-                                              )
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          dato.es_agente
-                                            ? _vm._l(
-                                                dato.columnasQuinceMin,
-                                                function(
-                                                  columna,
-                                                  index_columna
-                                                ) {
-                                                  return _c(
-                                                    "div",
-                                                    {
-                                                      key: index_columna,
-                                                      class: columna._class,
-                                                      staticStyle: {
-                                                        height: "1.82em",
-                                                        "grid-template-columns":
-                                                          "1fr 1fr 1fr"
-                                                      }
-                                                    },
-                                                    _vm._l(
-                                                      columna.columnas,
-                                                      function(
-                                                        minutos_columna,
-                                                        index_minutos_columna
-                                                      ) {
-                                                        return _c(
-                                                          "div",
-                                                          {
-                                                            key: index_minutos_columna,
-                                                            staticClass:
-                                                              "relative border-r"
-                                                          },
-                                                          [
-                                                            minutos_columna.agentes
-                                                              ? _vm._l(
-                                                                  minutos_columna.agentes,
-                                                                  function(
-                                                                    agente,
-                                                                    index_agente
-                                                                  ) {
-                                                                    return _c(
-                                                                      "img",
-                                                                      {
-                                                                        key: index_agente,
-                                                                        staticClass:
-                                                                          "figure-celds",
-                                                                        staticStyle: {
-                                                                          width:
-                                                                            "20px"
-                                                                        },
-                                                                        attrs: {
-                                                                          src:
-                                                                            "/" +
-                                                                            agente._src,
-                                                                          alt:
-                                                                            ""
-                                                                        }
-                                                                      }
+                                                                    if (
+                                                                      $event
+                                                                        .target
+                                                                        .composing
+                                                                    ) {
+                                                                      return
+                                                                    }
+                                                                    _vm.$set(
+                                                                      _vm
+                                                                        .agentes_text[
+                                                                        index_fila -
+                                                                          1
+                                                                      ].valores,
+                                                                      index_columna +
+                                                                        index *
+                                                                          4,
+                                                                      $event
+                                                                        .target
+                                                                        .value
                                                                     )
                                                                   }
-                                                                )
-                                                              : _vm._e()
-                                                          ],
-                                                          2
-                                                        )
-                                                      }
-                                                    ),
-                                                    0
-                                                  )
-                                                }
-                                              )
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          dato.es_posicion
-                                            ? _vm._l(
-                                                dato.columnasQuinceMin,
-                                                function(
-                                                  columna,
-                                                  index_columna
-                                                ) {
-                                                  return _c(
-                                                    "div",
-                                                    {
-                                                      key: index_columna,
-                                                      class: columna._class,
-                                                      staticStyle: {
-                                                        height: "50px",
-                                                        "grid-template-columns":
-                                                          "1fr 1fr 1fr"
-                                                      }
-                                                    },
-                                                    [
-                                                      columna.posicion.id != 0
-                                                        ? _c("img", {
-                                                            staticClass: "ml-3",
-                                                            staticStyle: {
-                                                              width: "70px"
+                                                                }
+                                                              })
+                                                            ])
+                                                          : _vm._e()
+                                                      ]
+                                                    )
+                                                  }
+                                                )
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            dato.es_agente
+                                              ? _vm._l(
+                                                  dato.columnasQuinceMin,
+                                                  function(
+                                                    columna,
+                                                    index_columna
+                                                  ) {
+                                                    return _c(
+                                                      "div",
+                                                      {
+                                                        key: index_columna,
+                                                        class: columna._class,
+                                                        staticStyle: {
+                                                          height: "1.82em",
+                                                          "grid-template-columns":
+                                                            "1fr 1fr 1fr"
+                                                        }
+                                                      },
+                                                      _vm._l(
+                                                        columna.columnas,
+                                                        function(
+                                                          minutos_columna,
+                                                          index_minutos_columna
+                                                        ) {
+                                                          return _c(
+                                                            "div",
+                                                            {
+                                                              key: index_minutos_columna,
+                                                              staticClass:
+                                                                "relative border-r"
                                                             },
-                                                            attrs: {
-                                                              src:
-                                                                "/" +
-                                                                columna.posicion
-                                                                  .img_url,
-                                                              alt: ""
-                                                            }
-                                                          })
-                                                        : _vm._e()
-                                                    ]
-                                                  )
-                                                }
-                                              )
-                                            : _vm._e()
-                                        ],
-                                        2
-                                      )
-                                    ]
-                                  )
-                                }),
-                                0
-                              )
-                            ]
-                          )
-                        }),
-                        0
-                      )
-                    ]
-                  )
+                                                            [
+                                                              minutos_columna.agentes
+                                                                ? _vm._l(
+                                                                    minutos_columna.agentes,
+                                                                    function(
+                                                                      agente,
+                                                                      index_agente
+                                                                    ) {
+                                                                      return _c(
+                                                                        "img",
+                                                                        {
+                                                                          key: index_agente,
+                                                                          staticClass:
+                                                                            "figure-celds",
+                                                                          staticStyle: {
+                                                                            width:
+                                                                              "20px"
+                                                                          },
+                                                                          attrs: {
+                                                                            src:
+                                                                              "/" +
+                                                                              agente._src,
+                                                                            alt:
+                                                                              ""
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    }
+                                                                  )
+                                                                : _vm._e()
+                                                            ],
+                                                            2
+                                                          )
+                                                        }
+                                                      ),
+                                                      0
+                                                    )
+                                                  }
+                                                )
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            dato.es_posicion
+                                              ? _vm._l(
+                                                  dato.columnasQuinceMin,
+                                                  function(
+                                                    columna,
+                                                    index_columna
+                                                  ) {
+                                                    return _c(
+                                                      "div",
+                                                      {
+                                                        key: index_columna,
+                                                        class: columna._class,
+                                                        staticStyle: {
+                                                          height: "50px",
+                                                          "grid-template-columns":
+                                                            "1fr 1fr 1fr"
+                                                        }
+                                                      },
+                                                      [
+                                                        columna.posicion.id != 0
+                                                          ? _c("img", {
+                                                              staticClass:
+                                                                "ml-3",
+                                                              staticStyle: {
+                                                                width: "70px"
+                                                              },
+                                                              attrs: {
+                                                                src:
+                                                                  "/" +
+                                                                  columna
+                                                                    .posicion
+                                                                    .img_url,
+                                                                alt: ""
+                                                              }
+                                                            })
+                                                          : _vm._e()
+                                                      ]
+                                                    )
+                                                  }
+                                                )
+                                              : _vm._e()
+                                          ],
+                                          2
+                                        )
+                                      ]
+                                    )
+                                  }),
+                                  0
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ]
+                    )
+                  ])
                 ])
               ])
             ]),
@@ -57594,10 +58030,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
+                            attrs: { type: "text" },
                             domProps: { value: _vm.drogas_administradas[0] },
                             on: {
                               input: function($event) {
@@ -57637,10 +58070,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
+                            attrs: { type: "text" },
                             domProps: { value: _vm.drogas_administradas[1] },
                             on: {
                               input: function($event) {
@@ -57680,10 +58110,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
+                            attrs: { type: "text" },
                             domProps: { value: _vm.drogas_administradas[2] },
                             on: {
                               input: function($event) {
@@ -57723,10 +58150,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
+                            attrs: { type: "text" },
                             domProps: { value: _vm.drogas_administradas[3] },
                             on: {
                               input: function($event) {
@@ -57761,16 +58185,13 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.drogas_administradas[3],
-                                expression: "drogas_administradas[3]"
+                                value: _vm.drogas_administradas[4],
+                                expression: "drogas_administradas[4]"
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
-                            domProps: { value: _vm.drogas_administradas[3] },
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.drogas_administradas[4] },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -57778,7 +58199,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.drogas_administradas,
-                                  3,
+                                  4,
                                   $event.target.value
                                 )
                               }
@@ -57806,16 +58227,13 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.drogas_administradas[4],
-                                expression: "drogas_administradas[4]"
+                                value: _vm.drogas_administradas[5],
+                                expression: "drogas_administradas[5]"
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
-                            domProps: { value: _vm.drogas_administradas[4] },
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.drogas_administradas[5] },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -57823,7 +58241,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.drogas_administradas,
-                                  4,
+                                  5,
                                   $event.target.value
                                 )
                               }
@@ -57849,16 +58267,13 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.drogas_administradas[5],
-                                expression: "drogas_administradas[5]"
+                                value: _vm.drogas_administradas[6],
+                                expression: "drogas_administradas[6]"
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
-                            domProps: { value: _vm.drogas_administradas[5] },
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.drogas_administradas[6] },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -57866,7 +58281,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.drogas_administradas,
-                                  5,
+                                  6,
                                   $event.target.value
                                 )
                               }
@@ -57892,16 +58307,13 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.drogas_administradas[6],
-                                expression: "drogas_administradas[6]"
+                                value: _vm.drogas_administradas[7],
+                                expression: "drogas_administradas[7]"
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
-                            domProps: { value: _vm.drogas_administradas[6] },
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.drogas_administradas[7] },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -57909,7 +58321,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.drogas_administradas,
-                                  6,
+                                  7,
                                   $event.target.value
                                 )
                               }
@@ -57935,16 +58347,13 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.drogas_administradas[6],
-                                expression: "drogas_administradas[6]"
+                                value: _vm.drogas_administradas[8],
+                                expression: "drogas_administradas[8]"
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
-                            domProps: { value: _vm.drogas_administradas[6] },
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.drogas_administradas[8] },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -57952,7 +58361,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.drogas_administradas,
-                                  6,
+                                  8,
                                   $event.target.value
                                 )
                               }
@@ -57978,16 +58387,13 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.drogas_administradas[7],
-                                expression: "drogas_administradas[7]"
+                                value: _vm.drogas_administradas[9],
+                                expression: "drogas_administradas[9]"
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
-                            domProps: { value: _vm.drogas_administradas[7] },
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.drogas_administradas[9] },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -57995,7 +58401,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.drogas_administradas,
-                                  7,
+                                  9,
                                   $event.target.value
                                 )
                               }
@@ -58023,16 +58429,13 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.drogas_administradas[8],
-                                expression: "drogas_administradas[8]"
+                                value: _vm.drogas_administradas[10],
+                                expression: "drogas_administradas[10]"
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
-                            domProps: { value: _vm.drogas_administradas[8] },
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.drogas_administradas[10] },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -58040,7 +58443,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.drogas_administradas,
-                                  8,
+                                  10,
                                   $event.target.value
                                 )
                               }
@@ -58066,16 +58469,13 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.drogas_administradas[9],
-                                expression: "drogas_administradas[9]"
+                                value: _vm.drogas_administradas[11],
+                                expression: "drogas_administradas[11]"
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
-                            domProps: { value: _vm.drogas_administradas[9] },
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.drogas_administradas[11] },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -58083,7 +58483,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.drogas_administradas,
-                                  9,
+                                  11,
                                   $event.target.value
                                 )
                               }
@@ -58109,16 +58509,13 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.drogas_administradas[9],
-                                expression: "drogas_administradas[9]"
+                                value: _vm.drogas_administradas[12],
+                                expression: "drogas_administradas[12]"
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
-                            domProps: { value: _vm.drogas_administradas[9] },
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.drogas_administradas[12] },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -58126,7 +58523,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.drogas_administradas,
-                                  9,
+                                  12,
                                   $event.target.value
                                 )
                               }
@@ -58152,16 +58549,13 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.drogas_administradas[10],
-                                expression: "drogas_administradas[10]"
+                                value: _vm.drogas_administradas[13],
+                                expression: "drogas_administradas[13]"
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
-                            domProps: { value: _vm.drogas_administradas[10] },
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.drogas_administradas[13] },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -58169,7 +58563,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.drogas_administradas,
-                                  10,
+                                  13,
                                   $event.target.value
                                 )
                               }
@@ -58195,16 +58589,13 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.drogas_administradas[10],
-                                expression: "drogas_administradas[10]"
+                                value: _vm.drogas_administradas[14],
+                                expression: "drogas_administradas[14]"
                               }
                             ],
                             staticClass: "input-line",
-                            attrs: {
-                              type: "text",
-                              name: "drogas_administradas[]"
-                            },
-                            domProps: { value: _vm.drogas_administradas[10] },
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.drogas_administradas[14] },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -58212,7 +58603,7 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.drogas_administradas,
-                                  10,
+                                  14,
                                   $event.target.value
                                 )
                               }
@@ -58617,7 +59008,8 @@ var render = function() {
                               name: "model",
                               rawName: "v-model",
                               value: _vm.form.vaiiven_aparatos_usados,
-                              expression: "form.vaiiven_aparatos_usados"
+                              expression:
+                                "\n                                            form.vaiiven_aparatos_usados\n                                        "
                             }
                           ],
                           attrs: {
@@ -59647,7 +60039,8 @@ var render = function() {
                               name: "model",
                               rawName: "v-model",
                               value: _vm.form.continua_altura_puncion,
-                              expression: "form.continua_altura_puncion"
+                              expression:
+                                "\n                                            form.continua_altura_puncion\n                                        "
                             }
                           ],
                           attrs: {
@@ -59985,21 +60378,22 @@ var render = function() {
                       { key: index, staticClass: "row border-b border-r" },
                       [
                         _c("span", { staticClass: "col-md-1 border-r" }, [
-                          _vm._v(" " + _vm._s(infusion.abreviatura) + " ")
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(infusion.abreviatura) +
+                              "\n                        "
+                          )
                         ]),
                         _vm._v(" "),
-                        _c(
-                          "label",
-                          {
-                            staticClass: "col-md-6 p-0 m-0 upper",
-                            attrs: { for: "sangre" }
-                          },
-                          [
-                            _c("span", { staticClass: "space-left" }, [
-                              _vm._v(" " + _vm._s(infusion.descripcion) + " ")
-                            ])
-                          ]
-                        ),
+                        _c("label", { staticClass: "col-md-6 p-0 m-0 upper" }, [
+                          _c("span", { staticClass: "space-left" }, [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(infusion.descripcion) +
+                                "\n                            "
+                            )
+                          ])
+                        ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-3 p-0" }, [
                           _c("input", {
@@ -60013,11 +60407,7 @@ var render = function() {
                             ],
                             staticClass: "input-line",
                             staticStyle: { width: "100%" },
-                            attrs: {
-                              type: "number",
-                              name: "sangre",
-                              id: "sangre"
-                            },
+                            attrs: { type: "number" },
                             domProps: { value: infusion.valor },
                             on: {
                               input: function($event) {
@@ -61077,7 +61467,51 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _vm._m(52)
+                _c("div", {}, [
+                  _c("div", { staticStyle: { height: "70px" } }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flex flex-y" }, [
+                    _c(
+                      "span",
+                      {
+                        staticClass: "col-md-5 text-center",
+                        staticStyle: { margin: "auto" }
+                      },
+                      [
+                        _c("vue-painttable", {
+                          ref: "paintFirma",
+                          attrs: {
+                            hidePaintable: true,
+                            isFirstPaintable: _vm.isFirstPaintable,
+                            disableNavigation: true,
+                            showUndoRedo: false,
+                            showLineWidth: false,
+                            rutaImagen: _vm.rutaSello,
+                            width: 800,
+                            height: 800
+                          },
+                          on: {
+                            getOutput: function($event) {
+                              _vm.form.imgFirma = $event
+                            },
+                            RespuestaImgFirma: function($event) {
+                              _vm.validarImgFirma = $event
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "col-md-12 text-center" }, [
+                      _vm._v("______________________________________________")
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "col-md-12 text-center" }, [
+                      _vm._v("FIRMA DEL ANESTESIOLOGO:")
+                    ])
+                  ])
+                ])
               ])
             ])
           ])
@@ -61643,24 +62077,6 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "space-left" }, [_vm._v("cambio de tecnica")])]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", {}, [
-      _c("div", { staticStyle: { height: "70px" } }),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex flex-y" }, [
-        _c("span", { staticClass: "col-md-12 text-center" }, [
-          _vm._v("______________________________________________")
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "col-md-12 text-center" }, [
-          _vm._v("FIRMA DEL ANESTESIOLOGO:")
-        ])
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -75738,18 +76154,10 @@ var render = function() {
           "data-accordion": "false"
         }
       },
-      _vm._l(_vm.modulos, function(gestion, index) {
+      _vm._l(_vm.menus, function(gestion, index) {
         return _c(
           "li",
-          {
-            key: index,
-            staticClass: "nav-item has-treeview",
-            on: {
-              click: function($event) {
-                return _vm.cargarSubModulos(gestion.codigo)
-              }
-            }
-          },
+          { key: index, staticClass: "nav-item has-treeview" },
           [
             _c("a", { staticClass: "nav-link" }, [
               _c("i", { class: gestion.imagen }),
@@ -75768,7 +76176,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._l(_vm.sub_modulos, function(gestion, index) {
+            _vm._l(gestion.sub_modulo, function(subMenu, index) {
               return _c("ul", { key: index, staticClass: "nav nav-treeview" }, [
                 _c(
                   "li",
@@ -75778,17 +76186,17 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "nav-link ml-3",
-                        attrs: { to: _vm.prefijo + gestion.route }
+                        attrs: { to: _vm.prefijo + subMenu.route }
                       },
                       [
-                        _c("i", { class: gestion.imagen }),
+                        _c("i", { class: subMenu.imagen }),
                         _vm._v(" "),
                         _c("p", [
                           _vm._v(
                             "\n                            " +
                               _vm._s(
                                 _vm.$funcionesGlobales.toCapitalFirstAllWords(
-                                  gestion.descripcion
+                                  subMenu.descripcion
                                 )
                               ) +
                               "\n                        "
@@ -75860,16 +76268,6 @@ var render = function() {
                       _vm._v(" "),
                       _vm.isActive
                         ? [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-outline-success",
-                                attrs: { type: "button" },
-                                on: { click: _vm.$refs.paintable.cancelDrawing }
-                              },
-                              [_c("i", { staticClass: "fas fa-ban" })]
-                            ),
-                            _vm._v(" "),
                             _c(
                               "button",
                               {
@@ -76312,9 +76710,7 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("img", { attrs: { src: _vm.output } })
+      )
     ])
   ])
 }
@@ -93891,7 +94287,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("revision-sistema", __webpa
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("antecedente", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Antecedente.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Antecedente.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("examen-fisico", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/ExamenFisico.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/ExamenFisico.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("paraclinico", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("registro-anestesico", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("registro-anestesico", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-tipo-agente", __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue */ "./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-tipo-posiciones", __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue")["default"]);
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
@@ -94005,18 +94401,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue":
-/*!***************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue ***!
-  \***************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue ***!
+  \**********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _registro_anestesico_copy_vue_vue_type_template_id_f5b82846___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./registro-anestesico-copy.vue?vue&type=template&id=f5b82846& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=template&id=f5b82846&");
-/* harmony import */ var _registro_anestesico_copy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registro-anestesico-copy.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _registro_anestesico_copy_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro-anestesico-copy.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=template&id=0efa7f95& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&");
+/* harmony import */ var _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -94027,9 +94423,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _registro_anestesico_copy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _registro_anestesico_copy_vue_vue_type_template_id_f5b82846___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _registro_anestesico_copy_vue_vue_type_template_id_f5b82846___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -94039,54 +94435,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue"
+component.options.__file = "resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico-copy.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=style&index=0&lang=css&":
-/*!************************************************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=style&index=0&lang=css& ***!
-  \************************************************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&":
+/*!*******************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/style-loader!../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico-copy.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/style-loader!../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=template&id=f5b82846&":
-/*!**********************************************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=template&id=f5b82846& ***!
-  \**********************************************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&":
+/*!*****************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95& ***!
+  \*****************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_template_id_f5b82846___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico-copy.vue?vue&type=template&id=f5b82846& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-copy.vue?vue&type=template&id=f5b82846&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_template_id_f5b82846___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=template&id=0efa7f95& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_template_id_f5b82846___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -45,11 +45,9 @@ class ValoracionPreanestesicaApiController extends Controller
                         $edadPaciente = $this->calculaEdad($paciente->Fecha_nacimiento);
                     }
                 }
-
-
-                $datosValoracionPreanestesica = RevisionSistema::where('SecCirPro', $idSecCirPro)
+                $datosValoracionPreanestesica = RevisionSistema::select('fdf', 'as', )->where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
-                    ->with('antecedente', 'examenFisico', 'paraclinico')
+                    ->with('antecedente', 'examenFisico', 'paraclinico.tipoSangre')
                     ->first();
 
                  $pdf = PDF::loadView('reports.pdf.formulario-valoracion-preanestesica', [
