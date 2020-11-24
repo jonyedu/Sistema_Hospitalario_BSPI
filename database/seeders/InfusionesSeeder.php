@@ -49,5 +49,12 @@ class InfusionesSeeder extends Seeder
             'pcip' => '0.0.0.0',
             'status' => '1'
         ]);
+        Infusiones::create([
+            'descripcion' => 'TOTAL',
+            'name_system' => 'TOTAL',
+            'usu_created_update' => '1',
+            'pcip' => '0.0.0.0',
+            'status' => '1'
+        ]);
     }
 }

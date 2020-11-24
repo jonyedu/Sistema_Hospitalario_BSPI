@@ -76,50 +76,232 @@
                                     role="alert"
                                 >
                                     <div class="row">
-                                        <div class="col-sm-6 text-left">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                             <label class="col-form-label"
                                                 >Paciente:</label
                                             >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_paciente"
-                                            ></span>
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="N° Historia Clínica"
+                                                v-model="form.frm_paciente"
+                                            />
                                         </div>
-                                        <div class="col-sm-6 text-left">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                             <label class="col-form-label"
+                                                >N° Historia Clínica:</label
+                                            >
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="N° Historia Clínica"
+                                                v-model="form.frm_paciente"
+                                            />
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-form-label"
+                                                >Fecha:</label
+                                            >
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Fecha"
+                                                v-model="form.frm_paciente"
+                                            />
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Edad:</label
+                                            >
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Edad"
+                                                v-model="form.frm_paciente"
+                                            />
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Sexo:</label
+                                            >
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Sexo"
+                                                v-model="form.frm_paciente"
+                                            />
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Estatura:</label
+                                            >
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Estatura"
+                                                v-model="form.frm_paciente"
+                                            />
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Peso:</label
+                                            >
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Peso"
+                                                v-model="form.frm_paciente"
+                                            />
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Ocupación Actual:</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Ocupación Actual"
+                                                v-model="form.frm_paciente"
+                                            />
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Servicio:</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Servicio"
+                                                v-model="form.frm_paciente"
+                                            />
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Sala:</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Sala"
+                                                v-model="form.frm_paciente"
+                                            />
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Cama:</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Cama"
+                                                v-model="form.frm_cirujano"
+                                            />
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Diagnóstico Preoperatorio:</label
+                                            >
+                                            <textarea
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Diagnóstico Preoperatorio"
+                                                v-model="form.frm_cirujano"
+                                            />
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Diagnóstico Post-operatorio:</label
+                                            >
+                                            <textarea
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Diagnóstico Post-operatorio"
+                                                v-model="form.frm_cirujano"
+                                            />
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Operación Propuesta:</label
+                                            >
+                                            <textarea
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Operación Propuesta"
+                                                v-model="form.frm_procedimiento"
+                                            />
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                                 >Cirujano:</label
                                             >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_cirujano"
-                                            ></span>
+                                            <textarea
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Cirujano"
+                                                v-model="form.frm_cirujano"
+                                            />
                                         </div>
-                                        <div class="col-sm-6 text-left">
-                                            <label class="col-form-label"
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Ayudante:</label
+                                            >
+                                            <textarea
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Ayudante"
+                                                v-model="form.frm_cirujano"
+                                            />
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Operación Realizada:</label
+                                            >
+                                            <textarea
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Operación Realizada"
+                                                v-model="form.frm_cirujano"
+                                            />
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                                 >Anestesiologo:</label
                                             >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_anestesiologo"
-                                            ></span>
+                                            <textarea
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Anestesiologo"
+                                                v-model="form.frm_anestesiologo"
+                                            />
                                         </div>
-                                        <div class="col-sm-6 text-left">
-                                            <label class="col-form-label"
-                                                >Quirófano:</label
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Ayudante:</label
                                             >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_quirofano"
-                                            ></span>
+                                            <textarea
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Ayudante"
+                                                v-model="form.frm_anestesiologo"
+                                            />
                                         </div>
-                                        <div class="col-sm-12 text-left">
-                                            <label class="col-form-label"
-                                                >Procedimiento:</label
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Instrumentista:</label
                                             >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_procedimiento"
-                                            ></span>
+                                            <textarea
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Instrumentista"
+                                                v-model="form.frm_quirofano"
+                                            />
                                         </div>
                                     </div>
 
