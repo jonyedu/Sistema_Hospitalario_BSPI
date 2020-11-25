@@ -4247,51 +4247,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     agregarHorasInicial: function agregarHorasInicial() {
       this.horasInicial.push(this.hour);
     },
-    getImgGrafica: function getImgGrafica(idFlashMessage1) {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var la, optiones;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                la = _this2.$refs.printMe;
-                optiones = {
-                  type: "dataURL"
-                };
-                _context.next = 4;
-                return _this2.$html2canvas(la, optiones);
-
-              case 4:
-                _this2.form.imgGrafica = _context.sent;
-
-                _this2.flashMessage.deleteMessage(idFlashMessage1);
-
-                _this2.flashMessage.show({
-                  status: "success",
-                  title: "Exito en Graficar",
-                  message: "Grafico generado correctamente.",
-                  clickable: true,
-                  time: 5000,
-                  icon: "/iconsflashMessage/success.svg",
-                  customStyle: {
-                    flashMessageStyle: {
-                      background: "linear-gradient(#e66465, #9198e5)"
-                    }
-                  }
-                });
-
-                _this2.guardarImgGrafica();
-
-              case 8:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
     consultarSello: function consultarSello() {
       var that = this;
 
@@ -4518,11 +4473,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * Obtener agentes
      */
     obtenerDatosAgentes: function obtenerDatosAgentes() {
-      var _this3 = this;
+      var _this2 = this;
 
       var url = "/modulos/cirugia/anestesia/agentes";
       axios.get(url + "/agente").then(function (response) {
-        _this3.tabla_datos_grafica = response.data;
+        _this2.tabla_datos_grafica = response.data;
       })["catch"](function (error) {
         //Errores
 
@@ -4552,11 +4507,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * Obtener posiciones
      */
     obtenerDatosPosiciones: function obtenerDatosPosiciones() {
-      var _this4 = this;
+      var _this3 = this;
 
       var url = "/modulos/cirugia/anestesia/agentes";
       axios.get(url + "/posicion").then(function (response) {
-        _this4.posiciones = response.data;
+        _this3.posiciones = response.data;
       })["catch"](function (error) {
         //Errores
 
@@ -4586,7 +4541,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * Método para enviar datos de la rejilla (agentes), cada que se registen (pasando 5 min)
      */
     enviarDatosAgente: function enviarDatosAgente() {
-      var _this5 = this;
+      var _this4 = this;
 
       var datos = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var tipo = arguments.length > 1 ? arguments[1] : undefined;
@@ -4601,7 +4556,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         SecCirPro: this.form.cirugia_id
       }).then(function (response) {
         ///console.log(response.data);
-        _this5.datos_server = response.data; //loader.hide();
+        _this4.datos_server = response.data; //loader.hide();
       })["catch"](function (error) {
         //Errores
 
@@ -4630,20 +4585,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * Inicio de la recolección de datos
      */
     start_time: function () {
-      var _start_time = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(event) {
-        var _this6 = this;
+      var _start_time = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event) {
+        var _this5 = this;
 
         var url, $id;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context.prev = _context.next) {
               case 0:
                 if (!this.iniciado) {
-                  _context2.next = 2;
+                  _context.next = 2;
                   break;
                 }
 
-                return _context2.abrupt("return");
+                return _context.abrupt("return");
 
               case 2:
                 this.iniciado = true;
@@ -4651,13 +4606,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 //Guardar datos en la tabla tb_registro_anestesia
 
                 url = "/modulos/cirugia/anestesia/registro/post";
-                _context2.next = 7;
+                _context.next = 7;
                 return axios.post(url, this.form).then(function (response) {
-                  _this6.form.registro_anestesia_id = response.data.id;
+                  _this5.form.registro_anestesia_id = response.data.id;
                 });
 
               case 7:
-                $id = _context2.sent;
+                $id = _context.sent;
                 //Guardar datos en la tabla tb_tipo_agente_anestesia
                 // let urlTip = "/modulos/cirugia/anestesia/registro_tipo_agente/post";
                 // axios.post(urlTip, this.form).then(response => {
@@ -4671,10 +4626,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 9:
               case "end":
-                return _context2.stop();
+                return _context.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee, this);
       }));
 
       function start_time(_x) {
@@ -4699,7 +4654,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.agregaDatoEnRejilla(true, false, 0, "img/icons/fin_anestecia.png", {
             system_name: "FIN-ANESTECIA",
             tipo: this.system_agente
-          }); //Se guardan los datos a la base
+          });
+          var idFlashMessage1 = this.flashMessage.show({
+            status: "info",
+            title: "Generando Gráfica",
+            message: "Se está generando la gráfica, por favor espere.",
+            clickable: false,
+            time: 0,
+            icon: "/iconsflashMessage/time.gif",
+            blockClass: 'custom_msg',
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          this.getImgGrafica(idFlashMessage1); //this.flashMessage.deleteMessage(idFlashMessage1);
+          //Se guardan los datos a la base
 
           this.guardarDrograAdministrada();
         }
@@ -4763,6 +4734,104 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
       }); */
 
+    },
+    getImgGrafica: function getImgGrafica(idFlashMessage1) {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var la, optiones;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                la = _this6.$refs.printMe;
+                optiones = {
+                  type: "dataURL"
+                };
+                _context2.next = 4;
+                return _this6.$html2canvas(la, optiones);
+
+              case 4:
+                _this6.form.imgGrafica = _context2.sent;
+
+                _this6.flashMessage.deleteMessage(idFlashMessage1);
+
+                _this6.flashMessage.show({
+                  status: "success",
+                  title: "Exito en Graficar",
+                  message: "Grafico generado correctamente.",
+                  clickable: true,
+                  time: 5000,
+                  icon: "/iconsflashMessage/success.svg",
+                  customStyle: {
+                    flashMessageStyle: {
+                      background: "linear-gradient(#e66465, #9198e5)"
+                    }
+                  }
+                });
+
+                _this6.guardarImgGrafica();
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    guardarImgGrafica: function guardarImgGrafica() {
+      var that = this;
+      var url = "";
+      var mensaje = "";
+      var formNew = {
+        cirugia_id: that.form.cirugia_id,
+        registro_anestesia_id: that.form.registro_anestesia_id,
+        imgGrafica: that.form.imgGrafica
+      };
+      url = "/modulos/cirugia/anestesia/guardar_img_grafica";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        //Llamar metodo de parent para que actualice el grid.
+        //that.guardarModificarAgenteText();
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar guardarImgGrafica",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores de validación
+
+        /* that.$swal({
+            icon: "error",
+            title: "Error Guardar Imagen Grafica",
+            text: error
+        }); */
+        that.resConfirmarCancelar = false;
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarImgGrafica",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
     },
     guardarDrograAdministrada: function guardarDrograAdministrada() {
       var that = this;
@@ -4952,21 +5021,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
           }
         });
-        var idFlashMessage1 = that.flashMessage.show({
-          status: "info",
-          title: "Generando Gráfica",
-          message: "Se está generando la gráfica, por favor espere.",
-          clickable: false,
-          time: 0,
-          icon: "/iconsflashMessage/time.gif",
-          blockClass: 'custom_msg',
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
+        /* var idFlashMessage1 = that.flashMessage.show({
+            status: "info",
+            title: "Generando Gráfica",
+            message: "Se está generando la gráfica, por favor espere.",
+            clickable: false,
+            time: 0,
+            icon: "/iconsflashMessage/time.gif",
+            blockClass: 'custom_msg',
+            customStyle: {
+                flashMessageStyle: {
+                    background: "linear-gradient(#e66465, #9198e5)"
+                }
             }
-          }
-        });
-        that.getImgGrafica(idFlashMessage1); //that.flashMessage.deleteMessage(idFlashMessage1);
+        }); */
+        //that.getImgGrafica(idFlashMessage1);
+        //that.flashMessage.deleteMessage(idFlashMessage1);
+
+        that.guardarModificarAgenteText();
       })["catch"](function (error) {
         //Errores de validación
 
@@ -4979,59 +5051,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         that.flashMessage.show({
           status: "error",
           title: "Error al procesar guardarFirmaPorAtencion",
-          message: "Por favor comuníquese con el administrador. " + error,
-          clickable: true,
-          time: 0,
-          icon: "/iconsflashMessage/error.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-        loader.hide();
-      });
-    },
-    guardarImgGrafica: function guardarImgGrafica() {
-      var that = this;
-      var url = "";
-      var mensaje = "";
-      var formNew = {
-        cirugia_id: that.form.cirugia_id,
-        registro_anestesia_id: that.form.registro_anestesia_id,
-        imgGrafica: that.form.imgGrafica
-      };
-      url = "/modulos/cirugia/anestesia/guardar_img_grafica";
-      var loader = that.$loading.show();
-      axios.post(url, formNew).then(function (response) {
-        //Llamar metodo de parent para que actualice el grid.
-        that.guardarModificarAgenteText();
-        that.flashMessage.show({
-          status: "success",
-          title: "Éxito al procesar guardarImgGrafica",
-          message: "Datos guardados correctamente.",
-          clickable: true,
-          time: 5000,
-          icon: "/iconsflashMessage/success.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-        loader.hide();
-      })["catch"](function (error) {
-        //Errores de validación
-
-        /* that.$swal({
-            icon: "error",
-            title: "Error Guardar Imagen Grafica",
-            text: error
-        }); */
-        that.resConfirmarCancelar = false;
-        that.flashMessage.show({
-          status: "error",
-          title: "Error al procesar guardarImgGrafica",
           message: "Por favor comuníquese con el administrador. " + error,
           clickable: true,
           time: 0,
@@ -5879,6 +5898,125 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -5888,6 +6026,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      selectedPosOperatorio: "",
+      posOperatorios: [],
+      selectedCirujano: "",
+      cirujanos: [],
+      selectedAnestesiologo: "",
+      anestesiologos: [],
+      selectedAyudante1: "",
+      ayudantes1: [],
+      selectedAyudante2: "",
+      ayudantes2: [],
       prefijo: "",
       //cirugia_id: 0,
       titulo_seleccionado: "Registro de anestecia",
@@ -5895,6 +6043,12 @@ __webpack_require__.r(__webpack_exports__);
       respuestaImprimir: 1,
       form: {
         /* Datos del paciente */
+        id_especializacion: 0,
+        id_pos_operatorio: 0,
+        id_cirujano: 0,
+        id_anestesiologo: 0,
+        id_ayudante1: 0,
+        id_ayudante2: 0,
         idCirugiaProgramada: "0001",
         paciente: "",
         historia_clinica: "",
@@ -5921,6 +6075,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    this.setSelectedPosOperatorio();
+    this.setSelectedCirujano();
+    this.setSelectedAnestesiologo();
+    this.setSelectedAyudante();
     /*  var user = this.$attrs;
     console.log(user); */
 
@@ -5932,6 +6090,7 @@ __webpack_require__.r(__webpack_exports__);
         nombreFormulario,
         "Ingreso"
     );*/
+
     this.prefijo = _variables__WEBPACK_IMPORTED_MODULE_0__["prefix"];
   },
   beforeDestroy: function beforeDestroy() {
@@ -5945,6 +6104,199 @@ __webpack_require__.r(__webpack_exports__);
     ); */
   },
   methods: {
+    setSelectedPosOperatorio: function setSelectedPosOperatorio(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/parametrizacion/sala/cargar_sala_combo_box";
+
+      if (value != null) {
+        this.form.id_pos_operatorio = value.id_pos_operatorio;
+      }
+
+      axios.get(url).then(function (response) {
+        var posOperatorios = [];
+        response.data.salas.forEach(function (posOperatorio) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(posOperatorio.descripcion);
+          objeto.id_pos_operatorio = posOperatorio.id;
+          posOperatorios.push(objeto);
+        });
+        that.posOperatorios = posOperatorios;
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedPosOperatorio",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    setSelectedCirujano: function setSelectedCirujano(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      this.form.id_especializacion = 3;
+      var url = "/modulos/admision/medico/cargar_cirujano";
+
+      if (value != null) {
+        this.form.id_cirujano = value.id_cirujano;
+        loader.hide();
+      }
+
+      axios.get(url).then(function (response) {
+        var cirujanos = [];
+        response.data.medicos.forEach(function (medico) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto.id_cirujano = medico.id;
+          cirujanos.push(objeto);
+        });
+        that.cirujanos = cirujanos;
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedCirujano",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    setSelectedAnestesiologo: function setSelectedAnestesiologo(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      this.form.id_especializacion = 3;
+      var url = "/modulos/admision/medico/cargar_medico_por_especializacion/" + that.form.id_especializacion;
+
+      if (value != null) {
+        this.form.id_cirujano = value.id_cirujano;
+        loader.hide();
+      }
+
+      axios.get(url).then(function (response) {
+        var anestesiologos = [];
+        response.data.medicos.forEach(function (medico) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto.id_anestesiologo = medico.id;
+          anestesiologos.push(objeto);
+        });
+        that.anestesiologos = anestesiologos;
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedAnestesiologo",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    setSelectedAyudante: function setSelectedAyudante(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/admision/medico/cargar_medico_all";
+
+      if (value != null) {
+        if (value.id_ayudante1 != null) {
+          this.form.id_ayudante1 = value.id_ayudante1;
+        }
+
+        if (value.id_ayudante2 != null) {
+          this.form.id_ayudante2 = value.id_ayudante2;
+        }
+
+        loader.hide();
+      }
+
+      axios.get(url).then(function (response) {
+        var ayudante1 = [];
+        var ayudante2 = [];
+        response.data.medicos.forEach(function (medico) {
+          //Ayudante 1
+          var objeto1 = {};
+          objeto1.display1 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto1.id_ayudante1 = medico.id;
+          ayudante1.push(objeto1); //Ayudante 2
+
+          var objeto2 = {};
+          objeto2.display2 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto2.id_ayudante2 = medico.id;
+          ayudante2.push(objeto2);
+        });
+        that.ayudantes1 = ayudante1;
+        that.ayudantes2 = ayudante2;
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedAyudante",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+
     /* Metodos para Llamar al Modal y la Tabla */
     mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
       this.$modal.show("ListaCirugiaProgramadaPaciente");
@@ -5956,7 +6308,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.cirujano = value.Cirujano;
       this.form.anestesiologo = value.Anestesiologo;
       this.form.quirofano = value.Quirofano;
-      this.form.procedimiento = value.Procedimiento;
+      this.form.operacion_propuesta = value.Procedimiento;
       this.$modal.hide("ListaCirugiaProgramadaPaciente");
 
       if (this.$refs.revisionSistema != null) {
@@ -63852,6 +64204,7 @@ var render = function() {
                                     staticClass:
                                       "col-lg-12 col-md-12 col-sm-12 text-left form-control",
                                     attrs: {
+                                      disabled: "",
                                       rows: "1",
                                       type: "text",
                                       placeholder: "Diagnóstico Preoperatorio"
@@ -63891,41 +64244,54 @@ var render = function() {
                                     [_vm._v("Diagnóstico Post-operatorio:")]
                                   ),
                                   _vm._v(" "),
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value:
-                                          _vm.form.diagnostico_post_operatorio,
-                                        expression:
-                                          "form.diagnostico_post_operatorio"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      rows: "1",
-                                      type: "text",
-                                      placeholder: "Diagnóstico Post-operatorio"
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "col-lg-12 col-md-12 col-sm-12"
                                     },
-                                    domProps: {
-                                      value:
-                                        _vm.form.diagnostico_post_operatorio
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "diagnostico_post_operatorio",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "form-group" },
+                                        [
+                                          _c(
+                                            "v-select",
+                                            {
+                                              attrs: {
+                                                value:
+                                                  _vm.form.id_pos_operatorio,
+                                                options: _vm.posOperatorios,
+                                                label: "display"
+                                              },
+                                              on: {
+                                                input:
+                                                  _vm.setSelectedPosOperatorio
+                                              },
+                                              model: {
+                                                value:
+                                                  _vm.selectedPosOperatorio,
+                                                callback: function($$v) {
+                                                  _vm.selectedPosOperatorio = $$v
+                                                },
+                                                expression:
+                                                  "selectedPosOperatorio"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "template",
+                                                { slot: "no-options" },
+                                                [_vm._v("No existen datos")]
+                                              )
+                                            ],
+                                            2
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
                                 ]
                               ),
                               _vm._v(" "),
@@ -63957,6 +64323,7 @@ var render = function() {
                                     staticClass:
                                       "col-lg-12 col-md-12 col-sm-12 text-left form-control",
                                     attrs: {
+                                      disabled: "",
                                       rows: "1",
                                       type: "text",
                                       placeholder: "Operación Propuesta"
@@ -63996,36 +64363,50 @@ var render = function() {
                                     [_vm._v("Cirujano:")]
                                   ),
                                   _vm._v(" "),
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.cirujano,
-                                        expression: "form.cirujano"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      rows: "1",
-                                      type: "text",
-                                      placeholder: "Cirujano"
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "col-lg-12 col-md-12 col-sm-12"
                                     },
-                                    domProps: { value: _vm.form.cirujano },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "cirujano",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "form-group" },
+                                        [
+                                          _c(
+                                            "v-select",
+                                            {
+                                              attrs: {
+                                                value: _vm.form.id_cirujano,
+                                                options: _vm.cirujanos,
+                                                label: "display"
+                                              },
+                                              on: {
+                                                input: _vm.setSelectedCirujano
+                                              },
+                                              model: {
+                                                value: _vm.selectedCirujano,
+                                                callback: function($$v) {
+                                                  _vm.selectedCirujano = $$v
+                                                },
+                                                expression: "selectedCirujano"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "template",
+                                                { slot: "no-options" },
+                                                [_vm._v("No existen datos")]
+                                              )
+                                            ],
+                                            2
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
                                 ]
                               ),
                               _vm._v(" "),
@@ -64045,36 +64426,50 @@ var render = function() {
                                     [_vm._v("Ayudante:")]
                                   ),
                                   _vm._v(" "),
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.ayudante1,
-                                        expression: "form.ayudante1"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      rows: "1",
-                                      type: "text",
-                                      placeholder: "Ayudante"
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "col-lg-12 col-md-12 col-sm-12"
                                     },
-                                    domProps: { value: _vm.form.ayudante1 },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "ayudante1",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "form-group" },
+                                        [
+                                          _c(
+                                            "v-select",
+                                            {
+                                              attrs: {
+                                                value: _vm.form.id_ayudante1,
+                                                options: _vm.ayudantes1,
+                                                label: "display1"
+                                              },
+                                              on: {
+                                                input: _vm.setSelectedAyudante
+                                              },
+                                              model: {
+                                                value: _vm.selectedAyudante1,
+                                                callback: function($$v) {
+                                                  _vm.selectedAyudante1 = $$v
+                                                },
+                                                expression: "selectedAyudante1"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "template",
+                                                { slot: "no-options" },
+                                                [_vm._v("No existen datos")]
+                                              )
+                                            ],
+                                            2
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
                                 ]
                               ),
                               _vm._v(" "),
@@ -64094,38 +64489,54 @@ var render = function() {
                                     [_vm._v("Operación Realizada:")]
                                   ),
                                   _vm._v(" "),
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.operacion_realizada,
-                                        expression: "form.operacion_realizada"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      rows: "1",
-                                      type: "text",
-                                      placeholder: "Operación Realizada"
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "col-lg-12 col-md-12 col-sm-12"
                                     },
-                                    domProps: {
-                                      value: _vm.form.operacion_realizada
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "operacion_realizada",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "form-group" },
+                                        [
+                                          _c(
+                                            "v-select",
+                                            {
+                                              attrs: {
+                                                value:
+                                                  _vm.form.id_pos_operatorio,
+                                                options: _vm.posOperatorios,
+                                                label: "display"
+                                              },
+                                              on: {
+                                                input:
+                                                  _vm.setSelectedPosOperatorio
+                                              },
+                                              model: {
+                                                value:
+                                                  _vm.selectedPosOperatorio,
+                                                callback: function($$v) {
+                                                  _vm.selectedPosOperatorio = $$v
+                                                },
+                                                expression:
+                                                  "selectedPosOperatorio"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "template",
+                                                { slot: "no-options" },
+                                                [_vm._v("No existen datos")]
+                                              )
+                                            ],
+                                            2
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
                                 ]
                               ),
                               _vm._v(" "),
@@ -64145,36 +64556,54 @@ var render = function() {
                                     [_vm._v("Anestesiologo:")]
                                   ),
                                   _vm._v(" "),
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.anestesiologo,
-                                        expression: "form.anestesiologo"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      rows: "1",
-                                      type: "text",
-                                      placeholder: "Anestesiologo"
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "col-lg-12 col-md-12 col-sm-12"
                                     },
-                                    domProps: { value: _vm.form.anestesiologo },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "anestesiologo",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "form-group" },
+                                        [
+                                          _c(
+                                            "v-select",
+                                            {
+                                              attrs: {
+                                                value:
+                                                  _vm.form.id_anestesiologo,
+                                                options: _vm.anestesiologos,
+                                                label: "display"
+                                              },
+                                              on: {
+                                                input:
+                                                  _vm.setSelectedAnestesiologo
+                                              },
+                                              model: {
+                                                value:
+                                                  _vm.selectedAnestesiologo,
+                                                callback: function($$v) {
+                                                  _vm.selectedAnestesiologo = $$v
+                                                },
+                                                expression:
+                                                  "selectedAnestesiologo"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "template",
+                                                { slot: "no-options" },
+                                                [_vm._v("No existen datos")]
+                                              )
+                                            ],
+                                            2
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
                                 ]
                               ),
                               _vm._v(" "),
@@ -64194,36 +64623,50 @@ var render = function() {
                                     [_vm._v("Ayudante:")]
                                   ),
                                   _vm._v(" "),
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.ayudante2,
-                                        expression: "form.ayudante2"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      rows: "1",
-                                      type: "text",
-                                      placeholder: "Ayudante"
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "col-lg-12 col-md-12 col-sm-12"
                                     },
-                                    domProps: { value: _vm.form.ayudante2 },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "ayudante2",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "form-group" },
+                                        [
+                                          _c(
+                                            "v-select",
+                                            {
+                                              attrs: {
+                                                value: _vm.form.id_ayudante2,
+                                                options: _vm.ayudantes2,
+                                                label: "display2"
+                                              },
+                                              on: {
+                                                input: _vm.setSelectedAyudante
+                                              },
+                                              model: {
+                                                value: _vm.selectedAyudante2,
+                                                callback: function($$v) {
+                                                  _vm.selectedAyudante2 = $$v
+                                                },
+                                                expression: "selectedAyudante2"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "template",
+                                                { slot: "no-options" },
+                                                [_vm._v("No existen datos")]
+                                              )
+                                            ],
+                                            2
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
                                 ]
                               ),
                               _vm._v(" "),
@@ -64243,38 +64686,54 @@ var render = function() {
                                     [_vm._v("Instrumentista:")]
                                   ),
                                   _vm._v(" "),
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.instrumentista,
-                                        expression: "form.instrumentista"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      rows: "1",
-                                      type: "text",
-                                      placeholder: "Instrumentista"
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "col-lg-12 col-md-12 col-sm-12"
                                     },
-                                    domProps: {
-                                      value: _vm.form.instrumentista
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "instrumentista",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "form-group" },
+                                        [
+                                          _c(
+                                            "v-select",
+                                            {
+                                              attrs: {
+                                                value:
+                                                  _vm.form.id_pos_operatorio,
+                                                options: _vm.posOperatorios,
+                                                label: "display"
+                                              },
+                                              on: {
+                                                input:
+                                                  _vm.setSelectedPosOperatorio
+                                              },
+                                              model: {
+                                                value:
+                                                  _vm.selectedPosOperatorio,
+                                                callback: function($$v) {
+                                                  _vm.selectedPosOperatorio = $$v
+                                                },
+                                                expression:
+                                                  "selectedPosOperatorio"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "template",
+                                                { slot: "no-options" },
+                                                [_vm._v("No existen datos")]
+                                              )
+                                            ],
+                                            2
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
                                 ]
                               )
                             ]),

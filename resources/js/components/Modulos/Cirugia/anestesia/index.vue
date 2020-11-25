@@ -209,6 +209,7 @@
                                                 >Diagnóstico Preoperatorio:</label
                                             >
                                             <textarea
+                                                disabled
                                                 rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
@@ -220,19 +221,37 @@
                                             <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                                 >Diagnóstico Post-operatorio:</label
                                             >
-                                            <textarea
+                                            <!-- <textarea
                                                 rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Diagnóstico Post-operatorio"
                                                 v-model="form.diagnostico_post_operatorio"
-                                            />
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedPosOperatorio"
+                                                        :value="form.id_pos_operatorio"
+                                                        :options="posOperatorios"
+                                                        label="display"
+                                                        @input="
+                                                            setSelectedPosOperatorio
+                                                        "
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                             <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                                 >Operación Propuesta:</label
                                             >
                                             <textarea
+                                                disabled
                                                 rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
@@ -244,73 +263,173 @@
                                             <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                                 >Cirujano:</label
                                             >
-                                            <textarea
+                                            <!-- <textarea
                                                 rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Cirujano"
                                                 v-model="form.cirujano"
-                                            />
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedCirujano"
+                                                        :value="form.id_cirujano"
+                                                        :options="cirujanos"
+                                                        label="display"
+                                                        @input="setSelectedCirujano"
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                             <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                                 >Ayudante:</label
                                             >
-                                            <textarea
+                                            <!-- <textarea
                                                 rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Ayudante"
                                                 v-model="form.ayudante1"
-                                            />
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedAyudante1"
+                                                        :value="form.id_ayudante1"
+                                                        :options="ayudantes1"
+                                                        label="display1"
+                                                        @input="
+                                                            setSelectedAyudante
+                                                        "
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                             <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                                 >Operación Realizada:</label
                                             >
-                                            <textarea
+                                            <!-- <textarea
                                                 rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Operación Realizada"
                                                 v-model="form.operacion_realizada"
-                                            />
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedPosOperatorio"
+                                                        :value="form.id_pos_operatorio"
+                                                        :options="posOperatorios"
+                                                        label="display"
+                                                        @input="
+                                                            setSelectedPosOperatorio
+                                                        "
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                             <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                                 >Anestesiologo:</label
                                             >
-                                            <textarea
+                                            <!-- <textarea
                                                 rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Anestesiologo"
                                                 v-model="form.anestesiologo"
-                                            />
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedAnestesiologo"
+                                                        :value="form.id_anestesiologo"
+                                                        :options="anestesiologos"
+                                                        label="display"
+                                                        @input="
+                                                            setSelectedAnestesiologo
+                                                        "
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                             <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                                 >Ayudante:</label
                                             >
-                                            <textarea
+                                            <!-- <textarea
                                                 rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Ayudante"
                                                 v-model="form.ayudante2"
-                                            />
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedAyudante2"
+                                                        :value="form.id_ayudante2"
+                                                        :options="ayudantes2"
+                                                        label="display2"
+                                                        @input="
+                                                            setSelectedAyudante
+                                                        "
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                             <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                                 >Instrumentista:</label
                                             >
-                                            <textarea
+                                            <!-- <textarea
                                                 rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Instrumentista"
                                                 v-model="form.instrumentista"
-                                            />
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedPosOperatorio"
+                                                        :value="form.id_pos_operatorio"
+                                                        :options="posOperatorios"
+                                                        label="display"
+                                                        @input="
+                                                            setSelectedPosOperatorio
+                                                        "
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -372,6 +491,21 @@ export default {
     },
     data: function() {
         return {
+            selectedPosOperatorio:"",
+            posOperatorios:[],
+
+            selectedCirujano: "",
+            cirujanos: [],
+
+            selectedAnestesiologo: "",
+            anestesiologos: [],
+
+            selectedAyudante1: "",
+            ayudantes1: [],
+
+            selectedAyudante2: "",
+            ayudantes2: [],
+
             prefijo: "",
             //cirugia_id: 0,
             titulo_seleccionado: "Registro de anestecia",
@@ -379,6 +513,13 @@ export default {
             respuestaImprimir: 1,
             form: {
                 /* Datos del paciente */
+                id_especializacion: 0,
+                id_pos_operatorio: 0,
+                id_cirujano: 0,
+                id_anestesiologo: 0,
+                id_ayudante1: 0,
+                id_ayudante2: 0,
+
                 idCirugiaProgramada: "0001",
                 paciente: "",
                 historia_clinica:"",
@@ -405,6 +546,11 @@ export default {
         };
     },
     mounted: function() {
+        this.setSelectedPosOperatorio();
+        this.setSelectedCirujano();
+        this.setSelectedAnestesiologo();
+        this.setSelectedAyudante();
+
         /*  var user = this.$attrs;
         console.log(user); */
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
@@ -428,6 +574,211 @@ export default {
         ); */
     },
     methods: {
+        setSelectedPosOperatorio(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            let url = "/modulos/parametrizacion/sala/cargar_sala_combo_box";
+            if (value != null) {
+                this.form.id_pos_operatorio = value.id_pos_operatorio;
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let posOperatorios = [];
+                    response.data.salas.forEach(posOperatorio => {
+                        let objeto = {};
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            posOperatorio.descripcion
+                        );
+                        objeto.id_pos_operatorio = posOperatorio.id;
+                        posOperatorios.push(objeto);
+                    });
+                    that.posOperatorios = posOperatorios;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedPosOperatorio",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        setSelectedCirujano(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            this.form.id_especializacion = 3;
+            let url =
+                "/modulos/admision/medico/cargar_cirujano";
+            if (value != null) {
+                this.form.id_cirujano = value.id_cirujano;
+                loader.hide();
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let cirujanos = [];
+                    response.data.medicos.forEach(medico => {
+                        let objeto = {};
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            medico.FULLNAME
+                        );
+                        objeto.id_cirujano = medico.id;
+                        cirujanos.push(objeto);
+                    });
+                    that.cirujanos = cirujanos;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedCirujano",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        setSelectedAnestesiologo(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            this.form.id_especializacion = 3;
+            let url =
+                "/modulos/admision/medico/cargar_medico_por_especializacion/" +
+                that.form.id_especializacion;
+            if (value != null) {
+                this.form.id_cirujano = value.id_cirujano;
+                loader.hide();
+
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let anestesiologos = [];
+                    response.data.medicos.forEach(medico => {
+                        let objeto = {};
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            medico.FULLNAME
+                        );
+                        objeto.id_anestesiologo = medico.id;
+                        anestesiologos.push(objeto);
+                    });
+                    that.anestesiologos = anestesiologos;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedAnestesiologo",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        setSelectedAyudante(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            let url =
+                "/modulos/admision/medico/cargar_medico_all"
+            if (value != null) {
+                if( value.id_ayudante1 != null){
+                    this.form.id_ayudante1 = value.id_ayudante1;
+                }
+                if( value.id_ayudante2 != null){
+                    this.form.id_ayudante2 = value.id_ayudante2;
+                }
+                loader.hide();
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let ayudante1 = [];
+                    let ayudante2 = [];
+                    response.data.medicos.forEach(medico => {
+                        //Ayudante 1
+                        let objeto1 = {};
+                        objeto1.display1 = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            medico.FULLNAME
+                        );
+                        objeto1.id_ayudante1 = medico.id;
+                        ayudante1.push(objeto1);
+                        //Ayudante 2
+                        let objeto2 = {};
+                        objeto2.display2 = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            medico.FULLNAME
+                        );
+                        objeto2.id_ayudante2 = medico.id;
+                        ayudante2.push(objeto2);
+                    });
+                    that.ayudantes1 = ayudante1;
+                    that.ayudantes2 = ayudante2;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedAyudante",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
         /* Metodos para Llamar al Modal y la Tabla */
         mostrarModalListaCirugiaPaciente() {
             this.$modal.show("ListaCirugiaProgramadaPaciente");
@@ -439,7 +790,7 @@ export default {
             this.form.cirujano = value.Cirujano;
             this.form.anestesiologo = value.Anestesiologo;
             this.form.quirofano = value.Quirofano;
-            this.form.procedimiento = value.Procedimiento;
+            this.form.operacion_propuesta = value.Procedimiento;
             this.$modal.hide("ListaCirugiaProgramadaPaciente");
             if (this.$refs.revisionSistema != null) {
                 this.$refs.revisionSistema.cargarRevisionSistema();
