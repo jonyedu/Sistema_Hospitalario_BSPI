@@ -12,16 +12,6 @@ use Illuminate\Support\Facades\DB;
 class ParaclinicoApiController extends Controller
 {
     /* Funcion para cargar el dato de la tabla Examen Fisico con la condicion del idSecCirPro */
-    public function cargarTipoSangreComboBox()
-    {
-        try {
-            $tipoSangre = DB::connection('control_hospitalario_db_sql')->select("exec SpConsultarCmbTipoSangre ");
-            return  response()->json(['tipoSangre' => $tipoSangre], 200);
-        } catch (Exception $e) {
-            return response()->json(['mensaje' => $e->getMessage()], 500);
-        }
-    }
-    /* Funcion para cargar el dato de la tabla Examen Fisico con la condicion del idSecCirPro */
     public function cargarParaclinicoCampo($idSecCirPro)
     {
         if ($idSecCirPro !== '' && isset($idSecCirPro)) {

@@ -37,7 +37,7 @@
                             <label for="ta_max" class="mr-2">MAX</label>
                             <input
                                 class="input-registro text-center"
-                                type="text"
+                                type="number"
                                 name="ta_max"
                                 v-model="valoresFormulario.ta_max.valor"
                                 id="ta_max"
@@ -48,7 +48,7 @@
                             <label for="ta_min" class="mr-2">MIN</label>
                             <input
                                 class="input-registro text-center"
-                                type="text"
+                                type="number"
                                 name="ta_value"
                                 v-model="valoresFormulario.ta_min.valor"
                                 id="ta_min"
@@ -63,7 +63,7 @@
                     <label for="valor_pulso" class="mr-2">PULSO</label>
                     <input
                         class="input-registro text-center"
-                        type="text"
+                        type="number"
                         name="valor_pulso"
                         v-model="valoresFormulario.valor_pulso.valor"
                         id="valor_pulso"
@@ -150,7 +150,7 @@
                     </div>
                     <input
                         class="input-registro text-center"
-                        type="text"
+                        type="number"
                         name="valor_temperatura"
                         id="valor_temperatura"
                         v-model="valoresFormulario.temperatura.valor"
@@ -173,7 +173,7 @@
                     </div>
                     <input
                         class="input-registro text-center"
-                        type="text"
+                        type="number"
                         name="valor_feto"
                         id="valor_feto"
                         v-model="valoresFormulario.feto.valor"
@@ -198,7 +198,7 @@
                     </div>
                     <input
                         class="input-registro text-center"
-                        type="text"
+                        type="number"
                         name="valor_pres_venosa"
                         id="valor_pres_venosa"
                         v-model="valoresFormulario.pares_venosa.valor"
@@ -221,7 +221,7 @@
                     </div>
                     <input
                         class="input-registro text-center"
-                        type="text"
+                        type="number"
                         name="valor_torniquete"
                         id="valor_torniquete"
                         v-model="valoresFormulario.torniquete.valor"
@@ -429,13 +429,24 @@
                                                                             src="/img/icons/time_00.png"
                                                                             alt=""
                                                                             class="time-triangle-abs"
-                                                                    /></span>
+                                                                        />
+                                                                        <p
+                                                                            class="blue ml-4"
+                                                                        >
+                                                                            {{
+                                                                                horasInicial[
+                                                                                    index_columna +
+                                                                                        index
+                                                                                ]
+                                                                            }}
+                                                                        </p></span
+                                                                    >
                                                                     <!-- <span > {{ columna.tiempo_fin }}</span> -->
                                                                 </div>
                                                             </div>
                                                         </template>
                                                         <!-- Ingreso de datos de manera libre -->
-                                                        <!-- Aquí pones los datos que están arriba de la rejilla dond e se grafica -->
+                                                        <!-- Aquí pones los datos los tipos de oxigeno -->
                                                         <template
                                                             v-if="dato.es_dato"
                                                         >
@@ -474,7 +485,10 @@
                                                                 </div>
                                                             </div>
                                                         </template>
-
+                                                        <!-- Prueba para el SPO2 -->
+                                                        <!-- aqui debería ir el codigo -->
+                                                        <!-- Fin Purbwa para el SPO2 -->
+                                                        <!-- Aqui van los datos de agentes que pinta en la grafica -->
                                                         <template
                                                             v-if="
                                                                 dato.es_agente
@@ -523,6 +537,7 @@
                                                                 </div>
                                                             </div>
                                                         </template>
+                                                        <!-- Aqui va los valores de posicion que pinta al final de la grafica -->
                                                         <template
                                                             v-if="
                                                                 dato.es_posicion
@@ -591,9 +606,10 @@
                                     </div>
                                     <div class="col-md-2">Tipo</div>
                                     <div class="col-md-8 border-r">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[0]"
                                         />
                                     </div>
@@ -605,9 +621,10 @@
                                         1
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[1]"
                                         />
                                     </div>
@@ -619,9 +636,10 @@
                                         2
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[2]"
                                         />
                                     </div>
@@ -633,9 +651,10 @@
                                         3
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[3]"
                                         />
                                     </div>
@@ -647,9 +666,10 @@
                                         4
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[4]"
                                         />
                                     </div>
@@ -663,9 +683,10 @@
                                         5
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[5]"
                                         />
                                     </div>
@@ -677,9 +698,10 @@
                                         6
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[6]"
                                         />
                                     </div>
@@ -691,9 +713,10 @@
                                         7
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[7]"
                                         />
                                     </div>
@@ -705,9 +728,10 @@
                                         8
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[8]"
                                         />
                                     </div>
@@ -719,9 +743,10 @@
                                         9
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[9]"
                                         />
                                     </div>
@@ -735,9 +760,10 @@
                                         10
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[10]"
                                         />
                                     </div>
@@ -749,9 +775,10 @@
                                         11
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[11]"
                                         />
                                     </div>
@@ -763,9 +790,10 @@
                                         12
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[12]"
                                         />
                                     </div>
@@ -777,9 +805,10 @@
                                         13
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[13]"
                                         />
                                     </div>
@@ -791,9 +820,10 @@
                                         14
                                     </div>
                                     <div class="col-md-10 border-r p-0">
-                                        <input
+                                        <textarea
+                                            rows="1"
                                             type="text"
-                                            class="input-line"
+                                            class="input-line col-md-12"
                                             v-model="drogas_administradas[14]"
                                         />
                                     </div>
@@ -1291,6 +1321,19 @@
                                             >ALTURA PUNCION</span
                                         ></label
                                     >
+                                    <div
+                                        class="col-md-3 p-0"
+                                        style="margin:auto"
+                                    >
+                                        <input
+                                            class="input-line"
+                                            v-model="form.altura_puncion"
+                                            type="text"
+                                            name="altura_puncion"
+                                            id="altura_puncion"
+                                            style="width: 100%;"
+                                        />
+                                    </div>
                                 </div>
                                 <!-- PUNCION LAT -->
                                 <div class="row">
@@ -1442,7 +1485,7 @@
                             <label class="col-md-1 p-0 m-0" for="">cc</label>
                         </div>
                         <!-- TOTAL -->
-                        <div class="row border-b border-r">
+                        <!-- <div class="row border-b border-r">
                             <span class="col-md-1 border-r">T</span>
                             <label
                                 class="col-md-6 p-0 m-0 upper"
@@ -1451,9 +1494,14 @@
                             >
                             <div class="col-md-3 p-0">
                                 <span id="total">{{ total_infusiones }}</span>
+                                <input
+                                    class="input-line"
+                                    type="number"
+                                    style="width: 100%"
+                                />
                             </div>
                             <label class="col-md-1 p-0 m-0" for="">cc</label>
-                        </div>
+                        </div> -->
                         <!-- HEMORRAGEA -->
                         <div class="row border-b flex flex-center-x">
                             <span>hemorragia</span>
@@ -1552,36 +1600,59 @@
                         </div>
                         <!-- CONDUCIDO A: -->
                         <div class="row">
-                            <label for="conducido_a"
+                            <label class="col-md-4" for="conducido_a"
                                 ><span class="space-left">CONDUCIDO A:</span>
                             </label>
-                            <input
-                                type="text"
-                                class="input-line"
-                                name="conducido_a"
-                                id="conducido_a"
-                                v-model="form.conducido_a"
-                            />
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <div class="form-group">
+                                    <v-select
+                                        v-model="selectedSala"
+                                        :value="form.id_sala"
+                                        :options="salas"
+                                        label="display"
+                                        @input="setSelectedSala"
+                                    >
+                                        <template slot="no-options"
+                                            >No existen datos</template
+                                        >
+                                    </v-select>
+                                </div>
+                            </div>
                         </div>
                         <!-- POR: -->
                         <div class="row">
                             <!-- POR: -->
-                            <label class="col-md-2" for="conducido_por"
+                            <label class="col-md-4" for="conducido_por"
                                 >POR:
                             </label>
-                            <input
+                            <!-- <input
                                 type="text"
                                 class="input-line col-md-4"
                                 name="conducido_por"
                                 id="conducido_por"
                                 v-model="form.por"
-                            />
-                            <label class="col-md-2" for="conducido_hora"
+                            /> -->
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <div class="form-group">
+                                    <v-select
+                                        v-model="selectedMedico"
+                                        :value="form.id_medico"
+                                        :options="medicos"
+                                        label="display"
+                                        @input="setSelectedMedico"
+                                    >
+                                        <template slot="no-options"
+                                            >No existen datos</template
+                                        >
+                                    </v-select>
+                                </div>
+                            </div>
+                            <label class="col-md-4" for="conducido_hora"
                                 >HORA:
                             </label>
                             <input
                                 type="time"
-                                class="input-line col-md-4"
+                                class="input-line col-md-8"
                                 name="conducido_hora"
                                 id="conducido_hora"
                                 v-model="form.hora"
@@ -1785,7 +1856,7 @@
                                 name=""
                                 id=""
                                 class="col-md-12"
-                                rows="3" 
+                                rows="3"
                                 v-model="form.comentario"
                             ></textarea>
                         </div>
@@ -1825,6 +1896,21 @@
                 </div>
             </div>
         </div>
+        <modal
+            :width="'30%'"
+            height="auto"
+            :scrollable="true"
+            name="ConfirmarCandelar"
+            style="z-index: 1200;"
+        >
+            <vue-confirmar-cancelar
+                :icon="icon"
+                :titulo="titulo"
+                :mensaje="mensaje"
+                ref="ConfirmarCandelar"
+                @respuestaConfirmarCancelar="respuestaConfirmarCancelar"
+            ></vue-confirmar-cancelar>
+        </modal>
         <FlashMessage></FlashMessage>
     </div>
 </template>
@@ -1842,9 +1928,18 @@ export default {
     },
     data: function() {
         return {
+            resConfirmarCancelar:false,
+            icon: "",
+            titulo: "",
+            mensaje: "",
+            selectedSala: "",
+            selectedMedico: "",
+            horasInicial: [],
+            salas: [],
+            medicos: [],
             validarImgFirma: 0,
             isFirstPaintable: "firmaAnestesiologo",
-            rutaSello: "",
+            rutaSello: "/img/selloFirma.png",
             validarImprimir: 0,
             selectedTipoPosiciones: "",
             tipoPosiciones: "",
@@ -1855,6 +1950,8 @@ export default {
                 torniquete: 0
             },
             form: {
+                id_especializacion: 3,
+                id_tipo_posiciones: 0,
                 cirugia_id: 0,
                 registro_anestesia_id: 0,
                 id_tipo_posiciones: 0,
@@ -1888,6 +1985,7 @@ export default {
                 //seccion 3
                 simple_altura_puncion: 0,
                 continua_altura_puncion: 0,
+                altura_puncion: "",
                 //seccion 4
                 puncion_lat: 0,
                 linea_media: 0,
@@ -1953,6 +2051,12 @@ export default {
                         name: "SOLUCIONES_SALINAS",
                         abreviatura: "SS",
                         valor: 0
+                    },
+                    {
+                        descripcion: "TOTAL",
+                        name: "TOTAL",
+                        abreviatura: "T",
+                        valor: 0
                     }
                 ],
                 total: 0,
@@ -1964,7 +2068,22 @@ export default {
                 /* Fin Datos para guardar firma */
             },
             registro_id: 1,
-            drogas_administradas: [],
+            drogas_administradas: [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
             peso: "",
             estatura: "",
             system_posicion: "posicion",
@@ -2112,6 +2231,7 @@ export default {
         }
     },
     mounted: function() {
+        this.flashMessage.setStrategy("multiple");
         this.form.cirugia_id = this.$props.idSecCirPro;
         /**
          * Se empiezan a llenar los datos de la rejilla
@@ -2125,6 +2245,8 @@ export default {
          * Control de tiempo
          */
         this.setSelectedTipoPosiciones();
+        this.setSelectedSala();
+        this.setSelectedMedico();
         setInterval(() => {
             this.seconds += 1;
             if (this.seconds >= 59) {
@@ -2156,46 +2278,94 @@ export default {
             // Han pasado 5 min
             if (this.minutes % 5 == 0) {
                 // En caso que hayan pasado los 5 minutos, se registra de manera automática los datos
-                if (this.seconds == 1) this.obtenerDatosFormulario();
+                if (this.seconds == 1) {
+                    this.obtenerDatosFormulario();
+                    this.agregarHorasInicial();
+                }
             }
         }, 1000);
     },
     beforeDestroy: function() {},
     methods: {
-        async getImgGrafica() {
+        mostrarModalConfirmarCandelar() {
+            this.icon = "/iconsflashMessage/warning.svg"
+            this.titulo = "¿Desea cerrar el proceso?";
+            this.mensaje = "Al dar en Aceptar, el proceso dará por finalizado.";
+            this.$modal.show("ConfirmarCandelar");
+        },
+        respuestaConfirmarCancelar(value) {
+            this.resConfirmarCancelar = value;
+            this.$modal.hide("ConfirmarCandelar");
+            this.end_time();
+        },
+        agregarHorasInicial() {
+            this.horasInicial.push(this.hour);
+        },
+        async getImgGrafica(idFlashMessage1) {
             const la = this.$refs.printMe;
             const optiones = {
                 type: "dataURL"
             };
             this.form.imgGrafica = await this.$html2canvas(la, optiones);
+            this.flashMessage.deleteMessage(idFlashMessage1);
+            this.flashMessage.show({
+                status: "success",
+                title: "Exito en Graficar",
+                message: "Grafico generado correctamente.",
+                clickable: true,
+                time: 5000,
+                icon: "/iconsflashMessage/success.svg",
+                customStyle: {
+                    flashMessageStyle: {
+                        background: "linear-gradient(#e66465, #9198e5)"
+                    }
+                }
+            });
             this.guardarImgGrafica();
         },
         consultarSello() {
             let that = this;
-            var loader = that.$loading.show();
-            let url =
-                "/modulos/cirugia/anestesia/cargar_sello/" +
-                that.$props.user.codigo_usu;
-            axios
-                .get(url)
-                .then(function(response) {
-                    if (response.data.sello != null) {
-                        that.rutaSello =
-                            "data:image/jpeg;base64," +
-                            response.data.sello.seguridad_medico.medico
-                                .medico_sellos.IMAGEN_SELLO;
-                    }
-                    loader.hide();
-                })
-                .catch(error => {
-                    //Errores
-                    that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
+            if (this.form.id_medico > 0) {
+                var loader = that.$loading.show();
+                let url =
+                    "/modulos/cirugia/anestesia/cargar_sello/" +
+                    this.form.id_medico;
+                axios
+                    .get(url)
+                    .then(function(response) {
+                        if (response.data.sello != null) {
+                            if (response.data.sello.medico_sellos != null) {
+                                that.rutaSello =
+                                    "data:image/jpeg;base64," +
+                                    response.data.sello.medico_sellos
+                                        .IMAGEN_SELLO;
+                            }
+                        }
+                        loader.hide();
+                    })
+                    .catch(error => {
+                        //Errores
+                        /* that.$swal({
+                            icon: "error",
+                            title: "Existe un error",
+                            text: error
+                        }); */
+                        that.flashMessage.show({
+                            status: "error",
+                            title: "Error al procesar consultarSello",
+                            message: "Por favor comuníquese con el administrador. " + error,
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/error.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background: "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
+                        loader.hide();
                     });
-                    loader.hide();
-                });
+            }
         },
         getNewIdRegistroAnestesia() {
             if (this.iniciado) return;
@@ -2206,13 +2376,39 @@ export default {
                 .post(url, this.form)
                 .then(function(response) {
                     this.form.registro_anestesia_id = response.data.id;
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar getNewIdRegistroAnestesia",
+                        message: "Se generó una nueva pagina.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
                 })
                 .catch(error => {
                     //Errores
-                    that.$swal({
+                    /* that.$swal({
                         icon: "error",
                         title: "Existe un error",
                         text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar getNewIdRegistroAnestesia",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
                     loader.hide();
                 });
@@ -2242,10 +2438,117 @@ export default {
                 })
                 .catch(error => {
                     //Errores
-                    that.$swal({
+                    /* that.$swal({
                         icon: "error",
                         title: "Existe un error",
                         text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedTipoPosiciones",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        setSelectedSala(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            let url = "/modulos/parametrizacion/sala/cargar_sala_combo_box";
+            if (value != null) {
+                this.form.id_sala = value.id_sala;
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let salas = [];
+                    response.data.salas.forEach(sala => {
+                        let objeto = {};
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            sala.descripcion
+                        );
+                        objeto.id_sala = sala.id;
+                        salas.push(objeto);
+                    });
+                    that.salas = salas;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedSala",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        setSelectedMedico(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            let url =
+                "/modulos/admision/medico/cargar_medico_por_especializacion/" +
+                that.form.id_especializacion;
+            if (value != null) {
+                this.form.id_medico = value.id_medico;
+                loader.hide();
+                this.consultarSello();
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let medicos = [];
+                    response.data.medicos.forEach(medico => {
+                        let objeto = {};
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            medico.nombres
+                        );
+                        objeto.id_medico = medico.id;
+                        medicos.push(objeto);
+                    });
+                    that.medicos = medicos;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedMedico",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
                     loader.hide();
                 });
@@ -2269,10 +2572,23 @@ export default {
                 })
                 .catch(error => {
                     //Errores
-                    that.$swal({
+                    /* that.$swal({
                         icon: "error",
                         title: "Existe un error",
                         text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar obtenerDatosAgentes",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
                     loader.hide();
                 });
@@ -2289,10 +2605,23 @@ export default {
                 })
                 .catch(error => {
                     //Errores
-                    that.$swal({
+                    /* that.$swal({
                         icon: "error",
                         title: "Existe un error",
                         text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar obtenerDatosPosiciones",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
                     loader.hide();
                 });
@@ -2321,10 +2650,23 @@ export default {
                 })
                 .catch(error => {
                     //Errores
-                    that.$swal({
+                    /* that.$swal({
                         icon: "error",
                         title: "Existe un error",
                         text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar obtenerDatosPosiciones",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
                     //loader.hide();
                 });
@@ -2335,8 +2677,8 @@ export default {
         start_time: async function(event) {
             if (this.iniciado) return;
             this.iniciado = true;
-
-            this.consultarSello();
+            this.agregarHorasInicial();
+            //this.consultarSello();
 
             //Guardar datos en la tabla tb_registro_anestesia
             let url = "/modulos/cirugia/anestesia/registro/post";
@@ -2361,7 +2703,42 @@ export default {
          * Finaliza el proceso, aquí se deben enviar los demás datos para que el registro se edite
          */
         end_time: function() {
-            let that = this;
+            if (this.validarImgFirma) {
+                if (!this.iniciado) return;
+                this.mostrarModalConfirmarCandelar();
+                if(this.resConfirmarCancelar){
+                    //if (!confirm("¿Desea cerrar el proceso?")) return;
+                    //this.iniciado = false;
+
+                    // Poner el dato al final de la rejilla cuando se haya finalizado
+                    this.agregaDatoEnRejilla(
+                        true,
+                        false,
+                        0,
+                        "img/icons/fin_anestecia.png",
+                        { system_name: "FIN-ANESTECIA", tipo: this.system_agente }
+                    );
+                    //Se guardan los datos a la base
+                    this.guardarDrograAdministrada();
+                }
+            }else{
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia al procesar firma",
+                    message: "Se necesita una firma por favor.",
+                    clickable: true,
+                    time: 0,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background: "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+            }
+
+
+            /* let that = this;
             if (!this.iniciado) return;
             this.$swal({
                 title: "¿Desea cerrar el proceso?",
@@ -2391,14 +2768,22 @@ export default {
 
                         //Cambia el estado
                     } else {
-                        this.$swal({
-                            icon: "warning",
-                            title: "Advertencia Firma",
-                            text: "Se necesita una firma por favor."
+                        this.flashMessage.show({
+                            status: "warning",
+                            title: "Advertencia al procesar firma",
+                            message: "Se necesita una firma por favor.",
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/warning.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background: "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
                         });
                     }
                 }
-            });
+            }); */
         },
         guardarDrograAdministrada() {
             let that = this;
@@ -2416,15 +2801,42 @@ export default {
                 .post(url, formNew)
                 .then(function(response) {
                     that.modifcarRegistroAnestesia();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar guardarDrograAdministrada",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
                     loader.hide();
                 })
                 .catch(error => {
                     //Errores de validación
                     loader.hide();
-                    that.$swal({
+                    that.resConfirmarCancelar = false;
+                    /* that.$swal({
                         icon: "error",
                         title: "Error Guardar Drogas Administradas",
                         text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarDrograAdministrada",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
                 });
         },
@@ -2440,14 +2852,41 @@ export default {
                 .then(function(response) {
                     that.guardarRegistroInfusiones();
                     loader.hide();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar modifcarRegistroAnestesia",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
                 })
                 .catch(error => {
                     //Errores de validación
                     loader.hide();
-                    that.$swal({
+                    that.resConfirmarCancelar = false;
+                    /* that.$swal({
                         icon: "error",
                         title: "Error Modificar Registro Administradas",
                         text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar modifcarRegistroAnestesia",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
                 });
         },
@@ -2472,16 +2911,43 @@ export default {
                         text: "Datos guardados correctamente."
                     }); */
                     that.guardarFirmaPorAtencion();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar guardarRegistroInfusiones",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
                     loader.hide();
                 })
                 .catch(error => {
                     //Errores de validación
-                    loader.hide();
-                    that.$swal({
+                    /* that.$swal({
                         icon: "error",
                         title: "Error Guardar Infusiones",
                         text: error
+                    }); */
+                    that.resConfirmarCancelar = false;
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarRegistroInfusiones",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
+                    loader.hide();
                 });
         },
         guardarFirmaPorAtencion() {
@@ -2505,16 +2971,58 @@ export default {
                         text: "Datos guardados correctamente."
                     }); */
                     loader.hide();
-                    that.getImgGrafica();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar guardarFirmaPorAtencion",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    var idFlashMessage1 = that.flashMessage.show({
+                        status: "info",
+                        title: "Generando Gráfica",
+                        message: "Se está generando la gráfica, por favor espere.",
+                        clickable: false,
+                        time: 0,
+                        icon: "/iconsflashMessage/time.gif",
+                        blockClass: 'custom_msg',
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    that.getImgGrafica(idFlashMessage1);
+                    //that.flashMessage.deleteMessage(idFlashMessage1);
                 })
                 .catch(error => {
                     //Errores de validación
-                    loader.hide();
-                    that.$swal({
+                    /* that.$swal({
                         icon: "error",
                         title: "Error Guardar Firma por Atención",
                         text: error
+                    }); */
+                    that.resConfirmarCancelar = false;
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarFirmaPorAtencion",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
+                    loader.hide();
                 });
         },
         guardarImgGrafica() {
@@ -2534,16 +3042,43 @@ export default {
                 .then(function(response) {
                     //Llamar metodo de parent para que actualice el grid.
                     that.guardarModificarAgenteText();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar guardarImgGrafica",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
                     loader.hide();
                 })
                 .catch(error => {
                     //Errores de validación
-                    loader.hide();
-                    that.$swal({
+                    /* that.$swal({
                         icon: "error",
                         title: "Error Guardar Imagen Grafica",
                         text: error
+                    }); */
+                    that.resConfirmarCancelar = false;
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarImgGrafica",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
+                    loader.hide();
                 });
         },
         guardarModificarAgenteText() {
@@ -2561,24 +3096,51 @@ export default {
             axios
                 .post(url, formNew)
                 .then(function(response) {
-                    that.$swal({
+                    /* that.$swal({
                         icon: "success",
                         title: "Proceso realizado exitosamente",
                         text: "Datos guardados correctamente."
+                    }); */
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar guardarModificarAgenteText",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
                     that.validarImprimir = 1;
+                    that.resConfirmarCancelar = false;
                     that.$emit("RespuestaImprimir", that.validarImprimir);
                     that.iniciado = false;
                     loader.hide();
                 })
                 .catch(error => {
                     //Errores de validación
-                    loader.hide();
-                    that.$swal({
+                    /* that.$swal({
                         icon: "error",
                         title: "Error Guardar Agente Text",
                         text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarModificarAgenteText",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
+                    loader.hide();
                 });
         },
         /**
@@ -2702,6 +3264,7 @@ export default {
         /**
          *
          */
+
         obtenerDatosFormulario: function() {
             if (!this.iniciado) return;
             // img/icons/'+this.valoresFormulario.descripcion.toLowerCase()+'.png
@@ -2709,19 +3272,16 @@ export default {
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia Campos Vacios",
-                    message: "Complete los campos por favor.",
-                    time: 10000,
+                    message: "Complete los campos de agente por favor.",
+                    clickable: true,
+                    time: 0,
+                    icon: "/iconsflashMessage/warning.svg",
                     customStyle: {
                         flashMessageStyle: {
                             background: "linear-gradient(#e66465, #9198e5)"
-                        },
+                        }
                     }
                 });
-                /* this.$swal({
-                    icon: "warning",
-                    title: "Advertencia Campos Vacios",
-                    text: "Complete los campos por favor."
-                }); */
                 return;
             }
             //console.log(this.valoresFormulario);
@@ -3173,5 +3733,18 @@ table {
 .input-registro {
     border-bottom: 1px solid;
     width: 100%;
+}
+p.blue {
+    background: #5178d0;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em;
 }
 </style>

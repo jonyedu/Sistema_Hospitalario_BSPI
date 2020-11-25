@@ -49,6 +49,7 @@ class CreateTbRegistroAnestesiaTable extends Migration
                 //seccion 3
                 $table->boolean('simple_altura_puncion')->default(0);
                 $table->boolean('continua_altura_puncion')->default(0);
+                $table->string('altura_puncion')->nullable();
                 //seccion 4
                 $table->boolean('puncion_lat')->default(0);
                 $table->boolean('linea_media')->default(0);

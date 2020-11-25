@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Modulos\Cirugia\RegistroAnestesico;
 
 use App\Http\Controllers\Controller;
+use App\Models\Modulos\Admision\Medico\Medico;
 use App\Models\Modulos\Cirugia\RegistroAnestesico\RegistroAnestesia;
 use App\Models\Modulos\Cirugia\CirugiaProgramadas;
 use App\Models\Modulos\Imagenes\FirmasPorAtencion;
@@ -23,11 +24,11 @@ use PhpParser\Builder\Function_;
 
 class RegistroAnestesiaController extends Controller
 {
-    public function cargarSello($codigo_usu)
+    public function cargarSello($id_medico)
     {
         try {
-            $sello = User::where('codigo_usu', $codigo_usu)
-                ->with('seguridadMedico.medico.medicoSellos')
+            $sello = Medico::where('id', $id_medico)
+                ->with('medicoSellos')
                 ->first();
             //$grafica = GraficaPorCirugia::where('SecCirPro', 1)->first();
             return  response()->json(['sello' => $sello], 200);
@@ -150,6 +151,7 @@ class RegistroAnestesiaController extends Controller
                 //seccion 3
                 'simple_altura_puncion' => $request->input('simple_altura_puncion'),
                 'continua_altura_puncion' => $request->input('continua_altura_puncion'),
+                'altura_puncion' => $request->input('altura_puncion'),
                 //seccion 4
                 'puncion_lat' => $request->input('puncion_lat'),
                 'linea_media' => $request->input('linea_media'),
