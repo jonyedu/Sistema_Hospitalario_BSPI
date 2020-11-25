@@ -2301,28 +2301,6 @@ export default {
         agregarHorasInicial() {
             this.horasInicial.push(this.hour);
         },
-        async getImgGrafica(idFlashMessage1) {
-            const la = this.$refs.printMe;
-            const optiones = {
-                type: "dataURL"
-            };
-            this.form.imgGrafica = await this.$html2canvas(la, optiones);
-            this.flashMessage.deleteMessage(idFlashMessage1);
-            this.flashMessage.show({
-                status: "success",
-                title: "Exito en Graficar",
-                message: "Grafico generado correctamente.",
-                clickable: true,
-                time: 5000,
-                icon: "/iconsflashMessage/success.svg",
-                customStyle: {
-                    flashMessageStyle: {
-                        background: "linear-gradient(#e66465, #9198e5)"
-                    }
-                }
-            });
-            this.guardarImgGrafica();
-        },
         consultarSello() {
             let that = this;
             if (this.form.id_medico > 0) {
@@ -2718,6 +2696,25 @@ export default {
                         "img/icons/fin_anestecia.png",
                         { system_name: "FIN-ANESTECIA", tipo: this.system_agente }
                     );
+                    var idFlashMessage1 = this.flashMessage.show({
+                        status: "info",
+                        title: "Generando Gráfica",
+                        message: "Se está generando la gráfica, por favor espere.",
+                        clickable: false,
+                        time: 0,
+                        icon: "/iconsflashMessage/time.gif",
+                        blockClass: 'custom_msg',
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+
+                    this.getImgGrafica(idFlashMessage1);
+
+                    //this.flashMessage.deleteMessage(idFlashMessage1);
+
                     //Se guardan los datos a la base
                     this.guardarDrograAdministrada();
                 }
@@ -2784,6 +2781,84 @@ export default {
                     }
                 }
             }); */
+        },
+        async getImgGrafica(idFlashMessage1) {
+            const la = this.$refs.printMe;
+            const optiones = {
+                type: "dataURL"
+            };
+            this.form.imgGrafica = await this.$html2canvas(la, optiones);
+            this.flashMessage.deleteMessage(idFlashMessage1);
+            this.flashMessage.show({
+                status: "success",
+                title: "Exito en Graficar",
+                message: "Grafico generado correctamente.",
+                clickable: true,
+                time: 5000,
+                icon: "/iconsflashMessage/success.svg",
+                customStyle: {
+                    flashMessageStyle: {
+                        background: "linear-gradient(#e66465, #9198e5)"
+                    }
+                }
+            });
+            this.guardarImgGrafica();
+        },
+        guardarImgGrafica() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            let formNew = {
+                cirugia_id: that.form.cirugia_id,
+                registro_anestesia_id: that.form.registro_anestesia_id,
+                imgGrafica: that.form.imgGrafica
+            };
+            url = "/modulos/cirugia/anestesia/guardar_img_grafica";
+
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    //Llamar metodo de parent para que actualice el grid.
+                    //that.guardarModificarAgenteText();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar guardarImgGrafica",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores de validación
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Error Guardar Imagen Grafica",
+                        text: error
+                    }); */
+                    that.resConfirmarCancelar = false;
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarImgGrafica",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
         },
         guardarDrograAdministrada() {
             let that = this;
@@ -2984,7 +3059,7 @@ export default {
                             }
                         }
                     });
-                    var idFlashMessage1 = that.flashMessage.show({
+                    /* var idFlashMessage1 = that.flashMessage.show({
                         status: "info",
                         title: "Generando Gráfica",
                         message: "Se está generando la gráfica, por favor espere.",
@@ -2997,9 +3072,10 @@ export default {
                                 background: "linear-gradient(#e66465, #9198e5)"
                             }
                         }
-                    });
-                    that.getImgGrafica(idFlashMessage1);
+                    }); */
+                    //that.getImgGrafica(idFlashMessage1);
                     //that.flashMessage.deleteMessage(idFlashMessage1);
+                    that.guardarModificarAgenteText();
                 })
                 .catch(error => {
                     //Errores de validación
@@ -3012,62 +3088,6 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar guardarFirmaPorAtencion",
-                        message: "Por favor comuníquese con el administrador. " + error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        },
-        guardarImgGrafica() {
-            let that = this;
-            let url = "";
-            let mensaje = "";
-            let formNew = {
-                cirugia_id: that.form.cirugia_id,
-                registro_anestesia_id: that.form.registro_anestesia_id,
-                imgGrafica: that.form.imgGrafica
-            };
-            url = "/modulos/cirugia/anestesia/guardar_img_grafica";
-
-            var loader = that.$loading.show();
-            axios
-                .post(url, formNew)
-                .then(function(response) {
-                    //Llamar metodo de parent para que actualice el grid.
-                    that.guardarModificarAgenteText();
-                    that.flashMessage.show({
-                        status: "success",
-                        title: "Éxito al procesar guardarImgGrafica",
-                        message: "Datos guardados correctamente.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/success.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                })
-                .catch(error => {
-                    //Errores de validación
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Error Guardar Imagen Grafica",
-                        text: error
-                    }); */
-                    that.resConfirmarCancelar = false;
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar guardarImgGrafica",
                         message: "Por favor comuníquese con el administrador. " + error,
                         clickable: true,
                         time: 0,

@@ -21,6 +21,9 @@ Route::group(['prefix' => 'modulos/admision', 'middleware' => ['auth:web'], 'ver
     Route::namespace('Modulos\Admision\Medico')->prefix('medico')->group(function () {
         //Modulo de Cirugia
         Route::get('cargar_medico_por_especializacion/{idEspecializacion}', 'MedicoApiController@cargarMedicoPorEspecializacion');
+        Route::get('cargar_cirujano', 'MedicoApiController@cargarCirujano');
+        Route::get('cargar_medico_all', 'MedicoApiController@cargarMedicoAll');
+
 
 });
 });
