@@ -132,8 +132,8 @@ class AgenteAnestesiaSeeder extends Seeder
             'status' => '1'
         ]);
         AgenteAnestesia::create([
-            'descripcion' => 'TORIQUETE',
-            'name_system' => 'TORIQUETE',
+            'descripcion' => 'TORNIQUETE',
+            'name_system' => 'TORNIQUETE',
             'img_url' => 'img/icons/torniquete.png',
             'tipo_id' => '1',
             'usu_created_update' => '1',

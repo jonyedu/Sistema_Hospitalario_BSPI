@@ -28,11 +28,17 @@ Route::group(['prefix' => 'modulos/parametrizacion', 'middleware' => ['auth:web'
 
     /* SubModulo Modulo */
     Route::namespace('Modulos\Parametrizacion\Modulo')->prefix('modulo')->group(function () {
+        Route::get('cargar_menu', 'ModuloApiController@cargarMenu');
+        Route::get('cargar_modulo_table', 'ModuloApiController@cargarModuloTabla');
+
+
+
         Route::get('cargar_modulo_combo_box', 'ModuloApiController@cargarModuloComboBox');
-        Route::get('cargar_modulo_table', 'ModuloApiController@cargarModuloComboBox');
+
         Route::post('modificar_modulo', 'ModuloApiController@modificarModulo');
         Route::post('guardar_modulo', 'ModuloApiController@guardarModulo');
         Route::delete('eliminar_modulo/{id}', 'ModuloApiController@eliminarModulo');
+
     });
 
     /* SubModulo Submodulo */

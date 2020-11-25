@@ -8,9 +8,8 @@
         >
             <li
                 class="nav-item has-treeview"
-                v-for="(gestion, index) in modulos"
+                v-for="(gestion, index) in menus"
                 :key="index"
-                v-on:click="cargarSubModulos(gestion.codigo)"
             >
                 <a class="nav-link">
                     <i :class="gestion.imagen"></i>
@@ -25,18 +24,18 @@
                 </a>
                 <ul
                     class="nav nav-treeview"
-                    v-for="(gestion, index) in sub_modulos"
+                    v-for="(subMenu, index) in gestion.sub_modulo"
                     :key="index"
                 >
                     <li class="nav-item">
                         <router-link
-                            :to="prefijo + gestion.route"
+                            :to="prefijo + subMenu.route"
                             class="nav-link ml-3"
-                            ><i :class="gestion.imagen"> </i>
+                            ><i :class="subMenu.imagen"> </i>
                             <p>
                                 {{
                                     $funcionesGlobales.toCapitalFirstAllWords(
-                                        gestion.descripcion
+                                        subMenu.descripcion
                                     )
                                 }}
                             </p>
@@ -57,15 +56,36 @@ export default {
             id_sub_menu: 0,
             prefijo: "",
             modulos: [],
-            sub_modulos: []
+            sub_modulos: [],
+            menus: [],
         };
     },
     mounted: function() {
-        this.cargarModulos();
+        //this.cargarModulos();
+        this.cargarMenu();
         this.prefijo = prefix;
     },
     methods: {
-        cargarModulos() {
+        cargarMenu() {
+            let that = this;
+            let url = "/modulos/parametrizacion/modulo/cargar_menu";
+            axios
+                .get(url)
+                .then(function(response) {
+                    let menus= [];
+                    menus = response.data.menus;
+                    that.menus = menus;
+                })
+                .catch(error => {
+                    //Errores
+                    that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    });
+                });
+        },
+        /* cargarModulos() {
             let that = this;
             let url = "/modulos/parametrizacion/modulo/cargar_modulo_combo_box";
             axios
@@ -90,8 +110,8 @@ export default {
                         text: error
                     });
                 });
-        },
-        cargarSubModulos(id) {
+        }, */
+        /* cargarSubModulos(id) {
             let that = this;
             let url =
                 "/modulos/parametrizacion/sub_modulo/cargar_sub_modulo_combo_box/" +
@@ -111,7 +131,7 @@ export default {
                         text: error
                     });
                 });
-        }
+        } */
     }
 };
 </script>
