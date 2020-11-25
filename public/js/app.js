@@ -3877,6 +3877,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -3891,6 +3906,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _form;
 
     return {
+      resConfirmarCancelar: false,
+      icon: "",
+      titulo: "",
+      mensaje: "",
       selectedSala: "",
       selectedMedico: "",
       horasInicial: [],
@@ -3898,7 +3917,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       medicos: [],
       validarImgFirma: 0,
       isFirstPaintable: "firmaAnestesiologo",
-      rutaSello: "",
+      rutaSello: "/img/selloFirma.png",
       validarImprimir: 0,
       selectedTipoPosiciones: "",
       tipoPosiciones: "",
@@ -4148,6 +4167,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
+    this.flashMessage.setStrategy("multiple");
     this.form.cirugia_id = this.$props.idSecCirPro;
     /**
      * Se empiezan a llenar los datos de la rejilla
@@ -4213,10 +4233,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
+    mostrarModalConfirmarCandelar: function mostrarModalConfirmarCandelar() {
+      this.icon = "/iconsflashMessage/warning.svg";
+      this.titulo = "¿Desea cerrar el proceso?";
+      this.mensaje = "Al dar en Aceptar, el proceso dará por finalizado.";
+      this.$modal.show("ConfirmarCandelar");
+    },
+    respuestaConfirmarCancelar: function respuestaConfirmarCancelar(value) {
+      this.resConfirmarCancelar = value;
+      this.$modal.hide("ConfirmarCandelar");
+      this.end_time();
+    },
     agregarHorasInicial: function agregarHorasInicial() {
       this.horasInicial.push(this.hour);
     },
-    getImgGrafica: function getImgGrafica() {
+    getImgGrafica: function getImgGrafica(idFlashMessage1) {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -4235,9 +4266,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 4:
                 _this2.form.imgGrafica = _context.sent;
 
+                _this2.flashMessage.deleteMessage(idFlashMessage1);
+
+                _this2.flashMessage.show({
+                  status: "success",
+                  title: "Exito en Graficar",
+                  message: "Grafico generado correctamente.",
+                  clickable: true,
+                  time: 5000,
+                  icon: "/iconsflashMessage/success.svg",
+                  customStyle: {
+                    flashMessageStyle: {
+                      background: "linear-gradient(#e66465, #9198e5)"
+                    }
+                  }
+                });
+
                 _this2.guardarImgGrafica();
 
-              case 6:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -4261,10 +4308,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           loader.hide();
         })["catch"](function (error) {
           //Errores
-          that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
+
+          /* that.$swal({
+              icon: "error",
+              title: "Existe un error",
+              text: error
+          }); */
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar consultarSello",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
           });
           loader.hide();
         });
@@ -4276,12 +4337,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var url = "/modulos/cirugia/anestesia/registro/post";
       axios.post(url, this.form).then(function (response) {
         this.form.registro_anestesia_id = response.data.id;
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar getNewIdRegistroAnestesia",
+          message: "Se generó una nueva pagina.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
       })["catch"](function (error) {
         //Errores
-        that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar getNewIdRegistroAnestesia",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
         loader.hide();
       });
@@ -4307,10 +4395,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         loader.hide();
       })["catch"](function (error) {
         //Errores
-        that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedTipoPosiciones",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
         loader.hide();
       });
@@ -4336,10 +4438,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         loader.hide();
       })["catch"](function (error) {
         //Errores
-        that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedSala",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
         loader.hide();
       });
@@ -4367,10 +4483,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         loader.hide();
       })["catch"](function (error) {
         //Errores
-        that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedMedico",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
         loader.hide();
       });
@@ -4395,10 +4525,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this3.tabla_datos_grafica = response.data;
       })["catch"](function (error) {
         //Errores
-        that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar obtenerDatosAgentes",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
         loader.hide();
       });
@@ -4415,10 +4559,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this4.posiciones = response.data;
       })["catch"](function (error) {
         //Errores
-        that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar obtenerDatosPosiciones",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
         loader.hide();
       });
@@ -4446,10 +4604,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this5.datos_server = response.data; //loader.hide();
       })["catch"](function (error) {
         //Errores
-        that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar obtenerDatosPosiciones",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         }); //loader.hide();
       });
     },
@@ -4516,39 +4688,81 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * Finaliza el proceso, aquí se deben enviar los demás datos para que el registro se edite
      */
     end_time: function end_time() {
-      var _this7 = this;
+      if (this.validarImgFirma) {
+        if (!this.iniciado) return;
+        this.mostrarModalConfirmarCandelar();
 
-      var that = this;
+        if (this.resConfirmarCancelar) {
+          //if (!confirm("¿Desea cerrar el proceso?")) return;
+          //this.iniciado = false;
+          // Poner el dato al final de la rejilla cuando se haya finalizado
+          this.agregaDatoEnRejilla(true, false, 0, "img/icons/fin_anestecia.png", {
+            system_name: "FIN-ANESTECIA",
+            tipo: this.system_agente
+          }); //Se guardan los datos a la base
+
+          this.guardarDrograAdministrada();
+        }
+      } else {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia al procesar firma",
+          message: "Se necesita una firma por favor.",
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      }
+      /* let that = this;
       if (!this.iniciado) return;
       this.$swal({
-        title: "¿Desea cerrar el proceso?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Aceptar",
-        cancelButtonText: "Cancelar"
-      }).then(function (result) {
-        if (result.value) {
-          if (_this7.validarImgFirma) {
-            // Poner el dato al final de la rejilla cuando se haya finalizado
-            _this7.agregaDatoEnRejilla(true, false, 0, "img/icons/fin_anestecia.png", {
-              system_name: "FIN-ANESTECIA",
-              tipo: _this7.system_agente
-            }); //Se guardan los datos a la base
-
-
-            _this7.guardarDrograAdministrada(); //Cambia el estado
-
-          } else {
-            _this7.$swal({
-              icon: "warning",
-              title: "Advertencia Firma",
-              text: "Se necesita una firma por favor."
-            });
+          title: "¿Desea cerrar el proceso?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Aceptar",
+          cancelButtonText: "Cancelar"
+      }).then(result => {
+          if (result.value) {
+              if (this.validarImgFirma) {
+                  // Poner el dato al final de la rejilla cuando se haya finalizado
+                  this.agregaDatoEnRejilla(
+                      true,
+                      false,
+                      0,
+                      "img/icons/fin_anestecia.png",
+                      {
+                          system_name: "FIN-ANESTECIA",
+                          tipo: this.system_agente
+                      }
+                  );
+                   //Se guardan los datos a la base
+                  this.guardarDrograAdministrada();
+                   //Cambia el estado
+              } else {
+                  this.flashMessage.show({
+                      status: "warning",
+                      title: "Advertencia al procesar firma",
+                      message: "Se necesita una firma por favor.",
+                      clickable: true,
+                      time: 0,
+                      icon: "/iconsflashMessage/warning.svg",
+                      customStyle: {
+                          flashMessageStyle: {
+                              background: "linear-gradient(#e66465, #9198e5)"
+                          }
+                      }
+                  });
+              }
           }
-        }
-      });
+      }); */
+
     },
     guardarDrograAdministrada: function guardarDrograAdministrada() {
       var that = this;
@@ -4562,14 +4776,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var loader = that.$loading.show();
       axios.post(url, formNew).then(function (response) {
         that.modifcarRegistroAnestesia();
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar guardarDrograAdministrada",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
         loader.hide();
       })["catch"](function (error) {
         //Errores de validación
         loader.hide();
-        that.$swal({
-          icon: "error",
-          title: "Error Guardar Drogas Administradas",
-          text: error
+        that.resConfirmarCancelar = false;
+        /* that.$swal({
+            icon: "error",
+            title: "Error Guardar Drogas Administradas",
+            text: error
+        }); */
+
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarDrograAdministrada",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
       });
     },
@@ -4582,13 +4824,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post(url, this.form).then(function (response) {
         that.guardarRegistroInfusiones();
         loader.hide();
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar modifcarRegistroAnestesia",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
       })["catch"](function (error) {
         //Errores de validación
         loader.hide();
-        that.$swal({
-          icon: "error",
-          title: "Error Modificar Registro Administradas",
-          text: error
+        that.resConfirmarCancelar = false;
+        /* that.$swal({
+            icon: "error",
+            title: "Error Modificar Registro Administradas",
+            text: error
+        }); */
+
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar modifcarRegistroAnestesia",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
       });
     },
@@ -4611,15 +4881,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             text: "Datos guardados correctamente."
         }); */
         that.guardarFirmaPorAtencion();
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar guardarRegistroInfusiones",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
         loader.hide();
       })["catch"](function (error) {
         //Errores de validación
-        loader.hide();
-        that.$swal({
-          icon: "error",
-          title: "Error Guardar Infusiones",
-          text: error
+
+        /* that.$swal({
+            icon: "error",
+            title: "Error Guardar Infusiones",
+            text: error
+        }); */
+        that.resConfirmarCancelar = false;
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarRegistroInfusiones",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
+        loader.hide();
       });
     },
     guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
@@ -4641,15 +4939,57 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             text: "Datos guardados correctamente."
         }); */
         loader.hide();
-        that.getImgGrafica();
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar guardarFirmaPorAtencion",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        var idFlashMessage1 = that.flashMessage.show({
+          status: "info",
+          title: "Generando Gráfica",
+          message: "Se está generando la gráfica, por favor espere.",
+          clickable: false,
+          time: 0,
+          icon: "/iconsflashMessage/time.gif",
+          blockClass: 'custom_msg',
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        that.getImgGrafica(idFlashMessage1); //that.flashMessage.deleteMessage(idFlashMessage1);
       })["catch"](function (error) {
         //Errores de validación
-        loader.hide();
-        that.$swal({
-          icon: "error",
-          title: "Error Guardar Firma por Atención",
-          text: error
+
+        /* that.$swal({
+            icon: "error",
+            title: "Error Guardar Firma por Atención",
+            text: error
+        }); */
+        that.resConfirmarCancelar = false;
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarFirmaPorAtencion",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
+        loader.hide();
       });
     },
     guardarImgGrafica: function guardarImgGrafica() {
@@ -4666,15 +5006,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post(url, formNew).then(function (response) {
         //Llamar metodo de parent para que actualice el grid.
         that.guardarModificarAgenteText();
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar guardarImgGrafica",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
         loader.hide();
       })["catch"](function (error) {
         //Errores de validación
-        loader.hide();
-        that.$swal({
-          icon: "error",
-          title: "Error Guardar Imagen Grafica",
-          text: error
+
+        /* that.$swal({
+            icon: "error",
+            title: "Error Guardar Imagen Grafica",
+            text: error
+        }); */
+        that.resConfirmarCancelar = false;
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarImgGrafica",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
+        loader.hide();
       });
     },
     guardarModificarAgenteText: function guardarModificarAgenteText() {
@@ -4690,23 +5058,51 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       url = "/modulos/cirugia/anestesia/guardar_modificar_agente_text";
       var loader = that.$loading.show();
       axios.post(url, formNew).then(function (response) {
-        that.$swal({
-          icon: "success",
-          title: "Proceso realizado exitosamente",
-          text: "Datos guardados correctamente."
+        /* that.$swal({
+            icon: "success",
+            title: "Proceso realizado exitosamente",
+            text: "Datos guardados correctamente."
+        }); */
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar guardarModificarAgenteText",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
         that.validarImprimir = 1;
+        that.resConfirmarCancelar = false;
         that.$emit("RespuestaImprimir", that.validarImprimir);
         that.iniciado = false;
         loader.hide();
       })["catch"](function (error) {
         //Errores de validación
-        loader.hide();
-        that.$swal({
-          icon: "error",
-          title: "Error Guardar Agente Text",
-          text: error
+
+        /* that.$swal({
+            icon: "error",
+            title: "Error Guardar Agente Text",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarModificarAgenteText",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
+        loader.hide();
       });
     },
 
@@ -4831,7 +5227,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      *
      */
     obtenerDatosFormulario: function obtenerDatosFormulario() {
-      var _this8 = this;
+      var _this7 = this;
 
       if (!this.iniciado) return; // img/icons/'+this.valoresFormulario.descripcion.toLowerCase()+'.png
 
@@ -4839,20 +5235,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.flashMessage.show({
           status: "warning",
           title: "Advertencia Campos Vacios",
-          message: "Complete los campos por favor.",
-          time: 10000,
+          message: "Complete los campos de agente por favor.",
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/warning.svg",
           customStyle: {
             flashMessageStyle: {
               background: "linear-gradient(#e66465, #9198e5)"
             }
           }
         });
-        /* this.$swal({
-            icon: "warning",
-            title: "Advertencia Campos Vacios",
-            text: "Complete los campos por favor."
-        }); */
-
         return;
       } //console.log(this.valoresFormulario);
 
@@ -4883,13 +5275,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
       var post_text = this.posiciones.find(function (e) {
-        return e.id == _this8.valoresFormulario.posicion.id;
+        return e.id == _this7.valoresFormulario.posicion.id;
       });
       this.agregaDatoEnRejilla(false, false, 0, "", {
         system_name: post_text ? post_text.name_system : "",
         tipo: this.system_posicion
       }, this.lista_horas_avanzadas_v[this.indice_hora].datos.length - 2 - this.index_points, true, this.posiciones.find(function (pos) {
-        return pos.id == _this8.valoresFormulario.posicion.id;
+        return pos.id == _this7.valoresFormulario.posicion.id;
       }));
     },
     agregarDatoRespiracion: function agregarDatoRespiracion() {
@@ -5478,6 +5870,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -5494,12 +5895,27 @@ __webpack_require__.r(__webpack_exports__);
       respuestaImprimir: 1,
       form: {
         /* Datos del paciente */
-        frm_idCirugiaProgramada: "0001",
-        frm_paciente: "",
-        frm_cirujano: "",
-        frm_anestesiologo: "",
-        frm_quirofano: "",
-        frm_procedimiento: ""
+        idCirugiaProgramada: "0001",
+        paciente: "",
+        historia_clinica: "",
+        fecha: "00/00/0000",
+        edad: "",
+        sexo: "",
+        estatura: "",
+        peso: "",
+        ocupacion_actual: "",
+        servicio: "",
+        sala: "",
+        cama: "",
+        diagnostico_preoperatorio: "",
+        diagnostico_post_operatorio: "",
+        operacion_propuesta: "",
+        cirujano: "",
+        ayudante1: "",
+        operacion_realizada: "",
+        anestesiologo: "",
+        ayudante2: "",
+        instrumentista: ""
       },
       paciente: null
     };
@@ -5535,12 +5951,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
       //this.paciente = value;
-      this.form.frm_idCirugiaProgramada = value.SecCirPro;
-      this.form.frm_paciente = value.NombrePaciente;
-      this.form.frm_cirujano = value.Cirujano;
-      this.form.frm_anestesiologo = value.Anestesiologo;
-      this.form.frm_quirofano = value.Quirofano;
-      this.form.frm_procedimiento = value.Procedimiento;
+      this.form.idCirugiaProgramada = value.SecCirPro;
+      this.form.paciente = value.NombrePaciente;
+      this.form.cirujano = value.Cirujano;
+      this.form.anestesiologo = value.Anestesiologo;
+      this.form.quirofano = value.Quirofano;
+      this.form.procedimiento = value.Procedimiento;
       this.$modal.hide("ListaCirugiaProgramadaPaciente");
 
       if (this.$refs.revisionSistema != null) {
@@ -5568,7 +5984,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.paraclinico.guardarModificar();
       this.respuestaImprimir = 1;
       /* if(this.respuestaFinProceso){
-          this.form.frm_idCirugiaProgramada = "";
+          this.form.idCirugiaProgramada = "";
       } */
     },
     onChangeTab: function onChangeTab(prevIndex, nextIndex) {
@@ -5625,7 +6041,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
       if (this.respuestaImprimir) {
-        window.open("/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" + this.form.frm_idCirugiaProgramada);
+        window.open("/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" + this.form.idCirugiaProgramada);
       }
     }
   }
@@ -14802,6 +15218,96 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    /* mostrar el botón deshacer y rehacer */
+    icon: {
+      type: String,
+      required: true
+    },
+    titulo: {
+      type: String,
+      required: true
+    },
+    mensaje: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    validarConfirmarCandelar: function validarConfirmarCandelar(value) {
+      this.$emit("respuestaConfirmarCancelar", value);
+    }
+  },
+  mounted: function mounted() {},
+  data: function data() {
+    return {
+      respuestaConfirmarCancelar: false
+    };
+  },
+  computed: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/componentesGenerales/VuePaintableComponent.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/componentesGenerales/VuePaintableComponent.vue?vue&type=script&lang=js& ***!
@@ -15184,10 +15690,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$emit("getOutput", _this.output);
 
-                _this.$swal({
-                  icon: "success",
-                  title: "Firma Realizada Correctamente",
-                  text: "Se generó correctamente la firma."
+                _this.flashMessage.show({
+                  status: "success",
+                  title: "Exito en Firma",
+                  message: "Firma generado correctamente.",
+                  clickable: true,
+                  time: 5000,
+                  icon: "/iconsflashMessage/success.svg",
+                  customStyle: {
+                    flashMessageStyle: {
+                      background: "linear-gradient(#e66465, #9198e5)"
+                    }
+                  }
                 });
 
               case 7:
@@ -15198,20 +15712,62 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    saveCancas: function saveCancas() {
-      this.print();
-      this.$refs.paintable.saveCurrentCanvasToStorage();
-      this.isActive = !this.isActive;
-      this.respuestaImgFirma = 1;
-      this.$emit("RespuestaImgFirma", this.respuestaImgFirma);
-    },
+    saveCancas: function () {
+      var _saveCancas = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var idFlashMessage;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                idFlashMessage = this.flashMessage.show({
+                  status: "info",
+                  title: "Generando Firma",
+                  message: "Se está generando la firma, por favor espere.",
+                  clickable: false,
+                  time: 0,
+                  icon: "/iconsflashMessage/time.gif",
+                  blockClass: 'custom_msg',
+                  customStyle: {
+                    flashMessageStyle: {
+                      background: "linear-gradient(#e66465, #9198e5)"
+                    }
+                  }
+                }); //var loader = this.$loading.show();
+
+                _context2.next = 3;
+                return this.print();
+
+              case 3:
+                this.flashMessage.deleteMessage(idFlashMessage);
+                this.$refs.paintable.saveCurrentCanvasToStorage();
+                this.isActive = !this.isActive;
+                this.respuestaImgFirma = 1;
+                this.$emit("RespuestaImgFirma", this.respuestaImgFirma); //loader.hide();
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function saveCancas() {
+        return _saveCancas.apply(this, arguments);
+      }
+
+      return saveCancas;
+    }(),
     deleteCanvas: function deleteCanvas() {
       this.$refs.paintable.clearCanvas();
     }
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.flashMessage.setStrategy("multiple");
+  },
   data: function data() {
     return {
+      idFlashMessage: 0,
       isActive: false,
       useEraser: false,
       isLineWidth: false,
@@ -15785,6 +16341,25 @@ exports.push([module.i, "\n\n\n\n\n.vgt-table.striped tbody tr:nth-of-type(odd){
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loading-overlay/dist/vue-loading.css":
+/*!***********************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--5-1!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loading-overlay/dist/vue-loading.css ***!
+  \***********************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".vld-shown {\n  overflow: hidden;\n}\n\n.vld-overlay {\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  align-items: center;\n  display: none;\n  justify-content: center;\n  overflow: hidden;\n  z-index: 9999;\n}\n\n.vld-overlay.is-active {\n  display: flex;\n}\n\n.vld-overlay.is-full-page {\n  z-index: 9999;\n  position: fixed;\n}\n\n.vld-overlay .vld-background {\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  background: #fff;\n  opacity: 0.5;\n}\n\n.vld-overlay .vld-icon, .vld-parent {\n  position: relative;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-select/dist/vue-select.css":
 /*!*************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--5-1!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-select/dist/vue-select.css ***!
@@ -15816,7 +16391,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, "\ntable {\r\n    border-collapse: collapse;\n}\n.flex {\r\n    display: flex;\n}\n.flex-y {\r\n    flex-direction: column;\n}\n.flex-x {\r\n    flex-direction: row;\n}\n.border-t {\r\n    border: 1px solid #000;\n}\n.border-l {\r\n    border-left: 1px solid #000;\n}\n.border-r {\r\n    border-right: 1px solid #000;\n}\n.flex-center-x {\r\n    justify-content: center;\n}\n.flex-center-y {\r\n    align-items: center;\n}\n.border-top {\r\n    border-top: 1px solid #000 !important;\n}\n.border-b {\r\n    border-bottom: 1px solid #000;\n}\n.upper {\r\n    text-transform: uppercase;\n}\n.input-line {\r\n    border: none;\r\n    border-bottom: 1px solid #000;\r\n    outline: none;\n}\n.input-no-line {\r\n    border: none;\r\n    outline: none;\n}\n.space-left {\r\n    box-sizing: border-box;\r\n    padding-left: 5px;\n}\n.m-w {\r\n    max-width: 35px;\n}\n.no-line {\r\n    border: none;\r\n    outline: none;\n}\n.w-100p {\r\n    width: 100%;\n}\n.border-none-b- {\r\n    border: none;\r\n    outline: none;\r\n    border-bottom: 1px solid #000;\n}\n.grid {\r\n    display: grid;\n}\n.grid-2-c {\r\n    grid-template-columns: 1fr 1fr;\n}\n.grid-center {\r\n    align-self: center;\r\n    justify-self: center;\n}\n.flex-x-end {\r\n    justify-content: flex-end;\n}\n.he25 {\r\n    height: 25px;\n}\n.overflow-x-hidden {\r\n    overflow-x: scroll;\n}\n.wrap-flex {\r\n    flex-wrap: wrap;\n}\n.no-wrap-flex {\r\n    flex-wrap: nowrap !important;\n}\n.line-second {\r\n    width: 20px;\r\n    height: 20px;\r\n    display: flex;\n}\n.space-btw {\r\n    justify-content: space-between;\n}\n.width-100-p {\r\n    width: 100%;\n}\n.time-triangle-abs {\r\n    width: 15px;\r\n    position: absolute;\r\n    bottom: 0;\r\n    /* left: -18px; */\r\n    z-index: 1000;\n}\n.grid {\r\n    display: grid;\n}\n.grid-4-c {\r\n    /* grid-template-columns: repeat(4 , 1fr); */\n}\n.relative {\r\n    position: relative;\n}\n.figure-celds {\r\n    position: absolute;\n}\n.figure-celds:nth-child(1) {\r\n    left: 0;\n}\n.figure-celds:nth-child(2) {\r\n    left: 15px;\n}\n.figure-celds:nth-child(3) {\r\n    left: 30px;\n}\n.figure-celds:nth-child(4) {\r\n    left: 45px;\n}\n.figure-celds:nth-child(5) {\r\n    left: 60px;\n}\n.figure-celds:nth-child(6) {\r\n    left: 75px;\n}\n.input-registro {\r\n    border-bottom: 1px solid;\r\n    width: 100%;\n}\np.blue {\r\n    background: #5178d0;\r\n    border-radius: 0.8em;\r\n    -moz-border-radius: 0.8em;\r\n    -webkit-border-radius: 0.8em;\r\n    color: #ffffff;\r\n    display: inline-block;\r\n    font-weight: bold;\r\n    line-height: 1.6em;\r\n    margin-right: 15px;\r\n    text-align: center;\r\n    width: 1.6em;\n}\r\n", ""]);
+exports.push([module.i, "\ntable {\n    border-collapse: collapse;\n}\n.flex {\n    display: flex;\n}\n.flex-y {\n    flex-direction: column;\n}\n.flex-x {\n    flex-direction: row;\n}\n.border-t {\n    border: 1px solid #000;\n}\n.border-l {\n    border-left: 1px solid #000;\n}\n.border-r {\n    border-right: 1px solid #000;\n}\n.flex-center-x {\n    justify-content: center;\n}\n.flex-center-y {\n    align-items: center;\n}\n.border-top {\n    border-top: 1px solid #000 !important;\n}\n.border-b {\n    border-bottom: 1px solid #000;\n}\n.upper {\n    text-transform: uppercase;\n}\n.input-line {\n    border: none;\n    border-bottom: 1px solid #000;\n    outline: none;\n}\n.input-no-line {\n    border: none;\n    outline: none;\n}\n.space-left {\n    box-sizing: border-box;\n    padding-left: 5px;\n}\n.m-w {\n    max-width: 35px;\n}\n.no-line {\n    border: none;\n    outline: none;\n}\n.w-100p {\n    width: 100%;\n}\n.border-none-b- {\n    border: none;\n    outline: none;\n    border-bottom: 1px solid #000;\n}\n.grid {\n    display: grid;\n}\n.grid-2-c {\n    grid-template-columns: 1fr 1fr;\n}\n.grid-center {\n    align-self: center;\n    justify-self: center;\n}\n.flex-x-end {\n    justify-content: flex-end;\n}\n.he25 {\n    height: 25px;\n}\n.overflow-x-hidden {\n    overflow-x: scroll;\n}\n.wrap-flex {\n    flex-wrap: wrap;\n}\n.no-wrap-flex {\n    flex-wrap: nowrap !important;\n}\n.line-second {\n    width: 20px;\n    height: 20px;\n    display: flex;\n}\n.space-btw {\n    justify-content: space-between;\n}\n.width-100-p {\n    width: 100%;\n}\n.time-triangle-abs {\n    width: 15px;\n    position: absolute;\n    bottom: 0;\n    /* left: -18px; */\n    z-index: 1000;\n}\n.grid {\n    display: grid;\n}\n.grid-4-c {\n    /* grid-template-columns: repeat(4 , 1fr); */\n}\n.relative {\n    position: relative;\n}\n.figure-celds {\n    position: absolute;\n}\n.figure-celds:nth-child(1) {\n    left: 0;\n}\n.figure-celds:nth-child(2) {\n    left: 15px;\n}\n.figure-celds:nth-child(3) {\n    left: 30px;\n}\n.figure-celds:nth-child(4) {\n    left: 45px;\n}\n.figure-celds:nth-child(5) {\n    left: 60px;\n}\n.figure-celds:nth-child(6) {\n    left: 75px;\n}\n.input-registro {\n    border-bottom: 1px solid;\n    width: 100%;\n}\np.blue {\n    background: #5178d0;\n    border-radius: 0.8em;\n    -moz-border-radius: 0.8em;\n    -webkit-border-radius: 0.8em;\n    color: #ffffff;\n    display: inline-block;\n    font-weight: bold;\n    line-height: 1.6em;\n    margin-right: 15px;\n    text-align: center;\n    width: 1.6em;\n}\n", ""]);
 
 // exports
 
@@ -57038,7 +57613,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "input-registro text-center",
-                      attrs: { type: "text", name: "ta_max", id: "ta_max" },
+                      attrs: { type: "number", name: "ta_max", id: "ta_max" },
                       domProps: { value: _vm.valoresFormulario.ta_max.valor },
                       on: {
                         input: function($event) {
@@ -57072,7 +57647,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "input-registro text-center",
-                      attrs: { type: "text", name: "ta_value", id: "ta_min" },
+                      attrs: { type: "number", name: "ta_value", id: "ta_min" },
                       domProps: { value: _vm.valoresFormulario.ta_min.valor },
                       on: {
                         input: function($event) {
@@ -57115,7 +57690,7 @@ var render = function() {
                     ],
                     staticClass: "input-registro text-center",
                     attrs: {
-                      type: "text",
+                      type: "number",
                       name: "valor_pulso",
                       id: "valor_pulso"
                     },
@@ -57384,7 +57959,7 @@ var render = function() {
                     ],
                     staticClass: "input-registro text-center",
                     attrs: {
-                      type: "text",
+                      type: "number",
                       name: "valor_temperatura",
                       id: "valor_temperatura"
                     },
@@ -57481,7 +58056,7 @@ var render = function() {
                     ],
                     staticClass: "input-registro text-center",
                     attrs: {
-                      type: "text",
+                      type: "number",
                       name: "valor_feto",
                       id: "valor_feto"
                     },
@@ -57584,7 +58159,7 @@ var render = function() {
                     ],
                     staticClass: "input-registro text-center",
                     attrs: {
-                      type: "text",
+                      type: "number",
                       name: "valor_pres_venosa",
                       id: "valor_pres_venosa"
                     },
@@ -57689,7 +58264,7 @@ var render = function() {
                     ],
                     staticClass: "input-registro text-center",
                     attrs: {
-                      type: "text",
+                      type: "number",
                       name: "valor_torniquete",
                       id: "valor_torniquete"
                     },
@@ -61999,6 +62574,27 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
+      _c(
+        "modal",
+        {
+          staticStyle: { "z-index": "1200" },
+          attrs: {
+            width: "30%",
+            height: "auto",
+            scrollable: true,
+            name: "ConfirmarCandelar"
+          }
+        },
+        [
+          _c("vue-confirmar-cancelar", {
+            ref: "ConfirmarCandelar",
+            attrs: { icon: _vm.icon, titulo: _vm.titulo, mensaje: _vm.mensaje },
+            on: { respuestaConfirmarCancelar: _vm.respuestaConfirmarCancelar }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c("FlashMessage")
     ],
     1
@@ -62678,7 +63274,7 @@ var render = function() {
             _vm._v(" "),
             _vm._v("\n                 \n                "),
             _vm._v(" "),
-            _vm.form.frm_idCirugiaProgramada != ""
+            _vm.form.idCirugiaProgramada != ""
               ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
                   _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
                     _c(
@@ -62714,8 +63310,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_paciente,
-                                        expression: "form.frm_paciente"
+                                        value: _vm.form.paciente,
+                                        expression: "form.paciente"
                                       }
                                     ],
                                     staticClass:
@@ -62725,7 +63321,7 @@ var render = function() {
                                       type: "text",
                                       placeholder: "N° Historia Clínica"
                                     },
-                                    domProps: { value: _vm.form.frm_paciente },
+                                    domProps: { value: _vm.form.paciente },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -62733,7 +63329,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_paciente",
+                                          "paciente",
                                           $event.target.value
                                         )
                                       }
@@ -62760,8 +63356,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_paciente,
-                                        expression: "form.frm_paciente"
+                                        value: _vm.form.historia_clinica,
+                                        expression: "form.historia_clinica"
                                       }
                                     ],
                                     staticClass:
@@ -62771,7 +63367,9 @@ var render = function() {
                                       type: "text",
                                       placeholder: "N° Historia Clínica"
                                     },
-                                    domProps: { value: _vm.form.frm_paciente },
+                                    domProps: {
+                                      value: _vm.form.historia_clinica
+                                    },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -62779,7 +63377,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_paciente",
+                                          "historia_clinica",
                                           $event.target.value
                                         )
                                       }
@@ -62806,8 +63404,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_paciente,
-                                        expression: "form.frm_paciente"
+                                        value: _vm.form.fecha,
+                                        expression: "form.fecha"
                                       }
                                     ],
                                     staticClass:
@@ -62817,7 +63415,7 @@ var render = function() {
                                       type: "text",
                                       placeholder: "Fecha"
                                     },
-                                    domProps: { value: _vm.form.frm_paciente },
+                                    domProps: { value: _vm.form.fecha },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -62825,7 +63423,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_paciente",
+                                          "fecha",
                                           $event.target.value
                                         )
                                       }
@@ -62855,8 +63453,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_paciente,
-                                        expression: "form.frm_paciente"
+                                        value: _vm.form.edad,
+                                        expression: "form.edad"
                                       }
                                     ],
                                     staticClass:
@@ -62866,7 +63464,7 @@ var render = function() {
                                       type: "text",
                                       placeholder: "Edad"
                                     },
-                                    domProps: { value: _vm.form.frm_paciente },
+                                    domProps: { value: _vm.form.edad },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -62874,7 +63472,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_paciente",
+                                          "edad",
                                           $event.target.value
                                         )
                                       }
@@ -62904,8 +63502,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_paciente,
-                                        expression: "form.frm_paciente"
+                                        value: _vm.form.sexo,
+                                        expression: "form.sexo"
                                       }
                                     ],
                                     staticClass:
@@ -62915,7 +63513,7 @@ var render = function() {
                                       type: "text",
                                       placeholder: "Sexo"
                                     },
-                                    domProps: { value: _vm.form.frm_paciente },
+                                    domProps: { value: _vm.form.sexo },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -62923,7 +63521,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_paciente",
+                                          "sexo",
                                           $event.target.value
                                         )
                                       }
@@ -62953,8 +63551,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_paciente,
-                                        expression: "form.frm_paciente"
+                                        value: _vm.form.estatura,
+                                        expression: "form.estatura"
                                       }
                                     ],
                                     staticClass:
@@ -62964,7 +63562,7 @@ var render = function() {
                                       type: "text",
                                       placeholder: "Estatura"
                                     },
-                                    domProps: { value: _vm.form.frm_paciente },
+                                    domProps: { value: _vm.form.estatura },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -62972,7 +63570,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_paciente",
+                                          "estatura",
                                           $event.target.value
                                         )
                                       }
@@ -63002,8 +63600,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_paciente,
-                                        expression: "form.frm_paciente"
+                                        value: _vm.form.peso,
+                                        expression: "form.peso"
                                       }
                                     ],
                                     staticClass:
@@ -63013,7 +63611,7 @@ var render = function() {
                                       type: "text",
                                       placeholder: "Peso"
                                     },
-                                    domProps: { value: _vm.form.frm_paciente },
+                                    domProps: { value: _vm.form.peso },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -63021,7 +63619,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_paciente",
+                                          "peso",
                                           $event.target.value
                                         )
                                       }
@@ -63051,8 +63649,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_paciente,
-                                        expression: "form.frm_paciente"
+                                        value: _vm.form.ocupacion_actual,
+                                        expression: "form.ocupacion_actual"
                                       }
                                     ],
                                     staticClass:
@@ -63061,7 +63659,9 @@ var render = function() {
                                       type: "text",
                                       placeholder: "Ocupación Actual"
                                     },
-                                    domProps: { value: _vm.form.frm_paciente },
+                                    domProps: {
+                                      value: _vm.form.ocupacion_actual
+                                    },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -63069,7 +63669,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_paciente",
+                                          "ocupacion_actual",
                                           $event.target.value
                                         )
                                       }
@@ -63099,8 +63699,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_paciente,
-                                        expression: "form.frm_paciente"
+                                        value: _vm.form.servicio,
+                                        expression: "form.servicio"
                                       }
                                     ],
                                     staticClass:
@@ -63109,7 +63709,7 @@ var render = function() {
                                       type: "text",
                                       placeholder: "Servicio"
                                     },
-                                    domProps: { value: _vm.form.frm_paciente },
+                                    domProps: { value: _vm.form.servicio },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -63117,7 +63717,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_paciente",
+                                          "servicio",
                                           $event.target.value
                                         )
                                       }
@@ -63147,8 +63747,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_paciente,
-                                        expression: "form.frm_paciente"
+                                        value: _vm.form.sala,
+                                        expression: "form.sala"
                                       }
                                     ],
                                     staticClass:
@@ -63157,7 +63757,7 @@ var render = function() {
                                       type: "text",
                                       placeholder: "Sala"
                                     },
-                                    domProps: { value: _vm.form.frm_paciente },
+                                    domProps: { value: _vm.form.sala },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -63165,7 +63765,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_paciente",
+                                          "sala",
                                           $event.target.value
                                         )
                                       }
@@ -63195,8 +63795,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_cirujano,
-                                        expression: "form.frm_cirujano"
+                                        value: _vm.form.cama,
+                                        expression: "form.cama"
                                       }
                                     ],
                                     staticClass:
@@ -63205,7 +63805,7 @@ var render = function() {
                                       type: "text",
                                       placeholder: "Cama"
                                     },
-                                    domProps: { value: _vm.form.frm_cirujano },
+                                    domProps: { value: _vm.form.cama },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -63213,7 +63813,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_cirujano",
+                                          "cama",
                                           $event.target.value
                                         )
                                       }
@@ -63243,17 +63843,22 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_cirujano,
-                                        expression: "form.frm_cirujano"
+                                        value:
+                                          _vm.form.diagnostico_preoperatorio,
+                                        expression:
+                                          "form.diagnostico_preoperatorio"
                                       }
                                     ],
                                     staticClass:
                                       "col-lg-12 col-md-12 col-sm-12 text-left form-control",
                                     attrs: {
+                                      rows: "1",
                                       type: "text",
                                       placeholder: "Diagnóstico Preoperatorio"
                                     },
-                                    domProps: { value: _vm.form.frm_cirujano },
+                                    domProps: {
+                                      value: _vm.form.diagnostico_preoperatorio
+                                    },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -63261,7 +63866,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_cirujano",
+                                          "diagnostico_preoperatorio",
                                           $event.target.value
                                         )
                                       }
@@ -63291,17 +63896,23 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_cirujano,
-                                        expression: "form.frm_cirujano"
+                                        value:
+                                          _vm.form.diagnostico_post_operatorio,
+                                        expression:
+                                          "form.diagnostico_post_operatorio"
                                       }
                                     ],
                                     staticClass:
                                       "col-lg-12 col-md-12 col-sm-12 text-left form-control",
                                     attrs: {
+                                      rows: "1",
                                       type: "text",
                                       placeholder: "Diagnóstico Post-operatorio"
                                     },
-                                    domProps: { value: _vm.form.frm_cirujano },
+                                    domProps: {
+                                      value:
+                                        _vm.form.diagnostico_post_operatorio
+                                    },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -63309,7 +63920,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_cirujano",
+                                          "diagnostico_post_operatorio",
                                           $event.target.value
                                         )
                                       }
@@ -63339,18 +63950,19 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_procedimiento,
-                                        expression: "form.frm_procedimiento"
+                                        value: _vm.form.operacion_propuesta,
+                                        expression: "form.operacion_propuesta"
                                       }
                                     ],
                                     staticClass:
                                       "col-lg-12 col-md-12 col-sm-12 text-left form-control",
                                     attrs: {
+                                      rows: "1",
                                       type: "text",
                                       placeholder: "Operación Propuesta"
                                     },
                                     domProps: {
-                                      value: _vm.form.frm_procedimiento
+                                      value: _vm.form.operacion_propuesta
                                     },
                                     on: {
                                       input: function($event) {
@@ -63359,7 +63971,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_procedimiento",
+                                          "operacion_propuesta",
                                           $event.target.value
                                         )
                                       }
@@ -63389,17 +64001,18 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_cirujano,
-                                        expression: "form.frm_cirujano"
+                                        value: _vm.form.cirujano,
+                                        expression: "form.cirujano"
                                       }
                                     ],
                                     staticClass:
                                       "col-lg-12 col-md-12 col-sm-12 text-left form-control",
                                     attrs: {
+                                      rows: "1",
                                       type: "text",
                                       placeholder: "Cirujano"
                                     },
-                                    domProps: { value: _vm.form.frm_cirujano },
+                                    domProps: { value: _vm.form.cirujano },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -63407,7 +64020,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_cirujano",
+                                          "cirujano",
                                           $event.target.value
                                         )
                                       }
@@ -63437,17 +64050,18 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_cirujano,
-                                        expression: "form.frm_cirujano"
+                                        value: _vm.form.ayudante1,
+                                        expression: "form.ayudante1"
                                       }
                                     ],
                                     staticClass:
                                       "col-lg-12 col-md-12 col-sm-12 text-left form-control",
                                     attrs: {
+                                      rows: "1",
                                       type: "text",
                                       placeholder: "Ayudante"
                                     },
-                                    domProps: { value: _vm.form.frm_cirujano },
+                                    domProps: { value: _vm.form.ayudante1 },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -63455,7 +64069,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_cirujano",
+                                          "ayudante1",
                                           $event.target.value
                                         )
                                       }
@@ -63485,17 +64099,20 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_cirujano,
-                                        expression: "form.frm_cirujano"
+                                        value: _vm.form.operacion_realizada,
+                                        expression: "form.operacion_realizada"
                                       }
                                     ],
                                     staticClass:
                                       "col-lg-12 col-md-12 col-sm-12 text-left form-control",
                                     attrs: {
+                                      rows: "1",
                                       type: "text",
                                       placeholder: "Operación Realizada"
                                     },
-                                    domProps: { value: _vm.form.frm_cirujano },
+                                    domProps: {
+                                      value: _vm.form.operacion_realizada
+                                    },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -63503,7 +64120,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_cirujano",
+                                          "operacion_realizada",
                                           $event.target.value
                                         )
                                       }
@@ -63533,19 +64150,18 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_anestesiologo,
-                                        expression: "form.frm_anestesiologo"
+                                        value: _vm.form.anestesiologo,
+                                        expression: "form.anestesiologo"
                                       }
                                     ],
                                     staticClass:
                                       "col-lg-12 col-md-12 col-sm-12 text-left form-control",
                                     attrs: {
+                                      rows: "1",
                                       type: "text",
                                       placeholder: "Anestesiologo"
                                     },
-                                    domProps: {
-                                      value: _vm.form.frm_anestesiologo
-                                    },
+                                    domProps: { value: _vm.form.anestesiologo },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -63553,7 +64169,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_anestesiologo",
+                                          "anestesiologo",
                                           $event.target.value
                                         )
                                       }
@@ -63583,19 +64199,18 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_anestesiologo,
-                                        expression: "form.frm_anestesiologo"
+                                        value: _vm.form.ayudante2,
+                                        expression: "form.ayudante2"
                                       }
                                     ],
                                     staticClass:
                                       "col-lg-12 col-md-12 col-sm-12 text-left form-control",
                                     attrs: {
+                                      rows: "1",
                                       type: "text",
                                       placeholder: "Ayudante"
                                     },
-                                    domProps: {
-                                      value: _vm.form.frm_anestesiologo
-                                    },
+                                    domProps: { value: _vm.form.ayudante2 },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -63603,7 +64218,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_anestesiologo",
+                                          "ayudante2",
                                           $event.target.value
                                         )
                                       }
@@ -63633,17 +64248,20 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.frm_quirofano,
-                                        expression: "form.frm_quirofano"
+                                        value: _vm.form.instrumentista,
+                                        expression: "form.instrumentista"
                                       }
                                     ],
                                     staticClass:
                                       "col-lg-12 col-md-12 col-sm-12 text-left form-control",
                                     attrs: {
+                                      rows: "1",
                                       type: "text",
                                       placeholder: "Instrumentista"
                                     },
-                                    domProps: { value: _vm.form.frm_quirofano },
+                                    domProps: {
+                                      value: _vm.form.instrumentista
+                                    },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -63651,7 +64269,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "frm_quirofano",
+                                          "instrumentista",
                                           $event.target.value
                                         )
                                       }
@@ -63672,13 +64290,12 @@ var render = function() {
                     "div",
                     { staticClass: "col-lg-12 col-md-12 col-sm-12" },
                     [
-                      _vm.form.frm_idCirugiaProgramada != null
+                      _vm.form.idCirugiaProgramada != null
                         ? [
                             _c("registro-anestesico", {
                               attrs: {
                                 user: _vm.user,
-                                "id-sec-cir-pro":
-                                  _vm.form.frm_idCirugiaProgramada
+                                "id-sec-cir-pro": _vm.form.idCirugiaProgramada
                               },
                               on: {
                                 RespuestaImprimir: function($event) {
@@ -77585,6 +78202,103 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue?vue&type=template&id=7428a28e&":
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue?vue&type=template&id=7428a28e& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+          _c("img", {
+            staticClass: "mt-5",
+            staticStyle: { margin: "auto" },
+            attrs: {
+              src: _vm.icon,
+              width: "25%",
+              height: "50%",
+              alt: "no carga"
+            }
+          }),
+          _vm._v(" "),
+          _c("h1", {
+            staticClass: "mt-3",
+            attrs: { for: "titulo", align: "center" },
+            domProps: { textContent: _vm._s(_vm.titulo) }
+          }),
+          _vm._v(" "),
+          _c("p", {
+            staticClass: "mt-1",
+            attrs: { for: "mensaje", align: "center" },
+            domProps: { textContent: _vm._s(_vm.mensaje) }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "col-lg-12 col-md-12 col-sm-12 text-center mt-4 mb-5"
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.validarConfirmarCandelar(true)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                        Aceptar\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.validarConfirmarCandelar(false)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                        Cancelar\n                    "
+                  )
+                ]
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/componentesGenerales/VuePaintableComponent.vue?vue&type=template&id=23e46c92&":
 /*!*********************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/componentesGenerales/VuePaintableComponent.vue?vue&type=template&id=23e46c92& ***!
@@ -78698,6 +79412,36 @@ function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/vue-loading-overlay/dist/vue-loading.css":
+/*!***************************************************************!*\
+  !*** ./node_modules/vue-loading-overlay/dist/vue-loading.css ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../css-loader??ref--5-1!../../postcss-loader/src??ref--5-2!./vue-loading.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loading-overlay/dist/vue-loading.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
 
 /***/ }),
 
@@ -95567,27 +96311,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-sweetalert2 */ "./node_modules/vue-sweetalert2/dist/index.js");
-/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-select */ "./node_modules/vue-select/dist/vue-select.js");
-/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_select__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var vue_form_wizard__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-form-wizard */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.js");
-/* harmony import */ var vue_form_wizard__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-form-wizard/dist/vue-form-wizard.min.css */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.min.css");
-/* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var vue_paintable__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-paintable */ "./node_modules/vue-paintable/dist/paintable.common.js");
-/* harmony import */ var vue_paintable__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(vue_paintable__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var vue_html2canvas__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-html2canvas */ "./node_modules/vue-html2canvas/index.js");
-/* harmony import */ var vue_html2canvas__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(vue_html2canvas__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
-/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _smartweb_vue_flash_message__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @smartweb/vue-flash-message */ "./node_modules/@smartweb/vue-flash-message/build/vue-flash-msg.common.js");
-/* harmony import */ var _smartweb_vue_flash_message__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_smartweb_vue_flash_message__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/App */ "./resources/js/components/App.vue");
-/* harmony import */ var _funciones_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./funciones.js */ "./resources/js/funciones.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! vue-select/dist/vue-select.css */ "./node_modules/vue-select/dist/vue-select.css");
-/* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-sweetalert2 */ "./node_modules/vue-sweetalert2/dist/index.js");
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-select */ "./node_modules/vue-select/dist/vue-select.js");
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue_select__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-select/dist/vue-select.css */ "./node_modules/vue-select/dist/vue-select.css");
+/* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var vue_form_wizard__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-form-wizard */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.js");
+/* harmony import */ var vue_form_wizard__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-form-wizard/dist/vue-form-wizard.min.css */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.min.css");
+/* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var vue_paintable__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-paintable */ "./node_modules/vue-paintable/dist/paintable.common.js");
+/* harmony import */ var vue_paintable__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(vue_paintable__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var vue_html2canvas__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vue-html2canvas */ "./node_modules/vue-html2canvas/index.js");
+/* harmony import */ var vue_html2canvas__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(vue_html2canvas__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _smartweb_vue_flash_message__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @smartweb/vue-flash-message */ "./node_modules/@smartweb/vue-flash-message/build/vue-flash-msg.common.js");
+/* harmony import */ var _smartweb_vue_flash_message__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_smartweb_vue_flash_message__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/App */ "./resources/js/components/App.vue");
+/* harmony import */ var _funciones_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./funciones.js */ "./resources/js/funciones.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_19__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -95608,9 +96354,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_17___default.a;
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$funcionesGlobales = _funciones_js__WEBPACK_IMPORTED_MODULE_16__["funcionesGlobales"];
 
+
+window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_19___default.a;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$funcionesGlobales = _funciones_js__WEBPACK_IMPORTED_MODULE_18__["funcionesGlobales"];
 var options = {
   /* position: 'bottom-start', */
 
@@ -95618,13 +96365,13 @@ var options = {
 };
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_7__["default"], options);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_8__["default"], options);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_good_table__WEBPACK_IMPORTED_MODULE_2__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_1___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_form_wizard__WEBPACK_IMPORTED_MODULE_9___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_html2canvas__WEBPACK_IMPORTED_MODULE_12___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(regenerator_runtime__WEBPACK_IMPORTED_MODULE_13___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_paintable__WEBPACK_IMPORTED_MODULE_11___default.a, {
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_form_wizard__WEBPACK_IMPORTED_MODULE_11___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_html2canvas__WEBPACK_IMPORTED_MODULE_14___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(regenerator_runtime__WEBPACK_IMPORTED_MODULE_15___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_paintable__WEBPACK_IMPORTED_MODULE_13___default.a, {
   // optional methods
   setItem: function setItem(key, image) {
     localStorage.setItem(key, image);
@@ -95637,11 +96384,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_paintable__WEBPACK_IMPORTED_M
     localStorage.removeItem(key);
   }
 });
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_smartweb_vue_flash_message__WEBPACK_IMPORTED_MODULE_14___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("v-select", vue_select__WEBPACK_IMPORTED_MODULE_8___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_smartweb_vue_flash_message__WEBPACK_IMPORTED_MODULE_16___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("v-select", vue_select__WEBPACK_IMPORTED_MODULE_9___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("menuComponente", __webpack_require__(/*! ./components/componentesGenerales/MenuComponent.vue */ "./resources/js/components/componentesGenerales/MenuComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vuetable-component", __webpack_require__(/*! ./components/componentesGenerales/VueTableComponent.vue */ "./resources/js/components/componentesGenerales/VueTableComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vue-painttable", __webpack_require__(/*! ./components/componentesGenerales/VuePaintableComponent.vue */ "./resources/js/components/componentesGenerales/VuePaintableComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vue-confirmar-cancelar", __webpack_require__(/*! ./components/componentesGenerales/VueConfirmarCancelarComponent.vue */ "./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("prueba", __webpack_require__(/*! ./components/Prueba.vue */ "./resources/js/components/Prueba.vue")["default"]); //Modulo de Parametrizacion
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-modulo", __webpack_require__(/*! ./components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue */ "./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue")["default"]);
@@ -95658,7 +96406,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-tipo-posic
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: "#app",
   components: {
-    App: _components_App__WEBPACK_IMPORTED_MODULE_15__["default"]
+    App: _components_App__WEBPACK_IMPORTED_MODULE_17__["default"]
   },
   router: _router__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
@@ -97090,6 +97838,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MenuComponent_vue_vue_type_template_id_a7df01b6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MenuComponent_vue_vue_type_template_id_a7df01b6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VueConfirmarCancelarComponent_vue_vue_type_template_id_7428a28e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VueConfirmarCancelarComponent.vue?vue&type=template&id=7428a28e& */ "./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue?vue&type=template&id=7428a28e&");
+/* harmony import */ var _VueConfirmarCancelarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VueConfirmarCancelarComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _VueConfirmarCancelarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _VueConfirmarCancelarComponent_vue_vue_type_template_id_7428a28e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _VueConfirmarCancelarComponent_vue_vue_type_template_id_7428a28e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VueConfirmarCancelarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./VueConfirmarCancelarComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VueConfirmarCancelarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue?vue&type=template&id=7428a28e&":
+/*!***********************************************************************************************************************!*\
+  !*** ./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue?vue&type=template&id=7428a28e& ***!
+  \***********************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VueConfirmarCancelarComponent_vue_vue_type_template_id_7428a28e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./VueConfirmarCancelarComponent.vue?vue&type=template&id=7428a28e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue?vue&type=template&id=7428a28e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VueConfirmarCancelarComponent_vue_vue_type_template_id_7428a28e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VueConfirmarCancelarComponent_vue_vue_type_template_id_7428a28e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

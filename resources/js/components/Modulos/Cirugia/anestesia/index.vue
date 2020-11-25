@@ -64,7 +64,7 @@
                     <!-- Cuerpo-->
                     <div
                         class="col-lg-12 col-md-12 col-sm-12"
-                        v-if="form.frm_idCirugiaProgramada != ''"
+                        v-if="form.idCirugiaProgramada != ''"
                     >
                         <!-- DATOS DEL PACIENTE -->
                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -85,7 +85,7 @@
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="N° Historia Clínica"
-                                                v-model="form.frm_paciente"
+                                                v-model="form.paciente"
                                             />
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
@@ -97,7 +97,7 @@
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="N° Historia Clínica"
-                                                v-model="form.frm_paciente"
+                                                v-model="form.historia_clinica"
                                             />
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
@@ -109,7 +109,7 @@
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Fecha"
-                                                v-model="form.frm_paciente"
+                                                v-model="form.fecha"
                                             />
                                         </div>
                                         <div class="col-lg-1 col-md-1 col-sm-1 text-left">
@@ -121,7 +121,7 @@
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Edad"
-                                                v-model="form.frm_paciente"
+                                                v-model="form.edad"
                                             />
                                         </div>
                                         <div class="col-lg-1 col-md-1 col-sm-1 text-left">
@@ -133,7 +133,7 @@
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Sexo"
-                                                v-model="form.frm_paciente"
+                                                v-model="form.sexo"
                                             />
                                         </div>
                                         <div class="col-lg-1 col-md-1 col-sm-1 text-left">
@@ -145,7 +145,7 @@
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Estatura"
-                                                v-model="form.frm_paciente"
+                                                v-model="form.estatura"
                                             />
                                         </div>
                                         <div class="col-lg-1 col-md-1 col-sm-1 text-left">
@@ -157,7 +157,7 @@
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Peso"
-                                                v-model="form.frm_paciente"
+                                                v-model="form.peso"
                                             />
                                         </div>
                                         <div class="col-lg-3 col-md-3 col-sm-3 text-left">
@@ -168,7 +168,7 @@
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Ocupación Actual"
-                                                v-model="form.frm_paciente"
+                                                v-model="form.ocupacion_actual"
                                             />
                                         </div>
                                         <div class="col-lg-3 col-md-3 col-sm-3 text-left">
@@ -179,7 +179,7 @@
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Servicio"
-                                                v-model="form.frm_paciente"
+                                                v-model="form.servicio"
                                             />
                                         </div>
                                         <div class="col-lg-1 col-md-1 col-sm-1 text-left">
@@ -190,7 +190,7 @@
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Sala"
-                                                v-model="form.frm_paciente"
+                                                v-model="form.sala"
                                             />
                                         </div>
                                         <div class="col-lg-1 col-md-1 col-sm-1 text-left">
@@ -201,7 +201,7 @@
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Cama"
-                                                v-model="form.frm_cirujano"
+                                                v-model="form.cama"
                                             />
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
@@ -209,10 +209,11 @@
                                                 >Diagnóstico Preoperatorio:</label
                                             >
                                             <textarea
+                                                rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Diagnóstico Preoperatorio"
-                                                v-model="form.frm_cirujano"
+                                                v-model="form.diagnostico_preoperatorio"
                                             />
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
@@ -220,10 +221,11 @@
                                                 >Diagnóstico Post-operatorio:</label
                                             >
                                             <textarea
+                                                rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Diagnóstico Post-operatorio"
-                                                v-model="form.frm_cirujano"
+                                                v-model="form.diagnostico_post_operatorio"
                                             />
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
@@ -231,10 +233,11 @@
                                                 >Operación Propuesta:</label
                                             >
                                             <textarea
+                                                rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Operación Propuesta"
-                                                v-model="form.frm_procedimiento"
+                                                v-model="form.operacion_propuesta"
                                             />
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
@@ -242,10 +245,11 @@
                                                 >Cirujano:</label
                                             >
                                             <textarea
+                                                rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Cirujano"
-                                                v-model="form.frm_cirujano"
+                                                v-model="form.cirujano"
                                             />
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
@@ -253,10 +257,11 @@
                                                 >Ayudante:</label
                                             >
                                             <textarea
+                                                rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Ayudante"
-                                                v-model="form.frm_cirujano"
+                                                v-model="form.ayudante1"
                                             />
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
@@ -264,10 +269,11 @@
                                                 >Operación Realizada:</label
                                             >
                                             <textarea
+                                                rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Operación Realizada"
-                                                v-model="form.frm_cirujano"
+                                                v-model="form.operacion_realizada"
                                             />
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
@@ -275,10 +281,11 @@
                                                 >Anestesiologo:</label
                                             >
                                             <textarea
+                                                rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Anestesiologo"
-                                                v-model="form.frm_anestesiologo"
+                                                v-model="form.anestesiologo"
                                             />
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
@@ -286,10 +293,11 @@
                                                 >Ayudante:</label
                                             >
                                             <textarea
+                                                rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Ayudante"
-                                                v-model="form.frm_anestesiologo"
+                                                v-model="form.ayudante2"
                                             />
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 text-left">
@@ -297,10 +305,11 @@
                                                 >Instrumentista:</label
                                             >
                                             <textarea
+                                                rows="1"
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Instrumentista"
-                                                v-model="form.frm_quirofano"
+                                                v-model="form.instrumentista"
                                             />
                                         </div>
                                     </div>
@@ -318,7 +327,7 @@
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <template
-                                v-if="form.frm_idCirugiaProgramada != null"
+                                v-if="form.idCirugiaProgramada != null"
                             >
                                 <registro-anestesico
                                     :user="user"
@@ -326,7 +335,7 @@
                                         respuestaImprimir = $event
                                     "
                                     :id-sec-cir-pro="
-                                        form.frm_idCirugiaProgramada
+                                        form.idCirugiaProgramada
                                     "
                                 ></registro-anestesico>
                             </template>
@@ -370,12 +379,27 @@ export default {
             respuestaImprimir: 1,
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "0001",
-                frm_paciente: "",
-                frm_cirujano: "",
-                frm_anestesiologo: "",
-                frm_quirofano: "",
-                frm_procedimiento: ""
+                idCirugiaProgramada: "0001",
+                paciente: "",
+                historia_clinica:"",
+                fecha:"00/00/0000",
+                edad:"",
+                sexo:"",
+                estatura:"",
+                peso:"",
+                ocupacion_actual:"",
+                servicio:"",
+                sala:"",
+                cama:"",
+                diagnostico_preoperatorio:"",
+                diagnostico_post_operatorio: "",
+                operacion_propuesta: "",
+                cirujano: "",
+                ayudante1: "",
+                operacion_realizada: "",
+                anestesiologo: "",
+                ayudante2: "",
+                instrumentista: "",
             },
             paciente: null
         };
@@ -410,12 +434,12 @@ export default {
         },
         handleSeleccionarClick(value) {
             //this.paciente = value;
-            this.form.frm_idCirugiaProgramada = value.SecCirPro;
-            this.form.frm_paciente = value.NombrePaciente;
-            this.form.frm_cirujano = value.Cirujano;
-            this.form.frm_anestesiologo = value.Anestesiologo;
-            this.form.frm_quirofano = value.Quirofano;
-            this.form.frm_procedimiento = value.Procedimiento;
+            this.form.idCirugiaProgramada = value.SecCirPro;
+            this.form.paciente = value.NombrePaciente;
+            this.form.cirujano = value.Cirujano;
+            this.form.anestesiologo = value.Anestesiologo;
+            this.form.quirofano = value.Quirofano;
+            this.form.procedimiento = value.Procedimiento;
             this.$modal.hide("ListaCirugiaProgramadaPaciente");
             if (this.$refs.revisionSistema != null) {
                 this.$refs.revisionSistema.cargarRevisionSistema();
@@ -440,7 +464,7 @@ export default {
             this.$refs.paraclinico.guardarModificar();
             this.respuestaImprimir = 1;
             /* if(this.respuestaFinProceso){
-                this.form.frm_idCirugiaProgramada = "";
+                this.form.idCirugiaProgramada = "";
             } */
         },
         onChangeTab(prevIndex, nextIndex) {
@@ -491,7 +515,7 @@ export default {
             if (this.respuestaImprimir) {
                 window.open(
                     "/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" +
-                        this.form.frm_idCirugiaProgramada
+                        this.form.idCirugiaProgramada
                 );
             }
         }
