@@ -6140,8 +6140,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -6489,21 +6487,18 @@ __webpack_require__.r(__webpack_exports__);
     handleSeleccionarClick: function handleSeleccionarClick(value) {
       //this.paciente = value;
       this.form.idCirugiaProgramada = value.SecCirPro;
-      this.form.paciente = value.NombrePaciente;
-      this.form.historia_clinica = value.HistoriaClinica;
-      this.form.fecha = value.FechaProgramada; //this.form.edad = value.HistoriaClinica;
-      //this.form.sexo = value.HistoriaClinica;
-      //this.form.estatura = value.HistoriaClinica;
-      //this.form.peso = value.HistoriaClinica;
-      //this.form.ocupacion_actual = value.HistoriaClinica;
-      //this.form.servicio = value.HistoriaClinica;
-
-      this.form.sala = value.Sala;
-      this.form.cama = value.Cama;
-      this.form.cirujano = value.Cirujano;
-      this.form.anestesiologo = value.Anestesiologo;
-      this.form.quirofano = value.Quirofano;
-      this.form.operacion_propuesta = value.Procedimiento;
+      this.form.paciente = value.nombrePaciente;
+      this.form.historia_clinica = value.historiaClinica;
+      this.form.fecha = value.fechaProgramada;
+      this.form.edad = value.edad;
+      this.form.sexo = value.sexo;
+      this.form.sala = value.sala;
+      this.form.cama = value.cama;
+      this.form.id_diagnostico = value.id_diagnostico;
+      this.form.cirujano = value.cirujano;
+      this.form.anestesiologo = value.anestesiologo;
+      this.form.quirofano = value.quirofano;
+      this.form.operacion_propuesta = value.procedimiento;
       this.$modal.hide("ListaCirugiaProgramadaPaciente");
 
       if (this.$refs.revisionSistema != null) {
@@ -9402,23 +9397,23 @@ __webpack_require__.r(__webpack_exports__);
       },
       columns: [{
         label: "Paciente",
-        field: "NombrePaciente",
+        field: "nombrePaciente",
         type: "String"
       }, {
         label: "Cirujano",
-        field: "Cirujano",
+        field: "cirujano",
         type: "String"
       }, {
         label: "Anestesiologo",
-        field: "Anestesiologo",
+        field: "anestesiologo",
         type: "String"
       }, {
         label: "Quirofano",
-        field: "Quirofano",
+        field: "quirofano",
         type: "String"
       }, {
         label: "Procedimiento",
-        field: "Procedimiento",
+        field: "procedimiento",
         type: "String"
       }]
     };
@@ -9455,37 +9450,135 @@ __webpack_require__.r(__webpack_exports__);
       var loader = that.$loading.show();
       axios.post(url, that.form).then(function (response) {
         var listaCirugiaProgramadaPaciente = [];
+        response.data.listaCirugiaProgramadaPaciente.forEach(function (lista) {
+          var objeto = {};
+          objeto.SecCirPro = lista.SecCirPro;
+          objeto.nombrePaciente = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProNomPac);
+          objeto.historiaClinica = lista.CirProHisCli;
+          objeto.fechaProgramada = lista.CirProFecPro;
 
-        for (var i = 0; i < response.data.listaCirugiaProgramadaPaciente.length; i++) {
-          var objeto = {
-            Secuencia: response.data.listaCirugiaProgramadaPaciente[i].Secuencia,
-            SecCirPro: response.data.listaCirugiaProgramadaPaciente[i].SecCirPro,
-            HoraProgramada: response.data.listaCirugiaProgramadaPaciente[i].HoraProgramada,
-            HistoriaClinica: response.data.listaCirugiaProgramadaPaciente[i].HistoriaClinica,
-            NombrePaciente: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.listaCirugiaProgramadaPaciente[i].NombrePaciente),
-            Sala: response.data.listaCirugiaProgramadaPaciente[i].Sala,
-            Cama: response.data.listaCirugiaProgramadaPaciente[i].Cama,
-            Cirujano: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.listaCirugiaProgramadaPaciente[i].Cirujano),
-            Anestesiologo: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.listaCirugiaProgramadaPaciente[i].Anestesiologo),
-            Circulante: response.data.listaCirugiaProgramadaPaciente[i].Circulante,
-            Instrumentista: response.data.listaCirugiaProgramadaPaciente[i].Instrumentista,
-            Ayudante: response.data.listaCirugiaProgramadaPaciente[i].Ayudante,
-            Quirofano: response.data.listaCirugiaProgramadaPaciente[i].Quirofano,
-            Procedimiento: that.$funcionesGlobales.toCapitalFirstAllWords(response.data.listaCirugiaProgramadaPaciente[i].Procedimiento),
-            Observacion: response.data.listaCirugiaProgramadaPaciente[i].Observacion,
-            FechaQxInicio: response.data.listaCirugiaProgramadaPaciente[i].FechaQxInicio,
-            FechaQxFin: response.data.listaCirugiaProgramadaPaciente[i].FechaQxFin,
-            Total: response.data.listaCirugiaProgramadaPaciente[i].Total,
-            CIRUGIA_HOSPI_AMBI: response.data.listaCirugiaProgramadaPaciente[i].CIRUGIA_HOSPI_AMBI,
-            TipoIngreso: response.data.listaCirugiaProgramadaPaciente[i].TipoIngreso,
-            TipoIngresoDescripcion: response.data.listaCirugiaProgramadaPaciente[i].TipoIngresoDescripcion,
-            FechaProgramada: response.data.listaCirugiaProgramadaPaciente[i].FechaProgramada
-          };
+          if (lista.paciente_lista != null) {
+            //alert("edad: " + that.$funcionesGlobales.calcularEdad(lista.paciente_lista.fecha_nacimiento));
+            objeto.edad = lista.paciente_lista.EDAD;
+            objeto.sexo = lista.paciente_lista.genero;
+          }
+
+          objeto.sala = lista.CirProSala;
+          objeto.cama = lista.CirProCama;
+
+          if (lista.paciente_hospitalizacion != null) {
+            objeto.id_diagnostico = lista.paciente_hospitalizacion.principal;
+          } //datos para mostrar en la tabla padre
+
+
+          objeto.cirujano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProCirujano);
+          objeto.anestesiologo = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProAnestesiologo);
+          objeto.quirofano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProCirujano);
+          objeto.procedimiento = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProProcedimiento);
           listaCirugiaProgramadaPaciente.push(objeto);
-        }
-
+        });
         that.listaCirugiaProgramadaPaciente = listaCirugiaProgramadaPaciente;
         loader.hide();
+        /* for (
+            let i = 0;
+            i < response.data.listaCirugiaProgramadaPaciente.length;
+            i++
+        ) { */
+
+        /* let objeto = {
+            Secuencia:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .Secuencia,
+            SecCirPro:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .SecCirPro,
+            FechaProgramada:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .CirProFecPro,
+            HoraProgramada:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .CirProHorPro,
+            HistoriaClinica:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .CirProHisCli,
+            NombrePaciente: that.$funcionesGlobales.toCapitalFirstAllWords(
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .CirProNomPac
+            ),
+            Sala:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .CirProSala,
+            Cama:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .CirProCama,
+            Cirujano: that.$funcionesGlobales.toCapitalFirstAllWords(
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .CirProCirujano
+            ),
+            Anestesiologo: that.$funcionesGlobales.toCapitalFirstAllWords(
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .CirProAnestesiologo
+            ),
+            Circulante:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .Circulante,
+            Instrumentista:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .Instrumentista,
+            Ayudante:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .Ayudante,
+            Quirofano:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .CirProQuirofano,
+            Procedimiento: that.$funcionesGlobales.toCapitalFirstAllWords(
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .CirProProcedimiento
+            ),
+            Observacion:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .CirProObservacion,
+            FechaQxInicio:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .FechaQxInicio,
+            FechaQxFin:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .FechaQxFin,
+             Genero:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .pacienteLista.genero,
+            FechaNacimiento:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .pacienteLista.fecha_nacimiento,
+            Diagnostico:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .pacienteHospitalizacion.principal,
+            Genero:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .paciente_lista.genero,
+             Genero:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .paciente_lista.genero,
+             //me quede aca
+            Total:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .Total,
+             CIRUGIA_HOSPI_AMBI:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .CIRUGIA_HOSPI_AMBI,
+            TipoIngreso:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .TipoIngreso,
+            TipoIngresoDescripcion:
+                response.data.listaCirugiaProgramadaPaciente[i]
+                    .TipoIngresoDescripcion,
+        }; */
+        //listaCirugiaProgramadaPaciente.push(objeto);
+        //}
+
+        /* that.listaCirugiaProgramadaPaciente = listaCirugiaProgramadaPaciente; */
+
+        /* loader.hide(); */
       })["catch"](function (error) {
         //Errores
         loader.hide();
@@ -64105,7 +64198,6 @@ var render = function() {
                                     staticClass:
                                       "col-lg-12 col-md-12 col-sm-12 text-left form-control",
                                     attrs: {
-                                      disabled: "",
                                       type: "text",
                                       placeholder: "Estatura"
                                     },
@@ -64154,7 +64246,6 @@ var render = function() {
                                     staticClass:
                                       "col-lg-12 col-md-12 col-sm-12 text-left form-control",
                                     attrs: {
-                                      disabled: "",
                                       type: "text",
                                       placeholder: "Peso"
                                     },

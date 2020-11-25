@@ -1,4 +1,5 @@
 export const funcionesGlobales = {
+
     //Metodo para Obtener la fecha de actualización de contraseña del usuario
     validarCambioClavePorFecha: (
         usCod,

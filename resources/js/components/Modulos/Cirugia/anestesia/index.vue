@@ -156,7 +156,6 @@
                                                 >Estatura:</label
                                             >
                                             <input
-                                                disabled
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Estatura"
@@ -171,7 +170,6 @@
                                                 >Peso:</label
                                             >
                                             <input
-                                                disabled
                                                 type="text"
                                                 class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                                 placeholder="Peso"
@@ -998,21 +996,19 @@ export default {
         handleSeleccionarClick(value) {
             //this.paciente = value;
             this.form.idCirugiaProgramada = value.SecCirPro;
-            this.form.paciente = value.NombrePaciente;
-            this.form.historia_clinica = value.HistoriaClinica;
-            this.form.fecha = value.FechaProgramada;
-            //this.form.edad = value.HistoriaClinica;
-            //this.form.sexo = value.HistoriaClinica;
-            //this.form.estatura = value.HistoriaClinica;
-            //this.form.peso = value.HistoriaClinica;
-            //this.form.ocupacion_actual = value.HistoriaClinica;
-            //this.form.servicio = value.HistoriaClinica;
-            this.form.sala = value.Sala;
-            this.form.cama = value.Cama;
-            this.form.cirujano = value.Cirujano;
-            this.form.anestesiologo = value.Anestesiologo;
-            this.form.quirofano = value.Quirofano;
-            this.form.operacion_propuesta = value.Procedimiento;
+            this.form.paciente = value.nombrePaciente;
+            this.form.historia_clinica = value.historiaClinica;
+            this.form.fecha = value.fechaProgramada;
+            this.form.edad = value.edad;
+            this.form.sexo = value.sexo;
+            this.form.sala = value.sala;
+            this.form.cama = value.cama;
+            this.form.id_diagnostico = value.id_diagnostico;
+            this.form.cirujano = value.cirujano;
+            this.form.anestesiologo = value.anestesiologo;
+            this.form.quirofano = value.quirofano;
+            this.form.operacion_propuesta = value.procedimiento;
+
             this.$modal.hide("ListaCirugiaProgramadaPaciente");
             if (this.$refs.revisionSistema != null) {
                 this.$refs.revisionSistema.cargarRevisionSistema();

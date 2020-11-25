@@ -62,4 +62,13 @@ class Paciente extends Model
         ,'etnico'
         ,'parroquia'
     ];
+
+    protected $appends = [
+        'EDAD'
+    ];
+
+    public function getEDADattribute()
+    {
+        return calculaEdad($this->fecha_nacimiento);
+    }
 }

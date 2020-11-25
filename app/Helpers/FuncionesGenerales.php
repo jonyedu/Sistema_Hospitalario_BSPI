@@ -22,7 +22,22 @@ date_default_timezone_set("America/Guayaquil");
 
     return $numero_nuevo;
 } */
-function convertBase64ToBinary($data){
+
+function calculaEdad($fechanacimiento)
+{
+    $fecha_naci = new DateTime($fechanacimiento);
+    $dateFormat = $fecha_naci->format("d/m/Y");
+    list($dia, $mes, $ano) = explode("/", $dateFormat);
+    $ano_diferencia  = date("Y") - $ano;
+    $mes_diferencia = date("m") - $mes;
+    $dia_diferencia   = date("d") - $dia;
+    if ($dia_diferencia < 0 || $mes_diferencia < 0)
+        $ano_diferencia--;
+    return $ano_diferencia;
+}
+
+function convertBase64ToBinary($data)
+{
     $img  = file_get_contents($data);
     $binary = DB::raw('CONVERT(VARBINARY(MAX), 0x' . bin2hex($img) . ')');
     return $binary;
@@ -67,6 +82,7 @@ function getFullTime()
     $time = $dateTime->format('Y-m-d H:i:s');
     return $time;
 }
-function addNumberToLeft($number, $length){
-    return substr(str_repeat(0, $length).$number, - $length);
+function addNumberToLeft($number, $length)
+{
+    return substr(str_repeat(0, $length) . $number, -$length);
 }

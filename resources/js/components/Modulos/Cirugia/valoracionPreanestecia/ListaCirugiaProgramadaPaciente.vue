@@ -66,27 +66,27 @@ export default {
             columns: [
                 {
                     label: "Paciente",
-                    field: "NombrePaciente",
+                    field: "nombrePaciente",
                     type: "String"
                 },
                 {
                     label: "Cirujano",
-                    field: "Cirujano",
+                    field: "cirujano",
                     type: "String"
                 },
                 {
                     label: "Anestesiologo",
-                    field: "Anestesiologo",
+                    field: "anestesiologo",
                     type: "String"
                 },
                 {
                     label: "Quirofano",
-                    field: "Quirofano",
+                    field: "quirofano",
                     type: "String"
                 },
                 {
                     label: "Procedimiento",
-                    field: "Procedimiento",
+                    field: "procedimiento",
                     type: "String"
                 }
             ]
@@ -127,41 +127,70 @@ export default {
                 .post(url, that.form)
                 .then(function(response) {
                     let listaCirugiaProgramadaPaciente = [];
-                    for (
+                            response.data.listaCirugiaProgramadaPaciente.forEach(lista => {
+                                let objeto = {};
+                                objeto.SecCirPro = lista.SecCirPro;
+                                objeto.nombrePaciente = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProNomPac);
+                                objeto.historiaClinica = lista.CirProHisCli;
+                                objeto.fechaProgramada = lista.CirProFecPro;
+                                if(lista.paciente_lista != null){
+                                    //alert("edad: " + that.$funcionesGlobales.calcularEdad(lista.paciente_lista.fecha_nacimiento));
+                                    objeto.edad = lista.paciente_lista.EDAD;
+                                    objeto.sexo = lista.paciente_lista.genero;
+                                }
+                                objeto.sala = lista.CirProSala;
+                                objeto.cama = lista.CirProCama;
+                                if(lista.paciente_hospitalizacion != null){
+                                    objeto.id_diagnostico = lista.paciente_hospitalizacion.principal;
+                                }
+                                //datos para mostrar en la tabla padre
+                                objeto.cirujano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProCirujano);
+                                objeto.anestesiologo = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProAnestesiologo);
+                                objeto.quirofano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProCirujano);
+                                objeto.procedimiento = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProProcedimiento);
+                                listaCirugiaProgramadaPaciente.push(objeto);
+                            });
+                            that.listaCirugiaProgramadaPaciente = listaCirugiaProgramadaPaciente;
+                            loader.hide();
+                    /* for (
                         let i = 0;
                         i < response.data.listaCirugiaProgramadaPaciente.length;
                         i++
-                    ) {
-                        let objeto = {
+                    ) { */
+
+                        /* let objeto = {
                             Secuencia:
                                 response.data.listaCirugiaProgramadaPaciente[i]
                                     .Secuencia,
                             SecCirPro:
                                 response.data.listaCirugiaProgramadaPaciente[i]
                                     .SecCirPro,
+                            FechaProgramada:
+                                response.data.listaCirugiaProgramadaPaciente[i]
+                                    .CirProFecPro,
                             HoraProgramada:
                                 response.data.listaCirugiaProgramadaPaciente[i]
-                                    .HoraProgramada,
+                                    .CirProHorPro,
                             HistoriaClinica:
                                 response.data.listaCirugiaProgramadaPaciente[i]
-                                    .HistoriaClinica,
+                                    .CirProHisCli,
                             NombrePaciente: that.$funcionesGlobales.toCapitalFirstAllWords(
                                 response.data.listaCirugiaProgramadaPaciente[i]
-                                    .NombrePaciente
+                                    .CirProNomPac
                             ),
                             Sala:
                                 response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Sala,
+                                    .CirProSala,
                             Cama:
                                 response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Cama,
+                                    .CirProCama,
                             Cirujano: that.$funcionesGlobales.toCapitalFirstAllWords(
                                 response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Cirujano
+                                    .CirProCirujano
                             ),
                             Anestesiologo: that.$funcionesGlobales.toCapitalFirstAllWords(
                                 response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Anestesiologo
+                                    .CirProAnestesiologo
                             ),
                             Circulante:
                                 response.data.listaCirugiaProgramadaPaciente[i]
@@ -174,23 +203,43 @@ export default {
                                     .Ayudante,
                             Quirofano:
                                 response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Quirofano,
+                                    .CirProQuirofano,
                             Procedimiento: that.$funcionesGlobales.toCapitalFirstAllWords(
                                 response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Procedimiento
+                                    .CirProProcedimiento
                             ),
                             Observacion:
                                 response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Observacion,
+                                    .CirProObservacion,
                             FechaQxInicio:
                                 response.data.listaCirugiaProgramadaPaciente[i]
                                     .FechaQxInicio,
                             FechaQxFin:
                                 response.data.listaCirugiaProgramadaPaciente[i]
                                     .FechaQxFin,
+
+                            Genero:
+                                response.data.listaCirugiaProgramadaPaciente[i]
+                                    .pacienteLista.genero,
+                            FechaNacimiento:
+                                response.data.listaCirugiaProgramadaPaciente[i]
+                                    .pacienteLista.fecha_nacimiento,
+                            Diagnostico:
+                                response.data.listaCirugiaProgramadaPaciente[i]
+                                    .pacienteHospitalizacion.principal,
+                            Genero:
+                                response.data.listaCirugiaProgramadaPaciente[i]
+                                    .paciente_lista.genero,
+
+                            Genero:
+                                response.data.listaCirugiaProgramadaPaciente[i]
+                                    .paciente_lista.genero,
+
+                            //me quede aca
                             Total:
                                 response.data.listaCirugiaProgramadaPaciente[i]
                                     .Total,
+
                             CIRUGIA_HOSPI_AMBI:
                                 response.data.listaCirugiaProgramadaPaciente[i]
                                     .CIRUGIA_HOSPI_AMBI,
@@ -200,14 +249,11 @@ export default {
                             TipoIngresoDescripcion:
                                 response.data.listaCirugiaProgramadaPaciente[i]
                                     .TipoIngresoDescripcion,
-                            FechaProgramada:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .FechaProgramada
-                        };
-                        listaCirugiaProgramadaPaciente.push(objeto);
-                    }
-                    that.listaCirugiaProgramadaPaciente = listaCirugiaProgramadaPaciente;
-                    loader.hide();
+                        }; */
+                        //listaCirugiaProgramadaPaciente.push(objeto);
+                    //}
+                    /* that.listaCirugiaProgramadaPaciente = listaCirugiaProgramadaPaciente; */
+                    /* loader.hide(); */
                 })
                 .catch(error => {
                     //Errores
