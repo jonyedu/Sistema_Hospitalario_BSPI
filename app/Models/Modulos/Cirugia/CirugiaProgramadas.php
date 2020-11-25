@@ -9,7 +9,7 @@ class CirugiaProgramadas extends Model
 {
    
     use HasFactory;
-    /**
+    /** 
      * @var string
      */
     protected $table = 'CirugiasProgramadas';
