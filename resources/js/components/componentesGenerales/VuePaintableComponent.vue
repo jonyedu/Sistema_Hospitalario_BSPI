@@ -336,32 +336,61 @@ export default {
             this.isActive = isActive;
         },
         async print() {
+
             const el = this.$refs.printMe;
             const options = {
                 type: "dataURL"
             };
             this.output = await this.$html2canvas(el, options);
             this.$emit("getOutput", this.output);
-            this.$swal({
-                icon: "success",
-                title: "Firma Realizada Correctamente",
-                text: "Se generó correctamente la firma."
+            this.flashMessage.show({
+                status: "success",
+                title: "Exito en Firma",
+                message: "Firma generado correctamente.",
+                clickable: true,
+                time: 5000,
+                icon: "/iconsflashMessage/success.svg",
+                customStyle: {
+                    flashMessageStyle: {
+                        background: "linear-gradient(#e66465, #9198e5)"
+                    }
+                }
             });
         },
-        saveCancas: function() {
-            this.print();
+        saveCancas: async function() {
+            var idFlashMessage = this.flashMessage.show({
+                status: "info",
+                title: "Generando Firma",
+                message: "Se está generando la firma, por favor espere.",
+                clickable: false,
+                time: 0,
+                icon: "/iconsflashMessage/time.gif",
+                blockClass: 'custom_msg',
+                customStyle: {
+                    flashMessageStyle: {
+                        background: "linear-gradient(#e66465, #9198e5)"
+                    }
+                }
+            });
+            //var loader = this.$loading.show();
+            await this.print();
+            this.flashMessage.deleteMessage(idFlashMessage);
             this.$refs.paintable.saveCurrentCanvasToStorage();
             this.isActive = !this.isActive;
             this.respuestaImgFirma = 1;
             this.$emit("RespuestaImgFirma", this.respuestaImgFirma);
+            //loader.hide();
         },
         deleteCanvas: function() {
             this.$refs.paintable.clearCanvas();
         }
     },
-    mounted: function() {},
+    mounted: function() {
+        this.flashMessage.setStrategy("multiple");
+    },
     data: function() {
         return {
+            idFlashMessage: 0,
             isActive: false,
             useEraser: false,
             isLineWidth: false,

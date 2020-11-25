@@ -7,13 +7,16 @@ import "vue-good-table/dist/vue-good-table.css";
 import router from "./router";
 import VueRouter from "vue-router";
 import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 import VueSweetalert2 from "vue-sweetalert2";
 import vSelect from "vue-select";
+import 'vue-select/dist/vue-select.css';
 import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import Paintable from 'vue-paintable';
 import VueHtml2Canvas from 'vue-html2canvas';
 import RegeneratorRuntime from "regenerator-runtime";
+import FlashMessage from '@smartweb/vue-flash-message';
 import App from "./components/App";
 import { funcionesGlobales } from "./funciones.js";
 import swal from 'sweetalert2';
@@ -21,7 +24,7 @@ window.Swal = swal;
 
 Vue.prototype.$funcionesGlobales = funcionesGlobales;
 
-import 'vue-select/dist/vue-select.css';
+
 
 const options = {
     /* position: 'bottom-start', */
@@ -49,6 +52,7 @@ Vue.use(Paintable, {
       localStorage.removeItem(key);
     }
 });
+Vue.use(FlashMessage);
 
 Vue.component("v-select", vSelect);
 
@@ -65,6 +69,11 @@ Vue.component(
 Vue.component(
     "vue-painttable",
     require("./components/componentesGenerales/VuePaintableComponent.vue").default
+);
+
+Vue.component(
+    "vue-confirmar-cancelar",
+    require("./components/componentesGenerales/VueConfirmarCancelarComponent.vue").default
 );
 
 Vue.component(

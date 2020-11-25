@@ -49,6 +49,7 @@ class CreateTbRegistroAnestesiaTable extends Migration
                 //seccion 3
                 $table->boolean('simple_altura_puncion')->default(0);
                 $table->boolean('continua_altura_puncion')->default(0);
+                $table->string('altura_puncion')->nullable();
                 //seccion 4
                 $table->boolean('puncion_lat')->default(0);
                 $table->boolean('linea_media')->default(0);
@@ -80,8 +81,8 @@ class CreateTbRegistroAnestesiaTable extends Migration
                 $table->unsignedInteger('p_muerto')->nullable();
                 /* Tecnicas Especiales */
                 $table->string('tecnicas_especiales', 100)->nullable();
-                $table->string('conducido_a', 100)->nullable();
-                $table->string('por', 100)->nullable();
+                $table->unsignedInteger('conducido_a')->nullable();
+                $table->unsignedInteger('por')->nullable();
                 $table->time('hora')->default('00:00:00')->nullable();
                 /* Datos para auditoria */
                 $table->string('des_campo1', 100)->nullable();

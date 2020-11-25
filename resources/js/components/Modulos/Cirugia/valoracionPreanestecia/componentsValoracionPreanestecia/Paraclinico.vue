@@ -950,7 +950,7 @@ export default {
         setSelectedTipoSangre(value) {
             let that = this;
             var loader = that.$loading.show();
-            let url = "/modulos/cirugia/valoracionPreanestecia/cargar_tipo_sangre_combo_box";
+            let url = "/modulos/parametrizacion/tipo_sangre/cargar_tipo_sangre_combo_box";
             if (value != null) {
                 this.form.frm_id_tipo_sangre = value.id_tipo_sangre;
             }

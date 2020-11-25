@@ -4,7 +4,7 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
                         <ol class="breadcrumb float-sm-left">
                             <li>
                                 <router-link
@@ -15,10 +15,13 @@
                                 >
                             </li>
                             <li><p>/</p></li>
-                            <li><p style="margin-left:10px"><span v-text="titulo_seleccionado"></span></p></li>
+                            <li>
+                                <p style="margin-left:10px">
+                                    <span v-text="titulo_seleccionado"></span>
+                                </p>
+                            </li>
                         </ol>
                     </div>
-                    &nbsp;
                     <!-- Seccion de los menu de botones: Historial clínico, Nueva, Guardar, etc y la Tabla Historial Clinico-->
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
@@ -38,7 +41,6 @@
                                             >
                                                 Nuevo
                                             </button>
-
                                             <template v-if="respuestaImprimir">
                                                 <button
                                                     type="button"
@@ -62,7 +64,7 @@
                     <!-- Cuerpo-->
                     <div
                         class="col-lg-12 col-md-12 col-sm-12"
-                        v-if="form.frm_idCirugiaProgramada != ''"
+                        v-if="form.idCirugiaProgramada != ''"
                     >
                         <!-- DATOS DEL PACIENTE -->
                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -74,50 +76,360 @@
                                     role="alert"
                                 >
                                     <div class="row">
-                                        <div class="col-sm-6 text-left">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                             <label class="col-form-label"
                                                 >Paciente:</label
                                             >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_paciente"
-                                            ></span>
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="N° Historia Clínica"
+                                                v-model="form.paciente"
+                                            />
                                         </div>
-                                        <div class="col-sm-6 text-left">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                             <label class="col-form-label"
+                                                >N° Historia Clínica:</label
+                                            >
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="N° Historia Clínica"
+                                                v-model="form.historia_clinica"
+                                            />
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-form-label"
+                                                >Fecha:</label
+                                            >
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Fecha"
+                                                v-model="form.fecha"
+                                            />
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Edad:</label
+                                            >
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Edad"
+                                                v-model="form.edad"
+                                            />
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Sexo:</label
+                                            >
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Sexo"
+                                                v-model="form.sexo"
+                                            />
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Estatura:</label
+                                            >
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Estatura"
+                                                v-model="form.estatura"
+                                            />
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Peso:</label
+                                            >
+                                            <input
+                                                disabled
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Peso"
+                                                v-model="form.peso"
+                                            />
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Ocupación Actual:</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Ocupación Actual"
+                                                v-model="form.ocupacion_actual"
+                                            />
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Servicio:</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Servicio"
+                                                v-model="form.servicio"
+                                            />
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Sala:</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Sala"
+                                                v-model="form.sala"
+                                            />
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Cama:</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Cama"
+                                                v-model="form.cama"
+                                            />
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Diagnóstico Preoperatorio:</label
+                                            >
+                                            <textarea
+                                                disabled
+                                                rows="1"
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Diagnóstico Preoperatorio"
+                                                v-model="form.diagnostico_preoperatorio"
+                                            />
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Diagnóstico Post-operatorio:</label
+                                            >
+                                            <!-- <textarea
+                                                rows="1"
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Diagnóstico Post-operatorio"
+                                                v-model="form.diagnostico_post_operatorio"
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedPosOperatorio"
+                                                        :value="form.id_pos_operatorio"
+                                                        :options="posOperatorios"
+                                                        label="display"
+                                                        @input="
+                                                            setSelectedPosOperatorio
+                                                        "
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Operación Propuesta:</label
+                                            >
+                                            <textarea
+                                                disabled
+                                                rows="1"
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Operación Propuesta"
+                                                v-model="form.operacion_propuesta"
+                                            />
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                                 >Cirujano:</label
                                             >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_cirujano"
-                                            ></span>
+                                            <!-- <textarea
+                                                rows="1"
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Cirujano"
+                                                v-model="form.cirujano"
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedCirujano"
+                                                        :value="form.id_cirujano"
+                                                        :options="cirujanos"
+                                                        label="display"
+                                                        @input="setSelectedCirujano"
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-6 text-left">
-                                            <label class="col-form-label"
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Ayudante:</label
+                                            >
+                                            <!-- <textarea
+                                                rows="1"
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Ayudante"
+                                                v-model="form.ayudante1"
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedAyudante1"
+                                                        :value="form.id_ayudante1"
+                                                        :options="ayudantes1"
+                                                        label="display1"
+                                                        @input="
+                                                            setSelectedAyudante
+                                                        "
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Operación Realizada:</label
+                                            >
+                                            <!-- <textarea
+                                                rows="1"
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Operación Realizada"
+                                                v-model="form.operacion_realizada"
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedPosOperatorio"
+                                                        :value="form.id_pos_operatorio"
+                                                        :options="posOperatorios"
+                                                        label="display"
+                                                        @input="
+                                                            setSelectedPosOperatorio
+                                                        "
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                                 >Anestesiologo:</label
                                             >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_anestesiologo"
-                                            ></span>
+                                            <!-- <textarea
+                                                rows="1"
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Anestesiologo"
+                                                v-model="form.anestesiologo"
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedAnestesiologo"
+                                                        :value="form.id_anestesiologo"
+                                                        :options="anestesiologos"
+                                                        label="display"
+                                                        @input="
+                                                            setSelectedAnestesiologo
+                                                        "
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-6 text-left">
-                                            <label class="col-form-label"
-                                                >Quirófano:</label
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Ayudante:</label
                                             >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_quirofano"
-                                            ></span>
+                                            <!-- <textarea
+                                                rows="1"
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Ayudante"
+                                                v-model="form.ayudante2"
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedAyudante2"
+                                                        :value="form.id_ayudante2"
+                                                        :options="ayudantes2"
+                                                        label="display2"
+                                                        @input="
+                                                            setSelectedAyudante
+                                                        "
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-12 text-left">
-                                            <label class="col-form-label"
-                                                >Procedimiento:</label
+                                        <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                            <label class="col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                                >Instrumentista:</label
                                             >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_procedimiento"
-                                            ></span>
+                                            <!-- <textarea
+                                                rows="1"
+                                                type="text"
+                                                class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                                placeholder="Instrumentista"
+                                                v-model="form.instrumentista"
+                                            /> -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <v-select
+                                                        v-model="selectedPosOperatorio"
+                                                        :value="form.id_pos_operatorio"
+                                                        :options="posOperatorios"
+                                                        label="display"
+                                                        @input="
+                                                            setSelectedPosOperatorio
+                                                        "
+                                                    >
+                                                        <template slot="no-options"
+                                                            >No existen datos</template
+                                                        >
+                                                    </v-select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -133,11 +445,18 @@
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                            <template v-if="form.frm_idCirugiaProgramada != null">
-                                <registro-anestesico :user="user" @RespuestaImprimir="respuestaImprimir= $event" :id-sec-cir-pro="form.frm_idCirugiaProgramada"></registro-anestesico>
-                                <!-- <div> -->
-
-                                <!-- </div> -->
+                            <template
+                                v-if="form.idCirugiaProgramada != null"
+                            >
+                                <registro-anestesico
+                                    :user="user"
+                                    @RespuestaImprimir="
+                                        respuestaImprimir = $event
+                                    "
+                                    :id-sec-cir-pro="
+                                        form.idCirugiaProgramada
+                                    "
+                                ></registro-anestesico>
                             </template>
                         </div>
                     </div>
@@ -168,10 +487,25 @@ export default {
     props: {
         user: {
             type: Object
-        },
+        }
     },
     data: function() {
         return {
+            selectedPosOperatorio:"",
+            posOperatorios:[],
+
+            selectedCirujano: "",
+            cirujanos: [],
+
+            selectedAnestesiologo: "",
+            anestesiologos: [],
+
+            selectedAyudante1: "",
+            ayudantes1: [],
+
+            selectedAyudante2: "",
+            ayudantes2: [],
+
             prefijo: "",
             //cirugia_id: 0,
             titulo_seleccionado: "Registro de anestecia",
@@ -179,18 +513,45 @@ export default {
             respuestaImprimir: 1,
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "",
-                frm_paciente: "",
-                frm_cirujano: "",
-                frm_anestesiologo: "",
-                frm_quirofano: "",
-                frm_procedimiento: ""
+                id_especializacion: 0,
+                id_pos_operatorio: 0,
+                id_cirujano: 0,
+                id_anestesiologo: 0,
+                id_ayudante1: 0,
+                id_ayudante2: 0,
+
+                idCirugiaProgramada: "0001",
+                paciente: "",
+                historia_clinica:"",
+                fecha:"00/00/0000",
+                edad:"",
+                sexo:"",
+                estatura:"",
+                peso:"",
+                ocupacion_actual:"",
+                servicio:"",
+                sala:"",
+                cama:"",
+                diagnostico_preoperatorio:"",
+                diagnostico_post_operatorio: "",
+                operacion_propuesta: "",
+                cirujano: "",
+                ayudante1: "",
+                operacion_realizada: "",
+                anestesiologo: "",
+                ayudante2: "",
+                instrumentista: "",
             },
-            paciente : null
+            paciente: null
         };
     },
     mounted: function() {
-       /*  var user = this.$attrs;
+        this.setSelectedPosOperatorio();
+        this.setSelectedCirujano();
+        this.setSelectedAnestesiologo();
+        this.setSelectedAyudante();
+
+        /*  var user = this.$attrs;
         console.log(user); */
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
         let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
@@ -213,18 +574,223 @@ export default {
         ); */
     },
     methods: {
+        setSelectedPosOperatorio(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            let url = "/modulos/parametrizacion/sala/cargar_sala_combo_box";
+            if (value != null) {
+                this.form.id_pos_operatorio = value.id_pos_operatorio;
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let posOperatorios = [];
+                    response.data.salas.forEach(posOperatorio => {
+                        let objeto = {};
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            posOperatorio.descripcion
+                        );
+                        objeto.id_pos_operatorio = posOperatorio.id;
+                        posOperatorios.push(objeto);
+                    });
+                    that.posOperatorios = posOperatorios;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedPosOperatorio",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        setSelectedCirujano(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            this.form.id_especializacion = 3;
+            let url =
+                "/modulos/admision/medico/cargar_cirujano";
+            if (value != null) {
+                this.form.id_cirujano = value.id_cirujano;
+                loader.hide();
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let cirujanos = [];
+                    response.data.medicos.forEach(medico => {
+                        let objeto = {};
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            medico.FULLNAME
+                        );
+                        objeto.id_cirujano = medico.id;
+                        cirujanos.push(objeto);
+                    });
+                    that.cirujanos = cirujanos;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedCirujano",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        setSelectedAnestesiologo(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            this.form.id_especializacion = 3;
+            let url =
+                "/modulos/admision/medico/cargar_medico_por_especializacion/" +
+                that.form.id_especializacion;
+            if (value != null) {
+                this.form.id_cirujano = value.id_cirujano;
+                loader.hide();
+
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let anestesiologos = [];
+                    response.data.medicos.forEach(medico => {
+                        let objeto = {};
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            medico.FULLNAME
+                        );
+                        objeto.id_anestesiologo = medico.id;
+                        anestesiologos.push(objeto);
+                    });
+                    that.anestesiologos = anestesiologos;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedAnestesiologo",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        setSelectedAyudante(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            let url =
+                "/modulos/admision/medico/cargar_medico_all"
+            if (value != null) {
+                if( value.id_ayudante1 != null){
+                    this.form.id_ayudante1 = value.id_ayudante1;
+                }
+                if( value.id_ayudante2 != null){
+                    this.form.id_ayudante2 = value.id_ayudante2;
+                }
+                loader.hide();
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let ayudante1 = [];
+                    let ayudante2 = [];
+                    response.data.medicos.forEach(medico => {
+                        //Ayudante 1
+                        let objeto1 = {};
+                        objeto1.display1 = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            medico.FULLNAME
+                        );
+                        objeto1.id_ayudante1 = medico.id;
+                        ayudante1.push(objeto1);
+                        //Ayudante 2
+                        let objeto2 = {};
+                        objeto2.display2 = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            medico.FULLNAME
+                        );
+                        objeto2.id_ayudante2 = medico.id;
+                        ayudante2.push(objeto2);
+                    });
+                    that.ayudantes1 = ayudante1;
+                    that.ayudantes2 = ayudante2;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedAyudante",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
         /* Metodos para Llamar al Modal y la Tabla */
         mostrarModalListaCirugiaPaciente() {
             this.$modal.show("ListaCirugiaProgramadaPaciente");
         },
         handleSeleccionarClick(value) {
             //this.paciente = value;
-            this.form.frm_idCirugiaProgramada = value.SecCirPro;
-            this.form.frm_paciente = value.NombrePaciente;
-            this.form.frm_cirujano = value.Cirujano;
-            this.form.frm_anestesiologo = value.Anestesiologo;
-            this.form.frm_quirofano = value.Quirofano;
-            this.form.frm_procedimiento = value.Procedimiento;
+            this.form.idCirugiaProgramada = value.SecCirPro;
+            this.form.paciente = value.NombrePaciente;
+            this.form.cirujano = value.Cirujano;
+            this.form.anestesiologo = value.Anestesiologo;
+            this.form.quirofano = value.Quirofano;
+            this.form.operacion_propuesta = value.Procedimiento;
             this.$modal.hide("ListaCirugiaProgramadaPaciente");
             if (this.$refs.revisionSistema != null) {
                 this.$refs.revisionSistema.cargarRevisionSistema();
@@ -249,7 +815,7 @@ export default {
             this.$refs.paraclinico.guardarModificar();
             this.respuestaImprimir = 1;
             /* if(this.respuestaFinProceso){
-                this.form.frm_idCirugiaProgramada = "";
+                this.form.idCirugiaProgramada = "";
             } */
         },
         onChangeTab(prevIndex, nextIndex) {
@@ -300,7 +866,7 @@ export default {
             if (this.respuestaImprimir) {
                 window.open(
                     "/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" +
-                    this.form.frm_idCirugiaProgramada
+                        this.form.idCirugiaProgramada
                 );
             }
         }

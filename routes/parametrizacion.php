@@ -41,6 +41,9 @@ Route::group(['prefix' => 'modulos/parametrizacion', 'middleware' => ['auth:web'
 
     });
 
+
+
+
     /* SubModulo Submodulo */
     Route::namespace('Modulos\Parametrizacion\SubModulo')->prefix('sub_modulo')->group(function () {
         Route::get('cargar_sub_modulo_combo_box/{id}', 'SubModuloApiController@cargarSubModuloComboBox');
@@ -48,5 +51,20 @@ Route::group(['prefix' => 'modulos/parametrizacion', 'middleware' => ['auth:web'
         Route::post('modificar_sub_modulo', 'SubModuloApiController@modificarSubModulo');
         Route::post('guardar_sub_modulo', 'SubModuloApiController@guardarSubModulo');
         Route::delete('eliminar_sub_modulo/{id}', 'SubModuloApiController@eliminarSubModulo');
+    });
+
+    /* SubModulo Tipo Sangre */
+    Route::namespace('Modulos\Parametrizacion\TipoSangre')->prefix('tipo_sangre')->group(function () {
+        Route::get('cargar_tipo_sangre_combo_box', 'TipoSangreApiController@cargarTipoSangreComboBox');
+
+    });
+
+    /* SubModulo Sala */
+    Route::namespace('Modulos\Parametrizacion\Sala')->prefix('sala')->group(function () {
+        Route::get('cargar_sala_combo_box', 'SalaApiController@cargarSalaComboBox');
+        /* Route::get('cargar_sub_modulo_table', 'SubModuloApiController@cargarSubModuloTabla');
+        Route::post('modificar_sub_modulo', 'SubModuloApiController@modificarSubModulo');
+        Route::post('guardar_sub_modulo', 'SubModuloApiController@guardarSubModulo');
+        Route::delete('eliminar_sub_modulo/{id}', 'SubModuloApiController@eliminarSubModulo'); */
     });
 });

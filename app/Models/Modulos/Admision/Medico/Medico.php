@@ -52,4 +52,13 @@ class Medico extends Model
     {
         return $this->hasOne('App\Models\Modulos\Admision\Medico\MedicoSellos', 'medico', 'id');
     }
+
+    protected $appends = [
+        'FULLNAME'
+    ];
+
+    public function getFULLNAMEattribute()
+    {
+        return $this->nombres . " " . $this->apellidos;
+    }
 }

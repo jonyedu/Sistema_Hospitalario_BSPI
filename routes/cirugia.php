@@ -43,8 +43,6 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::post('guardar_modificar_examen_fisico', 'ExamenFisicoApiController@guardarModificarExamenFisico');
 
         /* Paraclinico */
-        //Cargar Combobox Tipo Sangre
-        Route::get('cargar_tipo_sangre_combo_box', 'ParaclinicoApiController@cargarTipoSangreComboBox');
         //Cargar en los Campos
         Route::get('cargar_paraclinico_campo/{idSecCirPro}', 'ParaclinicoApiController@cargarParaclinicoCampo');
         //Guardar o Modificar
@@ -57,14 +55,14 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::post('agentes/guardado/{registro_id}', 'DatosAgentesController@guardarDatosAgentes');
         Route::get('agentes/{tipo}', 'DatosAgentesController@obtenerAgenteAnestesiaJson');
         Route::post('registrar', 'DatosAgentesController@guardarDatosAgentes');
-        Route::post('registro_tipo_agente/post', 'TipoAgenteAnestesiaController@store');
+        //Route::post('registro_tipo_agente/post', 'TipoAgenteAnestesiaController@store');
 
         Route::get('cargar_tipo_posiciones_combo_box', 'AgenteAnestesiaController@cargarAgenteTipoPosicionComboBox');
         Route::post('guardar_droga_administrada', 'DrogasAdministradasController@guardarDrogaAdministradas');
         Route::post('modifcar_registro_anestesia', 'RegistroAnestesiaController@modifcarRegistroAnestesia');
         Route::post('guardar_registro_infusiones', 'RegistroInfusionesController@guardarRegistroInfusiones');
         Route::get('cargar_pdf_formulario_registro_anestesia/{idSecCirPro}', 'RegistroAnestesiaController@cargarPdfFormularioRegistroAnestesia');
-        Route::get('cargar_sello/{codigo_usu}', 'RegistroAnestesiaController@cargarSello');
+        Route::get('cargar_sello/{id_medico}', 'RegistroAnestesiaController@cargarSello');
         Route::post('guardar_firma_atencion', 'RegistroAnestesiaController@guardarFirmaPorAtencion');
         Route::post('guardar_img_grafica', 'RegistroAnestesiaController@guardarImnGrafica');
         Route::post('guardar_modificar_agente_text', 'AgenteTextController@guardarModificarAgenteText');
