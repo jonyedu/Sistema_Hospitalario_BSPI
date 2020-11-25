@@ -203,21 +203,21 @@ class RegistroAnestesiaController extends Controller
             try {
 
                 // CARGA DATOS DE EL REGISTRO DE ANESTESIA
-              
+
                 //  $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
-                
+
                 // $datosValoracionPreanestesica = RegistroAnestesia::where('SecCirPro', $idSecCirPro)
                 //     ->where('status', '1')
                 //     ->with('drogaAdministradaRpt','graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt')
                 //     ->first();
                 //   $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia',['datosValoracionPreanestesica' => $datosValoracionPreanestesica]);
-                //  return $pdf->stream($nombreArchivo); 
+                //  return $pdf->stream($nombreArchivo);
                  //FINALIZA CARGA DATOS DE EL REGISTRO DE ANESTESIA
 
                 //LISTAR CIRUGIAS PROGRAMADAS
 
                 //  $datosValoracionPreanestesica = CirugiaProgramadas::where('CirProFecPro', $idSecCirPro)
-                //  ->with('pacienteLista','pacienteHospitalizacion') 
+                //  ->with('pacienteLista','pacienteHospitalizacion')
                 //  ->get();
 
                  //FIN DE LISTA
@@ -225,7 +225,7 @@ class RegistroAnestesiaController extends Controller
                 $TarifarioCirugua = TarifarioCirugia::select('codigo','descripcion')->where('descripcion','like', "%$idSecCirPro%" )
                 ->union($TarifarioProcedimiento);
                 $TarifarioMedicina = TarifarioMedicina::select('codigo','descripcion')->where('descripcion','like', "%$idSecCirPro%" )
-               //  ->with('pacienteLista','pacienteHospitalizacion') 
+               //  ->with('pacienteLista','pacienteHospitalizacion')
                 ->union($TarifarioCirugua)
                  ->get();
 
@@ -251,25 +251,5 @@ class RegistroAnestesiaController extends Controller
         if ($dia_diferencia < 0 || $mes_diferencia < 0)
             $ano_diferencia--;
         return $ano_diferencia;
-    }
-    function consultarTarifario($descripcion){
-       
-            try {
-        $TarifarioProcedimiento = TarifarioProcedimiento::select('codigo','descripcion')->where('descripcion','like', "%$descripcion%" );
-                $TarifarioCirugua = TarifarioCirugia::select('codigo','descripcion')->where('descripcion','like', "%$descripcion%" )
-                ->union($TarifarioProcedimiento);
-                $TarifarioMedicina = TarifarioMedicina::select('codigo','descripcion')->where('descripcion','like', "%$descripcion%" )
-               //  ->with('pacienteLista','pacienteHospitalizacion') 
-                ->union($TarifarioCirugua)
-                 ->get();
-
-
-               return  response()->json(['tarifariomedicina' => $TarifarioMedicina], 200);
-
-            } catch (Exception $e) {
-                return response()->json(['mensaje' => $e->getMessage()], 500);
-            }
-       
-
     }
 }
