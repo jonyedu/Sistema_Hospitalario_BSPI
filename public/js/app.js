@@ -4613,18 +4613,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 7:
                 $id = _context.sent;
-                //Guardar datos en la tabla tb_tipo_agente_anestesia
+                this.$emit("guardarCabecera", this.form.registro_anestesia_id); //Guardar datos en la tabla tb_tipo_agente_anestesia
                 // let urlTip = "/modulos/cirugia/anestesia/registro_tipo_agente/post";
                 // axios.post(urlTip, this.form).then(response => {
                 //     this.form.agente_id = response.data.id;
                 // });
                 // Poner el dato al inicio de la rejilla cuando se haya iniciado
+
                 this.agregaDatoEnRejilla(true, false, 250, "img/icons/induccion.png", {
                   system_name: "INDUCCION",
                   tipo: this.system_agente
                 });
 
-              case 9:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -4689,51 +4690,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         });
       }
-      /* let that = this;
-      if (!this.iniciado) return;
-      this.$swal({
-          title: "¿Desea cerrar el proceso?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Aceptar",
-          cancelButtonText: "Cancelar"
-      }).then(result => {
-          if (result.value) {
-              if (this.validarImgFirma) {
-                  // Poner el dato al final de la rejilla cuando se haya finalizado
-                  this.agregaDatoEnRejilla(
-                      true,
-                      false,
-                      0,
-                      "img/icons/fin_anestecia.png",
-                      {
-                          system_name: "FIN-ANESTECIA",
-                          tipo: this.system_agente
-                      }
-                  );
-                   //Se guardan los datos a la base
-                  this.guardarDrograAdministrada();
-                   //Cambia el estado
-              } else {
-                  this.flashMessage.show({
-                      status: "warning",
-                      title: "Advertencia al procesar firma",
-                      message: "Se necesita una firma por favor.",
-                      clickable: true,
-                      time: 0,
-                      icon: "/iconsflashMessage/warning.svg",
-                      customStyle: {
-                          flashMessageStyle: {
-                              background: "linear-gradient(#e66465, #9198e5)"
-                          }
-                      }
-                  });
-              }
-          }
-      }); */
-
     },
     getImgGrafica: function getImgGrafica(idFlashMessage1) {
       var _this6 = this;
@@ -5095,6 +5051,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
           }
         });
+        that.$emit("guardarCabecera", that.form.registro_anestesia_id);
         that.validarImprimir = 1;
         that.resConfirmarCancelar = false;
         that.$emit("RespuestaImprimir", that.validarImprimir);
@@ -6140,6 +6097,86 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -6169,17 +6206,10 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 1,
       form: {
-        /* Datos del paciente */
-        id_diagnostico: 0,
-        id_especializacion: 0,
-        id_pos_operatorio: 0,
-        id_cirujano: 0,
-        id_anestesiologo: 0,
-        id_ayudante1: 0,
-        id_ayudante2: 0,
-        id_instrumentista: 0,
-        id_tarifaria: 0,
         idCirugiaProgramada: "",
+        registro_anestesia_id: 0,
+
+        /* Datos del paciente */
         paciente: "",
         historia_clinica: "",
         fecha: "00/00/0000",
@@ -6192,19 +6222,23 @@ __webpack_require__.r(__webpack_exports__);
         sala: "",
         cama: "",
         diagnostico_preoperatorio: "",
-        diagnostico_post_operatorio: "",
+        id_diagnostico_pre: 0,
+        id_diagnostico: 0,
         operacion_propuesta: "",
-        cirujano: "",
-        ayudante1: "",
-        operacion_realizada: "",
-        anestesiologo: "",
-        ayudante2: "",
-        instrumentista: ""
-      },
-      paciente: null
+        id_cirujano: 0,
+        id_ayudante1: 0,
+        id_tarifaria: 0,
+        id_anestesiologo: 0,
+        id_ayudante2: 0,
+        id_instrumentista: 0,
+
+        /* Datos extras */
+        id_especializacion: 0
+      }
     };
   },
   mounted: function mounted() {
+    this.flashMessage.setStrategy("multiple");
     this.setSelectedCirujano();
     this.setSelectedAnestesiologo();
     this.setSelectedAyudante();
@@ -6235,6 +6269,34 @@ __webpack_require__.r(__webpack_exports__);
     ); */
   },
   methods: {
+    cargarDiagnosticoPorCodigo: function cargarDiagnosticoPorCodigo(id_diagnostico) {
+      if (id_diagnostico != "") {
+        var that = this;
+        var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_por_codigo/" + id_diagnostico;
+        var loader = that.$loading.show();
+        axios.get(url).then(function (response) {
+          //Obtiene los datos de Motivo Antecedentes
+          if (response.data.diagnostico != null && response.data.diagnostico != undefined) {
+            //Pre
+            that.form.diagnostico_preoperatorio = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
+            that.form.id_diagnostico_pre = response.data.diagnostico.id; //Post
+
+            that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
+            that.form.id_diagnostico = response.data.diagnostico.id;
+          }
+
+          loader.hide();
+        })["catch"](function (error) {
+          //Errores
+          loader.hide();
+          that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+          });
+        });
+      }
+    },
     setSelectedDiagnostico: function setSelectedDiagnostico(value) {
       var that = this;
 
@@ -6280,7 +6342,6 @@ __webpack_require__.r(__webpack_exports__);
     setSelectedCirujano: function setSelectedCirujano(value) {
       var that = this;
       var loader = that.$loading.show();
-      this.form.id_especializacion = 3;
       var url = "/modulos/admision/medico/cargar_cirujano";
 
       if (value != null) {
@@ -6329,7 +6390,7 @@ __webpack_require__.r(__webpack_exports__);
       var url = "/modulos/admision/medico/cargar_medico_por_especializacion/" + that.form.id_especializacion;
 
       if (value != null) {
-        this.form.id_cirujano = value.id_cirujano;
+        this.form.id_anestesiologo = value.id_anestesiologo;
         loader.hide();
       }
 
@@ -6493,8 +6554,9 @@ __webpack_require__.r(__webpack_exports__);
       this.form.edad = value.edad;
       this.form.sexo = value.sexo;
       this.form.sala = value.sala;
-      this.form.cama = value.cama;
-      this.form.id_diagnostico = value.id_diagnostico;
+      this.form.cama = value.cama; //this.form.id_diagnostico = value.id_diagnostico;
+
+      this.cargarDiagnosticoPorCodigo(value.id_diagnostico);
       this.form.cirujano = value.cirujano;
       this.form.anestesiologo = value.anestesiologo;
       this.form.quirofano = value.quirofano;
@@ -6507,6 +6569,46 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     /* Fin para llamar al Modal y la Tabla */
+    guardarCabecera: function guardarCabecera(registro_anestesia_id) {
+      var that = this;
+      var url = "";
+      var mensaje = "";
+      url = "/modulos/cirugia/anestesia/guardar_datos_registro";
+      this.form.registro_anestesia_id = registro_anestesia_id;
+      var loader = that.$loading.show();
+      axios.post(url, this.form).then(function (response) {
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar guardarCabecera",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores de validación
+        loader.hide();
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarDrograAdministrada",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      });
+    },
 
     /* Metodos para los form-wizard */
     onValidateTab: function onValidateTab(validationResult, activeTabIndex) {
@@ -9382,6 +9484,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     seleccionarButton: {
@@ -9419,6 +9522,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    this.flashMessage.setStrategy("multiple");
     /* this.titulo_seleccionado = "Citas Agendadas";
     let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
     let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
@@ -9463,7 +9567,7 @@ __webpack_require__.r(__webpack_exports__);
             objeto.sexo = lista.paciente_lista.genero;
           }
 
-          objeto.sala = lista.CirProSala;
+          objeto.sala = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProSala);
           objeto.cama = lista.CirProCama;
 
           if (lista.paciente_hospitalizacion != null) {
@@ -9479,121 +9583,47 @@ __webpack_require__.r(__webpack_exports__);
         });
         that.listaCirugiaProgramadaPaciente = listaCirugiaProgramadaPaciente;
         loader.hide();
-        /* for (
-            let i = 0;
-            i < response.data.listaCirugiaProgramadaPaciente.length;
-            i++
-        ) { */
-
-        /* let objeto = {
-            Secuencia:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .Secuencia,
-            SecCirPro:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .SecCirPro,
-            FechaProgramada:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .CirProFecPro,
-            HoraProgramada:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .CirProHorPro,
-            HistoriaClinica:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .CirProHisCli,
-            NombrePaciente: that.$funcionesGlobales.toCapitalFirstAllWords(
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .CirProNomPac
-            ),
-            Sala:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .CirProSala,
-            Cama:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .CirProCama,
-            Cirujano: that.$funcionesGlobales.toCapitalFirstAllWords(
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .CirProCirujano
-            ),
-            Anestesiologo: that.$funcionesGlobales.toCapitalFirstAllWords(
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .CirProAnestesiologo
-            ),
-            Circulante:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .Circulante,
-            Instrumentista:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .Instrumentista,
-            Ayudante:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .Ayudante,
-            Quirofano:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .CirProQuirofano,
-            Procedimiento: that.$funcionesGlobales.toCapitalFirstAllWords(
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .CirProProcedimiento
-            ),
-            Observacion:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .CirProObservacion,
-            FechaQxInicio:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .FechaQxInicio,
-            FechaQxFin:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .FechaQxFin,
-             Genero:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .pacienteLista.genero,
-            FechaNacimiento:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .pacienteLista.fecha_nacimiento,
-            Diagnostico:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .pacienteHospitalizacion.principal,
-            Genero:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .paciente_lista.genero,
-             Genero:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .paciente_lista.genero,
-             //me quede aca
-            Total:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .Total,
-             CIRUGIA_HOSPI_AMBI:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .CIRUGIA_HOSPI_AMBI,
-            TipoIngreso:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .TipoIngreso,
-            TipoIngresoDescripcion:
-                response.data.listaCirugiaProgramadaPaciente[i]
-                    .TipoIngresoDescripcion,
-        }; */
-        //listaCirugiaProgramadaPaciente.push(objeto);
-        //}
-
-        /* that.listaCirugiaProgramadaPaciente = listaCirugiaProgramadaPaciente; */
-
-        /* loader.hide(); */
       })["catch"](function (error) {
         //Errores
         loader.hide();
 
         if (error.response.status == 421) {
-          that.$swal({
-            icon: "warning",
-            title: "Advertencia",
-            text: error.response.data.msg
+          /* that.$swal({
+              icon: "warning",
+              title: "Advertencia",
+              text: error.response.data.msg
+          }); */
+          that.flashMessage.show({
+            status: "warning",
+            title: "Error al procesar cargarListaCirugiaProgramadaPaciente",
+            message: error.response.data.msg,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/warning.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
           }); //that.errores.fecha = rror.response.data.msg;
         } else {
-          that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
+          /* that.$swal({
+              icon: "error",
+              title: "Existe un error",
+              text: error
+          }); */
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar cargarListaCirugiaProgramadaPaciente",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
           });
         }
       });
@@ -63233,9 +63263,7 @@ var render = function() {
           })
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("FlashMessage")
+      )
     ],
     1
   )
@@ -63916,1158 +63944,1244 @@ var render = function() {
             _vm._v(" "),
             _vm.form.idCirugiaProgramada != ""
               ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-                  _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "text-left col-lg-12 col-md-12 col-sm-12"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "alert alert-success alert-dismissible fade show",
-                            attrs: { role: "alert" }
-                          },
-                          [
-                            _c("div", { staticClass: "row" }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-4 col-md-4 col-sm-4 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-form-label" },
-                                    [_vm._v("Paciente:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.paciente,
-                                        expression: "form.paciente"
-                                      }
-                                    ],
+                  _c(
+                    "div",
+                    {
+                      staticClass: "card card-default collapsed-card card-green"
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-body",
+                          staticStyle: { display: "none" }
+                        },
+                        [
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                              [
+                                _c(
+                                  "div",
+                                  {
                                     staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      disabled: "",
-                                      type: "text",
-                                      placeholder: "N° Historia Clínica"
-                                    },
-                                    domProps: { value: _vm.form.paciente },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "paciente",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-4 col-md-4 col-sm-4 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-form-label" },
-                                    [_vm._v("N° Historia Clínica:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.historia_clinica,
-                                        expression: "form.historia_clinica"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      disabled: "",
-                                      type: "text",
-                                      placeholder: "N° Historia Clínica"
-                                    },
-                                    domProps: {
-                                      value: _vm.form.historia_clinica
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "historia_clinica",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-4 col-md-4 col-sm-4 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    { staticClass: "col-form-label" },
-                                    [_vm._v("Fecha:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.fecha,
-                                        expression: "form.fecha"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      disabled: "",
-                                      type: "text",
-                                      placeholder: "Fecha"
-                                    },
-                                    domProps: { value: _vm.form.fecha },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "fecha",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-1 col-md-1 col-sm-1 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Edad:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.edad,
-                                        expression: "form.edad"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      disabled: "",
-                                      type: "text",
-                                      placeholder: "Edad"
-                                    },
-                                    domProps: { value: _vm.form.edad },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "edad",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-1 col-md-1 col-sm-1 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Sexo:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.sexo,
-                                        expression: "form.sexo"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      disabled: "",
-                                      type: "text",
-                                      placeholder: "Sexo"
-                                    },
-                                    domProps: { value: _vm.form.sexo },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "sexo",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-1 col-md-1 col-sm-1 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Estatura:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.estatura,
-                                        expression: "form.estatura"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      type: "text",
-                                      placeholder: "Estatura"
-                                    },
-                                    domProps: { value: _vm.form.estatura },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "estatura",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-1 col-md-1 col-sm-1 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Peso:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.peso,
-                                        expression: "form.peso"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      type: "text",
-                                      placeholder: "Peso"
-                                    },
-                                    domProps: { value: _vm.form.peso },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "peso",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-2 col-md-2 col-sm-2 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Ocupación Actual:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.ocupacion_actual,
-                                        expression: "form.ocupacion_actual"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      type: "text",
-                                      placeholder: "Ocupación Actual"
-                                    },
-                                    domProps: {
-                                      value: _vm.form.ocupacion_actual
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "ocupacion_actual",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-2 col-md-2 col-sm-2 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Servicio:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.servicio,
-                                        expression: "form.servicio"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      type: "text",
-                                      placeholder: "Servicio"
-                                    },
-                                    domProps: { value: _vm.form.servicio },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "servicio",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-2 col-md-2 col-sm-2 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Sala:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.sala,
-                                        expression: "form.sala"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      type: "text",
-                                      placeholder: "Sala"
-                                    },
-                                    domProps: { value: _vm.form.sala },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "sala",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-2 col-md-2 col-sm-2 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Cama:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.cama,
-                                        expression: "form.cama"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      type: "text",
-                                      placeholder: "Cama"
-                                    },
-                                    domProps: { value: _vm.form.cama },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "cama",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-4 col-md-4 col-sm-4 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [
-                                      _vm._v(
-                                        "Diagnóstico\n                                            Preoperatorio:"
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value:
-                                          _vm.form.diagnostico_preoperatorio,
-                                        expression:
-                                          "\n                                                form.diagnostico_preoperatorio\n                                            "
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      disabled: "",
-                                      rows: "1",
-                                      type: "text",
-                                      placeholder: "Diagnóstico Preoperatorio"
-                                    },
-                                    domProps: {
-                                      value: _vm.form.diagnostico_preoperatorio
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "diagnostico_preoperatorio",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-4 col-md-4 col-sm-4 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [
-                                      _vm._v(
-                                        "Diagnóstico\n                                            Post-operatorio:"
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12"
-                                    },
-                                    [
+                                      "text-left col-lg-12 col-md-12 col-sm-12"
+                                  },
+                                  [
+                                    _c("div", { staticClass: "row" }, [
                                       _c(
                                         "div",
-                                        { staticClass: "form-group" },
+                                        {
+                                          staticClass:
+                                            "col-lg-6 col-md-6 col-sm-6 text-left"
+                                        },
                                         [
                                           _c(
-                                            "v-select",
-                                            {
-                                              attrs: {
-                                                taggable: "",
-                                                "push-tags": "",
-                                                value: _vm.form.id_diagnostico,
-                                                options: _vm.diagnosticos,
-                                                label: "display"
-                                              },
-                                              on: {
-                                                input:
-                                                  _vm.setSelectedDiagnostico
-                                              },
-                                              model: {
-                                                value: _vm.selectedDiagnostico,
-                                                callback: function($$v) {
-                                                  _vm.selectedDiagnostico = $$v
-                                                },
+                                            "label",
+                                            { staticClass: "col-form-label" },
+                                            [_vm._v("Paciente")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.form.paciente,
                                                 expression:
-                                                  "\n                                                        selectedDiagnostico\n                                                    "
+                                                  "\n                                                            form.paciente\n                                                        "
                                               }
-                                            },
-                                            [
-                                              _c(
-                                                "template",
-                                                { slot: "no-options" },
-                                                [
-                                                  _vm._v(
-                                                    "No existen\n                                                        datos"
-                                                  )
-                                                ]
-                                              )
                                             ],
-                                            2
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-4 col-md-4 col-sm-4 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Operación Propuesta:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.operacion_propuesta,
-                                        expression:
-                                          "\n                                                form.operacion_propuesta\n                                            "
-                                      }
-                                    ],
-                                    staticClass:
-                                      "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                    attrs: {
-                                      disabled: "",
-                                      rows: "1",
-                                      type: "text",
-                                      placeholder: "Operación Propuesta"
-                                    },
-                                    domProps: {
-                                      value: _vm.form.operacion_propuesta
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "operacion_propuesta",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-4 col-md-4 col-sm-4 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Cirujano:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12"
-                                    },
-                                    [
+                                            staticClass:
+                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                                            attrs: {
+                                              disabled: "",
+                                              type: "text",
+                                              placeholder: "N° Historia Clínica"
+                                            },
+                                            domProps: {
+                                              value: _vm.form.paciente
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "paciente",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
                                       _c(
                                         "div",
-                                        { staticClass: "form-group" },
+                                        {
+                                          staticClass:
+                                            "col-lg-3 col-md-3 col-sm-3 text-left"
+                                        },
                                         [
                                           _c(
-                                            "v-select",
-                                            {
-                                              attrs: {
-                                                value: _vm.form.id_cirujano,
-                                                options: _vm.cirujanos,
-                                                label: "display"
-                                              },
-                                              on: {
-                                                input: _vm.setSelectedCirujano
-                                              },
-                                              model: {
-                                                value: _vm.selectedCirujano,
-                                                callback: function($$v) {
-                                                  _vm.selectedCirujano = $$v
-                                                },
-                                                expression:
-                                                  "\n                                                        selectedCirujano\n                                                    "
-                                              }
-                                            },
+                                            "label",
+                                            { staticClass: "col-form-label" },
                                             [
-                                              _c(
-                                                "template",
-                                                { slot: "no-options" },
-                                                [
-                                                  _vm._v(
-                                                    "No existen\n                                                        datos"
-                                                  )
-                                                ]
+                                              _vm._v(
+                                                "N° Historia\n                                                        Clínica"
                                               )
-                                            ],
-                                            2
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-4 col-md-4 col-sm-4 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Ayudante:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12"
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "form-group" },
-                                        [
-                                          _c(
-                                            "v-select",
-                                            {
-                                              attrs: {
-                                                value: _vm.form.id_ayudante1,
-                                                options: _vm.ayudantes1,
-                                                label: "display1"
-                                              },
-                                              on: {
-                                                input: _vm.setSelectedAyudante
-                                              },
-                                              model: {
-                                                value: _vm.selectedAyudante1,
-                                                callback: function($$v) {
-                                                  _vm.selectedAyudante1 = $$v
-                                                },
-                                                expression:
-                                                  "\n                                                        selectedAyudante1\n                                                    "
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "template",
-                                                { slot: "no-options" },
-                                                [
-                                                  _vm._v(
-                                                    "No existen\n                                                        datos"
-                                                  )
-                                                ]
-                                              )
-                                            ],
-                                            2
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-4 col-md-4 col-sm-4 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Operación Realizada:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12"
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "form-group" },
-                                        [
-                                          _c(
-                                            "v-select",
-                                            {
-                                              attrs: {
-                                                taggable: "",
-                                                "push-tags": "",
-                                                value: _vm.form.id_tarifaria,
-                                                options: _vm.tarifarias,
-                                                label: "display"
-                                              },
-                                              on: {
-                                                input: _vm.setSelectedTarifaria
-                                              },
-                                              model: {
-                                                value: _vm.selectedTarifaria,
-                                                callback: function($$v) {
-                                                  _vm.selectedTarifaria = $$v
-                                                },
-                                                expression:
-                                                  "\n                                                        selectedTarifaria\n                                                    "
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "template",
-                                                { slot: "no-options" },
-                                                [
-                                                  _vm._v(
-                                                    "No existen\n                                                        datos"
-                                                  )
-                                                ]
-                                              )
-                                            ],
-                                            2
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-4 col-md-4 col-sm-4 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Anestesiologo:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12"
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        { staticClass: "form-group" },
-                                        [
-                                          _c(
-                                            "v-select",
-                                            {
-                                              attrs: {
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
                                                 value:
-                                                  _vm.form.id_anestesiologo,
-                                                options: _vm.anestesiologos,
-                                                label: "display"
-                                              },
-                                              on: {
-                                                input:
-                                                  _vm.setSelectedAnestesiologo
-                                              },
-                                              model: {
-                                                value:
-                                                  _vm.selectedAnestesiologo,
-                                                callback: function($$v) {
-                                                  _vm.selectedAnestesiologo = $$v
-                                                },
+                                                  _vm.form.historia_clinica,
                                                 expression:
-                                                  "\n                                                        selectedAnestesiologo\n                                                    "
+                                                  "\n                                                            form.historia_clinica\n                                                        "
                                               }
-                                            },
-                                            [
-                                              _c(
-                                                "template",
-                                                { slot: "no-options" },
-                                                [
-                                                  _vm._v(
-                                                    "No existen\n                                                        datos"
-                                                  )
-                                                ]
-                                              )
                                             ],
-                                            2
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-4 col-md-4 col-sm-4 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Ayudante:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12"
-                                    },
-                                    [
+                                            staticClass:
+                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                                            attrs: {
+                                              disabled: "",
+                                              type: "text",
+                                              placeholder: "N° Historia Clínica"
+                                            },
+                                            domProps: {
+                                              value: _vm.form.historia_clinica
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "historia_clinica",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
                                       _c(
                                         "div",
-                                        { staticClass: "form-group" },
+                                        {
+                                          staticClass:
+                                            "col-lg-3 col-md-3 col-sm-3 text-left"
+                                        },
                                         [
                                           _c(
-                                            "v-select",
-                                            {
-                                              attrs: {
-                                                value: _vm.form.id_ayudante2,
-                                                options: _vm.ayudantes2,
-                                                label: "display2"
-                                              },
-                                              on: {
-                                                input: _vm.setSelectedAyudante
-                                              },
-                                              model: {
-                                                value: _vm.selectedAyudante2,
-                                                callback: function($$v) {
-                                                  _vm.selectedAyudante2 = $$v
-                                                },
-                                                expression:
-                                                  "\n                                                        selectedAyudante2\n                                                    "
+                                            "label",
+                                            { staticClass: "col-form-label" },
+                                            [_vm._v("Fecha")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.form.fecha,
+                                                expression: "form.fecha"
                                               }
-                                            },
-                                            [
-                                              _c(
-                                                "template",
-                                                { slot: "no-options" },
-                                                [
-                                                  _vm._v(
-                                                    "No existen\n                                                        datos"
-                                                  )
-                                                ]
-                                              )
                                             ],
-                                            2
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "col-lg-4 col-md-4 col-sm-4 text-left"
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    },
-                                    [_vm._v("Instrumentista:")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "col-lg-12 col-md-12 col-sm-12"
-                                    },
-                                    [
+                                            staticClass:
+                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                                            attrs: {
+                                              disabled: "",
+                                              type: "text",
+                                              placeholder: "Fecha"
+                                            },
+                                            domProps: { value: _vm.form.fecha },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "fecha",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
                                       _c(
                                         "div",
-                                        { staticClass: "form-group" },
+                                        {
+                                          staticClass:
+                                            "col-lg-1 col-md-1 col-sm-1 text-left"
+                                        },
                                         [
                                           _c(
-                                            "v-select",
+                                            "label",
                                             {
-                                              attrs: {
-                                                value:
-                                                  _vm.form.id_instrumentista,
-                                                options: _vm.instrumentistas,
-                                                label: "display3"
-                                              },
-                                              on: {
-                                                input: _vm.setSelectedAyudante
-                                              },
-                                              model: {
-                                                value:
-                                                  _vm.selectedInstrumentista,
-                                                callback: function($$v) {
-                                                  _vm.selectedInstrumentista = $$v
-                                                },
-                                                expression:
-                                                  "\n                                                        selectedInstrumentista\n                                                    "
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [_vm._v("Edad")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.form.edad,
+                                                expression: "form.edad"
                                               }
+                                            ],
+                                            staticClass:
+                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                                            attrs: {
+                                              disabled: "",
+                                              type: "text",
+                                              placeholder: "Edad"
+                                            },
+                                            domProps: { value: _vm.form.edad },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "edad",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-1 col-md-1 col-sm-1 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [_vm._v("Sexo")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.form.sexo,
+                                                expression: "form.sexo"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                                            attrs: {
+                                              disabled: "",
+                                              type: "text",
+                                              placeholder: "Sexo"
+                                            },
+                                            domProps: { value: _vm.form.sexo },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "sexo",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-1 col-md-1 col-sm-1 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [_vm._v("Est.")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.form.estatura,
+                                                expression:
+                                                  "\n                                                            form.estatura\n                                                        "
+                                              }
+                                            ],
+                                            staticClass:
+                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                                            attrs: {
+                                              type: "text",
+                                              placeholder: "Estatura"
+                                            },
+                                            domProps: {
+                                              value: _vm.form.estatura
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "estatura",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-1 col-md-1 col-sm-1 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [_vm._v("Peso")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.form.peso,
+                                                expression: "form.peso"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                                            attrs: {
+                                              type: "text",
+                                              placeholder: "Peso"
+                                            },
+                                            domProps: { value: _vm.form.peso },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "peso",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-3 col-md-3 col-sm-3 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Ocupación\n                                                        Actual"
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm.form.ocupacion_actual,
+                                                expression:
+                                                  "\n                                                            form.ocupacion_actual\n                                                        "
+                                              }
+                                            ],
+                                            staticClass:
+                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                                            attrs: {
+                                              type: "text",
+                                              placeholder: "Ocupación Actual"
+                                            },
+                                            domProps: {
+                                              value: _vm.form.ocupacion_actual
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "ocupacion_actual",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-2 col-md-2 col-sm-2 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [_vm._v("Servicio")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.form.servicio,
+                                                expression:
+                                                  "\n                                                            form.servicio\n                                                        "
+                                              }
+                                            ],
+                                            staticClass:
+                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                                            attrs: {
+                                              type: "text",
+                                              placeholder: "Servicio"
+                                            },
+                                            domProps: {
+                                              value: _vm.form.servicio
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "servicio",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-2 col-md-2 col-sm-2 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [_vm._v("Sala")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.form.sala,
+                                                expression: "form.sala"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                                            attrs: {
+                                              type: "text",
+                                              placeholder: "Sala"
+                                            },
+                                            domProps: { value: _vm.form.sala },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "sala",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-1 col-md-1 col-sm-1 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [_vm._v("Cama")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.form.cama,
+                                                expression: "form.cama"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                                            attrs: {
+                                              type: "text",
+                                              placeholder: "Cama"
+                                            },
+                                            domProps: { value: _vm.form.cama },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "cama",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-4 col-md-4 col-sm-4 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Diagnóstico\n                                                        Preoperatorio"
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("textarea", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm.form
+                                                    .diagnostico_preoperatorio,
+                                                expression:
+                                                  "\n                                                            form.diagnostico_preoperatorio\n                                                        "
+                                              }
+                                            ],
+                                            staticClass:
+                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                                            attrs: {
+                                              disabled: "",
+                                              rows: "1",
+                                              type: "text",
+                                              placeholder:
+                                                "Diagnóstico Preoperatorio"
+                                            },
+                                            domProps: {
+                                              value:
+                                                _vm.form
+                                                  .diagnostico_preoperatorio
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "diagnostico_preoperatorio",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-4 col-md-4 col-sm-4 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Diagnóstico\n                                                        Post-operatorio"
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12"
                                             },
                                             [
                                               _c(
-                                                "template",
-                                                { slot: "no-options" },
+                                                "div",
+                                                { staticClass: "form-group" },
                                                 [
-                                                  _vm._v(
-                                                    "No existen\n                                                        datos"
+                                                  _c(
+                                                    "v-select",
+                                                    {
+                                                      attrs: {
+                                                        taggable: "",
+                                                        "push-tags": "",
+                                                        value:
+                                                          _vm.form
+                                                            .id_diagnostico,
+                                                        options:
+                                                          _vm.diagnosticos,
+                                                        label: "display"
+                                                      },
+                                                      on: {
+                                                        input:
+                                                          _vm.setSelectedDiagnostico
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.selectedDiagnostico,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.selectedDiagnostico = $$v
+                                                        },
+                                                        expression:
+                                                          "\n                                                                    selectedDiagnostico\n                                                                "
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "template",
+                                                        { slot: "no-options" },
+                                                        [
+                                                          _vm._v(
+                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    2
                                                   )
-                                                ]
+                                                ],
+                                                1
                                               )
-                                            ],
-                                            2
+                                            ]
                                           )
-                                        ],
-                                        1
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-4 col-md-4 col-sm-4 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Operación\n                                                        Propuesta:"
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("textarea", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm.form.operacion_propuesta,
+                                                expression:
+                                                  "\n                                                            form.operacion_propuesta\n                                                        "
+                                              }
+                                            ],
+                                            staticClass:
+                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                                            attrs: {
+                                              disabled: "",
+                                              rows: "1",
+                                              type: "text",
+                                              placeholder: "Operación Propuesta"
+                                            },
+                                            domProps: {
+                                              value:
+                                                _vm.form.operacion_propuesta
+                                            },
+                                            on: {
+                                              input: function($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "operacion_propuesta",
+                                                  $event.target.value
+                                                )
+                                              }
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-4 col-md-4 col-sm-4 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [_vm._v("Cirujano")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "form-group" },
+                                                [
+                                                  _c(
+                                                    "v-select",
+                                                    {
+                                                      attrs: {
+                                                        value:
+                                                          _vm.form.id_cirujano,
+                                                        options: _vm.cirujanos,
+                                                        label: "display"
+                                                      },
+                                                      on: {
+                                                        input:
+                                                          _vm.setSelectedCirujano
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.selectedCirujano,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.selectedCirujano = $$v
+                                                        },
+                                                        expression:
+                                                          "\n                                                                    selectedCirujano\n                                                                "
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "template",
+                                                        { slot: "no-options" },
+                                                        [
+                                                          _vm._v(
+                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    2
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-4 col-md-4 col-sm-4 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [_vm._v("Ayudante")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "form-group" },
+                                                [
+                                                  _c(
+                                                    "v-select",
+                                                    {
+                                                      attrs: {
+                                                        value:
+                                                          _vm.form.id_ayudante1,
+                                                        options: _vm.ayudantes1,
+                                                        label: "display1"
+                                                      },
+                                                      on: {
+                                                        input:
+                                                          _vm.setSelectedAyudante
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.selectedAyudante1,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.selectedAyudante1 = $$v
+                                                        },
+                                                        expression:
+                                                          "\n                                                                    selectedAyudante1\n                                                                "
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "template",
+                                                        { slot: "no-options" },
+                                                        [
+                                                          _vm._v(
+                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    2
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-4 col-md-4 col-sm-4 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Operación\n                                                        Realizada:"
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "form-group" },
+                                                [
+                                                  _c(
+                                                    "v-select",
+                                                    {
+                                                      attrs: {
+                                                        taggable: "",
+                                                        "push-tags": "",
+                                                        value:
+                                                          _vm.form.id_tarifaria,
+                                                        options: _vm.tarifarias,
+                                                        label: "display"
+                                                      },
+                                                      on: {
+                                                        input:
+                                                          _vm.setSelectedTarifaria
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.selectedTarifaria,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.selectedTarifaria = $$v
+                                                        },
+                                                        expression:
+                                                          "\n                                                                    selectedTarifaria\n                                                                "
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "template",
+                                                        { slot: "no-options" },
+                                                        [
+                                                          _vm._v(
+                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    2
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-4 col-md-4 col-sm-4 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [_vm._v("Anestesiologo")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "form-group" },
+                                                [
+                                                  _c(
+                                                    "v-select",
+                                                    {
+                                                      attrs: {
+                                                        value:
+                                                          _vm.form
+                                                            .id_anestesiologo,
+                                                        options:
+                                                          _vm.anestesiologos,
+                                                        label: "display"
+                                                      },
+                                                      on: {
+                                                        input:
+                                                          _vm.setSelectedAnestesiologo
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.selectedAnestesiologo,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.selectedAnestesiologo = $$v
+                                                        },
+                                                        expression:
+                                                          "\n                                                                    selectedAnestesiologo\n                                                                "
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "template",
+                                                        { slot: "no-options" },
+                                                        [
+                                                          _vm._v(
+                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    2
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-4 col-md-4 col-sm-4 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [_vm._v("Ayudante")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "form-group" },
+                                                [
+                                                  _c(
+                                                    "v-select",
+                                                    {
+                                                      attrs: {
+                                                        value:
+                                                          _vm.form.id_ayudante2,
+                                                        options: _vm.ayudantes2,
+                                                        label: "display2"
+                                                      },
+                                                      on: {
+                                                        input:
+                                                          _vm.setSelectedAyudante
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.selectedAyudante2,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.selectedAyudante2 = $$v
+                                                        },
+                                                        expression:
+                                                          "\n                                                                    selectedAyudante2\n                                                                "
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "template",
+                                                        { slot: "no-options" },
+                                                        [
+                                                          _vm._v(
+                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    2
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-4 col-md-4 col-sm-4 text-left"
+                                        },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                                            },
+                                            [_vm._v("Instrumentista:")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "form-group" },
+                                                [
+                                                  _c(
+                                                    "v-select",
+                                                    {
+                                                      attrs: {
+                                                        value:
+                                                          _vm.form
+                                                            .id_instrumentista,
+                                                        options:
+                                                          _vm.instrumentistas,
+                                                        label: "display3"
+                                                      },
+                                                      on: {
+                                                        input:
+                                                          _vm.setSelectedAyudante
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.selectedInstrumentista,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.selectedInstrumentista = $$v
+                                                        },
+                                                        expression:
+                                                          "\n                                                                    selectedInstrumentista\n                                                                "
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "template",
+                                                        { slot: "no-options" },
+                                                        [
+                                                          _vm._v(
+                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    2
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          )
+                                        ]
                                       )
-                                    ]
-                                  )
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _vm._m(1)
-                          ]
-                        )
-                      ]
-                    )
-                  ]),
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._m(2)
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -65081,6 +65195,7 @@ var render = function() {
                                 "id-sec-cir-pro": _vm.form.idCirugiaProgramada
                               },
                               on: {
+                                guardarCabecera: _vm.guardarCabecera,
                                 RespuestaImprimir: function($event) {
                                   _vm.respuestaImprimir = $event
                                 }
@@ -65115,7 +65230,9 @@ var render = function() {
           })
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("FlashMessage")
     ],
     1
   )
@@ -65126,6 +65243,38 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [_c("p", [_vm._v("/")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [
+        _vm._v(
+          "\n                                DATOS DEL PACIENTE\n                            "
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-tool",
+            attrs: { type: "button", "data-card-widget": "collapse" }
+          },
+          [_c("i", { staticClass: "fas fa-plus" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-tool",
+            attrs: { type: "button", "data-card-widget": "remove" }
+          },
+          [_c("i", { staticClass: "fas fa-times" })]
+        )
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -69012,100 +69161,107 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "col-lg-8 col-md-8 col-sm-12 mt-2",
-        staticStyle: { "margin-left": "auto", "margin-right": "auto" }
-      },
-      [
-        _c("div", { staticClass: "form-inline" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-lg-4 col-md-4 col-sm-4",
-              attrs: { for: "fecha_hasta" }
-            },
-            [_vm._v("Buscar por Fecha")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.frm_fecha,
-                expression: "form.frm_fecha"
-              }
-            ],
-            staticClass: "form-control col-lg-6 col-md-6 col-sm-6",
-            attrs: {
-              type: "date",
-              id: "fecha_hasta",
-              placeholder: "Seleccione la fecha de fin"
-            },
-            domProps: { value: _vm.form.frm_fecha },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "frm_fecha", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-success col-lg-2 col-md-2 col-sm-2",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  return _vm.cargarListaCirugiaProgramadaPaciente()
-                }
-              }
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-search",
-                attrs: { "aria-hidden": "true" }
-              })
-            ]
-          )
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "row mt-3" }, [
+  return _c(
+    "div",
+    { staticClass: "row" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "col-lg-8 col-md-8 col-sm-12 mt-2",
+          staticStyle: { "margin-left": "auto", "margin-right": "auto" }
+        },
+        [
+          _c("div", { staticClass: "form-inline" }, [
             _c(
-              "div",
-              { staticClass: "col-lg-12 col-md-12 col-sm-12" },
-              [
-                _c("vuetable-component", {
-                  attrs: {
-                    "seleccionar-button": _vm.seleccionarButton,
-                    "anular-button": false,
-                    "modificar-button": false,
-                    "columns-data": _vm.columns,
-                    "rows-data": _vm.listaCirugiaProgramadaPaciente
-                  },
-                  on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
-                })
+              "label",
+              {
+                staticClass: "col-lg-4 col-md-4 col-sm-4",
+                attrs: { for: "fecha_hasta" }
+              },
+              [_vm._v("Buscar por Fecha")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.frm_fecha,
+                  expression: "form.frm_fecha"
+                }
               ],
-              1
+              staticClass: "form-control col-lg-6 col-md-6 col-sm-6",
+              attrs: {
+                type: "date",
+                id: "fecha_hasta",
+                placeholder: "Seleccione la fecha de fin"
+              },
+              domProps: { value: _vm.form.frm_fecha },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "frm_fecha", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-success col-lg-2 col-md-2 col-sm-2",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.cargarListaCirugiaProgramadaPaciente()
+                  }
+                }
+              },
+              [
+                _c("i", {
+                  staticClass: "fa fa-search",
+                  attrs: { "aria-hidden": "true" }
+                })
+              ]
             )
           ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "row mt-3" }, [
+              _c(
+                "div",
+                { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                [
+                  _c("vuetable-component", {
+                    attrs: {
+                      "seleccionar-button": _vm.seleccionarButton,
+                      "anular-button": false,
+                      "modificar-button": false,
+                      "columns-data": _vm.columns,
+                      "rows-data": _vm.listaCirugiaProgramadaPaciente
+                    },
+                    on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
+                  })
+                ],
+                1
+              )
+            ])
+          ])
         ])
-      ])
-    ])
-  ])
+      ]),
+      _vm._v(" "),
+      _c("FlashMessage")
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {

@@ -1911,7 +1911,7 @@
                 @respuestaConfirmarCancelar="respuestaConfirmarCancelar"
             ></vue-confirmar-cancelar>
         </modal>
-        <FlashMessage></FlashMessage>
+       <!--  <FlashMessage></FlashMessage> -->
     </div>
 </template>
 
@@ -2663,6 +2663,7 @@ export default {
             let $id = await axios.post(url, this.form).then(response => {
                 this.form.registro_anestesia_id = response.data.id;
             });
+            this.$emit("guardarCabecera", this.form.registro_anestesia_id);
             //Guardar datos en la tabla tb_tipo_agente_anestesia
             // let urlTip = "/modulos/cirugia/anestesia/registro_tipo_agente/post";
             // axios.post(urlTip, this.form).then(response => {
@@ -2733,54 +2734,6 @@ export default {
                     }
                 });
             }
-
-
-            /* let that = this;
-            if (!this.iniciado) return;
-            this.$swal({
-                title: "¿Desea cerrar el proceso?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Aceptar",
-                cancelButtonText: "Cancelar"
-            }).then(result => {
-                if (result.value) {
-                    if (this.validarImgFirma) {
-                        // Poner el dato al final de la rejilla cuando se haya finalizado
-                        this.agregaDatoEnRejilla(
-                            true,
-                            false,
-                            0,
-                            "img/icons/fin_anestecia.png",
-                            {
-                                system_name: "FIN-ANESTECIA",
-                                tipo: this.system_agente
-                            }
-                        );
-
-                        //Se guardan los datos a la base
-                        this.guardarDrograAdministrada();
-
-                        //Cambia el estado
-                    } else {
-                        this.flashMessage.show({
-                            status: "warning",
-                            title: "Advertencia al procesar firma",
-                            message: "Se necesita una firma por favor.",
-                            clickable: true,
-                            time: 0,
-                            icon: "/iconsflashMessage/warning.svg",
-                            customStyle: {
-                                flashMessageStyle: {
-                                    background: "linear-gradient(#e66465, #9198e5)"
-                                }
-                            }
-                        });
-                    }
-                }
-            }); */
         },
         async getImgGrafica(idFlashMessage1) {
             const la = this.$refs.printMe;
@@ -3134,6 +3087,7 @@ export default {
                             }
                         }
                     });
+                    that.$emit("guardarCabecera", that.form.registro_anestesia_id);
                     that.validarImprimir = 1;
                     that.resConfirmarCancelar = false;
                     that.$emit("RespuestaImprimir", that.validarImprimir);

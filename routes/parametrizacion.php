@@ -62,6 +62,7 @@ Route::group(['prefix' => 'modulos/parametrizacion', 'middleware' => ['auth:web'
     /* SubModulo Diagnostico */
      Route::namespace('Modulos\Parametrizacion\Diagnostico')->prefix('diagnostico')->group(function () {
         Route::get('cargar_diagnostico_combo_box/{buscar}', 'DiagnosticoApiController@cargarDiagnosticoComboBox');
+        Route::get('cargar_diagnostico_por_codigo/{id}', 'DiagnosticoApiController@cargarDiagnosticoPorCodigo');
 
     });
 
