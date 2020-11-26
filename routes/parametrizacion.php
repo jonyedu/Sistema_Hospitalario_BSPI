@@ -59,6 +59,19 @@ Route::group(['prefix' => 'modulos/parametrizacion', 'middleware' => ['auth:web'
 
     });
 
+    /* SubModulo Diagnostico */
+     Route::namespace('Modulos\Parametrizacion\Diagnostico')->prefix('diagnostico')->group(function () {
+        Route::get('cargar_diagnostico_combo_box/{buscar}', 'DiagnosticoApiController@cargarDiagnosticoComboBox');
+
+    });
+
+    /* SubModulo Tarifario */
+    Route::namespace('Modulos\Parametrizacion\Tarifario')->prefix('tarifario')->group(function () {
+        Route::get('consultar_tarifario/{descripcion}', 'TarifarioApiController@consultarTarifario');
+    });
+
+
+
     /* SubModulo Sala */
     Route::namespace('Modulos\Parametrizacion\Sala')->prefix('sala')->group(function () {
         Route::get('cargar_sala_combo_box', 'SalaApiController@cargarSalaComboBox');

@@ -6017,6 +6017,131 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -6026,8 +6151,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      selectedPosOperatorio: "",
-      posOperatorios: [],
+      selectedDiagnostico: "",
+      diagnosticos: [],
       selectedCirujano: "",
       cirujanos: [],
       selectedAnestesiologo: "",
@@ -6036,6 +6161,10 @@ __webpack_require__.r(__webpack_exports__);
       ayudantes1: [],
       selectedAyudante2: "",
       ayudantes2: [],
+      selectedInstrumentista: "",
+      instrumentistas: [],
+      selectedTarifaria: "",
+      tarifarias: [],
       prefijo: "",
       //cirugia_id: 0,
       titulo_seleccionado: "Registro de anestecia",
@@ -6043,13 +6172,16 @@ __webpack_require__.r(__webpack_exports__);
       respuestaImprimir: 1,
       form: {
         /* Datos del paciente */
+        id_diagnostico: 0,
         id_especializacion: 0,
         id_pos_operatorio: 0,
         id_cirujano: 0,
         id_anestesiologo: 0,
         id_ayudante1: 0,
         id_ayudante2: 0,
-        idCirugiaProgramada: "0001",
+        id_instrumentista: 0,
+        id_tarifaria: 0,
+        idCirugiaProgramada: "",
         paciente: "",
         historia_clinica: "",
         fecha: "00/00/0000",
@@ -6075,10 +6207,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.setSelectedPosOperatorio();
     this.setSelectedCirujano();
     this.setSelectedAnestesiologo();
     this.setSelectedAyudante();
+    this.setSelectedDiagnostico();
+    this.setSelectedTarifaria();
     /*  var user = this.$attrs;
     console.log(user); */
 
@@ -6104,48 +6237,47 @@ __webpack_require__.r(__webpack_exports__);
     ); */
   },
   methods: {
-    setSelectedPosOperatorio: function setSelectedPosOperatorio(value) {
+    setSelectedDiagnostico: function setSelectedDiagnostico(value) {
       var that = this;
-      var loader = that.$loading.show();
-      var url = "/modulos/parametrizacion/sala/cargar_sala_combo_box";
 
-      if (value != null) {
-        this.form.id_pos_operatorio = value.id_pos_operatorio;
+      if (this.selectedDiagnostico.id_diagnostico != null) {
+        this.form.id_diagnostico = this.selectedDiagnostico.id_diagnostico;
       }
 
-      axios.get(url).then(function (response) {
-        var posOperatorios = [];
-        response.data.salas.forEach(function (posOperatorio) {
-          var objeto = {};
-          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(posOperatorio.descripcion);
-          objeto.id_pos_operatorio = posOperatorio.id;
-          posOperatorios.push(objeto);
-        });
-        that.posOperatorios = posOperatorios;
-        loader.hide();
-      })["catch"](function (error) {
-        //Errores
-
-        /* that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
-        }); */
-        that.flashMessage.show({
-          status: "error",
-          title: "Error al procesar setSelectedPosOperatorio",
-          message: "Por favor comuníquese con el administrador. " + error,
-          clickable: true,
-          time: 0,
-          icon: "/iconsflashMessage/error.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-        loader.hide();
-      });
+      if (this.diagnosticos.length == 0) {
+        if (this.selectedDiagnostico != "") {
+          var loader = that.$loading.show();
+          var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_combo_box/" + this.selectedDiagnostico;
+          axios.get(url).then(function (response) {
+            var diagnosticos = [];
+            response.data.diagnosticos.forEach(function (diagnostico) {
+              var objeto = {};
+              objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(diagnostico.descripcion);
+              objeto.id_diagnostico = diagnostico.id;
+              diagnosticos.push(objeto);
+            });
+            that.diagnosticos = diagnosticos;
+            loader.hide();
+          })["catch"](function (error) {
+            that.flashMessage.show({
+              status: "error",
+              title: "Error al procesar setSelectedDiagnostico",
+              message: "Por favor comuníquese con el administrador. " + error,
+              clickable: true,
+              time: 0,
+              icon: "/iconsflashMessage/error.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
+              }
+            });
+            loader.hide();
+          });
+        }
+      } else {
+        this.diagnosticos = [];
+      }
     },
     setSelectedCirujano: function setSelectedCirujano(value) {
       var that = this;
@@ -6251,12 +6383,17 @@ __webpack_require__.r(__webpack_exports__);
           this.form.id_ayudante2 = value.id_ayudante2;
         }
 
+        if (value.id_instrumentista != null) {
+          this.form.id_instrumentista = value.id_instrumentista;
+        }
+
         loader.hide();
       }
 
       axios.get(url).then(function (response) {
         var ayudante1 = [];
         var ayudante2 = [];
+        var instrumentistas = [];
         response.data.medicos.forEach(function (medico) {
           //Ayudante 1
           var objeto1 = {};
@@ -6267,10 +6404,16 @@ __webpack_require__.r(__webpack_exports__);
           var objeto2 = {};
           objeto2.display2 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
           objeto2.id_ayudante2 = medico.id;
-          ayudante2.push(objeto2);
+          ayudante2.push(objeto2); //Instrumentista
+
+          var objeto3 = {};
+          objeto3.display3 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto3.id_instrumentista = medico.id;
+          instrumentistas.push(objeto3);
         });
         that.ayudantes1 = ayudante1;
         that.ayudantes2 = ayudante2;
+        that.instrumentistas = instrumentistas;
         loader.hide();
       })["catch"](function (error) {
         //Errores
@@ -6296,6 +6439,48 @@ __webpack_require__.r(__webpack_exports__);
         loader.hide();
       });
     },
+    setSelectedTarifaria: function setSelectedTarifaria(value) {
+      var that = this;
+
+      if (this.selectedTarifaria.id_tarifaria != null) {
+        this.form.id_tarifaria = this.selectedTarifaria.id_tarifaria;
+      }
+
+      if (this.tarifarias.length == 0) {
+        if (this.selectedTarifaria != "") {
+          var loader = that.$loading.show();
+          var url = "/modulos/parametrizacion/tarifario/consultar_tarifario/" + this.selectedTarifaria;
+          axios.get(url).then(function (response) {
+            var tarifariosMedicinas = [];
+            response.data.tarifariosMedicinas.forEach(function (tarifarioMedicina) {
+              var objeto = {};
+              objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(tarifarioMedicina.descripcion);
+              objeto.id_tarifaria = tarifarioMedicina.codigo;
+              tarifariosMedicinas.push(objeto);
+            });
+            that.tarifarias = tarifariosMedicinas;
+            loader.hide();
+          })["catch"](function (error) {
+            that.flashMessage.show({
+              status: "error",
+              title: "Error al procesar setSelectedDiagnostico",
+              message: "Por favor comuníquese con el administrador. " + error,
+              clickable: true,
+              time: 0,
+              icon: "/iconsflashMessage/error.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
+              }
+            });
+            loader.hide();
+          });
+        }
+      } else {
+        this.tarifarias = [];
+      }
+    },
 
     /* Metodos para Llamar al Modal y la Tabla */
     mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
@@ -6305,6 +6490,16 @@ __webpack_require__.r(__webpack_exports__);
       //this.paciente = value;
       this.form.idCirugiaProgramada = value.SecCirPro;
       this.form.paciente = value.NombrePaciente;
+      this.form.historia_clinica = value.HistoriaClinica;
+      this.form.fecha = value.FechaProgramada; //this.form.edad = value.HistoriaClinica;
+      //this.form.sexo = value.HistoriaClinica;
+      //this.form.estatura = value.HistoriaClinica;
+      //this.form.peso = value.HistoriaClinica;
+      //this.form.ocupacion_actual = value.HistoriaClinica;
+      //this.form.servicio = value.HistoriaClinica;
+
+      this.form.sala = value.Sala;
+      this.form.cama = value.Cama;
       this.form.cirujano = value.Cirujano;
       this.form.anestesiologo = value.Anestesiologo;
       this.form.quirofano = value.Quirofano;
@@ -63984,7 +64179,7 @@ var render = function() {
                                 "div",
                                 {
                                   staticClass:
-                                    "col-lg-3 col-md-3 col-sm-3 text-left"
+                                    "col-lg-2 col-md-2 col-sm-2 text-left"
                                 },
                                 [
                                   _c(
@@ -64034,7 +64229,7 @@ var render = function() {
                                 "div",
                                 {
                                   staticClass:
-                                    "col-lg-3 col-md-3 col-sm-3 text-left"
+                                    "col-lg-2 col-md-2 col-sm-2 text-left"
                                 },
                                 [
                                   _c(
@@ -64082,7 +64277,7 @@ var render = function() {
                                 "div",
                                 {
                                   staticClass:
-                                    "col-lg-1 col-md-1 col-sm-1 text-left"
+                                    "col-lg-2 col-md-2 col-sm-2 text-left"
                                 },
                                 [
                                   _c(
@@ -64130,7 +64325,7 @@ var render = function() {
                                 "div",
                                 {
                                   staticClass:
-                                    "col-lg-1 col-md-1 col-sm-1 text-left"
+                                    "col-lg-2 col-md-2 col-sm-2 text-left"
                                 },
                                 [
                                   _c(
@@ -64187,7 +64382,11 @@ var render = function() {
                                       staticClass:
                                         "col-lg-12 col-md-12 col-sm-12 col-form-label"
                                     },
-                                    [_vm._v("Diagnóstico Preoperatorio:")]
+                                    [
+                                      _vm._v(
+                                        "Diagnóstico\n                                            Preoperatorio:"
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c("textarea", {
@@ -64198,7 +64397,7 @@ var render = function() {
                                         value:
                                           _vm.form.diagnostico_preoperatorio,
                                         expression:
-                                          "form.diagnostico_preoperatorio"
+                                          "\n                                                form.diagnostico_preoperatorio\n                                            "
                                       }
                                     ],
                                     staticClass:
@@ -64241,7 +64440,11 @@ var render = function() {
                                       staticClass:
                                         "col-lg-12 col-md-12 col-sm-12 col-form-label"
                                     },
-                                    [_vm._v("Diagnóstico Post-operatorio:")]
+                                    [
+                                      _vm._v(
+                                        "Diagnóstico\n                                            Post-operatorio:"
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -64259,30 +64462,34 @@ var render = function() {
                                             "v-select",
                                             {
                                               attrs: {
-                                                value:
-                                                  _vm.form.id_pos_operatorio,
-                                                options: _vm.posOperatorios,
+                                                taggable: "",
+                                                "push-tags": "",
+                                                value: _vm.form.id_diagnostico,
+                                                options: _vm.diagnosticos,
                                                 label: "display"
                                               },
                                               on: {
                                                 input:
-                                                  _vm.setSelectedPosOperatorio
+                                                  _vm.setSelectedDiagnostico
                                               },
                                               model: {
-                                                value:
-                                                  _vm.selectedPosOperatorio,
+                                                value: _vm.selectedDiagnostico,
                                                 callback: function($$v) {
-                                                  _vm.selectedPosOperatorio = $$v
+                                                  _vm.selectedDiagnostico = $$v
                                                 },
                                                 expression:
-                                                  "selectedPosOperatorio"
+                                                  "\n                                                        selectedDiagnostico\n                                                    "
                                               }
                                             },
                                             [
                                               _c(
                                                 "template",
                                                 { slot: "no-options" },
-                                                [_vm._v("No existen datos")]
+                                                [
+                                                  _vm._v(
+                                                    "No existen\n                                                        datos"
+                                                  )
+                                                ]
                                               )
                                             ],
                                             2
@@ -64317,7 +64524,8 @@ var render = function() {
                                         name: "model",
                                         rawName: "v-model",
                                         value: _vm.form.operacion_propuesta,
-                                        expression: "form.operacion_propuesta"
+                                        expression:
+                                          "\n                                                form.operacion_propuesta\n                                            "
                                       }
                                     ],
                                     staticClass:
@@ -64390,14 +64598,19 @@ var render = function() {
                                                 callback: function($$v) {
                                                   _vm.selectedCirujano = $$v
                                                 },
-                                                expression: "selectedCirujano"
+                                                expression:
+                                                  "\n                                                        selectedCirujano\n                                                    "
                                               }
                                             },
                                             [
                                               _c(
                                                 "template",
                                                 { slot: "no-options" },
-                                                [_vm._v("No existen datos")]
+                                                [
+                                                  _vm._v(
+                                                    "No existen\n                                                        datos"
+                                                  )
+                                                ]
                                               )
                                             ],
                                             2
@@ -64453,14 +64666,19 @@ var render = function() {
                                                 callback: function($$v) {
                                                   _vm.selectedAyudante1 = $$v
                                                 },
-                                                expression: "selectedAyudante1"
+                                                expression:
+                                                  "\n                                                        selectedAyudante1\n                                                    "
                                               }
                                             },
                                             [
                                               _c(
                                                 "template",
                                                 { slot: "no-options" },
-                                                [_vm._v("No existen datos")]
+                                                [
+                                                  _vm._v(
+                                                    "No existen\n                                                        datos"
+                                                  )
+                                                ]
                                               )
                                             ],
                                             2
@@ -64504,30 +64722,33 @@ var render = function() {
                                             "v-select",
                                             {
                                               attrs: {
-                                                value:
-                                                  _vm.form.id_pos_operatorio,
-                                                options: _vm.posOperatorios,
+                                                taggable: "",
+                                                "push-tags": "",
+                                                value: _vm.form.id_tarifaria,
+                                                options: _vm.tarifarias,
                                                 label: "display"
                                               },
                                               on: {
-                                                input:
-                                                  _vm.setSelectedPosOperatorio
+                                                input: _vm.setSelectedTarifaria
                                               },
                                               model: {
-                                                value:
-                                                  _vm.selectedPosOperatorio,
+                                                value: _vm.selectedTarifaria,
                                                 callback: function($$v) {
-                                                  _vm.selectedPosOperatorio = $$v
+                                                  _vm.selectedTarifaria = $$v
                                                 },
                                                 expression:
-                                                  "selectedPosOperatorio"
+                                                  "\n                                                        selectedTarifaria\n                                                    "
                                               }
                                             },
                                             [
                                               _c(
                                                 "template",
                                                 { slot: "no-options" },
-                                                [_vm._v("No existen datos")]
+                                                [
+                                                  _vm._v(
+                                                    "No existen\n                                                        datos"
+                                                  )
+                                                ]
                                               )
                                             ],
                                             2
@@ -64587,14 +64808,18 @@ var render = function() {
                                                   _vm.selectedAnestesiologo = $$v
                                                 },
                                                 expression:
-                                                  "selectedAnestesiologo"
+                                                  "\n                                                        selectedAnestesiologo\n                                                    "
                                               }
                                             },
                                             [
                                               _c(
                                                 "template",
                                                 { slot: "no-options" },
-                                                [_vm._v("No existen datos")]
+                                                [
+                                                  _vm._v(
+                                                    "No existen\n                                                        datos"
+                                                  )
+                                                ]
                                               )
                                             ],
                                             2
@@ -64650,14 +64875,19 @@ var render = function() {
                                                 callback: function($$v) {
                                                   _vm.selectedAyudante2 = $$v
                                                 },
-                                                expression: "selectedAyudante2"
+                                                expression:
+                                                  "\n                                                        selectedAyudante2\n                                                    "
                                               }
                                             },
                                             [
                                               _c(
                                                 "template",
                                                 { slot: "no-options" },
-                                                [_vm._v("No existen datos")]
+                                                [
+                                                  _vm._v(
+                                                    "No existen\n                                                        datos"
+                                                  )
+                                                ]
                                               )
                                             ],
                                             2
@@ -64702,29 +64932,32 @@ var render = function() {
                                             {
                                               attrs: {
                                                 value:
-                                                  _vm.form.id_pos_operatorio,
-                                                options: _vm.posOperatorios,
-                                                label: "display"
+                                                  _vm.form.id_instrumentista,
+                                                options: _vm.instrumentistas,
+                                                label: "display3"
                                               },
                                               on: {
-                                                input:
-                                                  _vm.setSelectedPosOperatorio
+                                                input: _vm.setSelectedAyudante
                                               },
                                               model: {
                                                 value:
-                                                  _vm.selectedPosOperatorio,
+                                                  _vm.selectedInstrumentista,
                                                 callback: function($$v) {
-                                                  _vm.selectedPosOperatorio = $$v
+                                                  _vm.selectedInstrumentista = $$v
                                                 },
                                                 expression:
-                                                  "selectedPosOperatorio"
+                                                  "\n                                                        selectedInstrumentista\n                                                    "
                                               }
                                             },
                                             [
                                               _c(
                                                 "template",
                                                 { slot: "no-options" },
-                                                [_vm._v("No existen datos")]
+                                                [
+                                                  _vm._v(
+                                                    "No existen\n                                                        datos"
+                                                  )
+                                                ]
                                               )
                                             ],
                                             2
