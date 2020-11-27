@@ -1950,10 +1950,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1975,6 +1975,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -16731,10 +16741,10 @@ exports.push([module.i, ".v-select{position:relative;font-family:inherit}.v-sele
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=style&index=0&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35173,15 +35183,15 @@ try {
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css& ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=style&index=0&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=style&index=0&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
+var content = __webpack_require__(/*! !../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico copy.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=style&index=0&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -57887,10 +57897,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&":
-/*!***********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=template&id=04ab6e60&":
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=template&id=04ab6e60& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -58246,7 +58256,7 @@ var render = function() {
                       _c(
                         "label",
                         { staticClass: "mr-2", attrs: { for: "temperatura" } },
-                        [_vm._v("TEMPERATURA")]
+                        [_vm._v("TEMPERATURAxx")]
                       ),
                       _vm._v(" "),
                       _c("input", {
@@ -59127,55 +59137,130 @@ var render = function() {
                                                               "1fr 1fr 1fr"
                                                           }
                                                         },
-                                                        _vm._l(
-                                                          columna.columnas,
-                                                          function(
-                                                            minutos_columna,
-                                                            index_minutos_columna
-                                                          ) {
-                                                            return _c(
-                                                              "div",
-                                                              {
-                                                                key: index_minutos_columna,
-                                                                staticClass:
-                                                                  "relative border-r"
+                                                        [
+                                                          _c("span", [
+                                                            _c("input", {
+                                                              staticStyle: {
+                                                                width: "20px",
+                                                                height: "20px"
                                                               },
-                                                              [
-                                                                minutos_columna.agentes
-                                                                  ? _vm._l(
-                                                                      minutos_columna.agentes,
-                                                                      function(
-                                                                        agente,
-                                                                        index_agente
-                                                                      ) {
-                                                                        return _c(
-                                                                          "img",
-                                                                          {
-                                                                            key: index_agente,
-                                                                            staticClass:
-                                                                              "figure-celds",
-                                                                            staticStyle: {
-                                                                              width:
-                                                                                "20px"
-                                                                            },
-                                                                            attrs: {
-                                                                              src:
-                                                                                "/" +
-                                                                                agente._src,
-                                                                              alt:
-                                                                                ""
-                                                                            }
-                                                                          }
-                                                                        )
+                                                              attrs: {
+                                                                type: "text"
+                                                              },
+                                                              domProps: {
+                                                                textContent: _vm._s(
+                                                                  index_columna
+                                                                )
+                                                              }
+                                                            })
+                                                          ]),
+                                                          _vm._v(" "),
+                                                          _vm._l(
+                                                            columna.columnas,
+                                                            function(
+                                                              minutos_columna,
+                                                              index_minutos_columna
+                                                            ) {
+                                                              return _c(
+                                                                "div",
+                                                                {
+                                                                  key: index_minutos_columna,
+                                                                  staticClass:
+                                                                    "relative border-r"
+                                                                },
+                                                                [
+                                                                  _c("span", [
+                                                                    _c(
+                                                                      "input",
+                                                                      {
+                                                                        staticStyle: {
+                                                                          width:
+                                                                            "20px",
+                                                                          height:
+                                                                            "20px"
+                                                                        },
+                                                                        attrs: {
+                                                                          type:
+                                                                            "text"
+                                                                        },
+                                                                        domProps: {
+                                                                          textContent: _vm._s(
+                                                                            index_minutos_columna
+                                                                          )
+                                                                        }
                                                                       }
                                                                     )
-                                                                  : _vm._e()
-                                                              ],
-                                                              2
-                                                            )
-                                                          }
-                                                        ),
-                                                        0
+                                                                  ]),
+                                                                  _vm._v(" "),
+                                                                  minutos_columna.agentes
+                                                                    ? _vm._l(
+                                                                        minutos_columna.agentes,
+                                                                        function(
+                                                                          agente,
+                                                                          index_agente
+                                                                        ) {
+                                                                          return _c(
+                                                                            "span",
+                                                                            {
+                                                                              key: index_agente
+                                                                            },
+                                                                            [
+                                                                              _vm._v(
+                                                                                " aquu\n                                                                        "
+                                                                              ),
+                                                                              _c(
+                                                                                "input",
+                                                                                {
+                                                                                  staticStyle: {
+                                                                                    width:
+                                                                                      "20px",
+                                                                                    height:
+                                                                                      "20px"
+                                                                                  },
+                                                                                  attrs: {
+                                                                                    type:
+                                                                                      "text"
+                                                                                  },
+                                                                                  domProps: {
+                                                                                    textContent: _vm._s(
+                                                                                      index_agente
+                                                                                    )
+                                                                                  }
+                                                                                }
+                                                                              ),
+                                                                              _vm._v(
+                                                                                " "
+                                                                              ),
+                                                                              _c(
+                                                                                "img",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "figure-celds",
+                                                                                  staticStyle: {
+                                                                                    width:
+                                                                                      "20px"
+                                                                                  },
+                                                                                  attrs: {
+                                                                                    src:
+                                                                                      "/" +
+                                                                                      agente._src,
+                                                                                    alt:
+                                                                                      ""
+                                                                                  }
+                                                                                }
+                                                                              )
+                                                                            ]
+                                                                          )
+                                                                        }
+                                                                      )
+                                                                    : _vm._e()
+                                                                ],
+                                                                2
+                                                              )
+                                                            }
+                                                          )
+                                                        ],
+                                                        2
                                                       )
                                                     }
                                                   )
@@ -59217,7 +59302,10 @@ var render = function() {
                                                                   alt: ""
                                                                 }
                                                               })
-                                                            : _vm._e()
+                                                            : _vm._e(),
+                                                          _vm._v(
+                                                            "xx\n                                                            "
+                                                          )
                                                         ]
                                                       )
                                                     }
@@ -96859,7 +96947,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("revision-sistema", __webpa
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("antecedente", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Antecedente.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Antecedente.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("examen-fisico", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/ExamenFisico.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/ExamenFisico.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("paraclinico", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("registro-anestesico", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("registro-anestesico", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-tipo-agente", __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue */ "./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-tipo-posiciones", __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue")["default"]);
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
@@ -96973,18 +97061,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue ***!
-  \**********************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue ***!
+  \***************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=template&id=0efa7f95& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&");
-/* harmony import */ var _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _registro_anestesico_copy_vue_vue_type_template_id_04ab6e60___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./registro-anestesico copy.vue?vue&type=template&id=04ab6e60& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=template&id=04ab6e60&");
+/* harmony import */ var _registro_anestesico_copy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registro-anestesico copy.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _registro_anestesico_copy_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro-anestesico copy.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -96995,9 +97083,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _registro_anestesico_copy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _registro_anestesico_copy_vue_vue_type_template_id_04ab6e60___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _registro_anestesico_copy_vue_vue_type_template_id_04ab6e60___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -97007,54 +97095,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue"
+component.options.__file = "resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico copy.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&":
-/*!*******************************************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css& ***!
-  \*******************************************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=style&index=0&lang=css&":
+/*!************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/style-loader!../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/style-loader!../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico copy.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&":
-/*!*****************************************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95& ***!
-  \*****************************************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=template&id=04ab6e60&":
+/*!**********************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=template&id=04ab6e60& ***!
+  \**********************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=template&id=0efa7f95& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_template_id_04ab6e60___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico copy.vue?vue&type=template&id=04ab6e60& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue?vue&type=template&id=04ab6e60&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_template_id_04ab6e60___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_copy_vue_vue_type_template_id_04ab6e60___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

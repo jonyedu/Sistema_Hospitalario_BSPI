@@ -139,7 +139,7 @@
             </tr>
 
             <tr>
-                <td style="height:2%"></td>
+                <td ></td>
                 <td></td>
 
             </tr>
@@ -159,7 +159,7 @@
                 <th>CAMA</th>
             </tr>
             <tr>
-                <td  style="height: 2%">{{ date('Y-m-d H:i:s') }} </td>
+                <td  >{{ date('Y-m-d H:i:s') }} </td>
                 <td>M</td>
                 <td></td>
                 <td>F</td>
@@ -181,7 +181,7 @@
 
             </tr>
 
-            <td style="height: 2%">M</td>
+            <td  >M</td>
             <td></td>
             <td>F</td>
 
@@ -197,7 +197,7 @@
 
             </tr>
 
-            <td style="height: 2%">M</td>
+            <td >M</td>
             <td></td>
             <td>F</td>
 
@@ -213,7 +213,7 @@
 
             </tr>
 
-            <td style="height: 2%">M</td>
+            <td  >M</td>
             <td></td>
             <td>F</td>
 
@@ -233,9 +233,15 @@
         <table class="tableStyleAllImg">
             <tr>
                 <th style="border: none;background-color:white">
+                @if ( isset($datosValoracionPreanestesica->graficoCirugia)> 0)
+                    <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->graficoCirugia->GRAFICAS }}'" border="0" width="650px" height="360px"> 
+                @else
+                no hay imagen ;( 
+                     {{-- <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->graficoCirugia->GRAFICAS }}'" border="0" width="690px" height="360px"> --}}
+                @endif
                    
                     {{-- <img src="{{ public_path('img/logoreport1.png') }}" border="0" width="690px" height="250px"> --}}
-                    <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->graficoCirugia->GRAFICAS }}'" border="0" width="690px" height="360px">
+                   
                 </th>
             </tr>
 
@@ -251,15 +257,21 @@
                 </th>
             </tr>
         </table>
+ 
+         
+         {{-- @if ( isset($datosValoracionPreanestesica->drogaAdministradaRpt)> 0) --}}
+          
 
         <table class="tableStyleAll">
             <tr>
+
                 <th style="width:2%;background-color:white">N°
                 </th>
                 <th style="width:25%;background-color:white">TIPO
                 </th>
                 <th style="width:2%;background-color:white">4
                 </th>
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[3]->descripcion))
                 @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[3]->descripcion==NULL)
                 <th style="width:25%;background-color:white"> 
                 </th>
@@ -267,9 +279,15 @@
                 <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[3]->descripcion }}
                 </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+               
                
                 <th style="width:2%;background-color:white">8
                 </th>
+
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[7]->descripcion))
                 @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[7]->descripcion==NULL)
                 <th style="width:25%;background-color:white"> 
                 </th>
@@ -277,9 +295,17 @@
                 <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[7]->descripcion }}
                 </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+
+
+
+                 
                 <th style="width:2%;background-color:white">12
                 </th>
-                 
+
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[11]->descripcion))
                 @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[11]->descripcion==NULL)
                 <th style="width:25%;background-color:white"> 
                 </th>
@@ -287,6 +313,11 @@
                 <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[11]->descripcion }}
                 </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+                 
+                
                 <th style="width:25%;background-color:white">DURACION ANESTESIA
                 </th>
             </tr>
@@ -294,48 +325,69 @@
             <tr>
                 <td style="width:2%">1
                 </td>
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[0]->descripcion))
                 @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[0]->descripcion==NULL)
-                <td style="width:25%"> 
-                </td>
+                <th style="width:25%;background-color:white"> 
+                </th>
                 @else
-                <td style="width:25%">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[0]->descripcion }}
-                </td>
-                
+                <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[0]->descripcion }}
+                </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+
+ 
                 
                 <td style="width:2%">5
                 </td>
+
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[4]->descripcion))
                 @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[4]->descripcion==NULL)
-                <td style="width:25%"> 
-                </td>
+                <th style="width:25%;background-color:white"> 
+                </th>
                 @else
-                <td style="width:25%">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[4]->descripcion }}
-                </td>
-                
+                <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[4]->descripcion }}
+                </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+
+                 
                 
                 <td style="width:2%">9
                 </td>
+
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[8]->descripcion))
                 @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[8]->descripcion==NULL)
-                <td style="width:25%"> 
-                </td>
+                <th style="width:25%;background-color:white"> 
+                </th>
                 @else
-                <td style="width:25%">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[8]->descripcion }}
-                </td>
-                
+                <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[8]->descripcion }}
+                </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+
+ 
                 
                 <td style="width:2%">13
                 </td>
-                
+
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[12]->descripcion))
                 @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[12]->descripcion==NULL)
-                <td style="width:25%"> 
-                </td>
+                <th style="width:25%;background-color:white"> 
+                </th>
                 @else
-                <td style="width:25%">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[12]->descripcion }}
-                </td>
-                
+                <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[12]->descripcion }}
+                </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+                
                 
                 <td style="width:25%">12:00: Hs Min
                 </td>
@@ -344,48 +396,70 @@
             <tr>
                 <td style="width:2%">2
                 </td>
+
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[1]->descripcion))
                 @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[1]->descripcion==NULL)
-                <td style="width:25%"> 
-                </td>
+                <th style="width:25%;background-color:white"> 
+                </th>
                 @else
-                <td style="width:25%">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[1]->descripcion }}
-                </td>
-                
+                <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[1]->descripcion }}
+                </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+ 
                 
                 <td style="width:2%">6
                 </td>
-                @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[4]->descripcion==NULL)
-                <td style="width:25%"> 
-                </td>
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[5]->descripcion))
+                @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[5]->descripcion==NULL)
+                <th style="width:25%;background-color:white"> 
+                </th>
                 @else
-                <td style="width:25%">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[4]->descripcion }}
-                </td>
-                
+                <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[5]->descripcion }}
+                </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+
+ 
                 
                 <td style="width:2%">10
                 </td>
+
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[9]->descripcion))
                 @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[9]->descripcion==NULL)
-                <td style="width:25%"> 
-                </td>
+                <th style="width:25%;background-color:white"> 
+                </th>
                 @else
-                <td style="width:25%">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[9]->descripcion }}
-                </td>
-                
+                <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[9]->descripcion }}
+                </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+
+
+ 
                 
                 <td style="width:2%">14
                 </td>
-                
+
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[13]->descripcion))
                 @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[13]->descripcion==NULL)
-                <td style="width:25%"> 
-                </td>
+                <th style="width:25%;background-color:white"> 
+                </th>
                 @else
-                <td style="width:25%">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[13]->descripcion }}
-                </td>
-                
+                <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[13]->descripcion }}
+                </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+                
+                
                 
                 <td style="width:25%">12:00: Hs Min
                 </td>
@@ -393,36 +467,57 @@
             <tr>
                 <td style="width:2%">3
                 </td>
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[2]->descripcion))
                 @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[2]->descripcion==NULL)
-                <td style="width:25%"> 
-                </td>
+                <th style="width:25%;background-color:white"> 
+                </th>
                 @else
-                <td style="width:25%">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[2]->descripcion }}
-                </td>
-                
+                <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[2]->descripcion }}
+                </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+
+
+ 
                 
                 <td style="width:2%">7
                 </td>
+
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[6]->descripcion))
                 @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[6]->descripcion==NULL)
-                <td style="width:25%"> 
-                </td>
+                <th style="width:25%;background-color:white"> 
+                </th>
                 @else
-                <td style="width:25%">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[6]->descripcion }}
-                </td>
-                
+                <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[6]->descripcion }}
+                </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+
+
+ 
                 
                 <td style="width:2%">11
                 </td>
+
+                @if (isset( $datosValoracionPreanestesica->drogaAdministradaRpt[10]->descripcion))
                 @if ( $datosValoracionPreanestesica->drogaAdministradaRpt[10]->descripcion==NULL)
-                <td style="width:25%"> 
-                </td>
+                <th style="width:25%;background-color:white"> 
+                </th>
                 @else
-                <td style="width:25%">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[10]->descripcion }}
-                </td>
-                
+                <th style="width:25%;background-color:white">{{ $datosValoracionPreanestesica->drogaAdministradaRpt[10]->descripcion }}
+                </th>
                 @endif
+                @else
+                <th style="width:25%;background-color:white"> 
+                @endif
+
+
+
+                
                 
                 <td style="width:2%">
                 </td>
@@ -1269,6 +1364,11 @@
                 
             </tr>
         </table>
+         
+         {{-- @else
+              no hay drogas ;( 
+         @endif --}}
+
     </div>
 
 </body>

@@ -119,7 +119,7 @@ class ListaValoracionController extends Controller
             //code...
            // dd($modulo);
        //     return  response()->json(['listaValoracion' => $modulo], 200);
-          $pdf =  PDF::loadView('reports.pdf.formulario-lista-verificacion',['datosPaciente' => $modulo]);
+          $pdf =  PDF::loadView('reports.pdf.formulario-lista-verificacion',['datosPaciente' => $modulo])->setPaper('a4', 'landscape');
        // PDF::loadHTML('reports.pdf.formulario-lista-verificacion')->setPaper('a4', 'landscape')->setWarnings(false)->save('myfile.pdf');
 
       return $pdf->stream('Formulario');
