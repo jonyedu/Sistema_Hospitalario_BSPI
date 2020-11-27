@@ -4241,7 +4241,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
-    eliminarAgente: function eliminarAgente(id) {
+    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente) {
       alert(index, index_fila, index_columna, index_minutos_columna, index_agente);
     },
     mostrarModalConfirmarCandelar: function mostrarModalConfirmarCandelar() {
