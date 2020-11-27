@@ -25,7 +25,7 @@ class CreateTbDatosRegistrosTable extends Migration
                 $table->decimal('estatura', 10, 2)->nullable();
                 $table->decimal('peso', 10, 2)->nullable();
                 $table->string('ocupacion_actual', 255)->nullable();
-                $table->string('servicio', 255)->nullable();
+                $table->unsignedInteger('id_servicio')->nullable();
                 $table->string('sala', 255)->nullable();
                 $table->string('cama', 255)->nullable();
                 $table->unsignedInteger('id_diagnostico_pre')->nullable();

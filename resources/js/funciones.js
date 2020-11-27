@@ -99,6 +99,12 @@ export const funcionesGlobales = {
             }
         }
     },
+    addCeroToTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    },
     //Metodo para Convertir la Palabra en Mayuscula
     toCapitalAllWords: palabra => {
         if (palabra != null) {

@@ -71,6 +71,11 @@ Route::group(['prefix' => 'modulos/parametrizacion', 'middleware' => ['auth:web'
         Route::get('consultar_tarifario/{descripcion}', 'TarifarioApiController@consultarTarifario');
     });
 
+    /* SubModulo Servicio Medico */
+    Route::namespace('Modulos\Parametrizacion\ServicioMedico')->prefix('servicio_medico')->group(function () {
+        Route::get('cargar_servicio_medico_por_medico/{idServicioMedico}', 'ServicioMedicoApiController@cargarServicioMedicoPorMedico');
+    });
+
 
 
     /* SubModulo Sala */

@@ -1950,10 +1950,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3932,7 +3932,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         id_tipo_posiciones: 0,
         cirugia_id: 0,
         registro_anestesia_id: 0
-      }, _defineProperty(_form, "id_tipo_posiciones", 0), _defineProperty(_form, "fchaDuracionAnestecia", "00:00"), _defineProperty(_form, "fchaDuracionOperacion", "00:00"), _defineProperty(_form, "general", 0), _defineProperty(_form, "sistem_abierto", 0), _defineProperty(_form, "sistem_cerrado", 0), _defineProperty(_form, "sistem_semi_cerr", 0), _defineProperty(_form, "cinc_aparatos_usados", 0), _defineProperty(_form, "vaiiven_aparatos_usados", 0), _defineProperty(_form, "mascara", 0), _defineProperty(_form, "oral_inte_traqueal", 0), _defineProperty(_form, "nasal_inte_traqueal", 0), _defineProperty(_form, "rapido_inte_traqueal", 0), _defineProperty(_form, "lenta_inte_traqueal", 0), _defineProperty(_form, "turbo_inte_traqueal", 0), _defineProperty(_form, "manguito_inflam_inte_traqueal", 0), _defineProperty(_form, "taponamiento_inte_traqueal", 0), _defineProperty(_form, "asist_topica_inte_traqueal", 0), _defineProperty(_form, "asist_tranboral_inte_traqueal", 0), _defineProperty(_form, "conductiva", 0), _defineProperty(_form, "asepsia_piel", 0), _defineProperty(_form, "con", ""), _defineProperty(_form, "habon", 0), _defineProperty(_form, "raquidea", 0), _defineProperty(_form, "epidural_caud", 0), _defineProperty(_form, "simple_altura_puncion", 0), _defineProperty(_form, "continua_altura_puncion", 0), _defineProperty(_form, "altura_puncion", ""), _defineProperty(_form, "puncion_lat", 0), _defineProperty(_form, "linea_media", 0), _defineProperty(_form, "aguja", 0), _defineProperty(_form, "nivel", ""), _defineProperty(_form, "hiperbara", 0), _defineProperty(_form, "hipotension", 0), _defineProperty(_form, "arritmias", 0), _defineProperty(_form, "depresion_respiratoria", 0), _defineProperty(_form, "perforacion_duramadre", 0), _defineProperty(_form, "dificultad_intubacion", 0), _defineProperty(_form, "nauses_vomitos", 0), _defineProperty(_form, "conductiva_insuficiente", 0), _defineProperty(_form, "laringo_espasmo", 0), _defineProperty(_form, "paro_cardiaco", 0), _defineProperty(_form, "ninguna", 0), _defineProperty(_form, "cambio_tecnica", 0), _defineProperty(_form, "otros_complicaciones", ""), _defineProperty(_form, "comentario", ""), _defineProperty(_form, "hemorragia", 0), _defineProperty(_form, "min1", 0), _defineProperty(_form, "min5", 0), _defineProperty(_form, "min10", 0), _defineProperty(_form, "p_muerto", 0), _defineProperty(_form, "conducido_a", ""), _defineProperty(_form, "por", ""), _defineProperty(_form, "hora", "00:00"), _defineProperty(_form, "infusiones", [{
+      }, _defineProperty(_form, "id_tipo_posiciones", 0), _defineProperty(_form, "fchaDuracionAnestecia", "00:00"), _defineProperty(_form, "fchaDuracionOperacion", "00:00"), _defineProperty(_form, "general", 0), _defineProperty(_form, "sistem_abierto", 0), _defineProperty(_form, "sistem_cerrado", 0), _defineProperty(_form, "sistem_semi_cerr", 0), _defineProperty(_form, "cinc_aparatos_usados", 0), _defineProperty(_form, "vaiiven_aparatos_usados", 0), _defineProperty(_form, "mascara", 0), _defineProperty(_form, "oral_inte_traqueal", 0), _defineProperty(_form, "nasal_inte_traqueal", 0), _defineProperty(_form, "rapido_inte_traqueal", 0), _defineProperty(_form, "lenta_inte_traqueal", 0), _defineProperty(_form, "turbo_inte_traqueal", ""), _defineProperty(_form, "manguito_inflam_inte_traqueal", 0), _defineProperty(_form, "taponamiento_inte_traqueal", 0), _defineProperty(_form, "asist_topica_inte_traqueal", 0), _defineProperty(_form, "asist_tranboral_inte_traqueal", 0), _defineProperty(_form, "conductiva", 0), _defineProperty(_form, "asepsia_piel", 0), _defineProperty(_form, "con", ""), _defineProperty(_form, "habon", 0), _defineProperty(_form, "raquidea", 0), _defineProperty(_form, "epidural_caud", 0), _defineProperty(_form, "simple_altura_puncion", 0), _defineProperty(_form, "continua_altura_puncion", 0), _defineProperty(_form, "altura_puncion", ""), _defineProperty(_form, "puncion_lat", 0), _defineProperty(_form, "linea_media", 0), _defineProperty(_form, "aguja", 0), _defineProperty(_form, "nivel", ""), _defineProperty(_form, "hiperbara", 0), _defineProperty(_form, "hipotension", 0), _defineProperty(_form, "arritmias", 0), _defineProperty(_form, "depresion_respiratoria", 0), _defineProperty(_form, "perforacion_duramadre", 0), _defineProperty(_form, "dificultad_intubacion", 0), _defineProperty(_form, "nauses_vomitos", 0), _defineProperty(_form, "conductiva_insuficiente", 0), _defineProperty(_form, "laringo_espasmo", 0), _defineProperty(_form, "paro_cardiaco", 0), _defineProperty(_form, "ninguna", 0), _defineProperty(_form, "cambio_tecnica", 0), _defineProperty(_form, "otros_complicaciones", ""), _defineProperty(_form, "comentario", ""), _defineProperty(_form, "hemorragia", 0), _defineProperty(_form, "min1", 0), _defineProperty(_form, "min5", 0), _defineProperty(_form, "min10", 0), _defineProperty(_form, "p_muerto", 0), _defineProperty(_form, "conducido_a", ""), _defineProperty(_form, "por", ""), _defineProperty(_form, "hora", "00:00"), _defineProperty(_form, "infusiones", [{
+        descripcion: "SOLUCIONES SALINAS",
+        name: "SOLUCIONES_SALINAS",
+        abreviatura: "SS",
+        valor: 0
+      }, {
         descripcion: "DEXTROSAS",
         name: "DEXTROSAS",
         abreviatura: "D",
@@ -3953,18 +3958,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         abreviatura: "E",
         valor: 0
       }, {
-        descripcion: "SOLUCIONES SALINAS",
-        name: "SOLUCIONES_SALINAS",
-        abreviatura: "SS",
-        valor: 0
-      }, {
         descripcion: "TOTAL",
         name: "TOTAL",
         abreviatura: "T",
         valor: 0
       }]), _defineProperty(_form, "total", 0), _defineProperty(_form, "imgFirma", null), _defineProperty(_form, "imgGrafica", null), _form),
       registro_id: 1,
-      drogas_administradas: ["", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+      drogas_administradas: [],
       peso: "",
       estatura: "",
       system_posicion: "posicion",
@@ -4080,16 +4080,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       indice_minuto: 0,
       // Texto adicional ubicados en las primeras columnas de las rejillas
       agentes_text: [{
-        descripcion: "",
+        descripcion: "Oxigeno litros po min",
         valores: []
       }, {
-        descripcion: "",
+        descripcion: "Sevoflorane vol %",
         valores: []
       }, {
-        descripcion: "",
+        descripcion: "Remifentanil 5mg/500 ML",
         valores: []
       }, {
-        descripcion: "",
+        descripcion: "Spo2 %",
         valores: []
       }],
       // Formulario de recolección de datos
@@ -4162,6 +4162,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         subTotal += +Number(infusion.valor);
       });
       return this.form.total = subTotal;
+    },
+    tiempo: function tiempo(params) {
+      var tiempo = 0;
+      var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
+      var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
+      var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
+      tiempo = hora + ":" + minuto + ":" + segundo;
+      return tiempo;
     }
   },
   mounted: function mounted() {
@@ -4206,7 +4214,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             _this.indice_hora += 1; // Si la hora se ha completado, se agrega otro objeto de horas al
             //arreglo de datos
 
-            _this.agregarHora(); //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
+            _this.agregarHora();
+
+            _this.agregarHorasInicial(); //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
 
 
             if (_this.indice_hora % 5 == 0) {
@@ -4225,14 +4235,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         // En caso que hayan pasado los 5 minutos, se registra de manera automática los datos
         if (_this.seconds == 1) {
           _this.obtenerDatosFormulario();
-
-          _this.agregarHorasInicial();
         }
       }
     }, 1000);
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
+    eliminarAgente: function eliminarAgente(id) {
+      alert(index, index_fila, index_columna, index_minutos_columna, index_agente);
+    },
     mostrarModalConfirmarCandelar: function mostrarModalConfirmarCandelar() {
       this.icon = "/iconsflashMessage/warning.svg";
       this.titulo = "¿Desea cerrar el proceso?";
@@ -4294,7 +4305,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.form.registro_anestesia_id = response.data.id;
         that.flashMessage.show({
           status: "success",
-          title: "Éxito al procesar getNewIdRegistroAnestesia",
+          title: "Éxito al procesar IdRegistroAnestesia",
           message: "Se generó una nueva pagina.",
           clickable: true,
           time: 5000,
@@ -4430,7 +4441,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var medicos = [];
         response.data.medicos.forEach(function (medico) {
           var objeto = {};
-          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.nombres);
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
           objeto.id_medico = medico.id;
           medicos.push(objeto);
         });
@@ -4624,8 +4635,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   system_name: "INDUCCION",
                   tipo: this.system_agente
                 });
+                this.flashMessage.show({
+                  status: "success",
+                  title: "Éxito al procesar",
+                  message: "Agente agregado correctamente.",
+                  clickable: true,
+                  time: 5000,
+                  icon: "/iconsflashMessage/success.svg",
+                  customStyle: {
+                    flashMessageStyle: {
+                      background: "linear-gradient(#e66465, #9198e5)"
+                    }
+                  }
+                });
 
-              case 10:
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -4663,7 +4687,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             clickable: false,
             time: 0,
             icon: "/iconsflashMessage/time.gif",
-            blockClass: 'custom_msg',
+            blockClass: "custom_msg",
             customStyle: {
               flashMessageStyle: {
                 background: "linear-gradient(#e66465, #9198e5)"
@@ -4752,7 +4776,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         //that.guardarModificarAgenteText();
         that.flashMessage.show({
           status: "success",
-          title: "Éxito al procesar guardarImgGrafica",
+          title: "Éxito al procesar Img. Gráfica",
           message: "Datos guardados correctamente.",
           clickable: true,
           time: 5000,
@@ -4803,7 +4827,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         that.modifcarRegistroAnestesia();
         that.flashMessage.show({
           status: "success",
-          title: "Éxito al procesar guardarDrograAdministrada",
+          title: "Éxito al procesar Drogra Administrada",
           message: "Datos guardados correctamente.",
           clickable: true,
           time: 5000,
@@ -4851,7 +4875,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         loader.hide();
         that.flashMessage.show({
           status: "success",
-          title: "Éxito al procesar modifcarRegistroAnestesia",
+          title: "Éxito al procesar Registro Anestesia",
           message: "Datos guardados correctamente.",
           clickable: true,
           time: 5000,
@@ -4908,7 +4932,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         that.guardarFirmaPorAtencion();
         that.flashMessage.show({
           status: "success",
-          title: "Éxito al procesar guardarRegistroInfusiones",
+          title: "Éxito al procesar Registro Infusiones",
           message: "Datos guardados correctamente.",
           clickable: true,
           time: 5000,
@@ -4966,7 +4990,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         loader.hide();
         that.flashMessage.show({
           status: "success",
-          title: "Éxito al procesar guardarFirmaPorAtencion",
+          title: "Éxito al procesar Firma por Atención",
           message: "Datos guardados correctamente.",
           clickable: true,
           time: 5000,
@@ -5040,7 +5064,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }); */
         that.flashMessage.show({
           status: "success",
-          title: "Éxito al procesar guardarModificarAgenteText",
+          title: "Éxito al procesar Modificar Agente Text",
           message: "Datos guardados correctamente.",
           clickable: true,
           time: 5000,
@@ -5259,6 +5283,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, this.lista_horas_avanzadas_v[this.indice_hora].datos.length - 2 - this.index_points, true, this.posiciones.find(function (pos) {
         return pos.id == _this7.valoresFormulario.posicion.id;
       }));
+      this.flashMessage.show({
+        status: "success",
+        title: "Éxito al procesar",
+        message: "Agente agregado correctamente.",
+        clickable: true,
+        time: 5000,
+        icon: "/iconsflashMessage/success.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
     },
     agregarDatoRespiracion: function agregarDatoRespiracion() {
       this.valoresFormulario.respiracion.img_url = this.valoresFormulario.respiracion.descripcion == "ESP" ? "img/icons/esp.png" : this.valoresFormulario.respiracion.descripcion == "ASIS" ? "img/icons/asis.png" : this.valoresFormulario.respiracion.descripcion == "CONT" ? "img/icons/cont.png" : ""; // Agregar posicón en la rejilla
@@ -6177,6 +6214,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -6186,6 +6261,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      selectedServicioMedico: "",
+      serviciosMedicos: [],
+      selectedDiagnosticoPre: "",
+      diagnosticosPre: [],
       selectedDiagnostico: "",
       diagnosticos: [],
       selectedCirujano: "",
@@ -6218,7 +6297,9 @@ __webpack_require__.r(__webpack_exports__);
         estatura: "",
         peso: "",
         ocupacion_actual: "",
+        id_servicio_medico: 0,
         servicio: "",
+        //borrar esta vaiables
         sala: "",
         cama: "",
         diagnostico_preoperatorio: "",
@@ -6269,6 +6350,52 @@ __webpack_require__.r(__webpack_exports__);
     ); */
   },
   methods: {
+    setSelectedServicioMedico: function setSelectedServicioMedico(value) {
+      if (this.form.id_servicio_medico > 0) {
+        var that = this;
+        var loader = that.$loading.show();
+        var url = "/modulos/parametrizacion/servicio_medico/cargar_servicio_medico_por_medico/" + this.form.id_servicio_medico;
+
+        if (value != null) {
+          this.form.id_servicio_medico = value.id_servicio_medico;
+          loader.hide();
+        }
+
+        axios.get(url).then(function (response) {
+          var serviciosMedicos = [];
+          response.data.serviciosMedicos.forEach(function (servicioMedico) {
+            var objeto = {};
+            objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(servicioMedico.descripcion);
+            objeto.id_servicio_medico = servicioMedico.id;
+            serviciosMedicos.push(objeto);
+          });
+          that.serviciosMedicos = serviciosMedicos;
+          loader.hide();
+        })["catch"](function (error) {
+          //Errores
+
+          /* that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+          }); */
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar setSelectedServicioMedico",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
+      }
+    },
     cargarDiagnosticoPorCodigo: function cargarDiagnosticoPorCodigo(id_diagnostico) {
       if (id_diagnostico != "") {
         var that = this;
@@ -6278,7 +6405,7 @@ __webpack_require__.r(__webpack_exports__);
           //Obtiene los datos de Motivo Antecedentes
           if (response.data.diagnostico != null && response.data.diagnostico != undefined) {
             //Pre
-            that.form.diagnostico_preoperatorio = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
+            that.selectedDiagnosticoPre = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
             that.form.id_diagnostico_pre = response.data.diagnostico.id; //Post
 
             that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
@@ -6297,6 +6424,49 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
+    setSelectedDiagnosticoPre: function setSelectedDiagnosticoPre(value) {
+      var that = this;
+
+      if (this.selectedDiagnosticoPre.id_diagnostico_pre != null) {
+        this.form.id_diagnostico_pre = this.selectedDiagnosticoPre.id_diagnostico_pre;
+      }
+
+      if (this.diagnosticosPre.length == 0) {
+        if (this.selectedDiagnosticoPre != "") {
+          var loader = that.$loading.show();
+          var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_combo_box/" + this.selectedDiagnosticoPre;
+          axios.get(url).then(function (response) {
+            var diagnosticosPre = [];
+            response.data.diagnosticos.forEach(function (diagnosticoPres) {
+              var objeto = {}; //Pre
+
+              objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(diagnosticoPres.descripcion);
+              objeto.id_diagnostico_pre = diagnosticoPres.id;
+              diagnosticosPre.push(objeto);
+            });
+            that.diagnosticosPre = diagnosticosPre;
+            loader.hide();
+          })["catch"](function (error) {
+            that.flashMessage.show({
+              status: "error",
+              title: "Error al procesar setSelectedDiagnosticoPre",
+              message: "Por favor comuníquese con el administrador. " + error,
+              clickable: true,
+              time: 0,
+              icon: "/iconsflashMessage/error.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
+              }
+            });
+            loader.hide();
+          });
+        }
+      } else {
+        this.diagnosticosPre = [];
+      }
+    },
     setSelectedDiagnostico: function setSelectedDiagnostico(value) {
       var that = this;
 
@@ -6309,9 +6479,11 @@ __webpack_require__.r(__webpack_exports__);
           var loader = that.$loading.show();
           var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_combo_box/" + this.selectedDiagnostico;
           axios.get(url).then(function (response) {
+            var diagnosticosPre = [];
             var diagnosticos = [];
             response.data.diagnosticos.forEach(function (diagnostico) {
-              var objeto = {};
+              var objeto = {}; //Post
+
               objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(diagnostico.descripcion);
               objeto.id_diagnostico = diagnostico.id;
               diagnosticos.push(objeto);
@@ -6346,6 +6518,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (value != null) {
         this.form.id_cirujano = value.id_cirujano;
+        this.form.id_servicio_medico = value.id_servicio_medico;
         loader.hide();
       }
 
@@ -6355,9 +6528,11 @@ __webpack_require__.r(__webpack_exports__);
           var objeto = {};
           objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
           objeto.id_cirujano = medico.id;
+          objeto.id_servicio_medico = medico.tipo_medico_servicio;
           cirujanos.push(objeto);
         });
         that.cirujanos = cirujanos;
+        that.setSelectedServicioMedico();
         loader.hide();
       })["catch"](function (error) {
         //Errores
@@ -9484,7 +9659,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     seleccionarButton: {
@@ -9499,8 +9673,33 @@ __webpack_require__.r(__webpack_exports__);
         frm_fecha: ""
       },
       columns: [{
+        label: "Hora Programada",
+        field: "horaProgramada",
+        type: "String"
+      }, {
+        label: "Hora Inicio",
+        field: "horaInicio",
+        type: "String"
+      }, {
+        label: "Hora Fin",
+        field: "horaFin",
+        type: "String"
+      }, {
+        label: "Qx",
+        field: "quirofano",
+        type: "String"
+      }, {
         label: "Paciente",
         field: "nombrePaciente",
+        type: "String",
+        width: "150px"
+      }, {
+        label: "Sala-Cama",
+        field: "sala_cama",
+        type: "String"
+      }, {
+        label: "Procedimiento",
+        field: "procedimiento",
         type: "String"
       }, {
         label: "Cirujano",
@@ -9509,14 +9708,6 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         label: "Anestesiologo",
         field: "anestesiologo",
-        type: "String"
-      }, {
-        label: "Quirofano",
-        field: "quirofano",
-        type: "String"
-      }, {
-        label: "Procedimiento",
-        field: "procedimiento",
         type: "String"
       }]
     };
@@ -9562,22 +9753,25 @@ __webpack_require__.r(__webpack_exports__);
           objeto.fechaProgramada = lista.CirProFecPro;
 
           if (lista.paciente_lista != null) {
-            //alert("edad: " + that.$funcionesGlobales.calcularEdad(lista.paciente_lista.fecha_nacimiento));
             objeto.edad = lista.paciente_lista.EDAD;
             objeto.sexo = lista.paciente_lista.genero;
           }
 
           objeto.sala = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProSala);
           objeto.cama = lista.CirProCama;
+          objeto.sala_cama = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProSala) + "-" + lista.CirProCama;
 
           if (lista.paciente_hospitalizacion != null) {
             objeto.id_diagnostico = lista.paciente_hospitalizacion.principal;
           } //datos para mostrar en la tabla padre
 
 
+          objeto.horaProgramada = lista.CirProHorPro;
+          objeto.horaInicio = lista.CirProHoraFin == null ? '00:00:00' : lista.CirProHoraInicio;
+          objeto.horaFin = lista.CirProHoraFin == null ? '00:00:00' : lista.CirProHoraFin;
           objeto.cirujano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProCirujano);
           objeto.anestesiologo = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProAnestesiologo);
-          objeto.quirofano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProCirujano);
+          objeto.quirofano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProQuirofano);
           objeto.procedimiento = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProProcedimiento);
           listaCirugiaProgramadaPaciente.push(objeto);
         });
@@ -15653,95 +15847,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Prueba.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Prueba.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: {},
-  data: function data() {
-    return {
-      isFirstPaintable: "pruebaGrafica",
-      rutaImagen: "/img/selloFirma.png",
-      newUrl: ""
-    };
-  },
-  mounted: function mounted() {
-    /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
-    let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
-        .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
-    this.$funcionesGlobales.registrarLogForm(
-        nombreModulo,
-        nombreFormulario,
-        "Ingreso"
-    );
-    if (this.$props.idCita != null) {
-        this.cargarAtencionMotivo();
-    } */
-  },
-  beforeDestroy: function beforeDestroy() {
-    /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
-    let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
-        .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
-    this.$funcionesGlobales.registrarLogForm(
-        nombreModulo,
-        nombreFormulario,
-        "Salida"
-    ); */
-  },
-  methods: {
-    /* getItem(){
-        this.newUrl = this.document.getElementsById("firma").innerHTML;
-    } */
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/componentesGenerales/MenuComponent.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/componentesGenerales/MenuComponent.vue?vue&type=script&lang=js& ***!
@@ -17049,10 +17154,10 @@ exports.push([module.i, ".v-select{position:relative;font-family:inherit}.v-sele
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35491,15 +35596,15 @@ try {
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css& ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
+var content = __webpack_require__(/*! !../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico-jony.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -58205,10 +58310,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&":
-/*!***********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=template&id=58e274b8&":
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=template&id=58e274b8& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -58250,12 +58355,10 @@ var render = function() {
               staticStyle: { "font-size": "1.0em" }
             },
             [
-              _vm._v("\n                Tiempo : "),
-              _c("span", [_vm._v(_vm._s(_vm.hour))]),
-              _vm._v(":"),
-              _c("span", [_vm._v(_vm._s(_vm.minutes))]),
-              _vm._v(":"),
-              _c("span", [_vm._v(_vm._s(_vm.seconds))])
+              _vm._v("\n                Tiempo: "),
+              _c("span", { attrs: { id: "total" } }, [
+                _vm._v(_vm._s(_vm.tiempo))
+              ])
             ]
           )
         ]),
@@ -59467,23 +59570,43 @@ var render = function() {
                                                                         index_agente
                                                                       ) {
                                                                         return _c(
-                                                                          "img",
+                                                                          "a",
                                                                           {
                                                                             key: index_agente,
-                                                                            staticClass:
-                                                                              "figure-celds",
-                                                                            staticStyle: {
-                                                                              width:
-                                                                                "20px"
-                                                                            },
-                                                                            attrs: {
-                                                                              src:
-                                                                                "/" +
-                                                                                agente._src,
-                                                                              alt:
-                                                                                ""
+                                                                            on: {
+                                                                              click: function(
+                                                                                $event
+                                                                              ) {
+                                                                                return _vm.eliminarAgente(
+                                                                                  index,
+                                                                                  index_fila,
+                                                                                  index_columna,
+                                                                                  index_minutos_columna,
+                                                                                  index_agente
+                                                                                )
+                                                                              }
                                                                             }
-                                                                          }
+                                                                          },
+                                                                          [
+                                                                            _c(
+                                                                              "img",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "figure-celds",
+                                                                                staticStyle: {
+                                                                                  width:
+                                                                                    "20px"
+                                                                                },
+                                                                                attrs: {
+                                                                                  src:
+                                                                                    "/" +
+                                                                                    agente._src,
+                                                                                  alt:
+                                                                                    ""
+                                                                                }
+                                                                              }
+                                                                            )
+                                                                          ]
                                                                         )
                                                                       }
                                                                     )
@@ -60992,7 +61115,7 @@ var render = function() {
                       _c("div", { staticClass: "row border-b border-r" }, [
                         _vm._m(18),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-3 p-0" }, [
+                        _c("div", { staticClass: "col-md-6 p-0" }, [
                           _c("input", {
                             directives: [
                               {
@@ -61004,11 +61127,7 @@ var render = function() {
                             ],
                             staticClass: "input-line",
                             staticStyle: { width: "100%" },
-                            attrs: {
-                              type: "number",
-                              name: "turbo",
-                              id: "turbo"
-                            },
+                            attrs: { type: "text", name: "turbo", id: "turbo" },
                             domProps: { value: _vm.form.turbo_inte_traqueal },
                             on: {
                               input: function($event) {
@@ -63991,8 +64110,7 @@ var render = function() {
                                                 name: "model",
                                                 rawName: "v-model",
                                                 value: _vm.form.paciente,
-                                                expression:
-                                                  "\n                                                            form.paciente\n                                                        "
+                                                expression: "form.paciente"
                                               }
                                             ],
                                             staticClass:
@@ -64033,7 +64151,7 @@ var render = function() {
                                             { staticClass: "col-form-label" },
                                             [
                                               _vm._v(
-                                                "N° Historia\n                                                        Clínica"
+                                                "N° Historia\n                                                    Clínica"
                                               )
                                             ]
                                           ),
@@ -64046,7 +64164,7 @@ var render = function() {
                                                 value:
                                                   _vm.form.historia_clinica,
                                                 expression:
-                                                  "\n                                                            form.historia_clinica\n                                                        "
+                                                  "\n                                                        form.historia_clinica\n                                                    "
                                               }
                                             ],
                                             staticClass:
@@ -64241,8 +64359,7 @@ var render = function() {
                                                 name: "model",
                                                 rawName: "v-model",
                                                 value: _vm.form.estatura,
-                                                expression:
-                                                  "\n                                                            form.estatura\n                                                        "
+                                                expression: "form.estatura"
                                               }
                                             ],
                                             staticClass:
@@ -64331,11 +64448,7 @@ var render = function() {
                                               staticClass:
                                                 "col-lg-12 col-md-12 col-sm-12 col-form-label"
                                             },
-                                            [
-                                              _vm._v(
-                                                "Ocupación\n                                                        Actual"
-                                              )
-                                            ]
+                                            [_vm._v("Ocupación Actual")]
                                           ),
                                           _vm._v(" "),
                                           _c("input", {
@@ -64346,7 +64459,7 @@ var render = function() {
                                                 value:
                                                   _vm.form.ocupacion_actual,
                                                 expression:
-                                                  "\n                                                            form.ocupacion_actual\n                                                        "
+                                                  "\n                                                        form.ocupacion_actual\n                                                    "
                                               }
                                             ],
                                             staticClass:
@@ -64390,38 +64503,64 @@ var render = function() {
                                             [_vm._v("Servicio")]
                                           ),
                                           _vm._v(" "),
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value: _vm.form.servicio,
-                                                expression:
-                                                  "\n                                                            form.servicio\n                                                        "
-                                              }
-                                            ],
-                                            staticClass:
-                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                            attrs: {
-                                              type: "text",
-                                              placeholder: "Servicio"
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12"
                                             },
-                                            domProps: {
-                                              value: _vm.form.servicio
-                                            },
-                                            on: {
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.$set(
-                                                  _vm.form,
-                                                  "servicio",
-                                                  $event.target.value
-                                                )
-                                              }
-                                            }
-                                          })
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "form-group" },
+                                                [
+                                                  _c(
+                                                    "v-select",
+                                                    {
+                                                      attrs: {
+                                                        taggable: "",
+                                                        "push-tags": "",
+                                                        value:
+                                                          _vm.form
+                                                            .id_servicio_medico,
+                                                        options:
+                                                          _vm.serviciosMedicos,
+                                                        label: "display"
+                                                      },
+                                                      on: {
+                                                        input:
+                                                          _vm.setSelectedServicioMedico
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.selectedServicioMedico,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.selectedServicioMedico = $$v
+                                                        },
+                                                        expression:
+                                                          "\n                                                                selectedServicioMedico\n                                                            "
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "template",
+                                                        { slot: "no-options" },
+                                                        [
+                                                          _vm._v(
+                                                            "No existen\n                                                                datos"
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    2
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          )
                                         ]
                                       ),
                                       _vm._v(" "),
@@ -64536,50 +64675,69 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                "Diagnóstico\n                                                        Preoperatorio"
+                                                "Diagnóstico\n                                                    Preoperatorio"
                                               )
                                             ]
                                           ),
                                           _vm._v(" "),
-                                          _c("textarea", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value:
-                                                  _vm.form
-                                                    .diagnostico_preoperatorio,
-                                                expression:
-                                                  "\n                                                            form.diagnostico_preoperatorio\n                                                        "
-                                              }
-                                            ],
-                                            staticClass:
-                                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                                            attrs: {
-                                              disabled: "",
-                                              rows: "1",
-                                              type: "text",
-                                              placeholder:
-                                                "Diagnóstico Preoperatorio"
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "col-lg-12 col-md-12 col-sm-12"
                                             },
-                                            domProps: {
-                                              value:
-                                                _vm.form
-                                                  .diagnostico_preoperatorio
-                                            },
-                                            on: {
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.$set(
-                                                  _vm.form,
-                                                  "diagnostico_preoperatorio",
-                                                  $event.target.value
-                                                )
-                                              }
-                                            }
-                                          })
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "form-group" },
+                                                [
+                                                  _c(
+                                                    "v-select",
+                                                    {
+                                                      attrs: {
+                                                        taggable: "",
+                                                        "push-tags": "",
+                                                        value:
+                                                          _vm.form
+                                                            .id_diagnostico_pre,
+                                                        options:
+                                                          _vm.diagnosticosPre,
+                                                        label: "display"
+                                                      },
+                                                      on: {
+                                                        input:
+                                                          _vm.setSelectedDiagnosticoPre
+                                                      },
+                                                      model: {
+                                                        value:
+                                                          _vm.selectedDiagnosticoPre,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.selectedDiagnosticoPre = $$v
+                                                        },
+                                                        expression:
+                                                          "\n                                                                selectedDiagnosticoPre\n                                                            "
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "template",
+                                                        { slot: "no-options" },
+                                                        [
+                                                          _vm._v(
+                                                            "No existen\n                                                                datos"
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    2
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          )
                                         ]
                                       ),
                                       _vm._v(" "),
@@ -64598,7 +64756,7 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                "Diagnóstico\n                                                        Post-operatorio"
+                                                "Diagnóstico\n                                                    Post-operatorio"
                                               )
                                             ]
                                           ),
@@ -64640,7 +64798,7 @@ var render = function() {
                                                           _vm.selectedDiagnostico = $$v
                                                         },
                                                         expression:
-                                                          "\n                                                                    selectedDiagnostico\n                                                                "
+                                                          "\n                                                                selectedDiagnostico\n                                                            "
                                                       }
                                                     },
                                                     [
@@ -64649,7 +64807,7 @@ var render = function() {
                                                         { slot: "no-options" },
                                                         [
                                                           _vm._v(
-                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                            "No existen\n                                                                datos"
                                                           )
                                                         ]
                                                       )
@@ -64679,7 +64837,7 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                "Operación\n                                                        Propuesta:"
+                                                "Operación\n                                                    Propuesta:"
                                               )
                                             ]
                                           ),
@@ -64692,7 +64850,7 @@ var render = function() {
                                                 value:
                                                   _vm.form.operacion_propuesta,
                                                 expression:
-                                                  "\n                                                            form.operacion_propuesta\n                                                        "
+                                                  "\n                                                        form.operacion_propuesta\n                                                    "
                                               }
                                             ],
                                             staticClass:
@@ -64754,6 +64912,7 @@ var render = function() {
                                                     "v-select",
                                                     {
                                                       attrs: {
+                                                        placeholder: "Cirujano",
                                                         value:
                                                           _vm.form.id_cirujano,
                                                         options: _vm.cirujanos,
@@ -64772,7 +64931,7 @@ var render = function() {
                                                           _vm.selectedCirujano = $$v
                                                         },
                                                         expression:
-                                                          "\n                                                                    selectedCirujano\n                                                                "
+                                                          "\n                                                                selectedCirujano\n                                                            "
                                                       }
                                                     },
                                                     [
@@ -64781,7 +64940,7 @@ var render = function() {
                                                         { slot: "no-options" },
                                                         [
                                                           _vm._v(
-                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                            "No existen\n                                                                datos"
                                                           )
                                                         ]
                                                       )
@@ -64827,6 +64986,7 @@ var render = function() {
                                                     "v-select",
                                                     {
                                                       attrs: {
+                                                        placeholder: "Ayudante",
                                                         value:
                                                           _vm.form.id_ayudante1,
                                                         options: _vm.ayudantes1,
@@ -64845,7 +65005,7 @@ var render = function() {
                                                           _vm.selectedAyudante1 = $$v
                                                         },
                                                         expression:
-                                                          "\n                                                                    selectedAyudante1\n                                                                "
+                                                          "\n                                                                selectedAyudante1\n                                                            "
                                                       }
                                                     },
                                                     [
@@ -64854,7 +65014,7 @@ var render = function() {
                                                         { slot: "no-options" },
                                                         [
                                                           _vm._v(
-                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                            "No existen\n                                                                datos"
                                                           )
                                                         ]
                                                       )
@@ -64884,7 +65044,7 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                "Operación\n                                                        Realizada:"
+                                                "Operación\n                                                    Realizada:"
                                               )
                                             ]
                                           ),
@@ -64906,6 +65066,8 @@ var render = function() {
                                                       attrs: {
                                                         taggable: "",
                                                         "push-tags": "",
+                                                        placeholder:
+                                                          "Operación Realizada",
                                                         value:
                                                           _vm.form.id_tarifaria,
                                                         options: _vm.tarifarias,
@@ -64924,7 +65086,7 @@ var render = function() {
                                                           _vm.selectedTarifaria = $$v
                                                         },
                                                         expression:
-                                                          "\n                                                                    selectedTarifaria\n                                                                "
+                                                          "\n                                                                selectedTarifaria\n                                                            "
                                                       }
                                                     },
                                                     [
@@ -64933,7 +65095,7 @@ var render = function() {
                                                         { slot: "no-options" },
                                                         [
                                                           _vm._v(
-                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                            "No existen\n                                                                datos"
                                                           )
                                                         ]
                                                       )
@@ -64979,6 +65141,8 @@ var render = function() {
                                                     "v-select",
                                                     {
                                                       attrs: {
+                                                        placeholder:
+                                                          "Anestesiologo",
                                                         value:
                                                           _vm.form
                                                             .id_anestesiologo,
@@ -64999,7 +65163,7 @@ var render = function() {
                                                           _vm.selectedAnestesiologo = $$v
                                                         },
                                                         expression:
-                                                          "\n                                                                    selectedAnestesiologo\n                                                                "
+                                                          "\n                                                                selectedAnestesiologo\n                                                            "
                                                       }
                                                     },
                                                     [
@@ -65008,7 +65172,7 @@ var render = function() {
                                                         { slot: "no-options" },
                                                         [
                                                           _vm._v(
-                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                            "No existen\n                                                                datos"
                                                           )
                                                         ]
                                                       )
@@ -65054,6 +65218,7 @@ var render = function() {
                                                     "v-select",
                                                     {
                                                       attrs: {
+                                                        placeholder: "Ayudante",
                                                         value:
                                                           _vm.form.id_ayudante2,
                                                         options: _vm.ayudantes2,
@@ -65072,7 +65237,7 @@ var render = function() {
                                                           _vm.selectedAyudante2 = $$v
                                                         },
                                                         expression:
-                                                          "\n                                                                    selectedAyudante2\n                                                                "
+                                                          "\n                                                                selectedAyudante2\n                                                            "
                                                       }
                                                     },
                                                     [
@@ -65081,7 +65246,7 @@ var render = function() {
                                                         { slot: "no-options" },
                                                         [
                                                           _vm._v(
-                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                            "No existen\n                                                                datos"
                                                           )
                                                         ]
                                                       )
@@ -65127,6 +65292,8 @@ var render = function() {
                                                     "v-select",
                                                     {
                                                       attrs: {
+                                                        placeholder:
+                                                          "Instrumentista",
                                                         value:
                                                           _vm.form
                                                             .id_instrumentista,
@@ -65147,7 +65314,7 @@ var render = function() {
                                                           _vm.selectedInstrumentista = $$v
                                                         },
                                                         expression:
-                                                          "\n                                                                    selectedInstrumentista\n                                                                "
+                                                          "\n                                                                selectedInstrumentista\n                                                            "
                                                       }
                                                     },
                                                     [
@@ -65156,7 +65323,7 @@ var render = function() {
                                                         { slot: "no-options" },
                                                         [
                                                           _vm._v(
-                                                            "No\n                                                                    existen\n                                                                    datos"
+                                                            "No existen\n                                                                datos"
                                                           )
                                                         ]
                                                       )
@@ -69161,107 +69328,100 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "row" },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "col-lg-8 col-md-8 col-sm-12 mt-2",
-          staticStyle: { "margin-left": "auto", "margin-right": "auto" }
-        },
-        [
-          _c("div", { staticClass: "form-inline" }, [
-            _c(
-              "label",
+  return _c("div", { staticClass: "row" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "col-lg-8 col-md-8 col-sm-12 mt-2",
+        staticStyle: { "margin-left": "auto", "margin-right": "auto" }
+      },
+      [
+        _c("div", { staticClass: "form-inline" }, [
+          _c(
+            "label",
+            {
+              staticClass: "col-lg-4 col-md-4 col-sm-4",
+              attrs: { for: "fecha_hasta" }
+            },
+            [_vm._v("Buscar por Fecha")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
               {
-                staticClass: "col-lg-4 col-md-4 col-sm-4",
-                attrs: { for: "fecha_hasta" }
-              },
-              [_vm._v("Buscar por Fecha")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.frm_fecha,
-                  expression: "form.frm_fecha"
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.frm_fecha,
+                expression: "form.frm_fecha"
+              }
+            ],
+            staticClass: "form-control col-lg-6 col-md-6 col-sm-6",
+            attrs: {
+              type: "date",
+              id: "fecha_hasta",
+              placeholder: "Seleccione la fecha de fin"
+            },
+            domProps: { value: _vm.form.frm_fecha },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
-              ],
-              staticClass: "form-control col-lg-6 col-md-6 col-sm-6",
-              attrs: {
-                type: "date",
-                id: "fecha_hasta",
-                placeholder: "Seleccione la fecha de fin"
-              },
-              domProps: { value: _vm.form.frm_fecha },
+                _vm.$set(_vm.form, "frm_fecha", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success col-lg-2 col-md-2 col-sm-2",
+              attrs: { type: "button" },
               on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "frm_fecha", $event.target.value)
+                click: function($event) {
+                  return _vm.cargarListaCirugiaProgramadaPaciente()
                 }
               }
-            }),
-            _vm._v(" "),
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-search",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]
+          )
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row mt-3" }, [
             _c(
-              "button",
-              {
-                staticClass: "btn btn-success col-lg-2 col-md-2 col-sm-2",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    return _vm.cargarListaCirugiaProgramadaPaciente()
-                  }
-                }
-              },
+              "div",
+              { staticClass: "col-lg-12 col-md-12 col-sm-12" },
               [
-                _c("i", {
-                  staticClass: "fa fa-search",
-                  attrs: { "aria-hidden": "true" }
+                _c("vuetable-component", {
+                  attrs: {
+                    "seleccionar-button": _vm.seleccionarButton,
+                    "anular-button": false,
+                    "modificar-button": false,
+                    "columns-data": _vm.columns,
+                    "rows-data": _vm.listaCirugiaProgramadaPaciente
+                  },
+                  on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
                 })
-              ]
+              ],
+              1
             )
           ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "row mt-3" }, [
-              _c(
-                "div",
-                { staticClass: "col-lg-12 col-md-12 col-sm-12" },
-                [
-                  _c("vuetable-component", {
-                    attrs: {
-                      "seleccionar-button": _vm.seleccionarButton,
-                      "anular-button": false,
-                      "modificar-button": false,
-                      "columns-data": _vm.columns,
-                      "rows-data": _vm.listaCirugiaProgramadaPaciente
-                    },
-                    on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
-                  })
-                ],
-                1
-              )
-            ])
-          ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("FlashMessage")
-    ],
-    1
-  )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -78976,69 +79136,6 @@ var staticRenderFns = [
     ])
   }
 ]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Prueba.vue?vue&type=template&id=6693517c&":
-/*!*********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Prueba.vue?vue&type=template&id=6693517c& ***!
-  \*********************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-    _c("div", { staticClass: "card card-warning" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("form", { attrs: { role: "form" } }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-sm-12" }, [
-              _c("div", { staticClass: "form-group" }, [
-                _c("div", { staticClass: "card-footer" }, [
-                  _c("div", { staticClass: "card" }, [
-                    _c("div", { staticClass: "card-body mt-2 ml-2" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c(
-                          "div",
-                          [
-                            _c("vue-painttable", {
-                              attrs: {
-                                id: "firma",
-                                isFirstPaintable: _vm.isFirstPaintable,
-                                disableNavigation: true,
-                                showUndoRedo: false,
-                                showLineWidth: false,
-                                rutaImagen: _vm.rutaImagen,
-                                width: 800,
-                                height: 800
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
 render._withStripped = true
 
 
@@ -97329,7 +97426,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("menuComponente", __webpack
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vuetable-component", __webpack_require__(/*! ./components/componentesGenerales/VueTableComponent.vue */ "./resources/js/components/componentesGenerales/VueTableComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vue-painttable", __webpack_require__(/*! ./components/componentesGenerales/VuePaintableComponent.vue */ "./resources/js/components/componentesGenerales/VuePaintableComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vue-confirmar-cancelar", __webpack_require__(/*! ./components/componentesGenerales/VueConfirmarCancelarComponent.vue */ "./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("prueba", __webpack_require__(/*! ./components/Prueba.vue */ "./resources/js/components/Prueba.vue")["default"]); //Modulo de Parametrizacion
+/* Vue.component(
+    "prueba",
+    require("./components/Prueba.vue").default
+); */
+//Modulo de Parametrizacion
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-modulo", __webpack_require__(/*! ./components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue */ "./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-sub-modulo", __webpack_require__(/*! ./components/Modulos/Parametrizacion/sub_modulo/CrearModificarSubModulo.vue */ "./resources/js/components/Modulos/Parametrizacion/sub_modulo/CrearModificarSubModulo.vue")["default"]); //Modulo de Cirugía
@@ -97339,7 +97440,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("revision-sistema", __webpa
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("antecedente", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Antecedente.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Antecedente.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("examen-fisico", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/ExamenFisico.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/ExamenFisico.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("paraclinico", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("registro-anestesico", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue")["default"]);
+/* Vue.component(
+    "registro-anestesico",
+    require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue").default
+); */
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("registro-anestesico", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-tipo-agente", __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue */ "./resources/js/components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-tipo-posiciones", __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue")["default"]);
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
@@ -97453,18 +97559,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue ***!
-  \**********************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue ***!
+  \***************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=template&id=0efa7f95& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&");
-/* harmony import */ var _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _registro_anestesico_jony_vue_vue_type_template_id_58e274b8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./registro-anestesico-jony.vue?vue&type=template&id=58e274b8& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=template&id=58e274b8&");
+/* harmony import */ var _registro_anestesico_jony_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registro-anestesico-jony.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _registro_anestesico_jony_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro-anestesico-jony.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -97475,9 +97581,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _registro_anestesico_jony_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _registro_anestesico_jony_vue_vue_type_template_id_58e274b8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _registro_anestesico_jony_vue_vue_type_template_id_58e274b8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -97487,54 +97593,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue"
+component.options.__file = "resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico-jony.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&":
-/*!*******************************************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css& ***!
-  \*******************************************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css&":
+/*!************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/style-loader!../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/style-loader!../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico-jony.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&":
-/*!*****************************************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95& ***!
-  \*****************************************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=template&id=58e274b8&":
+/*!**********************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=template&id=58e274b8& ***!
+  \**********************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=template&id=0efa7f95& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_template_id_58e274b8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico-jony.vue?vue&type=template&id=58e274b8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=template&id=58e274b8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_template_id_58e274b8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_template_id_58e274b8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -98644,75 +98750,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Prueba.vue":
-/*!********************************************!*\
-  !*** ./resources/js/components/Prueba.vue ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Prueba_vue_vue_type_template_id_6693517c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Prueba.vue?vue&type=template&id=6693517c& */ "./resources/js/components/Prueba.vue?vue&type=template&id=6693517c&");
-/* harmony import */ var _Prueba_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Prueba.vue?vue&type=script&lang=js& */ "./resources/js/components/Prueba.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Prueba_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Prueba_vue_vue_type_template_id_6693517c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Prueba_vue_vue_type_template_id_6693517c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/Prueba.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/Prueba.vue?vue&type=script&lang=js&":
-/*!*********************************************************************!*\
-  !*** ./resources/js/components/Prueba.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Prueba_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Prueba.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Prueba.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Prueba_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/Prueba.vue?vue&type=template&id=6693517c&":
-/*!***************************************************************************!*\
-  !*** ./resources/js/components/Prueba.vue?vue&type=template&id=6693517c& ***!
-  \***************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Prueba_vue_vue_type_template_id_6693517c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Prueba.vue?vue&type=template&id=6693517c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Prueba.vue?vue&type=template&id=6693517c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Prueba_vue_vue_type_template_id_6693517c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Prueba_vue_vue_type_template_id_6693517c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/componentesGenerales/MenuComponent.vue":
 /*!************************************************************************!*\
   !*** ./resources/js/components/componentesGenerales/MenuComponent.vue ***!
@@ -99099,6 +99136,13 @@ var funcionesGlobales = {
         return zero.repeat(width - length) + numberOutput.toString();
       }
     }
+  },
+  addCeroToTime: function addCeroToTime(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+
+    return i;
   },
   //Metodo para Convertir la Palabra en Mayuscula
   toCapitalAllWords: function toCapitalAllWords(palabra) {
