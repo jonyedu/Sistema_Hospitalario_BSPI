@@ -2280,7 +2280,7 @@ export default {
     },
     beforeDestroy: function() {},
     methods: {
-        eliminarAgente(id){
+        eliminarAgente(index, index_fila,index_columna, index_minutos_columna, index_agente){
             alert(index, index_fila,index_columna, index_minutos_columna, index_agente);
         },
         mostrarModalConfirmarCandelar() {
