@@ -47,7 +47,6 @@
                 </div>
             </div>
         </div>
-        <FlashMessage></FlashMessage>
     </div>
 </template>
 <script>
@@ -66,8 +65,39 @@ export default {
             },
             columns: [
                 {
+                    label: "Hora Programada",
+                    field: "horaProgramada",
+                    type: "String"
+                },
+                {
+                    label: "Hora Inicio",
+                    field: "horaInicio",
+                    type: "String"
+                },
+                {
+                    label: "Hora Fin",
+                    field: "horaFin",
+                    type: "String"
+                },
+                {
+                    label: "Qx",
+                    field: "quirofano",
+                    type: "String"
+                },
+                {
                     label: "Paciente",
                     field: "nombrePaciente",
+                    type: "String",
+                    width: "150px"
+                },
+                {
+                    label: "Sala-Cama",
+                    field: "sala_cama",
+                    type: "String"
+                },
+                {
+                    label: "Procedimiento",
+                    field: "procedimiento",
                     type: "String"
                 },
                 {
@@ -80,16 +110,8 @@ export default {
                     field: "anestesiologo",
                     type: "String"
                 },
-                {
-                    label: "Quirofano",
-                    field: "quirofano",
-                    type: "String"
-                },
-                {
-                    label: "Procedimiento",
-                    field: "procedimiento",
-                    type: "String"
-                }
+
+
             ]
         };
     },
@@ -136,20 +158,24 @@ export default {
                                 objeto.historiaClinica = lista.CirProHisCli;
                                 objeto.fechaProgramada = lista.CirProFecPro;
                                 if(lista.paciente_lista != null){
-                                    //alert("edad: " + that.$funcionesGlobales.calcularEdad(lista.paciente_lista.fecha_nacimiento));
                                     objeto.edad = lista.paciente_lista.EDAD;
                                     objeto.sexo = lista.paciente_lista.genero;
                                 }
                                 objeto.sala = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProSala);
                                 objeto.cama = lista.CirProCama;
+                                objeto.sala_cama = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProSala) + "-" + lista.CirProCama;
                                 if(lista.paciente_hospitalizacion != null){
                                     objeto.id_diagnostico = lista.paciente_hospitalizacion.principal;
                                 }
                                 //datos para mostrar en la tabla padre
+                                objeto.horaProgramada = lista.CirProHorPro;
+                                objeto.horaInicio = lista.CirProHoraFin==null?'00:00:00':lista.CirProHoraInicio;
+                                objeto.horaFin = lista.CirProHoraFin==null?'00:00:00':lista.CirProHoraFin;
                                 objeto.cirujano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProCirujano);
                                 objeto.anestesiologo = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProAnestesiologo);
-                                objeto.quirofano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProCirujano);
+                                objeto.quirofano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProQuirofano);
                                 objeto.procedimiento = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProProcedimiento);
+
                                 listaCirugiaProgramadaPaciente.push(objeto);
                             });
                             that.listaCirugiaProgramadaPaciente = listaCirugiaProgramadaPaciente;

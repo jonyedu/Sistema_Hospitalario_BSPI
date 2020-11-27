@@ -28,7 +28,7 @@ class DatosRegistroController extends Controller
                     'estatura' => $request->input('estatura'),
                     'peso' => $request->input('peso'),
                     'ocupacion_actual' => $request->input('ocupacion_actual'),
-                    'servicio' => $request->input('servicio'),
+                    'id_servicio' => $request->input('id_servicio'),
                     'sala' => $request->input('sala'),
                     'cama' => $request->input('cama'),
                     'id_diagnostico_pre' => $request->input('id_diagnostico_pre'),
