@@ -216,9 +216,9 @@ class RegistroAnestesiaController extends Controller
 
                 //LISTAR CIRUGIAS PROGRAMADAS
 
-                //  $datosValoracionPreanestesica = CirugiaProgramadas::where('CirProFecPro', $idSecCirPro)
-                //  ->with('pacienteLista','pacienteHospitalizacion')
-                //  ->get();
+                 $datosValoracionPreanestesica = CirugiaProgramadas::where('CirProFecPro', $idSecCirPro)
+                 ->with('pacienteLista','pacienteHospitalizacion')
+                 ->get();
 
                  //FIN DE LISTA
                 $TarifarioProcedimiento = TarifarioProcedimiento::select('codigo','descripcion')->where('descripcion','like', "%$idSecCirPro%" );

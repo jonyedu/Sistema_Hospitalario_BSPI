@@ -58,6 +58,7 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         //Route::post('registro_tipo_agente/post', 'TipoAgenteAnestesiaController@store');
 
         Route::get('cargar_tipo_posiciones_combo_box', 'AgenteAnestesiaController@cargarAgenteTipoPosicionComboBox');
+        Route::post('guardar_datos_registro', 'DatosRegistroController@guardarDatosRegistro');
         Route::post('guardar_droga_administrada', 'DrogasAdministradasController@guardarDrogaAdministradas');
         Route::post('modifcar_registro_anestesia', 'RegistroAnestesiaController@modifcarRegistroAnestesia');
         Route::post('guardar_registro_infusiones', 'RegistroInfusionesController@guardarRegistroInfusiones');

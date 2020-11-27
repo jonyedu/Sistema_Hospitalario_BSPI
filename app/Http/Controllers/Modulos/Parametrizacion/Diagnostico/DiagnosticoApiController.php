@@ -24,4 +24,19 @@ class DiagnosticoApiController extends Controller
             }
         }
     }
+
+    public function cargarDiagnosticoPorCodigo($id)
+    {
+        if ($id != "") {
+            try {
+                $diagnostico = Diagnostico::where('status', 1)
+                    ->where('tipo', 'CIE10')
+                    ->where('codigo',$id )
+                    ->first();
+                return  response()->json(['diagnostico' => $diagnostico], 200);
+            } catch (Exception $e) {
+                return response()->json(['mensaje' => $e->getMessage()], 500);
+            }
+        }
+    }
 }

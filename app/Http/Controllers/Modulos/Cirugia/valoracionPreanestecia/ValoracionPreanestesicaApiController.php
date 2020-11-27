@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Modulos\Cirugia\valoracionPreanestecia;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Modulos\Cirugia\valoracionPreanestecia\ConsultarListaCirugiaRequest;
+use App\Models\Modulos\Cirugia\CirugiaProgramadas;
 use App\Models\Modulos\Cirugia\valoracionPreanestecia\RevisionSistema;
 use DateTime;
 use Exception;
@@ -21,8 +22,15 @@ class ValoracionPreanestesicaApiController extends Controller
             /* $datosPaciente = DB::connection('admin_db_sql')
                 ->select("exec SpAdm_CirugiasProgramdasConsultar '2890','','DP' "); */
 
-            $fecha = $request->input('frm_fecha');
-            $listaCirugiaProgramadaPaciente = DB::connection('admin_db_sql')->select("exec SpAdm_CirugiasProgramdasConsultar '','" . $fecha . "','PO' ");
+             $fecha = $request->input('frm_fecha');
+            // $listaCirugiaProgramadaPaciente = DB::connection('admin_db_sql')->select("exec SpAdm_CirugiasProgramdasConsultar '','" . $fecha . "','PO' ");
+
+
+            $listaCirugiaProgramadaPaciente = CirugiaProgramadas::where('CirProFecPro', $fecha)
+            ->with('pacienteLista','pacienteHospitalizacion')
+            ->get();
+
+
             return  response()->json(['listaCirugiaProgramadaPaciente' => $listaCirugiaProgramadaPaciente], 200);
         } catch (Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);
