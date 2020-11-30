@@ -1963,18 +1963,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4242,7 +4250,208 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   beforeDestroy: function beforeDestroy() {},
   methods: {
     eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente) {
-      alert(index, index_fila, index_columna, index_minutos_columna, index_agente);
+      var mensaje = "index: " + index + ", index_fila: " + index_fila + ", index_columna: " + index_columna + ", index_minutos_columna: " + index_minutos_columna + ", index_agente: " + index_agente;
+      this.flashMessage.show({
+        status: "error",
+        title: "Error al procesar consultarSello",
+        message: mensaje,
+        clickable: true,
+        time: 0,
+        icon: "/iconsflashMessage/error.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
+      var indexLista = null;
+      /* for (let i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
+          if (this.lista_horas_avanzadas_v[i] != "") {
+              if (i == index) {
+                  for (let j = 0;j < this.lista_horas_avanzadas_v[i].datos.length;j++) {
+                      if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
+                          if (j == index_fila){
+                              for (let k = 0;k <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length;k++) {
+                                  if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
+                                      if (k == index_columna){
+                                          for (let l = 0;l <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length;l++) {
+                                              if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
+                                                  if (l == index_minutos_columna){
+                                                      console.log(this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l]);
+                                                  }
+                                              }
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          } */
+
+      /* this.agregaDatoEnRejilla(
+          true,
+          false,
+          250,
+          "img/icons/induccion.png",
+          { system_name: "INDUCCION", tipo: this.system_agente }
+      ); */
+
+      /* if (this.lista_horas_avanzadas_v[i].datos == id_producto) {
+          indexLista = i;
+          break;
+      } */
+
+      var _iterator = _createForOfIteratorHelper(this.lista_horas_avanzadas_v[index].datos[index_fila].columnasQuinceMin),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var columna_quince = _step.value;
+
+          //console.log(columna_quince.columnas);
+          var _iterator2 = _createForOfIteratorHelper(columna_quince.columnas[index_columna]),
+              _step2;
+
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var _index_agente = _step2.value;
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
+        }
+        /* for (let i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
+            if (this.lista_horas_avanzadas_v[i] != "") {
+                if (i == index) {
+                    for (let j = 0;j < this.lista_horas_avanzadas_v[i].datos.length;j++) {
+                        if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
+                            if (j == index_fila){
+                                for (let k = 0;k <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length;k++) {
+                                    if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
+                                        if (k == index_columna){
+                                            for (let l = 0;l <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length;l++) {
+                                                if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
+                                                    if (l == index_minutos_columna){
+                                                        console.log(this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l]);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } */
+        //this.lista_horas_avanzadas_v.splice(index, 1);
+
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    },
+
+    /**
+     * Método para pintar el dato en una rejilla y enviar ese dato al servidor
+     * @param is_tpo_init
+     * @param is_tpo_fin
+     * @param valor
+     * @param ruta_icono
+     * @param adicional
+     * @param fila_indice
+     * @param es_posicion
+     * @param posicion
+     */
+    agregaDatoEnRejilla: function agregaDatoEnRejilla(is_tpo_init, is_tpo_fin, valor, ruta_icono) {
+      var adicional = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {
+        system_name: ""
+      };
+      var fila_indice = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+      var es_posicion = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
+      var posicion = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : {};
+      // if(posicion)debugger
+      var indice_fila = fila_indice != 0 ? fila_indice : this.obtenerIndice(valor); // Verifica el índice según la hora
+
+      var _iterator3 = _createForOfIteratorHelper(this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin),
+          _step3;
+
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var column_quince = _step3.value;
+
+          // Recorre cada fila
+          // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
+          if (column_quince.columnas) {
+            // Recorre datos
+            if (es_posicion) {
+              // posiciones
+              if (column_quince.tiempo_inicio <= this.minutes && column_quince.tiempo_fin > this.minutes) {
+                // Agregar dato de envío
+                this.enviarDatosAgente({
+                  tpo_ini: is_tpo_init,
+                  tpo_fin: is_tpo_fin,
+                  hora: this.hour,
+                  min: this.minutes,
+                  segundos: this.seconds,
+                  valor: valor,
+                  name: adicional.system_name,
+                  indice_hora: this.indice_hora
+                }, adicional.tipo);
+                column_quince.posicion = posicion;
+                return;
+              }
+            } else {
+              // figuras en rejillas
+              var _iterator4 = _createForOfIteratorHelper(column_quince.columnas),
+                  _step4;
+
+              try {
+                for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+                  var col_cince_min = _step4.value;
+
+                  if (col_cince_min.t_init <= this.minutes && col_cince_min.t_fin > this.minutes) {
+                    if (this.minutes >= col_cince_min.t_init && col_cince_min.t_fin > this.minutes) {
+                      col_cince_min.agentes.push({
+                        descripcion: adicional.system_name,
+                        valor: valor,
+                        _src: ruta_icono
+                      }); // Agregar dato de envío
+
+                      this.enviarDatosAgente({
+                        tpo_ini: is_tpo_init,
+                        tpo_fin: is_tpo_fin,
+                        hora: this.hour,
+                        min: this.minutes,
+                        segundos: this.seconds,
+                        valor: valor,
+                        name: adicional.system_name,
+                        indice_hora: this.indice_hora
+                      }, adicional.tipo);
+                    }
+
+                    return;
+                  }
+                }
+              } catch (err) {
+                _iterator4.e(err);
+              } finally {
+                _iterator4.f();
+              }
+            }
+          }
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
     },
     mostrarModalConfirmarCandelar: function mostrarModalConfirmarCandelar() {
       this.icon = "/iconsflashMessage/warning.svg";
@@ -5107,102 +5316,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
 
     /**
-     * Método para pintar el dato en una rejilla y enviar ese dato al servidor
-     * @param is_tpo_init
-     * @param is_tpo_fin
-     * @param valor
-     * @param ruta_icono
-     * @param adicional
-     * @param fila_indice
-     * @param es_posicion
-     * @param posicion
-     */
-    agregaDatoEnRejilla: function agregaDatoEnRejilla(is_tpo_init, is_tpo_fin, valor, ruta_icono) {
-      var adicional = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {
-        system_name: ""
-      };
-      var fila_indice = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
-      var es_posicion = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
-      var posicion = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : {};
-      // if(posicion)debugger
-      var indice_fila = fila_indice != 0 ? fila_indice : this.obtenerIndice(valor); // Verifica el índice según la hora
-
-      var _iterator = _createForOfIteratorHelper(this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var column_quince = _step.value;
-
-          // Recorre cada fila
-          // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
-          if (column_quince.columnas) {
-            // Recorre datos
-            if (es_posicion) {
-              // posiciones
-              if (column_quince.tiempo_inicio <= this.minutes && column_quince.tiempo_fin > this.minutes) {
-                // Agregar dato de envío
-                this.enviarDatosAgente({
-                  tpo_ini: is_tpo_init,
-                  tpo_fin: is_tpo_fin,
-                  hora: this.hour,
-                  min: this.minutes,
-                  segundos: this.seconds,
-                  valor: valor,
-                  name: adicional.system_name,
-                  indice_hora: this.indice_hora
-                }, adicional.tipo);
-                column_quince.posicion = posicion;
-                return;
-              }
-            } else {
-              // figuras en rejillas
-              var _iterator2 = _createForOfIteratorHelper(column_quince.columnas),
-                  _step2;
-
-              try {
-                for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                  var col_cince_min = _step2.value;
-
-                  if (col_cince_min.t_init <= this.minutes && col_cince_min.t_fin > this.minutes) {
-                    if (this.minutes >= col_cince_min.t_init && col_cince_min.t_fin > this.minutes) {
-                      col_cince_min.agentes.push({
-                        descripcion: adicional.system_name,
-                        valor: valor,
-                        _src: ruta_icono
-                      }); // Agregar dato de envío
-
-                      this.enviarDatosAgente({
-                        tpo_ini: is_tpo_init,
-                        tpo_fin: is_tpo_fin,
-                        hora: this.hour,
-                        min: this.minutes,
-                        segundos: this.seconds,
-                        valor: valor,
-                        name: adicional.system_name,
-                        indice_hora: this.indice_hora
-                      }, adicional.tipo);
-                    }
-
-                    return;
-                  }
-                }
-              } catch (err) {
-                _iterator2.e(err);
-              } finally {
-                _iterator2.f();
-              }
-            }
-          }
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-    },
-
-    /**
      * Método para obtener el índice en la posición Y, según el valor que se le envíe, usa los valores estáticos 'valoresAnestecia_v'
      * @return int
      */
@@ -5431,50 +5544,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       hora.datos.push(this.agregarFilaEnHora(false, true));
       hora.datos.push(this.agregarFilaEnHora(false, true)); // Filas
 
-      var _iterator3 = _createForOfIteratorHelper(this.valoresAnestecia_v),
-          _step3;
-
-      try {
-        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-          var items = _step3.value;
-          hora.datos.push(this.agregarFilaEnHora(false, false, true));
-        }
-      } catch (err) {
-        _iterator3.e(err);
-      } finally {
-        _iterator3.f();
-      }
-
-      hora.datos.push(this.agregarFilaEnHora(false, false, false, true));
-      hora.datos.push(this.agregarFilaEnHora(false, false, true));
-
-      var _iterator4 = _createForOfIteratorHelper(hora.datos),
-          _step4;
-
-      try {
-        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-          var dato = _step4.value;
-          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(0, 14, dato.es_agente));
-          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(15, 29, dato.es_agente));
-          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(30, 44, dato.es_agente));
-          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(45, 60, dato.es_agente));
-        }
-      } catch (err) {
-        _iterator4.e(err);
-      } finally {
-        _iterator4.f();
-      }
-
-      this.lista_horas_avanzadas_v.push(hora);
-    },
-    llenarDatos: function llenarDatos() {
-      var hora = this.agregarNuevaHora("auto");
-      hora.datos.push(this.agregarFilaEnHora(true));
-      hora.datos.push(this.agregarFilaEnHora(false, true));
-      hora.datos.push(this.agregarFilaEnHora(false, true));
-      hora.datos.push(this.agregarFilaEnHora(false, true));
-      hora.datos.push(this.agregarFilaEnHora(false, true)); // Filas
-
       var _iterator5 = _createForOfIteratorHelper(this.valoresAnestecia_v),
           _step5;
 
@@ -5502,13 +5571,57 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           dato.columnasQuinceMin.push(this.agregarDatoEnColumna(15, 29, dato.es_agente));
           dato.columnasQuinceMin.push(this.agregarDatoEnColumna(30, 44, dato.es_agente));
           dato.columnasQuinceMin.push(this.agregarDatoEnColumna(45, 60, dato.es_agente));
-        } // hora.datos.push(agregarFilaEnHora(false, false, true));
-        // hora.datos.push(agregarFilaEnHora(false, false, true));
-
+        }
       } catch (err) {
         _iterator6.e(err);
       } finally {
         _iterator6.f();
+      }
+
+      this.lista_horas_avanzadas_v.push(hora);
+    },
+    llenarDatos: function llenarDatos() {
+      var hora = this.agregarNuevaHora("auto");
+      hora.datos.push(this.agregarFilaEnHora(true));
+      hora.datos.push(this.agregarFilaEnHora(false, true));
+      hora.datos.push(this.agregarFilaEnHora(false, true));
+      hora.datos.push(this.agregarFilaEnHora(false, true));
+      hora.datos.push(this.agregarFilaEnHora(false, true)); // Filas
+
+      var _iterator7 = _createForOfIteratorHelper(this.valoresAnestecia_v),
+          _step7;
+
+      try {
+        for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+          var items = _step7.value;
+          hora.datos.push(this.agregarFilaEnHora(false, false, true));
+        }
+      } catch (err) {
+        _iterator7.e(err);
+      } finally {
+        _iterator7.f();
+      }
+
+      hora.datos.push(this.agregarFilaEnHora(false, false, false, true));
+      hora.datos.push(this.agregarFilaEnHora(false, false, true));
+
+      var _iterator8 = _createForOfIteratorHelper(hora.datos),
+          _step8;
+
+      try {
+        for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
+          var dato = _step8.value;
+          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(0, 14, dato.es_agente));
+          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(15, 29, dato.es_agente));
+          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(30, 44, dato.es_agente));
+          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(45, 60, dato.es_agente));
+        } // hora.datos.push(agregarFilaEnHora(false, false, true));
+        // hora.datos.push(agregarFilaEnHora(false, false, true));
+
+      } catch (err) {
+        _iterator8.e(err);
+      } finally {
+        _iterator8.f();
       }
 
       this.lista_horas_avanzadas_v.push(hora);
@@ -6285,7 +6398,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 1,
       form: {
-        idCirugiaProgramada: "",
+        idCirugiaProgramada: "0001",
         registro_anestesia_id: 0,
 
         /* Datos del paciente */
