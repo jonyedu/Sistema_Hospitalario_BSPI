@@ -4305,6 +4305,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           break;
       } */
 
+      console.log(this.lista_horas_avanzadas_v[index].datos[index_fila]);
+
       var _iterator = _createForOfIteratorHelper(this.lista_horas_avanzadas_v[index].datos[index_fila].columnasQuinceMin),
           _step;
 
@@ -4312,18 +4314,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var columna_quince = _step.value;
 
-          //console.log(columna_quince.columnas);
-          var _iterator2 = _createForOfIteratorHelper(columna_quince.columnas[index_columna]),
-              _step2;
+          if (columna_quince.columnas) {
+            var _iterator2 = _createForOfIteratorHelper(columna_quince.columnas),
+                _step2;
 
-          try {
-            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-              var _index_agente = _step2.value;
+            try {
+              for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                var col_cince_min = _step2.value;
+                console.log(col_cince_min);
+              }
+            } catch (err) {
+              _iterator2.e(err);
+            } finally {
+              _iterator2.f();
             }
-          } catch (err) {
-            _iterator2.e(err);
-          } finally {
-            _iterator2.f();
           }
         }
         /* for (let i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
@@ -8023,11 +8027,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
       this.listas.frm_idCirugiaProgramada = value.SecCirPro;
-      this.form.frm_paciente = value.NombrePaciente;
-      this.form.frm_cirujano = value.Cirujano;
-      this.form.frm_anestesiologo = value.Anestesiologo;
-      this.form.frm_quirofano = value.Quirofano;
-      this.form.frm_procedimiento = value.Procedimiento;
+      this.form.frm_paciente = value.nombrePaciente;
+      this.form.frm_cirujano = value.cirujano;
+      this.form.frm_anestesiologo = value.anestesiologo;
+      this.form.frm_quirofano = value.quirofano;
+      this.form.frm_procedimiento = value.procedimiento;
       this.$modal.hide("ListaCirugiaProgramadaPaciente"); // if (this.$refs.revisionSistema != null) {
       //     this.$refs.revisionSistema.cargarRevisionSistema();
       // }

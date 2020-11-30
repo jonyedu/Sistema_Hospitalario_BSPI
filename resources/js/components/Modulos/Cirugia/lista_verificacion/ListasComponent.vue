@@ -48,7 +48,7 @@
                                                             llamarMetodoImprimir()
                                                         "
                                                         v-bind:style="{ display: isHidden}"
-                                                        
+
                                                     >
                                                         Imprimir
                                                     </button>
@@ -67,7 +67,7 @@
                                     <div
                                         class="col-lg-12 col-md-12 col-sm-12 text-left"
                                     >
-                                      
+
                                        <form
                                                 @submit.prevent="guardarLista"
                                                 method="POST"
@@ -1029,11 +1029,11 @@ export default {
         },
         handleSeleccionarClick(value) {
             this.listas.frm_idCirugiaProgramada = value.SecCirPro;
-            this.form.frm_paciente = value.NombrePaciente;
-            this.form.frm_cirujano = value.Cirujano;
-            this.form.frm_anestesiologo = value.Anestesiologo;
-            this.form.frm_quirofano = value.Quirofano;
-            this.form.frm_procedimiento = value.Procedimiento;
+            this.form.frm_paciente = value.nombrePaciente;
+            this.form.frm_cirujano = value.cirujano;
+            this.form.frm_anestesiologo = value.anestesiologo;
+            this.form.frm_quirofano = value.quirofano;
+            this.form.frm_procedimiento = value.procedimiento;
             this.$modal.hide("ListaCirugiaProgramadaPaciente");
             // if (this.$refs.revisionSistema != null) {
             //     this.$refs.revisionSistema.cargarRevisionSistema();
@@ -1138,7 +1138,7 @@ export default {
                         text: "."
                     }),
                     that.isHidden = 'block'
-                       
+
                     } else {
                         that.$swal({
                         icon: "success",
@@ -1212,13 +1212,13 @@ export default {
             // aui
         },
          llamarMetodoImprimir() {
-             
+
                 window.open(
                     "/modulos/cirugia/lista_verificacion/mostrarreporte/" +
                         this.listas.frm_idCirugiaProgramada
                 );
-             
+
         }
-    } 
+    }
 };
 </script>
