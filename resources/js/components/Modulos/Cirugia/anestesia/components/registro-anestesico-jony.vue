@@ -2265,6 +2265,7 @@ export default {
                         // Si la hora se ha completado, se agrega otro objeto de horas al
                         //arreglo de datos
                         this.agregarHora();
+                        this.lista_horas_avanzadas_v = [];
                         this.agregarHorasInicial();
 
                         //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas

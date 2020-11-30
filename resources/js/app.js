@@ -111,11 +111,12 @@ Vue.component(
     require("./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue").default
 );
 
-/* Vue.component(
+Vue.component(
     "registro-anestesico",
-    require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue").default
+    require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue").default
 );
 
+/*
 Vue.component(
     "crear-modificar-tipo-agente",
     require("./components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue").default
