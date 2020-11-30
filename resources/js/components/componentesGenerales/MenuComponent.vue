@@ -67,7 +67,6 @@ export default {
     },
     methods: {
         cargarMenu() {
-            alert('est');
             let that = this;
             let url = "/modulos/parametrizacion/modulo/cargar_menu";
             axios
