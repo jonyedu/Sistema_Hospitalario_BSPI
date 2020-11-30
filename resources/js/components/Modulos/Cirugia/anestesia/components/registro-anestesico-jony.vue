@@ -523,7 +523,15 @@
                                                                             :key="
                                                                                 index_agente
                                                                             "
-                                                                            @click="eliminarAgente(index, index_fila,index_columna, index_minutos_columna, index_agente)"
+                                                                            @click="
+                                                                                eliminarAgente(
+                                                                                    index,
+                                                                                    index_fila,
+                                                                                    index_columna,
+                                                                                    index_minutos_columna,
+                                                                                    index_agente
+                                                                                )
+                                                                            "
                                                                             ><img
                                                                                 class="figure-celds"
                                                                                 :src="
@@ -2280,8 +2288,204 @@ export default {
     },
     beforeDestroy: function() {},
     methods: {
-        eliminarAgente(index, index_fila,index_columna, index_minutos_columna, index_agente){
-            alert(index, index_fila,index_columna, index_minutos_columna, index_agente);
+        eliminarAgente(
+            index,
+            index_fila,
+            index_columna,
+            index_minutos_columna,
+            index_agente
+        ) {
+            var mensaje =
+                "index: " +
+                index +
+                ", index_fila: " +
+                index_fila +
+                ", index_columna: " +
+                index_columna +
+                ", index_minutos_columna: " +
+                index_minutos_columna +
+                ", index_agente: " +
+                index_agente;
+            this.flashMessage.show({
+                status: "error",
+                title: "Error al procesar consultarSello",
+                message: mensaje,
+                clickable: true,
+                time: 0,
+                icon: "/iconsflashMessage/error.svg",
+                customStyle: {
+                    flashMessageStyle: {
+                        background: "linear-gradient(#e66465, #9198e5)"
+                    }
+                }
+            });
+            let indexLista = null;
+            /* for (let i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
+                if (this.lista_horas_avanzadas_v[i] != "") {
+                    if (i == index) {
+                        for (let j = 0;j < this.lista_horas_avanzadas_v[i].datos.length;j++) {
+                            if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
+                                if (j == index_fila){
+                                    for (let k = 0;k <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length;k++) {
+                                        if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
+                                            if (k == index_columna){
+                                                for (let l = 0;l <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length;l++) {
+                                                    if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
+                                                        if (l == index_minutos_columna){
+                                                            console.log(this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l]);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } */
+                /* this.agregaDatoEnRejilla(
+                    true,
+                    false,
+                    250,
+                    "img/icons/induccion.png",
+                    { system_name: "INDUCCION", tipo: this.system_agente }
+                ); */
+
+                /* if (this.lista_horas_avanzadas_v[i].datos == id_producto) {
+                    indexLista = i;
+                    break;
+                } */
+            for (const columna_quince of this.lista_horas_avanzadas_v[index].datos[index_fila].columnasQuinceMin) {
+                //console.log(columna_quince.columnas);
+                for (const index_agente of columna_quince.columnas[index_columna]) {
+
+                }
+
+
+
+            }
+            /* for (let i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
+                if (this.lista_horas_avanzadas_v[i] != "") {
+                    if (i == index) {
+                        for (let j = 0;j < this.lista_horas_avanzadas_v[i].datos.length;j++) {
+                            if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
+                                if (j == index_fila){
+                                    for (let k = 0;k <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length;k++) {
+                                        if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
+                                            if (k == index_columna){
+                                                for (let l = 0;l <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length;l++) {
+                                                    if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
+                                                        if (l == index_minutos_columna){
+                                                            console.log(this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l]);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } */
+            //this.lista_horas_avanzadas_v.splice(index, 1);
+        },
+        /**
+         * Método para pintar el dato en una rejilla y enviar ese dato al servidor
+         * @param is_tpo_init
+         * @param is_tpo_fin
+         * @param valor
+         * @param ruta_icono
+         * @param adicional
+         * @param fila_indice
+         * @param es_posicion
+         * @param posicion
+         */
+        agregaDatoEnRejilla: function(
+            is_tpo_init,
+            is_tpo_fin,
+            valor,
+            ruta_icono,
+            adicional = { system_name: "" },
+            fila_indice = 0,
+            es_posicion = false,
+            posicion = {}
+        ) {
+            // if(posicion)debugger
+            var indice_fila =
+                fila_indice != 0 ? fila_indice : this.obtenerIndice(valor);
+
+            // Verifica el índice según la hora
+            for (const column_quince of this.lista_horas_avanzadas_v[
+                this.indice_hora
+            ].datos[indice_fila + this.index_points].columnasQuinceMin) {
+                // Recorre cada fila
+                // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
+                if (column_quince.columnas) {
+                    // Recorre datos
+                    if (es_posicion) {
+                        // posiciones
+                        if (
+                            column_quince.tiempo_inicio <= this.minutes &&
+                            column_quince.tiempo_fin > this.minutes
+                        ) {
+                            // Agregar dato de envío
+                            this.enviarDatosAgente(
+                                {
+                                    tpo_ini: is_tpo_init,
+                                    tpo_fin: is_tpo_fin,
+                                    hora: this.hour,
+                                    min: this.minutes,
+                                    segundos: this.seconds,
+                                    valor: valor,
+                                    name: adicional.system_name,
+                                    indice_hora: this.indice_hora
+                                },
+                                adicional.tipo
+                            );
+                            column_quince.posicion = posicion;
+                            return;
+                        }
+                    } else {
+                        // figuras en rejillas
+                        for (const col_cince_min of column_quince.columnas) {
+                            if (
+                                col_cince_min.t_init <= this.minutes &&
+                                col_cince_min.t_fin > this.minutes
+                            ) {
+                                if (
+                                    this.minutes >= col_cince_min.t_init &&
+                                    col_cince_min.t_fin > this.minutes
+                                ) {
+                                    col_cince_min.agentes.push({
+                                        descripcion: adicional.system_name,
+                                        valor: valor,
+                                        _src: ruta_icono
+                                    });
+
+                                    // Agregar dato de envío
+                                    this.enviarDatosAgente(
+                                        {
+                                            tpo_ini: is_tpo_init,
+                                            tpo_fin: is_tpo_fin,
+                                            hora: this.hour,
+                                            min: this.minutes,
+                                            segundos: this.seconds,
+                                            valor: valor,
+                                            name: adicional.system_name,
+                                            indice_hora: this.indice_hora
+                                        },
+                                        adicional.tipo
+                                    );
+                                }
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
         },
         mostrarModalConfirmarCandelar() {
             this.icon = "/iconsflashMessage/warning.svg";
@@ -3162,101 +3366,7 @@ export default {
                     loader.hide();
                 });
         },
-        /**
-         * Método para pintar el dato en una rejilla y enviar ese dato al servidor
-         * @param is_tpo_init
-         * @param is_tpo_fin
-         * @param valor
-         * @param ruta_icono
-         * @param adicional
-         * @param fila_indice
-         * @param es_posicion
-         * @param posicion
-         */
-        agregaDatoEnRejilla: function(
-            is_tpo_init,
-            is_tpo_fin,
-            valor,
-            ruta_icono,
-            adicional = { system_name: "" },
-            fila_indice = 0,
-            es_posicion = false,
-            posicion = {}
-        ) {
-            // if(posicion)debugger
-            var indice_fila =
-                fila_indice != 0 ? fila_indice : this.obtenerIndice(valor);
 
-            // Verifica el índice según la hora
-            for (const column_quince of this.lista_horas_avanzadas_v[
-                this.indice_hora
-            ].datos[indice_fila + this.index_points].columnasQuinceMin) {
-                // Recorre cada fila
-                // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
-                if (column_quince.columnas) {
-                    // Recorre datos
-                    if (es_posicion) {
-                        // posiciones
-                        if (
-                            column_quince.tiempo_inicio <= this.minutes &&
-                            column_quince.tiempo_fin > this.minutes
-                        ) {
-                            // Agregar dato de envío
-                            this.enviarDatosAgente(
-                                {
-                                    tpo_ini: is_tpo_init,
-                                    tpo_fin: is_tpo_fin,
-                                    hora: this.hour,
-                                    min: this.minutes,
-                                    segundos: this.seconds,
-                                    valor: valor,
-                                    name: adicional.system_name,
-                                    indice_hora: this.indice_hora
-                                },
-                                adicional.tipo
-                            );
-                            column_quince.posicion = posicion;
-                            return;
-                        }
-                    } else {
-                        // figuras en rejillas
-                        for (const col_cince_min of column_quince.columnas) {
-                            if (
-                                col_cince_min.t_init <= this.minutes &&
-                                col_cince_min.t_fin > this.minutes
-                            ) {
-                                if (
-                                    this.minutes >= col_cince_min.t_init &&
-                                    col_cince_min.t_fin > this.minutes
-                                ) {
-                                    col_cince_min.agentes.push({
-                                        descripcion: adicional.system_name,
-                                        valor: valor,
-                                        _src: ruta_icono
-                                    });
-
-                                    // Agregar dato de envío
-                                    this.enviarDatosAgente(
-                                        {
-                                            tpo_ini: is_tpo_init,
-                                            tpo_fin: is_tpo_fin,
-                                            hora: this.hour,
-                                            min: this.minutes,
-                                            segundos: this.seconds,
-                                            valor: valor,
-                                            name: adicional.system_name,
-                                            indice_hora: this.indice_hora
-                                        },
-                                        adicional.tipo
-                                    );
-                                }
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-        },
         /**
          * Método para obtener el índice en la posición Y, según el valor que se le envíe, usa los valores estáticos 'valoresAnestecia_v'
          * @return int
