@@ -47,7 +47,7 @@
                                                         @click="
                                                             llamarMetodoImprimir()
                                                         "
-                                                        v-bind:style="{ display: isHidden}"
+                                                        
                                                         
                                                     >
                                                         Imprimir
