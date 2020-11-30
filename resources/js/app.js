@@ -76,10 +76,10 @@ Vue.component(
     require("./components/componentesGenerales/VueConfirmarCancelarComponent.vue").default
 );
 
-Vue.component(
+/* Vue.component(
     "prueba",
     require("./components/Prueba.vue").default
-);
+); */
 
 //Modulo de Parametrizacion
 Vue.component(
@@ -117,7 +117,7 @@ Vue.component(
     require("./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue").default
 );
 
-Vue.component(
+/* Vue.component(
     "registro-anestesico",
     require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico copy.vue").default
 );
@@ -138,4 +138,4 @@ new Vue({
         App
     },
     router
-})
+})*/

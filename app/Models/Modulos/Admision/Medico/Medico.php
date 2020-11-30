@@ -48,6 +48,11 @@ class Medico extends Model
         'IdSelloJefatura',
     ];
 
+    public function servicioMedico()
+    {
+        return $this->hasOne('App\Models\Modulos\Parametrizacion\ServicioMedico\ServicioMedico', 'id', 'servicios_medico');
+    }
+
     public function medicoSellos()
     {
         return $this->hasOne('App\Models\Modulos\Admision\Medico\MedicoSellos', 'medico', 'id');
@@ -59,6 +64,6 @@ class Medico extends Model
 
     public function getFULLNAMEattribute()
     {
-        return $this->nombres . " " . $this->apellidos;
+        return $this->apellidos . " " . $this->nombres;
     }
 }

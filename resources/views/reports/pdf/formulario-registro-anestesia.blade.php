@@ -128,6 +128,11 @@
         </table>
     </div>
     <!-- Fin Cabecera -->
+    @if (isset($datosValoracionPreanestesica->graficoCirugia)> 0 )
+        
+    @else
+        
+    @endif
     <div class="tablePaciente" style="top:65px;">
         <table class="tableStyleAll">
             <tr>
@@ -139,7 +144,9 @@
             </tr>
 
             <tr>
-                <td ></td>
+           
+                <td >{{ $datosValoracionPreanestesica->datosPersona[2] }}</td>
+              
                 <td></td>
 
             </tr>
@@ -233,7 +240,7 @@
         <table class="tableStyleAllImg">
             <tr>
                 <th style="border: none;background-color:white">
-                @if ( isset($datosValoracionPreanestesica->graficoCirugia)> 0)
+                @if ( isset($datosValoracionPreanestesica->graficoCirugia))
                     <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->graficoCirugia->GRAFICAS }}'" border="0" width="650px" height="360px"> 
                 @else
                 no hay imagen ;( 

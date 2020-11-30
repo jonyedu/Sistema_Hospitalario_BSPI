@@ -34,4 +34,16 @@ class FirmasPorAtencion extends Model
         'fecha_modificacion',
         'pcname',
     ];
+    protected $hidden = [
+        'firma',
+    ];
+
+    protected $appends = [
+        'FIRMAS'
+    ];
+
+    public function getFIRMASattribute()
+    {
+        return base64_encode($this->firma);
+    }
 }

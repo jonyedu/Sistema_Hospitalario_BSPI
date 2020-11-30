@@ -486,9 +486,6 @@
                                                                 </div>
                                                             </div>
                                                         </template>
-                                                        <!-- Prueba para el SPO2 -->
-                                                        <!-- aqui debería ir el codigo -->
-                                                        <!-- Fin Purbwa para el SPO2 -->
                                                         <!-- Aqui van los datos de agentes que pinta en la grafica -->
                                                         <template
                                                             v-if="
@@ -520,20 +517,22 @@
                                                                             minutos_columna.agentes
                                                                         "
                                                                     >
-                                                                        <img
+                                                                        <a
                                                                             v-for="(agente,
                                                                             index_agente) of minutos_columna.agentes"
-                                                                            class="figure-celds"
-                                                                            :src="
-                                                                                '/' +
-                                                                                    agente._src
-                                                                            "
-                                                                            alt=""
-                                                                            style="width: 20px"
                                                                             :key="
                                                                                 index_agente
                                                                             "
-                                                                        />
+                                                                            @click="eliminarAgente(index, index_fila,index_columna, index_minutos_columna, index_agente)"
+                                                                            ><img
+                                                                                class="figure-celds"
+                                                                                :src="
+                                                                                    '/' +
+                                                                                        agente._src
+                                                                                "
+                                                                                alt=""
+                                                                                style="width: 20px"
+                                                                        /></a>
                                                                     </template>
                                                                 </div>
                                                             </div>
@@ -1912,7 +1911,7 @@
                 @respuestaConfirmarCancelar="respuestaConfirmarCancelar"
             ></vue-confirmar-cancelar>
         </modal>
-       <!--  <FlashMessage></FlashMessage> -->
+        <!--  <FlashMessage></FlashMessage> -->
     </div>
 </template>
 
@@ -1929,7 +1928,7 @@ export default {
     },
     data: function() {
         return {
-            resConfirmarCancelar:false,
+            resConfirmarCancelar: false,
             icon: "",
             titulo: "",
             mensaje: "",
@@ -2023,7 +2022,6 @@ export default {
 
                 /* Datos para guardar en la tabla infusiones */
                 infusiones: [
-
                     {
                         descripcion: "SOLUCIONES SALINAS",
                         name: "SOLUCIONES_SALINAS",
@@ -2070,22 +2068,7 @@ export default {
                 /* Fin Datos para guardar firma */
             },
             registro_id: 1,
-            drogas_administradas: [
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
+            drogas_administradas: [],
             peso: "",
             estatura: "",
             system_posicion: "posicion",
@@ -2291,15 +2274,17 @@ export default {
                 // En caso que hayan pasado los 5 minutos, se registra de manera automática los datos
                 if (this.seconds == 1) {
                     this.obtenerDatosFormulario();
-
                 }
             }
         }, 1000);
     },
     beforeDestroy: function() {},
     methods: {
+        eliminarAgente(index, index_fila,index_columna, index_minutos_columna, index_agente){
+            alert(index, index_fila,index_columna, index_minutos_columna, index_agente);
+        },
         mostrarModalConfirmarCandelar() {
-            this.icon = "/iconsflashMessage/warning.svg"
+            this.icon = "/iconsflashMessage/warning.svg";
             this.titulo = "¿Desea cerrar el proceso?";
             this.mensaje = "Al dar en Aceptar, el proceso dará por finalizado.";
             this.$modal.show("ConfirmarCandelar");
@@ -2342,13 +2327,16 @@ export default {
                         that.flashMessage.show({
                             status: "error",
                             title: "Error al procesar consultarSello",
-                            message: "Por favor comuníquese con el administrador. " + error,
+                            message:
+                                "Por favor comuníquese con el administrador. " +
+                                error,
                             clickable: true,
                             time: 0,
                             icon: "/iconsflashMessage/error.svg",
                             customStyle: {
                                 flashMessageStyle: {
-                                    background: "linear-gradient(#e66465, #9198e5)"
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
                                 }
                             }
                         });
@@ -2389,7 +2377,9 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar getNewIdRegistroAnestesia",
-                        message: "Por favor comuníquese con el administrador. " + error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
@@ -2435,7 +2425,9 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar setSelectedTipoPosiciones",
-                        message: "Por favor comuníquese con el administrador. " + error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
@@ -2480,7 +2472,9 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar setSelectedSala",
-                        message: "Por favor comuníquese con el administrador. " + error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
@@ -2529,7 +2523,9 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar setSelectedMedico",
-                        message: "Por favor comuníquese con el administrador. " + error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
@@ -2569,7 +2565,9 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar obtenerDatosAgentes",
-                        message: "Por favor comuníquese con el administrador. " + error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
@@ -2602,7 +2600,9 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar obtenerDatosPosiciones",
-                        message: "Por favor comuníquese con el administrador. " + error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
@@ -2647,7 +2647,9 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar obtenerDatosPosiciones",
-                        message: "Por favor comuníquese con el administrador. " + error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
@@ -2709,7 +2711,7 @@ export default {
             if (this.validarImgFirma) {
                 if (!this.iniciado) return;
                 this.mostrarModalConfirmarCandelar();
-                if(this.resConfirmarCancelar){
+                if (this.resConfirmarCancelar) {
                     //if (!confirm("¿Desea cerrar el proceso?")) return;
                     //this.iniciado = false;
 
@@ -2719,16 +2721,20 @@ export default {
                         false,
                         0,
                         "img/icons/fin_anestecia.png",
-                        { system_name: "FIN-ANESTECIA", tipo: this.system_agente }
+                        {
+                            system_name: "FIN-ANESTECIA",
+                            tipo: this.system_agente
+                        }
                     );
                     var idFlashMessage1 = this.flashMessage.show({
                         status: "info",
                         title: "Generando Gráfica",
-                        message: "Se está generando la gráfica, por favor espere.",
+                        message:
+                            "Se está generando la gráfica, por favor espere.",
                         clickable: false,
                         time: 0,
                         icon: "/iconsflashMessage/time.gif",
-                        blockClass: 'custom_msg',
+                        blockClass: "custom_msg",
                         customStyle: {
                             flashMessageStyle: {
                                 background: "linear-gradient(#e66465, #9198e5)"
@@ -2743,7 +2749,7 @@ export default {
                     //Se guardan los datos a la base
                     this.guardarDrograAdministrada();
                 }
-            }else{
+            } else {
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia al procesar firma",
@@ -2824,7 +2830,9 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar guardarImgGrafica",
-                        message: "Por favor comuníquese con el administrador. " + error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
@@ -2880,7 +2888,9 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar guardarDrograAdministrada",
-                        message: "Por favor comuníquese con el administrador. " + error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
@@ -2930,7 +2940,9 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar modifcarRegistroAnestesia",
-                        message: "Por favor comuníquese con el administrador. " + error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
@@ -2989,7 +3001,9 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar guardarRegistroInfusiones",
-                        message: "Por favor comuníquese con el administrador. " + error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
@@ -3065,7 +3079,9 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar guardarFirmaPorAtencion",
-                        message: "Por favor comuníquese con el administrador. " + error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
@@ -3111,7 +3127,10 @@ export default {
                             }
                         }
                     });
-                    that.$emit("guardarCabecera", that.form.registro_anestesia_id);
+                    that.$emit(
+                        "guardarCabecera",
+                        that.form.registro_anestesia_id
+                    );
                     that.validarImprimir = 1;
                     that.resConfirmarCancelar = false;
                     that.$emit("RespuestaImprimir", that.validarImprimir);
@@ -3128,7 +3147,9 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar guardarModificarAgenteText",
-                        message: "Por favor comuníquese con el administrador. " + error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",

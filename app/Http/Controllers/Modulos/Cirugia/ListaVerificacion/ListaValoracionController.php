@@ -115,7 +115,7 @@ class ListaValoracionController extends Controller
     {
         try {
             $modulo = [];
-            $modulo = DB::connection('control_hospitalario_db_sql')->select("exec spConsultarListadoCirugia ".$id);
+          //  $modulo = DB::connection('control_hospitalario_db_sql')->select("exec spConsultarListadoCirugia ".$id);
             //code...
            // dd($modulo);
        //     return  response()->json(['listaValoracion' => $modulo], 200);

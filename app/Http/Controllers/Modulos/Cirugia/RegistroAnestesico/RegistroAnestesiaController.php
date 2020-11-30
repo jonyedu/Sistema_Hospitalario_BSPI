@@ -203,47 +203,35 @@ class RegistroAnestesiaController extends Controller
             try {
 
                 // CARGA DATOS DE EL REGISTRO DE ANESTESIA
-
-                $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
-                $datosPaciente = [];
-                $id_anestesia = 0;
+ 
+                 $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
+                 $datosPaciente = [];
+                 $id_registro_anestesia = 0;
 
                 $datosValoracionPreanestesica = RegistroAnestesia::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
-                    ->with('drogaAdministradaRpt', 'graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt')
+                    ->with('drogaAdministradaRpt','graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt')
                     ->first();
+                
+                 //FINALIZA CARGA DATOS DE EL REGISTRO DE ANESTESIA
 
-                    if (sizeof($datosValoracionPreanestesica) > 0) {
-                        foreach ($datosValoracionPreanestesica as $paciente) {
-                            $id_anestesia = $paciente->id;
-                            
-                        }
-                    }
+               
+                   
+                         $id_registro_anestesia =$datosValoracionPreanestesica->id;
+                    
+                
 
-
-
-                $datosPaciente = DB::connection('admin_db_sql')
-                    ->select("exec SpAdm_CirugiasProgramdasConsultar '" . $idSecCirPro . "','','DP' ");
-                if (sizeof($datosPaciente) > 0) {
-                    foreach ($datosPaciente as $paciente) {
-                        $edadPaciente = $this->calculaEdad($paciente->Fecha_nacimiento);
-                    }
-                }
+                $datosPaciente = RegistroAnestesia::where('id', $id_registro_anestesia)
+                ->with('datosPersona','graficoFirmaMedico')
+                ->first();
 
 
-                $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia', ['datosValoracionPreanestesica' => $datosValoracionPreanestesica]);
+                $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia',
+                ['datosValoracionPreanestesica' => $datosValoracionPreanestesica,
+                'datosPaciente' => $datosPaciente]);
                 return $pdf->stream($nombreArchivo);
-                //  FINALIZA CARGA DATOS DE EL REGISTRO DE ANESTESIA
 
-                //LISTAR CIRUGIAS PROGRAMADAS
-
-                //  $datosValoracionPreanestesica = CirugiaProgramadas::where('CirProFecPro', $idSecCirPro)
-                //  ->with('pacienteLista','pacienteHospitalizacion') 
-                //  ->get();
-
-
-
-                return  response()->json(['datosValoracionPreanestesica' => $datosValoracionPreanestesica], 200);
+               // return  response()->json(['datosValoracionPreanestesica' => $datosPaciente], 200);
             } catch (Exception $e) {
                 return response()->json(['mensaje' => $e->getMessage()], 500);
             }

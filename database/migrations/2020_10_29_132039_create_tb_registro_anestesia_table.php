@@ -34,7 +34,7 @@ class CreateTbRegistroAnestesiaTable extends Migration
                 $table->boolean('nasal_inte_traqueal')->default(0);
                 $table->boolean('rapido_inte_traqueal')->default(0);
                 $table->boolean('lenta_inte_traqueal')->default(0);
-                $table->unsignedInteger('turbo_inte_traqueal')->nullable();
+                $table->string('turbo_inte_traqueal', 150)->nullable();
                 $table->boolean('manguito_inflam_inte_traqueal')->default(0);
                 $table->boolean('taponamiento_inte_traqueal')->default(0);
                 $table->boolean('asist_topica_inte_traqueal')->default(0);

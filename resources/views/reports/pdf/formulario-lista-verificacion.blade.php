@@ -176,43 +176,402 @@
                      SALIDA
                  </th>
              </tr>
-            </table>
-             <table class="tableStyleAll">
+         </table>
+         <table class="tableStyleAll">
 
-             
+
              <tr>
                  <td style="width:2%">
-                    x
+                     x
                  </td>
                  <td rowspan="2" style="width:31.33%;border-style: none">
-                    El paciente ha confirmado 
-                    <br>
-                    <ul>
-                        <li> SU IDENTIDAD</li>
-                        <li> EL SITIO QUIRURJICO</li>
-                        <li> EL PROCEDIMIENTO</li>
-                        <li> SU CONOCIMIENTO</li>
-                    </ul>
+                     El paciente ha confirmado
+                     <br>
+                     <ul>
+                         <li> SU IDENTIDAD</li>
+                         <li> EL SITIO QUIRURJICO</li>
+                         <li> EL PROCEDIMIENTO</li>
+                         <li> SU CONOCIMIENTO</li>
+                     </ul>
                  </td>
                  <td style="width:2%">
-                   X
+                     X
                  </td>
                  <td style="width:31.33%;border-style: none">
-                    <b>CONFIRMAR QUE TODOS LOS MIEMBROS DEL EQUIPO SE</b>
-                    <br>
-                    HAYAN PRESENTADO POR SU NOMBRE Y FUNCION
+                     <b>CONFIRMAR QUE TODOS LOS MIEMBROS DEL EQUIPO SE</b>
+
                  </td>
                  <td style="width:2%">
-                    X
-                  </td>
-                  <td style="width:31.33%;border-style: none">
-                     <b>CONFIRMAR QUE TODOS LOS MIEMBROS DEL EQUIPO SE</b>
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>EL ENFERMERO CONFIRMA VERBALMENTE CON EL EQUIPO :</b>
+
+
+                 </td>
+
+             </tr>
+             {{-- aqui divie --}}
+             <tr>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+
+                 <td rowspan="1" style="width:2%;height:2%;">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>EL CIRUJANO, ANESTESISTA Y ENFERMERO CONFIRMA VERBALMENTE</b>
+
+                     <ul>
+                         <li> SU IDENTIDAD</li>
+                         <li> EL SITIO QUIRURJICO</li>
+                         <li> EL PROCEDIMIENTO</li>
+
+
+                     </ul>
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+
+             </tr>
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+
+
+                 <td style="width:31.33%;border-style: none ">
+                     DESMARCACION DEL SITIO/NO PROCEDE
+                 </td>
+                 <td style="width:2%;border-style: none ">
+
+                 </td>
+
+
+
+                 <td style="width:31.33%;border-style: none ">
+
+                 </td>
+                 <td style="width:2%; ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none ">
+
+                     <b>ELNOMBRE DEL PROCEDIMIENTO REALIZADO:</b>
+                 </td>
+
+             </tr>
+
+
+             {{-- aqui finaliza --}}
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     SE HA COMPLETADO EL CONTROL DE LA SEGURIDAD DE LA ANESTESIA
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b> PREVISION DE EVENTOS CRITICOS EL CIRGUJANO REVISA </b>
+                     LOS PASOS O IMPREVISTOS. DURACION DE LA OPERACION Y LA PERDIDA DE SANGRE PREVISTA
+
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>AGUJAS SON CORRECTOS:</b> O NO PROCEDEN
                      <br>
-                     HAYAN PRESENTADO POR SU NOMBRE Y FUNCION
-                  </td>
+
+                 </td>
+
+             </tr>
+             {{-- LINEA EN BLACO --}}
+             <tr>
+                 <td style="width:2%;border-style: none ">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                 </td>
+
+             </tr>
+             {{-- FILA --}}
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     PULSIOXIMETRO COLOCADO Y EN FUNCIONAMIENTO
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b> EL EQUIPO DE ANESTESIA REVISA </b>
+                     SI EL PACIENTE PRESENTA ALGUN PROBLEMA ESPECIFICO
+
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>EL ETIQUETADO DE LAS MUESTRAS</b> (QUE FIGURE EL NOMBRE DEL PACIENTE)
+                     <br>
+
+                 </td>
+
+             </tr>
+             {{-- LINEA EN BLACO --}}
+             <tr>
+                 <td style="width:2%;border-style: none ">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                 </td>
+
+             </tr>
+             {{-- FILA --}}
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     <b> EL PACIENTE TIEN ALERGIA CONOCIDAS NO / SI
+                     </b>
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b> EL EQUIPO DE ENFERMERIA REVISA </b>
+
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>SI HAY PROBLEMAS QUE RESOLVER RELACIONADOS CON EL INSTRUMENTAL Y LOS EQUIPOS</b>
+
+                 </td>
+
+             </tr>
+             <tr>
+                 <td style="width:2%;border-style: none ">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     SI SE HA CONFIRMADO LA ESTERELIDAD (CON RESULTADOS DE LOS INDICADORES)
+                     Y SI EXISTEN DUDAS O PROBLEMAS RELACIONADOS CON EL INSTRUMENTAL Y LOS EQUIPOS
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+
+             </tr>
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     <b> VIA AEREA DIFICIL / RIESGO DE ASPIRACION? NO
+                     </b>
+
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b> SE HA ADMINISTRADO PROFILAXIS ANTIBIOTICA EN LOS </b>
+                     <br>
+                     SI
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>EL CIRUJANO, EL ANESTESISTA Y EL ENFERMERO REVISAN LOS PRINCIPALES ASPECTOS</b>
+
+                 </td>
+
+             </tr>
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     <b>
+                         SI
+                     </b> Y HAY INSTRUMENTAL Y EQUIPOS/AYUDA DISPONIBLE
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>NO</b>
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>DE LA RECUPERACION Y EL TRATAMIENTO DEL PACIENTE</b>
+                     <br>
+                     <br>
+
+                 </td>
+
+             </tr>
+             {{-- LINEA EN BLACO --}}
+             <tr>
+                 <td style="width:2%;border-style: none ">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                 </td>
+
+             </tr>
+             {{-- aqui empieza*otra vez --}}
+             </tr>
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     <b>RIESGO DE HEMORRAGIA >500ML (7 MLVKG EN NIÑOS)
+                     </b>
+                     <br>
+                     NO
+
+
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>PUEDE VISUALIZAR IMAGENES DIAGNOSTICADAS </b>
+                     <br>
+                     SI
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+
+             </tr>
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     <b>
+                         SI
+                     </b> SI SE HA PREVISTO LA DISPONIBILIDAD DE ACCESO INTRAVENOSO Y LIQUIDOS ADECUADOS
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>NO PROCEDE</b>
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                 </td>
 
              </tr>
          </table>
+
 
 
      </div>

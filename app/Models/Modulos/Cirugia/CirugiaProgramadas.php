@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class CirugiaProgramadas extends Model
 {
-   
+
     use HasFactory;
-    /** 
+    /**
      * @var string
      */
     protected $table = 'CirugiasProgramadas';

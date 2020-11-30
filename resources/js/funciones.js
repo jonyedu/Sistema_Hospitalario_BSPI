@@ -1,4 +1,5 @@
 export const funcionesGlobales = {
+
     //Metodo para Obtener la fecha de actualización de contraseña del usuario
     validarCambioClavePorFecha: (
         usCod,
@@ -97,6 +98,12 @@ export const funcionesGlobales = {
                 return zero.repeat(width - length) + numberOutput.toString();
             }
         }
+    },
+    addCeroToTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
     },
     //Metodo para Convertir la Palabra en Mayuscula
     toCapitalAllWords: palabra => {

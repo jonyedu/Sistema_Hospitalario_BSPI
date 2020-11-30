@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class GraficaPorCirugia extends Model
 {
-    use HasFactory;
+    use HasFactory; 
     /**
      * @var string
      */

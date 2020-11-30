@@ -65,34 +65,58 @@ export default {
             },
             columns: [
                 {
+                    label: "Hora Programada",
+                    field: "horaProgramada",
+                    type: "String"
+                },
+                {
+                    label: "Hora Inicio",
+                    field: "horaInicio",
+                    type: "String"
+                },
+                {
+                    label: "Hora Fin",
+                    field: "horaFin",
+                    type: "String"
+                },
+                {
+                    label: "Qx",
+                    field: "quirofano",
+                    type: "String"
+                },
+                {
                     label: "Paciente",
-                    field: "NombrePaciente",
-                    type: "String"
+                    field: "nombrePaciente",
+                    type: "String",
+                    width: "150px"
                 },
                 {
-                    label: "Cirujano",
-                    field: "Cirujano",
-                    type: "String"
-                },
-                {
-                    label: "Anestesiologo",
-                    field: "Anestesiologo",
-                    type: "String"
-                },
-                {
-                    label: "Quirofano",
-                    field: "Quirofano",
+                    label: "Sala-Cama",
+                    field: "sala_cama",
                     type: "String"
                 },
                 {
                     label: "Procedimiento",
-                    field: "Procedimiento",
+                    field: "procedimiento",
                     type: "String"
-                }
+                },
+                {
+                    label: "Cirujano",
+                    field: "cirujano",
+                    type: "String"
+                },
+                {
+                    label: "Anestesiologo",
+                    field: "anestesiologo",
+                    type: "String"
+                },
+
+
             ]
         };
     },
     mounted: function() {
+        this.flashMessage.setStrategy("multiple");
         /* this.titulo_seleccionado = "Citas Agendadas";
     let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
     let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
@@ -127,104 +151,78 @@ export default {
                 .post(url, that.form)
                 .then(function(response) {
                     let listaCirugiaProgramadaPaciente = [];
-                    for (
-                        let i = 0;
-                        i < response.data.listaCirugiaProgramadaPaciente.length;
-                        i++
-                    ) {
-                        let objeto = {
-                            Secuencia:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Secuencia,
-                            SecCirPro:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .SecCirPro,
-                            HoraProgramada:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .HoraProgramada,
-                            HistoriaClinica:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .HistoriaClinica,
-                            NombrePaciente: that.$funcionesGlobales.toCapitalFirstAllWords(
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .NombrePaciente
-                            ),
-                            Sala:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Sala,
-                            Cama:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Cama,
-                            Cirujano: that.$funcionesGlobales.toCapitalFirstAllWords(
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Cirujano
-                            ),
-                            Anestesiologo: that.$funcionesGlobales.toCapitalFirstAllWords(
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Anestesiologo
-                            ),
-                            Circulante:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Circulante,
-                            Instrumentista:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Instrumentista,
-                            Ayudante:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Ayudante,
-                            Quirofano:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Quirofano,
-                            Procedimiento: that.$funcionesGlobales.toCapitalFirstAllWords(
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Procedimiento
-                            ),
-                            Observacion:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Observacion,
-                            FechaQxInicio:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .FechaQxInicio,
-                            FechaQxFin:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .FechaQxFin,
-                            Total:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .Total,
-                            CIRUGIA_HOSPI_AMBI:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .CIRUGIA_HOSPI_AMBI,
-                            TipoIngreso:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .TipoIngreso,
-                            TipoIngresoDescripcion:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .TipoIngresoDescripcion,
-                            FechaProgramada:
-                                response.data.listaCirugiaProgramadaPaciente[i]
-                                    .FechaProgramada
-                        };
-                        listaCirugiaProgramadaPaciente.push(objeto);
-                    }
-                    that.listaCirugiaProgramadaPaciente = listaCirugiaProgramadaPaciente;
-                    loader.hide();
+                            response.data.listaCirugiaProgramadaPaciente.forEach(lista => {
+                                let objeto = {};
+                                objeto.SecCirPro = lista.SecCirPro;
+                                objeto.nombrePaciente = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProNomPac);
+                                objeto.historiaClinica = lista.CirProHisCli;
+                                objeto.fechaProgramada = lista.CirProFecPro;
+                                if(lista.paciente_lista != null){
+                                    objeto.edad = lista.paciente_lista.EDAD;
+                                    objeto.sexo = lista.paciente_lista.genero;
+                                }
+                                objeto.sala = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProSala);
+                                objeto.cama = lista.CirProCama;
+                                objeto.sala_cama = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProSala) + "-" + lista.CirProCama;
+                                if(lista.paciente_hospitalizacion != null){
+                                    objeto.id_diagnostico = lista.paciente_hospitalizacion.principal;
+                                }
+                                //datos para mostrar en la tabla padre
+                                objeto.horaProgramada = lista.CirProHorPro;
+                                objeto.horaInicio = lista.CirProHoraFin==null?'00:00:00':lista.CirProHoraInicio;
+                                objeto.horaFin = lista.CirProHoraFin==null?'00:00:00':lista.CirProHoraFin;
+                                objeto.cirujano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProCirujano);
+                                objeto.anestesiologo = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProAnestesiologo);
+                                objeto.quirofano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProQuirofano);
+                                objeto.procedimiento = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProProcedimiento);
+
+                                listaCirugiaProgramadaPaciente.push(objeto);
+                            });
+                            that.listaCirugiaProgramadaPaciente = listaCirugiaProgramadaPaciente;
+                            loader.hide();
                 })
                 .catch(error => {
                     //Errores
                     loader.hide();
                     if (error.response.status == 421) {
-                        that.$swal({
+                        /* that.$swal({
                             icon: "warning",
                             title: "Advertencia",
                             text: error.response.data.msg
-                        });
+                        }); */
+                        that.flashMessage.show({
+                                status: "warning",
+                                title: "Error al procesar cargarListaCirugiaProgramadaPaciente",
+                                message: error.response.data.msg,
+                                clickable: true,
+                                time: 0,
+                                icon: "/iconsflashMessage/warning.svg",
+                                customStyle: {
+                                    flashMessageStyle: {
+                                        background: "linear-gradient(#e66465, #9198e5)"
+                                    }
+                                }
+                            });
                         //that.errores.fecha = rror.response.data.msg;
                     } else {
-                        that.$swal({
+                        /* that.$swal({
                             icon: "error",
                             title: "Existe un error",
                             text: error
-                        });
+                        }); */
+                        that.flashMessage.show({
+                                status: "error",
+                                title: "Error al procesar cargarListaCirugiaProgramadaPaciente",
+                                message: "Por favor comuníquese con el administrador. " + error,
+                                clickable: true,
+                                time: 0,
+                                icon: "/iconsflashMessage/error.svg",
+                                customStyle: {
+                                    flashMessageStyle: {
+                                        background: "linear-gradient(#e66465, #9198e5)"
+                                    }
+                                }
+                            });
                     }
                 });
         }
