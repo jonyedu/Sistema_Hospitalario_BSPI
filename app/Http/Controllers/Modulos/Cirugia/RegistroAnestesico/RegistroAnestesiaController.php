@@ -205,7 +205,8 @@ class RegistroAnestesiaController extends Controller
         if ($idSecCirPro !== '' && isset($idSecCirPro)) {
             try {
 
-                // CARGA DATOS DE EL REGISTRO DE ANESTESIA
+                // CARGA DATOS DE EL REGISTRO DE ANESTESIA 01/12
+
 
                  $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
                  $datosPaciente = [];
@@ -216,19 +217,9 @@ class RegistroAnestesiaController extends Controller
                     ->where('status', '1')
                     ->with('drogaAdministradaRpt','graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt','tipoPosicion')
                     ->first();
-
-                 //FINALIZA CARGA DATOS DE EL REGISTRO DE ANESTESIA
-<<<<<<< HEAD
  
-                
-=======
 
-                 /* foreach ($datosValoracionPreanestesica as $paciente) {
-                    $id_registro_anestesia =  $paciente->id;
-                } */
-
->>>>>>> 12a91b683d411f73a5beddbe12fbc08e4502f47e
-               //$id_registro_anestesia = $datosValoracionPreanestesica->id;
+               $id_registro_anestesia = $datosValoracionPreanestesica->id;
                $datosprocedimiento = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
                ->first();
 
@@ -239,17 +230,8 @@ class RegistroAnestesiaController extends Controller
                $TarifarioMedicina = TarifarioMedicina::select('codigo', 'descripcion')->where('codigo',$datosprocedimiento->id_operacion_realizada)
                    //  ->with('pacienteLista','pacienteHospitalizacion')
                    ->union($TarifarioCirugua)
-                   ->first();
-<<<<<<< HEAD
-                
-
-
-                         $id_registro_anestesia =$datosValoracionPreanestesica->id;
-
-=======
->>>>>>> 12a91b683d411f73a5beddbe12fbc08e4502f47e
-
-
+                   ->first(); 
+                   
                 $datosPaciente = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
                 ->with('graficoFirmaMedico','cirujano','Ayudante','Ayudante2','Instrumentrista','DiagnosticoPost','DiagnosticoPre','Anestesiologo')
                 ->first();
