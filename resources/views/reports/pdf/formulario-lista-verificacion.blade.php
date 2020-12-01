@@ -117,7 +117,7 @@
                      <img src="{{ public_path('img/logoreport1.png') }}" borde="0" width="100px" height="70px" />
                  </th>
                  <th align="left" colspan="2" style="width: 40%; border-style: none;">
-                     <span ali> Nombre:</span>
+                     <span ali> Nombre:  Juan Carlos Piguave Solano</span>
                  </th>
                  <th colspan="2" style="width: 40%; border-style: none">
 
@@ -129,8 +129,7 @@
              </tr>
              <tr>
                  <td>
-                     N° Historia Clinica: 151512
-                 </td>
+                     N° Historia Clinica:  000
                  <td>
                      Edad: 151512
                  </td>

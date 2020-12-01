@@ -8152,7 +8152,6 @@ __webpack_require__.r(__webpack_exports__);
       this.$modal.show("ListaCirugiaProgramadaPaciente");
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
-      alert(value.SecCirPro);
       this.listas.frm_idCirugiaProgramada = value.SecCirPro;
       this.form.frm_paciente = value.nombrePaciente;
       this.form.frm_cirujano = value.cirujano;
