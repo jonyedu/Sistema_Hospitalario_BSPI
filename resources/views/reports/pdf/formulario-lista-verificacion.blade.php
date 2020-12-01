@@ -510,7 +510,7 @@
 
              </tr>
              {{-- aqui empieza*otra vez --}}
-             </tr>
+
              <tr>
                  <td style="width:2% ">
                      x
@@ -543,6 +543,7 @@
                  </td>
 
              </tr>
+             {{-- LINEA EN BLACO --}}
              <tr>
                  <td style="width:2% ">
                      x
@@ -570,9 +571,81 @@
                  </td>
 
              </tr>
+             {{-- LINEA EN BLACO --}}
+             <tr>
+                 <td style="width:2%;border-style: none ">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                 </td>
+             </tr>
+             {{-- otra linea --}}
+
          </table>
 
+         <table class="tableStyleAll">
+             <tr>
+                 <th rowspan="8" style="width:60%">
+                   Observacion
+                 </th>
+                 <th rowspan="6" style="width:40%">
+                    <img src="{{ public_path('img/logoreport1.png') }}" borde="0" width="100px" height="70px" />
+                   
+                    
+                 </th>
+             </tr>
+            {{-- FILAS --}}
+             <tr>
+                  
+                
+             </tr>
+             <tr>
+                
 
+             </tr>
+             <tr>
+                 
+
+             </tr>
+             <tr>
+                 
+             </tr>
+             <tr>
+                 
+
+             </tr>
+             <tr>
+                 <td>
+                _______________________________________
+                <br>
+                Nombre del Responsable
+                 </td>
+
+             </tr>
+             <tr>
+                <td>
+                    _______________________________________
+                    <br>
+                    Cargo
+                </td>
+
+            </tr>
+         </table>
 
      </div>
  </body>

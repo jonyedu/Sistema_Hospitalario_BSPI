@@ -24,8 +24,11 @@
         }
 
         .tableStyleAllImg {
+            margin: 0%;
             width: 100%;
             height: 30%;
+            
+            
 
         }
 
@@ -136,7 +139,7 @@
     <div class="tablePaciente" style="top:65px;">
         <table class="tableStyleAll">
             <tr>
-                <th style="width:80%">NOMBRES DEL PACIENTE &nbsp;
+                <th  >NOMBRES DEL PACIENTE &nbsp;
 
 
                 </th>
@@ -145,9 +148,14 @@
 
             <tr>
            
-                <td >{{ $datosValoracionPreanestesica->datosPersona[2] }}</td>
+                <td >
+                    <b> {{ $datosPaciente->paciente }}</b>
+                   
+                </td>
               
-                <td></td>
+                <td>
+                    <b> {{ $datosPaciente->historia_clinica }}</b>
+                </td>
 
             </tr>
 
@@ -166,20 +174,22 @@
                 <th>CAMA</th>
             </tr>
             <tr>
-                <td  >{{ date('Y-m-d H:i:s') }} </td>
-                <td>M</td>
-                <td></td>
-                <td>F</td>
-                <td></td>
+                <td  >  <b> {{ $datosPaciente->fecha }}</b> </td>
+                <td>  <b> {{ $datosPaciente->edad }}</b></td>
+                <td><b>{{ $datosPaciente->sexo }}</b></td>
+                <td><b>{{ strval ($datosPaciente->estatura) }}</b></td>
+                <td><b>{{ $datosPaciente->peso }}</b></td>
 
-                <td>M</td>
-                <td></td>
-                <td>F</td>
-                <td></td>
+                <td><b>{{ $datosPaciente->ocupacion_actual }}</b></td>
+                <td><b>{{ $datosPaciente->servicio }}</b></td>
+                <td><b>{{ $datosPaciente->sala }}</b></td>
+                <td><b>{{ $datosPaciente->cama }}</b></td>
 
             </tr>
 
         </table>
+
+           
         <table class="tableStyleAll">
             <tr>
                 <th style="width:20%">DIAGNOSTICO PREOPERATORIO</th>
@@ -187,10 +197,32 @@
                 <th style="width:60%">OPERACION PROPUESTA</th>
 
             </tr>
+            @if ( isset($datosPaciente->DiagnosticoPost['descripcion']))
+            @if ($datosPaciente->DiagnosticoPost['descripcion'] == NULL)
+            <td  ></td>
+            @else
+            <td  ><b>{{ $datosPaciente->DiagnosticoPost['descripcion'] }}</b>  </td>
+            @endif
+            
+            @else
+            <td  ></td>
+            @endif
 
-            <td  >M</td>
-            <td></td>
-            <td>F</td>
+            @if ( isset($datosPaciente->DiagnosticoPre['descripcion']))
+            @if ($datosPaciente->DiagnosticoPre['descripcion'] == NULL)
+            <td  > </td>
+            @else
+            <td  ><b> {{ $datosPaciente->DiagnosticoPre['descripcion'] }} </b></td>
+            @endif
+            
+            @else
+            <td  ></td>
+            @endif
+
+ 
+           
+            <td  ><b> {{$datosPaciente->operacion_propuesta }}</b></td>
+            
 
 
             </tr>
@@ -204,9 +236,33 @@
 
             </tr>
 
-            <td >M</td>
-            <td></td>
-            <td>F</td>
+            @if ( isset($datosPaciente->cirujano->nombres))
+            @if ($datosPaciente->cirujano->nombres == NULL)
+            <td  > </td>
+            @else
+            <td  ><b> {{ $datosPaciente->cirujano->nombres.' '.$datosPaciente->cirujano->apellidos }}   </b></td>
+            @endif
+            
+            @else
+            @endif
+            @if ( isset($datosPaciente->Ayudante->nombres))
+            @if ($datosPaciente->Ayudante->nombres == NULL)
+            <td  > </td>
+            @else
+            <td  ><b> {{ $datosPaciente->Ayudante->nombres.' '.$datosPaciente->Ayudante->apellidos }}   </b></td>
+            @endif
+            
+            @else
+            @endif
+            @if ( isset($Tarifario->descripcion))
+            @if ($Tarifario->descripcion == NULL)
+            <td  > </td>
+            @else
+            <td  ><b> {{$Tarifario->descripcion  }}   </b></td>
+            @endif
+            
+            @else
+            @endif
 
 
             </tr>
@@ -228,20 +284,12 @@
             </tr>
 
         </table>
-
-        <table class="tableStyleAll">
-            <tr>
-                <th style="  background-color:white">REGISTRO TRANS-ANESTESICO</th>
-
-
-            </tr>
-        </table>
-
+ 
         <table class="tableStyleAllImg">
             <tr>
-                <th style="border: none;background-color:white">
+                <th style= background-color:white; ">
                 @if ( isset($datosValoracionPreanestesica->graficoCirugia))
-                    <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->graficoCirugia->GRAFICAS }}'" border="0" width="650px" height="360px"> 
+                    <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->graficoCirugia->GRAFICAS }}'" margin="0px" width="700px" height="390px"> 
                 @else
                 no hay imagen ;( 
                      {{-- <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->graficoCirugia->GRAFICAS }}'" border="0" width="690px" height="360px"> --}}
@@ -1281,7 +1329,13 @@
                 @endif
                 
                 <th rowspan="4" style="background-color: white;width:37.5%; border-top: none">
-                    <img src="{{ public_path('img/logoreport1.png') }}" border="0" width="100px" height="50px">
+                    @if ( isset($datosPaciente->graficoFirmaMedico))
+                    <img src="data:image/jpeg;base64,'{{ $datosPaciente->graficoFirmaMedico->FIRMAS }}'" border="0"  width="200px" height="80px"> 
+                @else
+                no hay imagen ;( 
+                     {{-- <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->graficoCirugia->GRAFICAS }}'" border="0" width="690px" height="360px"> --}}
+                @endif
+                     
                 </th>
             </tr>
             <tr>
@@ -1343,7 +1397,7 @@
                 </th>
                 @else
                 <th >
-                    
+                   
                 </th>
                 @endif
                 <td>
@@ -1357,7 +1411,16 @@
                 </td>
                  
                 <td colspan="2">
-                   sisthospi
+                    @if ( isset($datosValoracionPreanestesica->tipoPosicion["descripcion"]))
+            @if ($datosValoracionPreanestesica->tipoPosicion["descripcion"] == NULL)
+            
+            @else
+           <b> POSICION:  {{  $datosValoracionPreanestesica->tipoPosicion["descripcion"] }} </b>
+            @endif
+            
+            @else
+            @endif
+                   
                 </td>
                 @if ( $datosValoracionPreanestesica->hora==null)
                 <th  >

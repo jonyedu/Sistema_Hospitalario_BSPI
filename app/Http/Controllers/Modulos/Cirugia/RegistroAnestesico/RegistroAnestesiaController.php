@@ -8,6 +8,7 @@ use App\Models\Modulos\Cirugia\RegistroAnestesico\RegistroAnestesia;
 use App\Models\Modulos\Cirugia\CirugiaProgramadas;
 use App\Models\Modulos\Imagenes\FirmasPorAtencion;
 use App\Models\Modulos\Imagenes\GraficaPorCirugia;
+use App\Models\Modulos\Cirugia\RegistroAnestesico\DatosRegistro;
 use App\Models\User;
 
 use App\Models\Modulos\Parametrizacion\Tarifario\TarifarioProcedimiento;
@@ -206,32 +207,48 @@ class RegistroAnestesiaController extends Controller
  
                  $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
                  $datosPaciente = [];
-                 $id_registro_anestesia = 0;
+                 $datosprocedimiento= [];
+                 $id_registro_anestesia = 34;
 
                 $datosValoracionPreanestesica = RegistroAnestesia::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
-                    ->with('drogaAdministradaRpt','graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt')
+                    ->with('drogaAdministradaRpt','graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt','tipoPosicion')
                     ->first();
                 
                  //FINALIZA CARGA DATOS DE EL REGISTRO DE ANESTESIA
 
-               
+                 /* foreach ($datosValoracionPreanestesica as $paciente) {
+                    $id_registro_anestesia =  $paciente->id;
+                } */
+                
+               //$id_registro_anestesia = $datosValoracionPreanestesica->id;
+               $datosprocedimiento = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
+               ->first();
                    
-                         $id_registro_anestesia =$datosValoracionPreanestesica->id;
-                    
+            
+               $TarifarioProcedimiento = TarifarioProcedimiento::select('codigo', 'descripcion')->where('codigo',$datosprocedimiento->id_operacion_realizada);
+               $TarifarioCirugua = TarifarioCirugia::select('codigo', 'descripcion')->where('codigo',$datosprocedimiento->id_operacion_realizada)
+                   ->union($TarifarioProcedimiento);
+               $TarifarioMedicina = TarifarioMedicina::select('codigo', 'descripcion')->where('codigo',$datosprocedimiento->id_operacion_realizada)
+                   //  ->with('pacienteLista','pacienteHospitalizacion') 
+                   ->union($TarifarioCirugua)
+                   ->first();
                 
 
-                $datosPaciente = RegistroAnestesia::where('id', $id_registro_anestesia)
-                ->with('datosPersona','graficoFirmaMedico')
+                $datosPaciente = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
+                ->with('graficoFirmaMedico','cirujano','Ayudante','Ayudante2','Instrumentrista','DiagnosticoPost','DiagnosticoPre','Anestesiologo')
                 ->first();
 
 
                 $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia',
                 ['datosValoracionPreanestesica' => $datosValoracionPreanestesica,
-                'datosPaciente' => $datosPaciente]);
-                return $pdf->stream($nombreArchivo);
+                'datosPaciente' => $datosPaciente,
+                'Tarifario' => $TarifarioMedicina]);
+                 return $pdf->stream($nombreArchivo);
 
-               // return  response()->json(['datosValoracionPreanestesica' => $datosPaciente], 200);
+                // return  response()->json(['datosValoracionPreanestesica' => $datosValoracionPreanestesica,
+                // 'datosPaciente' => $datosPaciente,
+                // 'Tarifario' => $TarifarioMedicina], 200);
             } catch (Exception $e) {
                 return response()->json(['mensaje' => $e->getMessage()], 500);
             }

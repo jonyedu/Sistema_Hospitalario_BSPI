@@ -94,7 +94,7 @@ class ListaValoracionController extends Controller
         //
         try {
             //code...
-            $listaValoracion = tb_listado_verificacion::findOrFail($id)->with('ListarValoracion');
+            $listaValoracion = tb_listado_verificacion::findOrFail($id) ;
             // tbValoracion__::findOrFail($id);
             //dd($listaValoracion);
             if ($listaValoracion) {
@@ -114,8 +114,8 @@ class ListaValoracionController extends Controller
     public function mostrarr($id)
     {
         try {
-            $modulo = [];
-          //  $modulo = DB::connection('control_hospitalario_db_sql')->select("exec spConsultarListadoCirugia ".$id);
+          //  $modulo = [];
+            $modulo = DB::connection('control_hospitalario_db_sql')->select("exec spConsultarListadoCirugia ".$id);
             //code...
            // dd($modulo);
        //     return  response()->json(['listaValoracion' => $modulo], 200);

@@ -2265,6 +2265,7 @@ export default {
                         // Si la hora se ha completado, se agrega otro objeto de horas al
                         //arreglo de datos
                         this.agregarHora();
+                        this.lista_horas_avanzadas_v = [];
                         this.agregarHorasInicial();
 
                         //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
@@ -2356,11 +2357,14 @@ export default {
                     indexLista = i;
                     break;
                 } */
+            console.log(this.lista_horas_avanzadas_v[index].datos[index_fila]);
             for (const columna_quince of this.lista_horas_avanzadas_v[index].datos[index_fila].columnasQuinceMin) {
-                //console.log(columna_quince.columnas);
-                for (const index_agente of columna_quince.columnas[index_columna]) {
-
+                if (columna_quince.columnas) {
+                    for (const col_cince_min of columna_quince.columnas) {
+                        console.log(col_cince_min);
+                    }
                 }
+
 
 
 
