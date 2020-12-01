@@ -7115,9 +7115,1196 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\resources\\js\\components\\Modulos\\Cirugia\\lista_verificacion\\ListasComponent.vue: Unexpected token (1065:0)\n\n\u001b[0m \u001b[90m 1063 | \u001b[39m        }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 1064 | \u001b[39m        handleSeleccionarClick(value) {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 1065 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m      | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 1066 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 1067 | \u001b[39m            \u001b[0m\n\u001b[0m \u001b[90m 1068 | \u001b[39m\u001b[33m>>>\u001b[39m\u001b[33m>>>\u001b[39m\u001b[33m>\u001b[39m f91aab619ec608e82f45f267b58404bdcfc9cedd\u001b[0m\n    at Parser._raise (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:790:17)\n    at Parser.raiseWithData (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:783:17)\n    at Parser.raise (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:777:17)\n    at Parser.unexpected (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:9095:16)\n    at Parser.parseExprAtom (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:10529:20)\n    at Parser.parseExprSubscripts (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:10094:23)\n    at Parser.parseUpdate (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:10074:21)\n    at Parser.parseMaybeUnary (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:10063:17)\n    at Parser.parseExprOps (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:9933:23)\n    at Parser.parseMaybeConditional (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:9907:23)\n    at Parser.parseMaybeAssign (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:9870:21)\n    at Parser.parseExpressionBase (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:9815:23)\n    at C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:9809:39\n    at Parser.allowInAnd (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:11504:16)\n    at Parser.parseExpression (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:9809:17)\n    at Parser.parseStatementContent (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:11770:23)\n    at Parser.parseStatement (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:11639:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:12221:25)\n    at Parser.parseBlockBody (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:12207:10)\n    at Parser.parseBlock (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:12191:10)\n    at Parser.parseFunctionBody (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:11184:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:11168:10)\n    at Parser.parseMethod (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:11118:10)\n    at Parser.parseObjectMethod (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:11047:19)\n    at Parser.parseObjPropValue (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:11080:23)\n    at Parser.parsePropertyDefinition (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:11004:10)\n    at Parser.parseObjectLike (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:10894:25)\n    at Parser.parseExprAtom (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:10445:23)\n    at Parser.parseExprSubscripts (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:10094:23)\n    at Parser.parseUpdate (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:10074:21)\n    at Parser.parseMaybeUnary (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:10063:17)\n    at Parser.parseExprOps (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:9933:23)\n    at Parser.parseMaybeConditional (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:9907:23)\n    at Parser.parseMaybeAssign (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:9870:21)\n    at C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:9837:39\n    at Parser.allowInAnd (C:\\Users\\jonat\\OneDrive\\TrabajoBSPI\\Proyecto\\Sistema_Hospitalario_BSPI\\node_modules\\@babel\\parser\\lib\\index.js:11510:12)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      prefijo: "",
+      isHidden: 'none',
+      listas: {
+        frm_idCirugiaProgramada: "",
+        chkentrada01: false,
+        chkentrada02: false,
+        chkentrada03: false,
+        chkentrada04: false,
+        chkentrada05: false,
+        chkentrada06: false,
+        chkentrada07: false,
+        chkquirurgica01: false,
+        chkquirurgica02: false,
+        chkquirurgica03: false,
+        chkquirurgica04: false,
+        chkquirurgica05: false,
+        chkquirurgica06: false,
+        chkquirurgica07: false,
+        chksalida01: false,
+        chksalida02: false,
+        chksalida03: false,
+        chksalida04: false,
+        chksalida05: false,
+        user_id: "",
+        cargo: "",
+        observacion: "",
+        firma: ""
+      },
+      form: {
+        /* Datos del paciente */
+        // frm_idCirugiaProgramada: "",
+        frm_paciente: "",
+        frm_cirujano: "",
+        frm_anestesiologo: "",
+        frm_quirofano: "",
+        frm_procedimiento: ""
+      }
+    };
+  },
+  methods: {
+    /* Metodos para Llamar al Modal y la Tabla */
+    mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
+      this.$modal.show("ListaCirugiaProgramadaPaciente");
+    },
+    handleSeleccionarClick: function handleSeleccionarClick(value) {
+      this.listas.frm_idCirugiaProgramada = value.SecCirPro;
+      this.form.frm_paciente = value.nombrePaciente;
+      this.form.frm_cirujano = value.cirujano;
+      this.form.frm_anestesiologo = value.anestesiologo;
+      this.form.frm_quirofano = value.quirofano;
+      this.form.frm_procedimiento = value.procedimiento;
+      this.$modal.hide("ListaCirugiaProgramadaPaciente"); // if (this.$refs.revisionSistema != null) {
+      //     this.$refs.revisionSistema.cargarRevisionSistema();
+      // }
+
+      this.cargarLista(value.SecCirPro);
+    },
+    cargarLista: function cargarLista(value) {
+      var that = this;
+      var url = "/modulos/cirugia/lista_verificacion/buscarpaciente/" + value; // var loader = that.$loading.show();
+
+      axios.get(url).then(function (response) {
+        if (response.data.listaValoracion) {
+          //   this.$swal({
+          //     icon: "warning",
+          //     title: "Paciente a Modificar",
+          //     text: "."
+          // }),
+          that.listas.chkentrada01 = Boolean(Number(response.data.listaValoracion.chkentrada01));
+          that.listas.chkentrada02 = Boolean(Number(response.data.listaValoracion.chkentrada02));
+          that.listas.chkentrada03 = Boolean(Number(response.data.listaValoracion.chkentrada03));
+          that.listas.chkentrada04 = Boolean(Number(response.data.listaValoracion.chkentrada04));
+          that.listas.chkentrada05 = Boolean(Number(response.data.listaValoracion.chkentrada05));
+          that.listas.chkentrada06 = Boolean(Number(response.data.listaValoracion.chkentrada06));
+          that.listas.chkentrada07 = Boolean(Number(response.data.listaValoracion.chkentrada07));
+          that.listas.chkquirurgica01 = Boolean(Number(response.data.listaValoracion.chkquirurgica01));
+          that.listas.chkquirurgica02 = Boolean(Number(response.data.listaValoracion.chkquirurgica02));
+          that.listas.chkquirurgica03 = Boolean(Number(response.data.listaValoracion.chkquirurgica03));
+          that.listas.chkquirurgica04 = Boolean(Number(response.data.listaValoracion.chkquirurgica04));
+          that.listas.chkquirurgica05 = Boolean(Number(response.data.listaValoracion.chkquirurgica05));
+          that.listas.chkquirurgica06 = Boolean(Number(response.data.listaValoracion.chkquirurgica06));
+          that.listas.chkquirurgica07 = Boolean(Number(response.data.listaValoracion.chkquirurgica07));
+          that.listas.chksalida01 = Boolean(Number(response.data.listaValoracion.chksalida01));
+          that.listas.chksalida02 = Boolean(Number(response.data.listaValoracion.chksalida02));
+          that.listas.chksalida03 = Boolean(Number(response.data.listaValoracion.chksalida03));
+          that.listas.chksalida04 = Boolean(Number(response.data.listaValoracion.chksalida04));
+          that.listas.chksalida05 = Boolean(Number(response.data.listaValoracion.chksalida05)); // user_id: "",
+          // cargo: "",
+
+          that.listas.observacion = response.data.listaValoracion.observacion; //firma: ""
+
+          that.$swal({
+            icon: "success",
+            title: "Paciente a Modificar",
+            text: "."
+          }), that.isHidden = 'block';
+        } else {
+          that.$swal({
+            icon: "success",
+            title: "Paciente Nuevo",
+            text: "."
+          });
+          that.isHidden = 'none';
+        }
+      })["catch"](function (error) {
+        //Errores
+        that.$swal({
+          icon: "success",
+          title: "Paciente Nuevo",
+          text: "."
+        });
+        that.isHidden = 'none';
+      });
+    },
+    guardarLista: function guardarLista() {
+      var that = this; // var loader = that.$loading.show();
+
+      var ListaInsert = this.listas; //console.log(this.listas);
+
+      this.listas = {
+        frm_idCirugiaProgramada: "",
+        chkentrada01: false,
+        chkentrada02: false,
+        chkentrada03: false,
+        chkentrada04: false,
+        chkentrada05: false,
+        chkentrada06: false,
+        chkentrada07: false,
+        chkquirurgica01: false,
+        chkquirurgica02: false,
+        chkquirurgica03: false,
+        chkquirurgica04: false,
+        chkquirurgica05: false,
+        chkquirurgica06: false,
+        chkquirurgica07: false,
+        chksalida01: false,
+        chksalida02: false,
+        chksalida03: false,
+        chksalida04: false,
+        chksalida05: false,
+        user_id: "",
+        cargo: "",
+        observacion: "",
+        firma: ""
+      }, this.form = {
+        /* Datos del paciente */
+        // frm_idCirugiaProgramada: "",
+        frm_paciente: "",
+        frm_cirujano: "",
+        frm_anestesiologo: "",
+        frm_quirofano: "",
+        frm_procedimiento: ""
+      };
+      axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
+        //  loader.hide();
+        that.$swal({
+          icon: "success",
+          title: "Proceso Realizado con Exito",
+          text: "."
+        });
+      }); // aui
+    },
+    llamarMetodoImprimir: function llamarMetodoImprimir() {
+      window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.frm_idCirugiaProgramada);
+    }
+  }
+});
 
 /***/ }),
 
