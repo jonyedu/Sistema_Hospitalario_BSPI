@@ -218,25 +218,36 @@ class RegistroAnestesiaController extends Controller
                     ->first();
 
                  //FINALIZA CARGA DATOS DE EL REGISTRO DE ANESTESIA
+<<<<<<< HEAD
  
                 
+=======
+
+                 /* foreach ($datosValoracionPreanestesica as $paciente) {
+                    $id_registro_anestesia =  $paciente->id;
+                } */
+
+>>>>>>> 12a91b683d411f73a5beddbe12fbc08e4502f47e
                //$id_registro_anestesia = $datosValoracionPreanestesica->id;
                $datosprocedimiento = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
                ->first();
-                   
-            
+
+
                $TarifarioProcedimiento = TarifarioProcedimiento::select('codigo', 'descripcion')->where('codigo',$datosprocedimiento->id_operacion_realizada);
                $TarifarioCirugua = TarifarioCirugia::select('codigo', 'descripcion')->where('codigo',$datosprocedimiento->id_operacion_realizada)
                    ->union($TarifarioProcedimiento);
                $TarifarioMedicina = TarifarioMedicina::select('codigo', 'descripcion')->where('codigo',$datosprocedimiento->id_operacion_realizada)
-                   //  ->with('pacienteLista','pacienteHospitalizacion') 
+                   //  ->with('pacienteLista','pacienteHospitalizacion')
                    ->union($TarifarioCirugua)
                    ->first();
+<<<<<<< HEAD
                 
 
 
                          $id_registro_anestesia =$datosValoracionPreanestesica->id;
 
+=======
+>>>>>>> 12a91b683d411f73a5beddbe12fbc08e4502f47e
 
 
                 $datosPaciente = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)

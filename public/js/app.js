@@ -6534,7 +6534,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 1,
       form: {
-        idCirugiaProgramada: "0001",
+        idCirugiaProgramada: "",
         registro_anestesia_id: 0,
 
         /* Datos del paciente */
