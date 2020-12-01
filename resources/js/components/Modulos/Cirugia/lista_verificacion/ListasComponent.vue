@@ -1062,6 +1062,10 @@ export default {
             this.$modal.show("ListaCirugiaProgramadaPaciente");
         },
         handleSeleccionarClick(value) {
+<<<<<<< HEAD
+=======
+            
+>>>>>>> f91aab619ec608e82f45f267b58404bdcfc9cedd
             this.listas.frm_idCirugiaProgramada = value.SecCirPro;
             this.form.frm_paciente = value.nombrePaciente;
             this.form.frm_cirujano = value.cirujano;
