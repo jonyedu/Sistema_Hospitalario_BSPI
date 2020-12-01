@@ -118,4 +118,13 @@ class RegistroAnestesia extends Model
         return $this->hasOne('App\Models\Modulos\Cirugia\RegistroAnestesico\DatosPosiciones', 'id', 'registro_anestesia_id');
     }
 
+    public function datosPersona()
+    {
+        return $this->hasOne('App\Models\Modulos\Cirugia\RegistroAnestesico\DatosRegistro', 'registro_anestesia_id', 'id');
+    }
+    public function tipoPosicion()
+    {
+        return $this->hasOne('App\Models\Modulos\Cirugia\RegistroAnestesico\AgenteAnestesia', 'id', 'id_tipo_posiciones');
+    }
+  
 }

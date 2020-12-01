@@ -50,4 +50,41 @@ class DatosRegistro extends Model
         'pcip',
         'status',
     ];
+    public function graficoFirmaMedico()
+    {
+        return $this->hasOne('App\Models\Modulos\Imagenes\FirmasPorAtencion', 'id_atencion', 'registro_anestesia_id');
+    }
+    public function Ayudante()
+    {
+        return $this->hasOne('App\Models\Modulos\Admision\Medico\Medico', 'id', 'id_cirujano');
+    }
+    public function cirujano()
+    {
+        return $this->hasOne('App\Models\Modulos\Admision\Medico\Medico', 'id', 'id_cirujano');
+    }
+
+    public function Ayudante2()
+    {
+        return $this->hasOne('App\Models\Modulos\Admision\Medico\Medico', 'id', 'id_ayudante2');
+    }
+    public function Instrumentrista()
+    {
+        return $this->hasOne('App\Models\Modulos\Admision\Medico\Medico', 'id', 'id_instrumentista');
+    }
+    public function DiagnosticoPost()
+    {
+        return $this->hasOne('App\Models\Modulos\Parametrizacion\Diagnostico\Diagnostico', 'codigo', 'id_diagnostico_post');
+    }
+    public function DiagnosticoPre()
+    {
+        return $this->hasOne('App\Models\Modulos\Parametrizacion\Diagnostico\Diagnostico', 'codigo', 'id_diagnostico_pre');
+    }
+    public function Anestesiologo()
+    {
+
+        
+        return $this->hasOne('App\Models\Modulos\Admision\Medico\Medico', 'id', 'id_anestesiologo');
+    }
+
+
 }

@@ -94,7 +94,7 @@ class ListaValoracionController extends Controller
         //
         try {
             //code...
-            $listaValoracion = tb_listado_verificacion::findOrFail($id)->with('ListarValoracion');
+            $listaValoracion = tb_listado_verificacion::findOrFail($id) ;
             // tbValoracion__::findOrFail($id);
             //dd($listaValoracion);
             if ($listaValoracion) {
@@ -114,12 +114,12 @@ class ListaValoracionController extends Controller
     public function mostrarr($id)
     {
         try {
-            $modulo = [];
+          //  $modulo = [];
             $modulo = DB::connection('control_hospitalario_db_sql')->select("exec spConsultarListadoCirugia ".$id);
             //code...
            // dd($modulo);
        //     return  response()->json(['listaValoracion' => $modulo], 200);
-          $pdf =  PDF::loadView('reports.pdf.formulario-lista-verificacion',['datosPaciente' => $modulo]);
+          $pdf =  PDF::loadView('reports.pdf.formulario-lista-verificacion',['datosPaciente' => $modulo])->setPaper('a4', 'landscape');
        // PDF::loadHTML('reports.pdf.formulario-lista-verificacion')->setPaper('a4', 'landscape')->setWarnings(false)->save('myfile.pdf');
 
       return $pdf->stream('Formulario');

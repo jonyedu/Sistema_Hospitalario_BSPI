@@ -53,7 +53,7 @@ class ValoracionPreanestesicaApiController extends Controller
                         $edadPaciente = $this->calculaEdad($paciente->Fecha_nacimiento);
                     }
                 }
-                $datosValoracionPreanestesica = RevisionSistema::select('fdf', 'as', )->where('SecCirPro', $idSecCirPro)
+                $datosValoracionPreanestesica = RevisionSistema::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
                     ->with('antecedente', 'examenFisico', 'paraclinico.tipoSangre')
                     ->first();
@@ -65,7 +65,6 @@ class ValoracionPreanestesicaApiController extends Controller
                 ]);
 
                 return $pdf->stream($nombreArchivo);
-                //return PDF::loadFile('http://www.github.com')->stream('github.pdf');
 
             } catch (Exception $e) {
                 return response()->json(['mensaje' => $e->getMessage()], 500);

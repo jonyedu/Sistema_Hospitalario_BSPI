@@ -22,10 +22,9 @@
                     class="badge badge-warning pl-3 pr-3 pt-2 pb-2"
                     style="font-size: 1.0em"
                 >
-                    <!-- Tiempo : <span>{{ hour }}</span
+                    Tiempo : <span>{{ hour }}</span
                     >:<span>{{ minutes }}</span
-                    >:<span>{{ seconds }}</span> -->
-                    Tiempo: <span id="total">{{ tiempo }}</span>
+                    >:<span>{{ seconds }}</span>
                 </p>
             </div>
             <div class="row mb-5" v-if="iniciado">
@@ -140,7 +139,7 @@
                         class="col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
                     >
                         <label for="temperatura" class="mr-2"
-                            >TEMPERATURA</label
+                            >TEMPERATURAxx</label
                         >
                         <input
                             type="checkbox"
@@ -486,6 +485,9 @@
                                                                 </div>
                                                             </div>
                                                         </template>
+                                                        <!-- Prueba para el SPO2 -->
+                                                        <!-- aqui debería ir el codigo -->
+                                                        <!-- Fin Purbwa para el SPO2 -->
                                                         <!-- Aqui van los datos de agentes que pinta en la grafica -->
                                                         <template
                                                             v-if="
@@ -503,6 +505,7 @@
                                                                     index_columna
                                                                 "
                                                             >
+                                                              <span><input type="text" style="width:20px;height:20px;" v-text="index_columna"></span>
                                                                 <div
                                                                     v-for="(minutos_columna,
                                                                     index_minutos_columna) of columna.columnas"
@@ -511,40 +514,35 @@
                                                                         index_minutos_columna
                                                                     "
                                                                 >
+                                                                <span><input type="text"  style="width:20px;height:20px;" v-text="index_minutos_columna"></span>
                                                                     <!-- {{minutos_columna}} -->
                                                                     <template
                                                                         v-if="
                                                                             minutos_columna.agentes
                                                                         "
+                                                                        
                                                                     >
-                                                                        <a
-                                                                            v-for="(agente,
+                                                                    
+                                                                    <span v-for="(agente,
                                                                             index_agente) of minutos_columna.agentes"
                                                                             :key="
                                                                                 index_agente
+                                                                            " > aquu
+                                                                            <input type="text"  style="width:20px;height:20px;" v-text="index_agente">
+                                                                             <img
+                                                                            
+                                                                            class="figure-celds"
+                                                                            :src="
+                                                                                '/' +
+                                                                                    agente._src
                                                                             "
-                                                                            @click="
-                                                                                eliminarAgente(
-                                                                                    index,
-                                                                                    index_fila,
-                                                                                    index_columna,
-                                                                                    index_minutos_columna,
-                                                                                    index_agente,
-                                                                                    minutos_columna['t_init'],
-                                                                                    agente._src,
-                                                                                    agente.descripcion,
-                                                                                    agente.valor
-                                                                                )
-                                                                            "
-                                                                            ><img
-                                                                                class="figure-celds"
-                                                                                :src="
-                                                                                    '/' +
-                                                                                        agente._src
-                                                                                "
-                                                                                alt=""
-                                                                                style="width: 20px"
-                                                                        /></a>
+                                                                            alt=""
+                                                                            style="width: 20px"
+                                                                            
+                                                                        />
+                                                                        
+                                                                    </span>
+                                                                     
                                                                     </template>
                                                                 </div>
                                                             </div>
@@ -583,7 +581,7 @@
                                                                     "
                                                                     alt=""
                                                                     style="width: 70px"
-                                                                />
+                                                                />xx
                                                                 <!-- </div> -->
                                                             </div>
                                                         </template>
@@ -1082,11 +1080,11 @@
                                             >TURBO No</span
                                         ></label
                                     >
-                                    <div class="col-md-6 p-0">
+                                    <div class="col-md-3 p-0">
                                         <input
                                             class="input-line"
                                             v-model="form.turbo_inte_traqueal"
-                                            type="text"
+                                            type="number"
                                             name="turbo"
                                             id="turbo"
                                             style="width: 100%"
@@ -1923,20 +1921,7 @@
                 @respuestaConfirmarCancelar="respuestaConfirmarCancelar"
             ></vue-confirmar-cancelar>
         </modal>
-        <modal
-            :width="'20%'"
-            height="auto"
-            :scrollable="true"
-            name="EliminarAgente"
-            style="z-index: 1200;"
-        >
-            <eliminar-agente
-                ref="EliminarAgente"
-                :datos="datos_eliminar_agente"
-                @handleSeleccionarClick="handleSeleccionarClick"
-            ></eliminar-agente>
-        </modal>
-        <!--  <FlashMessage></FlashMessage> -->
+        <FlashMessage></FlashMessage>
     </div>
 </template>
 
@@ -1953,22 +1938,7 @@ export default {
     },
     data: function() {
         return {
-            datos_eliminar_agente: {
-                index: "",
-                index_fila: "",
-                index_columna: "",
-                index_minutos_columna: "",
-                index_agente: "",
-                index: "",
-                minutes: "",
-                adicional: { system_name: "agente" },
-                ruta_icono: "",
-                descripcion: "",
-                valor: 0,
-                valorNuevo: 0,
-                respuesta: false,
-            },
-            resConfirmarCancelar: false,
+            resConfirmarCancelar:false,
             icon: "",
             titulo: "",
             mensaje: "",
@@ -2010,7 +1980,7 @@ export default {
                 nasal_inte_traqueal: 0,
                 rapido_inte_traqueal: 0,
                 lenta_inte_traqueal: 0,
-                turbo_inte_traqueal: "",
+                turbo_inte_traqueal: 0,
                 manguito_inflam_inte_traqueal: 0,
                 taponamiento_inte_traqueal: 0,
                 asist_topica_inte_traqueal: 0,
@@ -2055,19 +2025,13 @@ export default {
                 min10: 0,
                 p_muerto: 0,
                 /* Tecnicas Especiales */
-                id_sala: 0,
-                id_medico: 0,
+                conducido_a: "",
+                por: "",
                 hora: "00:00",
                 /* Fin Datos para modificar registro anestesico */
 
                 /* Datos para guardar en la tabla infusiones */
                 infusiones: [
-                    {
-                        descripcion: "SOLUCIONES SALINAS",
-                        name: "SOLUCIONES_SALINAS",
-                        abreviatura: "SS",
-                        valor: 0
-                    },
                     {
                         descripcion: "DEXTROSAS",
                         name: "DEXTROSAS",
@@ -2093,6 +2057,12 @@ export default {
                         valor: 0
                     },
                     {
+                        descripcion: "SOLUCIONES SALINAS",
+                        name: "SOLUCIONES_SALINAS",
+                        abreviatura: "SS",
+                        valor: 0
+                    },
+                    {
                         descripcion: "TOTAL",
                         name: "TOTAL",
                         abreviatura: "T",
@@ -2108,7 +2078,22 @@ export default {
                 /* Fin Datos para guardar firma */
             },
             registro_id: 1,
-            drogas_administradas: [],
+            drogas_administradas: [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
             peso: "",
             estatura: "",
             system_posicion: "posicion",
@@ -2177,10 +2162,10 @@ export default {
             indice_minuto: 0,
             // Texto adicional ubicados en las primeras columnas de las rejillas
             agentes_text: [
-                { descripcion: "Oxigeno litros po min", valores: [] },
-                { descripcion: "Sevoflorane vol %", valores: [] },
-                { descripcion: "Remifentanil 5mg/500 ML", valores: [] },
-                { descripcion: "Spo2 %", valores: [] }
+                { descripcion: "", valores: [] },
+                { descripcion: "", valores: [] },
+                { descripcion: "", valores: [] },
+                { descripcion: "", valores: [] }
             ],
             // Formulario de recolección de datos
             valoresFormulario: {
@@ -2253,14 +2238,6 @@ export default {
                 subTotal += +Number(infusion.valor);
             });
             return (this.form.total = subTotal);
-        },
-        tiempo: function(params) {
-            var tiempo = 0;
-            var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
-            var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
-            var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
-            tiempo = hora + ":" + minuto + ":" + segundo;
-            return tiempo;
         }
     },
     mounted: function() {
@@ -2297,8 +2274,6 @@ export default {
                         // Si la hora se ha completado, se agrega otro objeto de horas al
                         //arreglo de datos
                         this.agregarHora();
-                        this.lista_horas_avanzadas_v = [];
-                        this.agregarHorasInicial();
 
                         //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
                         if (this.indice_hora % 5 == 0) {
@@ -2315,93 +2290,452 @@ export default {
                 // En caso que hayan pasado los 5 minutos, se registra de manera automática los datos
                 if (this.seconds == 1) {
                     this.obtenerDatosFormulario();
+                    this.agregarHorasInicial();
                 }
             }
         }, 1000);
     },
     beforeDestroy: function() {},
     methods: {
-        eliminarAgente(
-            index,
-            index_fila,
-            index_columna,
-            index_minutos_columna,
-            index_agente,
-            t_init,
-            src,
-            descripcion,
-            valor
-        ) {
-            this.limpiarDatosEliminarAgente();
-            this.datos_eliminar_agente.index = index;
-            this.datos_eliminar_agente.index_fila = index_fila;
-            this.datos_eliminar_agente.index_columna = index_columna;
-            this.datos_eliminar_agente.index_minutos_columna = index_minutos_columna;
-            this.datos_eliminar_agente.index_agente = index_agente;
-            this.datos_eliminar_agente.minutes = t_init;
-            this.datos_eliminar_agente.adicional = { system_name: descripcion };
-            this.datos_eliminar_agente.ruta_icono = src;
-            this.datos_eliminar_agente.descripcion = descripcion;
-            this.datos_eliminar_agente.valor = valor;
-            this.$modal.show("EliminarAgente");
+        mostrarModalConfirmarCandelar() {
+            this.icon = "/iconsflashMessage/warning.svg"
+            this.titulo = "¿Desea cerrar el proceso?";
+            this.mensaje = "Al dar en Aceptar, el proceso dará por finalizado.";
+            this.$modal.show("ConfirmarCandelar");
         },
-        handleSeleccionarClick(value) {
-            if(value.respuesta){
-                var valor = parseInt(value.valorNuevo);
-                var minutes = value.minutes;
-                var adicional = value.adicional;
-                var ruta_icono= value.ruta_icono;
-
-                var indice_fila = this.obtenerIndice(valor);
-                //Recorrer el arreglo para saber en que posicion se debe guardar
-                // Verifica el índice según la hora
-                for (const column_quince of this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin) {
-                    // Recorre cada fila
-                    // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
-                    if (column_quince.columnas) {
-                        // figuras en rejillas
-                        for (const col_cince_min of column_quince.columnas) {
-                            if (
-                                col_cince_min.t_init <= minutes &&
-                                col_cince_min.t_fin > minutes
-                            ) {
-                                if (
-                                    minutes >= col_cince_min.t_init &&
-                                    col_cince_min.t_fin > minutes
-                                ) {
-                                    col_cince_min.agentes.push({
-                                        descripcion: adicional.system_name,
-                                        valor: valor,
-                                        _src: ruta_icono
-                                    });
-                                    // Agregar dato de envío
-                                    /* this.enviarDatosAgente(
-                                        {
-                                            tpo_ini: is_tpo_init,
-                                            tpo_fin: is_tpo_fin,
-                                            hora: this.hour,
-                                            min: this.minutes,
-                                            segundos: this.seconds,
-                                            valor: valor,
-                                            name: adicional.system_name,
-                                            indice_hora: this.indice_hora
-                                        },
-                                        adicional.tipo
-                                    ); */
-                                }
+        respuestaConfirmarCancelar(value) {
+            this.resConfirmarCancelar = value;
+            this.$modal.hide("ConfirmarCandelar");
+            this.end_time();
+        },
+        agregarHorasInicial() {
+            this.horasInicial.push(this.hour);
+        },
+        consultarSello() {
+            let that = this;
+            if (this.form.id_medico > 0) {
+                var loader = that.$loading.show();
+                let url =
+                    "/modulos/cirugia/anestesia/cargar_sello/" +
+                    this.form.id_medico;
+                axios
+                    .get(url)
+                    .then(function(response) {
+                        if (response.data.sello != null) {
+                            if (response.data.sello.medico_sellos != null) {
+                                that.rutaSello =
+                                    "data:image/jpeg;base64," +
+                                    response.data.sello.medico_sellos
+                                        .IMAGEN_SELLO;
                             }
                         }
-                    }
+                        loader.hide();
+                    })
+                    .catch(error => {
+                        //Errores
+                        /* that.$swal({
+                            icon: "error",
+                            title: "Existe un error",
+                            text: error
+                        }); */
+                        that.flashMessage.show({
+                            status: "error",
+                            title: "Error al procesar consultarSello",
+                            message: "Por favor comuníquese con el administrador. " + error,
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/error.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background: "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
+                        loader.hide();
+                    });
+            }
+        },
+        getNewIdRegistroAnestesia() {
+            if (this.iniciado) return;
+            this.iniciado = true;
+
+            let url = "/modulos/cirugia/anestesia/registro/post";
+            axios
+                .post(url, this.form)
+                .then(function(response) {
+                    this.form.registro_anestesia_id = response.data.id;
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar getNewIdRegistroAnestesia",
+                        message: "Se generó una nueva pagina.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar getNewIdRegistroAnestesia",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        setSelectedTipoPosiciones(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            let url =
+                "/modulos/cirugia/anestesia/cargar_tipo_posiciones_combo_box";
+            if (value != null) {
+                this.form.id_tipo_posiciones = value.id_tipo_posiciones;
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let tipoPosiciones = [];
+                    response.data.tipoPosiciones.forEach(tiposPosiciones => {
+                        let objeto = {};
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            tiposPosiciones.descripcion
+                        );
+                        objeto.id_tipo_posiciones = tiposPosiciones.id;
+                        tipoPosiciones.push(objeto);
+                    });
+                    that.tipoPosiciones = tipoPosiciones;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedTipoPosiciones",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        setSelectedSala(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            let url = "/modulos/parametrizacion/sala/cargar_sala_combo_box";
+            if (value != null) {
+                this.form.id_sala = value.id_sala;
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let salas = [];
+                    response.data.salas.forEach(sala => {
+                        let objeto = {};
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            sala.descripcion
+                        );
+                        objeto.id_sala = sala.id;
+                        salas.push(objeto);
+                    });
+                    that.salas = salas;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedSala",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        setSelectedMedico(value) {
+            let that = this;
+            var loader = that.$loading.show();
+            let url =
+                "/modulos/admision/medico/cargar_medico_por_especializacion/" +
+                that.form.id_especializacion;
+            if (value != null) {
+                this.form.id_medico = value.id_medico;
+                loader.hide();
+                this.consultarSello();
+            }
+            axios
+                .get(url)
+                .then(function(response) {
+                    let medicos = [];
+                    response.data.medicos.forEach(medico => {
+                        let objeto = {};
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            medico.nombres
+                        );
+                        objeto.id_medico = medico.id;
+                        medicos.push(objeto);
+                    });
+                    that.medicos = medicos;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar setSelectedMedico",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        /**
+         * Método para obtener datos principales desde el server
+         */
+        obtenerDatos: function() {
+            this.obtenerDatosAgentes();
+            this.obtenerDatosPosiciones();
+        },
+        /**
+         * Obtener agentes
+         */
+        obtenerDatosAgentes: function() {
+            let url = "/modulos/cirugia/anestesia/agentes";
+            axios
+                .get(url + "/agente")
+                .then(response => {
+                    this.tabla_datos_grafica = response.data;
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar obtenerDatosAgentes",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        /**
+         * Obtener posiciones
+         */
+        obtenerDatosPosiciones: function() {
+            let url = "/modulos/cirugia/anestesia/agentes";
+            axios
+                .get(url + "/posicion")
+                .then(response => {
+                    this.posiciones = response.data;
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar obtenerDatosPosiciones",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        /**
+         * Método para enviar datos de la rejilla (agentes), cada que se registen (pasando 5 min)
+         */
+        enviarDatosAgente(datos = {}, tipo) {
+            let that = this;
+            //var loader = that.$loading.show();
+            this.form.cirugia_id = this.$props.idSecCirPro;
+            let url =
+                "/modulos/cirugia/anestesia/agentes/guardado/" +
+                this.registro_id;
+            axios
+                .post(url, {
+                    registro_anestesia_id: this.form.registro_anestesia_id,
+                    datos: datos,
+                    tipo: tipo,
+                    SecCirPro: this.form.cirugia_id
+                })
+                .then(response => {
+                    ///console.log(response.data);
+                    this.datos_server = response.data;
+                    //loader.hide();
+                })
+                .catch(error => {
+                    //Errores
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar obtenerDatosPosiciones",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    //loader.hide();
+                });
+        },
+        /**
+         * Inicio de la recolección de datos
+         */
+        start_time: async function(event) {
+            if (this.iniciado) return;
+            this.iniciado = true;
+            this.agregarHorasInicial();
+            //this.consultarSello();
+
+            //Guardar datos en la tabla tb_registro_anestesia
+            let url = "/modulos/cirugia/anestesia/registro/post";
+            let $id = await axios.post(url, this.form).then(response => {
+                this.form.registro_anestesia_id = response.data.id;
+            });
+            //Guardar datos en la tabla tb_tipo_agente_anestesia
+            // let urlTip = "/modulos/cirugia/anestesia/registro_tipo_agente/post";
+            // axios.post(urlTip, this.form).then(response => {
+            //     this.form.agente_id = response.data.id;
+            // });
+            // Poner el dato al inicio de la rejilla cuando se haya iniciado
+            this.agregaDatoEnRejilla(
+                true,
+                false,
+                250,
+                "img/icons/induccion.png",
+                { system_name: "INDUCCION", tipo: this.system_agente }
+            );
+        },
+        /**
+         * Finaliza el proceso, aquí se deben enviar los demás datos para que el registro se edite
+         */
+        end_time: function() {
+            if (this.validarImgFirma) {
+                if (!this.iniciado) return;
+                this.mostrarModalConfirmarCandelar();
+                if(this.resConfirmarCancelar){
+                    //if (!confirm("¿Desea cerrar el proceso?")) return;
+                    //this.iniciado = false;
+
+                    // Poner el dato al final de la rejilla cuando se haya finalizado
+                    this.agregaDatoEnRejilla(
+                        true,
+                        false,
+                        0,
+                        "img/icons/fin_anestecia.png",
+                        { system_name: "FIN-ANESTECIA", tipo: this.system_agente }
+                    );
+                    var idFlashMessage1 = this.flashMessage.show({
+                        status: "info",
+                        title: "Generando Gráfica",
+                        message: "Se está generando la gráfica, por favor espere.",
+                        clickable: false,
+                        time: 0,
+                        icon: "/iconsflashMessage/time.gif",
+                        blockClass: 'custom_msg',
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+
+                    this.getImgGrafica(idFlashMessage1);
+
+                    //this.flashMessage.deleteMessage(idFlashMessage1);
+
+                    //Se guardan los datos a la base
+                    this.guardarDrograAdministrada();
                 }
-                /* Esta linea eliminará el agente de la grafica */
-                this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+            }else{
                 this.flashMessage.show({
-                    status: "success",
-                    title: "Éxito al procesar",
-                    message: "Agente Modificado Correctamente",
+                    status: "warning",
+                    title: "Advertencia al procesar firma",
+                    message: "Se necesita una firma por favor.",
                     clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/success.svg",
+                    time: 0,
+                    icon: "/iconsflashMessage/warning.svg",
                     customStyle: {
                         flashMessageStyle: {
                             background: "linear-gradient(#e66465, #9198e5)"
@@ -2409,20 +2743,435 @@ export default {
                     }
                 });
             }
-            this.$modal.hide("EliminarAgente");
+
+
+            /* let that = this;
+            if (!this.iniciado) return;
+            this.$swal({
+                title: "¿Desea cerrar el proceso?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Aceptar",
+                cancelButtonText: "Cancelar"
+            }).then(result => {
+                if (result.value) {
+                    if (this.validarImgFirma) {
+                        // Poner el dato al final de la rejilla cuando se haya finalizado
+                        this.agregaDatoEnRejilla(
+                            true,
+                            false,
+                            0,
+                            "img/icons/fin_anestecia.png",
+                            {
+                                system_name: "FIN-ANESTECIA",
+                                tipo: this.system_agente
+                            }
+                        );
+
+                        //Se guardan los datos a la base
+                        this.guardarDrograAdministrada();
+
+                        //Cambia el estado
+                    } else {
+                        this.flashMessage.show({
+                            status: "warning",
+                            title: "Advertencia al procesar firma",
+                            message: "Se necesita una firma por favor.",
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/warning.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background: "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
+                    }
+                }
+            }); */
         },
-        limpiarDatosEliminarAgente(){
-            this.datos_eliminar_agente.index = "";
-            this.datos_eliminar_agente.index_fila = "";
-            this.datos_eliminar_agente.index_columna = "";
-            this.datos_eliminar_agente.index_minutos_columna = "";
-            this.datos_eliminar_agente.index_agente = "";
-            this.datos_eliminar_agente.minutes = "";
-            this.datos_eliminar_agente.adicional = "";
-            this.datos_eliminar_agente.ruta_icono = "";
-            this.datos_eliminar_agente.descripcion = "";
-            this.datos_eliminar_agente.valor = "";
-            this.datos_eliminar_agente.valorNuevo = "";
+        async getImgGrafica(idFlashMessage1) {
+            const la = this.$refs.printMe;
+            const optiones = {
+                type: "dataURL"
+            };
+            this.form.imgGrafica = await this.$html2canvas(la, optiones);
+            this.flashMessage.deleteMessage(idFlashMessage1);
+            this.flashMessage.show({
+                status: "success",
+                title: "Exito en Graficar",
+                message: "Grafico generado correctamente.",
+                clickable: true,
+                time: 5000,
+                icon: "/iconsflashMessage/success.svg",
+                customStyle: {
+                    flashMessageStyle: {
+                        background: "linear-gradient(#e66465, #9198e5)"
+                    }
+                }
+            });
+            this.guardarImgGrafica();
+        },
+        guardarImgGrafica() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            let formNew = {
+                cirugia_id: that.form.cirugia_id,
+                registro_anestesia_id: that.form.registro_anestesia_id,
+                imgGrafica: that.form.imgGrafica
+            };
+            url = "/modulos/cirugia/anestesia/guardar_img_grafica";
+
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    //Llamar metodo de parent para que actualice el grid.
+                    //that.guardarModificarAgenteText();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar guardarImgGrafica",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores de validación
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Error Guardar Imagen Grafica",
+                        text: error
+                    }); */
+                    that.resConfirmarCancelar = false;
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarImgGrafica",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        guardarDrograAdministrada() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            let formNew = {
+                frm_registro_anestesia_id: that.form.registro_anestesia_id,
+                frm_descripciones: that.drogas_administradas
+            };
+
+            url = "/modulos/cirugia/anestesia/guardar_droga_administrada";
+
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    that.modifcarRegistroAnestesia();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar guardarDrograAdministrada",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores de validación
+                    loader.hide();
+                    that.resConfirmarCancelar = false;
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Error Guardar Drogas Administradas",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarDrograAdministrada",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                });
+        },
+        modifcarRegistroAnestesia() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            url = "/modulos/cirugia/anestesia/modifcar_registro_anestesia";
+
+            var loader = that.$loading.show();
+            axios
+                .post(url, this.form)
+                .then(function(response) {
+                    that.guardarRegistroInfusiones();
+                    loader.hide();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar modifcarRegistroAnestesia",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                })
+                .catch(error => {
+                    //Errores de validación
+                    loader.hide();
+                    that.resConfirmarCancelar = false;
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Error Modificar Registro Administradas",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar modifcarRegistroAnestesia",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                });
+        },
+        guardarRegistroInfusiones() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            let formNew = {
+                registro_anestesia_id: that.form.registro_anestesia_id,
+                infusiones: that.form.infusiones
+            };
+            url = "/modulos/cirugia/anestesia/guardar_registro_infusiones";
+
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    //Llamar metodo de parent para que actualice el grid.
+                    /* that.$swal({
+                        icon: "success",
+                        title: "Proceso realizado exitosamente",
+                        text: "Datos guardados correctamente."
+                    }); */
+                    that.guardarFirmaPorAtencion();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar guardarRegistroInfusiones",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores de validación
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Error Guardar Infusiones",
+                        text: error
+                    }); */
+                    that.resConfirmarCancelar = false;
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarRegistroInfusiones",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        guardarFirmaPorAtencion() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            let formNew = {
+                cirugia_id: that.form.cirugia_id,
+                imgFirma: that.form.imgFirma
+            };
+            url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
+
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    //Llamar metodo de parent para que actualice el grid.
+                    /* that.$swal({
+                        icon: "success",
+                        title: "Proceso realizado exitosamente",
+                        text: "Datos guardados correctamente."
+                    }); */
+                    loader.hide();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar guardarFirmaPorAtencion",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    /* var idFlashMessage1 = that.flashMessage.show({
+                        status: "info",
+                        title: "Generando Gráfica",
+                        message: "Se está generando la gráfica, por favor espere.",
+                        clickable: false,
+                        time: 0,
+                        icon: "/iconsflashMessage/time.gif",
+                        blockClass: 'custom_msg',
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    }); */
+                    //that.getImgGrafica(idFlashMessage1);
+                    //that.flashMessage.deleteMessage(idFlashMessage1);
+                    that.guardarModificarAgenteText();
+                })
+                .catch(error => {
+                    //Errores de validación
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Error Guardar Firma por Atención",
+                        text: error
+                    }); */
+                    that.resConfirmarCancelar = false;
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarFirmaPorAtencion",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        guardarModificarAgenteText() {
+            let that = this;
+            let url = "";
+            let formNew = {
+                datos: that.agentes_text,
+                registro_anestesia_id: that.form.registro_anestesia_id,
+                hora: that.hour,
+                minuto: that.minutes,
+                indice_minuto: that.indice_minuto
+            };
+            url = "/modulos/cirugia/anestesia/guardar_modificar_agente_text";
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    /* that.$swal({
+                        icon: "success",
+                        title: "Proceso realizado exitosamente",
+                        text: "Datos guardados correctamente."
+                    }); */
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar guardarModificarAgenteText",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    that.validarImprimir = 1;
+                    that.resConfirmarCancelar = false;
+                    that.$emit("RespuestaImprimir", that.validarImprimir);
+                    that.iniciado = false;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores de validación
+                    /* that.$swal({
+                        icon: "error",
+                        title: "Error Guardar Agente Text",
+                        text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarModificarAgenteText",
+                        message: "Por favor comuníquese con el administrador. " + error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
         },
         /**
          * Método para pintar el dato en una rejilla y enviar ese dato al servidor
@@ -2519,887 +3268,6 @@ export default {
                 }
             }
         },
-        mostrarModalConfirmarCandelar() {
-            this.icon = "/iconsflashMessage/warning.svg";
-            this.titulo = "¿Desea cerrar el proceso?";
-            this.mensaje = "Al dar en Aceptar, el proceso dará por finalizado.";
-            this.$modal.show("ConfirmarCandelar");
-        },
-        respuestaConfirmarCancelar(value) {
-            this.resConfirmarCancelar = value;
-            this.$modal.hide("ConfirmarCandelar");
-            this.end_time();
-        },
-        agregarHorasInicial() {
-            this.horasInicial.push(this.hour);
-        },
-        consultarSello() {
-            let that = this;
-            if (this.form.id_medico > 0) {
-                var loader = that.$loading.show();
-                let url =
-                    "/modulos/cirugia/anestesia/cargar_sello/" +
-                    this.form.id_medico;
-                axios
-                    .get(url)
-                    .then(function(response) {
-                        if (response.data.sello != null) {
-                            if (response.data.sello.medico_sellos != null) {
-                                that.rutaSello =
-                                    "data:image/jpeg;base64," +
-                                    response.data.sello.medico_sellos
-                                        .IMAGEN_SELLO;
-                            }
-                        }
-                        loader.hide();
-                    })
-                    .catch(error => {
-                        //Errores
-                        /* that.$swal({
-                            icon: "error",
-                            title: "Existe un error",
-                            text: error
-                        }); */
-                        that.flashMessage.show({
-                            status: "error",
-                            title: "Error al procesar consultarSello",
-                            message:
-                                "Por favor comuníquese con el administrador. " +
-                                error,
-                            clickable: true,
-                            time: 0,
-                            icon: "/iconsflashMessage/error.svg",
-                            customStyle: {
-                                flashMessageStyle: {
-                                    background:
-                                        "linear-gradient(#e66465, #9198e5)"
-                                }
-                            }
-                        });
-                        loader.hide();
-                    });
-            }
-        },
-        getNewIdRegistroAnestesia() {
-            if (this.iniciado) return;
-            this.iniciado = true;
-
-            let url = "/modulos/cirugia/anestesia/registro/post";
-            axios
-                .post(url, this.form)
-                .then(function(response) {
-                    this.form.registro_anestesia_id = response.data.id;
-                    that.flashMessage.show({
-                        status: "success",
-                        title: "Éxito al procesar IdRegistroAnestesia",
-                        message: "Se generó una nueva pagina.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/success.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                })
-                .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar getNewIdRegistroAnestesia",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        },
-        setSelectedTipoPosiciones(value) {
-            let that = this;
-            var loader = that.$loading.show();
-            let url =
-                "/modulos/cirugia/anestesia/cargar_tipo_posiciones_combo_box";
-            if (value != null) {
-                this.form.id_tipo_posiciones = value.id_tipo_posiciones;
-            }
-            axios
-                .get(url)
-                .then(function(response) {
-                    let tipoPosiciones = [];
-                    response.data.tipoPosiciones.forEach(tiposPosiciones => {
-                        let objeto = {};
-                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
-                            tiposPosiciones.descripcion
-                        );
-                        objeto.id_tipo_posiciones = tiposPosiciones.id;
-                        tipoPosiciones.push(objeto);
-                    });
-                    that.tipoPosiciones = tipoPosiciones;
-                    loader.hide();
-                })
-                .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar setSelectedTipoPosiciones",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        },
-        setSelectedSala(value) {
-            let that = this;
-            var loader = that.$loading.show();
-            let url = "/modulos/parametrizacion/sala/cargar_sala_combo_box";
-            if (value != null) {
-                this.form.id_sala = value.id_sala;
-            }
-            axios
-                .get(url)
-                .then(function(response) {
-                    let salas = [];
-                    response.data.salas.forEach(sala => {
-                        let objeto = {};
-                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
-                            sala.descripcion
-                        );
-                        objeto.id_sala = sala.codigo;
-                        salas.push(objeto);
-                    });
-                    that.salas = salas;
-                    loader.hide();
-                })
-                .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar setSelectedSala",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        },
-        setSelectedMedico(value) {
-            let that = this;
-            var loader = that.$loading.show();
-            let url =
-                "/modulos/admision/medico/cargar_medico_por_especializacion/" +
-                that.form.id_especializacion;
-            if (value != null) {
-                alert(value.id_medico);
-                this.form.id_medico = value.id_medico;
-                loader.hide();
-                this.consultarSello();
-            }
-            axios
-                .get(url)
-                .then(function(response) {
-                    let medicos = [];
-                    response.data.medicos.forEach(medico => {
-                        let objeto = {};
-                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
-                            medico.FULLNAME
-                        );
-                        objeto.id_medico = medico.id;
-                        medicos.push(objeto);
-                    });
-                    that.medicos = medicos;
-                    loader.hide();
-                })
-                .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar setSelectedMedico",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        },
-        /**
-         * Método para obtener datos principales desde el server
-         */
-        obtenerDatos: function() {
-            this.obtenerDatosAgentes();
-            this.obtenerDatosPosiciones();
-        },
-        /**
-         * Obtener agentes
-         */
-        obtenerDatosAgentes: function() {
-            let url = "/modulos/cirugia/anestesia/agentes";
-            axios
-                .get(url + "/agente")
-                .then(response => {
-                    this.tabla_datos_grafica = response.data;
-                })
-                .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar obtenerDatosAgentes",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        },
-        /**
-         * Obtener posiciones
-         */
-        obtenerDatosPosiciones: function() {
-            let url = "/modulos/cirugia/anestesia/agentes";
-            axios
-                .get(url + "/posicion")
-                .then(response => {
-                    this.posiciones = response.data;
-                })
-                .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar obtenerDatosPosiciones",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        },
-        /**
-         * Método para enviar datos de la rejilla (agentes), cada que se registen (pasando 5 min)
-         */
-        enviarDatosAgente(datos = {}, tipo) {
-            let that = this;
-            //var loader = that.$loading.show();
-            this.form.cirugia_id = this.$props.idSecCirPro;
-            let url =
-                "/modulos/cirugia/anestesia/agentes/guardado/" +
-                this.registro_id;
-            axios
-                .post(url, {
-                    registro_anestesia_id: this.form.registro_anestesia_id,
-                    datos: datos,
-                    tipo: tipo,
-                    SecCirPro: this.form.cirugia_id
-                })
-                .then(response => {
-                    ///console.log(response.data);
-                    this.datos_server = response.data;
-                    //loader.hide();
-                })
-                .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar obtenerDatosPosiciones",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    //loader.hide();
-                });
-        },
-        /**
-         * Inicio de la recolección de datos
-         */
-        start_time: async function(event) {
-            if (this.iniciado) return;
-            this.iniciado = true;
-            this.agregarHorasInicial();
-            //this.consultarSello();
-
-            //Guardar datos en la tabla tb_registro_anestesia
-            let url = "/modulos/cirugia/anestesia/registro/post";
-            let $id = await axios.post(url, this.form).then(response => {
-                this.form.registro_anestesia_id = response.data.id;
-            });
-            this.$emit("guardarCabecera", this.form.registro_anestesia_id);
-            //Guardar datos en la tabla tb_tipo_agente_anestesia
-            // let urlTip = "/modulos/cirugia/anestesia/registro_tipo_agente/post";
-            // axios.post(urlTip, this.form).then(response => {
-            //     this.form.agente_id = response.data.id;
-            // });
-            // Poner el dato al inicio de la rejilla cuando se haya iniciado
-            this.agregaDatoEnRejilla(
-                true,
-                false,
-                250,
-                "img/icons/induccion.png",
-                { system_name: "INDUCCION", tipo: this.system_agente }
-            );
-            this.flashMessage.show({
-                status: "success",
-                title: "Éxito al procesar",
-                message: "Agente agregado correctamente.",
-                clickable: true,
-                time: 5000,
-                icon: "/iconsflashMessage/success.svg",
-                customStyle: {
-                    flashMessageStyle: {
-                        background: "linear-gradient(#e66465, #9198e5)"
-                    }
-                }
-            });
-        },
-        /**
-         * Finaliza el proceso, aquí se deben enviar los demás datos para que el registro se edite
-         */
-        end_time: function() {
-            if (this.validarImgFirma) {
-                if (!this.iniciado) return;
-                this.mostrarModalConfirmarCandelar();
-                if (this.resConfirmarCancelar) {
-                    //if (!confirm("¿Desea cerrar el proceso?")) return;
-                    //this.iniciado = false;
-
-                    // Poner el dato al final de la rejilla cuando se haya finalizado
-                    this.agregaDatoEnRejilla(
-                        true,
-                        false,
-                        0,
-                        "img/icons/fin_anestecia.png",
-                        {
-                            system_name: "FIN-ANESTECIA",
-                            tipo: this.system_agente
-                        }
-                    );
-                    var idFlashMessage1 = this.flashMessage.show({
-                        status: "info",
-                        title: "Generando Gráfica",
-                        message:
-                            "Se está generando la gráfica, por favor espere.",
-                        clickable: false,
-                        time: 0,
-                        icon: "/iconsflashMessage/time.gif",
-                        blockClass: "custom_msg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-
-                    this.getImgGrafica(idFlashMessage1);
-
-                    //this.flashMessage.deleteMessage(idFlashMessage1);
-
-                    //Se guardan los datos a la base
-                    this.guardarDrograAdministrada();
-                }
-            } else {
-                this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia al procesar firma",
-                    message: "Se necesita una firma por favor.",
-                    clickable: true,
-                    time: 0,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background: "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                });
-            }
-        },
-        async getImgGrafica(idFlashMessage1) {
-            const la = this.$refs.printMe;
-            const optiones = {
-                type: "dataURL"
-            };
-            this.form.imgGrafica = await this.$html2canvas(la, optiones);
-            this.flashMessage.deleteMessage(idFlashMessage1);
-            this.flashMessage.show({
-                status: "success",
-                title: "Exito en Graficar",
-                message: "Grafico generado correctamente.",
-                clickable: true,
-                time: 5000,
-                icon: "/iconsflashMessage/success.svg",
-                customStyle: {
-                    flashMessageStyle: {
-                        background: "linear-gradient(#e66465, #9198e5)"
-                    }
-                }
-            });
-            this.guardarImgGrafica();
-        },
-        guardarImgGrafica() {
-            let that = this;
-            let url = "";
-            let mensaje = "";
-            let formNew = {
-                cirugia_id: that.form.cirugia_id,
-                registro_anestesia_id: that.form.registro_anestesia_id,
-                imgGrafica: that.form.imgGrafica
-            };
-            url = "/modulos/cirugia/anestesia/guardar_img_grafica";
-
-            var loader = that.$loading.show();
-            axios
-                .post(url, formNew)
-                .then(function(response) {
-                    //Llamar metodo de parent para que actualice el grid.
-                    //that.guardarModificarAgenteText();
-                    that.flashMessage.show({
-                        status: "success",
-                        title: "Éxito al procesar Img. Gráfica",
-                        message: "Datos guardados correctamente.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/success.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                })
-                .catch(error => {
-                    //Errores de validación
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Error Guardar Imagen Grafica",
-                        text: error
-                    }); */
-                    that.resConfirmarCancelar = false;
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar guardarImgGrafica",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        },
-        guardarDrograAdministrada() {
-            let that = this;
-            let url = "";
-            let mensaje = "";
-            let formNew = {
-                frm_registro_anestesia_id: that.form.registro_anestesia_id,
-                frm_descripciones: that.drogas_administradas
-            };
-
-            url = "/modulos/cirugia/anestesia/guardar_droga_administrada";
-
-            var loader = that.$loading.show();
-            axios
-                .post(url, formNew)
-                .then(function(response) {
-                    that.modifcarRegistroAnestesia();
-                    that.flashMessage.show({
-                        status: "success",
-                        title: "Éxito al procesar Drogra Administrada",
-                        message: "Datos guardados correctamente.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/success.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                })
-                .catch(error => {
-                    //Errores de validación
-                    loader.hide();
-                    that.resConfirmarCancelar = false;
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Error Guardar Drogas Administradas",
-                        text: error
-                    }); */
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar guardarDrograAdministrada",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                });
-        },
-        modifcarRegistroAnestesia() {
-            let that = this;
-            let url = "";
-            let mensaje = "";
-            url = "/modulos/cirugia/anestesia/modifcar_registro_anestesia";
-
-            var loader = that.$loading.show();
-            axios
-                .post(url, that.form)
-                .then(function(response) {
-                    that.guardarRegistroInfusiones();
-                    loader.hide();
-                    that.flashMessage.show({
-                        status: "success",
-                        title: "Éxito al procesar Registro Anestesia",
-                        message: "Datos guardados correctamente.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/success.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                })
-                .catch(error => {
-                    //Errores de validación
-                    loader.hide();
-                    that.resConfirmarCancelar = false;
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Error Modificar Registro Administradas",
-                        text: error
-                    }); */
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar modifcarRegistroAnestesia",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                });
-        },
-        guardarRegistroInfusiones() {
-            let that = this;
-            let url = "";
-            let mensaje = "";
-            let formNew = {
-                registro_anestesia_id: that.form.registro_anestesia_id,
-                infusiones: that.form.infusiones
-            };
-            url = "/modulos/cirugia/anestesia/guardar_registro_infusiones";
-
-            var loader = that.$loading.show();
-            axios
-                .post(url, formNew)
-                .then(function(response) {
-                    //Llamar metodo de parent para que actualice el grid.
-                    /* that.$swal({
-                        icon: "success",
-                        title: "Proceso realizado exitosamente",
-                        text: "Datos guardados correctamente."
-                    }); */
-                    that.guardarFirmaPorAtencion();
-                    that.flashMessage.show({
-                        status: "success",
-                        title: "Éxito al procesar Registro Infusiones",
-                        message: "Datos guardados correctamente.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/success.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                })
-                .catch(error => {
-                    //Errores de validación
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Error Guardar Infusiones",
-                        text: error
-                    }); */
-                    that.resConfirmarCancelar = false;
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar guardarRegistroInfusiones",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        },
-        guardarFirmaPorAtencion() {
-            let that = this;
-            let url = "";
-            let mensaje = "";
-            let formNew = {
-                registro_anestesia_id: that.form.registro_anestesia_id,
-                imgFirma: that.form.imgFirma
-            };
-            url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
-
-            var loader = that.$loading.show();
-            axios
-                .post(url, formNew)
-                .then(function(response) {
-                    //Llamar metodo de parent para que actualice el grid.
-                    /* that.$swal({
-                        icon: "success",
-                        title: "Proceso realizado exitosamente",
-                        text: "Datos guardados correctamente."
-                    }); */
-                    loader.hide();
-                    that.flashMessage.show({
-                        status: "success",
-                        title: "Éxito al procesar Firma por Atención",
-                        message: "Datos guardados correctamente.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/success.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    /* var idFlashMessage1 = that.flashMessage.show({
-                        status: "info",
-                        title: "Generando Gráfica",
-                        message: "Se está generando la gráfica, por favor espere.",
-                        clickable: false,
-                        time: 0,
-                        icon: "/iconsflashMessage/time.gif",
-                        blockClass: 'custom_msg',
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    }); */
-                    //that.getImgGrafica(idFlashMessage1);
-                    //that.flashMessage.deleteMessage(idFlashMessage1);
-                    that.guardarModificarAgenteText();
-                })
-                .catch(error => {
-                    //Errores de validación
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Error Guardar Firma por Atención",
-                        text: error
-                    }); */
-                    that.resConfirmarCancelar = false;
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar guardarFirmaPorAtencion",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        },
-        guardarModificarAgenteText() {
-            let that = this;
-            let url = "";
-            let formNew = {
-                datos: that.agentes_text,
-                registro_anestesia_id: that.form.registro_anestesia_id,
-                hora: that.hour,
-                minuto: that.minutes,
-                indice_minuto: that.indice_minuto
-            };
-            url = "/modulos/cirugia/anestesia/guardar_modificar_agente_text";
-            var loader = that.$loading.show();
-            axios
-                .post(url, formNew)
-                .then(function(response) {
-                    /* that.$swal({
-                        icon: "success",
-                        title: "Proceso realizado exitosamente",
-                        text: "Datos guardados correctamente."
-                    }); */
-                    that.flashMessage.show({
-                        status: "success",
-                        title: "Éxito al procesar Modificar Agente Text",
-                        message: "Datos guardados correctamente.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/success.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    that.$emit(
-                        "guardarCabecera",
-                        that.form.registro_anestesia_id
-                    );
-                    that.validarImprimir = 1;
-                    that.resConfirmarCancelar = false;
-                    that.$emit("RespuestaImprimir", that.validarImprimir);
-                    that.iniciado = false;
-                    loader.hide();
-                })
-                .catch(error => {
-                    //Errores de validación
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Error Guardar Agente Text",
-                        text: error
-                    }); */
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar guardarModificarAgenteText",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        },
-
         /**
          * Método para obtener el índice en la posición Y, según el valor que se le envíe, usa los valores estáticos 'valoresAnestecia_v'
          * @return int
@@ -3496,19 +3364,6 @@ export default {
                     pos => pos.id == this.valoresFormulario.posicion.id
                 )
             );
-            this.flashMessage.show({
-                status: "success",
-                title: "Éxito al procesar",
-                message: "Agente agregado correctamente.",
-                clickable: true,
-                time: 5000,
-                icon: "/iconsflashMessage/success.svg",
-                customStyle: {
-                    flashMessageStyle: {
-                        background: "linear-gradient(#e66465, #9198e5)"
-                    }
-                }
-            });
         },
 
         agregarDatoRespiracion() {

@@ -25,15 +25,9 @@ window.Swal = swal;
 Vue.prototype.$funcionesGlobales = funcionesGlobales;
 
 
-
-const options = {
-    /* position: 'bottom-start', */
-    /* grow: 'fullscreen' */
-  };
-
 Vue.use(Loading);
 Vue.use(VueRouter);
-Vue.use(VueSweetalert2, options);
+Vue.use(VueSweetalert2);
 Vue.use(VueGoodTablePlugin);
 Vue.use(VModal);
 Vue.use(VueFormWizard);
@@ -117,16 +111,17 @@ Vue.component(
     require("./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue").default
 );
 
-/* Vue.component(
-    "registro-anestesico",
-    require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue").default
-); */
-
 Vue.component(
     "registro-anestesico",
-    require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue").default
+    require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue").default
 );
 
+Vue.component(
+    "eliminar-agente",
+    require("./components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue").default
+);
+
+/*
 Vue.component(
     "crear-modificar-tipo-agente",
     require("./components/Modulos/Cirugia/tipo_agente/CrearModificarTipoAgente.vue").default
@@ -135,7 +130,7 @@ Vue.component(
 Vue.component(
     "crear-modificar-tipo-posiciones",
     require("./components/Modulos/Cirugia/tipo_posiciones/CrearModificarTipoPosiciones.vue").default
-);
+);*/
 
 new Vue({
     el: "#app",

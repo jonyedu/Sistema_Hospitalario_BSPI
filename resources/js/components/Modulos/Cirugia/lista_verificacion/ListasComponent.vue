@@ -1028,12 +1028,13 @@ export default {
             this.$modal.show("ListaCirugiaProgramadaPaciente");
         },
         handleSeleccionarClick(value) {
+            alert( value.SecCirPro);
             this.listas.frm_idCirugiaProgramada = value.SecCirPro;
-            this.form.frm_paciente = value.NombrePaciente;
-            this.form.frm_cirujano = value.Cirujano;
-            this.form.frm_anestesiologo = value.Anestesiologo;
-            this.form.frm_quirofano = value.Quirofano;
-            this.form.frm_procedimiento = value.Procedimiento;
+            this.form.frm_paciente = value.nombrePaciente;
+            this.form.frm_cirujano = value.cirujano;
+            this.form.frm_anestesiologo = value.anestesiologo;
+            this.form.frm_quirofano = value.quirofano;
+            this.form.frm_procedimiento = value.procedimiento;
             this.$modal.hide("ListaCirugiaProgramadaPaciente");
             // if (this.$refs.revisionSistema != null) {
             //     this.$refs.revisionSistema.cargarRevisionSistema();

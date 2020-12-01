@@ -1,971 +1,653 @@
-<!DOCTYPE html>
-<html lang="en">
+ <html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Formulario Valoración Preanestesica</title>
+     <style>
+         div {
+             position: absolute;
+             z-index: 25;
+         }
+
+         /* Estilo para todas las tablas */
+         .tableStyleAll {
+             width: 100%;
+             border-collapse: collapse;
+         }
+
+         .tableStyleAll2 {
+             width: 100%;
 
 
-<body>
-    <style>
-        div {
-            position: absolute;
-            z-index: 25
-        }
+         }
 
-        a {
-            text-decoration: none
-        }
 
-        a img {
-            border-style: none;
-            border-width: 0
-        }
+         .cabeceraPrin td {
+             /*  border: 1px solid #000000; */
+             height: 10px;
+         }
 
-        .fc1id6vxwv5zds-0 {
-            font-size: 7pt;
-            color: #000000;
-            font-family: Arial;
-            font-weight: bold;
-            text-decoration: underline;
-        }
+         .cabezaAll {
+             top: -50px;
+         }
 
-        .fc1id6vxwv5zds-1 {
-            font-size: 9pt;
-            color: #000000;
-            font-family: Arial;
-            font-weight: bold;
-        }
+         .cabecera {
+             font-size: 8pt;
+             color: #000000;
+             font-family: Arial;
+             font-weight: bold;
+         }
 
-        .fc1id6vxwv5zds-2 {
-            font-size: 7pt;
-            color: #000000;
-            font-family: Arial;
-            font-weight: bold;
-        }
+         .tablePaciente td,
+         th {
+             border: 1px solid #000000;
+         }
 
-        .fc1id6vxwv5zds-3 {
-            font-size: 9pt;
-            color: #000000;
-            font-family: Arial Black;
-            font-weight: normal;
-        }
+         .tablePaciente th {
+             background-color: #ccffcc;
+             font-size: 6pt;
+             color: #000000;
+             font-family: Arial;
+             font-weight: bold;
+             text-align: center;
+             height: 15px;
+         }
 
-        .fc1id6vxwv5zds-4 {
-            font-size: 9pt;
-            color: #000000;
-            font-family: Arial;
-            font-weight: normal;
-        }
+         .tablePaciente td {
+             font-size: 6pt;
+             color: #000000;
+             font-family: Arial;
+             text-align: center;
+             height: 10px;
+         }
 
-        .ad1id6vxwv5zds-0 {
-            border-color: #000000;
-            border-left-width: 0;
-            border-right-width: 0;
-            border-top-width: 0;
-            border-bottom-width: 0;
-        }
+         /* Revision Por Sistema */
+         /* .tableGeneral td,
+        th {
+            border: 1px solid #000000;
+        } */
 
-        .ad1id6vxwv5zds-1 {
-            background-color: #cffccf;
-            layer-background-color: #cffccf;
-            border-color: #000000;
-            border-left-width: 0;
-            border-right-width: 0;
-            border-top-width: 0;
-            border-bottom-width: 0;
-        }
+         .tableParaclinico td,
+         th {
+             border: 1px solid #000000;
+         }
 
-        .ad1id6vxwv5zds-2 {
-            border-color: #000000;
-            border-style: solid;
-            border-width: 0px;
-            border-left-style: solid;
-            border-left-width: 1;
-            border-right-style: solid;
-            border-right-width: 1;
-            border-top-style: solid;
-            border-top-width: 1;
-            border-bottom-style: solid;
-            border-bottom-width: 1;
-        }
+         .tableGeneral th {
+             background-color: #ccffcc;
+             font-size: 6pt;
+             color: #000000;
+             font-family: Arial;
+             font-weight: bold;
+             text-align: center;
+             height: 15px;
+         }
 
-    </style>
-    <div style="z-index:3;clip:rect(0px,762px,100px,0px);top:0px;left:0px;width:762px;height:100px;"></div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:4px;left:3px;width:756px;height:16px;">
-        <table width="756px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-0">LISTA DVERIFICACIÓN DE LA SEGURIDAD DE LA CIRUGÍA</span>
-            </td>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:4px;left:5px;width:105px;height:77px;"><img
-            src="{{ public_path('img/logoreport1.png') }}" border="0" width="105px" height="77px"></div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:1px;left:630px;width:92px;height:94px;"><img
-            src="{{ public_path('img/oms.png') }}" border="0" width="92px" height="94px"></div>
-      {{-- inicio recorrido       --}}
-       
-          
-      @foreach ($datosPaciente as $item)
-          
-      
+         .tableGeneral td {
+             font-size: 6pt;
+             color: #000000;
+             font-family: Arial;
+             text-align: left;
+             height: 15px;
+             font-weight: bold;
+         }
 
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:33px;left:124px;width:511px;height:16px;">
-        <table width="511px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id6vxwv5zds-0">Nombre del Paciente :
-            {{ $item->CirProNomPac }}</span>
-            </td>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:62px;left:126px;width:168px;height:16px;">
-        <table width="168px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id6vxwv5zds-0">No. de Historia Clinica: {{ $item->historiac }}</span></td>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:62px;left:296px;width:77px;height:16px;">
-        <table width="77px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id6vxwv5zds-0">Edad:...............</span></td>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:61px;left:377px;width:124px;height:16px;">
-        <table width="124px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id6vxwv5zds-0">No.Quirofano: {{ $item->CirProQuirofano }}</span></td>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:61px;left:507px;width:124px;height:16px;">
-        <table width="124px" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="left"><span class="fc1id6vxwv5zds-0">Fecha: {{ $item->created_at }}<span></td>
-            </tr>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:81px;left:128px;width:511px;height:16px;">
-        <table width="511px" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="left"><span class="fc1id6vxwv5zds-0">Procedimiento: {{ $item->CirProProcedimiento }}</span>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-1" nowrap="true" style="z-index:25;top:107px;left:3px;width:271px;height:34px;">
-        <div style="top:20px;margin-top:-16px;width:100%;text-align:center;">
-            <table width="271px" border="0" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="center"><span class="fc1id6vxwv5zds-1">Antes de inducción de la anestesia</span></td>
+     </style>
+     <!-- Icono de la Pestaña -->
+     <link rel="shortcut icon" href="{{ public_path('img/icono.png') }}">
+ </head>
 
-                    </tr>
-                    <tr>
-                        <td align="center"><span class="fc1id6vxwv5zds-1">(ENTRADA)</span></td>
+ <body>
+     <!-- Inicio Cabecera -->
+     <div class="cabezaAll" style="top:0px;">
+         {{-- style="border-left:none;border-top: none; border-right: none;border-bottom:
+         none" --}}
+         <table class="tableStyleAll">
+             <tr>
+                 <th style="border-style: none">
+                     LISTA DE VERIFICACIÓN DE LA SEGURIDAD DE LA CIRUGÍA
+                 </th>
+             </tr>
 
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+         </table>
+         <table class="tableStyleAll">
+             <tr>
+                 <th rowspan="3" style="width: 20%; border-style: none">
+                     <img src="{{ public_path('img/logoreport1.png') }}" borde="0" width="100px" height="70px" />
+                 </th>
+                 <th align="left" colspan="2" style="width: 40%; border-style: none;">
+                     <span ali> Nombre:</span>
+                 </th>
+                 <th colspan="2" style="width: 40%; border-style: none">
 
-    </div>
+                 </th>
+                 <th rowspan="3" style="width: 20%; border-style: none">
+                     <img src="{{ public_path('img/oms.png') }}" width="120px" height="100px" />
+                 </th>
 
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:141px;left:3px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    @if ( $item->chkentrada01==NULL)
-                    <td align="center"><span class="fc1id6vxwv5zds-1"> </span></td> 
-                    @else
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td> 
-                    @endif
+             </tr>
+             <tr>
+                 <td>
+                     N° Historia Clinica: 151512
+                 </td>
+                 <td>
+                     Edad: 151512
+                 </td>
+                 <td>
+                     N° Quirofano: 151512
+                 </td>
+                 <td>
+                     Fecha: 12/12/2020
+                 </td>
+             <tr>
+                 <td colspan="6">
+                     Procedimiento :.....................
+                 </td>
+             </tr>
+             </tr>
+         </table>
 
+     </div>
+     <!-- Fin Cabecera -->
+     <div class="tablePaciente" style="top:150px;">
+         <table class="tableStyleAll">
+             <tr style="border-style: none">
+                 <th style="width: 33.33%;border-style: none;background-color: white">
+                     Antes de la inducción de la anestesia
+                 </th>
+                 <th style="width: 33.33%;border-style: none;background-color: white">
+                     Antes de la incisión cutánea
+                 </th>
+                 <th style="width: 33.33%;border-style: none;background-color: white">
+                     Antes de que el paciente salga del quirófano
+                 </th>
+             </tr>
+         </table>
+         <table class="tableStyleAll">
+             <tr>
+                 <th colspan="2" style="width: 33.33% ;border-style: none">
+                     ENTRADA
+                 </th>
+                 <th colspan="2" style="width: 33.33%;border-style: none">
+                     PAUSA QUIRÚRGICA
+                 </th>
+                 <th colspan="2" style="width: 33.33%;border-style: none">
+                     SALIDA
+                 </th>
+             </tr>
+         </table>
+         <table class="tableStyleAll">
+
+
+             <tr>
+                 <td style="width:2%">
+                     x
+                 </td>
+                 <td rowspan="2" style="width:31.33%;border-style: none">
+                     El paciente ha confirmado
+                     <br>
+                     <ul>
+                         <li> SU IDENTIDAD</li>
+                         <li> EL SITIO QUIRURJICO</li>
+                         <li> EL PROCEDIMIENTO</li>
+                         <li> SU CONOCIMIENTO</li>
+                     </ul>
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>CONFIRMAR QUE TODOS LOS MIEMBROS DEL EQUIPO SE</b>
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>EL ENFERMERO CONFIRMA VERBALMENTE CON EL EQUIPO :</b>
+
+
+                 </td>
+
+             </tr>
+             {{-- aqui divie --}}
+             <tr>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+
+                 <td rowspan="1" style="width:2%;height:2%;">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>EL CIRUJANO, ANESTESISTA Y ENFERMERO CONFIRMA VERBALMENTE</b>
+
+                     <ul>
+                         <li> SU IDENTIDAD</li>
+                         <li> EL SITIO QUIRURJICO</li>
+                         <li> EL PROCEDIMIENTO</li>
+
+
+                     </ul>
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+
+             </tr>
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+
+
+                 <td style="width:31.33%;border-style: none ">
+                     DESMARCACION DEL SITIO/NO PROCEDE
+                 </td>
+                 <td style="width:2%;border-style: none ">
+
+                 </td>
+
+
+
+                 <td style="width:31.33%;border-style: none ">
+
+                 </td>
+                 <td style="width:2%; ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none ">
+
+                     <b>ELNOMBRE DEL PROCEDIMIENTO REALIZADO:</b>
+                 </td>
+
+             </tr>
+
+
+             {{-- aqui finaliza --}}
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     SE HA COMPLETADO EL CONTROL DE LA SEGURIDAD DE LA ANESTESIA
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b> PREVISION DE EVENTOS CRITICOS EL CIRGUJANO REVISA </b>
+                     LOS PASOS O IMPREVISTOS. DURACION DE LA OPERACION Y LA PERDIDA DE SANGRE PREVISTA
+
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>AGUJAS SON CORRECTOS:</b> O NO PROCEDEN
+                     <br>
+
+                 </td>
+
+             </tr>
+             {{-- LINEA EN BLACO --}}
+             <tr>
+                 <td style="width:2%;border-style: none ">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                 </td>
+
+             </tr>
+             {{-- FILA --}}
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     PULSIOXIMETRO COLOCADO Y EN FUNCIONAMIENTO
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b> EL EQUIPO DE ANESTESIA REVISA </b>
+                     SI EL PACIENTE PRESENTA ALGUN PROBLEMA ESPECIFICO
+
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>EL ETIQUETADO DE LAS MUESTRAS</b> (QUE FIGURE EL NOMBRE DEL PACIENTE)
+                     <br>
+
+                 </td>
+
+             </tr>
+             {{-- LINEA EN BLACO --}}
+             <tr>
+                 <td style="width:2%;border-style: none ">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                 </td>
+
+             </tr>
+             {{-- FILA --}}
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     <b> EL PACIENTE TIEN ALERGIA CONOCIDAS NO / SI
+                     </b>
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b> EL EQUIPO DE ENFERMERIA REVISA </b>
+
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>SI HAY PROBLEMAS QUE RESOLVER RELACIONADOS CON EL INSTRUMENTAL Y LOS EQUIPOS</b>
+
+                 </td>
+
+             </tr>
+             <tr>
+                 <td style="width:2%;border-style: none ">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     SI SE HA CONFIRMADO LA ESTERELIDAD (CON RESULTADOS DE LOS INDICADORES)
+                     Y SI EXISTEN DUDAS O PROBLEMAS RELACIONADOS CON EL INSTRUMENTAL Y LOS EQUIPOS
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+
+             </tr>
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     <b> VIA AEREA DIFICIL / RIESGO DE ASPIRACION? NO
+                     </b>
+
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b> SE HA ADMINISTRADO PROFILAXIS ANTIBIOTICA EN LOS </b>
+                     <br>
+                     SI
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>EL CIRUJANO, EL ANESTESISTA Y EL ENFERMERO REVISAN LOS PRINCIPALES ASPECTOS</b>
+
+                 </td>
+
+             </tr>
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     <b>
+                         SI
+                     </b> Y HAY INSTRUMENTAL Y EQUIPOS/AYUDA DISPONIBLE
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>NO</b>
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>DE LA RECUPERACION Y EL TRATAMIENTO DEL PACIENTE</b>
+                     <br>
+                     <br>
+
+                 </td>
+
+             </tr>
+             {{-- LINEA EN BLACO --}}
+             <tr>
+                 <td style="width:2%;border-style: none ">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                 </td>
+
+             </tr>
+             {{-- aqui empieza*otra vez --}}
+
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     <b>RIESGO DE HEMORRAGIA >500ML (7 MLVKG EN NIÑOS)
+                     </b>
+                     <br>
+                     NO
+
+
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>PUEDE VISUALIZAR IMAGENES DIAGNOSTICADAS </b>
+                     <br>
+                     SI
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+
+             </tr>
+             {{-- LINEA EN BLACO --}}
+             <tr>
+                 <td style="width:2% ">
+                     x
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                     <b>
+                         SI
+                     </b> SI SE HA PREVISTO LA DISPONIBILIDAD DE ACCESO INTRAVENOSO Y LIQUIDOS ADECUADOS
+
+                 </td>
+                 <td style="width:2%">
+                     X
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+                     <b>NO PROCEDE</b>
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                 </td>
+
+             </tr>
+             {{-- LINEA EN BLACO --}}
+             <tr>
+                 <td style="width:2%;border-style: none ">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+
+                 </td>
+                 <td style="width:2%;border-style: none">
+
+                 </td>
+                 <td style="width:31.33%;border-style: none">
+
+                 </td>
+             </tr>
+             {{-- otra linea --}}
+
+         </table>
+
+         <table class="tableStyleAll">
+             <tr>
+                 <th rowspan="8" style="width:60%">
+                   Observacion
+                 </th>
+                 <th rowspan="6" style="width:40%">
+                    <img src="{{ public_path('img/logoreport1.png') }}" borde="0" width="100px" height="70px" />
+                   
                     
-
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    {
-   
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:144px;left:35px;width:235px;height:16px;">
-        <div style="top:10PX;margin-top:-7px;width:100%;">
-            <table width="235px" border="0" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="left"><span
-                                class="fc1id6vxwv5zds-2">&nbsp;EL&nbsp;PACIENTE&nbsp;HA&nbsp;CONFIRMADO</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    {{-- chec 2 --}}
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:163px;left:48px;width:134px;height:73px;">
-        <table width="134px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-3">•&nbsp;</span><span
-                            class="fc1id6vxwv5zds-4">Su&nbsp;identidad</span></td>
-                </tr>
-            </tbody>
-        </table>
-        <table width="134px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-3">•&nbsp;</span><span
-                            class="fc1id6vxwv5zds-4">El&nbsp;Sitio&nbsp;Quirurgico</span></td>
-                </tr>
-            </tbody>
-        </table>
-        <table width="134px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-3">•&nbsp;</span><span
-                            class="fc1id6vxwv5zds-4">El&nbsp;Procedimiento</span></td>
-                </tr>
-            </tbody>
-        </table>
-        <table width="134px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-3">•&nbsp;</span><span
-                            class="fc1id6vxwv5zds-4">Su&nbsp;Consentimiento</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    {{-- chec 2 --}}
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:246px;left:1px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
+                 </th>
+             </tr>
+            {{-- FILAS --}}
+             <tr>
+                  
                 
-                <tr>
+             </tr>
+             <tr>
+                
 
-                    @if ( $item->chkentrada02==NULL)
-                    <td align="center"><span class="fc1id6vxwv5zds-1"> </span></td> 
-                    @else
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td> 
-                    @endif
+             </tr>
+             <tr>
+                 
 
-                    
-                </tr>
-            </tbody>
-        </table>
-    </div>
+             </tr>
+             <tr>
+                 
+             </tr>
+             <tr>
+                 
 
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:251px;left:32px;width:235px;height:16px;">
-        <div style="top:10px;margin-top:-7px;width:100%;">
-            <table width="235px" border="0" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="left"><span
-                                class="fc1id6vxwv5zds-2">&nbsp;DEMARCACION&nbsp;DEL&nbsp;SITIO/NO&nbsp;PROCEDE</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    {{-- chec 3 --}}
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:277px;left:32px;width:235px;height:27px;">
-        <table width="235px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;SE&nbsp;HA&nbsp;COMPLETADO&nbsp;EL&nbsp;CONTROL&nbsp;DE&nbsp;LA&nbsp;</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table width="235px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;SEGURIDAD&nbsp;DE&nbsp;LA&nbsp;ANESTESIA</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    {{-- chec 4 --}}
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:277px;left:0px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    @if ( $item->chkentrada03==NULL)
-                    <td align="center"><span class="fc1id6vxwv5zds-1"> </span></td> 
-                    @else
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td> 
-                    @endif
+             </tr>
+             <tr>
+                 <td>
+                _______________________________________
+                <br>
+                Nombre del Responsable
+                 </td>
 
-                    
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:314px;left:0px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="center"><span class="fc1id6vxwv5zds-1">0</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:311px;left:30px;width:235px;height:26px;">
-        <table width="235px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;PULSIOXIMETRO&nbsp;COLOCADO&nbsp;Y&nbsp;EN&nbsp;</span></td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;FUNCIONAMIENTO</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    {{-- chec 5 --}}
-    <div style="top:350px;margin-top:-7px;width:100%;">
-        <table width="235px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;TIENE&nbsp;EL&nbsp;PACIENTE&nbsp;ALERGIAS&nbsp;CONOCIDAS?</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:365px;left:0px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x1</span></td>
-                </tr>
-
-            </tbody>
-        </table>
-
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:0px;left:33px;width:19px;height:20px;">
-        <div style="top:400px;margin-top:-7px;width:100%;">
-            <table width="19px" border="0" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;NO</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    {{-- chec 6 --}}
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:391px;left:1px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x2</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:0px;left:34px;width:19px;height:20px;">
-        <div style="top:380px;margin-top:-7px;width:100%;">
-            <table width="19px" border="0" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;SI</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    {{-- chec 7 --}}
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:416px;left:1px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:413px;left:31px;width:235px;height:26px;">
-        <table width="235px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;VIA&nbsp;AEREA&nbsp;DIFICIL/RIESGO&nbsp;DE&nbsp;ASPIRACION?</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table width="235px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;NO</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    {{-- chec 8 --}}
-    &nbsp;
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:441px;left:31px;width:233px;height:25px;">
-        <table width="233px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;SI,&nbsp;Y&nbsp;HAY&nbsp;INSTRUMENTALY&nbsp;EQUIPOS/AYUDA&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;RESPONSABLE</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:441px;left:0px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    {{-- chec 9 --}}
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:473px;left:29px;width:235px;height:53px;">
-        <table width="235px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;RIESGO&nbsp;DE&nbsp;HEMORRAGIA&gt;500ML(7&nbsp;ML&nbsp;VKG&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;EN&nbsp;NIÑOS)?</span></td>
-                </tr>
-            </tbody>
-        </table>
-        <table width="235px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;</span></td>
-                </tr>
-            </tbody>
-        </table>
-
-        &nbsp;
-        <table width="235px" border="0" cellpadding="0" cellspacing="0">
-
-            <tbody>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;NO</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:510px;left:0px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    {{-- chec 10 --}}
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:550px;left:29px;width:233px;height:42px;">
-        <table width="233px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;SI,&nbsp;Y&nbsp;SE&nbsp;HA&nbsp;PREVISTO&nbsp;LA&nbsp;DISPONIBILIDAD&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;DE&nbsp;ACCESO&nbsp;INTRAVENOSO&nbsp;Y&nbsp;LIQUIDOS&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;ADECUADOS</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:550px;left:0px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
-                <tr>
-                    <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    {{-- empiea la otra cabecera --}}
-
-    <div class="ad1id6vxwv5zds-1" nowrap="true" style="z-index:25;top:107px;left:274px;width:263px;height:34px;">
-        <div style="top:20px;margin-top:-16px;width:100%;text-align:center;">
-            <table width="263px" border="0" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="center"><span
-                                class="fc1id6vxwv5zds-1">&nbsp;Antes&nbsp;de&nbsp;incisión&nbsp;cutánea</span></td>
-                    </tr>
-                </tbody>
-            </table>
-            <table width="263px" border="0" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="center"><span class="fc1id6vxwv5zds-1">PAUSA&nbsp;QUIRÜRGICA</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    {{-- otro lado --}}
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:140px;left:274px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:145 px;left:302px;width:235px;height:41px;">
-        <table width="235px" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="left"><span
-                        class="fc1id6vxwv5zds-2">&nbsp;CONFIRMAR&nbsp;QUE&nbsp;TODOS&nbsp;LOS&nbsp;MIEMBROS&nbsp;</span>
+             </tr>
+             <tr>
+                <td>
+                    _______________________________________
+                    <br>
+                    Cargo
                 </td>
-            </tr>
-            <tr>
-                <td align="left"><span
-                        class="fc1id6vxwv5zds-2">&nbsp;DEL&nbsp;EQUIPO&nbsp;SE&nbsp;HAYAN&nbsp;PRESENTADO&nbsp;POR&nbsp;SU&nbsp;</span>
-                </td>
-            </tr>
-            <tr>
-                <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;NOMBRE </span>
-                    <span> </span>
-                </td>
-            </tr>
-        </table>
-    </div>
-    {{-- durante 1 --}}
-    <br>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:186px;left:301px;width:235px;height:28px;">
-        <table width="235px" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="left"><span
-                        class="fc1id6vxwv5zds-2">&nbsp;CIRUJANO,&nbsp;ANESTESISTA&nbsp;Y&nbsp;ENFERMERO&nbsp;</span>
-                </td>
-            </tr>
-            <tr>
-                <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;CONFIRMAN&nbsp;VERBALMENTE:</span></td>
-            </tr>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:187px;left:273px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-        </table>
-    </div>
-    <br>
-    {{-- durante 2 --}}
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:218px;left:344px;width:170px;height:55px;">
-        <table width="170px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id6vxwv5zds-3">•&nbsp;</span><span
-                    class="fc1id6vxwv5zds-4">&nbsp;La&nbsp;Identidad&nbsp;del&nbsp;paciente</span></td>
-        </table>
-        <table width="170px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id6vxwv5zds-3">•&nbsp;</span><span
-                    class="fc1id6vxwv5zds-4">El&nbsp;Sitio&nbsp;Quirurgico</span></td>
-        </table>
-        <table width="170px" border="0" cellpadding="0" cellspacing="0">
-            <td align="left"><span class="fc1id6vxwv5zds-3">•&nbsp;</span><span
-                    class="fc1id6vxwv5zds-4">El&nbsp;Procedimiento</span></td>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:281px;left:274px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-        </table>
-    </div>
-    {{-- durante 3 --}}
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:160px;left:306px;width:235px;height:80px;">
-        <div style="top:160px;margin-top:-35px;width:100%;">
-            <table width="235px" border="0" cellpadding="0" cellspacing="0">
-                <td align="left"><span
-                        class="fc1id6vxwv5zds-2">&nbsp;PREVISION&nbsp;DE&nbsp;EVENTOS&nbsp;CRÍTICOS</span></td>
-            </table>
-            <table width="235px" border="0" cellpadding="0" cellspacing="0">
-                <td align="left"><span
-                        class="fc1id6vxwv5zds-2">&nbsp;EL&nbsp;CIRUJANO&nbsp;REVISA&nbsp;LOS&nbsp;PASOS&nbsp;CRÍTICOS</span>
-                </td>
-            </table>
-            <table width="235px" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">O&nbsp;IMPREVISTO&nbsp;LA&nbsp;DURACIÓN&nbsp;DE&nbsp;LA&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;OPERACIÓN&nbsp;Y&nbsp;LA&nbsp;PERDIDA&nbsp;DE&nbsp;LA&nbsp;SANGRE&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;PREVISTA</span></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:371px;left:274px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-        </table>
-    </div>
-    {{-- durante 4 --}}
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:190px;left:306px;width:235px;height:50px;">
-        <div style="top:190px;margin-top:-21px;width:100%;">
-            <table width="235px" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;EL&nbsp;EQUIPO&nbsp;DE&nbsp;ANESTESIA&nbsp;REVISA&nbsp;SI&nbsp;EL&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;PACIENTE&nbsp;PRESENTA&nbsp;ALGUN&nbsp;PROBLEMA&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;ESPECIFICO</span></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:421px;left:274px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-        </table>
-    </div>
-    {{-- durante 5 --}}
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:230px;left:306px;width:235px;height:88px;">
-        <div style="top:230px;margin-top:-42px;width:100%;">
-            <table width="235px" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;EL&nbsp;EQUIPO&nbsp;DE&nbsp;ANESTESIA&nbsp;REVISA,&nbsp;SI&nbsp;SE&nbsp;HA&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;CONFIRMADO&nbsp;LA&nbsp;ESTERILIDAD&nbsp;(CON&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;RESULTADOS&nbsp;DE&nbsp;LOS&nbsp;INDICADORES)</span>
-                    </td>
-                </tr>
-            </table>
-            <table width="235px" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;Y&nbsp;SI&nbsp;EXISTEN&nbsp;DUDAS&nbsp;O&nbsp;PROBLEMAS&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;RELACIONADO&nbsp;CON&nbsp;EL&nbsp;INSTRUMENTAL&nbsp;Y&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;LOS&nbsp;EQUIPOS.</span></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:538px;left:273px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-        </table>
-    </div>
-    {{-- durante 6 --}}
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:270px;left:305px;width:235px;height:48px;">
-        <div style="top:270px;margin-top:-21px;width:100%;">
-            <table width="235px" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;SE&nbsp;HA&nbsp;ADMINISTRADO&nbsp;PROFILAXIS&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;ANTIBIOTICA&nbsp;EN&nbsp;LOS&nbsp;..</span>
-                    </td>
-                </tr>
-            </table>
-            <table width="235px" border="0" cellpadding="0" cellspacing="0">
-                <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;SI</span></td>
-            </table>
-        </div>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:561px;left:273px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-        </table>
-    </div>
 
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:285px;left:306px;width:19px;height:20px;">
-        <div style="top:285px;margin-top:-7px;width:100%;">
-            <table width="19px" border="0" cellpadding="0" cellspacing="0">
-                <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;NO</span></td>
-            </table>
-        </div>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:612px;left:274px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-        </table>
-    </div>
-    {{-- durante 7 --}}
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:310px;left:306px;width:235px;height:48px;">
-        <div style="top:310px;margin-top:-21px;width:100%;">
-            <table width="235px" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;PUEDEN&nbsp;VISUALIZARSE&nbsp;LAS&nbsp;IMAGENES&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;DIAGNOSTICADAS</span></td>
-                </tr>
-            </table>
-            <table width="235px" border="0" cellpadding="0" cellspacing="0">
-                <td align="left"><span class="fc1id6vxwv5zds-2">SI</span></td>
-            </table>
-        </div>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:636px;left:274px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:325px;left:307px;width:69px;height:20px;">
-        <div style="top:325px;margin-top:-7px;width:100%;">
-            <table width="69px" border="0" cellpadding="0" cellspacing="0">
-                <td align="left"><span class="fc1id6vxwv5zds-2">NO&nbsp;PROCEDE</span></td>
-            </table>
-        </div>
-    </div>
-    {{-- la tercera parte --}}
-    <div class="ad1id6vxwv5zds-1" nowrap="true" style="z-index:25;top:107px;left:520px;width:224px;height:34px;">
-        <div style="top:20px;margin-top:-16px;width:100%;text-align:center;">
-            <table width="224px" border="0" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="center"><span
-                                class="fc1id6vxwv5zds-1">&nbsp;Ante&nbsp;de&nbsp;que&nbsp;el&nbsp;paciente&nbsp;salga&nbsp;del&nbsp;</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="center"><span class="fc1id6vxwv5zds-1">&nbsp;quirófano(SALIDA)</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:150px;left:540px;width:220px;height:32px;">
-        <div style="top:20px;margin-top:-14px;width:100%;">
-            <table width="220px" border="0" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="left"><span class="fc1id6vxwv5zds-2">EL&nbsp;ENFERMERO&nbsp;CONFIRMA&nbsp;</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="left"><span class="fc1id6vxwv5zds-2">VERBALMENTE&nbsp;CON&nbsp;EL&nbsp;EQUIPO:</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:191px;left:536px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true"
-        style="z-index:25;top:190px;left:564px;width:198px;height:27px;clip:rect(0px,198px,27px,0px);">
-        <table width="198px" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="left"><span
-                        class="fc1id6vxwv5zds-2">&nbsp;EL&nbsp;NOMBRE&nbsp;DEL&nbsp;PROCEDIMIENTO&nbsp;</span>
-                </td>
             </tr>
-            <tr>
-                <td align="left"><span class="fc1id6vxwv5zds-2">&nbsp;REALIZADO</span></td>
-            </tr>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true"
-        style="z-index:25;top:130px;left:566px;width:160px;height:52px;clip:rect(0px,196px,52px,0px);">
-        <div style="top:130px;margin-top:-21px;width:100%;">
-            <table width="198px" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;QUE&nbsp;LOS&nbsp;RECUENTOS&nbsp;DE&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;INSTRUMENTOS,&nbsp;GASAS&nbsp;Y&nbsp;AGUJAS&nbsp;</span></td>
-                </tr>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">&nbsp;SON&nbsp;CORRECTOS(O&nbsp;NO&nbsp;PROCEDEN)</span>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:245px;left:538px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x </span></td>
-        </table>
-    </div>
-    &nbsp;
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:301px;left:537px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true"
-        style="z-index:25;top:294px;left:565px;width:198px;height:40px;clip:rect(0px,197px,40px,0px);">
-        <table width="198px" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="left"><span class="fc1id6vxwv5zds-2">EL&nbsp;ETIQUETADO&nbsp;DE&nbsp;LAS&nbsp;</span></td>
-            </tr>
-            <tr>
-                <td align="left"><span
-                        class="fc1id6vxwv5zds-2">MUESTRAS(QUE&nbsp;FIGURE&nbsp;EL&nbsp;NOMBRE&nbsp;</span></td>
-            </tr>
-            <tr>
-                <td align="left"><span class="fc1id6vxwv5zds-2">DEL&nbsp;PACIENTE)</span></td>
-            </tr>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:343px;left:564px;width:198px;height:40px;">
-        <table width="198px" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="left"><span
-                        class="fc1id6vxwv5zds-2">SI&nbsp;HAY&nbsp;PROBLEMAS&nbsp;QUE&nbsp;RESOLVER&nbsp;</span></td>
-            </tr>
-            <tr>
-                <td align="left"><span class="fc1id6vxwv5zds-2">RELACIONADOS&nbsp;CON&nbsp;EL&nbsp;</span></td>
-            </tr>
-            <tr>
-                <td align="left"><span class="fc1id6vxwv5zds-2">INSTRUMENTAL&nbsp;Y&nbsp;LOS&nbsp;EQUIPOS</span></td>
-            </tr>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:349px;left:536px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true"
-        style="z-index:25;top:220px;left:565px;width:198px;height:77px;clip:rect(0px,197px,77px,0px);">
-        <div style="top:220px;margin-top:-35px;width:100%;">
-            <table width="198px" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">
-                            EL&nbsp;CIRUJANO,&nbsp;EL&nbsp;ANESTESISTA&nbsp;Y&nbsp;EL&nbsp;</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">ENFERMERO&nbsp;REVISAN&nbsp;LOS&nbsp;</span></td>
-                </tr>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">PRINCIPALES&nbsp;ASPECTOS&nbsp;DE&nbsp;LA&nbsp;</span></td>
-                </tr>
-                <tr>
-                    <td align="left"><span
-                            class="fc1id6vxwv5zds-2">RECUPERACIÓN&nbsp;Y&nbsp;EL&nbsp;TRATAMIENTO&nbsp;</span></td>
-                </tr>
-                <tr>
-                    <td align="left"><span class="fc1id6vxwv5zds-2">DEL&nbsp;PACIENTE</span></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:400px;left:537px;width:28px;height:21px;">
-        <table width="18px" border="0" cellpadding="0" cellspacing="0">
-            <td align="center"><span class="fc1id6vxwv5zds-1">x</span></td>
-        </table>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:260px;left:545px;width:214px;height:17px;">
-        <div style="top:260px;margin-top:-7px;width:100%;">
-            <table width="214px" border="0" cellpadding="0" cellspacing="0">
-                <td align="left"><span
-                        class="fc1id6vxwv5zds-2">NOMBRE&nbsp;DE&nbsp;LA&nbsp;PERSONA&nbsp;RESPONSABLE</span></td>
-            </table>
-        </div>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:290px;left:547px;width:214px;height:17px;">
-        <div style="top:290px;margin-top:-7px;width:100%;">
-            <table width="214px" border="0" cellpadding="0" cellspacing="0">
-                <td align="left"><span
-                        class="fc1id6vxwv5zds-2">FIRMA&nbsp;DE&nbsp;LA&nbsp;PERSONA&nbsp;RESPONSABLE</span></td>
-            </table>
-        </div>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:320px;left:619px;width:44px;height:17px;">
-        <div style="top:320px;margin-top:-7px;width:100%;">
-            <table width="44px" border="0" cellpadding="0" cellspacing="0">
-                <td align="left"><span class="fc1id6vxwv5zds-2">CARGO</span></td>
-            </table>
-        </div>
-    </div>
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:340px;left:627px;width:129px;height:17px;">
-        <div style="top:340px;margin-top:-7px;width:100%;">
-            <table width="129px" border="0" cellpadding="0" cellspacing="0">
-                <td align="left"><span class="fc1id6vxwv5zds-2">FECHA&nbsp;:...........</span></td>
-            </table>
-        </div>
-    </div>
-   <div class="ad1id6vxwv5zds-2" nowrap="true" style="z-index:25;top:677px;left:22px;width:509px;height:66px;">
-      <textarea name="" id="" cols="30" rows="10"    >
-          sadsas
-          sdaf
+         </table>
 
-          sdafas
-          df
+     </div>
+ </body>
 
-          s
-          fsdfsadfsdf
-          sdfasdfasdfasdf
-          asdfasdfdsf
-
-      </textarea>
-    </div>
-
-
-    {{-- este --}}
-    <div class="ad1id6vxwv5zds-0" nowrap="true" style="z-index:25;top:330px;left:24px;width:97px;height:20px;">
-        <div style="top:330px;margin-top:-7px;width:100%;">
-            <table width="97px" border="0" cellpadding="0" cellspacing="0">
-                <td align="left"><span class="fc1id6vxwv5zds-2">Observacion</span></td>
-            </table>
-        </div>
-    </div>
-    @endforeach
-</body>
-
-
-</html>
+ </html>
