@@ -113,7 +113,12 @@ Vue.component(
 
 Vue.component(
     "registro-anestesico",
-    require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue").default
+    require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue").default
+);
+
+Vue.component(
+    "eliminar-agente",
+    require("./components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue").default
 );
 
 /*

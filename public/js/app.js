@@ -1950,10 +1950,112 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    /* mostrar el botón deshacer y rehacer */
+    datos: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    validarConfirmarCandelar: function validarConfirmarCandelar(value) {
+      this.$props.datos.respuesta = value;
+      this.$emit("handleSeleccionarClick", this.$props.datos);
+    }
+  },
+  mounted: function mounted() {},
+  data: function data() {
+    return {
+      respuestaConfirmarCancelar: false,
+      form: {
+        valor: 0
+      }
+    };
+  },
+  computed: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3900,6 +4002,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -3911,9 +4030,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   data: function data() {
-    var _form;
+    var _datos_eliminar_agent, _form;
 
     return {
+      datos_eliminar_agente: (_datos_eliminar_agent = {
+        index: "",
+        index_fila: "",
+        index_columna: "",
+        index_minutos_columna: "",
+        index_agente: ""
+      }, _defineProperty(_datos_eliminar_agent, "index", ""), _defineProperty(_datos_eliminar_agent, "minutes", ""), _defineProperty(_datos_eliminar_agent, "adicional", {
+        system_name: "agente"
+      }), _defineProperty(_datos_eliminar_agent, "ruta_icono", ""), _defineProperty(_datos_eliminar_agent, "descripcion", ""), _defineProperty(_datos_eliminar_agent, "valor", 0), _defineProperty(_datos_eliminar_agent, "valorNuevo", 0), _defineProperty(_datos_eliminar_agent, "respuesta", false), _datos_eliminar_agent),
       resConfirmarCancelar: false,
       icon: "",
       titulo: "",
@@ -3940,7 +4068,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         id_tipo_posiciones: 0,
         cirugia_id: 0,
         registro_anestesia_id: 0
-      }, _defineProperty(_form, "id_tipo_posiciones", 0), _defineProperty(_form, "fchaDuracionAnestecia", "00:00"), _defineProperty(_form, "fchaDuracionOperacion", "00:00"), _defineProperty(_form, "general", 0), _defineProperty(_form, "sistem_abierto", 0), _defineProperty(_form, "sistem_cerrado", 0), _defineProperty(_form, "sistem_semi_cerr", 0), _defineProperty(_form, "cinc_aparatos_usados", 0), _defineProperty(_form, "vaiiven_aparatos_usados", 0), _defineProperty(_form, "mascara", 0), _defineProperty(_form, "oral_inte_traqueal", 0), _defineProperty(_form, "nasal_inte_traqueal", 0), _defineProperty(_form, "rapido_inte_traqueal", 0), _defineProperty(_form, "lenta_inte_traqueal", 0), _defineProperty(_form, "turbo_inte_traqueal", ""), _defineProperty(_form, "manguito_inflam_inte_traqueal", 0), _defineProperty(_form, "taponamiento_inte_traqueal", 0), _defineProperty(_form, "asist_topica_inte_traqueal", 0), _defineProperty(_form, "asist_tranboral_inte_traqueal", 0), _defineProperty(_form, "conductiva", 0), _defineProperty(_form, "asepsia_piel", 0), _defineProperty(_form, "con", ""), _defineProperty(_form, "habon", 0), _defineProperty(_form, "raquidea", 0), _defineProperty(_form, "epidural_caud", 0), _defineProperty(_form, "simple_altura_puncion", 0), _defineProperty(_form, "continua_altura_puncion", 0), _defineProperty(_form, "altura_puncion", ""), _defineProperty(_form, "puncion_lat", 0), _defineProperty(_form, "linea_media", 0), _defineProperty(_form, "aguja", 0), _defineProperty(_form, "nivel", ""), _defineProperty(_form, "hiperbara", 0), _defineProperty(_form, "hipotension", 0), _defineProperty(_form, "arritmias", 0), _defineProperty(_form, "depresion_respiratoria", 0), _defineProperty(_form, "perforacion_duramadre", 0), _defineProperty(_form, "dificultad_intubacion", 0), _defineProperty(_form, "nauses_vomitos", 0), _defineProperty(_form, "conductiva_insuficiente", 0), _defineProperty(_form, "laringo_espasmo", 0), _defineProperty(_form, "paro_cardiaco", 0), _defineProperty(_form, "ninguna", 0), _defineProperty(_form, "cambio_tecnica", 0), _defineProperty(_form, "otros_complicaciones", ""), _defineProperty(_form, "comentario", ""), _defineProperty(_form, "hemorragia", 0), _defineProperty(_form, "min1", 0), _defineProperty(_form, "min5", 0), _defineProperty(_form, "min10", 0), _defineProperty(_form, "p_muerto", 0), _defineProperty(_form, "conducido_a", ""), _defineProperty(_form, "por", ""), _defineProperty(_form, "hora", "00:00"), _defineProperty(_form, "infusiones", [{
+      }, _defineProperty(_form, "id_tipo_posiciones", 0), _defineProperty(_form, "fchaDuracionAnestecia", "00:00"), _defineProperty(_form, "fchaDuracionOperacion", "00:00"), _defineProperty(_form, "general", 0), _defineProperty(_form, "sistem_abierto", 0), _defineProperty(_form, "sistem_cerrado", 0), _defineProperty(_form, "sistem_semi_cerr", 0), _defineProperty(_form, "cinc_aparatos_usados", 0), _defineProperty(_form, "vaiiven_aparatos_usados", 0), _defineProperty(_form, "mascara", 0), _defineProperty(_form, "oral_inte_traqueal", 0), _defineProperty(_form, "nasal_inte_traqueal", 0), _defineProperty(_form, "rapido_inte_traqueal", 0), _defineProperty(_form, "lenta_inte_traqueal", 0), _defineProperty(_form, "turbo_inte_traqueal", ""), _defineProperty(_form, "manguito_inflam_inte_traqueal", 0), _defineProperty(_form, "taponamiento_inte_traqueal", 0), _defineProperty(_form, "asist_topica_inte_traqueal", 0), _defineProperty(_form, "asist_tranboral_inte_traqueal", 0), _defineProperty(_form, "conductiva", 0), _defineProperty(_form, "asepsia_piel", 0), _defineProperty(_form, "con", ""), _defineProperty(_form, "habon", 0), _defineProperty(_form, "raquidea", 0), _defineProperty(_form, "epidural_caud", 0), _defineProperty(_form, "simple_altura_puncion", 0), _defineProperty(_form, "continua_altura_puncion", 0), _defineProperty(_form, "altura_puncion", ""), _defineProperty(_form, "puncion_lat", 0), _defineProperty(_form, "linea_media", 0), _defineProperty(_form, "aguja", 0), _defineProperty(_form, "nivel", ""), _defineProperty(_form, "hiperbara", 0), _defineProperty(_form, "hipotension", 0), _defineProperty(_form, "arritmias", 0), _defineProperty(_form, "depresion_respiratoria", 0), _defineProperty(_form, "perforacion_duramadre", 0), _defineProperty(_form, "dificultad_intubacion", 0), _defineProperty(_form, "nauses_vomitos", 0), _defineProperty(_form, "conductiva_insuficiente", 0), _defineProperty(_form, "laringo_espasmo", 0), _defineProperty(_form, "paro_cardiaco", 0), _defineProperty(_form, "ninguna", 0), _defineProperty(_form, "cambio_tecnica", 0), _defineProperty(_form, "otros_complicaciones", ""), _defineProperty(_form, "comentario", ""), _defineProperty(_form, "hemorragia", 0), _defineProperty(_form, "min1", 0), _defineProperty(_form, "min5", 0), _defineProperty(_form, "min10", 0), _defineProperty(_form, "p_muerto", 0), _defineProperty(_form, "id_sala", 0), _defineProperty(_form, "id_medico", 0), _defineProperty(_form, "hora", "00:00"), _defineProperty(_form, "infusiones", [{
         descripcion: "SOLUCIONES SALINAS",
         name: "SOLUCIONES_SALINAS",
         abreviatura: "SS",
@@ -4251,117 +4379,118 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
-    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente) {
-      var mensaje = "index: " + index + ", index_fila: " + index_fila + ", index_columna: " + index_columna + ", index_minutos_columna: " + index_minutos_columna + ", index_agente: " + index_agente;
-      this.flashMessage.show({
-        status: "error",
-        title: "Error al procesar consultarSello",
-        message: mensaje,
-        clickable: true,
-        time: 0,
-        icon: "/iconsflashMessage/error.svg",
-        customStyle: {
-          flashMessageStyle: {
-            background: "linear-gradient(#e66465, #9198e5)"
-          }
-        }
-      });
-      var indexLista = null;
-      /* for (let i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
-          if (this.lista_horas_avanzadas_v[i] != "") {
-              if (i == index) {
-                  for (let j = 0;j < this.lista_horas_avanzadas_v[i].datos.length;j++) {
-                      if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
-                          if (j == index_fila){
-                              for (let k = 0;k <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length;k++) {
-                                  if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
-                                      if (k == index_columna){
-                                          for (let l = 0;l <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length;l++) {
-                                              if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
-                                                  if (l == index_minutos_columna){
-                                                      console.log(this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l]);
-                                                  }
-                                              }
-                                          }
-                                      }
-                                  }
-                              }
-                          }
-                      }
-                  }
-              }
-          } */
+    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, src, descripcion, valor) {
+      this.limpiarDatosEliminarAgente();
+      this.datos_eliminar_agente.index = index;
+      this.datos_eliminar_agente.index_fila = index_fila;
+      this.datos_eliminar_agente.index_columna = index_columna;
+      this.datos_eliminar_agente.index_minutos_columna = index_minutos_columna;
+      this.datos_eliminar_agente.index_agente = index_agente;
+      this.datos_eliminar_agente.minutes = t_init;
+      this.datos_eliminar_agente.adicional = {
+        system_name: descripcion
+      };
+      this.datos_eliminar_agente.ruta_icono = src;
+      this.datos_eliminar_agente.descripcion = descripcion;
+      this.datos_eliminar_agente.valor = valor;
+      this.$modal.show("EliminarAgente");
+    },
+    handleSeleccionarClick: function handleSeleccionarClick(value) {
+      if (value.respuesta) {
+        var valor = parseInt(value.valorNuevo);
+        var minutes = value.minutes;
+        var adicional = value.adicional;
+        var ruta_icono = value.ruta_icono;
+        var indice_fila = this.obtenerIndice(valor); //Recorrer el arreglo para saber en que posicion se debe guardar
+        // Verifica el índice según la hora
 
-      /* this.agregaDatoEnRejilla(
-          true,
-          false,
-          250,
-          "img/icons/induccion.png",
-          { system_name: "INDUCCION", tipo: this.system_agente }
-      ); */
+        var _iterator = _createForOfIteratorHelper(this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin),
+            _step;
 
-      /* if (this.lista_horas_avanzadas_v[i].datos == id_producto) {
-          indexLista = i;
-          break;
-      } */
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var column_quince = _step.value;
 
-      console.log(this.lista_horas_avanzadas_v[index].datos[index_fila]);
+            // Recorre cada fila
+            // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
+            if (column_quince.columnas) {
+              // figuras en rejillas
+              var _iterator2 = _createForOfIteratorHelper(column_quince.columnas),
+                  _step2;
 
-      var _iterator = _createForOfIteratorHelper(this.lista_horas_avanzadas_v[index].datos[index_fila].columnasQuinceMin),
-          _step;
+              try {
+                for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                  var col_cince_min = _step2.value;
 
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var columna_quince = _step.value;
+                  if (col_cince_min.t_init <= minutes && col_cince_min.t_fin > minutes) {
+                    if (minutes >= col_cince_min.t_init && col_cince_min.t_fin > minutes) {
+                      col_cince_min.agentes.push({
+                        descripcion: adicional.system_name,
+                        valor: valor,
+                        _src: ruta_icono
+                      }); // Agregar dato de envío
 
-          if (columna_quince.columnas) {
-            var _iterator2 = _createForOfIteratorHelper(columna_quince.columnas),
-                _step2;
-
-            try {
-              for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                var col_cince_min = _step2.value;
-                console.log(col_cince_min);
-              }
-            } catch (err) {
-              _iterator2.e(err);
-            } finally {
-              _iterator2.f();
-            }
-          }
-        }
-        /* for (let i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
-            if (this.lista_horas_avanzadas_v[i] != "") {
-                if (i == index) {
-                    for (let j = 0;j < this.lista_horas_avanzadas_v[i].datos.length;j++) {
-                        if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
-                            if (j == index_fila){
-                                for (let k = 0;k <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length;k++) {
-                                    if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
-                                        if (k == index_columna){
-                                            for (let l = 0;l <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length;l++) {
-                                                if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
-                                                    if (l == index_minutos_columna){
-                                                        console.log(this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l]);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                      /* this.enviarDatosAgente(
+                          {
+                              tpo_ini: is_tpo_init,
+                              tpo_fin: is_tpo_fin,
+                              hora: this.hour,
+                              min: this.minutes,
+                              segundos: this.seconds,
+                              valor: valor,
+                              name: adicional.system_name,
+                              indice_hora: this.indice_hora
+                          },
+                          adicional.tipo
+                      ); */
                     }
+                  }
                 }
+              } catch (err) {
+                _iterator2.e(err);
+              } finally {
+                _iterator2.f();
+              }
             }
-        } */
-        //this.lista_horas_avanzadas_v.splice(index, 1);
+          }
+          /* Esta linea eliminará el agente de la grafica */
 
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+
+        this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+        this.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar",
+          message: "Agente Modificado Correctamente",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
       }
+
+      this.$modal.hide("EliminarAgente");
+    },
+    limpiarDatosEliminarAgente: function limpiarDatosEliminarAgente() {
+      this.datos_eliminar_agente.index = "";
+      this.datos_eliminar_agente.index_fila = "";
+      this.datos_eliminar_agente.index_columna = "";
+      this.datos_eliminar_agente.index_minutos_columna = "";
+      this.datos_eliminar_agente.index_agente = "";
+      this.datos_eliminar_agente.minutes = "";
+      this.datos_eliminar_agente.adicional = "";
+      this.datos_eliminar_agente.ruta_icono = "";
+      this.datos_eliminar_agente.descripcion = "";
+      this.datos_eliminar_agente.valor = "";
+      this.datos_eliminar_agente.valorNuevo = "";
     },
 
     /**
@@ -4612,7 +4741,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         response.data.salas.forEach(function (sala) {
           var objeto = {};
           objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(sala.descripcion);
-          objeto.id_sala = sala.id;
+          objeto.id_sala = sala.codigo;
           salas.push(objeto);
         });
         that.salas = salas;
@@ -4647,6 +4776,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var url = "/modulos/admision/medico/cargar_medico_por_especializacion/" + that.form.id_especializacion;
 
       if (value != null) {
+        alert(value.id_medico);
         this.form.id_medico = value.id_medico;
         loader.hide();
         this.consultarSello();
@@ -5085,7 +5215,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var mensaje = "";
       url = "/modulos/cirugia/anestesia/modifcar_registro_anestesia";
       var loader = that.$loading.show();
-      axios.post(url, this.form).then(function (response) {
+      axios.post(url, that.form).then(function (response) {
         that.guardarRegistroInfusiones();
         loader.hide();
         that.flashMessage.show({
@@ -5189,7 +5319,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var url = "";
       var mensaje = "";
       var formNew = {
-        cirugia_id: that.form.cirugia_id,
+        registro_anestesia_id: that.form.registro_anestesia_id,
         imgFirma: that.form.imgFirma
       };
       url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
@@ -6525,10 +6655,10 @@ __webpack_require__.r(__webpack_exports__);
           if (response.data.diagnostico != null && response.data.diagnostico != undefined) {
             //Pre
             that.selectedDiagnosticoPre = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
-            that.form.id_diagnostico_pre = response.data.diagnostico.id; //Post
+            that.form.id_diagnostico_pre = response.data.diagnostico.codigo; //Post
 
             that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
-            that.form.id_diagnostico = response.data.diagnostico.id;
+            that.form.id_diagnostico = response.data.diagnostico.codigo;
           }
 
           loader.hide();
@@ -6856,10 +6986,6 @@ __webpack_require__.r(__webpack_exports__);
       this.form.quirofano = value.quirofano;
       this.form.operacion_propuesta = value.procedimiento;
       this.$modal.hide("ListaCirugiaProgramadaPaciente");
-
-      if (this.$refs.revisionSistema != null) {
-        this.$refs.revisionSistema.cargarRevisionSistema();
-      }
     },
 
     /* Fin para llamar al Modal y la Tabla */
@@ -6890,7 +7016,7 @@ __webpack_require__.r(__webpack_exports__);
         loader.hide();
         that.flashMessage.show({
           status: "error",
-          title: "Error al procesar guardarDrograAdministrada",
+          title: "Error al procesar guardarCabecera",
           message: "Por favor comuníquese con el administrador. " + error,
           clickable: true,
           time: 0,
@@ -16570,10 +16696,10 @@ exports.push([module.i, ".v-select{position:relative;font-family:inherit}.v-sele
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35012,15 +35138,15 @@ try {
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico-jony.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css&");
+var content = __webpack_require__(/*! !../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -57726,10 +57852,185 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=template&id=58e274b8&":
-/*!****************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=template&id=58e274b8& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=template&id=7420b681&":
+/*!**************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=template&id=7420b681& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
+              [
+                _c("img", {
+                  staticClass: "mt-5 mb-5",
+                  staticStyle: { margin: "auto" },
+                  attrs: { src: "/" + _vm.datos.ruta_icono, alt: "no carga" }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.datos.descripcion,
+                      expression: "datos.descripcion"
+                    }
+                  ],
+                  staticClass:
+                    "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                  attrs: { disabled: "", type: "text", placeholder: "Agente" },
+                  domProps: { value: _vm.datos.descripcion },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.datos, "descripcion", $event.target.value)
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.datos.valor,
+                      expression: "datos.valor"
+                    }
+                  ],
+                  staticClass:
+                    "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                  attrs: { disabled: "", type: "number", placeholder: "Valor" },
+                  domProps: { value: _vm.datos.valor },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.datos, "valor", $event.target.value)
+                    }
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.datos.valorNuevo,
+                      expression: "datos.valorNuevo"
+                    }
+                  ],
+                  staticClass:
+                    "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                  attrs: { type: "number", placeholder: "Nuevo valor" },
+                  domProps: { value: _vm.datos.valorNuevo },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.datos, "valorNuevo", $event.target.value)
+                    }
+                  }
+                })
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "col-lg-12 col-md-12 col-sm-12 text-center mt-4 mb-5"
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.validarConfirmarCandelar(true)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                        Aceptar\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.validarConfirmarCandelar(false)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                        Cancelar\n                    "
+                  )
+                ]
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&":
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -58998,7 +59299,13 @@ var render = function() {
                                                                                   index_fila,
                                                                                   index_columna,
                                                                                   index_minutos_columna,
-                                                                                  index_agente
+                                                                                  index_agente,
+                                                                                  minutos_columna[
+                                                                                    "t_init"
+                                                                                  ],
+                                                                                  agente._src,
+                                                                                  agente.descripcion,
+                                                                                  agente.valor
                                                                                 )
                                                                               }
                                                                             }
@@ -62795,6 +63102,27 @@ var render = function() {
             ref: "ConfirmarCandelar",
             attrs: { icon: _vm.icon, titulo: _vm.titulo, mensaje: _vm.mensaje },
             on: { respuestaConfirmarCancelar: _vm.respuestaConfirmarCancelar }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          staticStyle: { "z-index": "1200" },
+          attrs: {
+            width: "20%",
+            height: "auto",
+            scrollable: true,
+            name: "EliminarAgente"
+          }
+        },
+        [
+          _c("eliminar-agente", {
+            ref: "EliminarAgente",
+            attrs: { datos: _vm.datos_eliminar_agente },
+            on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
           })
         ],
         1
@@ -96285,7 +96613,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("revision-sistema", __webpa
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("antecedente", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Antecedente.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Antecedente.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("examen-fisico", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/ExamenFisico.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/ExamenFisico.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("paraclinico", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("registro-anestesico", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("registro-anestesico", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("eliminar-agente", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue")["default"]);
 /*
 Vue.component(
     "crear-modificar-tipo-agente",
@@ -96408,18 +96737,87 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue":
-/*!***************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue ***!
-  \***************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue ***!
+  \*************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _registro_anestesico_jony_vue_vue_type_template_id_58e274b8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./registro-anestesico-jony.vue?vue&type=template&id=58e274b8& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=template&id=58e274b8&");
-/* harmony import */ var _registro_anestesico_jony_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registro-anestesico-jony.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _registro_anestesico_jony_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro-anestesico-jony.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _EliminarAgenteComponet_vue_vue_type_template_id_7420b681___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EliminarAgenteComponet.vue?vue&type=template&id=7420b681& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=template&id=7420b681&");
+/* harmony import */ var _EliminarAgenteComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EliminarAgenteComponet.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EliminarAgenteComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EliminarAgenteComponet_vue_vue_type_template_id_7420b681___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EliminarAgenteComponet_vue_vue_type_template_id_7420b681___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarAgenteComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./EliminarAgenteComponet.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarAgenteComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=template&id=7420b681&":
+/*!********************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=template&id=7420b681& ***!
+  \********************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarAgenteComponet_vue_vue_type_template_id_7420b681___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./EliminarAgenteComponet.vue?vue&type=template&id=7420b681& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=template&id=7420b681&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarAgenteComponet_vue_vue_type_template_id_7420b681___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarAgenteComponet_vue_vue_type_template_id_7420b681___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=template&id=0efa7f95& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&");
+/* harmony import */ var _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -96430,9 +96828,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _registro_anestesico_jony_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _registro_anestesico_jony_vue_vue_type_template_id_58e274b8___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _registro_anestesico_jony_vue_vue_type_template_id_58e274b8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -96442,54 +96840,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue"
+component.options.__file = "resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico-jony.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css&":
-/*!************************************************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css& ***!
-  \************************************************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&":
+/*!*******************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/style-loader!../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico-jony.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/style-loader!../../../../../../../node_modules/css-loader??ref--5-1!../../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../../node_modules/postcss-loader/src??ref--5-2!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
 
-/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=template&id=58e274b8&":
-/*!**********************************************************************************************************************************!*\
-  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=template&id=58e274b8& ***!
-  \**********************************************************************************************************************************/
+/***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&":
+/*!*****************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95& ***!
+  \*****************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_template_id_58e274b8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico-jony.vue?vue&type=template&id=58e274b8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico-jony.vue?vue&type=template&id=58e274b8&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_template_id_58e274b8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./registro-anestesico.vue?vue&type=template&id=0efa7f95& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_jony_vue_vue_type_template_id_58e274b8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

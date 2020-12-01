@@ -43,9 +43,9 @@ class RegistroAnestesiaController extends Controller
             $firma = convertBase64ToBinary($request->input('imgFirma'));
             FirmasPorAtencion::create([
                 'tipo_servicio' => 4,
-                'id_atencion' => $request->input('cirugia_id'),
+                'id_atencion' => $request->input('registro_anestesia_id'),
                 'id_visita' => 0,
-                'id_tipo_documento' => 0,
+                'id_tipo_documento' => 12,
                 'fecha_atencion' => date("Y-m-d H:i:s"),
                 'firma' => $firma,
                 'status' => '1',
@@ -97,6 +97,7 @@ class RegistroAnestesiaController extends Controller
                 [
                     'SecCirPro' => $request->input('cirugia_id'),
                     'usu_created_update' => $user->id,
+                    'status' => 1,
                 ]
             );
         } else {
@@ -105,6 +106,7 @@ class RegistroAnestesiaController extends Controller
             [
                 'SecCirPro' => $request->input('cirugia_id'),
                 'usu_created_update' => $user->id,
+                'status' => 1,
             ]
         );
         return response()->json(
@@ -183,8 +185,8 @@ class RegistroAnestesiaController extends Controller
                 'p_muerto' => $request->input('p_muerto'),
                 /* Tecnicas Especiales */
                 'tecnicas_especiales' => $request->input('tecnicas_especiales'),
-                'conducido_a' => $request->input('conducido_a'),
-                'por' => $request->input('por'),
+                'conducido_a' => $request->input('id_sala'),
+                'por' => $request->input('id_medico'),
                 'hora' => $request->input('hora'),
 
                 'usu_created_update' => $user->id,
@@ -203,7 +205,7 @@ class RegistroAnestesiaController extends Controller
             try {
 
                 // CARGA DATOS DE EL REGISTRO DE ANESTESIA
- 
+
                  $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
                  $datosPaciente = [];
                  $id_registro_anestesia = 0;
@@ -212,14 +214,14 @@ class RegistroAnestesiaController extends Controller
                     ->where('status', '1')
                     ->with('drogaAdministradaRpt','graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt')
                     ->first();
-                
+
                  //FINALIZA CARGA DATOS DE EL REGISTRO DE ANESTESIA
 
-               
-                   
+
+
                          $id_registro_anestesia =$datosValoracionPreanestesica->id;
-                    
-                
+
+
 
                 $datosPaciente = RegistroAnestesia::where('id', $id_registro_anestesia)
                 ->with('datosPersona','graficoFirmaMedico')
@@ -260,7 +262,7 @@ class RegistroAnestesiaController extends Controller
             $TarifarioCirugua = TarifarioCirugia::select('codigo', 'descripcion')->where('descripcion', 'like', "%$descripcion%")
                 ->union($TarifarioProcedimiento);
             $TarifarioMedicina = TarifarioMedicina::select('codigo', 'descripcion')->where('descripcion', 'like', "%$descripcion%")
-                //  ->with('pacienteLista','pacienteHospitalizacion') 
+                //  ->with('pacienteLista','pacienteHospitalizacion')
                 ->union($TarifarioCirugua)
                 ->get();
 

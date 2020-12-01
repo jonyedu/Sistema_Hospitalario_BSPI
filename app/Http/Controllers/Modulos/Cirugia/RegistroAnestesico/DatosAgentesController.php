@@ -63,7 +63,11 @@ class DatosAgentesController extends Controller
                 # agente
                 $agente = AgenteAnestesia::where('name_system', $datos->name)->first();
                 if($agente !== null){
-                    DatosAgentes::create([
+                    DatosAgentes::UpdateOrCreate(
+                        [
+
+                        ],
+                    [
                         'registro_anestesia_id'   => $datos->registro_anestesia_id,
                         'hora'   => $datos->hora,
                         'min'   => $datos->min,
