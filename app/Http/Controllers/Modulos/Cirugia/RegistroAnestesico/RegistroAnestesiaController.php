@@ -83,7 +83,7 @@ class RegistroAnestesiaController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $cirugia_id = $request->input('cirugia_id');
+        $cirugia_id = $request->input('SecCirPro');
         $registro_anestesia_id = $request->input('registro_anestesia_id');
 
         $idRegistroAnestesico = RegistroAnestesia::where('SecCirPro', $cirugia_id)
@@ -210,7 +210,7 @@ class RegistroAnestesiaController extends Controller
                  $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
                  $datosPaciente = [];
                  $datosprocedimiento= [];
-                 $id_registro_anestesia = 34;
+                 $id_registro_anestesia = 0;
 
                 $datosValoracionPreanestesica = RegistroAnestesia::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
@@ -223,7 +223,7 @@ class RegistroAnestesiaController extends Controller
                     $id_registro_anestesia =  $paciente->id;
                 } */
 
-               //$id_registro_anestesia = $datosValoracionPreanestesica->id;
+               $id_registro_anestesia = $datosValoracionPreanestesica->id;
                $datosprocedimiento = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
                ->first();
 

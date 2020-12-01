@@ -66,12 +66,12 @@
                         class="col-lg-12 col-md-12 col-sm-12"
                         v-if="form.idCirugiaProgramada != ''"
                     >
-                        <!-- Datos del Paciente -->
+                        <!-- Datos del Paciente --> <!-- card-green -->
                         <div
-                            class="card card-default collapsed-card card-green"
+                            class="card card-default collapsed-card"
                         >
-                            <div class="card-header">
-                                <h3 class="card-title">
+                            <div class="card-header" style="background: #590303">
+                                <h3 class="card-title" style="color: #FFFFFF">
                                     DATOS DEL PACIENTE
                                 </h3>
 
@@ -763,7 +763,7 @@ export default {
             //cirugia_id: 0,
             titulo_seleccionado: "Registro de anestecia",
             respuestaFinProceso: 0,
-            respuestaImprimir: 1,
+            respuestaImprimir: 0,
             form: {
                 idCirugiaProgramada: "",
                 registro_anestesia_id: 0,
