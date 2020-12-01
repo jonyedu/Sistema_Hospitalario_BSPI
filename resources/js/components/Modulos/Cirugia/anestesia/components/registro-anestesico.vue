@@ -2,14 +2,14 @@
     <div>
         <div class="flex flex-center-x mt-2 mb-2">
             <button
-                class="btn btn-success"
+                class="btn btn-outline-primary"
                 v-if="!iniciado"
                 v-on:click="start_time"
             >
                 Iniciar
             </button>
             <button
-                class="btn btn-danger"
+                class="btn btn-outline-danger"
                 v-if="iniciado"
                 v-on:click="end_time"
             >
@@ -22,9 +22,6 @@
                     class="badge badge-warning pl-3 pr-3 pt-2 pb-2"
                     style="font-size: 1.0em"
                 >
-                    <!-- Tiempo : <span>{{ hour }}</span
-                    >:<span>{{ minutes }}</span
-                    >:<span>{{ seconds }}</span> -->
                     Tiempo: <span id="total">{{ tiempo }}</span>
                 </p>
             </div>

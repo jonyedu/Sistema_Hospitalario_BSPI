@@ -83,7 +83,7 @@ class RegistroAnestesiaController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $cirugia_id = $request->input('cirugia_id');
+        $cirugia_id = $request->input('SecCirPro');
         $registro_anestesia_id = $request->input('registro_anestesia_id');
 
         $idRegistroAnestesico = RegistroAnestesia::where('SecCirPro', $cirugia_id)
@@ -205,7 +205,8 @@ class RegistroAnestesiaController extends Controller
         if ($idSecCirPro !== '' && isset($idSecCirPro)) {
             try {
 
-                // CARGA DATOS DE EL REGISTRO DE ANESTESIA
+                // CARGA DATOS DE EL REGISTRO DE ANESTESIA 01/12
+
 
                  $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
                  $datosPaciente = [];
@@ -217,13 +218,8 @@ class RegistroAnestesiaController extends Controller
                     ->with('drogaAdministradaRpt','graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt','tipoPosicion')
                     ->first();
 
-                 //FINALIZA CARGA DATOS DE EL REGISTRO DE ANESTESIA
 
-                 /* foreach ($datosValoracionPreanestesica as $paciente) {
-                    $id_registro_anestesia =  $paciente->id;
-                } */
-
-               //$id_registro_anestesia = $datosValoracionPreanestesica->id;
+               $id_registro_anestesia = $datosValoracionPreanestesica->id;
                $datosprocedimiento = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
                ->first();
 
@@ -235,7 +231,6 @@ class RegistroAnestesiaController extends Controller
                    //  ->with('pacienteLista','pacienteHospitalizacion')
                    ->union($TarifarioCirugua)
                    ->first();
-
 
                 $datosPaciente = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
                 ->with('graficoFirmaMedico','cirujano','Ayudante','Ayudante2','Instrumentrista','DiagnosticoPost','DiagnosticoPre','Anestesiologo')
