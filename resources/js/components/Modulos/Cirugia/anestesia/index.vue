@@ -901,14 +901,14 @@ export default {
                                 response.data.diagnostico.descripcion
                             );
                             that.form.id_diagnostico_pre =
-                                response.data.diagnostico.id;
+                                response.data.diagnostico.codigo;
 
                             //Post
                             that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(
                                 response.data.diagnostico.descripcion
                             );
                             that.form.id_diagnostico =
-                                response.data.diagnostico.id;
+                                response.data.diagnostico.codigo;
                         }
                         loader.hide();
                     })
@@ -1285,9 +1285,6 @@ export default {
             this.form.operacion_propuesta = value.procedimiento;
 
             this.$modal.hide("ListaCirugiaProgramadaPaciente");
-            if (this.$refs.revisionSistema != null) {
-                this.$refs.revisionSistema.cargarRevisionSistema();
-            }
         },
         /* Fin para llamar al Modal y la Tabla */
         guardarCabecera(registro_anestesia_id) {
@@ -1320,7 +1317,7 @@ export default {
                     loader.hide();
                     that.flashMessage.show({
                         status: "error",
-                        title: "Error al procesar guardarDrograAdministrada",
+                        title: "Error al procesar guardarCabecera",
                         message:
                             "Por favor comuníquese con el administrador. " +
                             error,

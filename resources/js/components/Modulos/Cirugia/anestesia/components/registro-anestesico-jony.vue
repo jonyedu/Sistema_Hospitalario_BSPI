@@ -529,7 +529,11 @@
                                                                                     index_fila,
                                                                                     index_columna,
                                                                                     index_minutos_columna,
-                                                                                    index_agente
+                                                                                    index_agente,
+                                                                                    minutos_columna['t_init'],
+                                                                                    agente._src,
+                                                                                    agente.descripcion,
+                                                                                    agente.valor
                                                                                 )
                                                                             "
                                                                             ><img
@@ -1919,6 +1923,19 @@
                 @respuestaConfirmarCancelar="respuestaConfirmarCancelar"
             ></vue-confirmar-cancelar>
         </modal>
+        <modal
+            :width="'20%'"
+            height="auto"
+            :scrollable="true"
+            name="EliminarAgente"
+            style="z-index: 1200;"
+        >
+            <eliminar-agente
+                ref="EliminarAgente"
+                :datos="datos_eliminar_agente"
+                @handleSeleccionarClick="handleSeleccionarClick"
+            ></eliminar-agente>
+        </modal>
         <!--  <FlashMessage></FlashMessage> -->
     </div>
 </template>
@@ -1936,6 +1953,21 @@ export default {
     },
     data: function() {
         return {
+            datos_eliminar_agente: {
+                index: "",
+                index_fila: "",
+                index_columna: "",
+                index_minutos_columna: "",
+                index_agente: "",
+                index: "",
+                minutes: "",
+                adicional: { system_name: "agente" },
+                ruta_icono: "",
+                descripcion: "",
+                valor: 0,
+                valorNuevo: 0,
+                respuesta: false,
+            },
             resConfirmarCancelar: false,
             icon: "",
             titulo: "",
@@ -2294,107 +2326,103 @@ export default {
             index_fila,
             index_columna,
             index_minutos_columna,
-            index_agente
+            index_agente,
+            t_init,
+            src,
+            descripcion,
+            valor
         ) {
-            var mensaje =
-                "index: " +
-                index +
-                ", index_fila: " +
-                index_fila +
-                ", index_columna: " +
-                index_columna +
-                ", index_minutos_columna: " +
-                index_minutos_columna +
-                ", index_agente: " +
-                index_agente;
-            this.flashMessage.show({
-                status: "error",
-                title: "Error al procesar consultarSello",
-                message: mensaje,
-                clickable: true,
-                time: 0,
-                icon: "/iconsflashMessage/error.svg",
-                customStyle: {
-                    flashMessageStyle: {
-                        background: "linear-gradient(#e66465, #9198e5)"
-                    }
-                }
-            });
-            let indexLista = null;
-            /* for (let i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
-                if (this.lista_horas_avanzadas_v[i] != "") {
-                    if (i == index) {
-                        for (let j = 0;j < this.lista_horas_avanzadas_v[i].datos.length;j++) {
-                            if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
-                                if (j == index_fila){
-                                    for (let k = 0;k <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length;k++) {
-                                        if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
-                                            if (k == index_columna){
-                                                for (let l = 0;l <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length;l++) {
-                                                    if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
-                                                        if (l == index_minutos_columna){
-                                                            console.log(this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l]);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
+            this.limpiarDatosEliminarAgente();
+            this.datos_eliminar_agente.index = index;
+            this.datos_eliminar_agente.index_fila = index_fila;
+            this.datos_eliminar_agente.index_columna = index_columna;
+            this.datos_eliminar_agente.index_minutos_columna = index_minutos_columna;
+            this.datos_eliminar_agente.index_agente = index_agente;
+            this.datos_eliminar_agente.minutes = t_init;
+            this.datos_eliminar_agente.adicional = { system_name: descripcion };
+            this.datos_eliminar_agente.ruta_icono = src;
+            this.datos_eliminar_agente.descripcion = descripcion;
+            this.datos_eliminar_agente.valor = valor;
+            this.$modal.show("EliminarAgente");
+        },
+        handleSeleccionarClick(value) {
+            if(value.respuesta){
+                var valor = parseInt(value.valorNuevo);
+                var minutes = value.minutes;
+                var adicional = value.adicional;
+                var ruta_icono= value.ruta_icono;
+
+                var indice_fila = this.obtenerIndice(valor);
+                //Recorrer el arreglo para saber en que posicion se debe guardar
+                // Verifica el índice según la hora
+                for (const column_quince of this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin) {
+                    // Recorre cada fila
+                    // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
+                    if (column_quince.columnas) {
+                        // figuras en rejillas
+                        for (const col_cince_min of column_quince.columnas) {
+                            if (
+                                col_cince_min.t_init <= minutes &&
+                                col_cince_min.t_fin > minutes
+                            ) {
+                                if (
+                                    minutes >= col_cince_min.t_init &&
+                                    col_cince_min.t_fin > minutes
+                                ) {
+                                    col_cince_min.agentes.push({
+                                        descripcion: adicional.system_name,
+                                        valor: valor,
+                                        _src: ruta_icono
+                                    });
+                                    // Agregar dato de envío
+                                    /* this.enviarDatosAgente(
+                                        {
+                                            tpo_ini: is_tpo_init,
+                                            tpo_fin: is_tpo_fin,
+                                            hora: this.hour,
+                                            min: this.minutes,
+                                            segundos: this.seconds,
+                                            valor: valor,
+                                            name: adicional.system_name,
+                                            indice_hora: this.indice_hora
+                                        },
+                                        adicional.tipo
+                                    ); */
                                 }
                             }
                         }
                     }
-                } */
-                /* this.agregaDatoEnRejilla(
-                    true,
-                    false,
-                    250,
-                    "img/icons/induccion.png",
-                    { system_name: "INDUCCION", tipo: this.system_agente }
-                ); */
-
-                /* if (this.lista_horas_avanzadas_v[i].datos == id_producto) {
-                    indexLista = i;
-                    break;
-                } */
-            console.log(this.lista_horas_avanzadas_v[index].datos[index_fila]);
-            for (const columna_quince of this.lista_horas_avanzadas_v[index].datos[index_fila].columnasQuinceMin) {
-                if (columna_quince.columnas) {
-                    for (const col_cince_min of columna_quince.columnas) {
-                        console.log(col_cince_min);
-                    }
                 }
-
-
-
-
+                /* Esta linea eliminará el agente de la grafica */
+                this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+                this.flashMessage.show({
+                    status: "success",
+                    title: "Éxito al procesar",
+                    message: "Agente Modificado Correctamente",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/success.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background: "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
             }
-            /* for (let i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
-                if (this.lista_horas_avanzadas_v[i] != "") {
-                    if (i == index) {
-                        for (let j = 0;j < this.lista_horas_avanzadas_v[i].datos.length;j++) {
-                            if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
-                                if (j == index_fila){
-                                    for (let k = 0;k <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length;k++) {
-                                        if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
-                                            if (k == index_columna){
-                                                for (let l = 0;l <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length;l++) {
-                                                    if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
-                                                        if (l == index_minutos_columna){
-                                                            console.log(this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l]);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            } */
-            //this.lista_horas_avanzadas_v.splice(index, 1);
+            this.$modal.hide("EliminarAgente");
+        },
+        limpiarDatosEliminarAgente(){
+            this.datos_eliminar_agente.index = "";
+            this.datos_eliminar_agente.index_fila = "";
+            this.datos_eliminar_agente.index_columna = "";
+            this.datos_eliminar_agente.index_minutos_columna = "";
+            this.datos_eliminar_agente.index_agente = "";
+            this.datos_eliminar_agente.minutes = "";
+            this.datos_eliminar_agente.adicional = "";
+            this.datos_eliminar_agente.ruta_icono = "";
+            this.datos_eliminar_agente.descripcion = "";
+            this.datos_eliminar_agente.valor = "";
+            this.datos_eliminar_agente.valorNuevo = "";
         },
         /**
          * Método para pintar el dato en una rejilla y enviar ese dato al servidor

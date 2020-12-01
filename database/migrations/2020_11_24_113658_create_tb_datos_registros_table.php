@@ -28,8 +28,8 @@ class CreateTbDatosRegistrosTable extends Migration
                 $table->unsignedInteger('id_servicio')->nullable();
                 $table->string('sala', 255)->nullable();
                 $table->string('cama', 255)->nullable();
-                $table->unsignedInteger('id_diagnostico_pre')->nullable();
-                $table->unsignedInteger('id_diagnostico_post')->nullable();
+                $table->string('id_diagnostico_pre')->nullable();
+                $table->string('id_diagnostico_post')->nullable();
                 $table->string('operacion_propuesta', 100)->nullable();
                 $table->unsignedInteger('id_cirujano')->nullable();
                 $table->unsignedInteger('id_ayudante1')->nullable();

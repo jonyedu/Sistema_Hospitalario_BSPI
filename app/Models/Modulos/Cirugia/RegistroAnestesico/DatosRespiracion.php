@@ -27,6 +27,7 @@ class DatosRespiracion extends Model
         'indice_hora',
         'indice_min',
         'valor',
-        'usu_created_update'
+        'usu_created_update',
+        'status'
     ];
 }
