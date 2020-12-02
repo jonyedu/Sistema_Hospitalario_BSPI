@@ -25,6 +25,17 @@ use PhpParser\Builder\Function_;
 
 class RegistroAnestesiaController extends Controller
 {
+    public function validarSecCirPro($secCirPro)
+    {
+        try {
+            $secCirPro = RegistroAnestesia::where('SecCirPro', $secCirPro)
+                ->first();
+            //$grafica = GraficaPorCirugia::where('SecCirPro', 1)->first();
+            return  response()->json(['secCirPro' => $secCirPro], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
     public function cargarSello($id_medico)
     {
         try {
@@ -79,7 +90,7 @@ class RegistroAnestesiaController extends Controller
             return response()->json(['mensaje' => $e->getMessage()], 500);
         }
     }
-
+    //Revisar aqui el porque se crea 2 registro en esta tabla
     public function store(Request $request)
     {
         $user = Auth::user();

@@ -4016,6 +4016,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -4038,7 +4039,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         index_agente: ""
       }, _defineProperty(_datos_eliminar_agent, "index", ""), _defineProperty(_datos_eliminar_agent, "minutes", ""), _defineProperty(_datos_eliminar_agent, "adicional", {
         system_name: "agente"
-      }), _defineProperty(_datos_eliminar_agent, "ruta_icono", ""), _defineProperty(_datos_eliminar_agent, "descripcion", ""), _defineProperty(_datos_eliminar_agent, "valor", 0), _defineProperty(_datos_eliminar_agent, "valorNuevo", 0), _defineProperty(_datos_eliminar_agent, "respuesta", false), _datos_eliminar_agent),
+      }), _defineProperty(_datos_eliminar_agent, "ruta_icono", ""), _defineProperty(_datos_eliminar_agent, "descripcion", ""), _defineProperty(_datos_eliminar_agent, "valor", 0), _defineProperty(_datos_eliminar_agent, "valorNuevo", 0), _defineProperty(_datos_eliminar_agent, "respuesta", false), _defineProperty(_datos_eliminar_agent, "id", 0), _datos_eliminar_agent),
       resConfirmarCancelar: false,
       icon: "",
       titulo: "",
@@ -4061,6 +4062,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         torniquete: 0
       },
       form: (_form = {
+        respuestaAgente: false,
+        id_datos_agente: 0,
         id_especializacion: 3,
         id_tipo_posiciones: 0,
         cirugia_id: 0,
@@ -4376,7 +4379,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
-    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, src, descripcion, valor) {
+    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, src, descripcion, valor, id) {
       this.limpiarDatosEliminarAgente();
       this.datos_eliminar_agente.index = index;
       this.datos_eliminar_agente.index_fila = index_fila;
@@ -4390,6 +4393,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.datos_eliminar_agente.ruta_icono = src;
       this.datos_eliminar_agente.descripcion = descripcion;
       this.datos_eliminar_agente.valor = valor;
+      this.datos_eliminar_agente.id = id;
       this.$modal.show("EliminarAgente");
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
@@ -4398,6 +4402,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var minutes = value.minutes;
         var adicional = value.adicional;
         var ruta_icono = value.ruta_icono;
+        this.form.id_datos_agente = value.id;
         var indice_fila = this.obtenerIndice(valor); //Recorrer el arreglo para saber en que posicion se debe guardar
         // Verifica el índice según la hora
 
@@ -4427,19 +4432,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                         _src: ruta_icono
                       }); // Agregar dato de envío
 
-                      /* this.enviarDatosAgente(
-                          {
-                              tpo_ini: is_tpo_init,
-                              tpo_fin: is_tpo_fin,
-                              hora: this.hour,
-                              min: this.minutes,
-                              segundos: this.seconds,
-                              valor: valor,
-                              name: adicional.system_name,
-                              indice_hora: this.indice_hora
-                          },
-                          adicional.tipo
-                      ); */
+                      this.enviarDatosAgente({
+                        tpo_ini: is_tpo_init,
+                        tpo_fin: is_tpo_fin,
+                        hora: this.hour,
+                        min: this.minutes,
+                        segundos: this.seconds,
+                        valor: valor,
+                        name: adicional.system_name,
+                        indice_hora: this.indice_hora
+                      }, adicional.tipo);
                     }
                   }
                 }
@@ -4550,12 +4552,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                   if (col_cince_min.t_init <= this.minutes && col_cince_min.t_fin > this.minutes) {
                     if (this.minutes >= col_cince_min.t_init && col_cince_min.t_fin > this.minutes) {
-                      col_cince_min.agentes.push({
-                        descripcion: adicional.system_name,
-                        valor: valor,
-                        _src: ruta_icono
-                      }); // Agregar dato de envío
-
+                      // Agregar dato de envío
                       this.enviarDatosAgente({
                         tpo_ini: is_tpo_init,
                         tpo_fin: is_tpo_fin,
@@ -4565,7 +4562,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                         valor: valor,
                         name: adicional.system_name,
                         indice_hora: this.indice_hora
-                      }, adicional.tipo);
+                      }, adicional.tipo, es_posicion, col_cince_min, adicional.system_name, valor, ruta_icono); //este trozo es donde tengo que enviar los datos el metodo enviarDatosAgente
+
+                      /* col_cince_min.agentes.push({
+                          descripcion: adicional.system_name,
+                           valor: valor,
+                          _src: ruta_icono,
+                          id: this.form.id_datos_agente
+                      }); */
+                      //await alert(this.form.id_datos_agente);
                     }
 
                     return;
@@ -4773,7 +4778,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var url = "/modulos/admision/medico/cargar_medico_por_especializacion/" + that.form.id_especializacion;
 
       if (value != null) {
-        alert(value.id_medico);
         this.form.id_medico = value.id_medico;
         loader.hide();
         this.consultarSello();
@@ -4898,18 +4902,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       var datos = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var tipo = arguments.length > 1 ? arguments[1] : undefined;
+      var es_posicion = arguments.length > 2 ? arguments[2] : undefined;
+      var col_cince_min = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+      var descripcion = arguments.length > 4 ? arguments[4] : undefined;
+      var valor = arguments.length > 5 ? arguments[5] : undefined;
+      var src = arguments.length > 6 ? arguments[6] : undefined;
       var that = this; //var loader = that.$loading.show();
 
       this.form.cirugia_id = this.$props.idSecCirPro;
       var url = "/modulos/cirugia/anestesia/agentes/guardado/" + this.registro_id;
       axios.post(url, {
+        id_datos_agente: this.form.id_datos_agente,
         registro_anestesia_id: this.form.registro_anestesia_id,
         datos: datos,
         tipo: tipo,
         SecCirPro: this.form.cirugia_id
       }).then(function (response) {
         ///console.log(response.data);
-        _this4.datos_server = response.data; //loader.hide();
+        _this4.datos_server = response.data;
+
+        if (es_posicion == false) {
+          col_cince_min.agentes.push({
+            descripcion: descripcion,
+            valor: valor,
+            _src: src,
+            id: response.data.datos
+          });
+        }
+
+        _this4.form.id_datos_agente = 0;
       })["catch"](function (error) {
         //Errores
 
@@ -4932,6 +4953,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }); //loader.hide();
       });
+    },
+    getIdAgente: function getIdAgente(id) {
+      var url = "/modulos/cirugia/anestesia/consultar_id_agente/" + id;
+      axios.get(url);
     },
 
     /**
@@ -6642,34 +6667,6 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-    cargarDiagnosticoPorCodigo: function cargarDiagnosticoPorCodigo(id_diagnostico) {
-      if (id_diagnostico != "") {
-        var that = this;
-        var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_por_codigo/" + id_diagnostico;
-        var loader = that.$loading.show();
-        axios.get(url).then(function (response) {
-          //Obtiene los datos de Motivo Antecedentes
-          if (response.data.diagnostico != null && response.data.diagnostico != undefined) {
-            //Pre
-            that.selectedDiagnosticoPre = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
-            that.form.id_diagnostico_pre = response.data.diagnostico.codigo; //Post
-
-            that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
-            that.form.id_diagnostico = response.data.diagnostico.codigo;
-          }
-
-          loader.hide();
-        })["catch"](function (error) {
-          //Errores
-          loader.hide();
-          that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
-          });
-        });
-      }
-    },
     setSelectedDiagnosticoPre: function setSelectedDiagnosticoPre(value) {
       var that = this;
 
@@ -6967,23 +6964,126 @@ __webpack_require__.r(__webpack_exports__);
       this.$modal.show("ListaCirugiaProgramadaPaciente");
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
-      //this.paciente = value;
-      this.form.idCirugiaProgramada = value.SecCirPro;
-      this.form.paciente = value.nombrePaciente;
-      this.form.historia_clinica = value.historiaClinica;
-      this.form.fecha = value.fechaProgramada;
-      this.form.edad = value.edad;
-      this.form.sexo = value.sexo;
-      this.form.sala = value.sala;
-      this.form.cama = value.cama; //this.form.id_diagnostico = value.id_diagnostico;
+      if (value != "") {
+        var that = this;
+        var url = "/modulos/cirugia/anestesia/validar_secCirPro/" + value.SecCirPro; //var loader = that.$loading.show();
 
-      this.cargarDiagnosticoPorCodigo(value.id_diagnostico);
-      this.form.cirujano = value.cirujano;
-      this.form.anestesiologo = value.anestesiologo;
-      this.form.quirofano = value.quirofano;
-      this.form.operacion_propuesta = value.procedimiento;
-      this.$modal.hide("ListaCirugiaProgramadaPaciente");
+        axios.get(url).then(function (response) {
+          //Obtiene los datos de Motivo Antecedentes
+          if (response.data.secCirPro != null && response.data.secCirPro != undefined) {
+            that.$modal.hide("ListaCirugiaProgramadaPaciente");
+            that.flashMessage.show({
+              status: "warning",
+              title: "Advertencia al Seleccionar Paciente",
+              message: "El paciente ya cuenta con un registro anestesico.",
+              clickable: true,
+              time: 10000,
+              icon: "/iconsflashMessage/warning.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
+              }
+            }); //loader.hide();
+          } else {
+            that.cargarDiagnosticoPorCodigo(value);
+          }
+        })["catch"](function (error) {
+          //Errores
+          //loader.hide();
+          that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+          });
+        });
+      }
     },
+    cargarDiagnosticoPorCodigo: function cargarDiagnosticoPorCodigo(value) {
+      if (value.id_diagnostico != "") {
+        var that = this;
+        var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_por_codigo/" + value.id_diagnostico;
+        var loader = that.$loading.show();
+        axios.get(url).then(function (response) {
+          //Obtiene los datos de Motivo Antecedentes
+          if (response.data.diagnostico != null && response.data.diagnostico != undefined) {
+            //Pre
+            that.selectedDiagnosticoPre = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
+            that.form.id_diagnostico_pre = response.data.diagnostico.codigo; //Post
+
+            that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
+            that.form.id_diagnostico = response.data.diagnostico.codigo;
+            that.form.idCirugiaProgramada = value.SecCirPro;
+            that.form.paciente = value.nombrePaciente;
+            that.form.historia_clinica = value.historiaClinica;
+            that.form.fecha = value.fechaProgramada;
+            that.form.edad = value.edad;
+            that.form.sexo = value.sexo;
+            that.form.sala = value.sala;
+            that.form.cama = value.cama;
+            that.form.cirujano = value.cirujano;
+            that.form.anestesiologo = value.anestesiologo;
+            that.form.quirofano = value.quirofano;
+            that.form.operacion_propuesta = value.procedimiento;
+            that.$modal.hide("ListaCirugiaProgramadaPaciente");
+          }
+
+          loader.hide();
+        })["catch"](function (error) {
+          //Errores
+          loader.hide();
+          that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+          });
+        });
+      }
+    },
+
+    /* validarSecCirPro(secCirPro) {
+        if (secCirPro != "") {
+            let that = this;
+            let url =
+                "/modulos/cirugia/anestesia/validar_secCirPro/" +
+                secCirPro;
+            //var loader = that.$loading.show();
+            axios
+                .get(url)
+                .then(function(response) {
+                    //Obtiene los datos de Motivo Antecedentes
+                    if (
+                        response.data.secCirPro != null &&
+                        response.data.secCirPro != undefined
+                    ) {
+                        that.flashMessage.show({
+                            status: "warning",
+                            title: "Advertencia al Procesar",
+                            message:"El paciente ya cuenta con un registro anestesico.",
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/warning.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background: "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
+                        //loader.hide();
+                        return;
+                    }
+                 })
+                .catch(error => {
+                    //Errores
+                    //loader.hide();
+                    that.$swal({
+                        icon: "error",
+                        title: "Existe un error",
+                        text: error
+                    });
+                });
+        }
+    }, */
 
     /* Fin para llamar al Modal y la Tabla */
     guardarCabecera: function guardarCabecera(registro_anestesia_id) {
@@ -6994,19 +7094,19 @@ __webpack_require__.r(__webpack_exports__);
       this.form.registro_anestesia_id = registro_anestesia_id;
       var loader = that.$loading.show();
       axios.post(url, this.form).then(function (response) {
-        that.flashMessage.show({
-          status: "success",
-          title: "Éxito al procesar guardarCabecera",
-          message: "Datos guardados correctamente.",
-          clickable: true,
-          time: 5000,
-          icon: "/iconsflashMessage/success.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
+        /* that.flashMessage.show({
+            status: "success",
+            title: "Éxito al procesar",
+            message: "Datos guardados correctamente.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/success.svg",
+            customStyle: {
+                flashMessageStyle: {
+                    background: "linear-gradient(#e66465, #9198e5)"
+                }
             }
-          }
-        });
+        }); */
         loader.hide();
       })["catch"](function (error) {
         //Errores de validación
@@ -58931,25 +59031,7 @@ var render = function() {
                   }),
                   0
                 )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "flex felx-center mt-2 mb-2",
-                  staticStyle: { margin: "0 auto" }
-                },
-                [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      on: { click: _vm.obtenerDatosFormulario }
-                    },
-                    [_vm._v("\n                    Agregar\n                ")]
-                  )
-                ]
-              )
+              ])
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -59396,7 +59478,8 @@ var render = function() {
                                                                                   ],
                                                                                   agente._src,
                                                                                   agente.descripcion,
-                                                                                  agente.valor
+                                                                                  agente.valor,
+                                                                                  agente.id
                                                                                 )
                                                                               }
                                                                             }
@@ -63100,7 +63183,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
                     _c("span", { staticClass: "col-md-12" }, [
-                      _vm._v("COMENTATIOS:")
+                      _vm._v("COMENTARIOS:")
                     ]),
                     _vm._v(" "),
                     _c("textarea", {
