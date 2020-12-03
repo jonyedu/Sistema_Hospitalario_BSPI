@@ -1978,7 +1978,7 @@ export default {
             medicos: [],
             validarImgFirma: 0,
             isFirstPaintable: "firmaAnestesiologo",
-            rutaSello: "/img/selloFirma.png",
+            rutaSello: "", ///img/selloFirma.png
             validarFinProceso: "",
             validarImprimir: 0,
             selectedTipoPosiciones: "",
@@ -2550,11 +2550,11 @@ export default {
         },
         consultarSello() {
             let that = this;
-            if (this.form.id_medico > 0) {
+            if (this.$props.user.id > 0) {
                 var loader = that.$loading.show();
                 let url =
                     "/modulos/cirugia/anestesia/cargar_sello/" +
-                    this.form.id_medico;
+                    this.$props.user.id;
                 axios
                     .get(url)
                     .then(function(response) {
@@ -2747,7 +2747,7 @@ export default {
             if (value != null) {
                 this.form.id_medico = value.id_medico;
                 loader.hide();
-                this.consultarSello();
+                //this.consultarSello();
             }
             axios
                 .get(url)
@@ -2934,7 +2934,7 @@ export default {
             if (this.iniciado) return;
             this.iniciado = true;
             this.agregarHorasInicial();
-            //this.consultarSello();
+            this.consultarSello();
 
             //Guardar datos en la tabla tb_registro_anestesia
             let url = "/modulos/cirugia/anestesia/registro/post";
