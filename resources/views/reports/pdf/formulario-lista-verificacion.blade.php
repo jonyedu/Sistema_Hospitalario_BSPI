@@ -106,7 +106,7 @@
          <table class="tableStyleAll">
              <tr>
                  <th style="border-style: none">
-                     LISTA DE VERIFICACIÓN DE LA SEGURIDAD DE LA CIRUGÍA
+                     LISTA DE VERIFICACIÓN DE LA SEGURIDAD DE LA CIRUGÍA 
                  </th>
              </tr>
 
@@ -117,7 +117,7 @@
                      <img src="{{ public_path('img/logoreport1.png') }}" borde="0" width="100px" height="70px" />
                  </th>
                  <th align="left" colspan="2" style="width: 40%; border-style: none;">
-                     <span ali> Nombre:  Juan Carlos Piguave Solano</span>
+                     <span ali> Nombre:  {{ $datosPaciente[1]->CirProNomPac }}</span>
                  </th>
                  <th colspan="2" style="width: 40%; border-style: none">
 

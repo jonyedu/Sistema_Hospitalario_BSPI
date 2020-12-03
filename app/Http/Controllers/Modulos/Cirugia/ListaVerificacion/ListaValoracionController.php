@@ -12,6 +12,7 @@ use FFI\Exception as FFIException;
 use PhpParser\Builder\Function_;
 use PhpParser\Node\Expr\FuncCall;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Arr;
 
 class ListaValoracionController extends Controller
 {
@@ -114,15 +115,16 @@ class ListaValoracionController extends Controller
     public function mostrarr($id)
     {
         try {
-           $modulo = [];
+           //$modulo = [];
             $modulo = DB::connection('control_hospitalario_db_sql')->select("exec spConsultarListadoCirugia ".$id);
+            //$admin = Arr::only($modulo);
             //code...
            // dd($modulo);
-       //    return  response()->json(['listaValoracion' => $modulo], 200);
-          $pdf =  PDF::loadView('reports.pdf.formulario-lista-verificacion',['datosPaciente' => $modulo])->setPaper('a4', 'landscape');
+        return  response()->json(['datosPaciente' => $admin], 200);
+        //  $pdf =  PDF::loadView('reports.pdf.formulario-lista-verificacion',['datosPaciente' => $admin])->setPaper('a4', 'landscape');
        // PDF::loadHTML('reports.pdf.formulario-lista-verificacion')->setPaper('a4', 'landscape')->setWarnings(false)->save('myfile.pdf');
 
-      return $pdf->stream('Formulario');
+     //return $pdf->stream('Formulario');
       
         } catch (Exception $e ) {
             //throw $th;

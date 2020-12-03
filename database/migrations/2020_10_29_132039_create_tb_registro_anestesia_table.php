@@ -55,7 +55,7 @@ class CreateTbRegistroAnestesiaTable extends Migration
                 $table->boolean('linea_media')->default(0);
                 //seccion 5
                 $table->unsignedInteger('aguja')->nullable();
-                $table->unsignedInteger('nivel')->nullable();
+                $table->string('nivel')->nullable();
                 $table->boolean('hiperbara')->default(0);
                 $table->string('id_tipo_posiciones')->nullable();
                 /* Complicaciones Operatorias */

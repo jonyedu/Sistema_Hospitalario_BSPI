@@ -695,6 +695,9 @@
                                     @RespuestaImprimir="
                                         respuestaImprimir = $event
                                     "
+                                    @RespuestaFinProceso="
+                                        form.idCirugiaProgramada = $event
+                                    "
                                     :id-sec-cir-pro="form.idCirugiaProgramada"
                                 ></registro-anestesico>
                             </template>
@@ -718,7 +721,7 @@
             ></lista-cirugia-programa-paciente>
         </modal>
         <!-- Fin Seccion donde muestra la lista de los pacientes que tienen una cita -->
-        <FlashMessage></FlashMessage>
+        <FlashMessage ></FlashMessage>
     </div>
 </template>
 
@@ -766,6 +769,7 @@ export default {
             respuestaImprimir: 0,
             form: {
                 idCirugiaProgramada: "",
+                idCirugiaProgramadaTemporal: "",
                 registro_anestesia_id: 0,
                 /* Datos del paciente */
                 paciente: "",
@@ -878,48 +882,6 @@ export default {
                             }
                         });
                         loader.hide();
-                    });
-            }
-        },
-        cargarDiagnosticoPorCodigo(id_diagnostico) {
-            if (id_diagnostico != "") {
-                let that = this;
-                let url =
-                    "/modulos/parametrizacion/diagnostico/cargar_diagnostico_por_codigo/" +
-                    id_diagnostico;
-                var loader = that.$loading.show();
-                axios
-                    .get(url)
-                    .then(function(response) {
-                        //Obtiene los datos de Motivo Antecedentes
-                        if (
-                            response.data.diagnostico != null &&
-                            response.data.diagnostico != undefined
-                        ) {
-                            //Pre
-                            that.selectedDiagnosticoPre = that.$funcionesGlobales.toCapitalFirstAllWords(
-                                response.data.diagnostico.descripcion
-                            );
-                            that.form.id_diagnostico_pre =
-                                response.data.diagnostico.codigo;
-
-                            //Post
-                            that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(
-                                response.data.diagnostico.descripcion
-                            );
-                            that.form.id_diagnostico =
-                                response.data.diagnostico.codigo;
-                        }
-                        loader.hide();
-                    })
-                    .catch(error => {
-                        //Errores
-                        loader.hide();
-                        that.$swal({
-                            icon: "error",
-                            title: "Existe un error",
-                            text: error
-                        });
                     });
             }
         },
@@ -1268,24 +1230,147 @@ export default {
             this.$modal.show("ListaCirugiaProgramadaPaciente");
         },
         handleSeleccionarClick(value) {
-            //this.paciente = value;
-            this.form.idCirugiaProgramada = value.SecCirPro;
-            this.form.paciente = value.nombrePaciente;
-            this.form.historia_clinica = value.historiaClinica;
-            this.form.fecha = value.fechaProgramada;
-            this.form.edad = value.edad;
-            this.form.sexo = value.sexo;
-            this.form.sala = value.sala;
-            this.form.cama = value.cama;
-            //this.form.id_diagnostico = value.id_diagnostico;
-            this.cargarDiagnosticoPorCodigo(value.id_diagnostico);
-            this.form.cirujano = value.cirujano;
-            this.form.anestesiologo = value.anestesiologo;
-            this.form.quirofano = value.quirofano;
-            this.form.operacion_propuesta = value.procedimiento;
+            if (value != "") {
+                let that = this;
+                let url =
+                    "/modulos/cirugia/anestesia/validar_secCirPro/" +
+                    value.SecCirPro;
+                //var loader = that.$loading.show();
+                axios
+                    .get(url)
+                    .then(function(response) {
+                        //Obtiene los datos de Motivo Antecedentes
+                        if (response.data.secCirPro != null &&response.data.secCirPro != undefined) {
+                            that.$modal.hide("ListaCirugiaProgramadaPaciente");
+                            that.flashMessage.show({
+                                status: "warning",
+                                title: "Advertencia al Seleccionar Paciente",
+                                message:"El paciente ya cuenta con un registro anestesico.",
+                                clickable: true,
+                                time: 10000,
+                                icon: "/iconsflashMessage/warning.svg",
+                                customStyle: {
+                                    flashMessageStyle: {
+                                        background: "linear-gradient(#e66465, #9198e5)"
+                                    }
+                                }
+                            });
+                            //loader.hide();
+                        }else{
+                            that.cargarDiagnosticoPorCodigo(value);
+                        }
 
-            this.$modal.hide("ListaCirugiaProgramadaPaciente");
+                    })
+                    .catch(error => {
+                        //Errores
+                        //loader.hide();
+                        that.$swal({
+                            icon: "error",
+                            title: "Existe un error",
+                            text: error
+                        });
+                    });
+            }
         },
+        cargarDiagnosticoPorCodigo(value) {
+            if (value.id_diagnostico != "") {
+                let that = this;
+                let url =
+                    "/modulos/parametrizacion/diagnostico/cargar_diagnostico_por_codigo/" +
+                    value.id_diagnostico;
+                var loader = that.$loading.show();
+                axios
+                    .get(url)
+                    .then(function(response) {
+                        //Obtiene los datos de Motivo Antecedentes
+                        if (
+                            response.data.diagnostico != null &&
+                            response.data.diagnostico != undefined
+                        ) {
+                            //Pre
+                            that.selectedDiagnosticoPre = that.$funcionesGlobales.toCapitalFirstAllWords(
+                                response.data.diagnostico.descripcion
+                            );
+                            that.form.id_diagnostico_pre =
+                                response.data.diagnostico.codigo;
+
+                            //Post
+                            that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(
+                                response.data.diagnostico.descripcion
+                            );
+                            that.form.id_diagnostico = response.data.diagnostico.codigo;
+                            that.form.idCirugiaProgramadaTemporal = value.SecCirPro;
+                            that.form.idCirugiaProgramada = value.SecCirPro;
+                            that.form.paciente = value.nombrePaciente;
+                            that.form.historia_clinica = value.historiaClinica;
+                            that.form.fecha = value.fechaProgramada;
+                            that.form.edad = value.edad;
+                            that.form.sexo = value.sexo;
+                            that.form.sala = value.sala;
+                            that.form.cama = value.cama;
+                            that.form.cirujano = value.cirujano;
+                            that.form.anestesiologo = value.anestesiologo;
+                            that.form.quirofano = value.quirofano;
+                            that.form.operacion_propuesta = value.procedimiento;
+                            that.$modal.hide("ListaCirugiaProgramadaPaciente");
+                        }
+                        loader.hide();
+                    })
+                    .catch(error => {
+                        //Errores
+                        loader.hide();
+                        that.$swal({
+                            icon: "error",
+                            title: "Existe un error",
+                            text: error
+                        });
+                    });
+            }
+        },
+        /* validarSecCirPro(secCirPro) {
+            if (secCirPro != "") {
+                let that = this;
+                let url =
+                    "/modulos/cirugia/anestesia/validar_secCirPro/" +
+                    secCirPro;
+                //var loader = that.$loading.show();
+                axios
+                    .get(url)
+                    .then(function(response) {
+                        //Obtiene los datos de Motivo Antecedentes
+                        if (
+                            response.data.secCirPro != null &&
+                            response.data.secCirPro != undefined
+                        ) {
+                            that.flashMessage.show({
+                                status: "warning",
+                                title: "Advertencia al Procesar",
+                                message:"El paciente ya cuenta con un registro anestesico.",
+                                clickable: true,
+                                time: 0,
+                                icon: "/iconsflashMessage/warning.svg",
+                                customStyle: {
+                                    flashMessageStyle: {
+                                        background: "linear-gradient(#e66465, #9198e5)"
+                                    }
+                                }
+                            });
+                            //loader.hide();
+                            return;
+                        }
+
+                    })
+                    .catch(error => {
+                        //Errores
+                        //loader.hide();
+                        that.$swal({
+                            icon: "error",
+                            title: "Existe un error",
+                            text: error
+                        });
+                    });
+            }
+        }, */
         /* Fin para llamar al Modal y la Tabla */
         guardarCabecera(registro_anestesia_id) {
             let that = this;
@@ -1297,9 +1382,9 @@ export default {
             axios
                 .post(url, this.form)
                 .then(function(response) {
-                    that.flashMessage.show({
+                    /* that.flashMessage.show({
                         status: "success",
-                        title: "Éxito al procesar guardarCabecera",
+                        title: "Éxito al procesar",
                         message: "Datos guardados correctamente.",
                         clickable: true,
                         time: 5000,
@@ -1309,7 +1394,7 @@ export default {
                                 background: "linear-gradient(#e66465, #9198e5)"
                             }
                         }
-                    });
+                    }); */
                     loader.hide();
                 })
                 .catch(error => {
@@ -1400,7 +1485,7 @@ export default {
             if (this.respuestaImprimir) {
                 window.open(
                     "/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" +
-                        this.form.idCirugiaProgramada
+                        this.form.idCirugiaProgramadaTemporal
                 );
             }
         }
