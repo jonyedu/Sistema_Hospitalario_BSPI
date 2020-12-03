@@ -5557,12 +5557,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return validarCampo;
       }
 
-      if (this.valoresFormulario.valor_pulso.valor == undefined || this.valoresFormulario.valor_pulso.valor == 0) {
+      if (this.valoresFormulario.respiracion.descripcion == undefined) {
         validarCampo = true;
         this.flashMessage.show({
           status: "warning",
           title: "Advertencia Campos Vacios",
-          message: "El campo PULSO, necesita una valor.",
+          message: "El campo RESPIRACIÓN, necesita ser marcado.",
           clickable: true,
           time: 5000,
           icon: "/iconsflashMessage/warning.svg",
@@ -5573,26 +5573,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         });
         return validarCampo;
-      }
-
-      if (this.chk.respiracion) {
-        if (this.valoresFormulario.respiracion.valor == undefined || this.valoresFormulario.respiracion.valor == 0) {
-          validarCampo = true;
-          this.flashMessage.show({
-            status: "warning",
-            title: "Advertencia Campos Vacios",
-            message: "El campo RESPIRACIÓN, necesita ser marcado.",
-            clickable: true,
-            time: 5000,
-            icon: "/iconsflashMessage/warning.svg",
-            customStyle: {
-              flashMessageStyle: {
-                background: "linear-gradient(#e66465, #9198e5)"
-              }
-            }
-          });
-          return validarCampo;
-        }
       }
 
       if (this.chk.temperatura) {
@@ -5675,7 +5655,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
 
-      if (this.valoresFormulario.posicion.descripcion == "") {
+      if (this.valoresFormulario.posicion.descripcion == undefined) {
         validarCampo = true;
         this.flashMessage.show({
           status: "warning",
