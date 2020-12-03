@@ -4,14 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<<<<<<< HEAD
         <title>Sistema Integrado - B.S.P.I</title>
-=======
-        <title>{{ config('app.name', 'BSPI') }}</title>
-
-        <!-- Icono de la Pestaña -->
-        <link rel="shortcut icon" href="{{ asset('img/icono.png') }}">
->>>>>>> 9aeac814e27ab7e498fca0df4577eeb5415e4cc8
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -46,12 +39,12 @@
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                     
+
                     <img src=" {{url('logosbspipng/Logo BSPI (PNG).png')}} " borde="0" width="380px" height="200px" />
- 
-                    
+
+
                 </div>
-                
+
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">
@@ -65,8 +58,8 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Modulo que se encarga de la atencion hospitalaria, en la cual se podra observar la informacion del paciente asi como el proceso 
-                                    de atencion dentro de la institución 
+                                    Modulo que se encarga de la atencion hospitalaria, en la cual se podra observar la informacion del paciente asi como el proceso
+                                    de atencion dentro de la institución
                                     <br>
                                     <b>
                                         El usuario deber iniciar session
@@ -78,15 +71,15 @@
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
                             <div class="flex items-center">
                                 <img src=" {{url('logosbspipng/calculos.png')}} " borde="0" width="50px" height="50px" />
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a  
+                                <div class="ml-4 text-lg leading-7 font-semibold"><a
                                     class="underline text-gray-900 dark:text-white">Sistema ERP Contable</a></div>
                             </div>
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    
+
                                     Modulo Contable ERP, gestiona todas las trasacciones dentro del hospital, en la cual podemos verificar
-                                    rubros y costos pendientes dentro del BSPI 
+                                    rubros y costos pendientes dentro del BSPI
                                     <br>
                                     <b>
                                         El usuario deber iniciar session
@@ -98,14 +91,14 @@
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700">
                             <div class="flex items-center">
                                 <img src=" {{url('logosbspipng/trabajo-en-equipo.png')}} " borde="0" width="50px" height="50px" />
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a  
+                                <div class="ml-4 text-lg leading-7 font-semibold"><a
                                      class="underline text-gray-900 dark:text-white">Sistema de Nomina</a></div>
                             </div>
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                     Manejan los tiempos de empleados y de procesos.
-                                    Con el software de nómina puedes registrar el horario y el 
+                                    Con el software de nómina puedes registrar el horario y el
                                     tiempo laborado por tus empleados.
                                     <br>
                                     <b>
@@ -124,7 +117,7 @@
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                     La Inteligencia de Negocio (BI) es un término genérico que incluye las aplicaciones,
-                                     la infraestructura y las herramientas, y las mejores prácticas que permiten el acceso 
+                                     la infraestructura y las herramientas, y las mejores prácticas que permiten el acceso
                                     y el análisis de la información para mejorar y optimizar las decisiones y rendimiento.
                                     <br>
                                     <b>
