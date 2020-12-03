@@ -254,14 +254,14 @@
                     </div>
                 </div>
                 <!-- Boton Agregar -->
-                <!-- <div class="flex felx-center mt-2 mb-2" style="margin: 0 auto">
+                <div class="flex felx-center mt-2 mb-2" style="margin: 0 auto">
                     <button
                         class="btn btn-primary"
                         v-on:click="obtenerDatosFormulario"
                     >
                         Agregar
                     </button>
-                </div> -->
+                </div>
             </div>
 
             <div v-if="iniciado">
@@ -1979,6 +1979,7 @@ export default {
             validarImgFirma: 0,
             isFirstPaintable: "firmaAnestesiologo",
             rutaSello: "/img/selloFirma.png",
+            validarFinProceso: "",
             validarImprimir: 0,
             selectedTipoPosiciones: "",
             tipoPosiciones: "",
@@ -2205,7 +2206,7 @@ export default {
                 },
                 respiracion: {
                     habilitado: true,
-                    descripcion: "ESP",
+                    descripcion: "",
                     ruta_img: "",
                     valor: 0
                 },
@@ -2298,7 +2299,7 @@ export default {
                         // Si la hora se ha completado, se agrega otro objeto de horas al
                         //arreglo de datos
                         this.agregarHora();
-                        this.lista_horas_avanzadas_v = [];
+                        //this.lista_horas_avanzadas_v = [];
                         this.agregarHorasInicial();
 
                         //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
@@ -2454,9 +2455,7 @@ export default {
                 fila_indice != 0 ? fila_indice : this.obtenerIndice(valor);
 
             // Verifica el índice según la hora
-            for (const column_quince of this.lista_horas_avanzadas_v[
-                this.indice_hora
-            ].datos[indice_fila + this.index_points].columnasQuinceMin) {
+            for (const column_quince of this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin) {
                 // Recorre cada fila
                 // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
                 if (column_quince.columnas) {
@@ -2924,10 +2923,10 @@ export default {
                     //loader.hide();
                 });
         },
-        getIdAgente(id) {
+        /* getIdAgente(id) {
             let url = "/modulos/cirugia/anestesia/consultar_id_agente/" + id;
             axios.get(url);
-        },
+        }, */
         /**
          * Inicio de la recolección de datos
          */
@@ -3398,8 +3397,10 @@ export default {
                         that.form.registro_anestesia_id
                     );
                     that.validarImprimir = 1;
+                    that.validarFinProceso = "";
                     that.resConfirmarCancelar = false;
                     that.$emit("RespuestaImprimir", that.validarImprimir);
+                    that.$emit("RespuestaFinProceso", that.validarFinProceso);
                     that.iniciado = false;
                     loader.hide();
                 })
@@ -3456,11 +3457,194 @@ export default {
          *
          */
 
+        validarCampoAgente(){
+            var validarCampo = false;
+            if(this.valoresFormulario.ta_max.valor == undefined || this.valoresFormulario.ta_max.valor == 0){
+                validarCampo = true;
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia Campos Vacios",
+                    message: "El campo TA MAX, necesita una valor.",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background: "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return validarCampo;
+            }
+            if(this.valoresFormulario.ta_min.valor == undefined || this.valoresFormulario.ta_min.valor == 0){
+                validarCampo = true;
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia Campos Vacios",
+                    message: "El campo TA MIN, necesita una valor.",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background: "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return validarCampo;
+            }
+            if(this.valoresFormulario.valor_pulso.valor == undefined || this.valoresFormulario.valor_pulso.valor == 0){
+                validarCampo = true;
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia Campos Vacios",
+                    message: "El campo PULSO, necesita una valor.",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background: "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return validarCampo;
+            }
+            if(this.valoresFormulario.valor_pulso.valor == undefined || this.valoresFormulario.valor_pulso.valor == 0){
+                validarCampo = true;
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia Campos Vacios",
+                    message: "El campo PULSO, necesita una valor.",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background: "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return validarCampo;
+            }
+            if(this.chk.respiracion){
+                if(this.valoresFormulario.respiracion.valor == undefined || this.valoresFormulario.respiracion.valor == 0){
+                    validarCampo = true;
+                    this.flashMessage.show({
+                        status: "warning",
+                        title: "Advertencia Campos Vacios",
+                        message: "El campo RESPIRACIÓN, necesita ser marcado.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/warning.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    return validarCampo;
+                }
+            }
+            if(this.chk.temperatura){
+                if(this.valoresFormulario.temperatura.valor == undefined || this.valoresFormulario.temperatura.valor == 0){
+                    validarCampo = true;
+                    this.flashMessage.show({
+                        status: "warning",
+                        title: "Advertencia Campos Vacios",
+                        message: "El campo TEMPERATURA, necesita un valor.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/warning.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    return validarCampo;
+                }
+            }
+            if(this.chk.feto){
+                if(this.valoresFormulario.feto.valor == undefined || this.valoresFormulario.feto.valor == 0){
+                    validarCampo = true;
+                    this.flashMessage.show({
+                        status: "warning",
+                        title: "Advertencia Campos Vacios",
+                        message: "El campo FETO, necesita un valor.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/warning.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    return validarCampo;
+                }
+            }
+            if(this.chk.pares_venosa){
+                if(this.valoresFormulario.pares_venosa.valor == undefined || this.valoresFormulario.pares_venosa.valor == 0){
+                    validarCampo = true;
+                    this.flashMessage.show({
+                        status: "warning",
+                        title: "Advertencia Campos Vacios",
+                        message: "El campo PARES VENOSA, necesita un valor.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/warning.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    return validarCampo;
+                }
+            }
+            if(this.chk.torniquete){
+                if(this.valoresFormulario.torniquete.valor == undefined || this.valoresFormulario.torniquete.valor == 0){
+                    validarCampo = true;
+                    this.flashMessage.show({
+                        status: "warning",
+                        title: "Advertencia Campos Vacios",
+                        message: "El campo TORNIQUETE, necesita un valor.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/warning.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    return validarCampo;
+                }
+            }
+            if(this.valoresFormulario.posicion.descripcion == ""){
+                validarCampo = true;
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia Campos Vacios",
+                    message: "El campo POSICIÓN, necesita ser seleccionado.",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background: "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return validarCampo;
+            }
+
+        },
         obtenerDatosFormulario: function() {
             if (!this.iniciado) return;
-            // img/icons/'+this.valoresFormulario.descripcion.toLowerCase()+'.png
-            if (this.valoresFormulario.posicion.id == 0) {
-                this.flashMessage.show({
+            if (this.validarCampoAgente()) {
+                /* this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia Campos Vacios",
                     message: "Complete los campos de agente por favor.",
@@ -3472,7 +3656,7 @@ export default {
                             background: "linear-gradient(#e66465, #9198e5)"
                         }
                     }
-                });
+                }); */
                 return;
             }
             //console.log(this.valoresFormulario);

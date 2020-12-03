@@ -4052,6 +4052,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       validarImgFirma: 0,
       isFirstPaintable: "firmaAnestesiologo",
       rutaSello: "/img/selloFirma.png",
+      validarFinProceso: "",
       validarImprimir: 0,
       selectedTipoPosiciones: "",
       tipoPosiciones: "",
@@ -4250,7 +4251,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         },
         respiracion: {
           habilitado: true,
-          descripcion: "ESP",
+          descripcion: "",
           ruta_img: "",
           valor: 0
         },
@@ -4350,9 +4351,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             _this.indice_hora += 1; // Si la hora se ha completado, se agrega otro objeto de horas al
             //arreglo de datos
 
-            _this.agregarHora();
+            _this.agregarHora(); //this.lista_horas_avanzadas_v = [];
 
-            _this.lista_horas_avanzadas_v = [];
 
             _this.agregarHorasInicial(); //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
 
@@ -4954,10 +4954,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }); //loader.hide();
       });
     },
-    getIdAgente: function getIdAgente(id) {
-      var url = "/modulos/cirugia/anestesia/consultar_id_agente/" + id;
-      axios.get(url);
-    },
+
+    /* getIdAgente(id) {
+        let url = "/modulos/cirugia/anestesia/consultar_id_agente/" + id;
+        axios.get(url);
+    }, */
 
     /**
      * Inicio de la recolección de datos
@@ -5444,8 +5445,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
         that.$emit("guardarCabecera", that.form.registro_anestesia_id);
         that.validarImprimir = 1;
+        that.validarFinProceso = "";
         that.resConfirmarCancelar = false;
         that.$emit("RespuestaImprimir", that.validarImprimir);
+        that.$emit("RespuestaFinProceso", that.validarFinProceso);
         that.iniciado = false;
         loader.hide();
       })["catch"](function (error) {
@@ -5497,18 +5500,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     /**
      *
      */
-    obtenerDatosFormulario: function obtenerDatosFormulario() {
-      var _this7 = this;
+    validarCampoAgente: function validarCampoAgente() {
+      var validarCampo = false;
 
-      if (!this.iniciado) return; // img/icons/'+this.valoresFormulario.descripcion.toLowerCase()+'.png
-
-      if (this.valoresFormulario.posicion.id == 0) {
+      if (this.valoresFormulario.ta_max.valor == undefined || this.valoresFormulario.ta_max.valor == 0) {
+        validarCampo = true;
         this.flashMessage.show({
           status: "warning",
           title: "Advertencia Campos Vacios",
-          message: "Complete los campos de agente por favor.",
+          message: "El campo TA MAX, necesita una valor.",
           clickable: true,
-          time: 0,
+          time: 5000,
           icon: "/iconsflashMessage/warning.svg",
           customStyle: {
             flashMessageStyle: {
@@ -5516,6 +5518,200 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
           }
         });
+        return validarCampo;
+      }
+
+      if (this.valoresFormulario.ta_min.valor == undefined || this.valoresFormulario.ta_min.valor == 0) {
+        validarCampo = true;
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia Campos Vacios",
+          message: "El campo TA MIN, necesita una valor.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return validarCampo;
+      }
+
+      if (this.valoresFormulario.valor_pulso.valor == undefined || this.valoresFormulario.valor_pulso.valor == 0) {
+        validarCampo = true;
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia Campos Vacios",
+          message: "El campo PULSO, necesita una valor.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return validarCampo;
+      }
+
+      if (this.valoresFormulario.valor_pulso.valor == undefined || this.valoresFormulario.valor_pulso.valor == 0) {
+        validarCampo = true;
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia Campos Vacios",
+          message: "El campo PULSO, necesita una valor.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return validarCampo;
+      }
+
+      if (this.chk.respiracion) {
+        if (this.valoresFormulario.respiracion.valor == undefined || this.valoresFormulario.respiracion.valor == 0) {
+          validarCampo = true;
+          this.flashMessage.show({
+            status: "warning",
+            title: "Advertencia Campos Vacios",
+            message: "El campo RESPIRACIÓN, necesita ser marcado.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/warning.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          return validarCampo;
+        }
+      }
+
+      if (this.chk.temperatura) {
+        if (this.valoresFormulario.temperatura.valor == undefined || this.valoresFormulario.temperatura.valor == 0) {
+          validarCampo = true;
+          this.flashMessage.show({
+            status: "warning",
+            title: "Advertencia Campos Vacios",
+            message: "El campo TEMPERATURA, necesita un valor.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/warning.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          return validarCampo;
+        }
+      }
+
+      if (this.chk.feto) {
+        if (this.valoresFormulario.feto.valor == undefined || this.valoresFormulario.feto.valor == 0) {
+          validarCampo = true;
+          this.flashMessage.show({
+            status: "warning",
+            title: "Advertencia Campos Vacios",
+            message: "El campo FETO, necesita un valor.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/warning.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          return validarCampo;
+        }
+      }
+
+      if (this.chk.pares_venosa) {
+        if (this.valoresFormulario.pares_venosa.valor == undefined || this.valoresFormulario.pares_venosa.valor == 0) {
+          validarCampo = true;
+          this.flashMessage.show({
+            status: "warning",
+            title: "Advertencia Campos Vacios",
+            message: "El campo PARES VENOSA, necesita un valor.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/warning.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          return validarCampo;
+        }
+      }
+
+      if (this.chk.torniquete) {
+        if (this.valoresFormulario.torniquete.valor == undefined || this.valoresFormulario.torniquete.valor == 0) {
+          validarCampo = true;
+          this.flashMessage.show({
+            status: "warning",
+            title: "Advertencia Campos Vacios",
+            message: "El campo TORNIQUETE, necesita un valor.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/warning.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          return validarCampo;
+        }
+      }
+
+      if (this.valoresFormulario.posicion.descripcion == "") {
+        validarCampo = true;
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia Campos Vacios",
+          message: "El campo POSICIÓN, necesita ser seleccionado.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return validarCampo;
+      }
+    },
+    obtenerDatosFormulario: function obtenerDatosFormulario() {
+      var _this7 = this;
+
+      if (!this.iniciado) return;
+
+      if (this.validarCampoAgente()) {
+        /* this.flashMessage.show({
+            status: "warning",
+            title: "Advertencia Campos Vacios",
+            message: "Complete los campos de agente por favor.",
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/warning.svg",
+            customStyle: {
+                flashMessageStyle: {
+                    background: "linear-gradient(#e66465, #9198e5)"
+                }
+            }
+        }); */
         return;
       } //console.log(this.valoresFormulario);
 
@@ -6523,6 +6719,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -6557,6 +6756,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaImprimir: 0,
       form: {
         idCirugiaProgramada: "",
+        idCirugiaProgramadaTemporal: "",
         registro_anestesia_id: 0,
 
         /* Datos del paciente */
@@ -7013,6 +7213,7 @@ __webpack_require__.r(__webpack_exports__);
 
             that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
             that.form.id_diagnostico = response.data.diagnostico.codigo;
+            that.form.idCirugiaProgramadaTemporal = value.SecCirPro;
             that.form.idCirugiaProgramada = value.SecCirPro;
             that.form.paciente = value.nombrePaciente;
             that.form.historia_clinica = value.historiaClinica;
@@ -7202,7 +7403,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
       if (this.respuestaImprimir) {
-        window.open("/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" + this.form.idCirugiaProgramada);
+        window.open("/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" + this.form.idCirugiaProgramadaTemporal);
       }
     }
   }
@@ -59031,7 +59232,25 @@ var render = function() {
                   }),
                   0
                 )
-              ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "flex felx-center mt-2 mb-2",
+                  staticStyle: { margin: "0 auto" }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      on: { click: _vm.obtenerDatosFormulario }
+                    },
+                    [_vm._v("\n                    Agregar\n                ")]
+                  )
+                ]
+              )
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -65281,6 +65500,9 @@ var render = function() {
                                 guardarCabecera: _vm.guardarCabecera,
                                 RespuestaImprimir: function($event) {
                                   _vm.respuestaImprimir = $event
+                                },
+                                RespuestaFinProceso: function($event) {
+                                  _vm.form.idCirugiaProgramada = $event
                                 }
                               }
                             })

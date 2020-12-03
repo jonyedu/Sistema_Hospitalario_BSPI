@@ -109,18 +109,27 @@ class RegistroAnestesiaController extends Controller
                 [
                     'SecCirPro' => $request->input('cirugia_id'),
                     'usu_created_update' => $user->id,
-                    'status' => 1,
+                    'pcip' => $_SERVER["REMOTE_ADDR"],
+                    'status' => '1'
                 ]
             );
         } else {
+            $registroAnestesico = RegistroAnestesia::create(
+                [
+                    'SecCirPro' => $request->input('cirugia_id'),
+                    'usu_created_update' => $user->id,
+                    'pcip' => $_SERVER["REMOTE_ADDR"],
+                    'status' => '1'
+                ]
+            );
         }
-        $registroAnestesico = RegistroAnestesia::create(
+        /* $registroAnestesico = RegistroAnestesia::create(
             [
                 'SecCirPro' => $request->input('cirugia_id'),
                 'usu_created_update' => $user->id,
                 'status' => 1,
             ]
-        );
+        ); */
         return response()->json(
             ['id' => $registroAnestesico->id],
             200

@@ -695,6 +695,9 @@
                                     @RespuestaImprimir="
                                         respuestaImprimir = $event
                                     "
+                                    @RespuestaFinProceso="
+                                        form.idCirugiaProgramada = $event
+                                    "
                                     :id-sec-cir-pro="form.idCirugiaProgramada"
                                 ></registro-anestesico>
                             </template>
@@ -766,6 +769,7 @@ export default {
             respuestaImprimir: 0,
             form: {
                 idCirugiaProgramada: "",
+                idCirugiaProgramadaTemporal: "",
                 registro_anestesia_id: 0,
                 /* Datos del paciente */
                 paciente: "",
@@ -1295,6 +1299,7 @@ export default {
                                 response.data.diagnostico.descripcion
                             );
                             that.form.id_diagnostico = response.data.diagnostico.codigo;
+                            that.form.idCirugiaProgramadaTemporal = value.SecCirPro;
                             that.form.idCirugiaProgramada = value.SecCirPro;
                             that.form.paciente = value.nombrePaciente;
                             that.form.historia_clinica = value.historiaClinica;
@@ -1480,7 +1485,7 @@ export default {
             if (this.respuestaImprimir) {
                 window.open(
                     "/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" +
-                        this.form.idCirugiaProgramada
+                        this.form.idCirugiaProgramadaTemporal
                 );
             }
         }
