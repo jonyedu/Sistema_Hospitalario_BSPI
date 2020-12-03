@@ -57,6 +57,8 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::post('registrar', 'DatosAgentesController@guardarDatosAgentes');
         //Route::post('registro_tipo_agente/post', 'TipoAgenteAnestesiaController@store');
 
+        Route::get('validar_secCirPro/{secCirPro}', 'RegistroAnestesiaController@validarSecCirPro');
+        Route::get('consultar_id_agente/{id}', 'DatosAgentesController@consultarIdAgente');
         Route::get('cargar_tipo_posiciones_combo_box', 'AgenteAnestesiaController@cargarAgenteTipoPosicionComboBox');
         Route::post('guardar_datos_registro', 'DatosRegistroController@guardarDatosRegistro');
         Route::post('guardar_droga_administrada', 'DrogasAdministradasController@guardarDrogaAdministradas');
@@ -78,7 +80,7 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::post('guardar_tipo_agente', 'TipoAgenteController@guardarTipoAgente');
         Route::delete('eliminar_tipo_agente/{id}', 'TipoAgenteController@eliminarTipoAgente');
     });
- 
+
     /* SubModulo Tipo Posiciones */
     Route::namespace('Modulos\Cirugia\TipoPosiciones')->prefix('tipo_posiciones')->group(function () {
         Route::get('cargar_tipo_posiciones_table', 'TipoPosicionesController@cargarTipoPosicionesTabla');

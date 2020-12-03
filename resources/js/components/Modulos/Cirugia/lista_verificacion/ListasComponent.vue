@@ -48,7 +48,7 @@
                                                             llamarMetodoImprimir()
                                                         "
                                                         v-bind:style="{ display: isHidden}"
-                                                        
+
                                                     >
                                                         Imprimir
                                                     </button>
@@ -60,900 +60,934 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div
-                                        class="col-lg-12 col-md-12 col-sm-12 text-left"
-                                    >
-                                      
-                                       <form
-                                                @submit.prevent="guardarLista"
-                                                method="POST"
+                    <div
+                        class="col-lg-12 col-md-12 col-sm-12"
+                        v-if="listas.frm_idCirugiaProgramada != ''"
+                    >
+                        <div
+                            class="col-lg-12 col-md-12 col-sm-12"
+                            v-if="form.frm_idCirugiaProgramada != ''"
+                        >
+                            <div
+                                class="card card-default collapsed-card"
+                            >
+                                <div class="card-header" style="background: #590303">
+                                    <h3 class="card-title" style="color: #FFFFFF">
+                                        DATOS DEL PACIENTE
+                                    </h3>
+
+                                    <div class="card-tools">
+                                        <button
+                                            type="button"
+                                            class="btn btn-tool"
+                                            data-card-widget="collapse"
+                                        >
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            class="btn btn-tool"
+                                            data-card-widget="remove"
+                                        >
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body" style="display: none;">
+                                    <div class="row">
+                                        <!-- DATOS DEL PACIENTE -->
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div
+                                                class="text-left col-lg-12 col-md-12 col-sm-12"
                                             >
-                                                <div
-                                                    class="col-lg-12 col-md-12 col-sm-12"
-                                                >
-                                                    <div
-                                                        class="text-left col-lg-12 col-md-12 col-sm-12"
-                                                    >
+                                                    <div class="row">
+                                                        <input
+                                                            type="hidden"
+                                                            id="SecCirPro"
+                                                            name="SecCirPro"
+                                                            v-model="
+                                                                listas.frm_idCirugiaProgramada
+                                                            "
+                                                        />
                                                         <div
-                                                            class="alert alert-success alert-dismissible fade show"
-                                                            role="alert"
+                                                            class="col-sm-6 text-left"
+                                                        >
+                                                            <label
+                                                                class="col-form-label"
+                                                                >Paciente:</label
+                                                            >
+                                                            <span
+                                                                class="text-left"
+                                                                v-text="
+                                                                    form.frm_paciente
+                                                                "
+                                                            ></span>
+                                                        </div>
+                                                        <div
+                                                            class="col-sm-6 text-left"
+                                                        >
+                                                            <label
+                                                                class="col-form-label"
+                                                                >Cirujano:</label
+                                                            >
+                                                            <span
+                                                                class="text-left"
+                                                                v-text="
+                                                                    form.frm_cirujano
+                                                                "
+                                                            ></span>
+                                                        </div>
+                                                        <div
+                                                            class="col-sm-6 text-left"
+                                                        >
+                                                            <label
+                                                                class="col-form-label"
+                                                                >Anestesiologo:</label
+                                                            >
+                                                            <span
+                                                                class="text-left"
+                                                                v-text="
+                                                                    form.frm_anestesiologo
+                                                                "
+                                                            ></span>
+                                                        </div>
+                                                        <div
+                                                            class="col-sm-6 text-left"
+                                                        >
+                                                            <label
+                                                                class="col-form-label"
+                                                                >Quirófano:</label
+                                                            >
+                                                            <span
+                                                                class="text-left"
+                                                                v-text="
+                                                                    form.frm_quirofano
+                                                                "
+                                                            ></span>
+                                                        </div>
+                                                        <div
+                                                            class="col-sm-12 text-left"
+                                                        >
+                                                            <label
+                                                                class="col-form-label"
+                                                                >Procedimiento:</label
+                                                            >
+                                                            <span
+                                                                class="text-left"
+                                                                v-text="
+                                                                    form.frm_procedimiento
+                                                                "
+                                                            ></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <button
+                                                        type="button"
+                                                        class="close"
+                                                        data-dismiss="alert"
+                                                        aria-label="Close"
+                                                    >
+                                                        <span aria-hidden="true"
+                                                            >&times;</span
+                                                        >
+                                                    </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div
+                                            class="col-lg-12 col-md-12 col-sm-12 text-left"
+                                        >
+
+                                        <form
+                                                    @submit.prevent="guardarLista"
+                                                    method="POST"
+                                                >
+                                                <!-- {{-- antes de la induccion --}} -->
+                                                    <div
+                                                        class="card card-default collapsed-card"
+                                                    >
+                                                        <div class="card-header" style="background: #590303">
+                                                            <h3 class="card-title" style="color: #FFFFFF">
+                                                                ANTES DE LA
+                                                                INDUCCIÓN DE LA
+                                                                ANESTESIA (ENTRADA)
+                                                            </h3>
+
+                                                            <div class="card-tools">
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn btn-tool"
+                                                                    data-card-widget="collapse"
+                                                                >
+                                                                    <i
+                                                                        class="fas fa-plus"
+                                                                    ></i>
+                                                                </button>
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn btn-tool"
+                                                                    data-card-widget="remove"
+                                                                >
+                                                                    <i
+                                                                        class="fas fa-times"
+                                                                    ></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.card-header -->
+                                                        <div
+                                                            class="card-body"
+                                                            style="display: none;"
                                                         >
                                                             <div class="row">
-                                                                <input
-                                                                    type="hidden"
-                                                                    id="SecCirPro"
-                                                                    name="SecCirPro"
-                                                                    v-model="
-                                                                        listas.frm_idCirugiaProgramada
-                                                                    "
-                                                                />
                                                                 <div
-                                                                    class="col-sm-6 text-left"
+                                                                    class="col-md-6"
                                                                 >
-                                                                    <label
-                                                                        class="col-form-label"
-                                                                        >Paciente:</label
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
                                                                     >
-                                                                    <span
-                                                                        class="text-left"
-                                                                        v-text="
-                                                                            form.frm_paciente
-                                                                        "
-                                                                    ></span>
-                                                                </div>
-                                                                <div
-                                                                    class="col-sm-6 text-left"
-                                                                >
-                                                                    <label
-                                                                        class="col-form-label"
-                                                                        >Cirujano:</label
-                                                                    >
-                                                                    <span
-                                                                        class="text-left"
-                                                                        v-text="
-                                                                            form.frm_cirujano
-                                                                        "
-                                                                    ></span>
-                                                                </div>
-                                                                <div
-                                                                    class="col-sm-6 text-left"
-                                                                >
-                                                                    <label
-                                                                        class="col-form-label"
-                                                                        >Anestesiologo:</label
-                                                                    >
-                                                                    <span
-                                                                        class="text-left"
-                                                                        v-text="
-                                                                            form.frm_anestesiologo
-                                                                        "
-                                                                    ></span>
-                                                                </div>
-                                                                <div
-                                                                    class="col-sm-6 text-left"
-                                                                >
-                                                                    <label
-                                                                        class="col-form-label"
-                                                                        >Quirófano:</label
-                                                                    >
-                                                                    <span
-                                                                        class="text-left"
-                                                                        v-text="
-                                                                            form.frm_quirofano
-                                                                        "
-                                                                    ></span>
-                                                                </div>
-                                                                <div
-                                                                    class="col-sm-12 text-left"
-                                                                >
-                                                                    <label
-                                                                        class="col-form-label"
-                                                                        >Procedimiento:</label
-                                                                    >
-                                                                    <span
-                                                                        class="text-left"
-                                                                        v-text="
-                                                                            form.frm_procedimiento
-                                                                        "
-                                                                    ></span>
-                                                                </div>
-                                                            </div>
-
-                                                            <button
-                                                                type="button"
-                                                                class="close"
-                                                                data-dismiss="alert"
-                                                                aria-label="Close"
-                                                            >
-                                                                <span
-                                                                    aria-hidden="true"
-                                                                    >&times;</span
-                                                                >
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- {{-- antes de la induccion --}} -->
-                                                <div
-                                                    class="card card-default collapsed-card card-warning"
-                                                >
-                                                    <div class="card-header">
-                                                        <h3 class="card-title">
-                                                            Antes de la
-                                                            Inducción de la
-                                                            anestesia (Entrada)
-                                                        </h3>
-
-                                                        <div class="card-tools">
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-tool"
-                                                                data-card-widget="collapse"
-                                                            >
-                                                                <i
-                                                                    class="fas fa-plus"
-                                                                ></i>
-                                                            </button>
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-tool"
-                                                                data-card-widget="remove"
-                                                            >
-                                                                <i
-                                                                    class="fas fa-times"
-                                                                ></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.card-header -->
-                                                    <div
-                                                        class="card-body"
-                                                        style="display: none;"
-                                                    >
-                                                        <div class="row">
-                                                            <div
-                                                                class="col-md-6"
-                                                            >
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chkentrada01"
-                                                                        id="chkentrada01"
-                                                                        v-model="
-                                                                            listas.chkentrada01
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chkentrada01"
-                                                                        class="custom-control-label"
-                                                                        >EL
-                                                                        PACIENTE
-                                                                        HA
-                                                                        CONFIRMADO</label
-                                                                    >
-                                                                    <ul>
-                                                                        <li>
-                                                                            Su
-                                                                            Identidad
-                                                                        </li>
-                                                                        <li>
-                                                                            El
-                                                                            Sitio
-                                                                            Quirurgico
-                                                                        </li>
-                                                                        <li>
-                                                                            El
-                                                                            Procedimiento
-                                                                        </li>
-                                                                        <li>
-                                                                            Su
-                                                                            Consentimiento
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chkentrada02"
-                                                                        id="chkentrada02"
-                                                                        v-model="
-                                                                            listas.chkentrada02
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chkentrada02"
-                                                                        class="custom-control-label"
-                                                                        >DEMARCACION
-                                                                        DEL
-                                                                        SITIO/NO
-                                                                        PROCEDE</label
-                                                                    >
-                                                                </div>
-
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chkentrada03"
-                                                                        id="chkentrada03"
-                                                                        v-model="
-                                                                            listas.chkentrada03
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chkentrada03"
-                                                                        class="custom-control-label"
-                                                                        >SE HA
-                                                                        COMPLEMENTADO
-                                                                        EL
-                                                                        CONTROL
-                                                                        DE LA
-                                                                        SEGURIDAD
-                                                                        DE LA
-                                                                        ANESTESIA</label
-                                                                    >
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="col-md-6"
-                                                            >
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chkentrada04"
-                                                                        id="chkentrada04"
-                                                                        v-model="
-                                                                            listas.chkentrada04
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chkentrada04"
-                                                                        class="custom-control-label"
-                                                                        >PULSIOXIMETRO
-                                                                        COLOCADO
-                                                                        Y EN
-                                                                        FUNCIONAMIENTO</label
-                                                                    >
-                                                                </div>
-
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        id="chkentrada05"
-                                                                        name="chkentrada05"
-                                                                        v-model="
-                                                                            listas.chkentrada05
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chkentrada05"
-                                                                        class="custom-control-label"
-                                                                        >TIENE
-                                                                        EL
-                                                                        PACIENTE:
-                                                                        ALERGIAS
-                                                                        CONOCIDAD?</label
-                                                                    >
-                                                                </div>
-
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chkentrada06"
-                                                                        id="chkentrada06"
-                                                                        v-model="
-                                                                            listas.chkentrada06
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chkentrada06"
-                                                                        class="custom-control-label"
-                                                                        >VIA
-                                                                        AÉREA
-                                                                        DIFICIL/RIESGO
-                                                                        DE
-                                                                        ASPIRACION
-                                                                    </label>
-                                                                    <ul>
-                                                                        <li>
-                                                                            SI
-                                                                            HAY
-                                                                            INSTRUMENTAL
-                                                                            Y
-                                                                            EQUIPOS/AYUDA
-                                                                            DISPONIBLE
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chkentrada07"
-                                                                        id="chkentrada07"
-                                                                        v-model="
-                                                                            listas.chkentrada07
-                                                                        "
-                                                                    />
-
-                                                                    <label
-                                                                        for="chkentrada07"
-                                                                        class="custom-control-label"
-                                                                        >RIESGO
-                                                                        DE
-                                                                        HEMORRAGIA
-                                                                        > 500 ML
-                                                                        (7ML VKG
-                                                                        EN
-                                                                        NIÑOS)?</label
-                                                                    >
-                                                                    <ul>
-                                                                        <li>
-                                                                            SI,
-                                                                            Y SE
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chkentrada01"
+                                                                            id="chkentrada01"
+                                                                            v-model="
+                                                                                listas.chkentrada01
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chkentrada01"
+                                                                            class="custom-control-label"
+                                                                            >EL
+                                                                            PACIENTE
                                                                             HA
-                                                                            PREVISTO
-                                                                            LA
-                                                                            DISPONIBILIDAD
+                                                                            CONFIRMADO</label
+                                                                        >
+                                                                        <ul>
+                                                                            <li>
+                                                                                Su
+                                                                                Identidad
+                                                                            </li>
+                                                                            <li>
+                                                                                El
+                                                                                Sitio
+                                                                                Quirurgico
+                                                                            </li>
+                                                                            <li>
+                                                                                El
+                                                                                Procedimiento
+                                                                            </li>
+                                                                            <li>
+                                                                                Su
+                                                                                Consentimiento
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
+                                                                    >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chkentrada02"
+                                                                            id="chkentrada02"
+                                                                            v-model="
+                                                                                listas.chkentrada02
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chkentrada02"
+                                                                            class="custom-control-label"
+                                                                            >DEMARCACION
+                                                                            DEL
+                                                                            SITIO/NO
+                                                                            PROCEDE</label
+                                                                        >
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
+                                                                    >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chkentrada03"
+                                                                            id="chkentrada03"
+                                                                            v-model="
+                                                                                listas.chkentrada03
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chkentrada03"
+                                                                            class="custom-control-label"
+                                                                            >SE HA
+                                                                            COMPLEMENTADO
+                                                                            EL
+                                                                            CONTROL
+                                                                            DE LA
+                                                                            SEGURIDAD
+                                                                            DE LA
+                                                                            ANESTESIA</label
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                                <div
+                                                                    class="col-md-6"
+                                                                >
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
+                                                                    >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chkentrada04"
+                                                                            id="chkentrada04"
+                                                                            v-model="
+                                                                                listas.chkentrada04
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chkentrada04"
+                                                                            class="custom-control-label"
+                                                                            >PULSIOXIMETRO
+                                                                            COLOCADO
+                                                                            Y EN
+                                                                            FUNCIONAMIENTO</label
+                                                                        >
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
+                                                                    >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            id="chkentrada05"
+                                                                            name="chkentrada05"
+                                                                            v-model="
+                                                                                listas.chkentrada05
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chkentrada05"
+                                                                            class="custom-control-label"
+                                                                            >TIENE
+                                                                            EL
+                                                                            PACIENTE:
+                                                                            ALERGIAS
+                                                                            CONOCIDAD?</label
+                                                                        >
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
+                                                                    >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chkentrada06"
+                                                                            id="chkentrada06"
+                                                                            v-model="
+                                                                                listas.chkentrada06
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chkentrada06"
+                                                                            class="custom-control-label"
+                                                                            >VIA
+                                                                            AÉREA
+                                                                            DIFICIL/RIESGO
                                                                             DE
-                                                                            ACCESO
-                                                                            INTRAVENOSO
-                                                                            Y
-                                                                            LIQUIDOS
-                                                                            ADECUADOS
-                                                                        </li>
-                                                                    </ul>
+                                                                            ASPIRACION
+                                                                        </label>
+                                                                        <ul>
+                                                                            <li>
+                                                                                SI
+                                                                                HAY
+                                                                                INSTRUMENTAL
+                                                                                Y
+                                                                                EQUIPOS/AYUDA
+                                                                                DISPONIBLE
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
+                                                                    >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chkentrada07"
+                                                                            id="chkentrada07"
+                                                                            v-model="
+                                                                                listas.chkentrada07
+                                                                            "
+                                                                        />
+
+                                                                        <label
+                                                                            for="chkentrada07"
+                                                                            class="custom-control-label"
+                                                                            >RIESGO
+                                                                            DE
+                                                                            HEMORRAGIA
+                                                                            > 500 ML
+                                                                            (7ML VKG
+                                                                            EN
+                                                                            NIÑOS)?</label
+                                                                        >
+                                                                        <ul>
+                                                                            <li>
+                                                                                SI,
+                                                                                Y SE
+                                                                                HA
+                                                                                PREVISTO
+                                                                                LA
+                                                                                DISPONIBILIDAD
+                                                                                DE
+                                                                                ACCESO
+                                                                                INTRAVENOSO
+                                                                                Y
+                                                                                LIQUIDOS
+                                                                                ADECUADOS
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
+                                                                <!-- /.form-group -->
+
+                                                                <!-- /.form-group -->
+
+                                                                <!-- /.col -->
+
+                                                                <!-- /.col -->
                                                             </div>
-                                                            <!-- /.form-group -->
+                                                            <!-- /.row -->
 
-                                                            <!-- /.form-group -->
-
-                                                            <!-- /.col -->
-
-                                                            <!-- /.col -->
+                                                            <!-- /.row -->
                                                         </div>
-                                                        <!-- /.row -->
-
-                                                        <!-- /.row -->
+                                                        <!-- /.card-body -->
                                                     </div>
-                                                    <!-- /.card-body -->
-                                                </div>
-                                                <!-- {{-- pausa quirurgica --}} -->
-                                                <div
-                                                    class="card card-default collapsed-card card-blue"
-                                                >
-                                                    <div class="card-header">
-                                                        <h3 class="card-title">
-                                                            ANTES DE A INCISIÓN
-                                                            CUTÁNEA (PAUSA
-                                                            QUIRURGICA)
-                                                        </h3>
-
-                                                        <div class="card-tools">
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-tool"
-                                                                data-card-widget="collapse"
-                                                            >
-                                                                <i
-                                                                    class="fas fa-plus"
-                                                                ></i>
-                                                            </button>
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-tool"
-                                                                data-card-widget="remove"
-                                                            >
-                                                                <i
-                                                                    class="fas fa-times"
-                                                                ></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.card-header -->
+                                                    <!-- {{-- pausa quirurgica --}} -->
                                                     <div
-                                                        class="card-body"
-                                                        style="display: none;"
+                                                        class="card card-default collapsed-card"
                                                     >
-                                                        <div class="row">
-                                                            <div
-                                                                class="col-md-6"
-                                                            >
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chkquirurgica01"
-                                                                        id="chkquirurgica01"
-                                                                        v-model="
-                                                                            listas.chkquirurgica01
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chkquirurgica01"
-                                                                        class="custom-control-label"
-                                                                        >CONFIRMA
-                                                                        QUE
-                                                                        TODOS
-                                                                        LOS
-                                                                        MIENBROS
-                                                                        DEL
-                                                                        EQUIPO
-                                                                        SE HAYAN
-                                                                        PRESENTADO
-                                                                        POR SU
-                                                                        NOMBRE Y
-                                                                        FUNCIÓN</label
-                                                                    >
-                                                                </div>
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chkquirurgica02"
-                                                                        id="chkquirurgica02"
-                                                                        v-model="
-                                                                            listas.chkquirurgica02
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chkquirurgica02"
-                                                                        class="custom-control-label"
-                                                                        >CIRUJANO,
-                                                                        ANESTESISTA
-                                                                        Y
-                                                                        ENFERMERO
-                                                                        CONFIRMAN
-                                                                        VERBALMENTE:</label
-                                                                    >
-                                                                    <ul>
-                                                                        <li>
-                                                                            La
-                                                                            Identidad
-                                                                            del
-                                                                            Paciente
-                                                                        </li>
-                                                                        <li>
-                                                                            El
-                                                                            Sitio
-                                                                            Quirurgico
-                                                                        </li>
-                                                                        <li>
-                                                                            El
-                                                                            Procedimiento
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                        <div class="card-header" style="background: #590303">
+                                                            <h3 class="card-title" style="color: #FFFFFF">
+                                                                ANTES DE A INCISIÓN
+                                                                CUTÁNEA (PAUSA
+                                                                QUIRURGICA)
+                                                            </h3>
 
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
+                                                            <div class="card-tools">
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn btn-tool"
+                                                                    data-card-widget="collapse"
                                                                 >
-                                                                    <label
-                                                                        for="chkquirurgica03"
-                                                                        >PREVISIÓN
-                                                                        DE
-                                                                        EVENTOS
-                                                                        CRÍTICOS</label
-                                                                    >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chkquirurgica03"
-                                                                        id="chkquirurgica03"
-                                                                        v-model="
-                                                                            listas.chkquirurgica03
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chkquirurgica03"
-                                                                        class="custom-control-label"
-                                                                        >EL
-                                                                        CIRUJANO
-                                                                        REVISA:
-                                                                        LOS
-                                                                        PASOS
-                                                                        CRITICOS
-                                                                        O
-                                                                        IMPREVISTO
-                                                                        LA
-                                                                        DURACION
-                                                                        DE LA
-                                                                        OPERACION
-                                                                        Y LA
-                                                                        PERDIDA
-                                                                        DE
-                                                                        SANGRE
-                                                                        PERVISTA</label
-                                                                    >
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="col-md-6"
-                                                            >
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
+                                                                    <i
+                                                                        class="fas fa-plus"
+                                                                    ></i>
+                                                                </button>
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn btn-tool"
+                                                                    data-card-widget="remove"
                                                                 >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chkquirurgica04"
-                                                                        id="chkquirurgica04"
-                                                                        v-model="
-                                                                            listas.chkquirurgica04
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chkquirurgica04"
-                                                                        class="custom-control-label"
-                                                                        >EL
-                                                                        EQUIPO
-                                                                        DE
-                                                                        ANESTESIA
-                                                                        REVISA:
-                                                                        SI EL
-                                                                        PACIENTE
-                                                                        PRESENTA
-                                                                        ALGUN
-                                                                        PROBLEMA
-                                                                        ESPECIFICO</label
-                                                                    >
-                                                                </div>
-
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chkquirurgica05"
-                                                                        id="chkquirurgica05"
-                                                                        v-model="
-                                                                            listas.chkquirurgica05
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chkquirurgica05"
-                                                                        class="custom-control-label"
-                                                                        >EL
-                                                                        EQUIPO
-                                                                        DE
-                                                                        ENFERMERIA
-                                                                        REVISA:
-                                                                        SI SE HA
-                                                                        CONFIRMADO
-                                                                        LA
-                                                                        ESTERILIDAD
-                                                                        (CON
-                                                                        RESULTADOS
-                                                                        DE LOS
-                                                                        INDICADORES;
-                                                                        Y SI
-                                                                        EXISTEN
-                                                                        DUDAS O
-                                                                        PROBLEMAS
-                                                                        RELACIONADOS
-                                                                        CON EL
-                                                                        INSTRUMENTAL
-                                                                        Y LOS
-                                                                        EQUIPOS</label
-                                                                    >
-                                                                </div>
-
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chkquirurgica06"
-                                                                        id="chkquirurgica06"
-                                                                        v-model="
-                                                                            listas.chkquirurgica06
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chkquirurgica06"
-                                                                        class="custom-control-label"
-                                                                        >SI SE
-                                                                        HA
-                                                                        ADMINISTRADO
-                                                                        PROFILAXIS
-                                                                        ANTIBIOTICA
-                                                                        EN LOS
-                                                                    </label>
-                                                                </div>
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chkquirurgica07"
-                                                                        id="chkquirurgica07"
-                                                                        v-model="
-                                                                            listas.chkquirurgica07
-                                                                        "
-                                                                    />
-
-                                                                    <label
-                                                                        for="chkquirurgica07"
-                                                                        class="custom-control-label"
-                                                                        >PUEDEN
-                                                                        VISUALIZAR
-                                                                        LAS
-                                                                        IMAGENES
-                                                                        DIAGNOSTICADAS</label
-                                                                    >
-                                                                    <ul>
-                                                                        <li>
-                                                                            NO,
-                                                                            NO
-                                                                            PROCEDE
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                                    <i
+                                                                        class="fas fa-times"
+                                                                    ></i>
+                                                                </button>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- {{-- Antes que el paciente salga del quirofano --}} -->
-                                                <div
-                                                    class="card card-default collapsed-card card-green"
-                                                >
-                                                    <div class="card-header">
-                                                        <h3 class="card-title">
-                                                            ANTES DEL QUE
-                                                            PACIENTE SALGA DEL
-                                                            QUIRÓFANO(SALIDA)
-                                                        </h3>
-
-                                                        <div class="card-tools">
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-tool"
-                                                                data-card-widget="collapse"
-                                                            >
-                                                                <i
-                                                                    class="fas fa-plus"
-                                                                ></i>
-                                                            </button>
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-tool"
-                                                                data-card-widget="remove"
-                                                            >
-                                                                <i
-                                                                    class="fas fa-times"
-                                                                ></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.card-header -->
-                                                    <div
-                                                        class="card-body"
-                                                        style="display: none;"
-                                                    >
-                                                        <label
-                                                            for=""
-                                                            class="card-blue"
+                                                        <!-- /.card-header -->
+                                                        <div
+                                                            class="card-body"
+                                                            style="display: none;"
                                                         >
-                                                            EL ENFERMERO
-                                                            CONFIRMA VERBALMENTE
-                                                            CON EL EQUIPO:
-                                                        </label>
-                                                        <div class="row">
-                                                            <div
-                                                                class="col-md-6"
-                                                            >
+                                                            <div class="row">
                                                                 <div
-                                                                    class="custom-control custom-checkbox"
+                                                                    class="col-md-6"
                                                                 >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chksalida01"
-                                                                        id="chksalida01"
-                                                                        v-model="
-                                                                            listas.chksalida01
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chksalida01"
-                                                                        class="custom-control-label"
-                                                                        >EL
-                                                                        NOMBRE
-                                                                        DEL
-                                                                        PROCEDIMIENTO
-                                                                        REALIZADO.</label
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
                                                                     >
-                                                                </div>
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chksalida02"
-                                                                        id="chksalida02"
-                                                                        v-model="
-                                                                            listas.chksalida02
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chksalida02"
-                                                                        class="custom-control-label"
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chkquirurgica01"
+                                                                            id="chkquirurgica01"
+                                                                            v-model="
+                                                                                listas.chkquirurgica01
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chkquirurgica01"
+                                                                            class="custom-control-label"
+                                                                            >CONFIRMA
+                                                                            QUE
+                                                                            TODOS
+                                                                            LOS
+                                                                            MIENBROS
+                                                                            DEL
+                                                                            EQUIPO
+                                                                            SE HAYAN
+                                                                            PRESENTADO
+                                                                            POR SU
+                                                                            NOMBRE Y
+                                                                            FUNCIÓN</label
+                                                                        >
+                                                                    </div>
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
                                                                     >
-                                                                        QUE LOS
-                                                                        RECUENTOS
-                                                                        DE
-                                                                        INSTRUMENTOS,
-                                                                        GASAS
-                                                                        AGUJAS
-                                                                        SON
-                                                                        CORRECTOS</label
-                                                                    >
-                                                                </div>
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chkquirurgica02"
+                                                                            id="chkquirurgica02"
+                                                                            v-model="
+                                                                                listas.chkquirurgica02
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chkquirurgica02"
+                                                                            class="custom-control-label"
+                                                                            >CIRUJANO,
+                                                                            ANESTESISTA
+                                                                            Y
+                                                                            ENFERMERO
+                                                                            CONFIRMAN
+                                                                            VERBALMENTE:</label
+                                                                        >
+                                                                        <ul>
+                                                                            <li>
+                                                                                La
+                                                                                Identidad
+                                                                                del
+                                                                                Paciente
+                                                                            </li>
+                                                                            <li>
+                                                                                El
+                                                                                Sitio
+                                                                                Quirurgico
+                                                                            </li>
+                                                                            <li>
+                                                                                El
+                                                                                Procedimiento
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
 
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chksalida03"
-                                                                        id="chksalida03"
-                                                                        v-model="
-                                                                            listas.chksalida03
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chksalida03"
-                                                                        class="custom-control-label"
-                                                                        >EL
-                                                                        ETIQUETADO
-                                                                        DE LAS
-                                                                        MUESTRAS
-                                                                        (QUE
-                                                                        FIGURE
-                                                                        EL
-                                                                        NOMBRE
-                                                                        DEL
-                                                                        PACIENTE)</label
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
                                                                     >
+                                                                        <label
+                                                                            for="chkquirurgica03"
+                                                                            >PREVISIÓN
+                                                                            DE
+                                                                            EVENTOS
+                                                                            CRÍTICOS</label
+                                                                        >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chkquirurgica03"
+                                                                            id="chkquirurgica03"
+                                                                            v-model="
+                                                                                listas.chkquirurgica03
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chkquirurgica03"
+                                                                            class="custom-control-label"
+                                                                            >EL
+                                                                            CIRUJANO
+                                                                            REVISA:
+                                                                            LOS
+                                                                            PASOS
+                                                                            CRITICOS
+                                                                            O
+                                                                            IMPREVISTO
+                                                                            LA
+                                                                            DURACION
+                                                                            DE LA
+                                                                            OPERACION
+                                                                            Y LA
+                                                                            PERDIDA
+                                                                            DE
+                                                                            SANGRE
+                                                                            PERVISTA</label
+                                                                        >
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div
-                                                                class="col-md-6"
-                                                            >
                                                                 <div
-                                                                    class="custom-control custom-checkbox"
+                                                                    class="col-md-6"
                                                                 >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chksalida04"
-                                                                        id="chksalida04"
-                                                                        v-model="
-                                                                            listas.chksalida04
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chksalida04"
-                                                                        class="custom-control-label"
-                                                                        >SI HAY
-                                                                        PROBLEMAS
-                                                                        QUE
-                                                                        RESOLVER
-                                                                        RELACIONADOS
-                                                                        CON EL
-                                                                        INSTRUMENTAL
-                                                                        Y LOS
-                                                                        EQUIPOS</label
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
                                                                     >
-                                                                </div>
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chkquirurgica04"
+                                                                            id="chkquirurgica04"
+                                                                            v-model="
+                                                                                listas.chkquirurgica04
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chkquirurgica04"
+                                                                            class="custom-control-label"
+                                                                            >EL
+                                                                            EQUIPO
+                                                                            DE
+                                                                            ANESTESIA
+                                                                            REVISA:
+                                                                            SI EL
+                                                                            PACIENTE
+                                                                            PRESENTA
+                                                                            ALGUN
+                                                                            PROBLEMA
+                                                                            ESPECIFICO</label
+                                                                        >
+                                                                    </div>
 
-                                                                <div
-                                                                    class="custom-control custom-checkbox"
-                                                                >
-                                                                    <input
-                                                                        class="custom-control-input"
-                                                                        type="checkbox"
-                                                                        name="chksalida05"
-                                                                        id="chksalida05"
-                                                                        v-model="
-                                                                            listas.chksalida05
-                                                                        "
-                                                                    />
-                                                                    <label
-                                                                        for="chksalida05"
-                                                                        class="custom-control-label"
-                                                                        >EL
-                                                                        CIRUJANO,
-                                                                        EL
-                                                                        ANESTESISTA
-                                                                        Y EL
-                                                                        ENFERMERO
-                                                                        REVISAN
-                                                                        LOS
-                                                                        PRINCIPALES
-                                                                        ASPECTOS
-                                                                        DE LA
-                                                                        RECUPERACION
-                                                                        Y EL
-                                                                        TRATAMIENTO
-                                                                        DEL
-                                                                        PACIENTE</label
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
                                                                     >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chkquirurgica05"
+                                                                            id="chkquirurgica05"
+                                                                            v-model="
+                                                                                listas.chkquirurgica05
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chkquirurgica05"
+                                                                            class="custom-control-label"
+                                                                            >EL
+                                                                            EQUIPO
+                                                                            DE
+                                                                            ENFERMERIA
+                                                                            REVISA:
+                                                                            SI SE HA
+                                                                            CONFIRMADO
+                                                                            LA
+                                                                            ESTERILIDAD
+                                                                            (CON
+                                                                            RESULTADOS
+                                                                            DE LOS
+                                                                            INDICADORES;
+                                                                            Y SI
+                                                                            EXISTEN
+                                                                            DUDAS O
+                                                                            PROBLEMAS
+                                                                            RELACIONADOS
+                                                                            CON EL
+                                                                            INSTRUMENTAL
+                                                                            Y LOS
+                                                                            EQUIPOS</label
+                                                                        >
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
+                                                                    >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chkquirurgica06"
+                                                                            id="chkquirurgica06"
+                                                                            v-model="
+                                                                                listas.chkquirurgica06
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chkquirurgica06"
+                                                                            class="custom-control-label"
+                                                                            >SI SE
+                                                                            HA
+                                                                            ADMINISTRADO
+                                                                            PROFILAXIS
+                                                                            ANTIBIOTICA
+                                                                            EN LOS
+                                                                        </label>
+                                                                    </div>
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
+                                                                    >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chkquirurgica07"
+                                                                            id="chkquirurgica07"
+                                                                            v-model="
+                                                                                listas.chkquirurgica07
+                                                                            "
+                                                                        />
+
+                                                                        <label
+                                                                            for="chkquirurgica07"
+                                                                            class="custom-control-label"
+                                                                            >PUEDEN
+                                                                            VISUALIZAR
+                                                                            LAS
+                                                                            IMAGENES
+                                                                            DIAGNOSTICADAS</label
+                                                                        >
+                                                                        <ul>
+                                                                            <li>
+                                                                                NO,
+                                                                                NO
+                                                                                PROCEDE
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="card card-info">
-                                                    <div class="card-header">
-                                                        <h3 class="card-title">
-                                                            Observacion
-                                                        </h3>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="form-group">
-                                                            <label
-                                                                >Observacion</label
-                                                            >
-                                                            <textarea
-                                                                class="form-control"
-                                                                rows="3"
-                                                                placeholder="Enter ..."
-                                                                name="observacion"
-                                                                id="observacion"
-                                                                v-model="
-                                                                    listas.observacion
-                                                                "
-                                                            ></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.card-body -->
-                                                </div>
-
-                                                <div class="card-footer">
-                                                    <button
-                                                        type="submit"
-                                                        class="btn btn-primary"
+                                                    <!-- {{-- Antes que el paciente salga del quirofano --}} -->
+                                                    <div
+                                                        class="card card-default collapsed-card"
                                                     >
-                                                        Enviar
-                                                    </button>
-                                                </div>
-                                            </form>
+                                                        <div class="card-header" style="background: #590303">
+                                                            <h3 class="card-title" style="color: #FFFFFF">
+                                                                ANTES DEL QUE
+                                                                PACIENTE SALGA DEL
+                                                                QUIRÓFANO(SALIDA)
+                                                            </h3>
+
+                                                            <div class="card-tools">
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn btn-tool"
+                                                                    data-card-widget="collapse"
+                                                                >
+                                                                    <i
+                                                                        class="fas fa-plus"
+                                                                    ></i>
+                                                                </button>
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn btn-tool"
+                                                                    data-card-widget="remove"
+                                                                >
+                                                                    <i
+                                                                        class="fas fa-times"
+                                                                    ></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.card-header -->
+                                                        <div
+                                                            class="card-body"
+                                                            style="display: none;"
+                                                        >
+                                                            <label
+                                                                for=""
+                                                                class="card-blue"
+                                                            >
+                                                                EL ENFERMERO
+                                                                CONFIRMA VERBALMENTE
+                                                                CON EL EQUIPO:
+                                                            </label>
+                                                            <div class="row">
+                                                                <div
+                                                                    class="col-md-6"
+                                                                >
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
+                                                                    >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chksalida01"
+                                                                            id="chksalida01"
+                                                                            v-model="
+                                                                                listas.chksalida01
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chksalida01"
+                                                                            class="custom-control-label"
+                                                                            >EL
+                                                                            NOMBRE
+                                                                            DEL
+                                                                            PROCEDIMIENTO
+                                                                            REALIZADO.</label
+                                                                        >
+                                                                    </div>
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
+                                                                    >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chksalida02"
+                                                                            id="chksalida02"
+                                                                            v-model="
+                                                                                listas.chksalida02
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chksalida02"
+                                                                            class="custom-control-label"
+                                                                        >
+                                                                            QUE LOS
+                                                                            RECUENTOS
+                                                                            DE
+                                                                            INSTRUMENTOS,
+                                                                            GASAS
+                                                                            AGUJAS
+                                                                            SON
+                                                                            CORRECTOS</label
+                                                                        >
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
+                                                                    >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chksalida03"
+                                                                            id="chksalida03"
+                                                                            v-model="
+                                                                                listas.chksalida03
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chksalida03"
+                                                                            class="custom-control-label"
+                                                                            >EL
+                                                                            ETIQUETADO
+                                                                            DE LAS
+                                                                            MUESTRAS
+                                                                            (QUE
+                                                                            FIGURE
+                                                                            EL
+                                                                            NOMBRE
+                                                                            DEL
+                                                                            PACIENTE)</label
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                                <div
+                                                                    class="col-md-6"
+                                                                >
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
+                                                                    >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chksalida04"
+                                                                            id="chksalida04"
+                                                                            v-model="
+                                                                                listas.chksalida04
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chksalida04"
+                                                                            class="custom-control-label"
+                                                                            >SI HAY
+                                                                            PROBLEMAS
+                                                                            QUE
+                                                                            RESOLVER
+                                                                            RELACIONADOS
+                                                                            CON EL
+                                                                            INSTRUMENTAL
+                                                                            Y LOS
+                                                                            EQUIPOS</label
+                                                                        >
+                                                                    </div>
+
+                                                                    <div
+                                                                        class="custom-control custom-checkbox"
+                                                                    >
+                                                                        <input
+                                                                            class="custom-control-input"
+                                                                            type="checkbox"
+                                                                            name="chksalida05"
+                                                                            id="chksalida05"
+                                                                            v-model="
+                                                                                listas.chksalida05
+                                                                            "
+                                                                        />
+                                                                        <label
+                                                                            for="chksalida05"
+                                                                            class="custom-control-label"
+                                                                            >EL
+                                                                            CIRUJANO,
+                                                                            EL
+                                                                            ANESTESISTA
+                                                                            Y EL
+                                                                            ENFERMERO
+                                                                            REVISAN
+                                                                            LOS
+                                                                            PRINCIPALES
+                                                                            ASPECTOS
+                                                                            DE LA
+                                                                            RECUPERACION
+                                                                            Y EL
+                                                                            TRATAMIENTO
+                                                                            DEL
+                                                                            PACIENTE</label
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card">
+                                                        <div class="card-header" style="background: #590303">
+                                                            <h3 class="card-title" style="color: #FFFFFF">
+                                                                OBSERVACIÓN
+                                                            </h3>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="form-group">
+                                                                <label
+                                                                    >Observacion</label
+                                                                >
+                                                                <textarea
+                                                                    class="form-control"
+                                                                    rows="3"
+                                                                    placeholder="Enter ..."
+                                                                    name="observacion"
+                                                                    id="observacion"
+                                                                    v-model="
+                                                                        listas.observacion
+                                                                    "
+                                                                ></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.card-body -->
+                                                    </div>
+
+                                                    <div class="card-footer">
+                                                        <button
+                                                            type="submit"
+                                                            class="btn btn-primary"
+                                                        >
+                                                            Enviar
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1028,7 +1062,6 @@ export default {
             this.$modal.show("ListaCirugiaProgramadaPaciente");
         },
         handleSeleccionarClick(value) {
-            
             this.listas.frm_idCirugiaProgramada = value.SecCirPro;
             this.form.frm_paciente = value.nombrePaciente;
             this.form.frm_cirujano = value.cirujano;
@@ -1139,7 +1172,7 @@ export default {
                         text: "."
                     }),
                     that.isHidden = 'block'
-                       
+
                     } else {
                         that.$swal({
                         icon: "success",
@@ -1213,13 +1246,13 @@ export default {
             // aui
         },
          llamarMetodoImprimir() {
-             
+
                 window.open(
                     "/modulos/cirugia/lista_verificacion/mostrarreporte/" +
                         this.listas.frm_idCirugiaProgramada
                 );
-             
+
         }
-    } 
+    }
 };
 </script>

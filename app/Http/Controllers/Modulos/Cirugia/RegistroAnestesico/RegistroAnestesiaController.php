@@ -25,6 +25,17 @@ use PhpParser\Builder\Function_;
 
 class RegistroAnestesiaController extends Controller
 {
+    public function validarSecCirPro($secCirPro)
+    {
+        try {
+            $secCirPro = RegistroAnestesia::where('SecCirPro', $secCirPro)
+                ->first();
+            //$grafica = GraficaPorCirugia::where('SecCirPro', 1)->first();
+            return  response()->json(['secCirPro' => $secCirPro], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
     public function cargarSello($id_medico)
     {
         try {
@@ -79,11 +90,11 @@ class RegistroAnestesiaController extends Controller
             return response()->json(['mensaje' => $e->getMessage()], 500);
         }
     }
-
+    //Revisar aqui el porque se crea 2 registro en esta tabla
     public function store(Request $request)
     {
         $user = Auth::user();
-        $cirugia_id = $request->input('cirugia_id');
+        $cirugia_id = $request->input('SecCirPro');
         $registro_anestesia_id = $request->input('registro_anestesia_id');
 
         $idRegistroAnestesico = RegistroAnestesia::where('SecCirPro', $cirugia_id)
@@ -98,18 +109,27 @@ class RegistroAnestesiaController extends Controller
                 [
                     'SecCirPro' => $request->input('cirugia_id'),
                     'usu_created_update' => $user->id,
-                    'status' => 1,
+                    'pcip' => $_SERVER["REMOTE_ADDR"],
+                    'status' => '1'
                 ]
             );
         } else {
+            $registroAnestesico = RegistroAnestesia::create(
+                [
+                    'SecCirPro' => $request->input('cirugia_id'),
+                    'usu_created_update' => $user->id,
+                    'pcip' => $_SERVER["REMOTE_ADDR"],
+                    'status' => '1'
+                ]
+            );
         }
-        $registroAnestesico = RegistroAnestesia::create(
+        /* $registroAnestesico = RegistroAnestesia::create(
             [
                 'SecCirPro' => $request->input('cirugia_id'),
                 'usu_created_update' => $user->id,
                 'status' => 1,
             ]
-        );
+        ); */
         return response()->json(
             ['id' => $registroAnestesico->id],
             200
@@ -217,7 +237,7 @@ class RegistroAnestesiaController extends Controller
                     ->where('status', '1')
                     ->with('drogaAdministradaRpt','graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt','tipoPosicion')
                     ->first();
- 
+
 
                $id_registro_anestesia = $datosValoracionPreanestesica->id;
                $datosprocedimiento = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
@@ -230,8 +250,8 @@ class RegistroAnestesiaController extends Controller
                $TarifarioMedicina = TarifarioMedicina::select('codigo', 'descripcion')->where('codigo',$datosprocedimiento->id_operacion_realizada)
                    //  ->with('pacienteLista','pacienteHospitalizacion')
                    ->union($TarifarioCirugua)
-                   ->first(); 
-                   
+                   ->first();
+
                 $datosPaciente = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
                 ->with('graficoFirmaMedico','cirujano','Ayudante','Ayudante2','Instrumentrista','DiagnosticoPost','DiagnosticoPre','Anestesiologo')
                 ->first();

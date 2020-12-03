@@ -67,74 +67,128 @@
                         class="col-lg-12 col-md-12 col-sm-12"
                         v-if="form.frm_idCirugiaProgramada != ''"
                     >
-                        <!-- DATOS DEL PACIENTE -->
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div
-                                class="text-left col-lg-12 col-md-12 col-sm-12"
-                            >
-                                <div
-                                    class="alert alert-success alert-dismissible fade show"
-                                    role="alert"
-                                >
-                                    <div class="row">
-                                        <div class="col-sm-6 text-left">
-                                            <label class="col-form-label"
-                                                >Paciente:</label
-                                            >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_paciente"
-                                            ></span>
-                                        </div>
-                                        <div class="col-sm-6 text-left">
-                                            <label class="col-form-label"
-                                                >Cirujano:</label
-                                            >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_cirujano"
-                                            ></span>
-                                        </div>
-                                        <div class="col-sm-6 text-left">
-                                            <label class="col-form-label"
-                                                >Anestesiologo:</label
-                                            >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_anestesiologo"
-                                            ></span>
-                                        </div>
-                                        <div class="col-sm-6 text-left">
-                                            <label class="col-form-label"
-                                                >Quirófano:</label
-                                            >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_quirofano"
-                                            ></span>
-                                        </div>
-                                        <div class="col-sm-12 text-left">
-                                            <label class="col-form-label"
-                                                >Procedimiento:</label
-                                            >
-                                            <span
-                                                class="text-left"
-                                                v-text="form.frm_procedimiento"
-                                            ></span>
-                                        </div>
-                                    </div>
+                        <div
+                            class="card card-default collapsed-card"
+                        >
+                            <div class="card-header" style="background: #590303">
+                                <h3 class="card-title" style="color: #FFFFFF">
+                                    DATOS DEL PACIENTE
+                                </h3>
 
+                                <div class="card-tools">
                                     <button
                                         type="button"
-                                        class="close"
-                                        data-dismiss="alert"
-                                        aria-label="Close"
+                                        class="btn btn-tool"
+                                        data-card-widget="collapse"
                                     >
-                                        <span aria-hidden="true">&times;</span>
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-tool"
+                                        data-card-widget="remove"
+                                    >
+                                        <i class="fas fa-times"></i>
                                     </button>
                                 </div>
                             </div>
+                            <div class="card-body" style="display: none;">
+                                <div class="row">
+                                    <!-- DATOS DEL PACIENTE -->
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div
+                                            class="text-left col-lg-12 col-md-12 col-sm-12"
+                                        >
+                                                <div class="row">
+                                                    <div
+                                                        class="col-sm-6 text-left"
+                                                    >
+                                                        <label
+                                                            class="col-form-label"
+                                                            >Paciente:</label
+                                                        >
+                                                        <span
+                                                            class="text-left"
+                                                            v-text="
+                                                                form.frm_paciente
+                                                            "
+                                                        ></span>
+                                                    </div>
+                                                    <div
+                                                        class="col-sm-6 text-left"
+                                                    >
+                                                        <label
+                                                            class="col-form-label"
+                                                            >Cirujano:</label
+                                                        >
+                                                        <span
+                                                            class="text-left"
+                                                            v-text="
+                                                                form.frm_cirujano
+                                                            "
+                                                        ></span>
+                                                    </div>
+                                                    <div
+                                                        class="col-sm-6 text-left"
+                                                    >
+                                                        <label
+                                                            class="col-form-label"
+                                                            >Anestesiologo:</label
+                                                        >
+                                                        <span
+                                                            class="text-left"
+                                                            v-text="
+                                                                form.frm_anestesiologo
+                                                            "
+                                                        ></span>
+                                                    </div>
+                                                    <div
+                                                        class="col-sm-6 text-left"
+                                                    >
+                                                        <label
+                                                            class="col-form-label"
+                                                            >Quirófano:</label
+                                                        >
+                                                        <span
+                                                            class="text-left"
+                                                            v-text="
+                                                                form.frm_quirofano
+                                                            "
+                                                        ></span>
+                                                    </div>
+                                                    <div
+                                                        class="col-sm-12 text-left"
+                                                    >
+                                                        <label
+                                                            class="col-form-label"
+                                                            >Procedimiento:</label
+                                                        >
+                                                        <span
+                                                            class="text-left"
+                                                            v-text="
+                                                                form.frm_procedimiento
+                                                            "
+                                                        ></span>
+                                                    </div>
+                                                </div>
+
+                                                <button
+                                                    type="button"
+                                                    class="close"
+                                                    data-dismiss="alert"
+                                                    aria-label="Close"
+                                                >
+                                                    <span aria-hidden="true"
+                                                        >&times;</span
+                                                    >
+                                                </button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <form-wizard
                                 ref="formValoracionPreanestecia"

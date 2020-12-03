@@ -4,7 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<<<<<<< HEAD
         <title>Sistema Integrado - B.S.P.I</title>
+=======
+        <title>{{ config('app.name', 'BSPI') }}</title>
+
+        <!-- Icono de la Pestaña -->
+        <link rel="shortcut icon" href="{{ asset('img/icono.png') }}">
+>>>>>>> 9aeac814e27ab7e498fca0df4577eeb5415e4cc8
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
