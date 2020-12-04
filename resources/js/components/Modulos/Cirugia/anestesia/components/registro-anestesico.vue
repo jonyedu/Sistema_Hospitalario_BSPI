@@ -2357,7 +2357,7 @@ export default {
         handleSeleccionarClick(value) {
             if(value.respuesta){
                 var valor = parseInt(value.valorNuevo);
-                var minutes = value.minutes;
+                var minutes = value.is_tpo_init;
                 var is_tpo_init = value.is_tpo_init;
                 var is_tpo_fin = value.is_tpo_fin;
                 var adicional = value.adicional;
@@ -2381,7 +2381,6 @@ export default {
                                     minutes >= col_cince_min.t_init &&
                                     col_cince_min.t_fin > minutes
                                 ) {
-                                    alert("entra");
                                     col_cince_min.agentes.push({
                                         descripcion: adicional.system_name,
                                         valor: valor,
@@ -2896,7 +2895,7 @@ export default {
                     ///console.log(response.data);
                     this.datos_server = response.data;
                     if(es_posicion == false){
-                            col_cince_min.agentes.push({
+                        col_cince_min.agentes.push({
                             descripcion: descripcion,
                                 valor: valor,
                             _src: src,
