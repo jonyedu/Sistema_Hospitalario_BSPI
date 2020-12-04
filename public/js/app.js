@@ -4017,6 +4017,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -4380,16 +4382,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
-    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, src, descripcion, valor, id) {
+    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, t_fin, src, descripcion, valor, id, es_agente) {
       this.limpiarDatosEliminarAgente();
       this.datos_eliminar_agente.index = index;
       this.datos_eliminar_agente.index_fila = index_fila;
       this.datos_eliminar_agente.index_columna = index_columna;
       this.datos_eliminar_agente.index_minutos_columna = index_minutos_columna;
       this.datos_eliminar_agente.index_agente = index_agente;
-      this.datos_eliminar_agente.minutes = t_init;
+      this.datos_eliminar_agente.is_tpo_init = t_init;
+      this.datos_eliminar_agente.is_tpo_fin = t_fin;
       this.datos_eliminar_agente.adicional = {
-        system_name: descripcion
+        system_name: descripcion,
+        tipo: es_agente == true ? 'agente' : 'posicion'
       };
       this.datos_eliminar_agente.ruta_icono = src;
       this.datos_eliminar_agente.descripcion = descripcion;
@@ -4401,6 +4405,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (value.respuesta) {
         var valor = parseInt(value.valorNuevo);
         var minutes = value.minutes;
+        var is_tpo_init = value.is_tpo_init;
+        var is_tpo_fin = value.is_tpo_fin;
         var adicional = value.adicional;
         var ruta_icono = value.ruta_icono;
         this.form.id_datos_agente = value.id;
@@ -4427,6 +4433,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                   if (col_cince_min.t_init <= minutes && col_cince_min.t_fin > minutes) {
                     if (minutes >= col_cince_min.t_init && col_cince_min.t_fin > minutes) {
+                      alert("entra");
                       col_cince_min.agentes.push({
                         descripcion: adicional.system_name,
                         valor: valor,
@@ -4608,9 +4615,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     consultarSello: function consultarSello() {
       var that = this;
 
-      if (this.$props.user.id > 0) {
+      if (this.$props.user.codigo_usu > 0) {
         var loader = that.$loading.show();
-        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
+        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.codigo_usu;
         axios.get(url).then(function (response) {
           if (response.data.sello != null) {
             if (response.data.sello.medico_sellos != null) {
@@ -59631,10 +59638,14 @@ var render = function() {
                                                                                   minutos_columna[
                                                                                     "t_init"
                                                                                   ],
+                                                                                  minutos_columna[
+                                                                                    "t_fin"
+                                                                                  ],
                                                                                   agente._src,
                                                                                   agente.descripcion,
                                                                                   agente.valor,
-                                                                                  agente.id
+                                                                                  agente.id,
+                                                                                  dato.es_agente
                                                                                 )
                                                                               }
                                                                             }

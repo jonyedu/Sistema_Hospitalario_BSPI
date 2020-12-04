@@ -528,10 +528,12 @@
                                                                                     index_minutos_columna,
                                                                                     index_agente,
                                                                                     minutos_columna['t_init'],
+                                                                                    minutos_columna['t_fin'],
                                                                                     agente._src,
                                                                                     agente.descripcion,
                                                                                     agente.valor,
-                                                                                    agente.id
+                                                                                    agente.id,
+                                                                                    dato.es_agente
                                                                                 )
                                                                             "
                                                                             ><img
@@ -2330,10 +2332,12 @@ export default {
             index_minutos_columna,
             index_agente,
             t_init,
+            t_fin,
             src,
             descripcion,
             valor,
-            id
+            id,
+            es_agente
         ) {
             this.limpiarDatosEliminarAgente();
             this.datos_eliminar_agente.index = index;
@@ -2341,8 +2345,9 @@ export default {
             this.datos_eliminar_agente.index_columna = index_columna;
             this.datos_eliminar_agente.index_minutos_columna = index_minutos_columna;
             this.datos_eliminar_agente.index_agente = index_agente;
-            this.datos_eliminar_agente.minutes = t_init;
-            this.datos_eliminar_agente.adicional = { system_name: descripcion };
+            this.datos_eliminar_agente.is_tpo_init = t_init;
+            this.datos_eliminar_agente.is_tpo_fin = t_fin;
+            this.datos_eliminar_agente.adicional = { system_name: descripcion, tipo: es_agente==true?'agente':'posicion' };
             this.datos_eliminar_agente.ruta_icono = src;
             this.datos_eliminar_agente.descripcion = descripcion;
             this.datos_eliminar_agente.valor = valor;
@@ -2353,6 +2358,8 @@ export default {
             if(value.respuesta){
                 var valor = parseInt(value.valorNuevo);
                 var minutes = value.minutes;
+                var is_tpo_init = value.is_tpo_init;
+                var is_tpo_fin = value.is_tpo_fin;
                 var adicional = value.adicional;
                 var ruta_icono= value.ruta_icono;
                 this.form.id_datos_agente = value.id;
@@ -2374,6 +2381,7 @@ export default {
                                     minutes >= col_cince_min.t_init &&
                                     col_cince_min.t_fin > minutes
                                 ) {
+                                    alert("entra");
                                     col_cince_min.agentes.push({
                                         descripcion: adicional.system_name,
                                         valor: valor,
@@ -2550,11 +2558,11 @@ export default {
         },
         consultarSello() {
             let that = this;
-            if (this.$props.user.id > 0) {
+            if (this.$props.user.codigo_usu > 0) {
                 var loader = that.$loading.show();
                 let url =
                     "/modulos/cirugia/anestesia/cargar_sello/" +
-                    this.$props.user.id;
+                    this.$props.user.codigo_usu;
                 axios
                     .get(url)
                     .then(function(response) {
