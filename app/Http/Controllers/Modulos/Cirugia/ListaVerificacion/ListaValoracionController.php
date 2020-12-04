@@ -117,14 +117,15 @@ class ListaValoracionController extends Controller
         try {
            //$modulo = [];
             $modulo = DB::connection('control_hospitalario_db_sql')->select("exec spConsultarListadoCirugia ".$id);
-            //$admin = Arr::only($modulo);
+            
+          //  $admin = Arr::only($modulo,);
             //code...
            // dd($modulo);
-        return  response()->json(['datosPaciente' => $admin], 200);
-        //  $pdf =  PDF::loadView('reports.pdf.formulario-lista-verificacion',['datosPaciente' => $admin])->setPaper('a4', 'landscape');
+        //return  response()->json(['datosPaciente' => $modulo], 200);
+         $pdf =  PDF::loadView('reports.pdf.formulario-lista-verificacion',['datosPaciente' => $modulo])->setPaper('a4', 'landscape');
        // PDF::loadHTML('reports.pdf.formulario-lista-verificacion')->setPaper('a4', 'landscape')->setWarnings(false)->save('myfile.pdf');
 
-     //return $pdf->stream('Formulario');
+     return $pdf->stream('Formulario');
       
         } catch (Exception $e ) {
             //throw $th;

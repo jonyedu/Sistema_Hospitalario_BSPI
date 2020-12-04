@@ -977,7 +977,42 @@
                                                         </div>
                                                         <!-- /.card-body -->
                                                     </div>
+                                                        <!-- FIRMA DEL MEDICO -->
+     <div class="">
+                            <div class="" style="height: 70px"></div>
+                            <div class="flex flex-y">
+                                <span
+                                    class="col-md-5 text-center"
+                                    style="margin: auto"
+                                >
+                                    <vue-painttable
+                                        @getOutput="form.imgFirma = $event"
+                                        @RespuestaImgFirma="
+                                            validarImgFirma = $event
+                                        "
+                                        :hidePaintable="true"
+                                        :isFirstPaintable="isFirstPaintable"
+                                        :disableNavigation="true"
+                                        :showUndoRedo="false"
+                                        :showLineWidth="false"
+                                        :rutaImagen="rutaSello"
+                                        :width="800"
+                                        :height="800"
+                                        ref="paintFirma"
+                                    ></vue-painttable>
+                                </span>
+                                <span class="col-md-12 text-center"
+                                    >______________________________________________</span
+                                >
+                                <span class="col-md-12 text-center"
+                                    >FIRMA DEL ANESTESIOLOGO:</span
+                                >
+                            </div>
+                        </div>
 
+
+
+                                                        <!-- FIN DE FIRMA DEL MEDICO -->
                                                     <div class="card-footer">
                                                         <button
                                                             type="submit"
@@ -1045,6 +1080,8 @@ export default {
                 observacion: "",
                 firma: ""
             },
+             validarImgFirma: 0,
+            isFirstPaintable: "firmaAnestesiologo",
             form: {
                 /* Datos del paciente */
                 // frm_idCirugiaProgramada: "",
@@ -1052,7 +1089,9 @@ export default {
                 frm_cirujano: "",
                 frm_anestesiologo: "",
                 frm_quirofano: "",
-                frm_procedimiento: ""
+                frm_procedimiento: "",
+                imgFirma: null,
+                imgGrafica: null
             }
         };
     },
