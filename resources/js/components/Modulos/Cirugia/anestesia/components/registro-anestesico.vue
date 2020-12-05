@@ -527,8 +527,12 @@
                                                                                     index_columna,
                                                                                     index_minutos_columna,
                                                                                     index_agente,
-                                                                                    minutos_columna['t_init'],
-                                                                                    minutos_columna['t_fin'],
+                                                                                    minutos_columna[
+                                                                                        't_init'
+                                                                                    ],
+                                                                                    minutos_columna[
+                                                                                        't_fin'
+                                                                                    ],
                                                                                     agente._src,
                                                                                     agente.descripcion,
                                                                                     agente.valor,
@@ -567,25 +571,40 @@
                                                                     index_columna
                                                                 "
                                                             >
-                                                                <!-- <div v-for="minutos_columna of columna.columnas" class="relative border-r border-b"> -->
-                                                                <img
+                                                                <a
                                                                     v-if="
                                                                         columna
                                                                             .posicion
                                                                             .id !=
                                                                             0
                                                                     "
-                                                                    class="ml-3"
-                                                                    :src="
-                                                                        '/' +
+                                                                    @click="
+                                                                        eliminarPosicion(
+                                                                            index,
+                                                                            index_fila,
+                                                                            index_columna,
+                                                                            columna.posicion
+                                                                        )
+                                                                    "
+                                                                >
+                                                                    <img
+                                                                        v-if="
                                                                             columna
                                                                                 .posicion
-                                                                                .img_url
-                                                                    "
-                                                                    alt=""
-                                                                    style="width: 70px"
-                                                                />
-                                                                <!-- </div> -->
+                                                                                .id !=
+                                                                                0
+                                                                        "
+                                                                        class="ml-3"
+                                                                        :src="
+                                                                            '/' +
+                                                                                columna
+                                                                                    .posicion
+                                                                                    .img_url
+                                                                        "
+                                                                        alt=""
+                                                                        style="width: 70px"
+                                                                    />
+                                                                </a>
                                                             </div>
                                                         </template>
                                                     </div>
@@ -1968,7 +1987,7 @@ export default {
                 valor: 0,
                 valorNuevo: 0,
                 respuesta: false,
-                id: 0,
+                id: 0
             },
             resConfirmarCancelar: false,
             icon: "",
@@ -2349,12 +2368,21 @@ export default {
             this.datos_eliminar_agente.index_agente = index_agente;
             this.datos_eliminar_agente.is_tpo_init = t_init;
             this.datos_eliminar_agente.is_tpo_fin = t_fin;
-            if(es_agente && index_fila != 29){
-                this.datos_eliminar_agente.adicional = { system_name: descripcion, tipo: 'agente' };
-            }else if(es_agente && index_fila == 29){
-                this.datos_eliminar_agente.adicional = { system_name: descripcion, tipo: 'respiracion' };
-            }else  if(es_posicion){
-                this.datos_eliminar_agente.adicional = { system_name: descripcion, tipo: 'posicion' };
+            if (es_agente && index_fila != 29) {
+                this.datos_eliminar_agente.adicional = {
+                    system_name: descripcion,
+                    tipo: "agente"
+                };
+            } else if (es_agente && index_fila == 29) {
+                this.datos_eliminar_agente.adicional = {
+                    system_name: descripcion,
+                    tipo: "respiracion"
+                };
+            } else if (es_posicion) {
+                this.datos_eliminar_agente.adicional = {
+                    system_name: descripcion,
+                    tipo: "posicion"
+                };
             }
             this.datos_eliminar_agente.ruta_icono = src;
             this.datos_eliminar_agente.descripcion = descripcion;
@@ -2362,25 +2390,41 @@ export default {
             this.datos_eliminar_agente.id = id;
             this.$modal.show("EliminarAgente");
         },
+        eliminarPosicion(index, index_fila, index_columna, posicion = {}) {
+            this.limpiarDatosEliminarPosicion();
+            this.datos_eliminar_agente.index = index;
+            this.datos_eliminar_agente.index_fila = index_fila;
+            this.datos_eliminar_agente.index_columna = index_columna;
+            this.datos_eliminar_agente.adicional = {
+                system_name: posicion.descripcion,
+                tipo: "posicion"
+            };
+            this.datos_eliminar_agente.ruta_icono = posicion.img_url;
+            this.datos_eliminar_agente.descripcion = posicion.descripcion;
+            this.datos_eliminar_agente.valor = 0;
+            this.datos_eliminar_agente.id = posicion.id;
+            this.$modal.show("EliminarAgente");
+        },
         handleSeleccionarClick(value) {
-            if(value.respuesta){
+            if (value.respuesta) {
                 var valor = parseInt(value.valorNuevo);
                 var minutes = value.is_tpo_init;
                 var is_tpo_init = value.is_tpo_init;
                 var is_tpo_fin = value.is_tpo_fin;
                 var adicional = value.adicional;
-                var ruta_icono= value.ruta_icono;
+                var ruta_icono = value.ruta_icono;
                 this.form.id_datos_agente = value.id;
-
-
                 var indice_fila = this.obtenerIndice(valor);
-                //Recorrer el arreglo para saber en que posicion se debe guardar
-                // Verifica el índice según la hora
-                for (const column_quince of this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin) {
-                    // Recorre cada fila
-                    // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
-                    if (column_quince.columnas) {
-                        if(adicional.tipo == "agente"){
+                if (adicional.tipo == "agente") {
+                    //Recorrer el arreglo para saber en que posicion se debe guardar
+                    // Verifica el índice según la hora
+                    for (const column_quince of this.lista_horas_avanzadas_v[
+                        this.indice_hora
+                    ].datos[indice_fila + this.index_points]
+                        .columnasQuinceMin) {
+                        // Recorre cada fila
+                        // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
+                        if (column_quince.columnas) {
                             // figuras en rejillas
                             for (const col_cince_min of column_quince.columnas) {
                                 if (
@@ -2413,22 +2457,37 @@ export default {
                                     }
                                 }
                             }
-                            this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
-                        }else if(adicional.tipo == "respiracion"){
-                            //alert("descripcion: " + adicional.system_name + ", tipo: " + adicional.tipo);
-                            this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.push({
-                                descripcion: adicional.system_name,
-                                valor: 0,
-                                _src: ruta_icono
-                            });
-                            this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
-
-                        }else if(adicional.tipo == "posicion"){
-
-
                         }
-
                     }
+                    this.lista_horas_avanzadas_v[value.index].datos[
+                        value.index_fila
+                    ].columnasQuinceMin[value.index_columna].columnas[
+                        value.index_minutos_columna
+                    ].agentes.splice(value.indexLista, 1);
+                } else if (adicional.tipo == "respiracion") {
+                    this.lista_horas_avanzadas_v[value.index].datos[
+                        value.index_fila
+                    ].columnasQuinceMin[value.index_columna].columnas[
+                        value.index_minutos_columna
+                    ].agentes.push({
+                        descripcion: adicional.system_name,
+                        valor: 0,
+                        _src: ruta_icono
+                    });
+                    this.lista_horas_avanzadas_v[value.index].datos[
+                        value.index_fila
+                    ].columnasQuinceMin[value.index_columna].columnas[
+                        value.index_minutos_columna
+                    ].agentes.splice(value.indexLista, 1);
+                } else if (adicional.tipo == "posicion") {
+                    this.lista_horas_avanzadas_v[value.index].datos[
+                        value.index_fila
+                    ].columnasQuinceMin[value.index_columna].posicion = {
+                        descripcion: adicional.system_name,
+                        id: valor,
+                        img_url: ruta_icono,
+                        name_system: adicional.system_name
+                    };
                 }
                 /* Esta linea eliminará el agente de la grafica */
                 this.flashMessage.show({
@@ -2447,7 +2506,23 @@ export default {
             }
             this.$modal.hide("EliminarAgente");
         },
-        limpiarDatosEliminarAgente(){
+        limpiarDatosEliminarAgente() {
+            this.datos_eliminar_agente.index = "";
+            this.datos_eliminar_agente.index_fila = "";
+            this.datos_eliminar_agente.index_columna = "";
+            this.datos_eliminar_agente.index_minutos_columna = "";
+            this.datos_eliminar_agente.index_agente = "";
+            this.datos_eliminar_agente.is_tpo_init = "";
+            this.datos_eliminar_agente.is_tpo_fin = "";
+            this.datos_eliminar_agente.adicional.system_name = "";
+            this.datos_eliminar_agente.adicional.tipo = "";
+            this.datos_eliminar_agente.ruta_icono = "";
+            this.datos_eliminar_agente.descripcion = "";
+            this.datos_eliminar_agente.valor = "";
+            this.datos_eliminar_agente.valorNuevo = "";
+            this.datos_eliminar_agente.id = "";
+        },
+        limpiarDatosEliminarPosicion() {
             this.datos_eliminar_agente.index = "";
             this.datos_eliminar_agente.index_fila = "";
             this.datos_eliminar_agente.index_columna = "";
@@ -2489,7 +2564,9 @@ export default {
                 fila_indice != 0 ? fila_indice : this.obtenerIndice(valor);
 
             // Verifica el índice según la hora
-            for (const column_quince of this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin) {
+            for (const column_quince of this.lista_horas_avanzadas_v[
+                this.indice_hora
+            ].datos[indice_fila + this.index_points].columnasQuinceMin) {
                 // Recorre cada fila
                 // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
                 if (column_quince.columnas) {
@@ -2547,19 +2624,6 @@ export default {
                                         valor,
                                         ruta_icono
                                     );
-                                    //este trozo es donde tengo que enviar los datos el metodo enviarDatosAgente
-                                    /* col_cince_min.agentes.push({
-                                        descripcion: adicional.system_name,
-                                         valor: valor,
-                                        _src: ruta_icono,
-                                        id: this.form.id_datos_agente
-                                    }); */
-
-
-
-                                    //await alert(this.form.id_datos_agente);
-
-
                                 }
                                 return;
                             }
@@ -2603,12 +2667,6 @@ export default {
                         loader.hide();
                     })
                     .catch(error => {
-                        //Errores
-                        /* that.$swal({
-                            icon: "error",
-                            title: "Existe un error",
-                            text: error
-                        }); */
                         that.flashMessage.show({
                             status: "error",
                             title: "Error al procesar consultarSello",
@@ -2653,12 +2711,6 @@ export default {
                     });
                 })
                 .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar getNewIdRegistroAnestesia",
@@ -2701,12 +2753,6 @@ export default {
                     loader.hide();
                 })
                 .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar setSelectedTipoPosiciones",
@@ -2748,12 +2794,6 @@ export default {
                     loader.hide();
                 })
                 .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar setSelectedSala",
@@ -2799,12 +2839,6 @@ export default {
                     loader.hide();
                 })
                 .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar setSelectedMedico",
@@ -2841,12 +2875,6 @@ export default {
                     this.tabla_datos_grafica = response.data;
                 })
                 .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar obtenerDatosAgentes",
@@ -2876,12 +2904,6 @@ export default {
                     this.posiciones = response.data;
                 })
                 .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar obtenerDatosPosiciones",
@@ -2903,9 +2925,16 @@ export default {
         /**
          * Método para enviar datos de la rejilla (agentes), cada que se registen (pasando 5 min)
          */
-        enviarDatosAgente(datos = {}, tipo, es_posicion, col_cince_min = {}, descripcion, valor, src) {
+        enviarDatosAgente(
+            datos = {},
+            tipo,
+            es_posicion,
+            col_cince_min = {},
+            descripcion,
+            valor,
+            src
+        ) {
             let that = this;
-            //var loader = that.$loading.show();
             this.form.cirugia_id = this.$props.idSecCirPro;
             let url =
                 "/modulos/cirugia/anestesia/agentes/guardado/" +
@@ -2919,29 +2948,21 @@ export default {
                     SecCirPro: this.form.cirugia_id
                 })
                 .then(response => {
-                    ///console.log(response.data);
                     this.datos_server = response.data;
-                    if(es_posicion == false){
+                    if (es_posicion == false) {
                         col_cince_min.agentes.push({
                             descripcion: descripcion,
-                                valor: valor,
+                            valor: valor,
                             _src: src,
                             id: response.data.datos
                         });
                     }
-                    this.form.id_datos_agente = 0;
-
+                    this.form.registro_id = 0;
                 })
                 .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
-                        title: "Error al procesar obtenerDatosPosiciones",
+                        title: "Error al procesar enviarDatosAgente",
                         message:
                             "Por favor comuníquese con el administrador. " +
                             error,
@@ -2954,13 +2975,8 @@ export default {
                             }
                         }
                     });
-                    //loader.hide();
                 });
         },
-        /* getIdAgente(id) {
-            let url = "/modulos/cirugia/anestesia/consultar_id_agente/" + id;
-            axios.get(url);
-        }, */
         /**
          * Inicio de la recolección de datos
          */
@@ -2977,10 +2993,6 @@ export default {
             });
             this.$emit("guardarCabecera", this.form.registro_anestesia_id);
             //Guardar datos en la tabla tb_tipo_agente_anestesia
-            // let urlTip = "/modulos/cirugia/anestesia/registro_tipo_agente/post";
-            // axios.post(urlTip, this.form).then(response => {
-            //     this.form.agente_id = response.data.id;
-            // });
             // Poner el dato al inicio de la rejilla cuando se haya iniciado
             this.agregaDatoEnRejilla(
                 true,
@@ -3011,10 +3023,6 @@ export default {
                 if (!this.iniciado) return;
                 this.mostrarModalConfirmarCandelar();
                 if (this.resConfirmarCancelar) {
-                    //if (!confirm("¿Desea cerrar el proceso?")) return;
-                    //this.iniciado = false;
-
-                    // Poner el dato al final de la rejilla cuando se haya finalizado
                     this.agregaDatoEnRejilla(
                         true,
                         false,
@@ -3040,12 +3048,7 @@ export default {
                             }
                         }
                     });
-
                     this.getImgGrafica(idFlashMessage1);
-
-                    //this.flashMessage.deleteMessage(idFlashMessage1);
-
-                    //Se guardan los datos a la base
                     this.guardarDrograAdministrada();
                 }
             } else {
@@ -3101,8 +3104,6 @@ export default {
             axios
                 .post(url, formNew)
                 .then(function(response) {
-                    //Llamar metodo de parent para que actualice el grid.
-                    //that.guardarModificarAgenteText();
                     that.flashMessage.show({
                         status: "success",
                         title: "Éxito al procesar Img. Gráfica",
@@ -3119,12 +3120,6 @@ export default {
                     loader.hide();
                 })
                 .catch(error => {
-                    //Errores de validación
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Error Guardar Imagen Grafica",
-                        text: error
-                    }); */
                     that.resConfirmarCancelar = false;
                     that.flashMessage.show({
                         status: "error",
@@ -3176,14 +3171,8 @@ export default {
                     loader.hide();
                 })
                 .catch(error => {
-                    //Errores de validación
                     loader.hide();
                     that.resConfirmarCancelar = false;
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Error Guardar Drogas Administradas",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar guardarDrograAdministrada",
@@ -3228,14 +3217,8 @@ export default {
                     });
                 })
                 .catch(error => {
-                    //Errores de validación
                     loader.hide();
                     that.resConfirmarCancelar = false;
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Error Modificar Registro Administradas",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar modifcarRegistroAnestesia",
@@ -3267,12 +3250,6 @@ export default {
             axios
                 .post(url, formNew)
                 .then(function(response) {
-                    //Llamar metodo de parent para que actualice el grid.
-                    /* that.$swal({
-                        icon: "success",
-                        title: "Proceso realizado exitosamente",
-                        text: "Datos guardados correctamente."
-                    }); */
                     that.guardarFirmaPorAtencion();
                     that.flashMessage.show({
                         status: "success",
@@ -3290,12 +3267,6 @@ export default {
                     loader.hide();
                 })
                 .catch(error => {
-                    //Errores de validación
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Error Guardar Infusiones",
-                        text: error
-                    }); */
                     that.resConfirmarCancelar = false;
                     that.flashMessage.show({
                         status: "error",
@@ -3324,17 +3295,10 @@ export default {
                 imgFirma: that.form.imgFirma
             };
             url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
-
             var loader = that.$loading.show();
             axios
                 .post(url, formNew)
                 .then(function(response) {
-                    //Llamar metodo de parent para que actualice el grid.
-                    /* that.$swal({
-                        icon: "success",
-                        title: "Proceso realizado exitosamente",
-                        text: "Datos guardados correctamente."
-                    }); */
                     loader.hide();
                     that.flashMessage.show({
                         status: "success",
@@ -3349,31 +3313,9 @@ export default {
                             }
                         }
                     });
-                    /* var idFlashMessage1 = that.flashMessage.show({
-                        status: "info",
-                        title: "Generando Gráfica",
-                        message: "Se está generando la gráfica, por favor espere.",
-                        clickable: false,
-                        time: 0,
-                        icon: "/iconsflashMessage/time.gif",
-                        blockClass: 'custom_msg',
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    }); */
-                    //that.getImgGrafica(idFlashMessage1);
-                    //that.flashMessage.deleteMessage(idFlashMessage1);
                     that.guardarModificarAgenteText();
                 })
                 .catch(error => {
-                    //Errores de validación
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Error Guardar Firma por Atención",
-                        text: error
-                    }); */
                     that.resConfirmarCancelar = false;
                     that.flashMessage.show({
                         status: "error",
@@ -3408,11 +3350,6 @@ export default {
             axios
                 .post(url, formNew)
                 .then(function(response) {
-                    /* that.$swal({
-                        icon: "success",
-                        title: "Proceso realizado exitosamente",
-                        text: "Datos guardados correctamente."
-                    }); */
                     that.flashMessage.show({
                         status: "success",
                         title: "Éxito al procesar Modificar Agente Text",
@@ -3439,12 +3376,6 @@ export default {
                     loader.hide();
                 })
                 .catch(error => {
-                    //Errores de validación
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Error Guardar Agente Text",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar guardarModificarAgenteText",
@@ -3491,9 +3422,12 @@ export default {
          *
          */
 
-        validarCampoAgente(){
+        validarCampoAgente() {
             var validarCampo = false;
-            if(this.valoresFormulario.ta_max.valor == undefined || this.valoresFormulario.ta_max.valor == 0){
+            if (
+                this.valoresFormulario.ta_max.valor == undefined ||
+                this.valoresFormulario.ta_max.valor == 0
+            ) {
                 validarCampo = true;
                 this.flashMessage.show({
                     status: "warning",
@@ -3510,7 +3444,10 @@ export default {
                 });
                 return validarCampo;
             }
-            if(this.valoresFormulario.ta_min.valor == undefined || this.valoresFormulario.ta_min.valor == 0){
+            if (
+                this.valoresFormulario.ta_min.valor == undefined ||
+                this.valoresFormulario.ta_min.valor == 0
+            ) {
                 validarCampo = true;
                 this.flashMessage.show({
                     status: "warning",
@@ -3527,7 +3464,10 @@ export default {
                 });
                 return validarCampo;
             }
-            if(this.valoresFormulario.valor_pulso.valor == undefined || this.valoresFormulario.valor_pulso.valor == 0){
+            if (
+                this.valoresFormulario.valor_pulso.valor == undefined ||
+                this.valoresFormulario.valor_pulso.valor == 0
+            ) {
                 validarCampo = true;
                 this.flashMessage.show({
                     status: "warning",
@@ -3545,7 +3485,7 @@ export default {
                 return validarCampo;
             }
 
-            if(this.valoresFormulario.respiracion.descripcion == undefined ){
+            if (this.valoresFormulario.respiracion.descripcion == undefined) {
                 validarCampo = true;
                 this.flashMessage.show({
                     status: "warning",
@@ -3563,8 +3503,11 @@ export default {
                 return validarCampo;
             }
 
-            if(this.chk.temperatura){
-                if(this.valoresFormulario.temperatura.valor == undefined || this.valoresFormulario.temperatura.valor == 0){
+            if (this.chk.temperatura) {
+                if (
+                    this.valoresFormulario.temperatura.valor == undefined ||
+                    this.valoresFormulario.temperatura.valor == 0
+                ) {
                     validarCampo = true;
                     this.flashMessage.show({
                         status: "warning",
@@ -3582,8 +3525,11 @@ export default {
                     return validarCampo;
                 }
             }
-            if(this.chk.feto){
-                if(this.valoresFormulario.feto.valor == undefined || this.valoresFormulario.feto.valor == 0){
+            if (this.chk.feto) {
+                if (
+                    this.valoresFormulario.feto.valor == undefined ||
+                    this.valoresFormulario.feto.valor == 0
+                ) {
                     validarCampo = true;
                     this.flashMessage.show({
                         status: "warning",
@@ -3601,8 +3547,11 @@ export default {
                     return validarCampo;
                 }
             }
-            if(this.chk.pares_venosa){
-                if(this.valoresFormulario.pares_venosa.valor == undefined || this.valoresFormulario.pares_venosa.valor == 0){
+            if (this.chk.pares_venosa) {
+                if (
+                    this.valoresFormulario.pares_venosa.valor == undefined ||
+                    this.valoresFormulario.pares_venosa.valor == 0
+                ) {
                     validarCampo = true;
                     this.flashMessage.show({
                         status: "warning",
@@ -3620,8 +3569,11 @@ export default {
                     return validarCampo;
                 }
             }
-            if(this.chk.torniquete){
-                if(this.valoresFormulario.torniquete.valor == undefined || this.valoresFormulario.torniquete.valor == 0){
+            if (this.chk.torniquete) {
+                if (
+                    this.valoresFormulario.torniquete.valor == undefined ||
+                    this.valoresFormulario.torniquete.valor == 0
+                ) {
                     validarCampo = true;
                     this.flashMessage.show({
                         status: "warning",
@@ -3639,7 +3591,7 @@ export default {
                     return validarCampo;
                 }
             }
-            if(this.valoresFormulario.posicion.descripcion == undefined){
+            if (this.valoresFormulario.posicion.descripcion == undefined) {
                 validarCampo = true;
                 this.flashMessage.show({
                     status: "warning",
@@ -3656,7 +3608,6 @@ export default {
                 });
                 return validarCampo;
             }
-
         },
         obtenerDatosFormulario: function() {
             if (!this.iniciado) return;

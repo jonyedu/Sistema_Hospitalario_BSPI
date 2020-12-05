@@ -65,7 +65,23 @@
                                 </div>
                             </template>
                             <!-- Cuando solo es posicion -->
-                            <template> </template>
+                            <template
+                                v-else-if="
+                                    datos.adicional.tipo == 'posicion'
+                                "
+                            >
+                                <div
+                                    class="col-lg-12 col-md-12 col-sm-12 text-left"
+                                >
+                                    <input
+                                        disabled
+                                        type="text"
+                                        class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                        placeholder="Agente"
+                                        v-model="datos.adicional.system_name"
+                                    />
+                                </div>
+                            </template>
                         </template>
                         <!-- Valor nuevo -->
                         <template>
@@ -99,7 +115,20 @@
                                 </v-select>
                             </template>
                             <!-- Cuando solo es posicion -->
-                            <template> </template>
+                            <template
+                                v-else-if="
+                                    datos.adicional.tipo == 'posicion'
+                                "
+                            >
+                                <v-select
+                                    :value="posiciones.value"
+                                    :options="posiciones"
+                                    label="descripcion"
+                                    class="col-lg-12 col-md-12 col-sm-12"
+                                    @input="setSelectedPosicion"
+                                >
+                                </v-select>
+                            </template>
                         </template>
                     </div>
                     <div
@@ -146,6 +175,13 @@ export default {
                 this.$props.datos.valor = 0;
                 this.$props.datos.adicional.system_name = value.descripcion;
             }
+        },
+        setSelectedPosicion(value) {
+            if(value != null){
+                this.$props.datos.ruta_icono = value.img;
+                this.$props.datos.valor = 0;
+                this.$props.datos.adicional.system_name = value.descripcion;
+            }
         }
     },
     mounted: function() {},
@@ -169,7 +205,33 @@ export default {
                     img: "img/icons/cont.png"
                 }
             ],
-            selectRespiracion: ""
+            posiciones: [
+                {
+                    value: "BOCA_ARRIBA",
+                    descripcion: "BOCA ARRIBA",
+                    img: "img/icons/boca_arriba.png"
+                },
+                {
+                    value: "BOCA ABAJO",
+                    descripcion: "BOCA ABAJO",
+                    img: "img/icons/boca_abajo.png"
+                },
+                {
+                    value: "FETAL",
+                    descripcion: "FETAL",
+                    img: "img/icons/pos_fetal.png"
+                },
+                {
+                    value: "SENTADO",
+                    descripcion: "SENTADO",
+                    img: "img/icons/pos_sentado.png"
+                },
+                {
+                    value: "DE LADO",
+                    descripcion: "DE LADO",
+                    img: "img/icons/pos_lado.png"
+                }
+            ],
         };
     },
     computed: {}
