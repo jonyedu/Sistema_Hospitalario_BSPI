@@ -2024,6 +2024,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     /* mostrar el botón deshacer y rehacer */
@@ -2036,15 +2099,33 @@ __webpack_require__.r(__webpack_exports__);
     validarConfirmarCandelar: function validarConfirmarCandelar(value) {
       this.$props.datos.respuesta = value;
       this.$emit("handleSeleccionarClick", this.$props.datos);
+    },
+    setSelectedRespiracion: function setSelectedRespiracion(value) {
+      if (value != null) {
+        this.$props.datos.ruta_icono = value.img;
+        this.$props.datos.valor = 0;
+        this.$props.datos.adicional.system_name = value.descripcion;
+      }
     }
   },
   mounted: function mounted() {},
   data: function data() {
     return {
       respuestaConfirmarCancelar: false,
-      form: {
-        valor: 0
-      }
+      respiraciones: [{
+        value: "ESP",
+        descripcion: "ESP",
+        img: "img/icons/esp.png"
+      }, {
+        value: "ASIS",
+        descripcion: "ASIS",
+        img: "img/icons/asis.png"
+      }, {
+        value: "CONT",
+        descripcion: "CONT",
+        img: "img/icons/cont.png"
+      }],
+      selectRespiracion: ""
     };
   },
   computed: {}
@@ -2077,6 +2158,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -4382,7 +4464,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
-    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, t_fin, src, descripcion, valor, id, es_agente) {
+    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, t_fin, src, descripcion, valor, id, es_agente, es_posicion) {
       this.limpiarDatosEliminarAgente();
       this.datos_eliminar_agente.index = index;
       this.datos_eliminar_agente.index_fila = index_fila;
@@ -4391,10 +4473,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.datos_eliminar_agente.index_agente = index_agente;
       this.datos_eliminar_agente.is_tpo_init = t_init;
       this.datos_eliminar_agente.is_tpo_fin = t_fin;
-      this.datos_eliminar_agente.adicional = {
-        system_name: descripcion,
-        tipo: es_agente == true ? 'agente' : 'posicion'
-      };
+
+      if (es_agente && index_fila != 29) {
+        this.datos_eliminar_agente.adicional = {
+          system_name: descripcion,
+          tipo: 'agente'
+        };
+      } else if (es_agente && index_fila == 29) {
+        this.datos_eliminar_agente.adicional = {
+          system_name: descripcion,
+          tipo: 'respiracion'
+        };
+      } else if (es_posicion) {
+        this.datos_eliminar_agente.adicional = {
+          system_name: descripcion,
+          tipo: 'posicion'
+        };
+      }
+
       this.datos_eliminar_agente.ruta_icono = src;
       this.datos_eliminar_agente.descripcion = descripcion;
       this.datos_eliminar_agente.valor = valor;
@@ -4423,40 +4519,52 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             // Recorre cada fila
             // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
             if (column_quince.columnas) {
-              // figuras en rejillas
-              var _iterator2 = _createForOfIteratorHelper(column_quince.columnas),
-                  _step2;
+              if (adicional.tipo == "agente") {
+                // figuras en rejillas
+                var _iterator2 = _createForOfIteratorHelper(column_quince.columnas),
+                    _step2;
 
-              try {
-                for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                  var col_cince_min = _step2.value;
+                try {
+                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                    var col_cince_min = _step2.value;
 
-                  if (col_cince_min.t_init <= minutes && col_cince_min.t_fin > minutes) {
-                    if (minutes >= col_cince_min.t_init && col_cince_min.t_fin > minutes) {
-                      col_cince_min.agentes.push({
-                        descripcion: adicional.system_name,
-                        valor: valor,
-                        _src: ruta_icono
-                      }); // Agregar dato de envío
+                    if (col_cince_min.t_init <= minutes && col_cince_min.t_fin > minutes) {
+                      if (minutes >= col_cince_min.t_init && col_cince_min.t_fin > minutes) {
+                        col_cince_min.agentes.push({
+                          descripcion: adicional.system_name,
+                          valor: valor,
+                          _src: ruta_icono
+                        }); // Agregar dato de envío
 
-                      this.enviarDatosAgente({
-                        tpo_ini: is_tpo_init,
-                        tpo_fin: is_tpo_fin,
-                        hora: this.hour,
-                        min: this.minutes,
-                        segundos: this.seconds,
-                        valor: valor,
-                        name: adicional.system_name,
-                        indice_hora: this.indice_hora
-                      }, adicional.tipo);
+                        this.enviarDatosAgente({
+                          tpo_ini: is_tpo_init,
+                          tpo_fin: is_tpo_fin,
+                          hora: this.hour,
+                          min: this.minutes,
+                          segundos: this.seconds,
+                          valor: valor,
+                          name: adicional.system_name,
+                          indice_hora: this.indice_hora
+                        }, adicional.tipo);
+                      }
                     }
                   }
+                } catch (err) {
+                  _iterator2.e(err);
+                } finally {
+                  _iterator2.f();
                 }
-              } catch (err) {
-                _iterator2.e(err);
-              } finally {
-                _iterator2.f();
-              }
+
+                this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+              } else if (adicional.tipo == "respiracion") {
+                //alert("descripcion: " + adicional.system_name + ", tipo: " + adicional.tipo);
+                this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.push({
+                  descripcion: adicional.system_name,
+                  valor: 0,
+                  _src: ruta_icono
+                });
+                this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+              } else if (adicional.tipo == "posicion") {}
             }
           }
           /* Esta linea eliminará el agente de la grafica */
@@ -4467,7 +4575,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _iterator.f();
         }
 
-        this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
         this.flashMessage.show({
           status: "success",
           title: "Éxito al procesar",
@@ -4491,12 +4598,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.datos_eliminar_agente.index_columna = "";
       this.datos_eliminar_agente.index_minutos_columna = "";
       this.datos_eliminar_agente.index_agente = "";
-      this.datos_eliminar_agente.minutes = "";
-      this.datos_eliminar_agente.adicional = "";
+      this.datos_eliminar_agente.is_tpo_init = "";
+      this.datos_eliminar_agente.is_tpo_fin = "";
+      this.datos_eliminar_agente.adicional.system_name = "";
+      this.datos_eliminar_agente.adicional.tipo = "";
       this.datos_eliminar_agente.ruta_icono = "";
       this.datos_eliminar_agente.descripcion = "";
       this.datos_eliminar_agente.valor = "";
       this.datos_eliminar_agente.valorNuevo = "";
+      this.datos_eliminar_agente.id = "";
     },
 
     /**
@@ -5685,19 +5795,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (!this.iniciado) return;
 
       if (this.validarCampoAgente()) {
-        /* this.flashMessage.show({
-            status: "warning",
-            title: "Advertencia Campos Vacios",
-            message: "Complete los campos de agente por favor.",
-            clickable: true,
-            time: 0,
-            icon: "/iconsflashMessage/warning.svg",
-            customStyle: {
-                flashMessageStyle: {
-                    background: "linear-gradient(#e66465, #9198e5)"
-                }
-            }
-        }); */
         return;
       } //console.log(this.valoresFormulario);
 
@@ -6741,7 +6838,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       form: {
-        idCirugiaProgramada: "",
+        idCirugiaProgramada: "0001",
         idCirugiaProgramadaTemporal: "",
         registro_anestesia_id: 0,
 
@@ -58199,106 +58296,217 @@ var render = function() {
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-          _c("div", { staticClass: "row" }, [
-            _c(
-              "div",
-              { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
+          _c(
+            "div",
+            { staticClass: "row" },
+            [
+              _c(
+                "div",
+                { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
+                [
+                  _c("img", {
+                    staticClass: "mt-5 mb-5",
+                    staticStyle: { margin: "auto" },
+                    attrs: { src: "/" + _vm.datos.ruta_icono, alt: "no carga" }
+                  })
+                ]
+              ),
+              _vm._v(" "),
               [
-                _c("img", {
-                  staticClass: "mt-5 mb-5",
-                  staticStyle: { margin: "auto" },
-                  attrs: { src: "/" + _vm.datos.ruta_icono, alt: "no carga" }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
+                _vm.datos.adicional.tipo == "agente"
+                  ? [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "col-lg-12 col-md-12 col-sm-12 text-left"
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.datos.descripcion,
+                                expression: "datos.descripcion"
+                              }
+                            ],
+                            staticClass:
+                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                            attrs: {
+                              disabled: "",
+                              type: "text",
+                              placeholder: "Agente"
+                            },
+                            domProps: { value: _vm.datos.descripcion },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.datos,
+                                  "descripcion",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  : _vm._e()
+              ],
+              _vm._v(" "),
               [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.datos.descripcion,
-                      expression: "datos.descripcion"
-                    }
-                  ],
-                  staticClass:
-                    "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                  attrs: { disabled: "", type: "text", placeholder: "Agente" },
-                  domProps: { value: _vm.datos.descripcion },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.datos, "descripcion", $event.target.value)
-                    }
-                  }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
+                _vm.datos.adicional.tipo == "agente"
+                  ? [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "col-lg-12 col-md-12 col-sm-12 text-left"
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.datos.valor,
+                                expression: "datos.valor"
+                              }
+                            ],
+                            staticClass:
+                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                            attrs: {
+                              disabled: "",
+                              type: "number",
+                              placeholder: "Valor"
+                            },
+                            domProps: { value: _vm.datos.valor },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.datos,
+                                  "valor",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  : _vm.datos.adicional.tipo == "respiracion"
+                  ? [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "col-lg-12 col-md-12 col-sm-12 text-left"
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.datos.adicional.system_name,
+                                expression: "datos.adicional.system_name"
+                              }
+                            ],
+                            staticClass:
+                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                            attrs: {
+                              disabled: "",
+                              type: "text",
+                              placeholder: "Agente"
+                            },
+                            domProps: {
+                              value: _vm.datos.adicional.system_name
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.datos.adicional,
+                                  "system_name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                void 0
+              ],
+              _vm._v(" "),
               [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.datos.valor,
-                      expression: "datos.valor"
-                    }
-                  ],
-                  staticClass:
-                    "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                  attrs: { disabled: "", type: "number", placeholder: "Valor" },
-                  domProps: { value: _vm.datos.valor },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.datos, "valor", $event.target.value)
-                    }
-                  }
-                })
+                _vm.datos.adicional.tipo == "agente"
+                  ? [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "col-lg-12 col-md-12 col-sm-12 text-left"
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.datos.valorNuevo,
+                                expression: "datos.valorNuevo"
+                              }
+                            ],
+                            staticClass:
+                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                            attrs: {
+                              type: "number",
+                              placeholder: "Nuevo valor"
+                            },
+                            domProps: { value: _vm.datos.valorNuevo },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.datos,
+                                  "valorNuevo",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  : _vm.datos.adicional.tipo == "respiracion"
+                  ? [
+                      _c("v-select", {
+                        staticClass: "col-lg-12 col-md-12 col-sm-12",
+                        attrs: {
+                          value: _vm.respiraciones.value,
+                          options: _vm.respiraciones,
+                          label: "descripcion"
+                        },
+                        on: { input: _vm.setSelectedRespiracion }
+                      })
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                void 0
               ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.datos.valorNuevo,
-                      expression: "datos.valorNuevo"
-                    }
-                  ],
-                  staticClass:
-                    "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                  attrs: { type: "number", placeholder: "Nuevo valor" },
-                  domProps: { value: _vm.datos.valorNuevo },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.datos, "valorNuevo", $event.target.value)
-                    }
-                  }
-                })
-              ]
-            )
-          ]),
+            ],
+            2
+          ),
           _vm._v(" "),
           _c(
             "div",
@@ -59644,7 +59852,8 @@ var render = function() {
                                                                                   agente.descripcion,
                                                                                   agente.valor,
                                                                                   agente.id,
-                                                                                  dato.es_agente
+                                                                                  dato.es_agente,
+                                                                                  dato.es_posicion
                                                                                 )
                                                                               }
                                                                             }
@@ -99325,7 +99534,7 @@ var prefijo = _variables__WEBPACK_IMPORTED_MODULE_1__["prefix"];
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prefix", function() { return prefix; });
-var prefix = "/LeoBecerra";
+var prefix = "/LeonBecerra";
 
 /***/ }),
 

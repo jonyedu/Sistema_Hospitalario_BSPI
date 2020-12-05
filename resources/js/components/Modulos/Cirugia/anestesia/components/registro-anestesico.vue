@@ -533,7 +533,8 @@
                                                                                     agente.descripcion,
                                                                                     agente.valor,
                                                                                     agente.id,
-                                                                                    dato.es_agente
+                                                                                    dato.es_agente,
+                                                                                    dato.es_posicion
                                                                                 )
                                                                             "
                                                                             ><img
@@ -1967,7 +1968,7 @@ export default {
                 valor: 0,
                 valorNuevo: 0,
                 respuesta: false,
-                id: 0
+                id: 0,
             },
             resConfirmarCancelar: false,
             icon: "",
@@ -2337,7 +2338,8 @@ export default {
             descripcion,
             valor,
             id,
-            es_agente
+            es_agente,
+            es_posicion
         ) {
             this.limpiarDatosEliminarAgente();
             this.datos_eliminar_agente.index = index;
@@ -2347,7 +2349,13 @@ export default {
             this.datos_eliminar_agente.index_agente = index_agente;
             this.datos_eliminar_agente.is_tpo_init = t_init;
             this.datos_eliminar_agente.is_tpo_fin = t_fin;
-            this.datos_eliminar_agente.adicional = { system_name: descripcion, tipo: es_agente==true?'agente':'posicion' };
+            if(es_agente && index_fila != 29){
+                this.datos_eliminar_agente.adicional = { system_name: descripcion, tipo: 'agente' };
+            }else if(es_agente && index_fila == 29){
+                this.datos_eliminar_agente.adicional = { system_name: descripcion, tipo: 'respiracion' };
+            }else  if(es_posicion){
+                this.datos_eliminar_agente.adicional = { system_name: descripcion, tipo: 'posicion' };
+            }
             this.datos_eliminar_agente.ruta_icono = src;
             this.datos_eliminar_agente.descripcion = descripcion;
             this.datos_eliminar_agente.valor = valor;
@@ -2364,6 +2372,7 @@ export default {
                 var ruta_icono= value.ruta_icono;
                 this.form.id_datos_agente = value.id;
 
+
                 var indice_fila = this.obtenerIndice(valor);
                 //Recorrer el arreglo para saber en que posicion se debe guardar
                 // Verifica el índice según la hora
@@ -2371,42 +2380,57 @@ export default {
                     // Recorre cada fila
                     // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
                     if (column_quince.columnas) {
-                        // figuras en rejillas
-                        for (const col_cince_min of column_quince.columnas) {
-                            if (
-                                col_cince_min.t_init <= minutes &&
-                                col_cince_min.t_fin > minutes
-                            ) {
+                        if(adicional.tipo == "agente"){
+                            // figuras en rejillas
+                            for (const col_cince_min of column_quince.columnas) {
                                 if (
-                                    minutes >= col_cince_min.t_init &&
+                                    col_cince_min.t_init <= minutes &&
                                     col_cince_min.t_fin > minutes
                                 ) {
-                                    col_cince_min.agentes.push({
-                                        descripcion: adicional.system_name,
-                                        valor: valor,
-                                        _src: ruta_icono
-                                    });
-                                    // Agregar dato de envío
-                                    this.enviarDatosAgente(
-                                        {
-                                            tpo_ini: is_tpo_init,
-                                            tpo_fin: is_tpo_fin,
-                                            hora: this.hour,
-                                            min: this.minutes,
-                                            segundos: this.seconds,
+                                    if (
+                                        minutes >= col_cince_min.t_init &&
+                                        col_cince_min.t_fin > minutes
+                                    ) {
+                                        col_cince_min.agentes.push({
+                                            descripcion: adicional.system_name,
                                             valor: valor,
-                                            name: adicional.system_name,
-                                            indice_hora: this.indice_hora
-                                        },
-                                        adicional.tipo
-                                    );
+                                            _src: ruta_icono
+                                        });
+                                        // Agregar dato de envío
+                                        this.enviarDatosAgente(
+                                            {
+                                                tpo_ini: is_tpo_init,
+                                                tpo_fin: is_tpo_fin,
+                                                hora: this.hour,
+                                                min: this.minutes,
+                                                segundos: this.seconds,
+                                                valor: valor,
+                                                name: adicional.system_name,
+                                                indice_hora: this.indice_hora
+                                            },
+                                            adicional.tipo
+                                        );
+                                    }
                                 }
                             }
+                            this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+                        }else if(adicional.tipo == "respiracion"){
+                            //alert("descripcion: " + adicional.system_name + ", tipo: " + adicional.tipo);
+                            this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.push({
+                                descripcion: adicional.system_name,
+                                valor: 0,
+                                _src: ruta_icono
+                            });
+                            this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+
+                        }else if(adicional.tipo == "posicion"){
+
+
                         }
+
                     }
                 }
                 /* Esta linea eliminará el agente de la grafica */
-                this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
                 this.flashMessage.show({
                     status: "success",
                     title: "Éxito al procesar",
@@ -2429,12 +2453,15 @@ export default {
             this.datos_eliminar_agente.index_columna = "";
             this.datos_eliminar_agente.index_minutos_columna = "";
             this.datos_eliminar_agente.index_agente = "";
-            this.datos_eliminar_agente.minutes = "";
-            this.datos_eliminar_agente.adicional = "";
+            this.datos_eliminar_agente.is_tpo_init = "";
+            this.datos_eliminar_agente.is_tpo_fin = "";
+            this.datos_eliminar_agente.adicional.system_name = "";
+            this.datos_eliminar_agente.adicional.tipo = "";
             this.datos_eliminar_agente.ruta_icono = "";
             this.datos_eliminar_agente.descripcion = "";
             this.datos_eliminar_agente.valor = "";
             this.datos_eliminar_agente.valorNuevo = "";
+            this.datos_eliminar_agente.id = "";
         },
         /**
          * Método para pintar el dato en una rejilla y enviar ese dato al servidor
@@ -3634,19 +3661,6 @@ export default {
         obtenerDatosFormulario: function() {
             if (!this.iniciado) return;
             if (this.validarCampoAgente()) {
-                /* this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia Campos Vacios",
-                    message: "Complete los campos de agente por favor.",
-                    clickable: true,
-                    time: 0,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background: "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                }); */
                 return;
             }
             //console.log(this.valoresFormulario);
