@@ -4190,6 +4190,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _datos_eliminar_agent, _form;
 
     return {
+      datos_tiempo: {
+        hora: 0,
+        minuto: 0,
+        segundo: 0
+      },
       datos_eliminar_agente: (_datos_eliminar_agent = {
         index: "",
         index_fila: "",
@@ -4462,17 +4467,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.form.total = subTotal;
     },
     tiempo: function tiempo(params) {
-      var tiempo = 0;
+      /* var tiempo = 0;
       var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
       var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
       var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
       tiempo = hora + ":" + minuto + ":" + segundo;
-      return tiempo;
+      return tiempo; */
+      var tiempo = 0;
+      this.datos_tiempo.segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
+      this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
+      this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour); //tiempo = hora + ":" + minuto + ":" + segundo;
+      //return tiempo;
     }
   },
   mounted: function mounted() {
-    var _this = this;
-
     this.flashMessage.setStrategy("multiple");
     this.form.cirugia_id = this.$props.idSecCirPro;
     /**
@@ -4492,51 +4500,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.setSelectedTipoPosiciones();
     this.setSelectedSala();
     this.setSelectedMedico();
-    setInterval(function () {
-      _this.seconds += 1;
-
-      if (_this.seconds >= 59) {
-        _this.seconds = 0;
-
-        if (_this.iniciado) {
-          if (_this.minutes % 5 == 0) {
-            _this.indice_minuto += 15;
-          }
-        }
-
-        if (_this.minutes >= 59) {
-          _this.hour += 1;
-          _this.minutes = 0;
-
-          if (_this.iniciado) {
-            _this.indice_hora += 1; // Si la hora se ha completado, se agrega otro objeto de horas al
-            //arreglo de datos
-
-            _this.agregarHora(); //this.lista_horas_avanzadas_v = [];
-
-
-            _this.agregarHorasInicial(); //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
-
-
-            if (_this.indice_hora % 5 == 0) {
-              _this.getNewIdRegistroAnestesia();
-
-              _this.getImgGrafica();
+    /* setInterval(() => {
+        this.seconds += 1;
+        if (this.seconds >= 59) {
+            this.seconds = 0;
+            if (this.iniciado) {
+                if (this.minutes % 5 == 0) {
+                    this.indice_minuto += 15;
+                }
             }
-          }
-        } else {
-          _this.minutes += 1;
+            if (this.minutes >= 59) {
+                this.hour += 1;
+                this.minutes = 0;
+                if (this.iniciado) {
+                    this.indice_hora += 1;
+                    // Si la hora se ha completado, se agrega otro objeto de horas al
+                    //arreglo de datos
+                    this.agregarHora();
+                    //this.lista_horas_avanzadas_v = [];
+                    this.agregarHorasInicial();
+                     //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
+                    if (this.indice_hora % 5 == 0) {
+                        this.getNewIdRegistroAnestesia();
+                        this.getImgGrafica();
+                    }
+                }
+            } else {
+                this.minutes += 1;
+            }
         }
-      } // Han pasado 5 min
-
-
-      if (_this.minutes % 5 == 0) {
-        // En caso que hayan pasado los 5 minutos, se registra de manera automática los datos
-        if (_this.seconds == 1) {
-          _this.obtenerDatosFormulario();
+        // Han pasado 5 min
+        if (this.minutes % 5 == 0) {
+            // En caso que hayan pasado los 5 minutos, se registra de manera automática los datos
+            if (this.seconds == 1) {
+                this.obtenerDatosFormulario();
+            }
         }
-      }
-    }, 1000);
+    }, 1000); */
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
@@ -5047,11 +5047,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * Obtener agentes
      */
     obtenerDatosAgentes: function obtenerDatosAgentes() {
-      var _this2 = this;
+      var _this = this;
 
       var url = "/modulos/cirugia/anestesia/agentes";
       axios.get(url + "/agente").then(function (response) {
-        _this2.tabla_datos_grafica = response.data;
+        _this.tabla_datos_grafica = response.data;
       })["catch"](function (error) {
         that.flashMessage.show({
           status: "error",
@@ -5074,11 +5074,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * Obtener posiciones
      */
     obtenerDatosPosiciones: function obtenerDatosPosiciones() {
-      var _this3 = this;
+      var _this2 = this;
 
       var url = "/modulos/cirugia/anestesia/agentes";
       axios.get(url + "/posicion").then(function (response) {
-        _this3.posiciones = response.data;
+        _this2.posiciones = response.data;
       })["catch"](function (error) {
         that.flashMessage.show({
           status: "error",
@@ -5101,7 +5101,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * Método para enviar datos de la rejilla (agentes), cada que se registen (pasando 5 min)
      */
     enviarDatosAgente: function enviarDatosAgente() {
-      var _this4 = this;
+      var _this3 = this;
 
       var datos = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var tipo = arguments.length > 1 ? arguments[1] : undefined;
@@ -5122,7 +5122,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         tipo: tipo,
         SecCirPro: this.form.cirugia_id
       }).then(function (response) {
-        _this4.datos_server = response.data;
+        _this3.datos_server = response.data;
 
         if (es_posicion == false) {
           col_cince_min.agentes.push({
@@ -5139,7 +5139,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           column_quince.posicion = posicion;
         }
 
-        _this4.form.id_datos_agente = 0;
+        _this3.form.id_datos_agente = 0;
       })["catch"](function (error) {
         that.flashMessage.show({
           status: "error",
@@ -5162,7 +5162,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      */
     start_time: function () {
       var _start_time = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event) {
-        var _this5 = this;
+        var _this4 = this;
 
         var url, $id;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -5184,7 +5184,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 url = "/modulos/cirugia/anestesia/registro/post";
                 _context.next = 8;
                 return axios.post(url, this.form).then(function (response) {
-                  _this5.form.registro_anestesia_id = response.data.id;
+                  _this4.form.registro_anestesia_id = response.data.id;
                 });
 
               case 8:
@@ -5272,7 +5272,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     getImgGrafica: function getImgGrafica(idFlashMessage1) {
-      var _this6 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var la, optiones;
@@ -5280,19 +5280,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                la = _this6.$refs.printMe;
+                la = _this5.$refs.printMe;
                 optiones = {
                   type: "dataURL"
                 };
                 _context2.next = 4;
-                return _this6.$html2canvas(la, optiones);
+                return _this5.$html2canvas(la, optiones);
 
               case 4:
-                _this6.form.imgGrafica = _context2.sent;
+                _this5.form.imgGrafica = _context2.sent;
 
-                _this6.flashMessage.deleteMessage(idFlashMessage1);
+                _this5.flashMessage.deleteMessage(idFlashMessage1);
 
-                _this6.flashMessage.show({
+                _this5.flashMessage.show({
                   status: "success",
                   title: "Exito en Graficar",
                   message: "Grafico generado correctamente.",
@@ -5306,7 +5306,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   }
                 });
 
-                _this6.guardarImgGrafica();
+                _this5.guardarImgGrafica();
 
               case 8:
               case "end":
@@ -5782,7 +5782,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     obtenerDatosFormulario: function obtenerDatosFormulario() {
-      var _this7 = this;
+      var _this6 = this;
 
       if (!this.iniciado) return;
 
@@ -5817,13 +5817,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
       var post_text = this.posiciones.find(function (e) {
-        return e.id == _this7.valoresFormulario.posicion.id;
+        return e.id == _this6.valoresFormulario.posicion.id;
       });
       this.agregaDatoEnRejilla(false, false, 0, "", {
         system_name: post_text ? post_text.name_system : "",
         tipo: this.system_posicion
       }, this.lista_horas_avanzadas_v[this.indice_hora].datos.length - 2 - this.index_points, true, this.posiciones.find(function (pos) {
-        return pos.id == _this7.valoresFormulario.posicion.id;
+        return pos.id == _this6.valoresFormulario.posicion.id;
       }));
       this.flashMessage.show({
         status: "success",
@@ -6830,7 +6830,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       form: {
-        idCirugiaProgramada: "0001",
+        idCirugiaProgramada: "",
         idCirugiaProgramadaTemporal: "",
         registro_anestesia_id: 0,
 
@@ -58653,11 +58653,83 @@ var render = function() {
           _c(
             "p",
             {
-              staticClass: "badge badge-warning pl-3 pr-3 pt-2 pb-2",
+              staticClass: "badge badge-warning  col-lg-4 col-md-4 col-sm-4",
               staticStyle: { "font-size": "1.0em" }
             },
             [
               _vm._v("\n                Tiempo: "),
+              _c("span", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.datos_tiempo.hora,
+                      expression: "datos_tiempo.hora"
+                    }
+                  ],
+                  staticClass: "col-lg-2 col-md-2 col-sm-2",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.datos_tiempo.hora },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.datos_tiempo, "hora", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(":")
+              ]),
+              _c("span", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.datos_tiempo.minuto,
+                      expression: "datos_tiempo.minuto"
+                    }
+                  ],
+                  staticClass: "col-lg-2 col-md-2 col-sm-2",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.datos_tiempo.minuto },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.datos_tiempo, "minuto", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(":")
+              ]),
+              _c("span", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.datos_tiempo.segundo,
+                      expression: "datos_tiempo.segundo"
+                    }
+                  ],
+                  staticClass: "col-lg-2 col-md-2 col-sm-2",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.datos_tiempo.segundo },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.datos_tiempo, "segundo", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
               _c("span", { attrs: { id: "total" } }, [
                 _vm._v(_vm._s(_vm.tiempo))
               ])

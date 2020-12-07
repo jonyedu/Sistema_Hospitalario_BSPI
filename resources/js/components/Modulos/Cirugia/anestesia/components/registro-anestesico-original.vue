@@ -19,10 +19,10 @@
         <div class="" style="width: 90%; margin: 0 auto">
             <div class="row flex-center-x">
                 <p
-                    class="badge badge-warning  col-lg-4 col-md-4 col-sm-4"
+                    class="badge badge-warning pl-3 pr-3 pt-2 pb-2"
                     style="font-size: 1.0em"
                 >
-                    Tiempo: <span><input class="col-lg-2 col-md-2 col-sm-2" v-model="datos_tiempo.hora" type="text">:</span><span><input class="col-lg-2 col-md-2 col-sm-2" v-model="datos_tiempo.minuto" type="text">:</span><span><input class="col-lg-2 col-md-2 col-sm-2" v-model="datos_tiempo.segundo" type="text"></span> <span id="total">{{ tiempo }}</span>
+                    Tiempo: <span id="total">{{ tiempo }}</span>
                 </p>
             </div>
             <div class="row mb-5" v-if="iniciado">
@@ -1973,11 +1973,6 @@ export default {
     },
     data: function() {
         return {
-            datos_tiempo:{
-                hora: 0,
-                minuto: 0,
-                segundo: 0
-            },
             datos_eliminar_agente: {
                 index: "",
                 index_fila: "",
@@ -2285,21 +2280,12 @@ export default {
             return (this.form.total = subTotal);
         },
         tiempo: function(params) {
-            /* var tiempo = 0;
+            var tiempo = 0;
             var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
             var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
             var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
             tiempo = hora + ":" + minuto + ":" + segundo;
-            return tiempo; */
-
-            var tiempo = 0;
-            this.datos_tiempo.segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
-            this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
-            this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour);
-            //tiempo = hora + ":" + minuto + ":" + segundo;
-            //return tiempo;
-
-
+            return tiempo;
         }
     },
     mounted: function() {
@@ -2319,7 +2305,7 @@ export default {
         this.setSelectedTipoPosiciones();
         this.setSelectedSala();
         this.setSelectedMedico();
-        /* setInterval(() => {
+        setInterval(() => {
             this.seconds += 1;
             if (this.seconds >= 59) {
                 this.seconds = 0;
@@ -2356,7 +2342,7 @@ export default {
                     this.obtenerDatosFormulario();
                 }
             }
-        }, 1000); */
+        }, 1000);
     },
     beforeDestroy: function() {},
     methods: {
