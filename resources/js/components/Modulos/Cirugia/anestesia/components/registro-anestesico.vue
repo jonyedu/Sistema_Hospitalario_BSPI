@@ -528,10 +528,12 @@
                                                                                     index_minutos_columna,
                                                                                     index_agente,
                                                                                     minutos_columna['t_init'],
+                                                                                    minutos_columna['t_fin'],
                                                                                     agente._src,
                                                                                     agente.descripcion,
                                                                                     agente.valor,
-                                                                                    agente.id
+                                                                                    agente.id,
+                                                                                    dato.es_agente
                                                                                 )
                                                                             "
                                                                             ><img
@@ -1978,7 +1980,7 @@ export default {
             medicos: [],
             validarImgFirma: 0,
             isFirstPaintable: "firmaAnestesiologo",
-            rutaSello: "/img/selloFirma.png",
+            rutaSello: "", ///img/selloFirma.png
             validarFinProceso: "",
             validarImprimir: 0,
             selectedTipoPosiciones: "",
@@ -2330,10 +2332,12 @@ export default {
             index_minutos_columna,
             index_agente,
             t_init,
+            t_fin,
             src,
             descripcion,
             valor,
-            id
+            id,
+            es_agente
         ) {
             this.limpiarDatosEliminarAgente();
             this.datos_eliminar_agente.index = index;
@@ -2341,8 +2345,9 @@ export default {
             this.datos_eliminar_agente.index_columna = index_columna;
             this.datos_eliminar_agente.index_minutos_columna = index_minutos_columna;
             this.datos_eliminar_agente.index_agente = index_agente;
-            this.datos_eliminar_agente.minutes = t_init;
-            this.datos_eliminar_agente.adicional = { system_name: descripcion };
+            this.datos_eliminar_agente.is_tpo_init = t_init;
+            this.datos_eliminar_agente.is_tpo_fin = t_fin;
+            this.datos_eliminar_agente.adicional = { system_name: descripcion, tipo: es_agente==true?'agente':'posicion' };
             this.datos_eliminar_agente.ruta_icono = src;
             this.datos_eliminar_agente.descripcion = descripcion;
             this.datos_eliminar_agente.valor = valor;
@@ -2352,7 +2357,9 @@ export default {
         handleSeleccionarClick(value) {
             if(value.respuesta){
                 var valor = parseInt(value.valorNuevo);
-                var minutes = value.minutes;
+                var minutes = value.is_tpo_init;
+                var is_tpo_init = value.is_tpo_init;
+                var is_tpo_fin = value.is_tpo_fin;
                 var adicional = value.adicional;
                 var ruta_icono= value.ruta_icono;
                 this.form.id_datos_agente = value.id;
@@ -2550,11 +2557,11 @@ export default {
         },
         consultarSello() {
             let that = this;
-            if (this.form.id_medico > 0) {
+            if (this.$props.user.codigo_usu > 0) {
                 var loader = that.$loading.show();
                 let url =
                     "/modulos/cirugia/anestesia/cargar_sello/" +
-                    this.form.id_medico;
+                    this.$props.user.codigo_usu;
                 axios
                     .get(url)
                     .then(function(response) {
@@ -2747,7 +2754,7 @@ export default {
             if (value != null) {
                 this.form.id_medico = value.id_medico;
                 loader.hide();
-                this.consultarSello();
+                //this.consultarSello();
             }
             axios
                 .get(url)
@@ -2888,7 +2895,7 @@ export default {
                     ///console.log(response.data);
                     this.datos_server = response.data;
                     if(es_posicion == false){
-                            col_cince_min.agentes.push({
+                        col_cince_min.agentes.push({
                             descripcion: descripcion,
                                 valor: valor,
                             _src: src,
@@ -2934,7 +2941,7 @@ export default {
             if (this.iniciado) return;
             this.iniciado = true;
             this.agregarHorasInicial();
-            //this.consultarSello();
+            this.consultarSello();
 
             //Guardar datos en la tabla tb_registro_anestesia
             let url = "/modulos/cirugia/anestesia/registro/post";

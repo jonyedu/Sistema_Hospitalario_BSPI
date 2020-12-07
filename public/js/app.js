@@ -4017,6 +4017,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -4051,7 +4053,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       medicos: [],
       validarImgFirma: 0,
       isFirstPaintable: "firmaAnestesiologo",
-      rutaSello: "/img/selloFirma.png",
+      rutaSello: "",
+      ///img/selloFirma.png
       validarFinProceso: "",
       validarImprimir: 0,
       selectedTipoPosiciones: "",
@@ -4379,16 +4382,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
-    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, src, descripcion, valor, id) {
+    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, t_fin, src, descripcion, valor, id, es_agente) {
       this.limpiarDatosEliminarAgente();
       this.datos_eliminar_agente.index = index;
       this.datos_eliminar_agente.index_fila = index_fila;
       this.datos_eliminar_agente.index_columna = index_columna;
       this.datos_eliminar_agente.index_minutos_columna = index_minutos_columna;
       this.datos_eliminar_agente.index_agente = index_agente;
-      this.datos_eliminar_agente.minutes = t_init;
+      this.datos_eliminar_agente.is_tpo_init = t_init;
+      this.datos_eliminar_agente.is_tpo_fin = t_fin;
       this.datos_eliminar_agente.adicional = {
-        system_name: descripcion
+        system_name: descripcion,
+        tipo: es_agente == true ? 'agente' : 'posicion'
       };
       this.datos_eliminar_agente.ruta_icono = src;
       this.datos_eliminar_agente.descripcion = descripcion;
@@ -4399,7 +4404,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     handleSeleccionarClick: function handleSeleccionarClick(value) {
       if (value.respuesta) {
         var valor = parseInt(value.valorNuevo);
-        var minutes = value.minutes;
+        var minutes = value.is_tpo_init;
+        var is_tpo_init = value.is_tpo_init;
+        var is_tpo_fin = value.is_tpo_fin;
         var adicional = value.adicional;
         var ruta_icono = value.ruta_icono;
         this.form.id_datos_agente = value.id;
@@ -4607,9 +4614,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     consultarSello: function consultarSello() {
       var that = this;
 
-      if (this.form.id_medico > 0) {
+      if (this.$props.user.codigo_usu > 0) {
         var loader = that.$loading.show();
-        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.form.id_medico;
+        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.codigo_usu;
         axios.get(url).then(function (response) {
           if (response.data.sello != null) {
             if (response.data.sello.medico_sellos != null) {
@@ -4779,8 +4786,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (value != null) {
         this.form.id_medico = value.id_medico;
-        loader.hide();
-        this.consultarSello();
+        loader.hide(); //this.consultarSello();
       }
 
       axios.get(url).then(function (response) {
@@ -4981,16 +4987,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 2:
                 this.iniciado = true;
-                this.agregarHorasInicial(); //this.consultarSello();
-                //Guardar datos en la tabla tb_registro_anestesia
+                this.agregarHorasInicial();
+                this.consultarSello(); //Guardar datos en la tabla tb_registro_anestesia
 
                 url = "/modulos/cirugia/anestesia/registro/post";
-                _context.next = 7;
+                _context.next = 8;
                 return axios.post(url, this.form).then(function (response) {
                   _this5.form.registro_anestesia_id = response.data.id;
                 });
 
-              case 7:
+              case 8:
                 $id = _context.sent;
                 this.$emit("guardarCabecera", this.form.registro_anestesia_id); //Guardar datos en la tabla tb_tipo_agente_anestesia
                 // let urlTip = "/modulos/cirugia/anestesia/registro_tipo_agente/post";
@@ -5017,7 +5023,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   }
                 });
 
-              case 11:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -7221,50 +7227,6 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-
-    /* validarSecCirPro(secCirPro) {
-        if (secCirPro != "") {
-            let that = this;
-            let url =
-                "/modulos/cirugia/anestesia/validar_secCirPro/" +
-                secCirPro;
-            //var loader = that.$loading.show();
-            axios
-                .get(url)
-                .then(function(response) {
-                    //Obtiene los datos de Motivo Antecedentes
-                    if (
-                        response.data.secCirPro != null &&
-                        response.data.secCirPro != undefined
-                    ) {
-                        that.flashMessage.show({
-                            status: "warning",
-                            title: "Advertencia al Procesar",
-                            message:"El paciente ya cuenta con un registro anestesico.",
-                            clickable: true,
-                            time: 0,
-                            icon: "/iconsflashMessage/warning.svg",
-                            customStyle: {
-                                flashMessageStyle: {
-                                    background: "linear-gradient(#e66465, #9198e5)"
-                                }
-                            }
-                        });
-                        //loader.hide();
-                        return;
-                    }
-                  })
-                .catch(error => {
-                    //Errores
-                    //loader.hide();
-                    that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    });
-                });
-        }
-    }, */
 
     /* Fin para llamar al Modal y la Tabla */
     guardarCabecera: function guardarCabecera(registro_anestesia_id) {
@@ -59675,10 +59637,14 @@ var render = function() {
                                                                                   minutos_columna[
                                                                                     "t_init"
                                                                                   ],
+                                                                                  minutos_columna[
+                                                                                    "t_fin"
+                                                                                  ],
                                                                                   agente._src,
                                                                                   agente.descripcion,
                                                                                   agente.valor,
-                                                                                  agente.id
+                                                                                  agente.id,
+                                                                                  dato.es_agente
                                                                                 )
                                                                               }
                                                                             }
