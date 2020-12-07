@@ -2257,6 +2257,7 @@ export default {
                     valor: 0
                 },
                 posicion: {
+                    //idRe: 0,
                     id: 0,
                     descripcion: ""
                 }
@@ -2402,7 +2403,7 @@ export default {
             this.datos_eliminar_agente.ruta_icono = posicion.img_url;
             this.datos_eliminar_agente.descripcion = posicion.descripcion;
             this.datos_eliminar_agente.valor = 0;
-            this.datos_eliminar_agente.id = posicion.id;
+            this.datos_eliminar_agente.id = posicion.idRe;
             this.$modal.show("EliminarAgente");
         },
         handleSeleccionarClick(value) {
@@ -2459,35 +2460,47 @@ export default {
                             }
                         }
                     }
-                    this.lista_horas_avanzadas_v[value.index].datos[
-                        value.index_fila
-                    ].columnasQuinceMin[value.index_columna].columnas[
-                        value.index_minutos_columna
-                    ].agentes.splice(value.indexLista, 1);
+                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
                 } else if (adicional.tipo == "respiracion") {
-                    this.lista_horas_avanzadas_v[value.index].datos[
-                        value.index_fila
-                    ].columnasQuinceMin[value.index_columna].columnas[
-                        value.index_minutos_columna
-                    ].agentes.push({
+                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.push({
                         descripcion: adicional.system_name,
                         valor: 0,
                         _src: ruta_icono
                     });
-                    this.lista_horas_avanzadas_v[value.index].datos[
-                        value.index_fila
-                    ].columnasQuinceMin[value.index_columna].columnas[
-                        value.index_minutos_columna
-                    ].agentes.splice(value.indexLista, 1);
+                    this.enviarDatosAgente(
+                        {
+                            tpo_ini: is_tpo_init,
+                            tpo_fin: is_tpo_fin,
+                            hora: this.hour,
+                            min: this.minutes,
+                            segundos: this.seconds,
+                            valor: valor,
+                            name: adicional.system_name,
+                            indice_hora: this.indice_hora
+                        },
+                        adicional.tipo
+                    );
+                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
                 } else if (adicional.tipo == "posicion") {
-                    this.lista_horas_avanzadas_v[value.index].datos[
-                        value.index_fila
-                    ].columnasQuinceMin[value.index_columna].posicion = {
+                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].posicion = {
                         descripcion: adicional.system_name,
-                        id: valor,
+                        idRe: valor,
                         img_url: ruta_icono,
                         name_system: adicional.system_name
                     };
+                    this.enviarDatosAgente(
+                        {
+                            tpo_ini: is_tpo_init,
+                            tpo_fin: is_tpo_fin,
+                            hora: this.hour,
+                            min: this.minutes,
+                            segundos: this.seconds,
+                            valor: this.form.id_datos_agente,
+                            name: adicional.system_name,
+                            indice_hora: this.indice_hora
+                        },
+                        adicional.tipo
+                    );
                 }
                 /* Esta linea eliminará el agente de la grafica */
                 this.flashMessage.show({
@@ -2577,22 +2590,37 @@ export default {
                             column_quince.tiempo_inicio <= this.minutes &&
                             column_quince.tiempo_fin > this.minutes
                         ) {
-                            // Agregar dato de envío
-                            this.enviarDatosAgente(
-                                {
-                                    tpo_ini: is_tpo_init,
-                                    tpo_fin: is_tpo_fin,
-                                    hora: this.hour,
-                                    min: this.minutes,
-                                    segundos: this.seconds,
-                                    valor: valor,
-                                    name: adicional.system_name,
-                                    indice_hora: this.indice_hora
-                                },
-                                adicional.tipo
-                            );
+                            if(column_quince.posicion.id == 0){
+                                // Agregar dato de envío
+                                this.enviarDatosAgente(
+                                    {
+                                        tpo_ini: is_tpo_init,
+                                        tpo_fin: is_tpo_fin,
+                                        hora: this.hour,
+                                        min: this.minutes,
+                                        segundos: this.seconds,
+                                        valor: valor,
+                                        name: adicional.system_name,
+                                        indice_hora: this.indice_hora
+                                    },
+                                    adicional.tipo,
+                                    es_posicion,
+                                    {},
+                                    adicional.system_name,
+                                    valor,
+                                    ruta_icono,
+                                    posicion,
+                                    column_quince
+                                );
+                                return;
+                            }
+
+
+                            //Pinta en la grafica los valores
+                            //Si funciona, llevar este codigo a donde guarda en base
+                            /* Object.assign(posicion,{nue:0});
                             column_quince.posicion = posicion;
-                            return;
+                            return; */
                         }
                     } else {
                         // figuras en rejillas
@@ -2605,25 +2633,27 @@ export default {
                                     this.minutes >= col_cince_min.t_init &&
                                     col_cince_min.t_fin > this.minutes
                                 ) {
-                                    // Agregar dato de envío
-                                    this.enviarDatosAgente(
-                                        {
-                                            tpo_ini: is_tpo_init,
-                                            tpo_fin: is_tpo_fin,
-                                            hora: this.hour,
-                                            min: this.minutes,
-                                            segundos: this.seconds,
-                                            valor: valor,
-                                            name: adicional.system_name,
-                                            indice_hora: this.indice_hora
-                                        },
-                                        adicional.tipo,
-                                        es_posicion,
-                                        col_cince_min,
-                                        adicional.system_name,
-                                        valor,
-                                        ruta_icono
-                                    );
+                                    if(col_cince_min.agentes.length == 0){
+                                        // Agregar dato de envío
+                                        this.enviarDatosAgente(
+                                            {
+                                                tpo_ini: is_tpo_init,
+                                                tpo_fin: is_tpo_fin,
+                                                hora: this.hour,
+                                                min: this.minutes,
+                                                segundos: this.seconds,
+                                                valor: valor,
+                                                name: adicional.system_name,
+                                                indice_hora: this.indice_hora
+                                            },
+                                            adicional.tipo,
+                                            es_posicion,
+                                            col_cince_min,
+                                            adicional.system_name,
+                                            valor,
+                                            ruta_icono
+                                        );
+                                    }
                                 }
                                 return;
                             }
@@ -2932,13 +2962,13 @@ export default {
             col_cince_min = {},
             descripcion,
             valor,
-            src
+            src,
+            posicion = {},
+            column_quince = []
         ) {
             let that = this;
             this.form.cirugia_id = this.$props.idSecCirPro;
-            let url =
-                "/modulos/cirugia/anestesia/agentes/guardado/" +
-                this.registro_id;
+            let url ="/modulos/cirugia/anestesia/agentes/guardado";
             axios
                 .post(url, {
                     id_datos_agente: this.form.id_datos_agente,
@@ -2956,8 +2986,14 @@ export default {
                             _src: src,
                             id: response.data.datos
                         });
+                    }else{
+                        Object.assign(posicion,{
+                            idRe:response.data.datos
+                        });
+                        console.log(column_quince.posicion);
+                        column_quince.posicion = posicion;
                     }
-                    this.form.registro_id = 0;
+                    this.form.id_datos_agente = 0;
                 })
                 .catch(error => {
                     that.flashMessage.show({

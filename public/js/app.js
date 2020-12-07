@@ -4440,6 +4440,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           valor: 0
         },
         posicion: {
+          //idRe: 0,
           id: 0,
           descripcion: ""
         }
@@ -4585,7 +4586,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.datos_eliminar_agente.ruta_icono = posicion.img_url;
       this.datos_eliminar_agente.descripcion = posicion.descripcion;
       this.datos_eliminar_agente.valor = 0;
-      this.datos_eliminar_agente.id = posicion.id;
+      this.datos_eliminar_agente.id = posicion.idRe;
       this.$modal.show("EliminarAgente");
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
@@ -4661,14 +4662,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             valor: 0,
             _src: ruta_icono
           });
+          this.enviarDatosAgente({
+            tpo_ini: is_tpo_init,
+            tpo_fin: is_tpo_fin,
+            hora: this.hour,
+            min: this.minutes,
+            segundos: this.seconds,
+            valor: valor,
+            name: adicional.system_name,
+            indice_hora: this.indice_hora
+          }, adicional.tipo);
           this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
         } else if (adicional.tipo == "posicion") {
           this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].posicion = {
             descripcion: adicional.system_name,
-            id: valor,
+            idRe: valor,
             img_url: ruta_icono,
             name_system: adicional.system_name
           };
+          this.enviarDatosAgente({
+            tpo_ini: is_tpo_init,
+            tpo_fin: is_tpo_fin,
+            hora: this.hour,
+            min: this.minutes,
+            segundos: this.seconds,
+            valor: this.form.id_datos_agente,
+            name: adicional.system_name,
+            indice_hora: this.indice_hora
+          }, adicional.tipo);
         }
         /* Esta linea eliminará el agente de la grafica */
 
@@ -4758,19 +4779,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (es_posicion) {
               // posiciones
               if (column_quince.tiempo_inicio <= this.minutes && column_quince.tiempo_fin > this.minutes) {
-                // Agregar dato de envío
-                this.enviarDatosAgente({
-                  tpo_ini: is_tpo_init,
-                  tpo_fin: is_tpo_fin,
-                  hora: this.hour,
-                  min: this.minutes,
-                  segundos: this.seconds,
-                  valor: valor,
-                  name: adicional.system_name,
-                  indice_hora: this.indice_hora
-                }, adicional.tipo);
+                if (column_quince.posicion.id == 0) {
+                  // Agregar dato de envío
+                  this.enviarDatosAgente({
+                    tpo_ini: is_tpo_init,
+                    tpo_fin: is_tpo_fin,
+                    hora: this.hour,
+                    min: this.minutes,
+                    segundos: this.seconds,
+                    valor: valor,
+                    name: adicional.system_name,
+                    indice_hora: this.indice_hora
+                  }, adicional.tipo, es_posicion, {}, adicional.system_name, valor, ruta_icono, posicion, column_quince);
+                  return;
+                } //Pinta en la grafica los valores
+                //Si funciona, llevar este codigo a donde guarda en base
+
+                /* Object.assign(posicion,{nue:0});
                 column_quince.posicion = posicion;
-                return;
+                return; */
+
               }
             } else {
               // figuras en rejillas
@@ -4783,17 +4811,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                   if (col_cince_min.t_init <= this.minutes && col_cince_min.t_fin > this.minutes) {
                     if (this.minutes >= col_cince_min.t_init && col_cince_min.t_fin > this.minutes) {
-                      // Agregar dato de envío
-                      this.enviarDatosAgente({
-                        tpo_ini: is_tpo_init,
-                        tpo_fin: is_tpo_fin,
-                        hora: this.hour,
-                        min: this.minutes,
-                        segundos: this.seconds,
-                        valor: valor,
-                        name: adicional.system_name,
-                        indice_hora: this.indice_hora
-                      }, adicional.tipo, es_posicion, col_cince_min, adicional.system_name, valor, ruta_icono);
+                      if (col_cince_min.agentes.length == 0) {
+                        // Agregar dato de envío
+                        this.enviarDatosAgente({
+                          tpo_ini: is_tpo_init,
+                          tpo_fin: is_tpo_fin,
+                          hora: this.hour,
+                          min: this.minutes,
+                          segundos: this.seconds,
+                          valor: valor,
+                          name: adicional.system_name,
+                          indice_hora: this.indice_hora
+                        }, adicional.tipo, es_posicion, col_cince_min, adicional.system_name, valor, ruta_icono);
+                      }
                     }
 
                     return;
@@ -5080,9 +5110,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var descripcion = arguments.length > 4 ? arguments[4] : undefined;
       var valor = arguments.length > 5 ? arguments[5] : undefined;
       var src = arguments.length > 6 ? arguments[6] : undefined;
+      var posicion = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : {};
+      var column_quince = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : [];
       var that = this;
       this.form.cirugia_id = this.$props.idSecCirPro;
-      var url = "/modulos/cirugia/anestesia/agentes/guardado/" + this.registro_id;
+      var url = "/modulos/cirugia/anestesia/agentes/guardado";
       axios.post(url, {
         id_datos_agente: this.form.id_datos_agente,
         registro_anestesia_id: this.form.registro_anestesia_id,
@@ -5099,9 +5131,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             _src: src,
             id: response.data.datos
           });
+        } else {
+          Object.assign(posicion, {
+            idRe: response.data.datos
+          });
+          console.log(column_quince.posicion);
+          column_quince.posicion = posicion;
         }
 
-        _this4.form.registro_id = 0;
+        _this4.form.id_datos_agente = 0;
       })["catch"](function (error) {
         that.flashMessage.show({
           status: "error",

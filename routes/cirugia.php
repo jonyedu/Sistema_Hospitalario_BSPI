@@ -52,7 +52,7 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
     /* SubModulo anestesia */
     Route::namespace('Modulos\Cirugia\RegistroAnestesico')->prefix('anestesia')->group(function () {
         Route::post('registro/post', 'RegistroAnestesiaController@store');
-        Route::post('agentes/guardado/{registro_id}', 'DatosAgentesController@guardarDatosAgentes');
+        Route::post('agentes/guardado', 'DatosAgentesController@guardarDatosAgentes');
         Route::get('agentes/{tipo}', 'DatosAgentesController@obtenerAgenteAnestesiaJson');
         Route::post('registrar', 'DatosAgentesController@guardarDatosAgentes');
         //Route::post('registro_tipo_agente/post', 'TipoAgenteAnestesiaController@store');
