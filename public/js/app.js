@@ -1950,6 +1950,570 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
+      // Variables Globales
+      titulo_seleccionado: "Registro de Tiempo",
+      prefijo: "",
+      //Variables de Bandera
+      iniciado: false,
+      disabledDetalleTiempo: true,
+      //Variables para la Tabla
+      columns: [{
+        label: "Descripción",
+        field: "descripcion",
+        type: "String"
+      }, {
+        label: "Estado",
+        field: "estado",
+        type: "String"
+      }],
+      //Variables para la Tabla
+      registros_tiempos: [],
+      form: {
+        id_cirugia_programada: 1,
+        id_detalle_tiempo: 0,
+        id_registro_tiempo: 0,
+        //Variables para el ComboBox
+        selected_detalle_tiempo: "",
+        detalles_tiempos: []
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.flashMessage.setStrategy("multiple");
+    this.setSelectedDetalleTiempo();
+    this.cargarRegistroTiempoPorSecCirPro();
+    this.prefijo = _variables__WEBPACK_IMPORTED_MODULE_0__["prefix"];
+  },
+  beforeDestroy: function beforeDestroy() {
+    /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
+    let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
+        .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Salida"
+    ); */
+  },
+  methods: {
+    /* Metodos para Llamar al Modal y la Tabla */
+    mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
+      this.$modal.show("ListaCirugiaProgramadaPaciente");
+    },
+    handleSeleccionarClick: function handleSeleccionarClick(value) {
+      if (value != "") {
+        var that = this;
+        var url = "/modulos/cirugia/anestesia/validar_secCirPro/" + value.SecCirPro; //var loader = that.$loading.show();
+
+        axios.get(url).then(function (response) {
+          //Obtiene los datos de Motivo Antecedentes
+          if (response.data.secCirPro != null && response.data.secCirPro != undefined) {
+            that.$modal.hide("ListaCirugiaProgramadaPaciente");
+            that.flashMessage.show({
+              status: "warning",
+              title: "Advertencia al Seleccionar Paciente",
+              message: "El paciente ya cuenta con un registro anestesico.",
+              clickable: true,
+              time: 10000,
+              icon: "/iconsflashMessage/warning.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
+              }
+            }); //loader.hide();
+          } else {
+            that.cargarDiagnosticoPorCodigo(value);
+          }
+        })["catch"](function (error) {
+          //Errores
+          //loader.hide();
+          that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+          });
+        });
+      }
+    },
+    cargarRegistroTiempoPorSecCirPro: function cargarRegistroTiempoPorSecCirPro() {
+      if (this.form.id_cirugia_programada > 0) {
+        var that = this;
+        var loader = that.$loading.show();
+        var url = "/modulos/cirugia/registro_tiempo/cargar_registro_tiempo_por_secCirPro/" + this.form.id_cirugia_programada;
+        axios.get(url).then(function (response) {
+          var registros_tiempos = [];
+
+          if (response.data.registrosTiempos != null) {
+            response.data.registrosTiempos.forEach(function (registroTiempo) {
+              var objeto = {
+                //Datos de la tabla tb_detalle_tiempo
+                id_detalle_tiempo: registroTiempo.detalle_tiempo.id_detalle_tiempo,
+                descripcion: that.$funcionesGlobales.toCapitalFirstAllWords(registroTiempo.detalle_tiempo.descripcion),
+                //Datos de la tabla tb_registro_tiempo
+                id_registro_tiempo: registroTiempo.id_detalle_tiempo,
+                secCirPro: registroTiempo.SecCirPro,
+                tiempo: registroTiempo.tiempo,
+                estado: registroTiempo.estado == "I" ? "Iniciado" : registroTiempo.estado == "F" ? "Finalizado" : registroTiempo.estado == "P" ? "Pendiente" : ""
+              };
+              registros_tiempos.push(objeto);
+            });
+            that.registros_tiempos = registros_tiempos;
+          }
+
+          loader.hide();
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar cargarRegistroTiempoPorSecCirPro",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
+      }
+    },
+    setSelectedDetalleTiempo: function setSelectedDetalleTiempo(value) {
+      if (this.form.id_cirugia_programada > 0) {
+        var that = this;
+        var loader = that.$loading.show();
+        var url = "/modulos/parametrizacion/detalle_tiempo/cargar_detalle_tiempo";
+
+        if (value != null) {
+          this.form.id_detalle_tiempo = value.id_detalle_tiempo;
+          loader.hide();
+        }
+
+        axios.get(url).then(function (response) {
+          var detalles_tiempos = [];
+          response.data.detallesTiempos.forEach(function (detalleTiempo) {
+            var objeto = {};
+            objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(detalleTiempo.descripcion);
+            objeto.id_detalle_tiempo = detalleTiempo.id_detalle_tiempo;
+            detalles_tiempos.push(objeto);
+          });
+          that.form.detalles_tiempos = detalles_tiempos;
+          loader.hide();
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar setSelectedDetalleTiempo",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
+      }
+    },
+    anadirTiempo: function anadirTiempo() {
+      alert("se guardar el tiempo inicial");
+    },
+    guardarRegistroTiempo: function guardarRegistroTiempo() {
+      if (this.validarCambioTiempo()) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia al cambiar tiempo",
+          message: "No puede cambiar el estado, sin haber empezado el anterior",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return;
+      }
+
+      var that = this;
+      var url = "";
+      var mensaje = "Datos guardados correctamente.";
+      url = "/modulos/cirugia/registro_tiempo/guardar_registro_tiempo";
+      var loader = that.$loading.show();
+      axios.post(url, this.form).then(function (response) {
+        that.iniciado = true;
+        that.disabledDetalleTiempo = false;
+        that.cargarRegistroTiempoPorSecCirPro();
+        /* that.flashMessage.show({
+            status: "success",
+            title: "Éxito al procesar",
+            message: mensaje,
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/success.svg",
+            customStyle: {
+                flashMessageStyle: {
+                    background: "linear-gradient(#e66465, #9198e5)"
+                }
+            }
+        }); */
+
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores de validación
+        loader.hide();
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarModificarRegistroTiempo",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      });
+    },
+    validarCambioTiempo: function validarCambioTiempo() {
+      //Para validar los tiempos respetando su flujo de proceso
+      if (this.iniciado) {
+        /* Se valida cuando no se haya seleccionado nada */
+        if (this.form.selected_detalle_tiempo == "") {
+          return true;
+        }
+        /* Valida cuando se seleccione Uso De Quirófano */
+
+
+        if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 1) {
+          //Valida cuando Uso De Quirófano se desea Finalizar, pero Cirugía sigue Iniciado
+          if (this.registros_tiempos[0].estado == "Iniciado") {
+            if (this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente") {
+              return true;
+            }
+          } //Valida cuando Uso De Quirófano se desea Finalizar, pero Preparación De Anestesiólogo sigue en Iniciado
+
+
+          if (this.registros_tiempos[0].estado == "Iniciado") {
+            if (this.registros_tiempos[1].estado == "Iniciado") {
+              return true;
+            }
+          }
+        }
+        /* Valida cuando se seleccione Preparación De Anestesiólogo */
+
+
+        if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 2) {
+          //Valida cuando Preparación De Anestesiólogo se desea Iniciar, pero Uso De Quirófano sigue en pendiente
+          if (this.registros_tiempos[1].estado == "Pendiente") {
+            if (this.registros_tiempos[0].estado == "Pendiente") {
+              return true;
+            }
+          } //Valida cuando Preparación De Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado
+
+
+          if (this.registros_tiempos[1].estado == "Iniciado") {
+            if (this.registros_tiempos[2].estado == "Iniciado") {
+              return true;
+            }
+          }
+        }
+        /* Valida cuando se seleccione Induccion */
+
+
+        if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 3) {
+          //Valida cuando Inducción se desea Iniciar, pero Preparación De Anestesiólogo sigue en pendiente
+          if (this.registros_tiempos[2].estado == "Pendiente") {
+            if (this.registros_tiempos[1].estado == "Pendiente") {
+              return true;
+            }
+          } //Valida cuando Inducción se desea Finalizar, pero Cirugía sigue en Iniciado
+
+
+          if (this.registros_tiempos[2].estado == "Iniciado") {
+            if (this.registros_tiempos[3].estado == "Iniciado") {
+              return true;
+            }
+          }
+        }
+        /* Valida cuando se seleccione Cirugía */
+
+
+        if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 4) {
+          //Valida cuando Cirugía se desea Iniciar, pero Induccion sigue en pendiente
+          if (this.registros_tiempos[3].estado == "Pendiente") {
+            if (this.registros_tiempos[2].estado == "Pendiente") {
+              return true;
+            }
+          }
+        }
+
+        if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 1 || this.form.selected_detalle_tiempo.id_detalle_tiempo == 2 || this.form.selected_detalle_tiempo.id_detalle_tiempo == 3 || this.form.selected_detalle_tiempo.id_detalle_tiempo == 4) {
+          if (this.registros_tiempos[0].estado == "Finalizado" && this.registros_tiempos[1].estado == "Finalizado" && this.registros_tiempos[2].estado == "Finalizado" && this.registros_tiempos[3].estado == "Finalizado") {
+            return true;
+          }
+        }
+      }
+    },
+    muestraConsultaExterna: function muestraConsultaExterna(value) {
+      //this.componente_seleccionado = "SignosVitales";
+      if (value.ESTADOCITA_TIPO == "C") {
+        this.$modal.show("datosConsultaExterna");
+        this.idCitaModal = this.idCita;
+      } else {
+        if (value.ESTADOCITA_TIPO == "E") {
+          /* this.$swal({
+              icon: "warning",
+              title: "Información",
+              text:
+              "La funcionalidad de visualización emergencia se encuentra en desarrollo.",
+          }); */
+        } else {
+            /* this.$swal({
+                icon: "warning",
+                title: "Información",
+                text: "La funcionalidad se encuentra en desarrollo.",
+            }); */
+          }
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=script&lang=js& ***!
@@ -4176,6 +4740,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -4190,11 +4772,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _datos_eliminar_agent, _form;
 
     return {
-      datos_tiempo: {
-        hora: 0,
-        minuto: 0,
-        segundo: 0
-      },
+      iniciado_eliminar: false,
       datos_eliminar_agente: (_datos_eliminar_agent = {
         index: "",
         index_fila: "",
@@ -4473,14 +5051,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
       tiempo = hora + ":" + minuto + ":" + segundo;
       return tiempo; */
-      var tiempo = 0;
+
+      /* var tiempo = 0;
       this.datos_tiempo.segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
       this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
-      this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour); //tiempo = hora + ":" + minuto + ":" + segundo;
+      this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour); */
+      //tiempo = hora + ":" + minuto + ":" + segundo;
       //return tiempo;
     }
   },
   mounted: function mounted() {
+    /* this.datos_tiempo.segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
+    this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
+    this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour);
+    alert(this.datos_tiempo.segundo); */
+
+    /* Obtengo los datos para añadir 0 */
+    var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
+    var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
+    var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
+    /* Retorno los datos con 0 incluido */
+
+    this.seconds = segundo;
+    this.minutes = minuto;
+    this.hour = hora;
     this.flashMessage.setStrategy("multiple");
     this.form.cirugia_id = this.$props.idSecCirPro;
     /**
@@ -4540,6 +5134,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
+    agregarObjetoPorHora: function agregarObjetoPorHora() {
+      // Validar que se haya guardado todos los valores
+      //var valor;
+      //this.lista_horas_avanzadas_v[this.indice_hora].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes
+      var acumulador = 0;
+
+      for (var i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
+        if (this.lista_horas_avanzadas_v[i] != "") {
+          if (i == this.indice_hora) {
+            for (var j = 0; j < this.lista_horas_avanzadas_v[i].datos.length; j++) {
+              if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
+                for (var k = 0; k < this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length; k++) {
+                  if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
+                    for (var l = 0; l < this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length; l++) {
+                      if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
+                        if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l].agentes.length > 0) {
+                          acumulador += 1;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      if (acumulador >= 4) {
+        acumulador = 0;
+        this.indice_hora += 1;
+        this.iniciado_eliminar = true; // Si la hora se ha completado, se agrega otro objeto de horas al
+        //arreglo de datos
+
+        this.agregarHora();
+      }
+    },
+    eliminarObjetoPorHora: function eliminarObjetoPorHora() {
+      if (this.lista_horas_avanzadas_v.length > 1) {
+        this.lista_horas_avanzadas_v.splice(this.indice_hora, 1);
+        this.indice_hora -= 1;
+      }
+
+      if (this.lista_horas_avanzadas_v.length == 1) {
+        this.iniciado_eliminar = false;
+      }
+    },
     eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, t_fin, src, descripcion, valor, id, es_agente, es_posicion) {
       this.limpiarDatosEliminarAgente();
       this.datos_eliminar_agente.index = index;
@@ -4860,13 +5501,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     consultarSello: function consultarSello() {
       var that = this;
 
-      if (this.$props.user.codigo_usu > 0) {
+      if (this.$props.user.id > 0) {
         var loader = that.$loading.show();
-        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.codigo_usu;
+        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
         axios.get(url).then(function (response) {
           if (response.data.sello != null) {
-            if (response.data.sello.medico_sellos != null) {
-              that.rutaSello = "data:image/jpeg;base64," + response.data.sello.medico_sellos.IMAGEN_SELLO;
+            if (response.data.sello.seguridad_medico != null) {
+              if (response.data.sello.seguridad_medico.medico != null) {
+                if (response.data.sello.seguridad_medico.medico.medico_sellos != null) {
+                  that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
+                }
+              }
             }
           }
 
@@ -5135,7 +5780,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           Object.assign(posicion, {
             idRe: response.data.datos
           });
-          console.log(column_quince.posicion);
           column_quince.posicion = posicion;
         }
 
@@ -5598,7 +6242,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * Agrega datos a la rejilla
      */
     agregarDatos: function agregarDatos(campo) {
-      // console.log(campo);
       this.agregaDatoEnRejilla(false, false, campo.valor, campo.ruta_img, {
         system_name: campo.descripcion,
         tipo: this.system_agente
@@ -5788,8 +6431,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.validarCampoAgente()) {
         return;
-      } //console.log(this.valoresFormulario);
-
+      }
 
       this.agregarDatos(this.valoresFormulario.ta_max);
       this.agregarDatos(this.valoresFormulario.ta_min);
@@ -6830,7 +7472,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       form: {
-        idCirugiaProgramada: "",
+        idCirugiaProgramada: "0001",
         idCirugiaProgramadaTemporal: "",
         registro_anestesia_id: 0,
 
@@ -16547,6 +17189,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -58269,6 +58923,384 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "content-wrapper" },
+    [
+      _c("div", { staticClass: "content-header" }, [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "row mb-2" }, [
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("ol", { staticClass: "breadcrumb float-sm-left" }, [
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        staticStyle: { "margin-top": "-9px" },
+                        attrs: { to: _vm.prefijo }
+                      },
+                      [_vm._v("Home")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c("li", [
+                  _c("p", { staticStyle: { "margin-left": "10px" } }, [
+                    _c("span", {
+                      domProps: { textContent: _vm._s(_vm.titulo_seleccionado) }
+                    })
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-lg-12 col-md-12 col-sm-12 text-right"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "btn-group",
+                            attrs: { role: "group" }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-outline-primary",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.mostrarModalListaCirugiaPaciente()
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                            Nuevo\n                                        "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._v("\n                 \n                "),
+            _vm._v(" "),
+            _vm.form.id_cirugia_programada > 0
+              ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card card-default collapsed-card" },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-header",
+                          staticStyle: { background: "#590303" }
+                        },
+                        [
+                          _c(
+                            "h3",
+                            {
+                              staticClass: "card-title",
+                              staticStyle: { color: "#FFFFFF" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                Registro del Tiempo del Paciente\n                                " +
+                                  _vm._s(_vm.form.paciente) +
+                                  "\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(1)
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-body",
+                          staticStyle: { display: "none" }
+                        },
+                        [
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "text-left col-lg-12 col-md-12 col-sm-12"
+                                  },
+                                  [
+                                    _c("div", { staticClass: "row" }, [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-1 col-md-1 col-sm-1"
+                                        },
+                                        [
+                                          _vm.iniciado == false
+                                            ? [
+                                                _c("span", [
+                                                  _c(
+                                                    "button",
+                                                    {
+                                                      staticClass:
+                                                        "btn btn-outline-primary",
+                                                      attrs: { type: "button" },
+                                                      on: {
+                                                        click:
+                                                          _vm.guardarRegistroTiempo
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("i", {
+                                                        staticClass:
+                                                          "fas fa-stopwatch"
+                                                      })
+                                                    ]
+                                                  )
+                                                ])
+                                              ]
+                                            : [
+                                                _c("span", [
+                                                  _c(
+                                                    "button",
+                                                    {
+                                                      staticClass:
+                                                        "btn btn-outline-success",
+                                                      attrs: { type: "button" },
+                                                      on: {
+                                                        click:
+                                                          _vm.guardarRegistroTiempo
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("i", {
+                                                        staticClass:
+                                                          "fas fa-plus-circle"
+                                                      })
+                                                    ]
+                                                  )
+                                                ])
+                                              ]
+                                        ],
+                                        2
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-11 col-md-11 col-sm-11"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "form-group" },
+                                            [
+                                              _c(
+                                                "v-select",
+                                                {
+                                                  attrs: {
+                                                    disabled:
+                                                      _vm.disabledDetalleTiempo,
+                                                    placeholder:
+                                                      "Seleccione el tiempo",
+                                                    value:
+                                                      _vm.form
+                                                        .id_detalle_tiempo,
+                                                    options:
+                                                      _vm.form.detalles_tiempos,
+                                                    label: "display"
+                                                  },
+                                                  on: {
+                                                    input:
+                                                      _vm.setSelectedDetalleTiempo
+                                                  },
+                                                  model: {
+                                                    value:
+                                                      _vm.form
+                                                        .selected_detalle_tiempo,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.form,
+                                                        "selected_detalle_tiempo",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "\n                                                            form.selected_detalle_tiempo\n                                                        "
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "template",
+                                                    { slot: "no-options" },
+                                                    [
+                                                      _vm._v(
+                                                        "No existen\n                                                            datos"
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                2
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                              [
+                                _c("div", { staticClass: "row mt-2" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "col-lg-12 col-md-12 col-sm-12"
+                                    },
+                                    [
+                                      _c("vuetable-component", {
+                                        attrs: {
+                                          "anular-button": false,
+                                          "modificar-button": false,
+                                          "columns-data": _vm.columns,
+                                          "rows-data": _vm.registros_tiempos
+                                        },
+                                        on: {
+                                          handleRowClick:
+                                            _vm.muestraConsultaExterna
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              : _vm._e()
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          staticStyle: { "z-index": "1200" },
+          attrs: {
+            width: "65%",
+            height: "auto",
+            scrollable: true,
+            name: "ListaCirugiaProgramadaPaciente"
+          }
+        },
+        [
+          _c("lista-cirugia-programa-paciente", {
+            ref: "ListaCirugiaProgramadaPaciente",
+            on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("FlashMessage")
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("p", [_vm._v("/")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-tools" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-tool",
+          attrs: { type: "button", "data-card-widget": "collapse" }
+        },
+        [_c("i", { staticClass: "fas fa-plus" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-tool",
+          attrs: { type: "button", "data-card-widget": "remove" }
+        },
+        [_c("i", { staticClass: "fas fa-times" })]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=template&id=7420b681&":
 /*!**************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=template&id=7420b681& ***!
@@ -58664,19 +59696,19 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.datos_tiempo.hora,
-                      expression: "datos_tiempo.hora"
+                      value: _vm.hour,
+                      expression: "hour"
                     }
                   ],
                   staticClass: "col-lg-2 col-md-2 col-sm-2",
                   attrs: { type: "text" },
-                  domProps: { value: _vm.datos_tiempo.hora },
+                  domProps: { value: _vm.hour },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.datos_tiempo, "hora", $event.target.value)
+                      _vm.hour = $event.target.value
                     }
                   }
                 }),
@@ -58688,19 +59720,19 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.datos_tiempo.minuto,
-                      expression: "datos_tiempo.minuto"
+                      value: _vm.minutes,
+                      expression: "minutes"
                     }
                   ],
                   staticClass: "col-lg-2 col-md-2 col-sm-2",
                   attrs: { type: "text" },
-                  domProps: { value: _vm.datos_tiempo.minuto },
+                  domProps: { value: _vm.minutes },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.datos_tiempo, "minuto", $event.target.value)
+                      _vm.minutes = $event.target.value
                     }
                   }
                 }),
@@ -58712,29 +59744,53 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.datos_tiempo.segundo,
-                      expression: "datos_tiempo.segundo"
+                      value: _vm.seconds,
+                      expression: "seconds"
                     }
                   ],
                   staticClass: "col-lg-2 col-md-2 col-sm-2",
                   attrs: { type: "text" },
-                  domProps: { value: _vm.datos_tiempo.segundo },
+                  domProps: { value: _vm.seconds },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.datos_tiempo, "segundo", $event.target.value)
+                      _vm.seconds = $event.target.value
                     }
                   }
                 })
-              ]),
-              _vm._v(" "),
-              _c("span", { attrs: { id: "total" } }, [
-                _vm._v(_vm._s(_vm.tiempo))
               ])
             ]
-          )
+          ),
+          _vm._v(" "),
+          _vm.iniciado
+            ? _c("span", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-success",
+                    attrs: { type: "button" },
+                    on: { click: _vm.agregarObjetoPorHora }
+                  },
+                  [_c("i", { staticClass: "fas fa-plus-circle" })]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.iniciado_eliminar
+            ? _c("span", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-danger",
+                    attrs: { type: "button" },
+                    on: { click: _vm.eliminarObjetoPorHora }
+                  },
+                  [_c("i", { staticClass: "fas fa-window-close" })]
+                )
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _vm.iniciado
@@ -80656,34 +81712,59 @@ var render = function() {
                               ])
                             : _vm._e()
                         ])
-                      : props.column.field == "signo_vital"
+                      : props.column.field == "estado"
                       ? _c("span", [
-                          props.row.signo_vital == "Registrado"
-                            ? _c("div", [
-                                _c(
-                                  "span",
-                                  {
-                                    staticStyle: {
-                                      "font-weight": "bold",
-                                      color: "#0C9C05"
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(props.row.signo_vital))]
-                                )
-                              ])
-                            : props.row.signo_vital == "Pendiente"
-                            ? _c("div", [
-                                _c(
-                                  "span",
-                                  {
-                                    staticStyle: {
-                                      "font-weight": "bold",
-                                      color: "red"
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(props.row.signo_vital))]
-                                )
-                              ])
+                          props.row.estado == "Iniciado"
+                            ? _c(
+                                "div",
+                                { staticStyle: { background: "#FFFB00" } },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticStyle: {
+                                        "font-weight": "bold",
+                                        color: "#000000"
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(props.row.estado))]
+                                  )
+                                ]
+                              )
+                            : props.row.estado == "Finalizado"
+                            ? _c(
+                                "div",
+                                { staticStyle: { background: "#BBED8C" } },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticStyle: {
+                                        "font-weight": "bold",
+                                        color: "#000000"
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(props.row.estado))]
+                                  )
+                                ]
+                              )
+                            : props.row.estado == "Pendiente"
+                            ? _c(
+                                "div",
+                                { staticStyle: { background: "#FF0000" } },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticStyle: {
+                                        "font-weight": "bold",
+                                        color: "#FFFFFF"
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(props.row.estado))]
+                                  )
+                                ]
+                              )
                             : _vm._e()
                         ])
                       : props.column.field == "estado_actual"
@@ -98048,6 +99129,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_vue_vue_type_template_id_3cc310a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=3cc310a8& */ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8&");
+/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _index_vue_vue_type_template_id_3cc310a8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _index_vue_vue_type_template_id_3cc310a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8& ***!
+  \*********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_3cc310a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=3cc310a8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_3cc310a8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_3cc310a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue":
 /*!*************************************************************************************************!*\
   !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue ***!
@@ -99618,15 +100768,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Modulos_Parametrizacion_sub_modulo_SubModulo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Modulos/Parametrizacion/sub_modulo/SubModulo */ "./resources/js/components/Modulos/Parametrizacion/sub_modulo/SubModulo.vue");
 /* harmony import */ var _components_Modulos_Cirugia_valoracionPreanestecia_IndexValoracionPreanestesica__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue");
 /* harmony import */ var _components_Modulos_Cirugia_anestesia_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/index */ "./resources/js/components/Modulos/Cirugia/anestesia/index.vue");
-/* harmony import */ var _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_agente/TipoAgente */ "./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue");
-/* harmony import */ var _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue");
-/* harmony import */ var _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/ListasComponent */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue");
+/* harmony import */ var _components_Modulos_Cirugia_RegistroTiempo_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Modulos/Cirugia/RegistroTiempo/index */ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue");
+/* harmony import */ var _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_agente/TipoAgente */ "./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue");
+/* harmony import */ var _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue");
+/* harmony import */ var _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/ListasComponent */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue");
 
 
  //Parametrizacion
 
 
  //Cirugia
+
 
 
 
@@ -99652,14 +100804,17 @@ var prefijo = _variables__WEBPACK_IMPORTED_MODULE_1__["prefix"];
     path: prefijo + "/modulos/cirugia/anestesia",
     component: _components_Modulos_Cirugia_anestesia_index__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
+    path: prefijo + "/modulos/cirugia/registro_tiempo",
+    component: _components_Modulos_Cirugia_RegistroTiempo_index__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
     path: prefijo + "/modulos/cirugia/tipo_agente/mostrar_tipo_agente",
-    component: _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
     path: prefijo + "/modulos/cirugia/tipo_posiciones/mostrar_tipo_posiciones",
-    component: _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
     path: prefijo + "/modulos/cirugia/lista_verificacion/mostrar_tipo_lista",
-    component: _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_10__["default"]
   }],
   mode: "history" //Evita que aparezca # en la ruta
 

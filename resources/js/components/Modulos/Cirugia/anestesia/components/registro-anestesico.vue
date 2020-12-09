@@ -22,8 +22,28 @@
                     class="badge badge-warning  col-lg-4 col-md-4 col-sm-4"
                     style="font-size: 1.0em"
                 >
-                    Tiempo: <span><input class="col-lg-2 col-md-2 col-sm-2" v-model="datos_tiempo.hora" type="text">:</span><span><input class="col-lg-2 col-md-2 col-sm-2" v-model="datos_tiempo.minuto" type="text">:</span><span><input class="col-lg-2 col-md-2 col-sm-2" v-model="datos_tiempo.segundo" type="text"></span> <span id="total">{{ tiempo }}</span>
+                    Tiempo: <span><input class="col-lg-2 col-md-2 col-sm-2" v-model="hour" type="text">:</span><span><input class="col-lg-2 col-md-2 col-sm-2" v-model="minutes" type="text">:</span><span><input class="col-lg-2 col-md-2 col-sm-2" v-model="seconds" type="text"></span>
                 </p>
+                <span v-if="iniciado">
+                    <button
+                        type="button"
+                        class="btn btn-outline-success"
+                        @click="agregarObjetoPorHora"
+                    >
+                        <!-- Nuevo -->
+                        <i class="fas fa-plus-circle"></i>
+                    </button>
+                </span>
+                <span v-if="iniciado_eliminar">
+                    <button
+                        type="button"
+                        class="btn btn-outline-danger"
+                        @click="eliminarObjetoPorHora"
+                    >
+                        <!-- Eliminar -->
+                        <i class="fas fa-window-close"></i>
+                    </button>
+                </span>
             </div>
             <div class="row mb-5" v-if="iniciado">
                 <!-- MAX y MIN -->
@@ -263,7 +283,6 @@
                     </button>
                 </div>
             </div>
-
             <div v-if="iniciado">
                 <div ref="printMe">
                     <div class="row border-t flex-center-x">
@@ -1956,7 +1975,6 @@
                 @handleSeleccionarClick="handleSeleccionarClick"
             ></eliminar-agente>
         </modal>
-        <!--  <FlashMessage></FlashMessage> -->
     </div>
 </template>
 
@@ -1973,11 +1991,7 @@ export default {
     },
     data: function() {
         return {
-            datos_tiempo:{
-                hora: 0,
-                minuto: 0,
-                segundo: 0
-            },
+            iniciado_eliminar: false,
             datos_eliminar_agente: {
                 index: "",
                 index_fila: "",
@@ -2292,10 +2306,10 @@ export default {
             tiempo = hora + ":" + minuto + ":" + segundo;
             return tiempo; */
 
-            var tiempo = 0;
+            /* var tiempo = 0;
             this.datos_tiempo.segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
             this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
-            this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour);
+            this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour); */
             //tiempo = hora + ":" + minuto + ":" + segundo;
             //return tiempo;
 
@@ -2303,6 +2317,21 @@ export default {
         }
     },
     mounted: function() {
+        /* this.datos_tiempo.segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
+        this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
+        this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour);
+        alert(this.datos_tiempo.segundo); */
+
+        /* Obtengo los datos para añadir 0 */
+        var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
+        var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
+        var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
+        /* Retorno los datos con 0 incluido */
+        this.seconds = segundo;
+        this.minutes = minuto;
+        this.hour = hora;
+
+
         this.flashMessage.setStrategy("multiple");
         this.form.cirugia_id = this.$props.idSecCirPro;
         /**
@@ -2360,6 +2389,52 @@ export default {
     },
     beforeDestroy: function() {},
     methods: {
+        agregarObjetoPorHora(){
+            // Validar que se haya guardado todos los valores
+
+            //var valor;
+            //this.lista_horas_avanzadas_v[this.indice_hora].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes
+            var acumulador = 0;
+            for (let i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
+                if (this.lista_horas_avanzadas_v[i] != "") {
+                    if (i == this.indice_hora) {
+                        for (let j = 0;j < this.lista_horas_avanzadas_v[i].datos.length;j++) {
+                            if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
+                                for (let k = 0;k <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length;k++) {
+                                    if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
+                                        for (let l = 0;l <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length;l++) {
+                                            if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
+                                                if(this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l].agentes.length > 0){
+                                                    acumulador += 1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if(acumulador >= 4){
+                acumulador = 0;
+                this.indice_hora += 1;
+                this.iniciado_eliminar = true;
+                // Si la hora se ha completado, se agrega otro objeto de horas al
+                //arreglo de datos
+                this.agregarHora();
+            }
+
+        },
+        eliminarObjetoPorHora(){
+            if(this.lista_horas_avanzadas_v.length > 1){
+                this.lista_horas_avanzadas_v.splice(this.indice_hora, 1);
+                this.indice_hora -= 1;
+            }
+            if(this.lista_horas_avanzadas_v.length == 1){
+                this.iniciado_eliminar = false;
+            }
+        },
         eliminarAgente(
             index,
             index_fila,
@@ -2692,20 +2767,21 @@ export default {
         },
         consultarSello() {
             let that = this;
-            if (this.$props.user.codigo_usu > 0) {
+            if (this.$props.user.id > 0) {
                 var loader = that.$loading.show();
                 let url =
                     "/modulos/cirugia/anestesia/cargar_sello/" +
-                    this.$props.user.codigo_usu;
+                    this.$props.user.id;
                 axios
                     .get(url)
                     .then(function(response) {
                         if (response.data.sello != null) {
-                            if (response.data.sello.medico_sellos != null) {
-                                that.rutaSello =
-                                    "data:image/jpeg;base64," +
-                                    response.data.sello.medico_sellos
-                                        .IMAGEN_SELLO;
+                            if (response.data.sello.seguridad_medico != null) {
+                                if (response.data.sello.seguridad_medico.medico != null) {
+                                    if (response.data.sello.seguridad_medico.medico.medico_sellos != null) {
+                                        that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
+                                    }
+                                }
                             }
                         }
                         loader.hide();
@@ -3004,7 +3080,6 @@ export default {
                         Object.assign(posicion,{
                             idRe:response.data.datos
                         });
-                        console.log(column_quince.posicion);
                         column_quince.posicion = posicion;
                     }
                     this.form.id_datos_agente = 0;
@@ -3459,7 +3534,6 @@ export default {
          * Agrega datos a la rejilla
          */
         agregarDatos: function(campo) {
-            // console.log(campo);
             this.agregaDatoEnRejilla(
                 false,
                 false,
@@ -3664,7 +3738,6 @@ export default {
             if (this.validarCampoAgente()) {
                 return;
             }
-            //console.log(this.valoresFormulario);
             this.agregarDatos(this.valoresFormulario.ta_max);
             this.agregarDatos(this.valoresFormulario.ta_min);
 

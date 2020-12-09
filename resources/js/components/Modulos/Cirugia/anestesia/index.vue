@@ -768,7 +768,7 @@ export default {
             respuestaFinProceso: 0,
             respuestaImprimir: 0,
             form: {
-                idCirugiaProgramada: "",
+                idCirugiaProgramada: "0001",
                 idCirugiaProgramadaTemporal: "",
                 registro_anestesia_id: 0,
                 /* Datos del paciente */
