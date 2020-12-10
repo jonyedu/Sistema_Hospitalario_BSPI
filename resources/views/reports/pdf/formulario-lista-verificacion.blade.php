@@ -106,7 +106,7 @@
          <table class="tableStyleAll">
              <tr>
                  <th style="border-style: none">
-                     LISTA DE VERIFICACIÓN DE LA SEGURIDAD DE LA CIRUGÍA 
+                     LISTA DE VERIFICACIÓN DE LA SEGURIDAD DE LA CIRUGÍA  
                  </th>
              </tr>
 
@@ -117,7 +117,7 @@
                      <img src="{{ public_path('img/logoreport1.png') }}" borde="0" width="100px" height="70px" />
                  </th>
                  <th align="left" colspan="2" style="width: 40%; border-style: none;">
-                     <span ali> Nombre:  {{ $datosPaciente[1]->CirProNomPac }}</span>
+                     <span ali> Nombre:  {{ $datosPaciente[0]->CirProNomPac }} </span>
                  </th>
                  <th colspan="2" style="width: 40%; border-style: none">
 
@@ -129,19 +129,19 @@
              </tr>
              <tr>
                  <td>
-                     N° Historia Clinica:  000
+                     N° Historia Clinica:    {{ $datosPaciente[0]->historiac }}
                  <td>
-                     Edad: 151512
+                     Edad:  
                  </td>
                  <td>
-                     N° Quirofano: 151512
+                     N° Quirofano:  {{ $datosPaciente[0]->CirProQuirofano }}
                  </td>
                  <td>
-                     Fecha: 12/12/2020
+                     Fecha: {{ $datosPaciente[0]->created_at }}
                  </td>
              <tr>
                  <td colspan="6">
-                     Procedimiento :.....................
+                     Procedimiento:  {{ $datosPaciente[0]->CirProProcedimiento }}
                  </td>
              </tr>
              </tr>
@@ -177,15 +177,111 @@
              </tr>
          </table>
          <table class="tableStyleAll">
+ {{-- LINEA EN BLACO --}}
+ <tr>
+    <td style="width:2%;border-style: none ">
+
+    </td>
+    <td style="width:31.33%;border-style: none">
 
 
+    </td>
+    <td style="width:2%;border-style: none">
+
+    </td>
+    <td style="width:31.33%;border-style: none">
+
+
+    </td>
+    <td style="width:2%;border-style: none">
+
+    </td>
+    <td style="width:31.33%;border-style: none">
+
+    </td>
+
+</tr>
+{{-- FILA --}}
+<tr>
+    <td style="width:2% ">
+        {{ $datosPaciente[0]->chkentrada01 }}
+    </td>
+    <td style="width:31.33%;border-style: none">
+
+        EL PACIENTE HA CONFIRMADO
+    </td>
+    <td style="width:2%">
+        {{ $datosPaciente[0]->chkquirurgica01 }}
+    </td>
+    <td style="width:31.33%;border-style: none">
+        <b>CONFIRMAR QUE TODOS LOS MIEMBROS DEL EQUIPO SE</b>
+        
+        
+
+    </td>
+    <td style="width:2%;border-style: none">
+        
+    </td>
+    <td style="width:31.33%;border-style: none">
+      
+
+    </td>
+
+</tr>
+ {{-- LINEA EN BLACO --}}
+ <tr>
+    <td style="width:2%;border-style: none ">
+
+    </td>
+    <td style="width:31.33%;border-style: none">
+
+
+    </td>
+    <td style="width:2%;border-style: none">
+
+    </td>
+    <td style="width:31.33%;border-style: none">
+
+
+    </td>
+    <td style="width:2%;border-style: none">
+
+    </td>
+    <td style="width:31.33%;border-style: none">
+
+    </td>
+
+</tr>
+{{-- LINEA EN BLACO --}}
+<tr>
+    <td style="width:2%;border-style: none ">
+
+    </td>
+    <td style="width:31.33%;border-style: none">
+
+
+    </td>
+    <td style="width:2%">
+        {{ $datosPaciente[0]->chkquirurgica02 }}
+    </td>
+    <td style="width:31.33%;border-style: none">
+
+        <b>EL CIRUJANO, ANESTESISTA Y ENFERMERO CONFIRMA VERBALMENTE</b>
+    </td>
+    <td style="width:2%;border-style: none">
+
+    </td>
+    <td style="width:31.33%;border-style: none">
+
+    </td>
+
+</tr>
              <tr>
-                 <td style="width:2%">
-                     x
+                 <td style="width:2%;border-style: none">
+                   
                  </td>
                  <td rowspan="2" style="width:31.33%;border-style: none">
-                     El paciente ha confirmado
-                     <br>
+                  
                      <ul>
                          <li> SU IDENTIDAD</li>
                          <li> EL SITIO QUIRURJICO</li>
@@ -193,15 +289,15 @@
                          <li> SU CONOCIMIENTO</li>
                      </ul>
                  </td>
-                 <td style="width:2%">
-                     X
+                 <td style="width:2%;border-style: none">
+                    
                  </td>
                  <td style="width:31.33%;border-style: none">
-                     <b>CONFIRMAR QUE TODOS LOS MIEMBROS DEL EQUIPO SE</b>
+                    
 
                  </td>
-                 <td style="width:2%">
-                     X
+                 <td style="width:2%;border-style: none">
+                     
                  </td>
                  <td style="width:31.33%;border-style: none">
                      <b>EL ENFERMERO CONFIRMA VERBALMENTE CON EL EQUIPO :</b>
@@ -211,16 +307,17 @@
 
              </tr>
              {{-- aqui divie --}}
+             
              <tr>
                  <td style="width:2%;border-style: none">
 
                  </td>
 
-                 <td rowspan="1" style="width:2%;height:2%;">
-                     X
+                 <td rowspan="1" style="width:2%;height:2%;;border-style: none">
+                     
                  </td>
                  <td style="width:31.33%;border-style: none">
-                     <b>EL CIRUJANO, ANESTESISTA Y ENFERMERO CONFIRMA VERBALMENTE</b>
+                    
 
                      <ul>
                          <li> SU IDENTIDAD</li>
@@ -239,9 +336,33 @@
                  </td>
 
              </tr>
+              {{-- LINEA EN BLACO --}}
+ <tr>
+    <td style="width:2%;border-style: none ">
+
+    </td>
+    <td style="width:31.33%;border-style: none">
+
+
+    </td>
+    <td style="width:2%;border-style: none">
+
+    </td>
+    <td style="width:31.33%;border-style: none">
+
+
+    </td>
+    <td style="width:2%;border-style: none">
+
+    </td>
+    <td style="width:31.33%;border-style: none">
+
+    </td>
+
+</tr>
              <tr>
                  <td style="width:2% ">
-                     x
+                    {{ $datosPaciente[0]->chkentrada02 }}
                  </td>
 
 
@@ -258,7 +379,7 @@
 
                  </td>
                  <td style="width:2%; ">
-                     x
+                    {{ $datosPaciente[0]->chksalida01 }}
                  </td>
                  <td style="width:31.33%;border-style: none ">
 
@@ -271,14 +392,14 @@
              {{-- aqui finaliza --}}
              <tr>
                  <td style="width:2% ">
-                     x
+                    {{ $datosPaciente[0]->chkentrada03 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
 
                      SE HA COMPLETADO EL CONTROL DE LA SEGURIDAD DE LA ANESTESIA
                  </td>
                  <td style="width:2%">
-                     X
+                    {{ $datosPaciente[0]->chkquirurgica03 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
                      <b> PREVISION DE EVENTOS CRITICOS EL CIRGUJANO REVISA </b>
@@ -287,7 +408,7 @@
 
                  </td>
                  <td style="width:2%">
-                     X
+                    {{ $datosPaciente[0]->chksalida02 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
                      <b>AGUJAS SON CORRECTOS:</b> O NO PROCEDEN
@@ -323,14 +444,14 @@
              {{-- FILA --}}
              <tr>
                  <td style="width:2% ">
-                     x
+                    {{ $datosPaciente[0]->chkentrada04 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
 
                      PULSIOXIMETRO COLOCADO Y EN FUNCIONAMIENTO
                  </td>
                  <td style="width:2%">
-                     X
+                    {{ $datosPaciente[0]->chkquirurgica04 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
                      <b> EL EQUIPO DE ANESTESIA REVISA </b>
@@ -339,7 +460,7 @@
 
                  </td>
                  <td style="width:2%">
-                     X
+                    {{ $datosPaciente[0]->chksalida03 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
                      <b>EL ETIQUETADO DE LAS MUESTRAS</b> (QUE FIGURE EL NOMBRE DEL PACIENTE)
@@ -375,7 +496,7 @@
              {{-- FILA --}}
              <tr>
                  <td style="width:2% ">
-                     x
+                    {{ $datosPaciente[0]->chkquirurgica04 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
 
@@ -383,7 +504,7 @@
                      </b>
                  </td>
                  <td style="width:2%">
-                     X
+                    {{ $datosPaciente[0]->chkquirurgica05 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
                      <b> EL EQUIPO DE ENFERMERIA REVISA </b>
@@ -391,7 +512,7 @@
 
                  </td>
                  <td style="width:2%">
-                     X
+                    {{ $datosPaciente[0]->chksalida04 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
                      <b>SI HAY PROBLEMAS QUE RESOLVER RELACIONADOS CON EL INSTRUMENTAL Y LOS EQUIPOS</b>
@@ -427,7 +548,7 @@
              </tr>
              <tr>
                  <td style="width:2% ">
-                     x
+                    {{ $datosPaciente[0]->chkentrada06 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
 
@@ -437,7 +558,7 @@
 
                  </td>
                  <td style="width:2%">
-                     X
+                    {{ $datosPaciente[0]->chkquirurgica06 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
                      <b> SE HA ADMINISTRADO PROFILAXIS ANTIBIOTICA EN LOS </b>
@@ -446,7 +567,7 @@
 
                  </td>
                  <td style="width:2%">
-                     X
+                    {{ $datosPaciente[0]->chksalida05 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
                      <b>EL CIRUJANO, EL ANESTESISTA Y EL ENFERMERO REVISAN LOS PRINCIPALES ASPECTOS</b>
@@ -456,7 +577,7 @@
              </tr>
              <tr>
                  <td style="width:2% ">
-                     x
+                    {{ $datosPaciente[0]->chksalida05 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
 
@@ -512,7 +633,7 @@
 
              <tr>
                  <td style="width:2% ">
-                     x
+                    {{ $datosPaciente[0]->chkentrada07 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
 
@@ -525,7 +646,7 @@
 
                  </td>
                  <td style="width:2%">
-                     X
+                    {{ $datosPaciente[0]->chkquirurgica07 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
                      <b>PUEDE VISUALIZAR IMAGENES DIAGNOSTICADAS </b>
@@ -545,7 +666,7 @@
              {{-- LINEA EN BLACO --}}
              <tr>
                  <td style="width:2% ">
-                     x
+                    {{ $datosPaciente[0]->chkentrada07 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
 
@@ -555,7 +676,7 @@
 
                  </td>
                  <td style="width:2%">
-                     X
+                    {{ $datosPaciente[0]->chkquirurgica07 }}
                  </td>
                  <td style="width:31.33%;border-style: none">
                      <b>NO PROCEDE</b>
@@ -600,10 +721,18 @@
          <table class="tableStyleAll">
              <tr>
                  <th rowspan="8" style="width:60%">
-                   Observacion
+                   Observacion : 
+                   <br>
+                   {{ $datosPaciente[0]->observacion }}
                  </th>
                  <th rowspan="6" style="width:40%">
-                    <img src="{{ public_path('img/logoreport1.png') }}" borde="0" width="100px" height="70px" />
+                    @if ( isset($firma->FIRMAS))
+                    <img src="data:image/jpeg;base64,'{{ $firma->FIRMAS }}'" border="0"  width="300px" height="100px"> 
+                @else
+                no hay imagen ;( 
+                     {{-- <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->graficoCirugia->GRAFICAS }}'" border="0" width="690px" height="360px"> --}}
+                @endif
+                    
                    
                     
                  </th>
@@ -630,6 +759,7 @@
              </tr>
              <tr>
                  <td>
+                    {{ $datosPaciente[0]->user_id }}
                 _______________________________________
                 <br>
                 Nombre del Responsable
@@ -638,6 +768,7 @@
              </tr>
              <tr>
                 <td>
+                    {{ $datosPaciente[0]->user_id }}
                     _______________________________________
                     <br>
                     Cargo

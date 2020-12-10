@@ -739,12 +739,23 @@ export default {
         idSecCirPro: {
             type: String,
             required: true
+        },
+        user: {
+            type: Object
+        },
+        rutaSelloImg:{
+            type: String 
         }
     },
     data: function() {
         return {
             validarCargarDatos: 0,
             respuestaImprimir: 0,
+             rutaSello: "",
+            frmimg: {
+                imgFirma: null,
+                imgGrafica: null,
+            },
             chk: {
                 /* Cardiovascular  */
                 chk_hipertension: 0,

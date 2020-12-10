@@ -71,6 +71,33 @@ class RegistroAnestesiaController extends Controller
         }
     }
 
+    //con parametros
+    public function guardarFirmaPorAtencion2(Request $request)
+    {
+        //  return  response()->json(['msj' => $request->input()], 200);
+        try {
+            $user = Auth::user();
+            $firma = convertBase64ToBinary($request->input('imgFirma'));
+            FirmasPorAtencion::create([
+                'tipo_servicio' =>  $request->input('tipo_servicio'),
+                'id_atencion' => $request->input('id_atencion'),
+                'id_visita' =>  $request->input('id_visita'),
+                'id_tipo_documento' => $request->input('id_tipo_documento'),
+                'fecha_atencion' => date("Y-m-d H:i:s"),
+                'firma' => $firma,
+                'status' => '1',
+                'usuario_ingreso' => $user->id,
+                'fecha_ingreso' => date("Y-m-d H:i:s"),
+                'pcname' => $_SERVER["REMOTE_ADDR"]
+            ]);
+            return  response()->json(['msj' => 'OK'], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+
+    //fin
+
     public function guardarImnGrafica(Request $request)
     {
         try {
@@ -103,7 +130,6 @@ class RegistroAnestesiaController extends Controller
                 $i->where('indice_hora', 4);
             }])
             ->first();
-
         if ($idRegistroAnestesico == null) {
             $registroAnestesico = RegistroAnestesia::create(
                 [
@@ -123,13 +149,6 @@ class RegistroAnestesiaController extends Controller
                 ]
             );
         }
-        /* $registroAnestesico = RegistroAnestesia::create(
-            [
-                'SecCirPro' => $request->input('cirugia_id'),
-                'usu_created_update' => $user->id,
-                'status' => 1,
-            ]
-        ); */
         return response()->json(
             ['id' => $registroAnestesico->id],
             200
@@ -228,40 +247,44 @@ class RegistroAnestesiaController extends Controller
                 // CARGA DATOS DE EL REGISTRO DE ANESTESIA 01/12
 
 
-                 $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
-                 $datosPaciente = [];
-                 $datosprocedimiento= [];
-                 $id_registro_anestesia = 34;
+                $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
+                $datosPaciente = [];
+                $datosprocedimiento = [];
+                $id_registro_anestesia = 34;
 
                 $datosValoracionPreanestesica = RegistroAnestesia::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
-                    ->with('drogaAdministradaRpt','graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt','tipoPosicion')
+                    ->with('drogaAdministradaRpt', 'graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt', 'tipoPosicion')
                     ->first();
 
 
-               $id_registro_anestesia = $datosValoracionPreanestesica->id;
-               $datosprocedimiento = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
-               ->first();
+                $id_registro_anestesia = $datosValoracionPreanestesica->id;
+                $datosprocedimiento = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
+                    ->first();
 
 
-               $TarifarioProcedimiento = TarifarioProcedimiento::select('codigo', 'descripcion')->where('codigo',$datosprocedimiento->id_operacion_realizada);
-               $TarifarioCirugua = TarifarioCirugia::select('codigo', 'descripcion')->where('codigo',$datosprocedimiento->id_operacion_realizada)
-                   ->union($TarifarioProcedimiento);
-               $TarifarioMedicina = TarifarioMedicina::select('codigo', 'descripcion')->where('codigo',$datosprocedimiento->id_operacion_realizada)
-                   //  ->with('pacienteLista','pacienteHospitalizacion')
-                   ->union($TarifarioCirugua)
-                   ->first();
+                $TarifarioProcedimiento = TarifarioProcedimiento::select('codigo', 'descripcion')->where('codigo', $datosprocedimiento->id_operacion_realizada);
+                $TarifarioCirugua = TarifarioCirugia::select('codigo', 'descripcion')->where('codigo', $datosprocedimiento->id_operacion_realizada)
+                    ->union($TarifarioProcedimiento);
+                $TarifarioMedicina = TarifarioMedicina::select('codigo', 'descripcion')->where('codigo', $datosprocedimiento->id_operacion_realizada)
+                    //  ->with('pacienteLista','pacienteHospitalizacion')
+                    ->union($TarifarioCirugua)
+                    ->first();
 
                 $datosPaciente = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
-                ->with('graficoFirmaMedico','cirujano','Ayudante','Ayudante2','Instrumentrista','DiagnosticoPost','DiagnosticoPre','Anestesiologo')
-                ->first();
+                    ->with('graficoFirmaMedico', 'cirujano', 'Ayudante', 'Ayudante2', 'Instrumentrista', 'DiagnosticoPost', 'DiagnosticoPre', 'Anestesiologo')
+                    ->first();
 
 
-                $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia',
-                ['datosValoracionPreanestesica' => $datosValoracionPreanestesica,
-                'datosPaciente' => $datosPaciente,
-                'Tarifario' => $TarifarioMedicina]);
-                 return $pdf->stream($nombreArchivo);
+                $pdf = PDF::loadView(
+                    'reports.pdf.formulario-registro-anestesia',
+                    [
+                        'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
+                        'datosPaciente' => $datosPaciente,
+                        'Tarifario' => $TarifarioMedicina
+                    ]
+                );
+                return $pdf->stream($nombreArchivo);
 
                 // return  response()->json(['datosValoracionPreanestesica' => $datosValoracionPreanestesica,
                 // 'datosPaciente' => $datosPaciente,

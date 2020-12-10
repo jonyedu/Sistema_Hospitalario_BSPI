@@ -1950,6 +1950,578 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
+      // Variables Globales
+      titulo_seleccionado: "Registro de Tiempo",
+      prefijo: "",
+      //Variables de Bandera
+      iniciado: false,
+      disabledDetalleTiempo: true,
+      //Variables para la Tabla
+      columns: [{
+        label: "Descripción",
+        field: "descripcion",
+        type: "String"
+      }, {
+        label: "Estado",
+        field: "estado",
+        type: "String"
+      }],
+      //Variables para la Tabla
+      registros_tiempos: [],
+      form: {
+        id_cirugia_programada: 0,
+        id_detalle_tiempo: 0,
+        id_registro_tiempo: 0,
+        //Variables para el ComboBox
+        selected_detalle_tiempo: "",
+        detalles_tiempos: [],
+        nombre: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.flashMessage.setStrategy("multiple");
+    this.prefijo = _variables__WEBPACK_IMPORTED_MODULE_0__["prefix"];
+  },
+  beforeDestroy: function beforeDestroy() {
+    /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
+    let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
+        .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Salida"
+    ); */
+  },
+  methods: {
+    /* Metodos para Llamar al Modal y la Tabla */
+    mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
+      this.$modal.show("ListaCirugiaProgramadaPaciente");
+    },
+    handleSeleccionarClick: function handleSeleccionarClick(value) {
+      if (value != "") {
+        var that = this;
+        var url = "/modulos/cirugia/anestesia/validar_secCirPro/" + value.SecCirPro; //var loader = that.$loading.show();
+
+        axios.get(url).then(function (response) {
+          //Obtiene los datos de Motivo Antecedentes
+          if (response.data.secCirPro != null && response.data.secCirPro != undefined) {
+            that.$modal.hide("ListaCirugiaProgramadaPaciente");
+            that.flashMessage.show({
+              status: "warning",
+              title: "Advertencia al Seleccionar Paciente",
+              message: "El paciente ya cuenta con un registro anestesico.",
+              clickable: true,
+              time: 10000,
+              icon: "/iconsflashMessage/warning.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
+              }
+            }); //loader.hide();
+          } else {
+            that.form.nombre = value.nombrePaciente;
+            that.form.id_cirugia_programada = value.SecCirPro;
+            that.setSelectedDetalleTiempo();
+            that.cargarRegistroTiempoPorSecCirPro();
+            that.$modal.hide("ListaCirugiaProgramadaPaciente");
+          }
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar handleSeleccionarClick",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
+      }
+    },
+    cargarRegistroTiempoPorSecCirPro: function cargarRegistroTiempoPorSecCirPro() {
+      if (this.form.id_cirugia_programada > 0) {
+        var that = this;
+        var loader = that.$loading.show();
+        var url = "/modulos/cirugia/registro_tiempo/cargar_registro_tiempo_por_secCirPro/" + this.form.id_cirugia_programada;
+        axios.get(url).then(function (response) {
+          var registros_tiempos = [];
+
+          if (response.data.registrosTiempos != null) {
+            response.data.registrosTiempos.forEach(function (registroTiempo) {
+              var objeto = {
+                //Datos de la tabla tb_detalle_tiempo
+                id_detalle_tiempo: registroTiempo.detalle_tiempo.id_detalle_tiempo,
+                descripcion: that.$funcionesGlobales.toCapitalFirstAllWords(registroTiempo.detalle_tiempo.descripcion),
+                //Datos de la tabla tb_registro_tiempo
+                id_registro_tiempo: registroTiempo.id_registro_tiempo,
+                secCirPro: registroTiempo.SecCirPro,
+                tiempo: registroTiempo.tiempo,
+                estado: registroTiempo.estado == "I" ? "Iniciado" : registroTiempo.estado == "F" ? "Finalizado" : registroTiempo.estado == "P" ? "Pendiente" : ""
+              };
+              registros_tiempos.push(objeto);
+            });
+            that.registros_tiempos = registros_tiempos;
+          }
+
+          loader.hide();
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar cargarRegistroTiempoPorSecCirPro",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
+      }
+    },
+    setSelectedDetalleTiempo: function setSelectedDetalleTiempo(value) {
+      if (this.form.id_cirugia_programada > 0) {
+        var that = this;
+        var loader = that.$loading.show();
+        var url = "/modulos/parametrizacion/detalle_tiempo/cargar_detalle_tiempo";
+
+        if (value != null) {
+          this.form.id_detalle_tiempo = value.id_detalle_tiempo;
+          loader.hide();
+        }
+
+        axios.get(url).then(function (response) {
+          var detalles_tiempos = [];
+          response.data.detallesTiempos.forEach(function (detalleTiempo) {
+            var objeto = {};
+            objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(detalleTiempo.descripcion);
+            objeto.id_detalle_tiempo = detalleTiempo.id_detalle_tiempo;
+            detalles_tiempos.push(objeto);
+          });
+          that.form.detalles_tiempos = detalles_tiempos;
+          loader.hide();
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar setSelectedDetalleTiempo",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
+      }
+    },
+    guardarRegistroTiempo: function guardarRegistroTiempo() {
+      if (this.validarCambioTiempo()) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia al cambiar tiempo",
+          message: "No puede cambiar el estado, sin haber cambiado el anterior",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return;
+      }
+
+      var that = this;
+      var url = "";
+      var mensaje = "Datos guardados correctamente.";
+      url = "/modulos/cirugia/registro_tiempo/guardar_registro_tiempo";
+      var loader = that.$loading.show();
+      axios.post(url, this.form).then(function (response) {
+        that.iniciado = true;
+        that.disabledDetalleTiempo = false;
+        that.cargarRegistroTiempoPorSecCirPro();
+        /* that.flashMessage.show({
+            status: "success",
+            title: "Éxito al procesar",
+            message: mensaje,
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/success.svg",
+            customStyle: {
+                flashMessageStyle: {
+                    background: "linear-gradient(#e66465, #9198e5)"
+                }
+            }
+        }); */
+
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores de validación
+        loader.hide();
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarModificarRegistroTiempo",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      });
+    },
+    validarCambioTiempo: function validarCambioTiempo() {
+      //Para validar los tiempos respetando su flujo de proceso
+      if (this.iniciado) {
+        /* Se valida cuando no se haya seleccionado nada */
+
+        /* if(this.form.selected_detalle_tiempo == ""){
+            return true;
+        } */
+
+        /* Valida cuando se seleccione Uso De Quirófano */
+        if (this.form.id_detalle_tiempo == 1) {
+          //Valida cuando Uso De Quirófano se desea Finalizar, pero Cirugía sigue Iniciado
+          if (this.registros_tiempos[0].estado == "Iniciado") {
+            if (this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente") {
+              return true;
+            }
+          } //Valida cuando Uso De Quirófano se desea Finalizar, pero Preparación De Anestesiólogo sigue en Iniciado
+
+
+          if (this.registros_tiempos[0].estado == "Iniciado") {
+            if (this.registros_tiempos[1].estado == "Iniciado") {
+              return true;
+            }
+          }
+        }
+        /* Valida cuando se seleccione Preparación De Anestesiólogo */
+
+
+        if (this.form.id_detalle_tiempo == 2) {
+          //Valida cuando Preparación De Anestesiólogo se desea Iniciar, pero Uso De Quirófano sigue en pendiente
+          if (this.registros_tiempos[1].estado == "Pendiente") {
+            if (this.registros_tiempos[0].estado == "Pendiente") {
+              return true;
+            }
+          } //Valida cuando Preparación De Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado o Pendiente
+
+
+          if (this.registros_tiempos[1].estado == "Iniciado") {
+            if (this.registros_tiempos[2].estado == "Iniciado" || this.registros_tiempos[2].estado == "Pendiente") {
+              return true;
+            }
+          }
+        }
+        /* Valida cuando se seleccione Induccion */
+
+
+        if (this.form.id_detalle_tiempo == 3) {
+          //Valida cuando Inducción se desea Iniciar, pero Preparación De Anestesiólogo sigue en pendiente
+          if (this.registros_tiempos[2].estado == "Pendiente") {
+            if (this.registros_tiempos[1].estado == "Pendiente") {
+              return true;
+            }
+          } //Valida cuando Inducción se desea Finalizar, pero Cirugía sigue en Iniciado o Pendiente
+
+
+          if (this.registros_tiempos[2].estado == "Iniciado") {
+            if (this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente") {
+              return true;
+            }
+          }
+        }
+        /* Valida cuando se seleccione Cirugía */
+
+
+        if (this.form.id_detalle_tiempo == 4) {
+          //Valida cuando Cirugía se desea Iniciar, pero Induccion sigue en pendiente
+          if (this.registros_tiempos[3].estado == "Pendiente") {
+            if (this.registros_tiempos[2].estado == "Pendiente") {
+              return true;
+            }
+          } //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Induccion sigue en iniciado
+
+
+          if (this.registros_tiempos[3].estado == "Finalizado") {
+            if (this.registros_tiempos[2].estado == "Iniciado") {
+              return true;
+            }
+          }
+        }
+
+        if (this.form.id_detalle_tiempo == 1 || this.form.id_detalle_tiempo == 2 || this.form.id_detalle_tiempo == 3 || this.form.id_detalle_tiempo == 4) {
+          if (this.registros_tiempos[0].estado == "Finalizado" && this.registros_tiempos[1].estado == "Finalizado" && this.registros_tiempos[2].estado == "Finalizado" && this.registros_tiempos[3].estado == "Finalizado") {
+            this.flashMessage.show({
+              status: "success",
+              title: "Éxisto al procesar",
+              message: "Usted ha finalizado correctamente. ",
+              clickable: true,
+              time: 50000,
+              icon: "/iconsflashMessage/success.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
+              }
+            });
+            return;
+          }
+        }
+      }
+    },
+    handleRowClick: function handleRowClick(value) {
+      this.form.id_detalle_tiempo = value.id_detalle_tiempo;
+      this.form.id_registro_tiempo = value.id_registro_tiempo;
+      this.guardarRegistroTiempo();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=script&lang=js& ***!
@@ -2116,6 +2688,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     /* mostrar el botón deshacer y rehacer */
@@ -2125,21 +2704,24 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    validarConfirmarCandelar: function validarConfirmarCandelar(value) {
-      this.$props.datos.respuesta = value;
+    validarConfirmarCandelar: function validarConfirmarCandelar(modificar, eliminar) {
+      this.$props.datos.respuesta = modificar; //alert(this.$props.datos.respuesta);
+
+      this.$props.datos.respuestaEliminar = eliminar; //alert(this.$props.datos.respuestaEliminar);
+
       this.$emit("handleSeleccionarClick", this.$props.datos);
     },
     setSelectedRespiracion: function setSelectedRespiracion(value) {
       if (value != null) {
         this.$props.datos.ruta_icono = value.img;
-        this.$props.datos.valor = 0;
+        this.$props.datos.valorNuevo = 0;
         this.$props.datos.adicional.system_name = value.descripcion;
       }
     },
     setSelectedPosicion: function setSelectedPosicion(value) {
       if (value != null) {
         this.$props.datos.ruta_icono = value.img;
-        this.$props.datos.valor = 0;
+        this.$props.datos.valorNuevo = 0;
         this.$props.datos.adicional.system_name = value.descripcion;
       }
     }
@@ -4176,6 +4758,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -4190,6 +4808,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _datos_eliminar_agent, _form;
 
     return {
+      iniciado_eliminar: false,
       datos_eliminar_agente: (_datos_eliminar_agent = {
         index: "",
         index_fila: "",
@@ -4198,7 +4817,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         index_agente: ""
       }, _defineProperty(_datos_eliminar_agent, "index", ""), _defineProperty(_datos_eliminar_agent, "minutes", ""), _defineProperty(_datos_eliminar_agent, "adicional", {
         system_name: "agente"
-      }), _defineProperty(_datos_eliminar_agent, "ruta_icono", ""), _defineProperty(_datos_eliminar_agent, "descripcion", ""), _defineProperty(_datos_eliminar_agent, "valor", 0), _defineProperty(_datos_eliminar_agent, "valorNuevo", 0), _defineProperty(_datos_eliminar_agent, "respuesta", false), _defineProperty(_datos_eliminar_agent, "id", 0), _datos_eliminar_agent),
+      }), _defineProperty(_datos_eliminar_agent, "ruta_icono", ""), _defineProperty(_datos_eliminar_agent, "descripcion", ""), _defineProperty(_datos_eliminar_agent, "valor", 0), _defineProperty(_datos_eliminar_agent, "valorNuevo", 0), _defineProperty(_datos_eliminar_agent, "respuesta", false), _defineProperty(_datos_eliminar_agent, "respuestaEliminar", false), _defineProperty(_datos_eliminar_agent, "id", 0), _datos_eliminar_agent),
       resConfirmarCancelar: false,
       icon: "",
       titulo: "",
@@ -4462,17 +5081,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.form.total = subTotal;
     },
     tiempo: function tiempo(params) {
-      var tiempo = 0;
+      /* var tiempo = 0;
       var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
       var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
       var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
       tiempo = hora + ":" + minuto + ":" + segundo;
-      return tiempo;
+      return tiempo; */
+
+      /* var tiempo = 0;
+      this.datos_tiempo.segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
+      this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
+      this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour); */
+      //tiempo = hora + ":" + minuto + ":" + segundo;
+      //return tiempo;
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    /* this.datos_tiempo.segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
+    this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
+    this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour);
+    alert(this.datos_tiempo.segundo); */
 
+    /* Obtengo los datos para añadir 0 */
+    var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
+    var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
+    var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
+    /* Retorno los datos con 0 incluido */
+
+    this.seconds = segundo;
+    this.minutes = minuto;
+    this.hour = hora;
     this.flashMessage.setStrategy("multiple");
     this.form.cirugia_id = this.$props.idSecCirPro;
     /**
@@ -4492,54 +5130,93 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.setSelectedTipoPosiciones();
     this.setSelectedSala();
     this.setSelectedMedico();
-    setInterval(function () {
-      _this.seconds += 1;
-
-      if (_this.seconds >= 59) {
-        _this.seconds = 0;
-
-        if (_this.iniciado) {
-          if (_this.minutes % 5 == 0) {
-            _this.indice_minuto += 15;
-          }
-        }
-
-        if (_this.minutes >= 59) {
-          _this.hour += 1;
-          _this.minutes = 0;
-
-          if (_this.iniciado) {
-            _this.indice_hora += 1; // Si la hora se ha completado, se agrega otro objeto de horas al
-            //arreglo de datos
-
-            _this.agregarHora(); //this.lista_horas_avanzadas_v = [];
-
-
-            _this.agregarHorasInicial(); //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
-
-
-            if (_this.indice_hora % 5 == 0) {
-              _this.getNewIdRegistroAnestesia();
-
-              _this.getImgGrafica();
+    /* setInterval(() => {
+        this.seconds += 1;
+        if (this.seconds >= 59) {
+            this.seconds = 0;
+            if (this.iniciado) {
+                if (this.minutes % 5 == 0) {
+                    this.indice_minuto += 15;
+                }
             }
-          }
-        } else {
-          _this.minutes += 1;
+            if (this.minutes >= 59) {
+                this.hour += 1;
+                this.minutes = 0;
+                if (this.iniciado) {
+                    this.indice_hora += 1;
+                    // Si la hora se ha completado, se agrega otro objeto de horas al
+                    //arreglo de datos
+                    this.agregarHora();
+                    //this.lista_horas_avanzadas_v = [];
+                    this.agregarHorasInicial();
+                    //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
+                    if (this.indice_hora % 5 == 0) {
+                        this.getNewIdRegistroAnestesia();
+                        this.getImgGrafica();
+                    }
+                }
+            } else {
+                this.minutes += 1;
+            }
         }
-      } // Han pasado 5 min
-
-
-      if (_this.minutes % 5 == 0) {
-        // En caso que hayan pasado los 5 minutos, se registra de manera automática los datos
-        if (_this.seconds == 1) {
-          _this.obtenerDatosFormulario();
+        // Han pasado 5 min
+        if (this.minutes % 5 == 0) {
+            // En caso que hayan pasado los 5 minutos, se registra de manera automática los datos
+            if (this.seconds == 1) {
+                this.obtenerDatosFormulario();
+            }
         }
-      }
-    }, 1000);
+    }, 1000); */
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
+    agregarObjetoPorHora: function agregarObjetoPorHora() {
+      // Validar que se haya guardado todos los valores
+      //var valor;
+      //this.lista_horas_avanzadas_v[this.indice_hora].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes
+      var acumulador = 0;
+
+      for (var i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
+        if (this.lista_horas_avanzadas_v[i] != "") {
+          if (i == this.indice_hora) {
+            for (var j = 0; j < this.lista_horas_avanzadas_v[i].datos.length; j++) {
+              if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
+                for (var k = 0; k < this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length; k++) {
+                  if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
+                    for (var l = 0; l < this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length; l++) {
+                      if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
+                        if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l].agentes.length > 0) {
+                          acumulador += 1;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      if (acumulador >= 4) {
+        acumulador = 0;
+        this.indice_hora += 1;
+        this.iniciado_eliminar = true; // Si la hora se ha completado, se agrega otro objeto de horas al
+        //arreglo de datos
+
+        this.agregarHora();
+      }
+    },
+    eliminarObjetoPorHora: function eliminarObjetoPorHora() {
+      if (this.lista_horas_avanzadas_v.length > 1) {
+        this.lista_horas_avanzadas_v.splice(this.indice_hora, 1);
+        this.indice_hora -= 1;
+      }
+
+      if (this.lista_horas_avanzadas_v.length == 1) {
+        this.iniciado_eliminar = false;
+      }
+    },
     eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, t_fin, src, descripcion, valor, id, es_agente, es_posicion) {
       this.limpiarDatosEliminarAgente();
       this.datos_eliminar_agente.index = index;
@@ -4591,6 +5268,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
       if (value.respuesta) {
+        alert(value.respuesta);
         var valor = parseInt(value.valorNuevo);
         var minutes = value.is_tpo_init;
         var is_tpo_init = value.is_tpo_init;
@@ -4698,6 +5376,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           status: "success",
           title: "Éxito al procesar",
           message: "Agente Modificado Correctamente",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      } else if (value.respuestaEliminar) {
+        var adicional = value.adicional;
+
+        if (adicional.tipo == "agente") {
+          this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+        } else if (adicional.tipo == "respiracion") {
+          this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+        } else if (adicional.tipo == "posicion") {
+          this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].posicion = {
+            descripcion: "",
+            idRe: "",
+            img_url: "",
+            name_system: ""
+          };
+        }
+        /* Esta linea eliminará el agente de la grafica */
+
+
+        this.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar",
+          message: "Agente Eliminados Correctamente",
           clickable: true,
           time: 5000,
           icon: "/iconsflashMessage/success.svg",
@@ -4860,13 +5569,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     consultarSello: function consultarSello() {
       var that = this;
 
-      if (this.$props.user.codigo_usu > 0) {
+      if (this.$props.user.id > 0) {
         var loader = that.$loading.show();
-        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.codigo_usu;
+        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
         axios.get(url).then(function (response) {
           if (response.data.sello != null) {
-            if (response.data.sello.medico_sellos != null) {
-              that.rutaSello = "data:image/jpeg;base64," + response.data.sello.medico_sellos.IMAGEN_SELLO;
+            if (response.data.sello.seguridad_medico != null) {
+              if (response.data.sello.seguridad_medico.medico != null) {
+                if (response.data.sello.seguridad_medico.medico.medico_sellos != null) {
+                  that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
+                }
+              }
             }
           }
 
@@ -5047,11 +5760,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * Obtener agentes
      */
     obtenerDatosAgentes: function obtenerDatosAgentes() {
-      var _this2 = this;
+      var _this = this;
 
       var url = "/modulos/cirugia/anestesia/agentes";
       axios.get(url + "/agente").then(function (response) {
-        _this2.tabla_datos_grafica = response.data;
+        _this.tabla_datos_grafica = response.data;
       })["catch"](function (error) {
         that.flashMessage.show({
           status: "error",
@@ -5074,11 +5787,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * Obtener posiciones
      */
     obtenerDatosPosiciones: function obtenerDatosPosiciones() {
-      var _this3 = this;
+      var _this2 = this;
 
       var url = "/modulos/cirugia/anestesia/agentes";
       axios.get(url + "/posicion").then(function (response) {
-        _this3.posiciones = response.data;
+        _this2.posiciones = response.data;
       })["catch"](function (error) {
         that.flashMessage.show({
           status: "error",
@@ -5101,7 +5814,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * Método para enviar datos de la rejilla (agentes), cada que se registen (pasando 5 min)
      */
     enviarDatosAgente: function enviarDatosAgente() {
-      var _this4 = this;
+      var _this3 = this;
 
       var datos = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var tipo = arguments.length > 1 ? arguments[1] : undefined;
@@ -5122,7 +5835,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         tipo: tipo,
         SecCirPro: this.form.cirugia_id
       }).then(function (response) {
-        _this4.datos_server = response.data;
+        _this3.datos_server = response.data;
 
         if (es_posicion == false) {
           col_cince_min.agentes.push({
@@ -5135,11 +5848,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           Object.assign(posicion, {
             idRe: response.data.datos
           });
-          console.log(column_quince.posicion);
           column_quince.posicion = posicion;
         }
 
-        _this4.form.id_datos_agente = 0;
+        _this3.form.id_datos_agente = 0;
       })["catch"](function (error) {
         that.flashMessage.show({
           status: "error",
@@ -5162,7 +5874,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      */
     start_time: function () {
       var _start_time = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event) {
-        var _this5 = this;
+        var _this4 = this;
 
         var url, $id;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -5184,7 +5896,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 url = "/modulos/cirugia/anestesia/registro/post";
                 _context.next = 8;
                 return axios.post(url, this.form).then(function (response) {
-                  _this5.form.registro_anestesia_id = response.data.id;
+                  _this4.form.registro_anestesia_id = response.data.id;
                 });
 
               case 8:
@@ -5272,7 +5984,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     getImgGrafica: function getImgGrafica(idFlashMessage1) {
-      var _this6 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var la, optiones;
@@ -5280,19 +5992,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                la = _this6.$refs.printMe;
+                la = _this5.$refs.printMe;
                 optiones = {
                   type: "dataURL"
                 };
                 _context2.next = 4;
-                return _this6.$html2canvas(la, optiones);
+                return _this5.$html2canvas(la, optiones);
 
               case 4:
-                _this6.form.imgGrafica = _context2.sent;
+                _this5.form.imgGrafica = _context2.sent;
 
-                _this6.flashMessage.deleteMessage(idFlashMessage1);
+                _this5.flashMessage.deleteMessage(idFlashMessage1);
 
-                _this6.flashMessage.show({
+                _this5.flashMessage.show({
                   status: "success",
                   title: "Exito en Graficar",
                   message: "Grafico generado correctamente.",
@@ -5306,7 +6018,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   }
                 });
 
-                _this6.guardarImgGrafica();
+                _this5.guardarImgGrafica();
 
               case 8:
               case "end":
@@ -5598,7 +6310,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      * Agrega datos a la rejilla
      */
     agregarDatos: function agregarDatos(campo) {
-      // console.log(campo);
       this.agregaDatoEnRejilla(false, false, campo.valor, campo.ruta_img, {
         system_name: campo.descripcion,
         tipo: this.system_agente
@@ -5782,14 +6493,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     obtenerDatosFormulario: function obtenerDatosFormulario() {
-      var _this7 = this;
+      var _this6 = this;
 
       if (!this.iniciado) return;
 
       if (this.validarCampoAgente()) {
         return;
-      } //console.log(this.valoresFormulario);
-
+      }
 
       this.agregarDatos(this.valoresFormulario.ta_max);
       this.agregarDatos(this.valoresFormulario.ta_min);
@@ -5817,13 +6527,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
       var post_text = this.posiciones.find(function (e) {
-        return e.id == _this7.valoresFormulario.posicion.id;
+        return e.id == _this6.valoresFormulario.posicion.id;
       });
       this.agregaDatoEnRejilla(false, false, 0, "", {
         system_name: post_text ? post_text.name_system : "",
         tipo: this.system_posicion
       }, this.lista_horas_avanzadas_v[this.indice_hora].datos.length - 2 - this.index_points, true, this.posiciones.find(function (pos) {
-        return pos.id == _this7.valoresFormulario.posicion.id;
+        return pos.id == _this6.valoresFormulario.posicion.id;
       }));
       this.flashMessage.show({
         status: "success",
@@ -6830,7 +7540,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       form: {
-        idCirugiaProgramada: "0001",
+        idCirugiaProgramada: "",
         idCirugiaProgramadaTemporal: "",
         registro_anestesia_id: 0,
 
@@ -8466,14 +9176,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
   data: function data() {
     return {
       prefijo: "",
       isHidden: 'none',
+      idHiddenNuevo: 'none',
+      rutaSello: "",
       listas: {
-        frm_idCirugiaProgramada: "",
+        SecCirPro: "",
+        frm_id_user: "",
         chkentrada01: false,
         chkentrada02: false,
         chkentrada03: false,
@@ -8498,14 +9256,22 @@ __webpack_require__.r(__webpack_exports__);
         observacion: "",
         firma: ""
       },
+      validarImgFirma: 0,
+      isFirstPaintable: "firmaAnestesiologo",
       form: {
         /* Datos del paciente */
         // frm_idCirugiaProgramada: "",
+        id_lista: 0,
+        tipo_servicio: 4,
+        id_visita: 0,
+        id_tipo_documento: 13,
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",
         frm_quirofano: "",
-        frm_procedimiento: ""
+        frm_procedimiento: "",
+        imgFirma: null,
+        imgGrafica: null
       }
     };
   },
@@ -8515,7 +9281,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$modal.show("ListaCirugiaProgramadaPaciente");
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
-      this.listas.frm_idCirugiaProgramada = value.SecCirPro;
+      this.listas.SecCirPro = value.SecCirPro;
       this.form.frm_paciente = value.nombrePaciente;
       this.form.frm_cirujano = value.cirujano;
       this.form.frm_anestesiologo = value.anestesiologo;
@@ -8526,46 +9292,20 @@ __webpack_require__.r(__webpack_exports__);
       // }
 
       this.cargarLista(value.SecCirPro);
+      this.consultarSello();
     },
     cargarLista: function cargarLista(value) {
       var that = this;
       var url = "/modulos/cirugia/lista_verificacion/buscarpaciente/" + value; // var loader = that.$loading.show();
 
       axios.get(url).then(function (response) {
-        if (response.data.listaValoracion) {
-          //   this.$swal({
-          //     icon: "warning",
-          //     title: "Paciente a Modificar",
-          //     text: "."
-          // }),
-          that.listas.chkentrada01 = Boolean(Number(response.data.listaValoracion.chkentrada01));
-          that.listas.chkentrada02 = Boolean(Number(response.data.listaValoracion.chkentrada02));
-          that.listas.chkentrada03 = Boolean(Number(response.data.listaValoracion.chkentrada03));
-          that.listas.chkentrada04 = Boolean(Number(response.data.listaValoracion.chkentrada04));
-          that.listas.chkentrada05 = Boolean(Number(response.data.listaValoracion.chkentrada05));
-          that.listas.chkentrada06 = Boolean(Number(response.data.listaValoracion.chkentrada06));
-          that.listas.chkentrada07 = Boolean(Number(response.data.listaValoracion.chkentrada07));
-          that.listas.chkquirurgica01 = Boolean(Number(response.data.listaValoracion.chkquirurgica01));
-          that.listas.chkquirurgica02 = Boolean(Number(response.data.listaValoracion.chkquirurgica02));
-          that.listas.chkquirurgica03 = Boolean(Number(response.data.listaValoracion.chkquirurgica03));
-          that.listas.chkquirurgica04 = Boolean(Number(response.data.listaValoracion.chkquirurgica04));
-          that.listas.chkquirurgica05 = Boolean(Number(response.data.listaValoracion.chkquirurgica05));
-          that.listas.chkquirurgica06 = Boolean(Number(response.data.listaValoracion.chkquirurgica06));
-          that.listas.chkquirurgica07 = Boolean(Number(response.data.listaValoracion.chkquirurgica07));
-          that.listas.chksalida01 = Boolean(Number(response.data.listaValoracion.chksalida01));
-          that.listas.chksalida02 = Boolean(Number(response.data.listaValoracion.chksalida02));
-          that.listas.chksalida03 = Boolean(Number(response.data.listaValoracion.chksalida03));
-          that.listas.chksalida04 = Boolean(Number(response.data.listaValoracion.chksalida04));
-          that.listas.chksalida05 = Boolean(Number(response.data.listaValoracion.chksalida05)); // user_id: "",
-          // cargo: "",
-
-          that.listas.observacion = response.data.listaValoracion.observacion; //firma: ""
-
+        if (response.data.contador > 0) {
           that.$swal({
             icon: "success",
-            title: "Paciente a Modificar",
+            title: "El proceso ya se encuentra realizado, Seleccione Imprimir para visualizar el reporte",
             text: "."
           }), that.isHidden = 'block';
+          that.idHiddenNuevo = 'none';
         } else {
           that.$swal({
             icon: "success",
@@ -8573,6 +9313,7 @@ __webpack_require__.r(__webpack_exports__);
             text: "."
           });
           that.isHidden = 'none';
+          that.idHiddenNuevo = 'block';
         }
       })["catch"](function (error) {
         //Errores
@@ -8582,15 +9323,106 @@ __webpack_require__.r(__webpack_exports__);
           text: "."
         });
         that.isHidden = 'none';
+      }); //  llamarMetodoImprimir();
+    },
+    guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
+      var that = this;
+      var url = "";
+      var mensaje = ""; // alert(that.form.imgFirma);
+
+      var formNew = {
+        tipo_servicio: 4,
+        id_atencion: that.form.id_lista,
+        // that.form.id_lista,
+        id_visita: 0,
+        id_tipo_documento: 13,
+        imgFirma: that.form.imgFirma
+      };
+      url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        loader.hide();
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar Firma por Atención",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      })["catch"](function (error) {
+        that.resConfirmarCancelar = false;
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarFirmaPorAtencion",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
       });
     },
+    consultarSello: function consultarSello() {
+      var that = this;
+
+      if (this.$props.user.id > 0) {
+        var loader = that.$loading.show();
+        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
+        axios.get(url).then(function (response) {
+          if (response.data.sello != null) {
+            if (response.data.sello.seguridad_medico != null) {
+              that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO; // alert( response.data.sello.medico_sellos);
+            }
+          }
+
+          loader.hide();
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar consultarSello",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
+      }
+    },
     guardarLista: function guardarLista() {
-      var that = this; // var loader = that.$loading.show();
+      var that = this;
+
+      if (that.validarImgFirma == 0) {
+        that.$swal({
+          icon: "error",
+          title: "Favor Guardar la Firma",
+          text: "."
+        });
+        return;
+      } // var loader = that.$loading.show();
+
 
       var ListaInsert = this.listas; //console.log(this.listas);
 
       this.listas = {
-        frm_idCirugiaProgramada: "",
+        SecCirPro: "",
+        id_lista: 0,
         chkentrada01: false,
         chkentrada02: false,
         chkentrada03: false,
@@ -8614,26 +9446,36 @@ __webpack_require__.r(__webpack_exports__);
         cargo: "",
         observacion: "",
         firma: ""
-      }, this.form = {
-        /* Datos del paciente */
-        // frm_idCirugiaProgramada: "",
-        frm_paciente: "",
-        frm_cirujano: "",
-        frm_anestesiologo: "",
-        frm_quirofano: "",
-        frm_procedimiento: ""
-      };
-      axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
+      }, axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
+        that.form.id_lista = response.data.id; // alert(response.data.id);
         //  loader.hide();
+        //alert(that.form.id_lista);
+
+        that.guardarFirmaPorAtencion();
+        that.form = {
+          id_lista: 0,
+          tipo_servicio: 4,
+          id_visita: 0,
+          id_tipo_documento: 13,
+          frm_paciente: "",
+          frm_cirujano: "",
+          frm_anestesiologo: "",
+          frm_quirofano: "",
+          frm_procedimiento: "",
+          imgFirma: null,
+          imgGrafica: null
+        };
         that.$swal({
           icon: "success",
           title: "Proceso Realizado con Exito",
           text: "."
         });
-      }); // aui
+      }); //   alert( that.form.id_lista);
+      // guardarFirmaPorAtencion();
+      // aui
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
-      window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.frm_idCirugiaProgramada);
+      window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.SecCirPro);
     }
   }
 });
@@ -9405,6 +10247,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
   data: function data() {
     return {
       prefijo: "",
@@ -9412,6 +10259,11 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       respuestaCargarDatos: 0,
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       form: {
         /* Datos del paciente */
         frm_idCirugiaProgramada: "",
@@ -9458,6 +10310,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.frm_quirofano = value.quirofano;
       this.form.frm_procedimiento = value.procedimiento;
       this.$modal.hide("ListaCirugiaProgramadaPaciente");
+      this.consultarSello();
       /* if (this.$refs.revisionSistema != null) {
           this.$refs.revisionSistema.cargarRevisionSistema();
       } */
@@ -9546,6 +10399,38 @@ __webpack_require__.r(__webpack_exports__);
 
         default: //this.titulo_seleccionado = "";
 
+      }
+    },
+    consultarSello: function consultarSello() {
+      var that = this;
+
+      if (this.$props.user.id > 0) {
+        var loader = that.$loading.show();
+        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
+        axios.get(url).then(function (response) {
+          if (response.data.sello != null) {
+            if (response.data.sello.seguridad_medico != null) {
+              that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO; // alert( response.data.sello.medico_sellos);
+            }
+          }
+
+          loader.hide();
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar consultarSello",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
       }
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
@@ -10588,10 +11473,18 @@ __webpack_require__.r(__webpack_exports__);
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
     }
   },
   data: function data() {
     return {
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       chk: {
         /* Antecedentes */
         chk_quirurgico: false,
@@ -11809,10 +12702,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
     }
   },
   data: function data() {
     return {
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       chk: {
         /* Cuello Corto */
         chk_cuelloCorto: false,
@@ -12970,11 +13871,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
     }
   },
   data: function data() {
@@ -12982,6 +13950,13 @@ __webpack_require__.r(__webpack_exports__);
       tipoSangre: [],
       selectedTipoSangre: "",
       validarFinProceso: 0,
+      validarImgFirma: 0,
+      isFirstPaintable: "firmaAnestesiologo",
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       chk: {
         /* Paraclinicos */
         chk_hb: false,
@@ -13073,6 +14048,7 @@ __webpack_require__.r(__webpack_exports__);
         this.cargarAtencionMotivo();
     } */
   },
+  created: function created() {},
   beforeDestroy: function beforeDestroy() {
     /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
     let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
@@ -13276,6 +14252,54 @@ __webpack_require__.r(__webpack_exports__);
           text: "Debe seleccionar un paciente"
         });
       }
+    },
+    guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
+      var that = this;
+      var url = "";
+      var mensaje = ""; // alert(that.form.imgFirma);
+
+      var formNew = {
+        tipo_servicio: 4,
+        id_atencion: that.form.id_lista,
+        // that.form.id_lista,
+        id_visita: 0,
+        id_tipo_documento: 13,
+        imgFirma: that.frmimg.imgFirma
+      };
+      url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        loader.hide();
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar Firma por Atención",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      })["catch"](function (error) {
+        that.resConfirmarCancelar = false;
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarFirmaPorAtencion",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
     },
 
     /* Paraclinicos */
@@ -14222,12 +15246,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
+    },
+    rutaSelloImg: {
+      type: String
     }
   },
   data: function data() {
     return {
       validarCargarDatos: 0,
       respuestaImprimir: 0,
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       chk: {
         /* Cardiovascular  */
         chk_hipertension: 0,
@@ -16547,6 +17582,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -58269,6 +59316,258 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "content-wrapper" },
+    [
+      _c("div", { staticClass: "content-header" }, [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "row mb-2" }, [
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("ol", { staticClass: "breadcrumb float-sm-left" }, [
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        staticStyle: { "margin-top": "-9px" },
+                        attrs: { to: _vm.prefijo }
+                      },
+                      [_vm._v("Home")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c("li", [
+                  _c("p", { staticStyle: { "margin-left": "10px" } }, [
+                    _c("span", {
+                      domProps: { textContent: _vm._s(_vm.titulo_seleccionado) }
+                    })
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-lg-12 col-md-12 col-sm-12 text-right"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "btn-group",
+                            attrs: { role: "group" }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-outline-primary",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.mostrarModalListaCirugiaPaciente()
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                            Nuevo\n                                        "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm.form.id_cirugia_programada > 0
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-outline-primary",
+                                    attrs: { type: "button" },
+                                    on: { click: _vm.guardarRegistroTiempo }
+                                  },
+                                  [_c("i", { staticClass: "fas fa-stopwatch" })]
+                                )
+                              : _vm._e()
+                          ]
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._v("\n                 \n                "),
+            _vm._v(" "),
+            _vm.form.id_cirugia_programada > 0
+              ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card card-default collapsed-card" },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-header",
+                          staticStyle: { background: "#590303" }
+                        },
+                        [
+                          _c(
+                            "h3",
+                            {
+                              staticClass: "card-title",
+                              staticStyle: { color: "#FFFFFF" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                Registro del Tiempo del Paciente\n                                " +
+                                  _vm._s(_vm.form.nombre) +
+                                  "\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(1)
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-body",
+                          staticStyle: { display: "none" }
+                        },
+                        [
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                              [
+                                _c("div", { staticClass: "row mt-2" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "col-lg-12 col-md-12 col-sm-12"
+                                    },
+                                    [
+                                      _c("vuetable-component", {
+                                        attrs: {
+                                          "anular-button": false,
+                                          "modificar-button": false,
+                                          "columns-data": _vm.columns,
+                                          "rows-data": _vm.registros_tiempos
+                                        },
+                                        on: {
+                                          handleRowClick: _vm.handleRowClick
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              : _vm._e()
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          staticStyle: { "z-index": "1200" },
+          attrs: {
+            width: "65%",
+            height: "auto",
+            scrollable: true,
+            name: "ListaCirugiaProgramadaPaciente"
+          }
+        },
+        [
+          _c("lista-cirugia-programa-paciente", {
+            ref: "ListaCirugiaProgramadaPaciente",
+            on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("FlashMessage")
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("p", [_vm._v("/")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-tools" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-tool",
+          attrs: { type: "button", "data-card-widget": "collapse" }
+        },
+        [_c("i", { staticClass: "fas fa-plus" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-tool",
+          attrs: { type: "button", "data-card-widget": "remove" }
+        },
+        [_c("i", { staticClass: "fas fa-times" })]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=template&id=7420b681&":
 /*!**************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue?vue&type=template&id=7420b681& ***!
@@ -58564,13 +59863,13 @@ var render = function() {
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
-                      return _vm.validarConfirmarCandelar(true)
+                      return _vm.validarConfirmarCandelar(true, false)
                     }
                   }
                 },
                 [
                   _vm._v(
-                    "\n                        Aceptar\n                    "
+                    "\n                        Modificar\n                    "
                   )
                 ]
               ),
@@ -58582,7 +59881,25 @@ var render = function() {
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
-                      return _vm.validarConfirmarCandelar(false)
+                      return _vm.validarConfirmarCandelar(false, true)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                        Eliminar\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-info",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.validarConfirmarCandelar(false, false)
                     }
                   }
                 },
@@ -58653,16 +59970,112 @@ var render = function() {
           _c(
             "p",
             {
-              staticClass: "badge badge-warning pl-3 pr-3 pt-2 pb-2",
+              staticClass: "badge badge-warning  col-lg-4 col-md-4 col-sm-4",
               staticStyle: { "font-size": "1.0em" }
             },
             [
-              _vm._v("\n                Tiempo: "),
-              _c("span", { attrs: { id: "total" } }, [
-                _vm._v(_vm._s(_vm.tiempo))
+              _vm._v("\n                Tiempo:\n                "),
+              _c("span", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.hour,
+                      expression: "hour"
+                    }
+                  ],
+                  staticClass: "col-lg-2 col-md-2 col-sm-2",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.hour },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.hour = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(":")
+              ]),
+              _c("span", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.minutes,
+                      expression: "minutes"
+                    }
+                  ],
+                  staticClass: "col-lg-2 col-md-2 col-sm-2",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.minutes },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.minutes = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(":")
+              ]),
+              _c("span", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.seconds,
+                      expression: "seconds"
+                    }
+                  ],
+                  staticClass: "col-lg-2 col-md-2 col-sm-2",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.seconds },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.seconds = $event.target.value
+                    }
+                  }
+                })
               ])
             ]
-          )
+          ),
+          _vm._v(" "),
+          _vm.iniciado
+            ? _c("span", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-success",
+                    attrs: { type: "button" },
+                    on: { click: _vm.agregarObjetoPorHora }
+                  },
+                  [_c("i", { staticClass: "fas fa-plus-circle" })]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.iniciado_eliminar
+            ? _c("span", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-danger",
+                    attrs: { type: "button" },
+                    on: { click: _vm.eliminarObjetoPorHora }
+                  },
+                  [_c("i", { staticClass: "fas fa-window-close" })]
+                )
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _vm.iniciado
@@ -65946,9 +67359,9 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm.listas.frm_idCirugiaProgramada != ""
+            _vm.listas.SecCirPro != ""
               ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-                  _vm.form.frm_idCirugiaProgramada != ""
+                  _vm.form.SecCirPro != ""
                     ? _c(
                         "div",
                         { staticClass: "col-lg-12 col-md-12 col-sm-12" },
@@ -65987,11 +67400,9 @@ var render = function() {
                                                   {
                                                     name: "model",
                                                     rawName: "v-model",
-                                                    value:
-                                                      _vm.listas
-                                                        .frm_idCirugiaProgramada,
+                                                    value: _vm.listas.SecCirPro,
                                                     expression:
-                                                      "\n                                                            listas.frm_idCirugiaProgramada\n                                                        "
+                                                      "\n                                                            listas.SecCirPro\n                                                        "
                                                   }
                                                 ],
                                                 attrs: {
@@ -66000,9 +67411,7 @@ var render = function() {
                                                   name: "SecCirPro"
                                                 },
                                                 domProps: {
-                                                  value:
-                                                    _vm.listas
-                                                      .frm_idCirugiaProgramada
+                                                  value: _vm.listas.SecCirPro
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -66013,7 +67422,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.listas,
-                                                      "frm_idCirugiaProgramada",
+                                                      "SecCirPro",
                                                       $event.target.value
                                                     )
                                                   }
@@ -68517,7 +69926,8 @@ var render = function() {
                                             rows: "3",
                                             placeholder: "Enter ...",
                                             name: "observacion",
-                                            id: "observacion"
+                                            id: "observacion",
+                                            required: ""
                                           },
                                           domProps: {
                                             value: _vm.listas.observacion
@@ -68539,7 +69949,84 @@ var render = function() {
                                     ])
                                   ]),
                                   _vm._v(" "),
-                                  _vm._m(13)
+                                  _c("div", {}, [
+                                    _c("div", {
+                                      staticStyle: { height: "70px" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "flex flex-y" }, [
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "col-md-5 text-center",
+                                          staticStyle: { margin: "auto" }
+                                        },
+                                        [
+                                          _c("vue-painttable", {
+                                            ref: "paintFirma",
+                                            attrs: {
+                                              hidePaintable: true,
+                                              isFirstPaintable:
+                                                _vm.isFirstPaintable,
+                                              disableNavigation: true,
+                                              showUndoRedo: false,
+                                              showLineWidth: false,
+                                              rutaImagen: _vm.rutaSello,
+                                              width: 800,
+                                              height: 800
+                                            },
+                                            on: {
+                                              getOutput: function($event) {
+                                                _vm.form.imgFirma = $event
+                                              },
+                                              RespuestaImgFirma: function(
+                                                $event
+                                              ) {
+                                                _vm.validarImgFirma = $event
+                                              }
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "col-md-12 text-center"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "______________________________________________"
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "col-md-12 text-center"
+                                        },
+                                        [_vm._v("FIRMA DEL ANESTESIOLOGO:")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "card-footer" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        style: { display: _vm.idHiddenNuevo },
+                                        attrs: { type: "submit" }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                                        Enviar\n                                                    "
+                                        )
+                                      ]
+                                    )
+                                  ])
                                 ]
                               )
                             ]
@@ -68879,22 +70366,6 @@ var staticRenderFns = [
         )
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [
-          _vm._v(
-            "\n                                                        Enviar\n                                                    "
-          )
-        ]
-      )
-    ])
   }
 ]
 render._withStripped = true
@@ -76177,6 +77648,66 @@ var render = function() {
                                 }
                               })
                             ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-12 mt-2" }, [
+                            _c("div", {}, [
+                              _c("div", { staticStyle: { height: "70px" } }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "flex flex-y" }, [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "col-md-5 text-center",
+                                    staticStyle: { margin: "auto" }
+                                  },
+                                  [
+                                    _c("vue-painttable", {
+                                      ref: "paintFirma",
+                                      attrs: {
+                                        hidePaintable: true,
+                                        isFirstPaintable: _vm.isFirstPaintable,
+                                        disableNavigation: true,
+                                        showUndoRedo: false,
+                                        showLineWidth: false,
+                                        rutaImagen: _vm.rutaSello,
+                                        width: 800,
+                                        height: 800
+                                      },
+                                      on: {
+                                        getOutput: function($event) {
+                                          _vm.frmimg.imgFirma = $event
+                                        },
+                                        RespuestaImgFirma: function($event) {
+                                          _vm.validarImgFirma = $event
+                                        }
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticClass: "col-md-12 text-center" },
+                                  [
+                                    _vm._v(
+                                      "______________________________________________"
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticClass: "col-md-12 text-center" },
+                                  [
+                                    _vm._v(
+                                      "FIRMA DEL\n                                                            ANESTESIOLOGO:"
+                                    )
+                                  ]
+                                )
+                              ])
+                            ])
                           ])
                         ])
                       ])
@@ -80584,34 +82115,59 @@ var render = function() {
                               ])
                             : _vm._e()
                         ])
-                      : props.column.field == "signo_vital"
+                      : props.column.field == "estado"
                       ? _c("span", [
-                          props.row.signo_vital == "Registrado"
-                            ? _c("div", [
-                                _c(
-                                  "span",
-                                  {
-                                    staticStyle: {
-                                      "font-weight": "bold",
-                                      color: "#0C9C05"
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(props.row.signo_vital))]
-                                )
-                              ])
-                            : props.row.signo_vital == "Pendiente"
-                            ? _c("div", [
-                                _c(
-                                  "span",
-                                  {
-                                    staticStyle: {
-                                      "font-weight": "bold",
-                                      color: "red"
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(props.row.signo_vital))]
-                                )
-                              ])
+                          props.row.estado == "Iniciado"
+                            ? _c(
+                                "div",
+                                { staticStyle: { background: "#FFFB00" } },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticStyle: {
+                                        "font-weight": "bold",
+                                        color: "#000000"
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(props.row.estado))]
+                                  )
+                                ]
+                              )
+                            : props.row.estado == "Finalizado"
+                            ? _c(
+                                "div",
+                                { staticStyle: { background: "#BBED8C" } },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticStyle: {
+                                        "font-weight": "bold",
+                                        color: "#000000"
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(props.row.estado))]
+                                  )
+                                ]
+                              )
+                            : props.row.estado == "Pendiente"
+                            ? _c(
+                                "div",
+                                { staticStyle: { background: "#FF0000" } },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticStyle: {
+                                        "font-weight": "bold",
+                                        color: "#FFFFFF"
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(props.row.estado))]
+                                  )
+                                ]
+                              )
                             : _vm._e()
                         ])
                       : props.column.field == "estado_actual"
@@ -97976,6 +99532,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_vue_vue_type_template_id_3cc310a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=3cc310a8& */ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8&");
+/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _index_vue_vue_type_template_id_3cc310a8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _index_vue_vue_type_template_id_3cc310a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8& ***!
+  \*********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_3cc310a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=3cc310a8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_3cc310a8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_3cc310a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue":
 /*!*************************************************************************************************!*\
   !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue ***!
@@ -98049,14 +99674,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************************************************!*\
   !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue ***!
   \**********************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=template&id=0efa7f95& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&");
 /* harmony import */ var _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -98088,7 +99714,7 @@ component.options.__file = "resources/js/components/Modulos/Cirugia/anestesia/co
 /*!***********************************************************************************************************************!*\
   !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99546,15 +101172,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Modulos_Parametrizacion_sub_modulo_SubModulo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Modulos/Parametrizacion/sub_modulo/SubModulo */ "./resources/js/components/Modulos/Parametrizacion/sub_modulo/SubModulo.vue");
 /* harmony import */ var _components_Modulos_Cirugia_valoracionPreanestecia_IndexValoracionPreanestesica__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue");
 /* harmony import */ var _components_Modulos_Cirugia_anestesia_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/index */ "./resources/js/components/Modulos/Cirugia/anestesia/index.vue");
-/* harmony import */ var _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_agente/TipoAgente */ "./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue");
-/* harmony import */ var _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue");
-/* harmony import */ var _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/ListasComponent */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue");
+/* harmony import */ var _components_Modulos_Cirugia_RegistroTiempo_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Modulos/Cirugia/RegistroTiempo/index */ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue");
+/* harmony import */ var _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_agente/TipoAgente */ "./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue");
+/* harmony import */ var _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue");
+/* harmony import */ var _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/ListasComponent */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue");
 
 
  //Parametrizacion
 
 
  //Cirugia
+
 
 
 
@@ -99580,14 +101208,17 @@ var prefijo = _variables__WEBPACK_IMPORTED_MODULE_1__["prefix"];
     path: prefijo + "/modulos/cirugia/anestesia",
     component: _components_Modulos_Cirugia_anestesia_index__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
+    path: prefijo + "/modulos/cirugia/registro_tiempo",
+    component: _components_Modulos_Cirugia_RegistroTiempo_index__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
     path: prefijo + "/modulos/cirugia/tipo_agente/mostrar_tipo_agente",
-    component: _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
     path: prefijo + "/modulos/cirugia/tipo_posiciones/mostrar_tipo_posiciones",
-    component: _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
     path: prefijo + "/modulos/cirugia/lista_verificacion/mostrar_tipo_lista",
-    component: _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_10__["default"]
   }],
   mode: "history" //Evita que aparezca # en la ruta
 

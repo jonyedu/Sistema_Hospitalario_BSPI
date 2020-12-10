@@ -19,49 +19,11 @@
         <div class="" style="width: 90%; margin: 0 auto">
             <div class="row flex-center-x">
                 <p
-                    class="badge badge-warning  col-lg-4 col-md-4 col-sm-4"
+                    class="badge badge-warning pl-3 pr-3 pt-2 pb-2"
                     style="font-size: 1.0em"
                 >
-                    Tiempo:
-                    <span
-                        ><input
-                            class="col-lg-2 col-md-2 col-sm-2"
-                            v-model="hour"
-                            type="text"
-                        />:</span
-                    ><span
-                        ><input
-                            class="col-lg-2 col-md-2 col-sm-2"
-                            v-model="minutes"
-                            type="text"
-                        />:</span
-                    ><span
-                        ><input
-                            class="col-lg-2 col-md-2 col-sm-2"
-                            v-model="seconds"
-                            type="text"
-                    /></span>
+                    Tiempo: <span id="total">{{ tiempo }}</span>
                 </p>
-                <span v-if="iniciado">
-                    <button
-                        type="button"
-                        class="btn btn-outline-success"
-                        @click="agregarObjetoPorHora"
-                    >
-                        <!-- Nuevo -->
-                        <i class="fas fa-plus-circle"></i>
-                    </button>
-                </span>
-                <span v-if="iniciado_eliminar">
-                    <button
-                        type="button"
-                        class="btn btn-outline-danger"
-                        @click="eliminarObjetoPorHora"
-                    >
-                        <!-- Eliminar -->
-                        <i class="fas fa-window-close"></i>
-                    </button>
-                </span>
             </div>
             <div class="row mb-5" v-if="iniciado">
                 <!-- MAX y MIN -->
@@ -301,6 +263,7 @@
                     </button>
                 </div>
             </div>
+
             <div v-if="iniciado">
                 <div ref="printMe">
                     <div class="row border-t flex-center-x">
@@ -1993,6 +1956,7 @@
                 @handleSeleccionarClick="handleSeleccionarClick"
             ></eliminar-agente>
         </modal>
+        <!--  <FlashMessage></FlashMessage> -->
     </div>
 </template>
 
@@ -2009,7 +1973,6 @@ export default {
     },
     data: function() {
         return {
-            iniciado_eliminar: false,
             datos_eliminar_agente: {
                 index: "",
                 index_fila: "",
@@ -2024,7 +1987,6 @@ export default {
                 valor: 0,
                 valorNuevo: 0,
                 respuesta: false,
-                respuestaEliminar: false,
                 id: 0
             },
             resConfirmarCancelar: false,
@@ -2121,6 +2083,7 @@ export default {
                 id_medico: 0,
                 hora: "00:00",
                 /* Fin Datos para modificar registro anestesico */
+
                 /* Datos para guardar en la tabla infusiones */
                 infusiones: [
                     {
@@ -2162,6 +2125,7 @@ export default {
                 ],
                 total: 0,
                 /* Fin Datos para guardar en la tabla infusiones */
+
                 /* Datos para guardar firma */
                 imgFirma: null,
                 imgGrafica: null
@@ -2184,6 +2148,7 @@ export default {
             /**
              * End
              */
+
             /**
              * Datos para el registro de la rejilla
              */
@@ -2297,6 +2262,7 @@ export default {
                     descripcion: ""
                 }
             },
+
             //   VALORES A ENVIAR AL SERVER
             datos_anestecia_envio: [],
             datos_server: []
@@ -2314,33 +2280,15 @@ export default {
             return (this.form.total = subTotal);
         },
         tiempo: function(params) {
-            /* var tiempo = 0;
+            var tiempo = 0;
             var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
             var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
             var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
             tiempo = hora + ":" + minuto + ":" + segundo;
-            return tiempo; */
-            /* var tiempo = 0;
-            this.datos_tiempo.segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
-            this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
-            this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour); */
-            //tiempo = hora + ":" + minuto + ":" + segundo;
-            //return tiempo;
+            return tiempo;
         }
     },
     mounted: function() {
-        /* this.datos_tiempo.segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
-        this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
-        this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour);
-        alert(this.datos_tiempo.segundo); */
-        /* Obtengo los datos para añadir 0 */
-        var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
-        var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
-        var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
-        /* Retorno los datos con 0 incluido */
-        this.seconds = segundo;
-        this.minutes = minuto;
-        this.hour = hora;
         this.flashMessage.setStrategy("multiple");
         this.form.cirugia_id = this.$props.idSecCirPro;
         /**
@@ -2357,7 +2305,7 @@ export default {
         this.setSelectedTipoPosiciones();
         this.setSelectedSala();
         this.setSelectedMedico();
-        /* setInterval(() => {
+        setInterval(() => {
             this.seconds += 1;
             if (this.seconds >= 59) {
                 this.seconds = 0;
@@ -2376,6 +2324,7 @@ export default {
                         this.agregarHora();
                         //this.lista_horas_avanzadas_v = [];
                         this.agregarHorasInicial();
+
                         //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
                         if (this.indice_hora % 5 == 0) {
                             this.getNewIdRegistroAnestesia();
@@ -2393,89 +2342,10 @@ export default {
                     this.obtenerDatosFormulario();
                 }
             }
-        }, 1000); */
+        }, 1000);
     },
     beforeDestroy: function() {},
     methods: {
-        agregarObjetoPorHora() {
-            // Validar que se haya guardado todos los valores
-            //var valor;
-            //this.lista_horas_avanzadas_v[this.indice_hora].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes
-            var acumulador = 0;
-            for (let i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
-                if (this.lista_horas_avanzadas_v[i] != "") {
-                    if (i == this.indice_hora) {
-                        for (
-                            let j = 0;
-                            j < this.lista_horas_avanzadas_v[i].datos.length;
-                            j++
-                        ) {
-                            if (
-                                this.lista_horas_avanzadas_v[i].datos[j] != ""
-                            ) {
-                                for (
-                                    let k = 0;
-                                    k <
-                                    this.lista_horas_avanzadas_v[i].datos[j]
-                                        .columnasQuinceMin.length;
-                                    k++
-                                ) {
-                                    if (
-                                        this.lista_horas_avanzadas_v[i].datos[j]
-                                            .columnasQuinceMin[k] != ""
-                                    ) {
-                                        for (
-                                            let l = 0;
-                                            l <
-                                            this.lista_horas_avanzadas_v[i]
-                                                .datos[j].columnasQuinceMin[k]
-                                                .columnas.length;
-                                            l++
-                                        ) {
-                                            if (
-                                                this.lista_horas_avanzadas_v[i]
-                                                    .datos[j].columnasQuinceMin[
-                                                    k
-                                                ].columnas != ""
-                                            ) {
-                                                if (
-                                                    this
-                                                        .lista_horas_avanzadas_v[
-                                                        i
-                                                    ].datos[j]
-                                                        .columnasQuinceMin[k]
-                                                        .columnas[l].agentes
-                                                        .length > 0
-                                                ) {
-                                                    acumulador += 1;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if (acumulador >= 4) {
-                acumulador = 0;
-                this.indice_hora += 1;
-                this.iniciado_eliminar = true;
-                // Si la hora se ha completado, se agrega otro objeto de horas al
-                //arreglo de datos
-                this.agregarHora();
-            }
-        },
-        eliminarObjetoPorHora() {
-            if (this.lista_horas_avanzadas_v.length > 1) {
-                this.lista_horas_avanzadas_v.splice(this.indice_hora, 1);
-                this.indice_hora -= 1;
-            }
-            if (this.lista_horas_avanzadas_v.length == 1) {
-                this.iniciado_eliminar = false;
-            }
-        },
         eliminarAgente(
             index,
             index_fila,
@@ -2538,7 +2408,6 @@ export default {
         },
         handleSeleccionarClick(value) {
             if (value.respuesta) {
-                alert(value.respuesta);
                 var valor = parseInt(value.valorNuevo);
                 var minutes = value.is_tpo_init;
                 var is_tpo_init = value.is_tpo_init;
@@ -2591,17 +2460,9 @@ export default {
                             }
                         }
                     }
-                    this.lista_horas_avanzadas_v[value.index].datos[
-                        value.index_fila
-                    ].columnasQuinceMin[value.index_columna].columnas[
-                        value.index_minutos_columna
-                    ].agentes.splice(value.indexLista, 1);
+                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
                 } else if (adicional.tipo == "respiracion") {
-                    this.lista_horas_avanzadas_v[value.index].datos[
-                        value.index_fila
-                    ].columnasQuinceMin[value.index_columna].columnas[
-                        value.index_minutos_columna
-                    ].agentes.push({
+                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.push({
                         descripcion: adicional.system_name,
                         valor: 0,
                         _src: ruta_icono
@@ -2619,15 +2480,9 @@ export default {
                         },
                         adicional.tipo
                     );
-                    this.lista_horas_avanzadas_v[value.index].datos[
-                        value.index_fila
-                    ].columnasQuinceMin[value.index_columna].columnas[
-                        value.index_minutos_columna
-                    ].agentes.splice(value.indexLista, 1);
+                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
                 } else if (adicional.tipo == "posicion") {
-                    this.lista_horas_avanzadas_v[value.index].datos[
-                        value.index_fila
-                    ].columnasQuinceMin[value.index_columna].posicion = {
+                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].posicion = {
                         descripcion: adicional.system_name,
                         idRe: valor,
                         img_url: ruta_icono,
@@ -2652,34 +2507,6 @@ export default {
                     status: "success",
                     title: "Éxito al procesar",
                     message: "Agente Modificado Correctamente",
-                    clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/success.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background: "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                });
-            } else if (value.respuestaEliminar) {
-                var adicional = value.adicional;
-                if (adicional.tipo == "agente") {
-                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
-                } else if (adicional.tipo == "respiracion") {
-                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
-                } else if (adicional.tipo == "posicion") {
-                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].posicion = {
-                        descripcion: "",
-                        idRe: "",
-                        img_url: "",
-                        name_system: ""
-                    };
-                }
-                /* Esta linea eliminará el agente de la grafica */
-                this.flashMessage.show({
-                    status: "success",
-                    title: "Éxito al procesar",
-                    message: "Agente Eliminados Correctamente",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/success.svg",
@@ -2748,6 +2575,7 @@ export default {
             // if(posicion)debugger
             var indice_fila =
                 fila_indice != 0 ? fila_indice : this.obtenerIndice(valor);
+
             // Verifica el índice según la hora
             for (const column_quince of this.lista_horas_avanzadas_v[
                 this.indice_hora
@@ -2762,7 +2590,7 @@ export default {
                             column_quince.tiempo_inicio <= this.minutes &&
                             column_quince.tiempo_fin > this.minutes
                         ) {
-                            if (column_quince.posicion.id == 0) {
+                            if(column_quince.posicion.id == 0){
                                 // Agregar dato de envío
                                 this.enviarDatosAgente(
                                     {
@@ -2786,6 +2614,8 @@ export default {
                                 );
                                 return;
                             }
+
+
                             //Pinta en la grafica los valores
                             //Si funciona, llevar este codigo a donde guarda en base
                             /* Object.assign(posicion,{nue:0});
@@ -2803,7 +2633,7 @@ export default {
                                     this.minutes >= col_cince_min.t_init &&
                                     col_cince_min.t_fin > this.minutes
                                 ) {
-                                    if (col_cince_min.agentes.length == 0) {
+                                    if(col_cince_min.agentes.length == 0){
                                         // Agregar dato de envío
                                         this.enviarDatosAgente(
                                             {
@@ -2848,31 +2678,20 @@ export default {
         },
         consultarSello() {
             let that = this;
-            if (this.$props.user.id > 0) {
+            if (this.$props.user.codigo_usu > 0) {
                 var loader = that.$loading.show();
                 let url =
                     "/modulos/cirugia/anestesia/cargar_sello/" +
-                    this.$props.user.id;
+                    this.$props.user.codigo_usu;
                 axios
                     .get(url)
                     .then(function(response) {
                         if (response.data.sello != null) {
-                            if (response.data.sello.seguridad_medico != null) {
-                                if (
-                                    response.data.sello.seguridad_medico
-                                        .medico != null
-                                ) {
-                                    if (
-                                        response.data.sello.seguridad_medico
-                                            .medico.medico_sellos != null
-                                    ) {
-                                        that.rutaSello =
-                                            "data:image/jpeg;base64," +
-                                            response.data.sello.seguridad_medico
-                                                .medico.medico_sellos
-                                                .IMAGEN_SELLO;
-                                    }
-                                }
+                            if (response.data.sello.medico_sellos != null) {
+                                that.rutaSello =
+                                    "data:image/jpeg;base64," +
+                                    response.data.sello.medico_sellos
+                                        .IMAGEN_SELLO;
                             }
                         }
                         loader.hide();
@@ -2901,6 +2720,7 @@ export default {
         getNewIdRegistroAnestesia() {
             if (this.iniciado) return;
             this.iniciado = true;
+
             let url = "/modulos/cirugia/anestesia/registro/post";
             axios
                 .post(url, this.form)
@@ -3148,7 +2968,7 @@ export default {
         ) {
             let that = this;
             this.form.cirugia_id = this.$props.idSecCirPro;
-            let url = "/modulos/cirugia/anestesia/agentes/guardado";
+            let url ="/modulos/cirugia/anestesia/agentes/guardado";
             axios
                 .post(url, {
                     id_datos_agente: this.form.id_datos_agente,
@@ -3166,10 +2986,11 @@ export default {
                             _src: src,
                             id: response.data.datos
                         });
-                    } else {
-                        Object.assign(posicion, {
-                            idRe: response.data.datos
+                    }else{
+                        Object.assign(posicion,{
+                            idRe:response.data.datos
                         });
+                        console.log(column_quince.posicion);
                         column_quince.posicion = posicion;
                     }
                     this.form.id_datos_agente = 0;
@@ -3200,6 +3021,7 @@ export default {
             this.iniciado = true;
             this.agregarHorasInicial();
             this.consultarSello();
+
             //Guardar datos en la tabla tb_registro_anestesia
             let url = "/modulos/cirugia/anestesia/registro/post";
             let $id = await axios.post(url, this.form).then(response => {
@@ -3313,6 +3135,7 @@ export default {
                 imgGrafica: that.form.imgGrafica
             };
             url = "/modulos/cirugia/anestesia/guardar_img_grafica";
+
             var loader = that.$loading.show();
             axios
                 .post(url, formNew)
@@ -3360,7 +3183,9 @@ export default {
                 frm_registro_anestesia_id: that.form.registro_anestesia_id,
                 frm_descripciones: that.drogas_administradas
             };
+
             url = "/modulos/cirugia/anestesia/guardar_droga_administrada";
+
             var loader = that.$loading.show();
             axios
                 .post(url, formNew)
@@ -3406,6 +3231,7 @@ export default {
             let url = "";
             let mensaje = "";
             url = "/modulos/cirugia/anestesia/modifcar_registro_anestesia";
+
             var loader = that.$loading.show();
             axios
                 .post(url, that.form)
@@ -3455,6 +3281,7 @@ export default {
                 infusiones: that.form.infusiones
             };
             url = "/modulos/cirugia/anestesia/guardar_registro_infusiones";
+
             var loader = that.$loading.show();
             axios
                 .post(url, formNew)
@@ -3603,6 +3430,7 @@ export default {
                     loader.hide();
                 });
         },
+
         /**
          * Método para obtener el índice en la posición Y, según el valor que se le envíe, usa los valores estáticos 'valoresAnestecia_v'
          * @return int
@@ -3612,10 +3440,12 @@ export default {
                 ob_limite => ob_limite.inicio <= valor && ob_limite.fin > valor
             );
         },
+
         /**
          * Agrega datos a la rejilla
          */
         agregarDatos: function(campo) {
+            // console.log(campo);
             this.agregaDatoEnRejilla(
                 false,
                 false,
@@ -3627,6 +3457,7 @@ export default {
         /**
          *
          */
+
         validarCampoAgente() {
             var validarCampo = false;
             if (
@@ -3689,6 +3520,7 @@ export default {
                 });
                 return validarCampo;
             }
+
             if (this.valoresFormulario.respiracion.descripcion == undefined) {
                 validarCampo = true;
                 this.flashMessage.show({
@@ -3706,6 +3538,7 @@ export default {
                 });
                 return validarCampo;
             }
+
             if (this.chk.temperatura) {
                 if (
                     this.valoresFormulario.temperatura.valor == undefined ||
@@ -3817,26 +3650,35 @@ export default {
             if (this.validarCampoAgente()) {
                 return;
             }
+            //console.log(this.valoresFormulario);
             this.agregarDatos(this.valoresFormulario.ta_max);
             this.agregarDatos(this.valoresFormulario.ta_min);
+
             this.agregarDatos(this.valoresFormulario.valor_pulso);
+
             // debugger
             this.agregarDatoRespiracion();
             //this.agregarDatos(this.valoresFormulario.respiracion);
+
             if (this.chk.temperatura) {
                 this.agregarDatos(this.valoresFormulario.temperatura);
             }
+
             if (this.chk.feto) {
                 this.agregarDatos(this.valoresFormulario.feto);
             }
+
             if (this.chk.pares_venosa) {
                 this.agregarDatos(this.valoresFormulario.pares_venosa);
             }
+
             if (this.chk.torniquete) {
                 this.agregarDatos(this.valoresFormulario.torniquete);
             }
+
             //Aqui va el metodo de guardar los text
             //this.guardarModificarAgenteText();
+
             // Agregar posición en la rejilla
             let post_text = this.posiciones.find(
                 e => e.id == this.valoresFormulario.posicion.id
@@ -3872,6 +3714,7 @@ export default {
                 }
             });
         },
+
         agregarDatoRespiracion() {
             this.valoresFormulario.respiracion.img_url =
                 this.valoresFormulario.respiracion.descripcion == "ESP"
@@ -3899,7 +3742,9 @@ export default {
                 true
             );
         },
+
         // Datos de ingreso
+
         columnaCincoMin(t_ini, t_fin, mostrar_t_ini, mostrar_t_fin) {
             return {
                 mostrar_t_ini: mostrar_t_ini,
@@ -3914,6 +3759,7 @@ export default {
                 agentes: []
             };
         },
+
         /**
          *
          * @param {*} inicio
@@ -3960,6 +3806,7 @@ export default {
                     )
                 );
             }
+
             return {
                 tiempo_inicio: inicio,
                 tiempo_fin: fin,
@@ -3974,6 +3821,7 @@ export default {
                 }
             };
         },
+
         /**
          * Ex;: 0 , 15, true, false, false,
          * @param {*} tiempo_inicio
@@ -4001,6 +3849,7 @@ export default {
                 columnas: []
             };
         },
+
         /**
          *
          * @param {*} height
@@ -4040,12 +3889,14 @@ export default {
             hora.datos.push(this.agregarFilaEnHora(false, true));
             hora.datos.push(this.agregarFilaEnHora(false, true));
             hora.datos.push(this.agregarFilaEnHora(false, true));
+
             // Filas
             for (const items of this.valoresAnestecia_v) {
                 hora.datos.push(this.agregarFilaEnHora(false, false, true));
             }
             hora.datos.push(this.agregarFilaEnHora(false, false, false, true));
             hora.datos.push(this.agregarFilaEnHora(false, false, true));
+
             for (const dato of hora.datos) {
                 dato.columnasQuinceMin.push(
                     this.agregarDatoEnColumna(0, 14, dato.es_agente)
@@ -4060,8 +3911,10 @@ export default {
                     this.agregarDatoEnColumna(45, 60, dato.es_agente)
                 );
             }
+
             this.lista_horas_avanzadas_v.push(hora);
         },
+
         llenarDatos() {
             var hora = this.agregarNuevaHora("auto");
             hora.datos.push(this.agregarFilaEnHora(true));
@@ -4069,12 +3922,14 @@ export default {
             hora.datos.push(this.agregarFilaEnHora(false, true));
             hora.datos.push(this.agregarFilaEnHora(false, true));
             hora.datos.push(this.agregarFilaEnHora(false, true));
+
             // Filas
             for (const items of this.valoresAnestecia_v) {
                 hora.datos.push(this.agregarFilaEnHora(false, false, true));
             }
             hora.datos.push(this.agregarFilaEnHora(false, false, false, true));
             hora.datos.push(this.agregarFilaEnHora(false, false, true));
+
             for (const dato of hora.datos) {
                 dato.columnasQuinceMin.push(
                     this.agregarDatoEnColumna(0, 14, dato.es_agente)
@@ -4091,6 +3946,7 @@ export default {
             }
             // hora.datos.push(agregarFilaEnHora(false, false, true));
             // hora.datos.push(agregarFilaEnHora(false, false, true));
+
             this.lista_horas_avanzadas_v.push(hora);
         }
     }
@@ -4107,6 +3963,7 @@ table {
 .flex-y {
     flex-direction: column;
 }
+
 .flex-x {
     flex-direction: row;
 }
@@ -4128,12 +3985,15 @@ table {
 .border-top {
     border-top: 1px solid #000 !important;
 }
+
 .border-b {
     border-bottom: 1px solid #000;
 }
+
 .upper {
     text-transform: uppercase;
 }
+
 .input-line {
     border: none;
     border-bottom: 1px solid #000;
@@ -4143,6 +4003,7 @@ table {
     border: none;
     outline: none;
 }
+
 .space-left {
     box-sizing: border-box;
     padding-left: 5px;
@@ -4150,6 +4011,7 @@ table {
 .m-w {
     max-width: 35px;
 }
+
 .no-line {
     border: none;
     outline: none;
@@ -4157,24 +4019,30 @@ table {
 .w-100p {
     width: 100%;
 }
+
 .border-none-b- {
     border: none;
     outline: none;
     border-bottom: 1px solid #000;
 }
+
 .grid {
     display: grid;
 }
+
 .grid-2-c {
     grid-template-columns: 1fr 1fr;
 }
+
 .grid-center {
     align-self: center;
     justify-self: center;
 }
+
 .flex-x-end {
     justify-content: flex-end;
 }
+
 .he25 {
     height: 25px;
 }
@@ -4184,6 +4052,7 @@ table {
 .wrap-flex {
     flex-wrap: wrap;
 }
+
 .no-wrap-flex {
     flex-wrap: nowrap !important;
 }
@@ -4192,12 +4061,14 @@ table {
     height: 20px;
     display: flex;
 }
+
 .space-btw {
     justify-content: space-between;
 }
 .width-100-p {
     width: 100%;
 }
+
 .time-triangle-abs {
     width: 15px;
     position: absolute;
@@ -4205,6 +4076,7 @@ table {
     /* left: -18px; */
     z-index: 1000;
 }
+
 .grid {
     display: grid;
 }
@@ -4214,9 +4086,11 @@ table {
 .relative {
     position: relative;
 }
+
 .figure-celds {
     position: absolute;
 }
+
 .figure-celds:nth-child(1) {
     left: 0;
 }

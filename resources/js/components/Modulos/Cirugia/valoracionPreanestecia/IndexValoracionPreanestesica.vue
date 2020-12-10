@@ -284,6 +284,12 @@
 <script>
 import { prefix } from "../../../../variables";
 export default {
+    props: {
+        
+        user: {
+            type: Object
+        }
+    },
     data: function() {
         return {
             prefijo: "",
@@ -291,6 +297,11 @@ export default {
             respuestaFinProceso: 0,
             respuestaImprimir: 0,
             respuestaCargarDatos: 0,
+             rutaSello: "",
+            frmimg: {
+                imgFirma: null,
+                imgGrafica: null,
+            },
             form: {
                 /* Datos del paciente */
                 frm_idCirugiaProgramada: "", //2890
@@ -303,6 +314,7 @@ export default {
         };
     },
     mounted: function() {
+      
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
         let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
             .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
@@ -336,6 +348,7 @@ export default {
             this.form.frm_quirofano = value.quirofano;
             this.form.frm_procedimiento = value.procedimiento;
             this.$modal.hide("ListaCirugiaProgramadaPaciente");
+              this.consultarSello();
             /* if (this.$refs.revisionSistema != null) {
                 this.$refs.revisionSistema.cargarRevisionSistema();
             } */
@@ -418,6 +431,51 @@ export default {
                 //this.titulo_seleccionado = "";
             }
         },
+        consultarSello() {
+            let that = this;
+            if (this.$props.user.id > 0) {
+                var loader = that.$loading.show();
+                let url =
+                    "/modulos/cirugia/anestesia/cargar_sello/" +
+                    this.$props.user.id;
+                  
+                axios
+                    .get(url)
+                    .then(function(response) {
+                        if (response.data.sello != null) {
+                            if (response.data.sello.seguridad_medico != null) {
+                                that.rutaSello =
+                                    "data:image/jpeg;base64," +
+                                    response.data.sello.seguridad_medico.medico.medico_sellos
+                                        .IMAGEN_SELLO;
+                                         // alert( response.data.sello.medico_sellos);
+                            }
+                        }
+                        loader.hide();
+                    })
+                    .catch(error => {
+                        
+                        that.flashMessage.show({
+                            status: "error",
+                            title: "Error al procesar consultarSello",
+                            message:
+                                "Por favor comuníquese con el administrador. " +
+                                error,
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/error.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
+                        loader.hide();
+                    });
+            }
+        },
+
         llamarMetodoImprimir() {
             if (this.respuestaFinProceso || this.respuestaImprimir) {
                 window.open(

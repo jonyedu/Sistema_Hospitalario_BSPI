@@ -38,6 +38,7 @@
                                                         @click="
                                                             mostrarModalListaCirugiaPaciente()
                                                         "
+                                                       
                                                     >
                                                         Nuevo
                                                     </button>
@@ -62,11 +63,11 @@
                     </div>
                     <div
                         class="col-lg-12 col-md-12 col-sm-12"
-                        v-if="listas.frm_idCirugiaProgramada != ''"
+                        v-if="listas.SecCirPro != ''"
                     >
                         <div
                             class="col-lg-12 col-md-12 col-sm-12"
-                            v-if="form.frm_idCirugiaProgramada != ''"
+                            v-if="form.SecCirPro != ''"
                         >
                             <div
                                 class="card card-default collapsed-card"
@@ -101,12 +102,13 @@
                                                 class="text-left col-lg-12 col-md-12 col-sm-12"
                                             >
                                                     <div class="row">
+                                                        
                                                         <input
                                                             type="hidden"
                                                             id="SecCirPro"
                                                             name="SecCirPro"
                                                             v-model="
-                                                                listas.frm_idCirugiaProgramada
+                                                                listas.SecCirPro
                                                             "
                                                         />
                                                         <div
@@ -972,16 +974,52 @@
                                                                     v-model="
                                                                         listas.observacion
                                                                     "
-                                                                ></textarea>
+                                                                required></textarea>
                                                             </div>
                                                         </div>
                                                         <!-- /.card-body -->
                                                     </div>
+                                                        <!-- FIRMA DEL MEDICO -->
+     <div class="">
+                            <div class="" style="height: 70px"></div>
+                            <div class="flex flex-y">
+                                <span
+                                    class="col-md-5 text-center"
+                                    style="margin: auto"
+                                >
+                                    <vue-painttable
+                                        @getOutput="form.imgFirma = $event"
+                                        @RespuestaImgFirma="
+                                            validarImgFirma = $event
+                                        "
+                                        :hidePaintable="true"
+                                        :isFirstPaintable="isFirstPaintable"
+                                        :disableNavigation="true"
+                                        :showUndoRedo="false"
+                                        :showLineWidth="false"
+                                        :rutaImagen="rutaSello"
+                                        :width="800"
+                                        :height="800"
+                                        ref="paintFirma"
+                                    ></vue-painttable>
+                                </span>
+                                <span class="col-md-12 text-center"
+                                    >______________________________________________</span
+                                >
+                                <span class="col-md-12 text-center"
+                                    >FIRMA DEL ANESTESIOLOGO:</span
+                                >
+                            </div>
+                        </div>
 
+
+
+                                                        <!-- FIN DE FIRMA DEL MEDICO -->
                                                     <div class="card-footer">
                                                         <button
                                                             type="submit"
                                                             class="btn btn-primary"
+                                                              v-bind:style="{ display: idHiddenNuevo}"
                                                         >
                                                             Enviar
                                                         </button>
@@ -1006,6 +1044,8 @@
                         ></lista-cirugia-programa-paciente>
                     </modal>
                     <!-- Fin Seccion donde muestra la lista de los pacientes que tienen una cita -->
+
+                    
                 </div>
             </div>
         </div>
@@ -1015,12 +1055,22 @@
 <script>
 import { prefix } from "../../../../variables";
 export default {
+      props: {
+       
+        user: {
+            type: Object
+        }
+    },
     data() {
         return {
                prefijo: "",
                isHidden: 'none',
+               idHiddenNuevo:'none',
+                rutaSello: "",
+                
             listas: {
-                frm_idCirugiaProgramada: "",
+                SecCirPro: "",
+                frm_id_user:"",
                 chkentrada01: false,
                 chkentrada02: false,
                 chkentrada03: false,
@@ -1045,14 +1095,23 @@ export default {
                 observacion: "",
                 firma: ""
             },
+             validarImgFirma: 0,
+            isFirstPaintable: "firmaAnestesiologo",
             form: {
                 /* Datos del paciente */
                 // frm_idCirugiaProgramada: "",
+                id_lista:0,
+                tipo_servicio:4,
+                id_visita:0,
+                id_tipo_documento:13,
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
                 frm_quirofano: "",
-                frm_procedimiento: ""
+                frm_procedimiento: "",
+                imgFirma: null,
+               
+                imgGrafica: null,
             }
         };
     },
@@ -1062,7 +1121,7 @@ export default {
             this.$modal.show("ListaCirugiaProgramadaPaciente");
         },
         handleSeleccionarClick(value) {
-            this.listas.frm_idCirugiaProgramada = value.SecCirPro;
+            this.listas.SecCirPro = value.SecCirPro;
             this.form.frm_paciente = value.nombrePaciente;
             this.form.frm_cirujano = value.cirujano;
             this.form.frm_anestesiologo = value.anestesiologo;
@@ -1074,6 +1133,7 @@ export default {
             // }
 
             this.cargarLista(value.SecCirPro);
+            this.consultarSello();
         },
         cargarLista: function(value) {
             let that = this;
@@ -1082,96 +1142,18 @@ export default {
             axios
                 .get(url)
                 .then(function(response) {
-                    if (response.data.listaValoracion) {
-                    //   this.$swal({
-                    //     icon: "warning",
-                    //     title: "Paciente a Modificar",
-                    //     text: "."
-                    // }),
-                            that.listas.chkentrada01 = Boolean(
-                                Number(
-                                    response.data.listaValoracion.chkentrada01
-                                )
-                            );
-                        that.listas.chkentrada02 = Boolean(
-                            Number(response.data.listaValoracion.chkentrada02)
-                        );
-                        that.listas.chkentrada03 = Boolean(
-                            Number(response.data.listaValoracion.chkentrada03)
-                        );
-                        that.listas.chkentrada04 = Boolean(
-                            Number(response.data.listaValoracion.chkentrada04)
-                        );
-                        that.listas.chkentrada05 = Boolean(
-                            Number(response.data.listaValoracion.chkentrada05)
-                        );
-                        that.listas.chkentrada06 = Boolean(
-                            Number(response.data.listaValoracion.chkentrada06)
-                        );
-                        that.listas.chkentrada07 = Boolean(
-                            Number(response.data.listaValoracion.chkentrada07)
-                        );
-                        that.listas.chkquirurgica01 = Boolean(
-                            Number(
-                                response.data.listaValoracion.chkquirurgica01
-                            )
-                        );
-                        that.listas.chkquirurgica02 = Boolean(
-                            Number(
-                                response.data.listaValoracion.chkquirurgica02
-                            )
-                        );
-                        that.listas.chkquirurgica03 = Boolean(
-                            Number(
-                                response.data.listaValoracion.chkquirurgica03
-                            )
-                        );
-                        that.listas.chkquirurgica04 = Boolean(
-                            Number(
-                                response.data.listaValoracion.chkquirurgica04
-                            )
-                        );
-                        that.listas.chkquirurgica05 = Boolean(
-                            Number(
-                                response.data.listaValoracion.chkquirurgica05
-                            )
-                        );
-                        that.listas.chkquirurgica06 = Boolean(
-                            Number(
-                                response.data.listaValoracion.chkquirurgica06
-                            )
-                        );
-                        that.listas.chkquirurgica07 = Boolean(
-                            Number(
-                                response.data.listaValoracion.chkquirurgica07
-                            )
-                        );
-                        that.listas.chksalida01 = Boolean(
-                            Number(response.data.listaValoracion.chksalida01)
-                        );
-                        that.listas.chksalida02 = Boolean(
-                            Number(response.data.listaValoracion.chksalida02)
-                        );
-                        that.listas.chksalida03 = Boolean(
-                            Number(response.data.listaValoracion.chksalida03)
-                        );
-                        that.listas.chksalida04 = Boolean(
-                            Number(response.data.listaValoracion.chksalida04)
-                        );
-                        that.listas.chksalida05 = Boolean(
-                            Number(response.data.listaValoracion.chksalida05)
-                        );
-                        // user_id: "",
-                        // cargo: "",
-                        that.listas.observacion =
-                            response.data.listaValoracion.observacion;
-                        //firma: ""
-                           that.$swal({
+
+
+                    if (response.data.contador>0) {
+                         that.$swal({
                         icon: "success",
-                        title: "Paciente a Modificar",
+                        title: "El proceso ya se encuentra realizado, Seleccione Imprimir para visualizar el reporte",
                         text: "."
                     }),
                     that.isHidden = 'block'
+                     that.idHiddenNuevo = 'none'
+                    
+                          
 
                     } else {
                         that.$swal({
@@ -1180,6 +1162,7 @@ export default {
                         text: "."
                     });
                      that.isHidden = 'none'
+                      that.idHiddenNuevo = 'block'
                     }
                 })
                 .catch(error => {
@@ -1191,14 +1174,126 @@ export default {
                     });
                     that.isHidden = 'none'
                 });
+              //  llamarMetodoImprimir();
+        },
+         guardarFirmaPorAtencion() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+          // alert(that.form.imgFirma);
+            let formNew = {
+                tipo_servicio:4,
+                id_atencion:that.form.id_lista,
+                // that.form.id_lista,
+                id_visita:0,
+                id_tipo_documento:13,
+                imgFirma: that.form.imgFirma,
+            };
+            url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
+
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    
+                    loader.hide();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar Firma por Atención",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                 
+                })
+                .catch(error => {
+                  
+                    that.resConfirmarCancelar = false;
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarFirmaPorAtencion",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+         consultarSello() {
+            let that = this;
+            if (this.$props.user.id > 0) {
+                var loader = that.$loading.show();
+                let url =
+                    "/modulos/cirugia/anestesia/cargar_sello/" +
+                    this.$props.user.id;
+                  
+                axios
+                    .get(url)
+                    .then(function(response) {
+                        if (response.data.sello != null) {
+                            if (response.data.sello.seguridad_medico != null) {
+                                that.rutaSello =
+                                    "data:image/jpeg;base64," +
+                                    response.data.sello.seguridad_medico.medico.medico_sellos
+                                        .IMAGEN_SELLO;
+                                         // alert( response.data.sello.medico_sellos);
+                            }
+                        }
+                        loader.hide();
+                    })
+                    .catch(error => {
+                        
+                        that.flashMessage.show({
+                            status: "error",
+                            title: "Error al procesar consultarSello",
+                            message:
+                                "Por favor comuníquese con el administrador. " +
+                                error,
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/error.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
+                        loader.hide();
+                    });
+            }
         },
         guardarLista: function() {
             let that = this;
+
+            if(that.validarImgFirma==0){
+               that.$swal({ 
+                        icon: "error",
+                        title: "Favor Guardar la Firma",
+                        text: "."
+                    }); 
+                    return;
+            }
             // var loader = that.$loading.show();
             const ListaInsert = this.listas;
             //console.log(this.listas);
             (this.listas = {
-                frm_idCirugiaProgramada: "",
+                SecCirPro: "",
+                id_lista:0,
                 chkentrada01: false,
                 chkentrada02: false,
                 chkentrada03: false,
@@ -1223,25 +1318,42 @@ export default {
                 observacion: "",
                 firma: ""
             }),
-                (this.form = {
-                    /* Datos del paciente */
-                    // frm_idCirugiaProgramada: "",
-                    frm_paciente: "",
-                    frm_cirujano: "",
-                    frm_anestesiologo: "",
-                    frm_quirofano: "",
-                    frm_procedimiento: ""
-                });
-            axios
+               
+       
+
+                axios
                 .post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert)
                 .then(function(response) {
+                    that.form.id_lista =  response.data.id;
+                   // alert(response.data.id);
                     //  loader.hide();
-                  that.$swal({
+                    //alert(that.form.id_lista);
+                    that.guardarFirmaPorAtencion();
+                     (that.form = {
+                      id_lista:0,
+                tipo_servicio:4,
+                id_visita:0,
+                id_tipo_documento:13,
+                frm_paciente: "",
+                frm_cirujano: "",
+                frm_anestesiologo: "",
+                frm_quirofano: "",
+                frm_procedimiento: "",
+                imgFirma: null,
+               
+                imgGrafica: null,
+                });
+                  that.$swal({ 
                         icon: "success",
                         title: "Proceso Realizado con Exito",
                         text: "."
                     });
                 });
+
+                 
+
+             //   alert( that.form.id_lista);
+               // guardarFirmaPorAtencion();
 
             // aui
         },
@@ -1249,7 +1361,7 @@ export default {
 
                 window.open(
                     "/modulos/cirugia/lista_verificacion/mostrarreporte/" +
-                        this.listas.frm_idCirugiaProgramada
+                        this.listas.SecCirPro
                 );
 
         }

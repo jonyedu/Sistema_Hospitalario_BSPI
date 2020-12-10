@@ -353,7 +353,9 @@
                                                             :value="
                                                                 form.frm_id_tipo_sangre
                                                             "
-                                                            :options="tipoSangre"
+                                                            :options="
+                                                                tipoSangre
+                                                            "
                                                             label="display"
                                                             @input="
                                                                 setSelectedTipoSangre
@@ -819,6 +821,68 @@
                                                         ></textarea>
                                                     </div>
                                                 </div>
+
+                                                <!-- aqui  -->
+                                                <div class="col-sm-12 mt-2">
+                                                    <!-- FIRMA DEL MEDICO -->
+                                                    <div class="">
+                                                        <div
+                                                            class=""
+                                                            style="height: 70px"
+                                                        ></div>
+                                                        <div
+                                                            class="flex flex-y"
+                                                        >
+                                                            <span
+                                                                class="col-md-5 text-center"
+                                                                style="margin: auto"
+                                                            >
+                                                                <vue-painttable
+                                                                    @getOutput="
+                                                                        frmimg.imgFirma = $event
+                                                                    "
+                                                                    @RespuestaImgFirma="
+                                                                        validarImgFirma = $event
+                                                                    "
+                                                                    :hidePaintable="
+                                                                        true
+                                                                    "
+                                                                    :isFirstPaintable="
+                                                                        isFirstPaintable
+                                                                    "
+                                                                    :disableNavigation="
+                                                                        true
+                                                                    "
+                                                                    :showUndoRedo="
+                                                                        false
+                                                                    "
+                                                                    :showLineWidth="
+                                                                        false
+                                                                    "
+                                                                    :rutaImagen="
+                                                                        rutaSello
+                                                                    "
+                                                                    :width="800"
+                                                                    :height="
+                                                                        800
+                                                                    "
+                                                                    ref="paintFirma"
+                                                                ></vue-painttable>
+                                                            </span>
+                                                            <span
+                                                                class="col-md-12 text-center"
+                                                                >______________________________________________</span
+                                                            >
+                                                            <span
+                                                                class="col-md-12 text-center"
+                                                                >FIRMA DEL
+                                                                ANESTESIOLOGO:</span
+                                                            >
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- FIN DE FIRMA DEL MEDICO -->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -838,6 +902,9 @@ export default {
         idSecCirPro: {
             type: String,
             required: true
+        },
+        user: {
+            type: Object
         }
     },
     data: function() {
@@ -845,6 +912,13 @@ export default {
             tipoSangre: [],
             selectedTipoSangre: "",
             validarFinProceso: 0,
+            validarImgFirma: 0,
+            isFirstPaintable: "firmaAnestesiologo",
+            rutaSello: "",
+            frmimg: {
+                imgFirma: null,
+                imgGrafica: null,
+            },
             chk: {
                 /* Paraclinicos */
                 chk_hb: false,
@@ -924,6 +998,8 @@ export default {
     },
     mounted: function() {
         this.setSelectedTipoSangre();
+       
+      
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
         let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
             .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
@@ -935,6 +1011,9 @@ export default {
         if (this.$props.idCita != null) {
             this.cargarAtencionMotivo();
         } */
+    },
+    created: function(){
+       
     },
     beforeDestroy: function() {
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
@@ -950,7 +1029,8 @@ export default {
         setSelectedTipoSangre(value) {
             let that = this;
             var loader = that.$loading.show();
-            let url = "/modulos/parametrizacion/tipo_sangre/cargar_tipo_sangre_combo_box";
+            let url =
+                "/modulos/parametrizacion/tipo_sangre/cargar_tipo_sangre_combo_box";
             if (value != null) {
                 this.form.frm_id_tipo_sangre = value.id_tipo_sangre;
             }
@@ -960,12 +1040,15 @@ export default {
                     let tipoSangre = [];
                     response.data.tipoSangre.forEach(tiposSangre => {
                         let objeto = {};
-                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(tiposSangre.descripcion);
+                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
+                            tiposSangre.descripcion
+                        );
                         objeto.id_tipo_sangre = tiposSangre.codigo;
                         tipoSangre.push(objeto);
                     });
                     that.tipoSangre = tipoSangre;
                     loader.hide();
+                    
                 })
                 .catch(error => {
                     //Errores
@@ -976,6 +1059,7 @@ export default {
                     });
                     loader.hide();
                 });
+                 
         },
         validarForm() {
             //Se comprueba que un checkbox tenga data
@@ -1073,8 +1157,10 @@ export default {
 
                         that.chk.chk_mg = +response.data.paraclinico.mg;
                         that.form.frm_mg = +response.data.paraclinico.mg;
-                        that.form.frm_id_tipo_sangre = +response.data.paraclinico.tipo_sangre.codigo;
-                        that.selectedTipoSangre = response.data.paraclinico.tipo_sangre.descripcion;
+                        that.form.frm_id_tipo_sangre = +response.data
+                            .paraclinico.tipo_sangre.codigo;
+                        that.selectedTipoSangre =
+                            response.data.paraclinico.tipo_sangre.descripcion;
 
                         /* Gineco-Obstétricos */
                         that.form.frm_ekg = response.data.paraclinico.ekg;
@@ -1193,7 +1279,64 @@ export default {
                 });
             }
         },
+         guardarFirmaPorAtencion() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+          // alert(that.form.imgFirma);
+            let formNew = {
+                tipo_servicio:4,
+                id_atencion:that.form.id_lista,
+                // that.form.id_lista,
+                id_visita:0,
+                id_tipo_documento:13,
+                imgFirma: that.frmimg.imgFirma,
+            };
+            url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
 
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    
+                    loader.hide();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar Firma por Atención",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                 
+                })
+                .catch(error => {
+                  
+                    that.resConfirmarCancelar = false;
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarFirmaPorAtencion",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+         
         /* Paraclinicos */
         validarChkHb() {
             if (this.chk.chk_hb) {

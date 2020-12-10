@@ -9,7 +9,7 @@ import SubModulo from "./components/Modulos/Parametrizacion/sub_modulo/SubModulo
 //Cirugia
 import IndexValoracionPreanestesica from "./components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica";
 import IndexAnestesia from "./components/Modulos/Cirugia/anestesia/index";
-
+import IndexRegistroTiempo from "./components/Modulos/Cirugia/RegistroTiempo/index";
 import TipoAgente from "./components/Modulos/Cirugia/tipo_agente/TipoAgente";
 import TipoPosiciones from "./components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones";
 import ListaVerificacion from "./components/Modulos/Cirugia/lista_verificacion/ListasComponent";
@@ -51,6 +51,12 @@ export default new VueRouter({
         {
             path:
                 prefijo +
+                "/modulos/cirugia/registro_tiempo",
+            component: IndexRegistroTiempo,
+        },
+        {
+            path:
+                prefijo +
                 "/modulos/cirugia/tipo_agente/mostrar_tipo_agente",
             component: TipoAgente
         },
@@ -66,6 +72,7 @@ export default new VueRouter({
                 "/modulos/cirugia/lista_verificacion/mostrar_tipo_lista",
             component: ListaVerificacion
         },
+
     ],
     mode: "history" //Evita que aparezca # en la ruta
 });

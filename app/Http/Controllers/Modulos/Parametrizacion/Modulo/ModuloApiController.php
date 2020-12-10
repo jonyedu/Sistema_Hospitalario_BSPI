@@ -41,16 +41,6 @@ class ModuloApiController extends Controller
     {
         try {
             $user = Auth::user();
-            /* $descripcion = $request->input('frm_descripcion');
-            $abreviatura = $request->input('frm_abreviatura');
-            $imagen = $request->input('frm_imagen');
-            $usuario_ingreso = $user->id;
-            $usuario_modificacion = $user->id;
-            $pcname = $_SERVER["REMOTE_ADDR"];
-            $status = 1;
-            $orden = $request->input('frm_orden');
-            DB::insert("exec SPSEG_INSERT_MODULO " . "'$descripcion'" . ",'$abreviatura'" . ",'$imagen'" . ",'$usuario_ingreso'" . ",'$usuario_modificacion'" . ",'$pcname'" . ",'$status'" . ",'$orden'");
-            */
             SgModulo::Create(
                 [
                     'empresa' => 1,

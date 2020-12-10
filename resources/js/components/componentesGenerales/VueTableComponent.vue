@@ -181,23 +181,35 @@
                         </div>
                     </span>
                     <!-- Para mostrar color en los estados de Signos Vitales -->
-                    <span v-else-if="props.column.field == 'signo_vital'">
+                    <span v-else-if="props.column.field == 'estado'">
                         <div
+                            style="background:#FFFB00;"
                             v-if="
-                                props.row.signo_vital == 'Registrado'
+                                props.row.estado == 'Iniciado'
                             "
                         >
-                            <span style="font-weight: bold; color: #0C9C05;">{{
-                                props.row.signo_vital
+                            <span style="font-weight: bold; color: #000000;">{{
+                                props.row.estado
                             }}</span>
                         </div>
                         <div
+                            style="background:#BBED8C;"
                             v-else-if="
-                                props.row.signo_vital == 'Pendiente'
+                                props.row.estado == 'Finalizado'
                             "
                         >
-                            <span style="font-weight: bold; color: red;">{{
-                                props.row.signo_vital
+                            <span style="font-weight: bold; color: #000000;">{{
+                                props.row.estado
+                            }}</span>
+                        </div>
+                        <div
+                            style="background:#FF0000;"
+                            v-else-if="
+                                props.row.estado == 'Pendiente'
+                            "
+                        >
+                            <span style="font-weight: bold; color: #FFFFFF;">{{
+                                props.row.estado
                             }}</span>
                         </div>
                     </span>

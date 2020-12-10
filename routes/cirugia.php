@@ -49,6 +49,12 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::post('guardar_modificar_paraclinico', 'ParaclinicoApiController@guardarModificarParaclinico');
     });
 
+    /* SubModulo registro de tiempo */
+    Route::namespace('Modulos\Cirugia\RegistroTiempo')->prefix('registro_tiempo')->group(function () {
+        Route::get('cargar_registro_tiempo_por_secCirPro/{id_cirugia_programada}', 'RegistroTiempoApiController@cargarRegistroTiempoPorSecCirPro');
+        Route::post('guardar_registro_tiempo', 'RegistroTiempoApiController@guardarRegistroTiempo');
+    });
+
     /* SubModulo anestesia */
     Route::namespace('Modulos\Cirugia\RegistroAnestesico')->prefix('anestesia')->group(function () {
         Route::post('registro/post', 'RegistroAnestesiaController@store');
@@ -66,7 +72,7 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::post('guardar_registro_infusiones', 'RegistroInfusionesController@guardarRegistroInfusiones');
         Route::get('cargar_pdf_formulario_registro_anestesia/{idSecCirPro}', 'RegistroAnestesiaController@cargarPdfFormularioRegistroAnestesia');
         Route::get('cargar_sello/{id_user}', 'RegistroAnestesiaController@cargarSello');
-        Route::post('guardar_firma_atencion', 'RegistroAnestesiaController@guardarFirmaPorAtencion');
+        Route::post('guardar_firma_atencion', 'RegistroAnestesiaController@guardarFirmaPorAtencion2');
         Route::post('guardar_img_grafica', 'RegistroAnestesiaController@guardarImnGrafica');
         Route::post('guardar_modificar_agente_text', 'AgenteTextController@guardarModificarAgenteText');
 
