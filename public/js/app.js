@@ -2165,8 +2165,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2276,7 +2274,7 @@ __webpack_require__.r(__webpack_exports__);
                 id_detalle_tiempo: registroTiempo.detalle_tiempo.id_detalle_tiempo,
                 descripcion: that.$funcionesGlobales.toCapitalFirstAllWords(registroTiempo.detalle_tiempo.descripcion),
                 //Datos de la tabla tb_registro_tiempo
-                id_registro_tiempo: registroTiempo.id_detalle_tiempo,
+                id_registro_tiempo: registroTiempo.id_registro_tiempo,
                 secCirPro: registroTiempo.SecCirPro,
                 tiempo: registroTiempo.tiempo,
                 estado: registroTiempo.estado == "I" ? "Iniciado" : registroTiempo.estado == "F" ? "Finalizado" : registroTiempo.estado == "P" ? "Pendiente" : ""
@@ -2344,9 +2342,6 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-    anadirTiempo: function anadirTiempo() {
-      alert("se guardar el tiempo inicial");
-    },
     guardarRegistroTiempo: function guardarRegistroTiempo() {
       if (this.validarCambioTiempo()) {
         this.flashMessage.show({
@@ -2411,13 +2406,13 @@ __webpack_require__.r(__webpack_exports__);
       //Para validar los tiempos respetando su flujo de proceso
       if (this.iniciado) {
         /* Se valida cuando no se haya seleccionado nada */
-        if (this.form.selected_detalle_tiempo == "") {
-          return true;
-        }
+
+        /* if(this.form.selected_detalle_tiempo == ""){
+            return true;
+        } */
+
         /* Valida cuando se seleccione Uso De Quirófano */
-
-
-        if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 1) {
+        if (this.form.id_detalle_tiempo == 1) {
           //Valida cuando Uso De Quirófano se desea Finalizar, pero Cirugía sigue Iniciado
           if (this.registros_tiempos[0].estado == "Iniciado") {
             if (this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente") {
@@ -2435,7 +2430,7 @@ __webpack_require__.r(__webpack_exports__);
         /* Valida cuando se seleccione Preparación De Anestesiólogo */
 
 
-        if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 2) {
+        if (this.form.id_detalle_tiempo == 2) {
           //Valida cuando Preparación De Anestesiólogo se desea Iniciar, pero Uso De Quirófano sigue en pendiente
           if (this.registros_tiempos[1].estado == "Pendiente") {
             if (this.registros_tiempos[0].estado == "Pendiente") {
@@ -2453,7 +2448,7 @@ __webpack_require__.r(__webpack_exports__);
         /* Valida cuando se seleccione Induccion */
 
 
-        if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 3) {
+        if (this.form.id_detalle_tiempo == 3) {
           //Valida cuando Inducción se desea Iniciar, pero Preparación De Anestesiólogo sigue en pendiente
           if (this.registros_tiempos[2].estado == "Pendiente") {
             if (this.registros_tiempos[1].estado == "Pendiente") {
@@ -2471,7 +2466,7 @@ __webpack_require__.r(__webpack_exports__);
         /* Valida cuando se seleccione Cirugía */
 
 
-        if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 4) {
+        if (this.form.id_detalle_tiempo == 4) {
           //Valida cuando Cirugía se desea Iniciar, pero Induccion sigue en pendiente
           if (this.registros_tiempos[3].estado == "Pendiente") {
             if (this.registros_tiempos[2].estado == "Pendiente") {
@@ -2480,34 +2475,17 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
 
-        if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 1 || this.form.selected_detalle_tiempo.id_detalle_tiempo == 2 || this.form.selected_detalle_tiempo.id_detalle_tiempo == 3 || this.form.selected_detalle_tiempo.id_detalle_tiempo == 4) {
+        if (this.form.id_detalle_tiempo == 1 || this.form.id_detalle_tiempo == 2 || this.form.id_detalle_tiempo == 3 || this.form.id_detalle_tiempo == 4) {
           if (this.registros_tiempos[0].estado == "Finalizado" && this.registros_tiempos[1].estado == "Finalizado" && this.registros_tiempos[2].estado == "Finalizado" && this.registros_tiempos[3].estado == "Finalizado") {
             return true;
           }
         }
       }
     },
-    muestraConsultaExterna: function muestraConsultaExterna(value) {
-      //this.componente_seleccionado = "SignosVitales";
-      if (value.ESTADOCITA_TIPO == "C") {
-        this.$modal.show("datosConsultaExterna");
-        this.idCitaModal = this.idCita;
-      } else {
-        if (value.ESTADOCITA_TIPO == "E") {
-          /* this.$swal({
-              icon: "warning",
-              title: "Información",
-              text:
-              "La funcionalidad de visualización emergencia se encuentra en desarrollo.",
-          }); */
-        } else {
-            /* this.$swal({
-                icon: "warning",
-                title: "Información",
-                text: "La funcionalidad se encuentra en desarrollo.",
-            }); */
-          }
-      }
+    handleRowClick: function handleRowClick(value) {
+      this.form.id_detalle_tiempo = value.id_detalle_tiempo;
+      this.form.id_registro_tiempo = value.id_registro_tiempo;
+      this.guardarRegistroTiempo();
     }
   }
 });
@@ -59008,7 +58986,19 @@ var render = function() {
                                   "\n                                            Nuevo\n                                        "
                                 )
                               ]
-                            )
+                            ),
+                            _vm._v(" "),
+                            _vm.form.id_cirugia_programada > 0
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-outline-primary",
+                                    attrs: { type: "button" },
+                                    on: { click: _vm.guardarRegistroTiempo }
+                                  },
+                                  [_c("i", { staticClass: "fas fa-stopwatch" })]
+                                )
+                              : _vm._e()
                           ]
                         )
                       ]
@@ -59064,143 +59054,6 @@ var render = function() {
                               "div",
                               { staticClass: "col-lg-12 col-md-12 col-sm-12" },
                               [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "text-left col-lg-12 col-md-12 col-sm-12"
-                                  },
-                                  [
-                                    _c("div", { staticClass: "row" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "col-lg-1 col-md-1 col-sm-1"
-                                        },
-                                        [
-                                          _vm.iniciado == false
-                                            ? [
-                                                _c("span", [
-                                                  _c(
-                                                    "button",
-                                                    {
-                                                      staticClass:
-                                                        "btn btn-outline-primary",
-                                                      attrs: { type: "button" },
-                                                      on: {
-                                                        click:
-                                                          _vm.guardarRegistroTiempo
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "fas fa-stopwatch"
-                                                      })
-                                                    ]
-                                                  )
-                                                ])
-                                              ]
-                                            : [
-                                                _c("span", [
-                                                  _c(
-                                                    "button",
-                                                    {
-                                                      staticClass:
-                                                        "btn btn-outline-success",
-                                                      attrs: { type: "button" },
-                                                      on: {
-                                                        click:
-                                                          _vm.guardarRegistroTiempo
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "fas fa-plus-circle"
-                                                      })
-                                                    ]
-                                                  )
-                                                ])
-                                              ]
-                                        ],
-                                        2
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "col-lg-11 col-md-11 col-sm-11"
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            { staticClass: "form-group" },
-                                            [
-                                              _c(
-                                                "v-select",
-                                                {
-                                                  attrs: {
-                                                    disabled:
-                                                      _vm.disabledDetalleTiempo,
-                                                    placeholder:
-                                                      "Seleccione el tiempo",
-                                                    value:
-                                                      _vm.form
-                                                        .id_detalle_tiempo,
-                                                    options:
-                                                      _vm.form.detalles_tiempos,
-                                                    label: "display"
-                                                  },
-                                                  on: {
-                                                    input:
-                                                      _vm.setSelectedDetalleTiempo
-                                                  },
-                                                  model: {
-                                                    value:
-                                                      _vm.form
-                                                        .selected_detalle_tiempo,
-                                                    callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.form,
-                                                        "selected_detalle_tiempo",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "\n                                                            form.selected_detalle_tiempo\n                                                        "
-                                                  }
-                                                },
-                                                [
-                                                  _c(
-                                                    "template",
-                                                    { slot: "no-options" },
-                                                    [
-                                                      _vm._v(
-                                                        "No existen\n                                                            datos"
-                                                      )
-                                                    ]
-                                                  )
-                                                ],
-                                                2
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ]
-                                      )
-                                    ])
-                                  ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "col-lg-12 col-md-12 col-sm-12" },
-                              [
                                 _c("div", { staticClass: "row mt-2" }, [
                                   _c(
                                     "div",
@@ -59217,8 +59070,7 @@ var render = function() {
                                           "rows-data": _vm.registros_tiempos
                                         },
                                         on: {
-                                          handleRowClick:
-                                            _vm.muestraConsultaExterna
+                                          handleRowClick: _vm.handleRowClick
                                         }
                                       })
                                     ],

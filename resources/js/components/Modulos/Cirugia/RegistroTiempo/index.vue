@@ -41,8 +41,41 @@
                                             >
                                                 Nuevo
                                             </button>
+                                            <button
+                                                    v-if="form.id_cirugia_programada > 0"
+                                                    type="button"
+                                                    class="btn btn-outline-primary"
+                                                    @click="
+                                                        guardarRegistroTiempo
+                                                    "
+                                                >
+                                                    <i
+                                                        class="fas fa-stopwatch"
+                                                    ></i>
+                                                </button>
                                         </div>
                                     </div>
+                                    <!-- <div
+                                        class="col-lg-1 col-md-1 col-sm-1"
+                                    >
+                                        <template
+                                            v-if="iniciado == false"
+                                        >
+                                            <span>
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-outline-primary"
+                                                    @click="
+                                                        guardarRegistroTiempo
+                                                    "
+                                                >
+                                                    <i
+                                                        class="fas fa-stopwatch"
+                                                    ></i>
+                                                </button>
+                                            </span>
+                                        </template>
+                                    </div> -->
                                     <!-- Fin de Butones Nueva, Modificar, Guardar, Imprimir, H.C. Digital -->
                                 </div>
                             </div>
@@ -87,47 +120,12 @@
                             <div class="card-body" style="display: none;">
                                 <div class="row">
                                     <!-- DATOS DEL PACIENTE -->
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <!-- <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div
                                             class="text-left col-lg-12 col-md-12 col-sm-12"
                                         >
                                             <div class="row">
-                                                <div
-                                                    class="col-lg-1 col-md-1 col-sm-1"
-                                                >
-                                                    <template
-                                                        v-if="iniciado == false"
-                                                    >
-                                                        <span>
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-outline-primary"
-                                                                @click="
-                                                                    guardarRegistroTiempo
-                                                                "
-                                                            >
-                                                                <i
-                                                                    class="fas fa-stopwatch"
-                                                                ></i>
-                                                            </button>
-                                                        </span>
-                                                    </template>
-                                                    <template v-else>
-                                                        <span>
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-outline-success"
-                                                                @click="
-                                                                    guardarRegistroTiempo
-                                                                "
-                                                            >
-                                                                <i
-                                                                    class="fas fa-plus-circle"
-                                                                ></i>
-                                                            </button>
-                                                        </span>
-                                                    </template>
-                                                </div>
+
                                                 <div
                                                     class="col-lg-11 col-md-11 col-sm-11"
                                                 >
@@ -161,7 +159,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="row mt-2">
                                             <div
@@ -174,7 +172,7 @@
                                                     :rows-data="
                                                         registros_tiempos
                                                     "
-                                                    @handleRowClick="muestraConsultaExterna"
+                                                    @handleRowClick="handleRowClick"
                                                 ></vuetable-component>
                                             </div>
                                         </div>
@@ -344,7 +342,7 @@ export default {
                                         ),
                                         //Datos de la tabla tb_registro_tiempo
                                         id_registro_tiempo:
-                                            registroTiempo.id_detalle_tiempo,
+                                            registroTiempo.id_registro_tiempo,
                                         secCirPro: registroTiempo.SecCirPro,
                                         tiempo: registroTiempo.tiempo,
                                         estado:
@@ -433,9 +431,6 @@ export default {
                     });
             }
         },
-        anadirTiempo() {
-            alert("se guardar el tiempo inicial");
-        },
         guardarRegistroTiempo() {
             if (this.validarCambioTiempo()) {
                 this.flashMessage.show({
@@ -505,11 +500,11 @@ export default {
             //Para validar los tiempos respetando su flujo de proceso
             if (this.iniciado) {
                 /* Se valida cuando no se haya seleccionado nada */
-                if(this.form.selected_detalle_tiempo == ""){
+                /* if(this.form.selected_detalle_tiempo == ""){
                     return true;
-                }
+                } */
                 /* Valida cuando se seleccione Uso De Quirófano */
-                if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 1) {
+                if (this.form.id_detalle_tiempo == 1) {
                     //Valida cuando Uso De Quirófano se desea Finalizar, pero Cirugía sigue Iniciado
                     if (this.registros_tiempos[0].estado == "Iniciado") {
                         if (
@@ -527,7 +522,7 @@ export default {
                     }
                 }
                 /* Valida cuando se seleccione Preparación De Anestesiólogo */
-                if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 2) {
+                if (this.form.id_detalle_tiempo == 2) {
                     //Valida cuando Preparación De Anestesiólogo se desea Iniciar, pero Uso De Quirófano sigue en pendiente
                     if (this.registros_tiempos[1].estado == "Pendiente") {
                         if (this.registros_tiempos[0].estado == "Pendiente") {
@@ -542,7 +537,7 @@ export default {
                     }
                 }
                 /* Valida cuando se seleccione Induccion */
-                if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 3) {
+                if (this.form.id_detalle_tiempo == 3) {
                     //Valida cuando Inducción se desea Iniciar, pero Preparación De Anestesiólogo sigue en pendiente
                     if (this.registros_tiempos[2].estado == "Pendiente") {
                         if (this.registros_tiempos[1].estado == "Pendiente") {
@@ -557,7 +552,7 @@ export default {
                     }
                 }
                 /* Valida cuando se seleccione Cirugía */
-                if (this.form.selected_detalle_tiempo.id_detalle_tiempo == 4) {
+                if (this.form.id_detalle_tiempo == 4) {
                     //Valida cuando Cirugía se desea Iniciar, pero Induccion sigue en pendiente
                     if (this.registros_tiempos[3].estado == "Pendiente") {
                         if (this.registros_tiempos[2].estado == "Pendiente") {
@@ -566,10 +561,10 @@ export default {
                     }
                 }
                 if (
-                    this.form.selected_detalle_tiempo.id_detalle_tiempo == 1 ||
-                    this.form.selected_detalle_tiempo.id_detalle_tiempo == 2 ||
-                    this.form.selected_detalle_tiempo.id_detalle_tiempo == 3 ||
-                    this.form.selected_detalle_tiempo.id_detalle_tiempo == 4
+                    this.form.id_detalle_tiempo == 1 ||
+                    this.form.id_detalle_tiempo == 2 ||
+                    this.form.id_detalle_tiempo == 3 ||
+                    this.form.id_detalle_tiempo == 4
                 ) {
                     if (
                         this.registros_tiempos[0].estado == "Finalizado" &&
@@ -582,28 +577,11 @@ export default {
                 }
             }
         },
-        muestraConsultaExterna(value) {
-            //this.componente_seleccionado = "SignosVitales";
-            if (value.ESTADOCITA_TIPO == "C") {
-                this.$modal.show("datosConsultaExterna");
-                this.idCitaModal = this.idCita;
-            } else {
-                if (value.ESTADOCITA_TIPO == "E") {
-                /* this.$swal({
-                    icon: "warning",
-                    title: "Información",
-                    text:
-                    "La funcionalidad de visualización emergencia se encuentra en desarrollo.",
-                }); */
-                } else {
-                /* this.$swal({
-                    icon: "warning",
-                    title: "Información",
-                    text: "La funcionalidad se encuentra en desarrollo.",
-                }); */
-                }
-            }
-            },
+        handleRowClick(value) {
+            this.form.id_detalle_tiempo = value.id_detalle_tiempo;
+            this.form.id_registro_tiempo = value.id_registro_tiempo;
+            this.guardarRegistroTiempo();
+        },
     }
 };
 </script>
