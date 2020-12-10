@@ -792,10 +792,18 @@ export default {
         idSecCirPro: {
             type: String,
             required: true
+        },
+        user: {
+            type: Object
         }
     },
     data: function() {
         return {
+             rutaSello: "",
+            frmimg: {
+                imgFirma: null,
+                imgGrafica: null,
+            },
             chk: {
                 /* Antecedentes */
                 chk_quirurgico: false,

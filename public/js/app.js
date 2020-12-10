@@ -4735,7 +4735,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -4771,8 +4770,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       medicos: [],
       validarImgFirma: 0,
       isFirstPaintable: "firmaAnestesiologo",
-      rutaSello: "",
-      ///img/selloFirma.png
+      rutaSello: "/img/selloFirma.png",
       validarFinProceso: "",
       validarImprimir: 0,
       selectedTipoPosiciones: "",
@@ -5148,6 +5146,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         this.agregarHora();
       }
+<<<<<<< HEAD
+    }, 1000);
+  },
+  beforeDestroy: function beforeDestroy() {},
+  methods: {
+    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, src, descripcion, valor, id) {
+=======
     },
     eliminarObjetoPorHora: function eliminarObjetoPorHora() {
       if (this.lista_horas_avanzadas_v.length > 1) {
@@ -5160,12 +5165,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, t_fin, src, descripcion, valor, id, es_agente, es_posicion) {
+>>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
       this.limpiarDatosEliminarAgente();
       this.datos_eliminar_agente.index = index;
       this.datos_eliminar_agente.index_fila = index_fila;
       this.datos_eliminar_agente.index_columna = index_columna;
       this.datos_eliminar_agente.index_minutos_columna = index_minutos_columna;
       this.datos_eliminar_agente.index_agente = index_agente;
+<<<<<<< HEAD
+      this.datos_eliminar_agente.minutes = t_init;
+      this.datos_eliminar_agente.adicional = {
+        system_name: descripcion
+      };
+=======
       this.datos_eliminar_agente.is_tpo_init = t_init;
       this.datos_eliminar_agente.is_tpo_fin = t_fin;
 
@@ -5186,6 +5198,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         };
       }
 
+>>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
       this.datos_eliminar_agente.ruta_icono = src;
       this.datos_eliminar_agente.descripcion = descripcion;
       this.datos_eliminar_agente.valor = valor;
@@ -5211,9 +5224,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     handleSeleccionarClick: function handleSeleccionarClick(value) {
       if (value.respuesta) {
         var valor = parseInt(value.valorNuevo);
-        var minutes = value.is_tpo_init;
-        var is_tpo_init = value.is_tpo_init;
-        var is_tpo_fin = value.is_tpo_fin;
+        var minutes = value.minutes;
         var adicional = value.adicional;
         var ruta_icono = value.ruta_icono;
         this.form.id_datos_agente = value.id;
@@ -5479,9 +5490,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     consultarSello: function consultarSello() {
       var that = this;
 
+<<<<<<< HEAD
+      if (this.form.id_medico > 0) {
+        var loader = that.$loading.show();
+        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.form.id_medico;
+=======
       if (this.$props.user.id > 0) {
         var loader = that.$loading.show();
         var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
+>>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
         axios.get(url).then(function (response) {
           if (response.data.sello != null) {
             if (response.data.sello.seguridad_medico != null) {
@@ -5627,7 +5644,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (value != null) {
         this.form.id_medico = value.id_medico;
-        loader.hide(); //this.consultarSello();
+        loader.hide();
+        this.consultarSello();
       }
 
       axios.get(url).then(function (response) {
@@ -5800,16 +5818,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 2:
                 this.iniciado = true;
-                this.agregarHorasInicial();
-                this.consultarSello(); //Guardar datos en la tabla tb_registro_anestesia
+                this.agregarHorasInicial(); //this.consultarSello();
+                //Guardar datos en la tabla tb_registro_anestesia
 
                 url = "/modulos/cirugia/anestesia/registro/post";
-                _context.next = 8;
+                _context.next = 7;
                 return axios.post(url, this.form).then(function (response) {
                   _this4.form.registro_anestesia_id = response.data.id;
                 });
 
-              case 8:
+              case 7:
                 $id = _context.sent;
                 this.$emit("guardarCabecera", this.form.registro_anestesia_id); //Guardar datos en la tabla tb_tipo_agente_anestesia
                 // Poner el dato al inicio de la rejilla cuando se haya iniciado
@@ -5832,7 +5850,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   }
                 });
 
-              case 12:
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -6286,12 +6304,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return validarCampo;
       }
 
-      if (this.valoresFormulario.respiracion.descripcion == undefined) {
+      if (this.valoresFormulario.valor_pulso.valor == undefined || this.valoresFormulario.valor_pulso.valor == 0) {
         validarCampo = true;
         this.flashMessage.show({
           status: "warning",
           title: "Advertencia Campos Vacios",
-          message: "El campo RESPIRACIÓN, necesita ser marcado.",
+          message: "El campo PULSO, necesita una valor.",
           clickable: true,
           time: 5000,
           icon: "/iconsflashMessage/warning.svg",
@@ -6302,6 +6320,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         });
         return validarCampo;
+      }
+
+      if (this.chk.respiracion) {
+        if (this.valoresFormulario.respiracion.valor == undefined || this.valoresFormulario.respiracion.valor == 0) {
+          validarCampo = true;
+          this.flashMessage.show({
+            status: "warning",
+            title: "Advertencia Campos Vacios",
+            message: "El campo RESPIRACIÓN, necesita ser marcado.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/warning.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          return validarCampo;
+        }
       }
 
       if (this.chk.temperatura) {
@@ -6384,7 +6422,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
 
-      if (this.valoresFormulario.posicion.descripcion == undefined) {
+      if (this.valoresFormulario.posicion.descripcion == "") {
         validarCampo = true;
         this.flashMessage.show({
           status: "warning",
@@ -9086,14 +9124,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
   data: function data() {
     return {
       prefijo: "",
       isHidden: 'none',
+      idHiddenNuevo: 'none',
+      rutaSello: "",
       listas: {
-        frm_idCirugiaProgramada: "",
+        SecCirPro: "",
+        frm_id_user: "",
         chkentrada01: false,
         chkentrada02: false,
         chkentrada03: false,
@@ -9118,14 +9204,22 @@ __webpack_require__.r(__webpack_exports__);
         observacion: "",
         firma: ""
       },
+      validarImgFirma: 0,
+      isFirstPaintable: "firmaAnestesiologo",
       form: {
         /* Datos del paciente */
         // frm_idCirugiaProgramada: "",
+        id_lista: 0,
+        tipo_servicio: 4,
+        id_visita: 0,
+        id_tipo_documento: 13,
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",
         frm_quirofano: "",
-        frm_procedimiento: ""
+        frm_procedimiento: "",
+        imgFirma: null,
+        imgGrafica: null
       }
     };
   },
@@ -9135,7 +9229,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$modal.show("ListaCirugiaProgramadaPaciente");
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
-      this.listas.frm_idCirugiaProgramada = value.SecCirPro;
+      this.listas.SecCirPro = value.SecCirPro;
       this.form.frm_paciente = value.nombrePaciente;
       this.form.frm_cirujano = value.cirujano;
       this.form.frm_anestesiologo = value.anestesiologo;
@@ -9146,46 +9240,20 @@ __webpack_require__.r(__webpack_exports__);
       // }
 
       this.cargarLista(value.SecCirPro);
+      this.consultarSello();
     },
     cargarLista: function cargarLista(value) {
       var that = this;
       var url = "/modulos/cirugia/lista_verificacion/buscarpaciente/" + value; // var loader = that.$loading.show();
 
       axios.get(url).then(function (response) {
-        if (response.data.listaValoracion) {
-          //   this.$swal({
-          //     icon: "warning",
-          //     title: "Paciente a Modificar",
-          //     text: "."
-          // }),
-          that.listas.chkentrada01 = Boolean(Number(response.data.listaValoracion.chkentrada01));
-          that.listas.chkentrada02 = Boolean(Number(response.data.listaValoracion.chkentrada02));
-          that.listas.chkentrada03 = Boolean(Number(response.data.listaValoracion.chkentrada03));
-          that.listas.chkentrada04 = Boolean(Number(response.data.listaValoracion.chkentrada04));
-          that.listas.chkentrada05 = Boolean(Number(response.data.listaValoracion.chkentrada05));
-          that.listas.chkentrada06 = Boolean(Number(response.data.listaValoracion.chkentrada06));
-          that.listas.chkentrada07 = Boolean(Number(response.data.listaValoracion.chkentrada07));
-          that.listas.chkquirurgica01 = Boolean(Number(response.data.listaValoracion.chkquirurgica01));
-          that.listas.chkquirurgica02 = Boolean(Number(response.data.listaValoracion.chkquirurgica02));
-          that.listas.chkquirurgica03 = Boolean(Number(response.data.listaValoracion.chkquirurgica03));
-          that.listas.chkquirurgica04 = Boolean(Number(response.data.listaValoracion.chkquirurgica04));
-          that.listas.chkquirurgica05 = Boolean(Number(response.data.listaValoracion.chkquirurgica05));
-          that.listas.chkquirurgica06 = Boolean(Number(response.data.listaValoracion.chkquirurgica06));
-          that.listas.chkquirurgica07 = Boolean(Number(response.data.listaValoracion.chkquirurgica07));
-          that.listas.chksalida01 = Boolean(Number(response.data.listaValoracion.chksalida01));
-          that.listas.chksalida02 = Boolean(Number(response.data.listaValoracion.chksalida02));
-          that.listas.chksalida03 = Boolean(Number(response.data.listaValoracion.chksalida03));
-          that.listas.chksalida04 = Boolean(Number(response.data.listaValoracion.chksalida04));
-          that.listas.chksalida05 = Boolean(Number(response.data.listaValoracion.chksalida05)); // user_id: "",
-          // cargo: "",
-
-          that.listas.observacion = response.data.listaValoracion.observacion; //firma: ""
-
+        if (response.data.contador > 0) {
           that.$swal({
             icon: "success",
-            title: "Paciente a Modificar",
+            title: "El proceso ya se encuentra realizado, Seleccione Imprimir para visualizar el reporte",
             text: "."
           }), that.isHidden = 'block';
+          that.idHiddenNuevo = 'none';
         } else {
           that.$swal({
             icon: "success",
@@ -9193,6 +9261,7 @@ __webpack_require__.r(__webpack_exports__);
             text: "."
           });
           that.isHidden = 'none';
+          that.idHiddenNuevo = 'block';
         }
       })["catch"](function (error) {
         //Errores
@@ -9202,15 +9271,106 @@ __webpack_require__.r(__webpack_exports__);
           text: "."
         });
         that.isHidden = 'none';
+      }); //  llamarMetodoImprimir();
+    },
+    guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
+      var that = this;
+      var url = "";
+      var mensaje = ""; // alert(that.form.imgFirma);
+
+      var formNew = {
+        tipo_servicio: 4,
+        id_atencion: that.form.id_lista,
+        // that.form.id_lista,
+        id_visita: 0,
+        id_tipo_documento: 13,
+        imgFirma: that.form.imgFirma
+      };
+      url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        loader.hide();
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar Firma por Atención",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      })["catch"](function (error) {
+        that.resConfirmarCancelar = false;
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarFirmaPorAtencion",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
       });
     },
+    consultarSello: function consultarSello() {
+      var that = this;
+
+      if (this.$props.user.id > 0) {
+        var loader = that.$loading.show();
+        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
+        axios.get(url).then(function (response) {
+          if (response.data.sello != null) {
+            if (response.data.sello.seguridad_medico != null) {
+              that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO; // alert( response.data.sello.medico_sellos);
+            }
+          }
+
+          loader.hide();
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar consultarSello",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
+      }
+    },
     guardarLista: function guardarLista() {
-      var that = this; // var loader = that.$loading.show();
+      var that = this;
+
+      if (that.validarImgFirma == 0) {
+        that.$swal({
+          icon: "error",
+          title: "Favor Guardar la Firma",
+          text: "."
+        });
+        return;
+      } // var loader = that.$loading.show();
+
 
       var ListaInsert = this.listas; //console.log(this.listas);
 
       this.listas = {
-        frm_idCirugiaProgramada: "",
+        SecCirPro: "",
+        id_lista: 0,
         chkentrada01: false,
         chkentrada02: false,
         chkentrada03: false,
@@ -9234,26 +9394,36 @@ __webpack_require__.r(__webpack_exports__);
         cargo: "",
         observacion: "",
         firma: ""
-      }, this.form = {
-        /* Datos del paciente */
-        // frm_idCirugiaProgramada: "",
-        frm_paciente: "",
-        frm_cirujano: "",
-        frm_anestesiologo: "",
-        frm_quirofano: "",
-        frm_procedimiento: ""
-      };
-      axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
+      }, axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
+        that.form.id_lista = response.data.id; // alert(response.data.id);
         //  loader.hide();
+        //alert(that.form.id_lista);
+
+        that.guardarFirmaPorAtencion();
+        that.form = {
+          id_lista: 0,
+          tipo_servicio: 4,
+          id_visita: 0,
+          id_tipo_documento: 13,
+          frm_paciente: "",
+          frm_cirujano: "",
+          frm_anestesiologo: "",
+          frm_quirofano: "",
+          frm_procedimiento: "",
+          imgFirma: null,
+          imgGrafica: null
+        };
         that.$swal({
           icon: "success",
           title: "Proceso Realizado con Exito",
           text: "."
         });
-      }); // aui
+      }); //   alert( that.form.id_lista);
+      // guardarFirmaPorAtencion();
+      // aui
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
-      window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.frm_idCirugiaProgramada);
+      window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.SecCirPro);
     }
   }
 });
@@ -10025,6 +10195,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
   data: function data() {
     return {
       prefijo: "",
@@ -10032,6 +10207,11 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       respuestaCargarDatos: 0,
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       form: {
         /* Datos del paciente */
         frm_idCirugiaProgramada: "",
@@ -10078,6 +10258,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.frm_quirofano = value.quirofano;
       this.form.frm_procedimiento = value.procedimiento;
       this.$modal.hide("ListaCirugiaProgramadaPaciente");
+      this.consultarSello();
       /* if (this.$refs.revisionSistema != null) {
           this.$refs.revisionSistema.cargarRevisionSistema();
       } */
@@ -10166,6 +10347,38 @@ __webpack_require__.r(__webpack_exports__);
 
         default: //this.titulo_seleccionado = "";
 
+      }
+    },
+    consultarSello: function consultarSello() {
+      var that = this;
+
+      if (this.$props.user.id > 0) {
+        var loader = that.$loading.show();
+        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
+        axios.get(url).then(function (response) {
+          if (response.data.sello != null) {
+            if (response.data.sello.seguridad_medico != null) {
+              that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO; // alert( response.data.sello.medico_sellos);
+            }
+          }
+
+          loader.hide();
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar consultarSello",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
       }
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
@@ -11208,10 +11421,18 @@ __webpack_require__.r(__webpack_exports__);
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
     }
   },
   data: function data() {
     return {
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       chk: {
         /* Antecedentes */
         chk_quirurgico: false,
@@ -12429,10 +12650,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
     }
   },
   data: function data() {
     return {
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       chk: {
         /* Cuello Corto */
         chk_cuelloCorto: false,
@@ -13590,11 +13819,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
     }
   },
   data: function data() {
@@ -13602,6 +13898,13 @@ __webpack_require__.r(__webpack_exports__);
       tipoSangre: [],
       selectedTipoSangre: "",
       validarFinProceso: 0,
+      validarImgFirma: 0,
+      isFirstPaintable: "firmaAnestesiologo",
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       chk: {
         /* Paraclinicos */
         chk_hb: false,
@@ -13693,6 +13996,7 @@ __webpack_require__.r(__webpack_exports__);
         this.cargarAtencionMotivo();
     } */
   },
+  created: function created() {},
   beforeDestroy: function beforeDestroy() {
     /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
     let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
@@ -13896,6 +14200,54 @@ __webpack_require__.r(__webpack_exports__);
           text: "Debe seleccionar un paciente"
         });
       }
+    },
+    guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
+      var that = this;
+      var url = "";
+      var mensaje = ""; // alert(that.form.imgFirma);
+
+      var formNew = {
+        tipo_servicio: 4,
+        id_atencion: that.form.id_lista,
+        // that.form.id_lista,
+        id_visita: 0,
+        id_tipo_documento: 13,
+        imgFirma: that.frmimg.imgFirma
+      };
+      url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        loader.hide();
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar Firma por Atención",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      })["catch"](function (error) {
+        that.resConfirmarCancelar = false;
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarFirmaPorAtencion",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
     },
 
     /* Paraclinicos */
@@ -14842,12 +15194,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
+    },
+    rutaSelloImg: {
+      type: String
     }
   },
   data: function data() {
     return {
       validarCargarDatos: 0,
       respuestaImprimir: 0,
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       chk: {
         /* Cardiovascular  */
         chk_hipertension: 0,
@@ -16533,7 +16896,7 @@ __webpack_require__.r(__webpack_exports__);
                     if(response.data.modulo[0] != null){
                         that.cargarSubModulos(response.data.modulo[0].codigo);
                     }
-                 }
+                  }
             })
             .catch(error => {
                 //Errores
@@ -17757,7 +18120,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, "\ntable {\n    border-collapse: collapse;\n}\n.flex {\n    display: flex;\n}\n.flex-y {\n    flex-direction: column;\n}\n.flex-x {\n    flex-direction: row;\n}\n.border-t {\n    border: 1px solid #000;\n}\n.border-l {\n    border-left: 1px solid #000;\n}\n.border-r {\n    border-right: 1px solid #000;\n}\n.flex-center-x {\n    justify-content: center;\n}\n.flex-center-y {\n    align-items: center;\n}\n.border-top {\n    border-top: 1px solid #000 !important;\n}\n.border-b {\n    border-bottom: 1px solid #000;\n}\n.upper {\n    text-transform: uppercase;\n}\n.input-line {\n    border: none;\n    border-bottom: 1px solid #000;\n    outline: none;\n}\n.input-no-line {\n    border: none;\n    outline: none;\n}\n.space-left {\n    box-sizing: border-box;\n    padding-left: 5px;\n}\n.m-w {\n    max-width: 35px;\n}\n.no-line {\n    border: none;\n    outline: none;\n}\n.w-100p {\n    width: 100%;\n}\n.border-none-b- {\n    border: none;\n    outline: none;\n    border-bottom: 1px solid #000;\n}\n.grid {\n    display: grid;\n}\n.grid-2-c {\n    grid-template-columns: 1fr 1fr;\n}\n.grid-center {\n    align-self: center;\n    justify-self: center;\n}\n.flex-x-end {\n    justify-content: flex-end;\n}\n.he25 {\n    height: 25px;\n}\n.overflow-x-hidden {\n    overflow-x: scroll;\n}\n.wrap-flex {\n    flex-wrap: wrap;\n}\n.no-wrap-flex {\n    flex-wrap: nowrap !important;\n}\n.line-second {\n    width: 20px;\n    height: 20px;\n    display: flex;\n}\n.space-btw {\n    justify-content: space-between;\n}\n.width-100-p {\n    width: 100%;\n}\n.time-triangle-abs {\n    width: 15px;\n    position: absolute;\n    bottom: 0;\n    /* left: -18px; */\n    z-index: 1000;\n}\n.grid {\n    display: grid;\n}\n.grid-4-c {\n    /* grid-template-columns: repeat(4 , 1fr); */\n}\n.relative {\n    position: relative;\n}\n.figure-celds {\n    position: absolute;\n}\n.figure-celds:nth-child(1) {\n    left: 0;\n}\n.figure-celds:nth-child(2) {\n    left: 15px;\n}\n.figure-celds:nth-child(3) {\n    left: 30px;\n}\n.figure-celds:nth-child(4) {\n    left: 45px;\n}\n.figure-celds:nth-child(5) {\n    left: 60px;\n}\n.figure-celds:nth-child(6) {\n    left: 75px;\n}\n.input-registro {\n    border-bottom: 1px solid;\n    width: 100%;\n}\np.blue {\n    background: #5178d0;\n    border-radius: 0.8em;\n    -moz-border-radius: 0.8em;\n    -webkit-border-radius: 0.8em;\n    color: #ffffff;\n    display: inline-block;\n    font-weight: bold;\n    line-height: 1.6em;\n    margin-right: 15px;\n    text-align: center;\n    width: 1.6em;\n}\n", ""]);
+exports.push([module.i, "\ntable {\r\n    border-collapse: collapse;\n}\n.flex {\r\n    display: flex;\n}\n.flex-y {\r\n    flex-direction: column;\n}\n.flex-x {\r\n    flex-direction: row;\n}\n.border-t {\r\n    border: 1px solid #000;\n}\n.border-l {\r\n    border-left: 1px solid #000;\n}\n.border-r {\r\n    border-right: 1px solid #000;\n}\n.flex-center-x {\r\n    justify-content: center;\n}\n.flex-center-y {\r\n    align-items: center;\n}\n.border-top {\r\n    border-top: 1px solid #000 !important;\n}\n.border-b {\r\n    border-bottom: 1px solid #000;\n}\n.upper {\r\n    text-transform: uppercase;\n}\n.input-line {\r\n    border: none;\r\n    border-bottom: 1px solid #000;\r\n    outline: none;\n}\n.input-no-line {\r\n    border: none;\r\n    outline: none;\n}\n.space-left {\r\n    box-sizing: border-box;\r\n    padding-left: 5px;\n}\n.m-w {\r\n    max-width: 35px;\n}\n.no-line {\r\n    border: none;\r\n    outline: none;\n}\n.w-100p {\r\n    width: 100%;\n}\n.border-none-b- {\r\n    border: none;\r\n    outline: none;\r\n    border-bottom: 1px solid #000;\n}\n.grid {\r\n    display: grid;\n}\n.grid-2-c {\r\n    grid-template-columns: 1fr 1fr;\n}\n.grid-center {\r\n    align-self: center;\r\n    justify-self: center;\n}\n.flex-x-end {\r\n    justify-content: flex-end;\n}\n.he25 {\r\n    height: 25px;\n}\n.overflow-x-hidden {\r\n    overflow-x: scroll;\n}\n.wrap-flex {\r\n    flex-wrap: wrap;\n}\n.no-wrap-flex {\r\n    flex-wrap: nowrap !important;\n}\n.line-second {\r\n    width: 20px;\r\n    height: 20px;\r\n    display: flex;\n}\n.space-btw {\r\n    justify-content: space-between;\n}\n.width-100-p {\r\n    width: 100%;\n}\n.time-triangle-abs {\r\n    width: 15px;\r\n    position: absolute;\r\n    bottom: 0;\r\n    /* left: -18px; */\r\n    z-index: 1000;\n}\n.grid {\r\n    display: grid;\n}\n.grid-4-c {\r\n    /* grid-template-columns: repeat(4 , 1fr); */\n}\n.relative {\r\n    position: relative;\n}\n.figure-celds {\r\n    position: absolute;\n}\n.figure-celds:nth-child(1) {\r\n    left: 0;\n}\n.figure-celds:nth-child(2) {\r\n    left: 15px;\n}\n.figure-celds:nth-child(3) {\r\n    left: 30px;\n}\n.figure-celds:nth-child(4) {\r\n    left: 45px;\n}\n.figure-celds:nth-child(5) {\r\n    left: 60px;\n}\n.figure-celds:nth-child(6) {\r\n    left: 75px;\n}\n.input-registro {\r\n    border-bottom: 1px solid;\r\n    width: 100%;\n}\np.blue {\r\n    background: #5178d0;\r\n    border-radius: 0.8em;\r\n    -moz-border-radius: 0.8em;\r\n    -webkit-border-radius: 0.8em;\r\n    color: #ffffff;\r\n    display: inline-block;\r\n    font-weight: bold;\r\n    line-height: 1.6em;\r\n    margin-right: 15px;\r\n    text-align: center;\r\n    width: 1.6em;\n}\r\n", ""]);
 
 // exports
 
@@ -17776,7 +18139,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nbody {\n    font-family: Helvetica, Arial, sans-serif;\n    position: initial !important;\n}\n/* .control {\n    margin: 20px;\n} */\n.paint {\n    border: 2px solid #000;\n    border-radius: 5px;\n    margin: 40px auto;\n    box-sizing: border-box;\n    display: block;\n    width: auto;\n    height: auto;\n    position: relative !important;\n    overflow: hidden;\n}\n.custom-navigation .controls {\n    margin: 10px 0 0 0;\n    border: 1px solid #ddd;\n    padding: 20px;\n    border-radius: 5px;\n}\n", ""]);
+exports.push([module.i, "\nbody {\r\n    font-family: Helvetica, Arial, sans-serif;\r\n    position: initial !important;\n}\r\n/* .control {\r\n    margin: 20px;\r\n} */\n.paint {\r\n    border: 2px solid #000;\r\n    border-radius: 5px;\r\n    margin: 40px auto;\r\n    box-sizing: border-box;\r\n    display: block;\r\n    width: auto;\r\n    height: auto;\r\n    position: relative !important;\r\n    overflow: hidden;\n}\n.custom-navigation .controls {\r\n    margin: 10px 0 0 0;\r\n    border: 1px solid #ddd;\r\n    padding: 20px;\r\n    border-radius: 5px;\n}\r\n", ""]);
 
 // exports
 
@@ -60868,15 +61231,16 @@ var render = function() {
                                                                                   minutos_columna[
                                                                                     "t_init"
                                                                                   ],
-                                                                                  minutos_columna[
-                                                                                    "t_fin"
-                                                                                  ],
                                                                                   agente._src,
                                                                                   agente.descripcion,
                                                                                   agente.valor,
+<<<<<<< HEAD
+                                                                                  agente.id
+=======
                                                                                   agente.id,
                                                                                   dato.es_agente,
                                                                                   dato.es_posicion
+>>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
                                                                                 )
                                                                               }
                                                                             }
@@ -64646,7 +65010,7 @@ var render = function() {
                         },
                         [
                           _c("vue-painttable", {
-                            ref: "paintFirma",
+                            ref: "paintFirma2",
                             attrs: {
                               hidePaintable: true,
                               isFirstPaintable: _vm.isFirstPaintable,
@@ -66926,9 +67290,9 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm.listas.frm_idCirugiaProgramada != ""
+            _vm.listas.SecCirPro != ""
               ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-                  _vm.form.frm_idCirugiaProgramada != ""
+                  _vm.form.SecCirPro != ""
                     ? _c(
                         "div",
                         { staticClass: "col-lg-12 col-md-12 col-sm-12" },
@@ -66967,11 +67331,9 @@ var render = function() {
                                                   {
                                                     name: "model",
                                                     rawName: "v-model",
-                                                    value:
-                                                      _vm.listas
-                                                        .frm_idCirugiaProgramada,
+                                                    value: _vm.listas.SecCirPro,
                                                     expression:
-                                                      "\n                                                            listas.frm_idCirugiaProgramada\n                                                        "
+                                                      "\n                                                            listas.SecCirPro\n                                                        "
                                                   }
                                                 ],
                                                 attrs: {
@@ -66980,9 +67342,7 @@ var render = function() {
                                                   name: "SecCirPro"
                                                 },
                                                 domProps: {
-                                                  value:
-                                                    _vm.listas
-                                                      .frm_idCirugiaProgramada
+                                                  value: _vm.listas.SecCirPro
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -66993,7 +67353,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.listas,
-                                                      "frm_idCirugiaProgramada",
+                                                      "SecCirPro",
                                                       $event.target.value
                                                     )
                                                   }
@@ -69497,7 +69857,8 @@ var render = function() {
                                             rows: "3",
                                             placeholder: "Enter ...",
                                             name: "observacion",
-                                            id: "observacion"
+                                            id: "observacion",
+                                            required: ""
                                           },
                                           domProps: {
                                             value: _vm.listas.observacion
@@ -69519,7 +69880,84 @@ var render = function() {
                                     ])
                                   ]),
                                   _vm._v(" "),
-                                  _vm._m(13)
+                                  _c("div", {}, [
+                                    _c("div", {
+                                      staticStyle: { height: "70px" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "flex flex-y" }, [
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "col-md-5 text-center",
+                                          staticStyle: { margin: "auto" }
+                                        },
+                                        [
+                                          _c("vue-painttable", {
+                                            ref: "paintFirma",
+                                            attrs: {
+                                              hidePaintable: true,
+                                              isFirstPaintable:
+                                                _vm.isFirstPaintable,
+                                              disableNavigation: true,
+                                              showUndoRedo: false,
+                                              showLineWidth: false,
+                                              rutaImagen: _vm.rutaSello,
+                                              width: 800,
+                                              height: 800
+                                            },
+                                            on: {
+                                              getOutput: function($event) {
+                                                _vm.form.imgFirma = $event
+                                              },
+                                              RespuestaImgFirma: function(
+                                                $event
+                                              ) {
+                                                _vm.validarImgFirma = $event
+                                              }
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "col-md-12 text-center"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "______________________________________________"
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "col-md-12 text-center"
+                                        },
+                                        [_vm._v("FIRMA DEL ANESTESIOLOGO:")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "card-footer" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        style: { display: _vm.idHiddenNuevo },
+                                        attrs: { type: "submit" }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                                        Enviar\n                                                    "
+                                        )
+                                      ]
+                                    )
+                                  ])
                                 ]
                               )
                             ]
@@ -69859,22 +70297,6 @@ var staticRenderFns = [
         )
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [
-          _vm._v(
-            "\n                                                        Enviar\n                                                    "
-          )
-        ]
-      )
-    ])
   }
 ]
 render._withStripped = true
@@ -77156,6 +77578,66 @@ var render = function() {
                                   }
                                 }
                               })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-12 mt-2" }, [
+                            _c("div", {}, [
+                              _c("div", { staticStyle: { height: "70px" } }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "flex flex-y" }, [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "col-md-5 text-center",
+                                    staticStyle: { margin: "auto" }
+                                  },
+                                  [
+                                    _c("vue-painttable", {
+                                      ref: "paintFirma",
+                                      attrs: {
+                                        hidePaintable: true,
+                                        isFirstPaintable: _vm.isFirstPaintable,
+                                        disableNavigation: true,
+                                        showUndoRedo: false,
+                                        showLineWidth: false,
+                                        rutaImagen: _vm.rutaSello,
+                                        width: 800,
+                                        height: 800
+                                      },
+                                      on: {
+                                        getOutput: function($event) {
+                                          _vm.frmimg.imgFirma = $event
+                                        },
+                                        RespuestaImgFirma: function($event) {
+                                          _vm.validarImgFirma = $event
+                                        }
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticClass: "col-md-12 text-center" },
+                                  [
+                                    _vm._v(
+                                      "______________________________________________"
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticClass: "col-md-12 text-center" },
+                                  [
+                                    _vm._v(
+                                      "FIRMA DEL\n                                                            ANESTESIOLOGO:"
+                                    )
+                                  ]
+                                )
+                              ])
                             ])
                           ])
                         ])
@@ -100695,7 +101177,7 @@ var prefix = "/LeonBecerra";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jonat\OneDrive\TrabajoBSPI\Proyecto\Sistema_Hospitalario_BSPI\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Sistema_Hospitalario_BSPI\Sistema_Hospitalario_BSPI\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ })
