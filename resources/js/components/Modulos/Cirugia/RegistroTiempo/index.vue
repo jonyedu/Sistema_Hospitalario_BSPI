@@ -372,7 +372,6 @@ export default {
                                     registros_tiempos.push(objeto);
                                 }
                             );
-
                             that.registros_tiempos = registros_tiempos;
                         }
                         loader.hide();
