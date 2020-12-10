@@ -3702,7 +3702,7 @@ export default {
                     return validarCampo;
                 }
             }
-            if(this.valoresFormulario.posicion.descripcion == ""){
+            if(this.valoresFormulario.posicion.id == 0){
                 validarCampo = true;
                 this.flashMessage.show({
                     status: "warning",

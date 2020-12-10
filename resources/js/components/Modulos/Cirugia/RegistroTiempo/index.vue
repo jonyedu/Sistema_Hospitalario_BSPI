@@ -97,7 +97,7 @@
                             >
                                 <h3 class="card-title" style="color: #FFFFFF">
                                     Registro del Tiempo del Paciente
-                                    {{ form.paciente }}
+                                    {{ form.nombre }}
                                 </h3>
                                 <div class="card-tools">
                                     <button
@@ -239,20 +239,20 @@ export default {
             registros_tiempos: [],
 
             form: {
-                id_cirugia_programada: 1,
+                id_cirugia_programada: 0,
                 id_detalle_tiempo: 0,
                 id_registro_tiempo: 0,
 
                 //Variables para el ComboBox
                 selected_detalle_tiempo: "",
-                detalles_tiempos: []
+                detalles_tiempos: [],
+
+                nombre: ""
             }
         };
     },
     mounted: function() {
         this.flashMessage.setStrategy("multiple");
-        this.setSelectedDetalleTiempo();
-        this.cargarRegistroTiempoPorSecCirPro();
         this.prefijo = prefix;
     },
     beforeDestroy: function() {
@@ -303,17 +303,32 @@ export default {
                             });
                             //loader.hide();
                         } else {
-                            that.cargarDiagnosticoPorCodigo(value);
+                            that.form.nombre = value.nombrePaciente;
+                            that.form.id_cirugia_programada = value.SecCirPro;
+                            that.setSelectedDetalleTiempo();
+                            that.cargarRegistroTiempoPorSecCirPro();
+                            that.$modal.hide("ListaCirugiaProgramadaPaciente");
                         }
                     })
                     .catch(error => {
-                        //Errores
-                        //loader.hide();
-                        that.$swal({
-                            icon: "error",
-                            title: "Existe un error",
-                            text: error
+                        that.flashMessage.show({
+                            status: "error",
+                            title:
+                                "Error al procesar handleSeleccionarClick",
+                            message:
+                                "Por favor comuníquese con el administrador. " +
+                                error,
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/error.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
                         });
+                        loader.hide();
                     });
             }
         },
