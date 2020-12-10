@@ -36,11 +36,11 @@ class RegistroAnestesiaController extends Controller
             return response()->json(['mensaje' => $e->getMessage()], 500);
         }
     }
-    public function cargarSello($id_medico)
+    public function cargarSello($id_user)
     {
         try {
-            $sello = Medico::where('id', $id_medico)
-                ->with('medicoSellos')
+            $sello = User::where('id', $id_user)
+                ->with('seguridadMedico.medico.medicoSellos')
                 ->first();
             //$grafica = GraficaPorCirugia::where('SecCirPro', 1)->first();
             return  response()->json(['sello' => $sello], 200);
@@ -70,6 +70,33 @@ class RegistroAnestesiaController extends Controller
             return response()->json(['mensaje' => $e->getMessage()], 500);
         }
     }
+
+    //con parametros
+    public function guardarFirmaPorAtencion2(Request $request)
+    {
+      //  return  response()->json(['msj' => $request->input()], 200);
+        try {
+            $user = Auth::user();
+            $firma = convertBase64ToBinary($request->input('imgFirma'));
+            FirmasPorAtencion::create([
+                'tipo_servicio' =>  $request->input('tipo_servicio'),
+                'id_atencion' => $request->input('id_atencion'),
+                'id_visita' =>  $request->input('id_visita'),
+                'id_tipo_documento' => $request->input('id_tipo_documento'),
+                'fecha_atencion' => date("Y-m-d H:i:s"),
+                'firma' => $firma,
+                'status' => '1',
+                'usuario_ingreso' => $user->id,
+                'fecha_ingreso' => date("Y-m-d H:i:s"),
+                'pcname' => $_SERVER["REMOTE_ADDR"]
+            ]);
+            return  response()->json(['msj' => 'OK'], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+
+    //fin
 
     public function guardarImnGrafica(Request $request)
     {

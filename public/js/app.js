@@ -4017,6 +4017,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -7242,50 +7243,6 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
 
-    /* validarSecCirPro(secCirPro) {
-        if (secCirPro != "") {
-            let that = this;
-            let url =
-                "/modulos/cirugia/anestesia/validar_secCirPro/" +
-                secCirPro;
-            //var loader = that.$loading.show();
-            axios
-                .get(url)
-                .then(function(response) {
-                    //Obtiene los datos de Motivo Antecedentes
-                    if (
-                        response.data.secCirPro != null &&
-                        response.data.secCirPro != undefined
-                    ) {
-                        that.flashMessage.show({
-                            status: "warning",
-                            title: "Advertencia al Procesar",
-                            message:"El paciente ya cuenta con un registro anestesico.",
-                            clickable: true,
-                            time: 0,
-                            icon: "/iconsflashMessage/warning.svg",
-                            customStyle: {
-                                flashMessageStyle: {
-                                    background: "linear-gradient(#e66465, #9198e5)"
-                                }
-                            }
-                        });
-                        //loader.hide();
-                        return;
-                    }
-                  })
-                .catch(error => {
-                    //Errores
-                    //loader.hide();
-                    that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    });
-                });
-        }
-    }, */
-
     /* Fin para llamar al Modal y la Tabla */
     guardarCabecera: function guardarCabecera(registro_anestesia_id) {
       var that = this;
@@ -8470,14 +8427,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
   data: function data() {
     return {
       prefijo: "",
       isHidden: 'none',
+      idHiddenNuevo: 'none',
+      rutaSello: "",
       listas: {
-        frm_idCirugiaProgramada: "",
+        SecCirPro: "",
+        frm_id_user: "",
         chkentrada01: false,
         chkentrada02: false,
         chkentrada03: false,
@@ -8507,6 +8477,10 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         /* Datos del paciente */
         // frm_idCirugiaProgramada: "",
+        id_lista: 0,
+        tipo_servicio: 4,
+        id_visita: 0,
+        id_tipo_documento: 13,
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",
@@ -8523,7 +8497,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$modal.show("ListaCirugiaProgramadaPaciente");
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
-      this.listas.frm_idCirugiaProgramada = value.SecCirPro;
+      this.listas.SecCirPro = value.SecCirPro;
       this.form.frm_paciente = value.nombrePaciente;
       this.form.frm_cirujano = value.cirujano;
       this.form.frm_anestesiologo = value.anestesiologo;
@@ -8534,46 +8508,20 @@ __webpack_require__.r(__webpack_exports__);
       // }
 
       this.cargarLista(value.SecCirPro);
+      this.consultarSello();
     },
     cargarLista: function cargarLista(value) {
       var that = this;
       var url = "/modulos/cirugia/lista_verificacion/buscarpaciente/" + value; // var loader = that.$loading.show();
 
       axios.get(url).then(function (response) {
-        if (response.data.listaValoracion) {
-          //   this.$swal({
-          //     icon: "warning",
-          //     title: "Paciente a Modificar",
-          //     text: "."
-          // }),
-          that.listas.chkentrada01 = Boolean(Number(response.data.listaValoracion.chkentrada01));
-          that.listas.chkentrada02 = Boolean(Number(response.data.listaValoracion.chkentrada02));
-          that.listas.chkentrada03 = Boolean(Number(response.data.listaValoracion.chkentrada03));
-          that.listas.chkentrada04 = Boolean(Number(response.data.listaValoracion.chkentrada04));
-          that.listas.chkentrada05 = Boolean(Number(response.data.listaValoracion.chkentrada05));
-          that.listas.chkentrada06 = Boolean(Number(response.data.listaValoracion.chkentrada06));
-          that.listas.chkentrada07 = Boolean(Number(response.data.listaValoracion.chkentrada07));
-          that.listas.chkquirurgica01 = Boolean(Number(response.data.listaValoracion.chkquirurgica01));
-          that.listas.chkquirurgica02 = Boolean(Number(response.data.listaValoracion.chkquirurgica02));
-          that.listas.chkquirurgica03 = Boolean(Number(response.data.listaValoracion.chkquirurgica03));
-          that.listas.chkquirurgica04 = Boolean(Number(response.data.listaValoracion.chkquirurgica04));
-          that.listas.chkquirurgica05 = Boolean(Number(response.data.listaValoracion.chkquirurgica05));
-          that.listas.chkquirurgica06 = Boolean(Number(response.data.listaValoracion.chkquirurgica06));
-          that.listas.chkquirurgica07 = Boolean(Number(response.data.listaValoracion.chkquirurgica07));
-          that.listas.chksalida01 = Boolean(Number(response.data.listaValoracion.chksalida01));
-          that.listas.chksalida02 = Boolean(Number(response.data.listaValoracion.chksalida02));
-          that.listas.chksalida03 = Boolean(Number(response.data.listaValoracion.chksalida03));
-          that.listas.chksalida04 = Boolean(Number(response.data.listaValoracion.chksalida04));
-          that.listas.chksalida05 = Boolean(Number(response.data.listaValoracion.chksalida05)); // user_id: "",
-          // cargo: "",
-
-          that.listas.observacion = response.data.listaValoracion.observacion; //firma: ""
-
+        if (response.data.contador > 0) {
           that.$swal({
             icon: "success",
-            title: "Paciente a Modificar",
+            title: "El proceso ya se encuentra realizado, Seleccione Imprimir para visualizar el reporte",
             text: "."
           }), that.isHidden = 'block';
+          that.idHiddenNuevo = 'none';
         } else {
           that.$swal({
             icon: "success",
@@ -8581,6 +8529,7 @@ __webpack_require__.r(__webpack_exports__);
             text: "."
           });
           that.isHidden = 'none';
+          that.idHiddenNuevo = 'block';
         }
       })["catch"](function (error) {
         //Errores
@@ -8590,15 +8539,106 @@ __webpack_require__.r(__webpack_exports__);
           text: "."
         });
         that.isHidden = 'none';
+      }); //  llamarMetodoImprimir();
+    },
+    guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
+      var that = this;
+      var url = "";
+      var mensaje = ""; // alert(that.form.imgFirma);
+
+      var formNew = {
+        tipo_servicio: 4,
+        id_atencion: that.form.id_lista,
+        // that.form.id_lista,
+        id_visita: 0,
+        id_tipo_documento: 13,
+        imgFirma: that.form.imgFirma
+      };
+      url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        loader.hide();
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar Firma por Atención",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      })["catch"](function (error) {
+        that.resConfirmarCancelar = false;
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarFirmaPorAtencion",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
       });
     },
+    consultarSello: function consultarSello() {
+      var that = this;
+
+      if (this.$props.user.id > 0) {
+        var loader = that.$loading.show();
+        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
+        axios.get(url).then(function (response) {
+          if (response.data.sello != null) {
+            if (response.data.sello.seguridad_medico != null) {
+              that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO; // alert( response.data.sello.medico_sellos);
+            }
+          }
+
+          loader.hide();
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar consultarSello",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
+      }
+    },
     guardarLista: function guardarLista() {
-      var that = this; // var loader = that.$loading.show();
+      var that = this;
+
+      if (that.validarImgFirma == 0) {
+        that.$swal({
+          icon: "error",
+          title: "Favor Guardar la Firma",
+          text: "."
+        });
+        return;
+      } // var loader = that.$loading.show();
+
 
       var ListaInsert = this.listas; //console.log(this.listas);
 
       this.listas = {
-        frm_idCirugiaProgramada: "",
+        SecCirPro: "",
+        id_lista: 0,
         chkentrada01: false,
         chkentrada02: false,
         chkentrada03: false,
@@ -8622,26 +8662,36 @@ __webpack_require__.r(__webpack_exports__);
         cargo: "",
         observacion: "",
         firma: ""
-      }, this.form = {
-        /* Datos del paciente */
-        // frm_idCirugiaProgramada: "",
-        frm_paciente: "",
-        frm_cirujano: "",
-        frm_anestesiologo: "",
-        frm_quirofano: "",
-        frm_procedimiento: ""
-      };
-      axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
+      }, axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
+        that.form.id_lista = response.data.id; // alert(response.data.id);
         //  loader.hide();
+        //alert(that.form.id_lista);
+
+        that.guardarFirmaPorAtencion();
+        that.form = {
+          id_lista: 0,
+          tipo_servicio: 4,
+          id_visita: 0,
+          id_tipo_documento: 13,
+          frm_paciente: "",
+          frm_cirujano: "",
+          frm_anestesiologo: "",
+          frm_quirofano: "",
+          frm_procedimiento: "",
+          imgFirma: null,
+          imgGrafica: null
+        };
         that.$swal({
           icon: "success",
           title: "Proceso Realizado con Exito",
           text: "."
         });
-      }); // aui
+      }); //   alert( that.form.id_lista);
+      // guardarFirmaPorAtencion();
+      // aui
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
-      window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.frm_idCirugiaProgramada);
+      window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.SecCirPro);
     }
   }
 });
@@ -9413,6 +9463,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
   data: function data() {
     return {
       prefijo: "",
@@ -9420,6 +9475,11 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       respuestaCargarDatos: 0,
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       form: {
         /* Datos del paciente */
         frm_idCirugiaProgramada: "",
@@ -9466,6 +9526,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.frm_quirofano = value.quirofano;
       this.form.frm_procedimiento = value.procedimiento;
       this.$modal.hide("ListaCirugiaProgramadaPaciente");
+      this.consultarSello();
       /* if (this.$refs.revisionSistema != null) {
           this.$refs.revisionSistema.cargarRevisionSistema();
       } */
@@ -9554,6 +9615,38 @@ __webpack_require__.r(__webpack_exports__);
 
         default: //this.titulo_seleccionado = "";
 
+      }
+    },
+    consultarSello: function consultarSello() {
+      var that = this;
+
+      if (this.$props.user.id > 0) {
+        var loader = that.$loading.show();
+        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
+        axios.get(url).then(function (response) {
+          if (response.data.sello != null) {
+            if (response.data.sello.seguridad_medico != null) {
+              that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO; // alert( response.data.sello.medico_sellos);
+            }
+          }
+
+          loader.hide();
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar consultarSello",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
       }
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
@@ -10596,10 +10689,18 @@ __webpack_require__.r(__webpack_exports__);
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
     }
   },
   data: function data() {
     return {
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       chk: {
         /* Antecedentes */
         chk_quirurgico: false,
@@ -11817,10 +11918,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
     }
   },
   data: function data() {
     return {
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       chk: {
         /* Cuello Corto */
         chk_cuelloCorto: false,
@@ -12978,11 +13087,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
     }
   },
   data: function data() {
@@ -12990,6 +13166,13 @@ __webpack_require__.r(__webpack_exports__);
       tipoSangre: [],
       selectedTipoSangre: "",
       validarFinProceso: 0,
+      validarImgFirma: 0,
+      isFirstPaintable: "firmaAnestesiologo",
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       chk: {
         /* Paraclinicos */
         chk_hb: false,
@@ -13081,6 +13264,7 @@ __webpack_require__.r(__webpack_exports__);
         this.cargarAtencionMotivo();
     } */
   },
+  created: function created() {},
   beforeDestroy: function beforeDestroy() {
     /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
     let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
@@ -13284,6 +13468,54 @@ __webpack_require__.r(__webpack_exports__);
           text: "Debe seleccionar un paciente"
         });
       }
+    },
+    guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
+      var that = this;
+      var url = "";
+      var mensaje = ""; // alert(that.form.imgFirma);
+
+      var formNew = {
+        tipo_servicio: 4,
+        id_atencion: that.form.id_lista,
+        // that.form.id_lista,
+        id_visita: 0,
+        id_tipo_documento: 13,
+        imgFirma: that.frmimg.imgFirma
+      };
+      url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        loader.hide();
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar Firma por Atención",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      })["catch"](function (error) {
+        that.resConfirmarCancelar = false;
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarFirmaPorAtencion",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
     },
 
     /* Paraclinicos */
@@ -14230,12 +14462,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     idSecCirPro: {
       type: String,
       required: true
+    },
+    user: {
+      type: Object
+    },
+    rutaSelloImg: {
+      type: String
     }
   },
   data: function data() {
     return {
       validarCargarDatos: 0,
       respuestaImprimir: 0,
+      rutaSello: "",
+      frmimg: {
+        imgFirma: null,
+        imgGrafica: null
+      },
       chk: {
         /* Cardiovascular  */
         chk_hipertension: 0,
@@ -63479,7 +63722,7 @@ var render = function() {
                         },
                         [
                           _c("vue-painttable", {
-                            ref: "paintFirma",
+                            ref: "paintFirma2",
                             attrs: {
                               hidePaintable: true,
                               isFirstPaintable: _vm.isFirstPaintable,
@@ -65759,9 +66002,9 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm.listas.frm_idCirugiaProgramada != ""
+            _vm.listas.SecCirPro != ""
               ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-                  _vm.form.frm_idCirugiaProgramada != ""
+                  _vm.form.SecCirPro != ""
                     ? _c(
                         "div",
                         { staticClass: "col-lg-12 col-md-12 col-sm-12" },
@@ -65800,11 +66043,9 @@ var render = function() {
                                                   {
                                                     name: "model",
                                                     rawName: "v-model",
-                                                    value:
-                                                      _vm.listas
-                                                        .frm_idCirugiaProgramada,
+                                                    value: _vm.listas.SecCirPro,
                                                     expression:
-                                                      "\n                                                            listas.frm_idCirugiaProgramada\n                                                        "
+                                                      "\n                                                            listas.SecCirPro\n                                                        "
                                                   }
                                                 ],
                                                 attrs: {
@@ -65813,9 +66054,7 @@ var render = function() {
                                                   name: "SecCirPro"
                                                 },
                                                 domProps: {
-                                                  value:
-                                                    _vm.listas
-                                                      .frm_idCirugiaProgramada
+                                                  value: _vm.listas.SecCirPro
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -65826,7 +66065,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.listas,
-                                                      "frm_idCirugiaProgramada",
+                                                      "SecCirPro",
                                                       $event.target.value
                                                     )
                                                   }
@@ -68330,7 +68569,8 @@ var render = function() {
                                             rows: "3",
                                             placeholder: "Enter ...",
                                             name: "observacion",
-                                            id: "observacion"
+                                            id: "observacion",
+                                            required: ""
                                           },
                                           domProps: {
                                             value: _vm.listas.observacion
@@ -68415,7 +68655,21 @@ var render = function() {
                                     ])
                                   ]),
                                   _vm._v(" "),
-                                  _vm._m(13)
+                                  _c("div", { staticClass: "card-footer" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        style: { display: _vm.idHiddenNuevo },
+                                        attrs: { type: "submit" }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                                        Enviar\n                                                    "
+                                        )
+                                      ]
+                                    )
+                                  ])
                                 ]
                               )
                             ]
@@ -68755,22 +69009,6 @@ var staticRenderFns = [
         )
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [
-          _vm._v(
-            "\n                                                        Enviar\n                                                    "
-          )
-        ]
-      )
-    ])
   }
 ]
 render._withStripped = true
@@ -76052,6 +76290,66 @@ var render = function() {
                                   }
                                 }
                               })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-12 mt-2" }, [
+                            _c("div", {}, [
+                              _c("div", { staticStyle: { height: "70px" } }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "flex flex-y" }, [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "col-md-5 text-center",
+                                    staticStyle: { margin: "auto" }
+                                  },
+                                  [
+                                    _c("vue-painttable", {
+                                      ref: "paintFirma",
+                                      attrs: {
+                                        hidePaintable: true,
+                                        isFirstPaintable: _vm.isFirstPaintable,
+                                        disableNavigation: true,
+                                        showUndoRedo: false,
+                                        showLineWidth: false,
+                                        rutaImagen: _vm.rutaSello,
+                                        width: 800,
+                                        height: 800
+                                      },
+                                      on: {
+                                        getOutput: function($event) {
+                                          _vm.frmimg.imgFirma = $event
+                                        },
+                                        RespuestaImgFirma: function($event) {
+                                          _vm.validarImgFirma = $event
+                                        }
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticClass: "col-md-12 text-center" },
+                                  [
+                                    _vm._v(
+                                      "______________________________________________"
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticClass: "col-md-12 text-center" },
+                                  [
+                                    _vm._v(
+                                      "FIRMA DEL\n                                                            ANESTESIOLOGO:"
+                                    )
+                                  ]
+                                )
+                              ])
                             ])
                           ])
                         ])

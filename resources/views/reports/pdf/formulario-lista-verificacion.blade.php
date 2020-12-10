@@ -726,7 +726,13 @@
                    {{ $datosPaciente[0]->observacion }}
                  </th>
                  <th rowspan="6" style="width:40%">
-                    <img src="{{ public_path('img/logoreport1.png') }}" borde="0" width="100px" height="70px" />
+                    @if ( isset($firma->FIRMAS))
+                    <img src="data:image/jpeg;base64,'{{ $firma->FIRMAS }}'" border="0"  width="300px" height="100px"> 
+                @else
+                no hay imagen ;( 
+                     {{-- <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->graficoCirugia->GRAFICAS }}'" border="0" width="690px" height="360px"> --}}
+                @endif
+                    
                    
                     
                  </th>

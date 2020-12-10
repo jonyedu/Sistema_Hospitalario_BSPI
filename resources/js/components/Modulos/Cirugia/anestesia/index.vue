@@ -1327,50 +1327,6 @@ export default {
                     });
             }
         },
-        /* validarSecCirPro(secCirPro) {
-            if (secCirPro != "") {
-                let that = this;
-                let url =
-                    "/modulos/cirugia/anestesia/validar_secCirPro/" +
-                    secCirPro;
-                //var loader = that.$loading.show();
-                axios
-                    .get(url)
-                    .then(function(response) {
-                        //Obtiene los datos de Motivo Antecedentes
-                        if (
-                            response.data.secCirPro != null &&
-                            response.data.secCirPro != undefined
-                        ) {
-                            that.flashMessage.show({
-                                status: "warning",
-                                title: "Advertencia al Procesar",
-                                message:"El paciente ya cuenta con un registro anestesico.",
-                                clickable: true,
-                                time: 0,
-                                icon: "/iconsflashMessage/warning.svg",
-                                customStyle: {
-                                    flashMessageStyle: {
-                                        background: "linear-gradient(#e66465, #9198e5)"
-                                    }
-                                }
-                            });
-                            //loader.hide();
-                            return;
-                        }
-
-                    })
-                    .catch(error => {
-                        //Errores
-                        //loader.hide();
-                        that.$swal({
-                            icon: "error",
-                            title: "Existe un error",
-                            text: error
-                        });
-                    });
-            }
-        }, */
         /* Fin para llamar al Modal y la Tabla */
         guardarCabecera(registro_anestesia_id) {
             let that = this;

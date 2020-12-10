@@ -65,8 +65,8 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::post('modifcar_registro_anestesia', 'RegistroAnestesiaController@modifcarRegistroAnestesia');
         Route::post('guardar_registro_infusiones', 'RegistroInfusionesController@guardarRegistroInfusiones');
         Route::get('cargar_pdf_formulario_registro_anestesia/{idSecCirPro}', 'RegistroAnestesiaController@cargarPdfFormularioRegistroAnestesia');
-        Route::get('cargar_sello/{id_medico}', 'RegistroAnestesiaController@cargarSello');
-        Route::post('guardar_firma_atencion', 'RegistroAnestesiaController@guardarFirmaPorAtencion');
+        Route::get('cargar_sello/{id_user}', 'RegistroAnestesiaController@cargarSello');
+        Route::post('guardar_firma_atencion', 'RegistroAnestesiaController@guardarFirmaPorAtencion2');
         Route::post('guardar_img_grafica', 'RegistroAnestesiaController@guardarImnGrafica');
         Route::post('guardar_modificar_agente_text', 'AgenteTextController@guardarModificarAgenteText');
 

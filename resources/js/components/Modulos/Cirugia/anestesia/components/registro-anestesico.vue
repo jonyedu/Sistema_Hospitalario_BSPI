@@ -1883,6 +1883,7 @@
                                         @RespuestaImgFirma="
                                             validarImgFirma = $event
                                         "
+                                        
                                         :hidePaintable="true"
                                         :isFirstPaintable="isFirstPaintable"
                                         :disableNavigation="true"
@@ -1891,7 +1892,7 @@
                                         :rutaImagen="rutaSello"
                                         :width="800"
                                         :height="800"
-                                        ref="paintFirma"
+                                        ref="paintFirma2"
                                     ></vue-painttable>
                                 </span>
                                 <span class="col-md-12 text-center"

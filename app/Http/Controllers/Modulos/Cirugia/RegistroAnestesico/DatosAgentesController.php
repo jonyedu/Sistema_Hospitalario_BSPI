@@ -98,7 +98,7 @@ class DatosAgentesController extends Controller
                                     'status' => '1'
                                 ]
                             );
-                        return response()->json(['status' => 'Guarado Agente', "datos" => $datos->id], 201);
+                        return response()->json(['status' => 'Guarado Agente'], 201);
                     }
                 }
                 break;
