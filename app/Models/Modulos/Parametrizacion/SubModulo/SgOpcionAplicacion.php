@@ -15,6 +15,8 @@ class SgOpcionAplicacion extends Model
     /**
      * @var string
      */
+    public $timestamps = false;
+
     protected $connection = 'sqlsrv';
 
     protected $fillable = [

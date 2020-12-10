@@ -19,31 +19,11 @@
         <div class="" style="width: 90%; margin: 0 auto">
             <div class="row flex-center-x">
                 <p
-                    class="badge badge-warning  col-lg-4 col-md-4 col-sm-4"
+                    class="badge badge-warning pl-3 pr-3 pt-2 pb-2"
                     style="font-size: 1.0em"
                 >
-                    Tiempo: <span><input class="col-lg-2 col-md-2 col-sm-2" v-model="hour" type="text">:</span><span><input class="col-lg-2 col-md-2 col-sm-2" v-model="minutes" type="text">:</span><span><input class="col-lg-2 col-md-2 col-sm-2" v-model="seconds" type="text"></span>
+                    Tiempo: <span id="total">{{ tiempo }}</span>
                 </p>
-                <span v-if="iniciado">
-                    <button
-                        type="button"
-                        class="btn btn-outline-success"
-                        @click="agregarObjetoPorHora"
-                    >
-                        <!-- Nuevo -->
-                        <i class="fas fa-plus-circle"></i>
-                    </button>
-                </span>
-                <span v-if="iniciado_eliminar">
-                    <button
-                        type="button"
-                        class="btn btn-outline-danger"
-                        @click="eliminarObjetoPorHora"
-                    >
-                        <!-- Eliminar -->
-                        <i class="fas fa-window-close"></i>
-                    </button>
-                </span>
             </div>
             <div class="row mb-5" v-if="iniciado">
                 <!-- MAX y MIN -->
@@ -283,6 +263,7 @@
                     </button>
                 </div>
             </div>
+
             <div v-if="iniciado">
                 <div ref="printMe">
                     <div class="row border-t flex-center-x">
@@ -546,13 +527,6 @@
                                                                                     index_columna,
                                                                                     index_minutos_columna,
                                                                                     index_agente,
-<<<<<<< HEAD
-                                                                                    minutos_columna['t_init'],
-                                                                                    agente._src,
-                                                                                    agente.descripcion,
-                                                                                    agente.valor,
-                                                                                    agente.id
-=======
                                                                                     minutos_columna[
                                                                                         't_init'
                                                                                     ],
@@ -565,7 +539,6 @@
                                                                                     agente.id,
                                                                                     dato.es_agente,
                                                                                     dato.es_posicion
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
                                                                                 )
                                                                             "
                                                                             ><img
@@ -1932,7 +1905,6 @@
                                         @RespuestaImgFirma="
                                             validarImgFirma = $event
                                         "
-                                        
                                         :hidePaintable="true"
                                         :isFirstPaintable="isFirstPaintable"
                                         :disableNavigation="true"
@@ -1941,7 +1913,7 @@
                                         :rutaImagen="rutaSello"
                                         :width="800"
                                         :height="800"
-                                        ref="paintFirma2"
+                                        ref="paintFirma"
                                     ></vue-painttable>
                                 </span>
                                 <span class="col-md-12 text-center"
@@ -1984,6 +1956,7 @@
                 @handleSeleccionarClick="handleSeleccionarClick"
             ></eliminar-agente>
         </modal>
+        <!--  <FlashMessage></FlashMessage> -->
     </div>
 </template>
 
@@ -2000,7 +1973,6 @@ export default {
     },
     data: function() {
         return {
-            iniciado_eliminar: false,
             datos_eliminar_agente: {
                 index: "",
                 index_fila: "",
@@ -2028,7 +2000,7 @@ export default {
             medicos: [],
             validarImgFirma: 0,
             isFirstPaintable: "firmaAnestesiologo",
-            rutaSello: "/img/selloFirma.png",
+            rutaSello: "", ///img/selloFirma.png
             validarFinProceso: "",
             validarImprimir: 0,
             selectedTipoPosiciones: "",
@@ -2308,39 +2280,15 @@ export default {
             return (this.form.total = subTotal);
         },
         tiempo: function(params) {
-            /* var tiempo = 0;
+            var tiempo = 0;
             var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
             var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
             var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
             tiempo = hora + ":" + minuto + ":" + segundo;
-            return tiempo; */
-
-            /* var tiempo = 0;
-            this.datos_tiempo.segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
-            this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
-            this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour); */
-            //tiempo = hora + ":" + minuto + ":" + segundo;
-            //return tiempo;
-
-
+            return tiempo;
         }
     },
     mounted: function() {
-        /* this.datos_tiempo.segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
-        this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
-        this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour);
-        alert(this.datos_tiempo.segundo); */
-
-        /* Obtengo los datos para añadir 0 */
-        var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
-        var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
-        var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
-        /* Retorno los datos con 0 incluido */
-        this.seconds = segundo;
-        this.minutes = minuto;
-        this.hour = hora;
-
-
         this.flashMessage.setStrategy("multiple");
         this.form.cirugia_id = this.$props.idSecCirPro;
         /**
@@ -2357,7 +2305,7 @@ export default {
         this.setSelectedTipoPosiciones();
         this.setSelectedSala();
         this.setSelectedMedico();
-        /* setInterval(() => {
+        setInterval(() => {
             this.seconds += 1;
             if (this.seconds >= 59) {
                 this.seconds = 0;
@@ -2394,56 +2342,10 @@ export default {
                     this.obtenerDatosFormulario();
                 }
             }
-        }, 1000); */
+        }, 1000);
     },
     beforeDestroy: function() {},
     methods: {
-        agregarObjetoPorHora(){
-            // Validar que se haya guardado todos los valores
-
-            //var valor;
-            //this.lista_horas_avanzadas_v[this.indice_hora].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes
-            var acumulador = 0;
-            for (let i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
-                if (this.lista_horas_avanzadas_v[i] != "") {
-                    if (i == this.indice_hora) {
-                        for (let j = 0;j < this.lista_horas_avanzadas_v[i].datos.length;j++) {
-                            if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
-                                for (let k = 0;k <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length;k++) {
-                                    if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
-                                        for (let l = 0;l <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length;l++) {
-                                            if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
-                                                if(this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l].agentes.length > 0){
-                                                    acumulador += 1;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if(acumulador >= 4){
-                acumulador = 0;
-                this.indice_hora += 1;
-                this.iniciado_eliminar = true;
-                // Si la hora se ha completado, se agrega otro objeto de horas al
-                //arreglo de datos
-                this.agregarHora();
-            }
-
-        },
-        eliminarObjetoPorHora(){
-            if(this.lista_horas_avanzadas_v.length > 1){
-                this.lista_horas_avanzadas_v.splice(this.indice_hora, 1);
-                this.indice_hora -= 1;
-            }
-            if(this.lista_horas_avanzadas_v.length == 1){
-                this.iniciado_eliminar = false;
-            }
-        },
         eliminarAgente(
             index,
             index_fila,
@@ -2451,16 +2353,13 @@ export default {
             index_minutos_columna,
             index_agente,
             t_init,
+            t_fin,
             src,
             descripcion,
             valor,
-<<<<<<< HEAD
-            id
-=======
             id,
             es_agente,
             es_posicion
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
         ) {
             this.limpiarDatosEliminarAgente();
             this.datos_eliminar_agente.index = index;
@@ -2468,10 +2367,6 @@ export default {
             this.datos_eliminar_agente.index_columna = index_columna;
             this.datos_eliminar_agente.index_minutos_columna = index_minutos_columna;
             this.datos_eliminar_agente.index_agente = index_agente;
-<<<<<<< HEAD
-            this.datos_eliminar_agente.minutes = t_init;
-            this.datos_eliminar_agente.adicional = { system_name: descripcion };
-=======
             this.datos_eliminar_agente.is_tpo_init = t_init;
             this.datos_eliminar_agente.is_tpo_fin = t_fin;
             if (es_agente && index_fila != 29) {
@@ -2490,7 +2385,6 @@ export default {
                     tipo: "posicion"
                 };
             }
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
             this.datos_eliminar_agente.ruta_icono = src;
             this.datos_eliminar_agente.descripcion = descripcion;
             this.datos_eliminar_agente.valor = valor;
@@ -2515,7 +2409,9 @@ export default {
         handleSeleccionarClick(value) {
             if (value.respuesta) {
                 var valor = parseInt(value.valorNuevo);
-                var minutes = value.minutes;
+                var minutes = value.is_tpo_init;
+                var is_tpo_init = value.is_tpo_init;
+                var is_tpo_fin = value.is_tpo_fin;
                 var adicional = value.adicional;
                 var ruta_icono = value.ruta_icono;
                 this.form.id_datos_agente = value.id;
@@ -2782,29 +2678,20 @@ export default {
         },
         consultarSello() {
             let that = this;
-<<<<<<< HEAD
-            if (this.form.id_medico > 0) {
+            if (this.$props.user.codigo_usu > 0) {
                 var loader = that.$loading.show();
                 let url =
                     "/modulos/cirugia/anestesia/cargar_sello/" +
-                    this.form.id_medico;
-=======
-            if (this.$props.user.id > 0) {
-                var loader = that.$loading.show();
-                let url =
-                    "/modulos/cirugia/anestesia/cargar_sello/" +
-                    this.$props.user.id;
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
+                    this.$props.user.codigo_usu;
                 axios
                     .get(url)
                     .then(function(response) {
                         if (response.data.sello != null) {
-                            if (response.data.sello.seguridad_medico != null) {
-                                if (response.data.sello.seguridad_medico.medico != null) {
-                                    if (response.data.sello.seguridad_medico.medico.medico_sellos != null) {
-                                        that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
-                                    }
-                                }
+                            if (response.data.sello.medico_sellos != null) {
+                                that.rutaSello =
+                                    "data:image/jpeg;base64," +
+                                    response.data.sello.medico_sellos
+                                        .IMAGEN_SELLO;
                             }
                         }
                         loader.hide();
@@ -2964,7 +2851,7 @@ export default {
             if (value != null) {
                 this.form.id_medico = value.id_medico;
                 loader.hide();
-                this.consultarSello();
+                //this.consultarSello();
             }
             axios
                 .get(url)
@@ -3092,13 +2979,8 @@ export default {
                 })
                 .then(response => {
                     this.datos_server = response.data;
-<<<<<<< HEAD
-                    if(es_posicion == false){
-                            col_cince_min.agentes.push({
-=======
                     if (es_posicion == false) {
                         col_cince_min.agentes.push({
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
                             descripcion: descripcion,
                             valor: valor,
                             _src: src,
@@ -3108,6 +2990,7 @@ export default {
                         Object.assign(posicion,{
                             idRe:response.data.datos
                         });
+                        console.log(column_quince.posicion);
                         column_quince.posicion = posicion;
                     }
                     this.form.id_datos_agente = 0;
@@ -3137,7 +3020,7 @@ export default {
             if (this.iniciado) return;
             this.iniciado = true;
             this.agregarHorasInicial();
-            //this.consultarSello();
+            this.consultarSello();
 
             //Guardar datos en la tabla tb_registro_anestesia
             let url = "/modulos/cirugia/anestesia/registro/post";
@@ -3562,6 +3445,7 @@ export default {
          * Agrega datos a la rejilla
          */
         agregarDatos: function(campo) {
+            // console.log(campo);
             this.agregaDatoEnRejilla(
                 false,
                 false,
@@ -3636,17 +3520,13 @@ export default {
                 });
                 return validarCampo;
             }
-<<<<<<< HEAD
-            if(this.valoresFormulario.valor_pulso.valor == undefined || this.valoresFormulario.valor_pulso.valor == 0){
-=======
 
             if (this.valoresFormulario.respiracion.descripcion == undefined) {
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
                 validarCampo = true;
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia Campos Vacios",
-                    message: "El campo PULSO, necesita una valor.",
+                    message: "El campo RESPIRACIÓN, necesita ser marcado.",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -3658,36 +3538,12 @@ export default {
                 });
                 return validarCampo;
             }
-<<<<<<< HEAD
-            if(this.chk.respiracion){
-                if(this.valoresFormulario.respiracion.valor == undefined || this.valoresFormulario.respiracion.valor == 0){
-                    validarCampo = true;
-                    this.flashMessage.show({
-                        status: "warning",
-                        title: "Advertencia Campos Vacios",
-                        message: "El campo RESPIRACIÓN, necesita ser marcado.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/warning.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    return validarCampo;
-                }
-            }
-            if(this.chk.temperatura){
-                if(this.valoresFormulario.temperatura.valor == undefined || this.valoresFormulario.temperatura.valor == 0){
-=======
 
             if (this.chk.temperatura) {
                 if (
                     this.valoresFormulario.temperatura.valor == undefined ||
                     this.valoresFormulario.temperatura.valor == 0
                 ) {
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
                     validarCampo = true;
                     this.flashMessage.show({
                         status: "warning",
@@ -3771,11 +3627,7 @@ export default {
                     return validarCampo;
                 }
             }
-<<<<<<< HEAD
-            if(this.valoresFormulario.posicion.descripcion == ""){
-=======
             if (this.valoresFormulario.posicion.descripcion == undefined) {
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
                 validarCampo = true;
                 this.flashMessage.show({
                     status: "warning",
@@ -3798,6 +3650,7 @@ export default {
             if (this.validarCampoAgente()) {
                 return;
             }
+            //console.log(this.valoresFormulario);
             this.agregarDatos(this.valoresFormulario.ta_max);
             this.agregarDatos(this.valoresFormulario.ta_min);
 

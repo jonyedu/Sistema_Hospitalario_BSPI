@@ -49,10 +49,16 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::post('guardar_modificar_paraclinico', 'ParaclinicoApiController@guardarModificarParaclinico');
     });
 
+    /* SubModulo registro de tiempo */
+    Route::namespace('Modulos\Cirugia\RegistroTiempo')->prefix('registro_tiempo')->group(function () {
+        Route::get('cargar_registro_tiempo_por_secCirPro/{id_cirugia_programada}', 'RegistroTiempoApiController@cargarRegistroTiempoPorSecCirPro');
+        Route::post('guardar_registro_tiempo', 'RegistroTiempoApiController@guardarRegistroTiempo');
+    });
+
     /* SubModulo anestesia */
     Route::namespace('Modulos\Cirugia\RegistroAnestesico')->prefix('anestesia')->group(function () {
         Route::post('registro/post', 'RegistroAnestesiaController@store');
-        Route::post('agentes/guardado/{registro_id}', 'DatosAgentesController@guardarDatosAgentes');
+        Route::post('agentes/guardado', 'DatosAgentesController@guardarDatosAgentes');
         Route::get('agentes/{tipo}', 'DatosAgentesController@obtenerAgenteAnestesiaJson');
         Route::post('registrar', 'DatosAgentesController@guardarDatosAgentes');
         //Route::post('registro_tipo_agente/post', 'TipoAgenteAnestesiaController@store');

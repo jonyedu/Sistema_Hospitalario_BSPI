@@ -44,6 +44,12 @@ Route::group(['prefix' => 'modulos/parametrizacion', 'middleware' => ['auth:web'
 
 
 
+    /* SubModulo detalle de tiempo */
+    Route::namespace('Modulos\Parametrizacion\DetalleTiempo')->prefix('detalle_tiempo')->group(function () {
+        Route::get('cargar_detalle_tiempo', 'DetalleTiempoApiController@cargarDetalleTiempo');
+
+    });
+
     /* SubModulo Submodulo */
     Route::namespace('Modulos\Parametrizacion\SubModulo')->prefix('sub_modulo')->group(function () {
         Route::get('cargar_sub_modulo_combo_box/{id}', 'SubModuloApiController@cargarSubModuloComboBox');
