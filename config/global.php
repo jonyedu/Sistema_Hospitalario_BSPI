@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'router_prefix' => '/LeoBecerra',
+    'router_prefix' => '/LeonBecerra',
 ];

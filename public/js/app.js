@@ -2024,6 +2024,98 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     /* mostrar el botón deshacer y rehacer */
@@ -2036,15 +2128,60 @@ __webpack_require__.r(__webpack_exports__);
     validarConfirmarCandelar: function validarConfirmarCandelar(value) {
       this.$props.datos.respuesta = value;
       this.$emit("handleSeleccionarClick", this.$props.datos);
+    },
+    setSelectedRespiracion: function setSelectedRespiracion(value) {
+      if (value != null) {
+        this.$props.datos.ruta_icono = value.img;
+        this.$props.datos.valor = 0;
+        this.$props.datos.adicional.system_name = value.descripcion;
+      }
+    },
+    setSelectedPosicion: function setSelectedPosicion(value) {
+      if (value != null) {
+        this.$props.datos.ruta_icono = value.img;
+        this.$props.datos.valor = 0;
+        this.$props.datos.adicional.system_name = value.descripcion;
+      }
     }
   },
   mounted: function mounted() {},
   data: function data() {
     return {
       respuestaConfirmarCancelar: false,
-      form: {
-        valor: 0
-      }
+      respiraciones: [{
+        value: "ESP",
+        descripcion: "ESP",
+        img: "img/icons/esp.png"
+      }, {
+        value: "ASIS",
+        descripcion: "ASIS",
+        img: "img/icons/asis.png"
+      }, {
+        value: "CONT",
+        descripcion: "CONT",
+        img: "img/icons/cont.png"
+      }],
+      posiciones: [{
+        value: "BOCA_ARRIBA",
+        descripcion: "BOCA ARRIBA",
+        img: "img/icons/boca_arriba.png"
+      }, {
+        value: "BOCA ABAJO",
+        descripcion: "BOCA ABAJO",
+        img: "img/icons/boca_abajo.png"
+      }, {
+        value: "FETAL",
+        descripcion: "FETAL",
+        img: "img/icons/pos_fetal.png"
+      }, {
+        value: "SENTADO",
+        descripcion: "SENTADO",
+        img: "img/icons/pos_sentado.png"
+      }, {
+        value: "DE LADO",
+        descripcion: "DE LADO",
+        img: "img/icons/pos_lado.png"
+      }]
     };
   },
   computed: {}
@@ -2077,6 +2214,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4283,6 +4440,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           valor: 0
         },
         posicion: {
+          //idRe: 0,
           id: 0,
           descripcion: ""
         }
@@ -4382,7 +4540,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   beforeDestroy: function beforeDestroy() {},
   methods: {
-    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, t_fin, src, descripcion, valor, id, es_agente) {
+    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, t_fin, src, descripcion, valor, id, es_agente, es_posicion) {
       this.limpiarDatosEliminarAgente();
       this.datos_eliminar_agente.index = index;
       this.datos_eliminar_agente.index_fila = index_fila;
@@ -4391,14 +4549,44 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.datos_eliminar_agente.index_agente = index_agente;
       this.datos_eliminar_agente.is_tpo_init = t_init;
       this.datos_eliminar_agente.is_tpo_fin = t_fin;
-      this.datos_eliminar_agente.adicional = {
-        system_name: descripcion,
-        tipo: es_agente == true ? 'agente' : 'posicion'
-      };
+
+      if (es_agente && index_fila != 29) {
+        this.datos_eliminar_agente.adicional = {
+          system_name: descripcion,
+          tipo: "agente"
+        };
+      } else if (es_agente && index_fila == 29) {
+        this.datos_eliminar_agente.adicional = {
+          system_name: descripcion,
+          tipo: "respiracion"
+        };
+      } else if (es_posicion) {
+        this.datos_eliminar_agente.adicional = {
+          system_name: descripcion,
+          tipo: "posicion"
+        };
+      }
+
       this.datos_eliminar_agente.ruta_icono = src;
       this.datos_eliminar_agente.descripcion = descripcion;
       this.datos_eliminar_agente.valor = valor;
       this.datos_eliminar_agente.id = id;
+      this.$modal.show("EliminarAgente");
+    },
+    eliminarPosicion: function eliminarPosicion(index, index_fila, index_columna) {
+      var posicion = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+      this.limpiarDatosEliminarPosicion();
+      this.datos_eliminar_agente.index = index;
+      this.datos_eliminar_agente.index_fila = index_fila;
+      this.datos_eliminar_agente.index_columna = index_columna;
+      this.datos_eliminar_agente.adicional = {
+        system_name: posicion.descripcion,
+        tipo: "posicion"
+      };
+      this.datos_eliminar_agente.ruta_icono = posicion.img_url;
+      this.datos_eliminar_agente.descripcion = posicion.descripcion;
+      this.datos_eliminar_agente.valor = 0;
+      this.datos_eliminar_agente.id = posicion.idRe;
       this.$modal.show("EliminarAgente");
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
@@ -4410,64 +4598,102 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var adicional = value.adicional;
         var ruta_icono = value.ruta_icono;
         this.form.id_datos_agente = value.id;
-        var indice_fila = this.obtenerIndice(valor); //Recorrer el arreglo para saber en que posicion se debe guardar
-        // Verifica el índice según la hora
+        var indice_fila = this.obtenerIndice(valor);
 
-        var _iterator = _createForOfIteratorHelper(this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin),
-            _step;
+        if (adicional.tipo == "agente") {
+          //Recorrer el arreglo para saber en que posicion se debe guardar
+          // Verifica el índice según la hora
+          var _iterator = _createForOfIteratorHelper(this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin),
+              _step;
 
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var column_quince = _step.value;
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var column_quince = _step.value;
 
-            // Recorre cada fila
-            // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
-            if (column_quince.columnas) {
-              // figuras en rejillas
-              var _iterator2 = _createForOfIteratorHelper(column_quince.columnas),
-                  _step2;
+              // Recorre cada fila
+              // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
+              if (column_quince.columnas) {
+                // figuras en rejillas
+                var _iterator2 = _createForOfIteratorHelper(column_quince.columnas),
+                    _step2;
 
-              try {
-                for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                  var col_cince_min = _step2.value;
+                try {
+                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                    var col_cince_min = _step2.value;
 
-                  if (col_cince_min.t_init <= minutes && col_cince_min.t_fin > minutes) {
-                    if (minutes >= col_cince_min.t_init && col_cince_min.t_fin > minutes) {
-                      col_cince_min.agentes.push({
-                        descripcion: adicional.system_name,
-                        valor: valor,
-                        _src: ruta_icono
-                      }); // Agregar dato de envío
+                    if (col_cince_min.t_init <= minutes && col_cince_min.t_fin > minutes) {
+                      if (minutes >= col_cince_min.t_init && col_cince_min.t_fin > minutes) {
+                        col_cince_min.agentes.push({
+                          descripcion: adicional.system_name,
+                          valor: valor,
+                          _src: ruta_icono
+                        }); // Agregar dato de envío
 
-                      this.enviarDatosAgente({
-                        tpo_ini: is_tpo_init,
-                        tpo_fin: is_tpo_fin,
-                        hora: this.hour,
-                        min: this.minutes,
-                        segundos: this.seconds,
-                        valor: valor,
-                        name: adicional.system_name,
-                        indice_hora: this.indice_hora
-                      }, adicional.tipo);
+                        this.enviarDatosAgente({
+                          tpo_ini: is_tpo_init,
+                          tpo_fin: is_tpo_fin,
+                          hora: this.hour,
+                          min: this.minutes,
+                          segundos: this.seconds,
+                          valor: valor,
+                          name: adicional.system_name,
+                          indice_hora: this.indice_hora
+                        }, adicional.tipo);
+                      }
                     }
                   }
+                } catch (err) {
+                  _iterator2.e(err);
+                } finally {
+                  _iterator2.f();
                 }
-              } catch (err) {
-                _iterator2.e(err);
-              } finally {
-                _iterator2.f();
               }
             }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
           }
-          /* Esta linea eliminará el agente de la grafica */
 
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
+          this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+        } else if (adicional.tipo == "respiracion") {
+          this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.push({
+            descripcion: adicional.system_name,
+            valor: 0,
+            _src: ruta_icono
+          });
+          this.enviarDatosAgente({
+            tpo_ini: is_tpo_init,
+            tpo_fin: is_tpo_fin,
+            hora: this.hour,
+            min: this.minutes,
+            segundos: this.seconds,
+            valor: valor,
+            name: adicional.system_name,
+            indice_hora: this.indice_hora
+          }, adicional.tipo);
+          this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+        } else if (adicional.tipo == "posicion") {
+          this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].posicion = {
+            descripcion: adicional.system_name,
+            idRe: valor,
+            img_url: ruta_icono,
+            name_system: adicional.system_name
+          };
+          this.enviarDatosAgente({
+            tpo_ini: is_tpo_init,
+            tpo_fin: is_tpo_fin,
+            hora: this.hour,
+            min: this.minutes,
+            segundos: this.seconds,
+            valor: this.form.id_datos_agente,
+            name: adicional.system_name,
+            indice_hora: this.indice_hora
+          }, adicional.tipo);
         }
+        /* Esta linea eliminará el agente de la grafica */
 
-        this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+
         this.flashMessage.show({
           status: "success",
           title: "Éxito al procesar",
@@ -4491,12 +4717,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.datos_eliminar_agente.index_columna = "";
       this.datos_eliminar_agente.index_minutos_columna = "";
       this.datos_eliminar_agente.index_agente = "";
-      this.datos_eliminar_agente.minutes = "";
-      this.datos_eliminar_agente.adicional = "";
+      this.datos_eliminar_agente.is_tpo_init = "";
+      this.datos_eliminar_agente.is_tpo_fin = "";
+      this.datos_eliminar_agente.adicional.system_name = "";
+      this.datos_eliminar_agente.adicional.tipo = "";
       this.datos_eliminar_agente.ruta_icono = "";
       this.datos_eliminar_agente.descripcion = "";
       this.datos_eliminar_agente.valor = "";
       this.datos_eliminar_agente.valorNuevo = "";
+      this.datos_eliminar_agente.id = "";
+    },
+    limpiarDatosEliminarPosicion: function limpiarDatosEliminarPosicion() {
+      this.datos_eliminar_agente.index = "";
+      this.datos_eliminar_agente.index_fila = "";
+      this.datos_eliminar_agente.index_columna = "";
+      this.datos_eliminar_agente.index_minutos_columna = "";
+      this.datos_eliminar_agente.index_agente = "";
+      this.datos_eliminar_agente.is_tpo_init = "";
+      this.datos_eliminar_agente.is_tpo_fin = "";
+      this.datos_eliminar_agente.adicional.system_name = "";
+      this.datos_eliminar_agente.adicional.tipo = "";
+      this.datos_eliminar_agente.ruta_icono = "";
+      this.datos_eliminar_agente.descripcion = "";
+      this.datos_eliminar_agente.valor = "";
+      this.datos_eliminar_agente.valorNuevo = "";
+      this.datos_eliminar_agente.id = "";
     },
 
     /**
@@ -4534,19 +4779,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (es_posicion) {
               // posiciones
               if (column_quince.tiempo_inicio <= this.minutes && column_quince.tiempo_fin > this.minutes) {
-                // Agregar dato de envío
-                this.enviarDatosAgente({
-                  tpo_ini: is_tpo_init,
-                  tpo_fin: is_tpo_fin,
-                  hora: this.hour,
-                  min: this.minutes,
-                  segundos: this.seconds,
-                  valor: valor,
-                  name: adicional.system_name,
-                  indice_hora: this.indice_hora
-                }, adicional.tipo);
+                if (column_quince.posicion.id == 0) {
+                  // Agregar dato de envío
+                  this.enviarDatosAgente({
+                    tpo_ini: is_tpo_init,
+                    tpo_fin: is_tpo_fin,
+                    hora: this.hour,
+                    min: this.minutes,
+                    segundos: this.seconds,
+                    valor: valor,
+                    name: adicional.system_name,
+                    indice_hora: this.indice_hora
+                  }, adicional.tipo, es_posicion, {}, adicional.system_name, valor, ruta_icono, posicion, column_quince);
+                  return;
+                } //Pinta en la grafica los valores
+                //Si funciona, llevar este codigo a donde guarda en base
+
+                /* Object.assign(posicion,{nue:0});
                 column_quince.posicion = posicion;
-                return;
+                return; */
+
               }
             } else {
               // figuras en rejillas
@@ -4559,25 +4811,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                   if (col_cince_min.t_init <= this.minutes && col_cince_min.t_fin > this.minutes) {
                     if (this.minutes >= col_cince_min.t_init && col_cince_min.t_fin > this.minutes) {
-                      // Agregar dato de envío
-                      this.enviarDatosAgente({
-                        tpo_ini: is_tpo_init,
-                        tpo_fin: is_tpo_fin,
-                        hora: this.hour,
-                        min: this.minutes,
-                        segundos: this.seconds,
-                        valor: valor,
-                        name: adicional.system_name,
-                        indice_hora: this.indice_hora
-                      }, adicional.tipo, es_posicion, col_cince_min, adicional.system_name, valor, ruta_icono); //este trozo es donde tengo que enviar los datos el metodo enviarDatosAgente
-
-                      /* col_cince_min.agentes.push({
-                          descripcion: adicional.system_name,
-                           valor: valor,
-                          _src: ruta_icono,
-                          id: this.form.id_datos_agente
-                      }); */
-                      //await alert(this.form.id_datos_agente);
+                      if (col_cince_min.agentes.length == 0) {
+                        // Agregar dato de envío
+                        this.enviarDatosAgente({
+                          tpo_ini: is_tpo_init,
+                          tpo_fin: is_tpo_fin,
+                          hora: this.hour,
+                          min: this.minutes,
+                          segundos: this.seconds,
+                          valor: valor,
+                          name: adicional.system_name,
+                          indice_hora: this.indice_hora
+                        }, adicional.tipo, es_posicion, col_cince_min, adicional.system_name, valor, ruta_icono);
+                      }
                     }
 
                     return;
@@ -4626,13 +4872,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           loader.hide();
         })["catch"](function (error) {
-          //Errores
-
-          /* that.$swal({
-              icon: "error",
-              title: "Existe un error",
-              text: error
-          }); */
           that.flashMessage.show({
             status: "error",
             title: "Error al procesar consultarSello",
@@ -4670,13 +4909,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         });
       })["catch"](function (error) {
-        //Errores
-
-        /* that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
-        }); */
         that.flashMessage.show({
           status: "error",
           title: "Error al procesar getNewIdRegistroAnestesia",
@@ -4713,13 +4945,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         that.tipoPosiciones = tipoPosiciones;
         loader.hide();
       })["catch"](function (error) {
-        //Errores
-
-        /* that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
-        }); */
         that.flashMessage.show({
           status: "error",
           title: "Error al procesar setSelectedTipoPosiciones",
@@ -4756,13 +4981,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         that.salas = salas;
         loader.hide();
       })["catch"](function (error) {
-        //Errores
-
-        /* that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
-        }); */
         that.flashMessage.show({
           status: "error",
           title: "Error al procesar setSelectedSala",
@@ -4800,13 +5018,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         that.medicos = medicos;
         loader.hide();
       })["catch"](function (error) {
-        //Errores
-
-        /* that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
-        }); */
         that.flashMessage.show({
           status: "error",
           title: "Error al procesar setSelectedMedico",
@@ -4842,13 +5053,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.get(url + "/agente").then(function (response) {
         _this2.tabla_datos_grafica = response.data;
       })["catch"](function (error) {
-        //Errores
-
-        /* that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
-        }); */
         that.flashMessage.show({
           status: "error",
           title: "Error al procesar obtenerDatosAgentes",
@@ -4876,13 +5080,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.get(url + "/posicion").then(function (response) {
         _this3.posiciones = response.data;
       })["catch"](function (error) {
-        //Errores
-
-        /* that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
-        }); */
         that.flashMessage.show({
           status: "error",
           title: "Error al procesar obtenerDatosPosiciones",
@@ -4913,10 +5110,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var descripcion = arguments.length > 4 ? arguments[4] : undefined;
       var valor = arguments.length > 5 ? arguments[5] : undefined;
       var src = arguments.length > 6 ? arguments[6] : undefined;
-      var that = this; //var loader = that.$loading.show();
-
+      var posicion = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : {};
+      var column_quince = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : [];
+      var that = this;
       this.form.cirugia_id = this.$props.idSecCirPro;
-      var url = "/modulos/cirugia/anestesia/agentes/guardado/" + this.registro_id;
+      var url = "/modulos/cirugia/anestesia/agentes/guardado";
       axios.post(url, {
         id_datos_agente: this.form.id_datos_agente,
         registro_anestesia_id: this.form.registro_anestesia_id,
@@ -4924,7 +5122,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         tipo: tipo,
         SecCirPro: this.form.cirugia_id
       }).then(function (response) {
-        ///console.log(response.data);
         _this4.datos_server = response.data;
 
         if (es_posicion == false) {
@@ -4934,20 +5131,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             _src: src,
             id: response.data.datos
           });
+        } else {
+          Object.assign(posicion, {
+            idRe: response.data.datos
+          });
+          console.log(column_quince.posicion);
+          column_quince.posicion = posicion;
         }
 
         _this4.form.id_datos_agente = 0;
       })["catch"](function (error) {
-        //Errores
-
-        /* that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
-        }); */
         that.flashMessage.show({
           status: "error",
-          title: "Error al procesar obtenerDatosPosiciones",
+          title: "Error al procesar enviarDatosAgente",
           message: "Por favor comuníquese con el administrador. " + error,
           clickable: true,
           time: 0,
@@ -4957,14 +5153,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               background: "linear-gradient(#e66465, #9198e5)"
             }
           }
-        }); //loader.hide();
+        });
       });
     },
-
-    /* getIdAgente(id) {
-        let url = "/modulos/cirugia/anestesia/consultar_id_agente/" + id;
-        axios.get(url);
-    }, */
 
     /**
      * Inicio de la recolección de datos
@@ -4999,10 +5190,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 8:
                 $id = _context.sent;
                 this.$emit("guardarCabecera", this.form.registro_anestesia_id); //Guardar datos en la tabla tb_tipo_agente_anestesia
-                // let urlTip = "/modulos/cirugia/anestesia/registro_tipo_agente/post";
-                // axios.post(urlTip, this.form).then(response => {
-                //     this.form.agente_id = response.data.id;
-                // });
                 // Poner el dato al inicio de la rejilla cuando se haya iniciado
 
                 this.agregaDatoEnRejilla(true, false, 250, "img/icons/induccion.png", {
@@ -5047,9 +5234,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.mostrarModalConfirmarCandelar();
 
         if (this.resConfirmarCancelar) {
-          //if (!confirm("¿Desea cerrar el proceso?")) return;
-          //this.iniciado = false;
-          // Poner el dato al final de la rejilla cuando se haya finalizado
           this.agregaDatoEnRejilla(true, false, 0, "img/icons/fin_anestecia.png", {
             system_name: "FIN-ANESTECIA",
             tipo: this.system_agente
@@ -5068,9 +5252,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               }
             }
           });
-          this.getImgGrafica(idFlashMessage1); //this.flashMessage.deleteMessage(idFlashMessage1);
-          //Se guardan los datos a la base
-
+          this.getImgGrafica(idFlashMessage1);
           this.guardarDrograAdministrada();
         }
       } else {
@@ -5146,8 +5328,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       url = "/modulos/cirugia/anestesia/guardar_img_grafica";
       var loader = that.$loading.show();
       axios.post(url, formNew).then(function (response) {
-        //Llamar metodo de parent para que actualice el grid.
-        //that.guardarModificarAgenteText();
         that.flashMessage.show({
           status: "success",
           title: "Éxito al procesar Img. Gráfica",
@@ -5163,13 +5343,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
         loader.hide();
       })["catch"](function (error) {
-        //Errores de validación
-
-        /* that.$swal({
-            icon: "error",
-            title: "Error Guardar Imagen Grafica",
-            text: error
-        }); */
         that.resConfirmarCancelar = false;
         that.flashMessage.show({
           status: "error",
@@ -5214,15 +5387,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
         loader.hide();
       })["catch"](function (error) {
-        //Errores de validación
         loader.hide();
         that.resConfirmarCancelar = false;
-        /* that.$swal({
-            icon: "error",
-            title: "Error Guardar Drogas Administradas",
-            text: error
-        }); */
-
         that.flashMessage.show({
           status: "error",
           title: "Error al procesar guardarDrograAdministrada",
@@ -5261,15 +5427,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         });
       })["catch"](function (error) {
-        //Errores de validación
         loader.hide();
         that.resConfirmarCancelar = false;
-        /* that.$swal({
-            icon: "error",
-            title: "Error Modificar Registro Administradas",
-            text: error
-        }); */
-
         that.flashMessage.show({
           status: "error",
           title: "Error al procesar modifcarRegistroAnestesia",
@@ -5296,13 +5455,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       url = "/modulos/cirugia/anestesia/guardar_registro_infusiones";
       var loader = that.$loading.show();
       axios.post(url, formNew).then(function (response) {
-        //Llamar metodo de parent para que actualice el grid.
-
-        /* that.$swal({
-            icon: "success",
-            title: "Proceso realizado exitosamente",
-            text: "Datos guardados correctamente."
-        }); */
         that.guardarFirmaPorAtencion();
         that.flashMessage.show({
           status: "success",
@@ -5319,13 +5471,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
         loader.hide();
       })["catch"](function (error) {
-        //Errores de validación
-
-        /* that.$swal({
-            icon: "error",
-            title: "Error Guardar Infusiones",
-            text: error
-        }); */
         that.resConfirmarCancelar = false;
         that.flashMessage.show({
           status: "error",
@@ -5354,13 +5499,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
       var loader = that.$loading.show();
       axios.post(url, formNew).then(function (response) {
-        //Llamar metodo de parent para que actualice el grid.
-
-        /* that.$swal({
-            icon: "success",
-            title: "Proceso realizado exitosamente",
-            text: "Datos guardados correctamente."
-        }); */
         loader.hide();
         that.flashMessage.show({
           status: "success",
@@ -5375,32 +5513,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
           }
         });
-        /* var idFlashMessage1 = that.flashMessage.show({
-            status: "info",
-            title: "Generando Gráfica",
-            message: "Se está generando la gráfica, por favor espere.",
-            clickable: false,
-            time: 0,
-            icon: "/iconsflashMessage/time.gif",
-            blockClass: 'custom_msg',
-            customStyle: {
-                flashMessageStyle: {
-                    background: "linear-gradient(#e66465, #9198e5)"
-                }
-            }
-        }); */
-        //that.getImgGrafica(idFlashMessage1);
-        //that.flashMessage.deleteMessage(idFlashMessage1);
-
         that.guardarModificarAgenteText();
       })["catch"](function (error) {
-        //Errores de validación
-
-        /* that.$swal({
-            icon: "error",
-            title: "Error Guardar Firma por Atención",
-            text: error
-        }); */
         that.resConfirmarCancelar = false;
         that.flashMessage.show({
           status: "error",
@@ -5431,11 +5545,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       url = "/modulos/cirugia/anestesia/guardar_modificar_agente_text";
       var loader = that.$loading.show();
       axios.post(url, formNew).then(function (response) {
-        /* that.$swal({
-            icon: "success",
-            title: "Proceso realizado exitosamente",
-            text: "Datos guardados correctamente."
-        }); */
         that.flashMessage.show({
           status: "success",
           title: "Éxito al procesar Modificar Agente Text",
@@ -5458,13 +5567,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         that.iniciado = false;
         loader.hide();
       })["catch"](function (error) {
-        //Errores de validación
-
-        /* that.$swal({
-            icon: "error",
-            title: "Error Guardar Agente Text",
-            text: error
-        }); */
         that.flashMessage.show({
           status: "error",
           title: "Error al procesar guardarModificarAgenteText",
@@ -5685,19 +5787,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (!this.iniciado) return;
 
       if (this.validarCampoAgente()) {
-        /* this.flashMessage.show({
-            status: "warning",
-            title: "Advertencia Campos Vacios",
-            message: "Complete los campos de agente por favor.",
-            clickable: true,
-            time: 0,
-            icon: "/iconsflashMessage/warning.svg",
-            customStyle: {
-                flashMessageStyle: {
-                    background: "linear-gradient(#e66465, #9198e5)"
-                }
-            }
-        }); */
         return;
       } //console.log(this.valoresFormulario);
 
@@ -6741,7 +6830,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       form: {
-        idCirugiaProgramada: "",
+        idCirugiaProgramada: "0001",
         idCirugiaProgramadaTemporal: "",
         registro_anestesia_id: 0,
 
@@ -58199,106 +58288,268 @@ var render = function() {
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-          _c("div", { staticClass: "row" }, [
-            _c(
-              "div",
-              { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
+          _c(
+            "div",
+            { staticClass: "row" },
+            [
+              _c(
+                "div",
+                { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
+                [
+                  _c("img", {
+                    staticClass: "mt-5 mb-5",
+                    staticStyle: { margin: "auto" },
+                    attrs: { src: "/" + _vm.datos.ruta_icono, alt: "no carga" }
+                  })
+                ]
+              ),
+              _vm._v(" "),
               [
-                _c("img", {
-                  staticClass: "mt-5 mb-5",
-                  staticStyle: { margin: "auto" },
-                  attrs: { src: "/" + _vm.datos.ruta_icono, alt: "no carga" }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
+                _vm.datos.adicional.tipo == "agente"
+                  ? [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "col-lg-12 col-md-12 col-sm-12 text-left"
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.datos.descripcion,
+                                expression: "datos.descripcion"
+                              }
+                            ],
+                            staticClass:
+                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                            attrs: {
+                              disabled: "",
+                              type: "text",
+                              placeholder: "Agente"
+                            },
+                            domProps: { value: _vm.datos.descripcion },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.datos,
+                                  "descripcion",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  : _vm._e()
+              ],
+              _vm._v(" "),
               [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.datos.descripcion,
-                      expression: "datos.descripcion"
-                    }
-                  ],
-                  staticClass:
-                    "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                  attrs: { disabled: "", type: "text", placeholder: "Agente" },
-                  domProps: { value: _vm.datos.descripcion },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.datos, "descripcion", $event.target.value)
-                    }
-                  }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
+                _vm.datos.adicional.tipo == "agente"
+                  ? [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "col-lg-12 col-md-12 col-sm-12 text-left"
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.datos.valor,
+                                expression: "datos.valor"
+                              }
+                            ],
+                            staticClass:
+                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                            attrs: {
+                              disabled: "",
+                              type: "number",
+                              placeholder: "Valor"
+                            },
+                            domProps: { value: _vm.datos.valor },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.datos,
+                                  "valor",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  : _vm.datos.adicional.tipo == "respiracion"
+                  ? [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "col-lg-12 col-md-12 col-sm-12 text-left"
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.datos.adicional.system_name,
+                                expression: "datos.adicional.system_name"
+                              }
+                            ],
+                            staticClass:
+                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                            attrs: {
+                              disabled: "",
+                              type: "text",
+                              placeholder: "Agente"
+                            },
+                            domProps: {
+                              value: _vm.datos.adicional.system_name
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.datos.adicional,
+                                  "system_name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  : _vm.datos.adicional.tipo == "posicion"
+                  ? [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "col-lg-12 col-md-12 col-sm-12 text-left"
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.datos.adicional.system_name,
+                                expression: "datos.adicional.system_name"
+                              }
+                            ],
+                            staticClass:
+                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                            attrs: {
+                              disabled: "",
+                              type: "text",
+                              placeholder: "Agente"
+                            },
+                            domProps: {
+                              value: _vm.datos.adicional.system_name
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.datos.adicional,
+                                  "system_name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  : _vm._e()
+              ],
+              _vm._v(" "),
               [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.datos.valor,
-                      expression: "datos.valor"
-                    }
-                  ],
-                  staticClass:
-                    "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                  attrs: { disabled: "", type: "number", placeholder: "Valor" },
-                  domProps: { value: _vm.datos.valor },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.datos, "valor", $event.target.value)
-                    }
-                  }
-                })
+                _vm.datos.adicional.tipo == "agente"
+                  ? [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "col-lg-12 col-md-12 col-sm-12 text-left"
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.datos.valorNuevo,
+                                expression: "datos.valorNuevo"
+                              }
+                            ],
+                            staticClass:
+                              "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                            attrs: {
+                              type: "number",
+                              placeholder: "Nuevo valor"
+                            },
+                            domProps: { value: _vm.datos.valorNuevo },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.datos,
+                                  "valorNuevo",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  : _vm.datos.adicional.tipo == "respiracion"
+                  ? [
+                      _c("v-select", {
+                        staticClass: "col-lg-12 col-md-12 col-sm-12",
+                        attrs: {
+                          value: _vm.respiraciones.value,
+                          options: _vm.respiraciones,
+                          label: "descripcion"
+                        },
+                        on: { input: _vm.setSelectedRespiracion }
+                      })
+                    ]
+                  : _vm.datos.adicional.tipo == "posicion"
+                  ? [
+                      _c("v-select", {
+                        staticClass: "col-lg-12 col-md-12 col-sm-12",
+                        attrs: {
+                          value: _vm.posiciones.value,
+                          options: _vm.posiciones,
+                          label: "descripcion"
+                        },
+                        on: { input: _vm.setSelectedPosicion }
+                      })
+                    ]
+                  : _vm._e()
               ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-12 col-md-12 col-sm-12 text-left" },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.datos.valorNuevo,
-                      expression: "datos.valorNuevo"
-                    }
-                  ],
-                  staticClass:
-                    "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                  attrs: { type: "number", placeholder: "Nuevo valor" },
-                  domProps: { value: _vm.datos.valorNuevo },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.datos, "valorNuevo", $event.target.value)
-                    }
-                  }
-                })
-              ]
-            )
-          ]),
+            ],
+            2
+          ),
           _vm._v(" "),
           _c(
             "div",
@@ -59644,7 +59895,8 @@ var render = function() {
                                                                                   agente.descripcion,
                                                                                   agente.valor,
                                                                                   agente.id,
-                                                                                  dato.es_agente
+                                                                                  dato.es_agente,
+                                                                                  dato.es_posicion
                                                                                 )
                                                                               }
                                                                             }
@@ -59705,21 +59957,49 @@ var render = function() {
                                                         [
                                                           columna.posicion.id !=
                                                           0
-                                                            ? _c("img", {
-                                                                staticClass:
-                                                                  "ml-3",
-                                                                staticStyle: {
-                                                                  width: "70px"
+                                                            ? _c(
+                                                                "a",
+                                                                {
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      return _vm.eliminarPosicion(
+                                                                        index,
+                                                                        index_fila,
+                                                                        index_columna,
+                                                                        columna.posicion
+                                                                      )
+                                                                    }
+                                                                  }
                                                                 },
-                                                                attrs: {
-                                                                  src:
-                                                                    "/" +
-                                                                    columna
-                                                                      .posicion
-                                                                      .img_url,
-                                                                  alt: ""
-                                                                }
-                                                              })
+                                                                [
+                                                                  columna
+                                                                    .posicion
+                                                                    .id != 0
+                                                                    ? _c(
+                                                                        "img",
+                                                                        {
+                                                                          staticClass:
+                                                                            "ml-3",
+                                                                          staticStyle: {
+                                                                            width:
+                                                                              "70px"
+                                                                          },
+                                                                          attrs: {
+                                                                            src:
+                                                                              "/" +
+                                                                              columna
+                                                                                .posicion
+                                                                                .img_url,
+                                                                            alt:
+                                                                              ""
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    : _vm._e()
+                                                                ]
+                                                              )
                                                             : _vm._e()
                                                         ]
                                                       )
@@ -99325,7 +99605,7 @@ var prefijo = _variables__WEBPACK_IMPORTED_MODULE_1__["prefix"];
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prefix", function() { return prefix; });
-var prefix = "/LeoBecerra";
+var prefix = "/LeonBecerra";
 
 /***/ }),
 
