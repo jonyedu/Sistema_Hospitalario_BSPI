@@ -546,26 +546,11 @@
                                                                                     index_columna,
                                                                                     index_minutos_columna,
                                                                                     index_agente,
-<<<<<<< HEAD
                                                                                     minutos_columna['t_init'],
                                                                                     agente._src,
                                                                                     agente.descripcion,
                                                                                     agente.valor,
                                                                                     agente.id
-=======
-                                                                                    minutos_columna[
-                                                                                        't_init'
-                                                                                    ],
-                                                                                    minutos_columna[
-                                                                                        't_fin'
-                                                                                    ],
-                                                                                    agente._src,
-                                                                                    agente.descripcion,
-                                                                                    agente.valor,
-                                                                                    agente.id,
-                                                                                    dato.es_agente,
-                                                                                    dato.es_posicion
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
                                                                                 )
                                                                             "
                                                                             ><img
@@ -1932,7 +1917,7 @@
                                         @RespuestaImgFirma="
                                             validarImgFirma = $event
                                         "
-                                        
+
                                         :hidePaintable="true"
                                         :isFirstPaintable="isFirstPaintable"
                                         :disableNavigation="true"
@@ -2454,13 +2439,7 @@ export default {
             src,
             descripcion,
             valor,
-<<<<<<< HEAD
             id
-=======
-            id,
-            es_agente,
-            es_posicion
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
         ) {
             this.limpiarDatosEliminarAgente();
             this.datos_eliminar_agente.index = index;
@@ -2468,29 +2447,8 @@ export default {
             this.datos_eliminar_agente.index_columna = index_columna;
             this.datos_eliminar_agente.index_minutos_columna = index_minutos_columna;
             this.datos_eliminar_agente.index_agente = index_agente;
-<<<<<<< HEAD
             this.datos_eliminar_agente.minutes = t_init;
             this.datos_eliminar_agente.adicional = { system_name: descripcion };
-=======
-            this.datos_eliminar_agente.is_tpo_init = t_init;
-            this.datos_eliminar_agente.is_tpo_fin = t_fin;
-            if (es_agente && index_fila != 29) {
-                this.datos_eliminar_agente.adicional = {
-                    system_name: descripcion,
-                    tipo: "agente"
-                };
-            } else if (es_agente && index_fila == 29) {
-                this.datos_eliminar_agente.adicional = {
-                    system_name: descripcion,
-                    tipo: "respiracion"
-                };
-            } else if (es_posicion) {
-                this.datos_eliminar_agente.adicional = {
-                    system_name: descripcion,
-                    tipo: "posicion"
-                };
-            }
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
             this.datos_eliminar_agente.ruta_icono = src;
             this.datos_eliminar_agente.descripcion = descripcion;
             this.datos_eliminar_agente.valor = valor;
@@ -2782,19 +2740,11 @@ export default {
         },
         consultarSello() {
             let that = this;
-<<<<<<< HEAD
             if (this.form.id_medico > 0) {
                 var loader = that.$loading.show();
                 let url =
                     "/modulos/cirugia/anestesia/cargar_sello/" +
                     this.form.id_medico;
-=======
-            if (this.$props.user.id > 0) {
-                var loader = that.$loading.show();
-                let url =
-                    "/modulos/cirugia/anestesia/cargar_sello/" +
-                    this.$props.user.id;
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
                 axios
                     .get(url)
                     .then(function(response) {
@@ -3092,13 +3042,8 @@ export default {
                 })
                 .then(response => {
                     this.datos_server = response.data;
-<<<<<<< HEAD
                     if(es_posicion == false){
                             col_cince_min.agentes.push({
-=======
-                    if (es_posicion == false) {
-                        col_cince_min.agentes.push({
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
                             descripcion: descripcion,
                             valor: valor,
                             _src: src,
@@ -3636,12 +3581,7 @@ export default {
                 });
                 return validarCampo;
             }
-<<<<<<< HEAD
             if(this.valoresFormulario.valor_pulso.valor == undefined || this.valoresFormulario.valor_pulso.valor == 0){
-=======
-
-            if (this.valoresFormulario.respiracion.descripcion == undefined) {
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
                 validarCampo = true;
                 this.flashMessage.show({
                     status: "warning",
@@ -3658,7 +3598,6 @@ export default {
                 });
                 return validarCampo;
             }
-<<<<<<< HEAD
             if(this.chk.respiracion){
                 if(this.valoresFormulario.respiracion.valor == undefined || this.valoresFormulario.respiracion.valor == 0){
                     validarCampo = true;
@@ -3680,14 +3619,6 @@ export default {
             }
             if(this.chk.temperatura){
                 if(this.valoresFormulario.temperatura.valor == undefined || this.valoresFormulario.temperatura.valor == 0){
-=======
-
-            if (this.chk.temperatura) {
-                if (
-                    this.valoresFormulario.temperatura.valor == undefined ||
-                    this.valoresFormulario.temperatura.valor == 0
-                ) {
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
                     validarCampo = true;
                     this.flashMessage.show({
                         status: "warning",
@@ -3771,11 +3702,7 @@ export default {
                     return validarCampo;
                 }
             }
-<<<<<<< HEAD
             if(this.valoresFormulario.posicion.descripcion == ""){
-=======
-            if (this.valoresFormulario.posicion.descripcion == undefined) {
->>>>>>> b43496f5264fc833e34ef276b884db8ad964385a
                 validarCampo = true;
                 this.flashMessage.show({
                     status: "warning",
