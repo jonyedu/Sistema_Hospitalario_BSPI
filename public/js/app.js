@@ -2193,19 +2193,18 @@ __webpack_require__.r(__webpack_exports__);
       //Variables para la Tabla
       registros_tiempos: [],
       form: {
-        id_cirugia_programada: 1,
+        id_cirugia_programada: 0,
         id_detalle_tiempo: 0,
         id_registro_tiempo: 0,
         //Variables para el ComboBox
         selected_detalle_tiempo: "",
-        detalles_tiempos: []
+        detalles_tiempos: [],
+        nombre: ""
       }
     };
   },
   mounted: function mounted() {
     this.flashMessage.setStrategy("multiple");
-    this.setSelectedDetalleTiempo();
-    this.cargarRegistroTiempoPorSecCirPro();
     this.prefijo = _variables__WEBPACK_IMPORTED_MODULE_0__["prefix"];
   },
   beforeDestroy: function beforeDestroy() {
@@ -2246,16 +2245,27 @@ __webpack_require__.r(__webpack_exports__);
               }
             }); //loader.hide();
           } else {
-            that.cargarDiagnosticoPorCodigo(value);
+            that.form.nombre = value.nombrePaciente;
+            that.form.id_cirugia_programada = value.SecCirPro;
+            that.setSelectedDetalleTiempo();
+            that.cargarRegistroTiempoPorSecCirPro();
+            that.$modal.hide("ListaCirugiaProgramadaPaciente");
           }
         })["catch"](function (error) {
-          //Errores
-          //loader.hide();
-          that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar handleSeleccionarClick",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
           });
+          loader.hide();
         });
       }
     },
@@ -6380,7 +6390,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
 
-      if (this.valoresFormulario.posicion.descripcion == "") {
+      if (this.valoresFormulario.posicion.id == 0) {
         validarCampo = true;
         this.flashMessage.show({
           status: "warning",
@@ -59353,7 +59363,7 @@ var render = function() {
                             [
                               _vm._v(
                                 "\n                                Registro del Tiempo del Paciente\n                                " +
-                                  _vm._s(_vm.form.paciente) +
+                                  _vm._s(_vm.form.nombre) +
                                   "\n                            "
                               )
                             ]
