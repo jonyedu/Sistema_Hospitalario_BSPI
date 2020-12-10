@@ -22,7 +22,25 @@
                     class="badge badge-warning  col-lg-4 col-md-4 col-sm-4"
                     style="font-size: 1.0em"
                 >
-                    Tiempo: <span><input class="col-lg-2 col-md-2 col-sm-2" v-model="hour" type="text">:</span><span><input class="col-lg-2 col-md-2 col-sm-2" v-model="minutes" type="text">:</span><span><input class="col-lg-2 col-md-2 col-sm-2" v-model="seconds" type="text"></span>
+                    Tiempo:
+                    <span
+                        ><input
+                            class="col-lg-2 col-md-2 col-sm-2"
+                            v-model="hour"
+                            type="text"
+                        />:</span
+                    ><span
+                        ><input
+                            class="col-lg-2 col-md-2 col-sm-2"
+                            v-model="minutes"
+                            type="text"
+                        />:</span
+                    ><span
+                        ><input
+                            class="col-lg-2 col-md-2 col-sm-2"
+                            v-model="seconds"
+                            type="text"
+                    /></span>
                 </p>
                 <span v-if="iniciado">
                     <button
@@ -546,11 +564,18 @@
                                                                                     index_columna,
                                                                                     index_minutos_columna,
                                                                                     index_agente,
-                                                                                    minutos_columna['t_init'],
+                                                                                    minutos_columna[
+                                                                                        't_init'
+                                                                                    ],
+                                                                                    minutos_columna[
+                                                                                        't_fin'
+                                                                                    ],
                                                                                     agente._src,
                                                                                     agente.descripcion,
                                                                                     agente.valor,
-                                                                                    agente.id
+                                                                                    agente.id,
+                                                                                    dato.es_agente,
+                                                                                    dato.es_posicion
                                                                                 )
                                                                             "
                                                                             ><img
@@ -1917,7 +1942,6 @@
                                         @RespuestaImgFirma="
                                             validarImgFirma = $event
                                         "
-
                                         :hidePaintable="true"
                                         :isFirstPaintable="isFirstPaintable"
                                         :disableNavigation="true"
@@ -1926,7 +1950,7 @@
                                         :rutaImagen="rutaSello"
                                         :width="800"
                                         :height="800"
-                                        ref="paintFirma2"
+                                        ref="paintFirma"
                                     ></vue-painttable>
                                 </span>
                                 <span class="col-md-12 text-center"
@@ -2000,6 +2024,7 @@ export default {
                 valor: 0,
                 valorNuevo: 0,
                 respuesta: false,
+                respuestaEliminar: false,
                 id: 0
             },
             resConfirmarCancelar: false,
@@ -2013,7 +2038,7 @@ export default {
             medicos: [],
             validarImgFirma: 0,
             isFirstPaintable: "firmaAnestesiologo",
-            rutaSello: "/img/selloFirma.png",
+            rutaSello: "", ///img/selloFirma.png
             validarFinProceso: "",
             validarImprimir: 0,
             selectedTipoPosiciones: "",
@@ -2096,7 +2121,6 @@ export default {
                 id_medico: 0,
                 hora: "00:00",
                 /* Fin Datos para modificar registro anestesico */
-
                 /* Datos para guardar en la tabla infusiones */
                 infusiones: [
                     {
@@ -2138,7 +2162,6 @@ export default {
                 ],
                 total: 0,
                 /* Fin Datos para guardar en la tabla infusiones */
-
                 /* Datos para guardar firma */
                 imgFirma: null,
                 imgGrafica: null
@@ -2161,7 +2184,6 @@ export default {
             /**
              * End
              */
-
             /**
              * Datos para el registro de la rejilla
              */
@@ -2275,7 +2297,6 @@ export default {
                     descripcion: ""
                 }
             },
-
             //   VALORES A ENVIAR AL SERVER
             datos_anestecia_envio: [],
             datos_server: []
@@ -2299,15 +2320,12 @@ export default {
             var hora = this.$funcionesGlobales.addCeroToTime(this.hour);
             tiempo = hora + ":" + minuto + ":" + segundo;
             return tiempo; */
-
             /* var tiempo = 0;
             this.datos_tiempo.segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
             this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
             this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour); */
             //tiempo = hora + ":" + minuto + ":" + segundo;
             //return tiempo;
-
-
         }
     },
     mounted: function() {
@@ -2315,7 +2333,6 @@ export default {
         this.datos_tiempo.minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
         this.datos_tiempo.hora = this.$funcionesGlobales.addCeroToTime(this.hour);
         alert(this.datos_tiempo.segundo); */
-
         /* Obtengo los datos para añadir 0 */
         var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
         var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
@@ -2324,8 +2341,6 @@ export default {
         this.seconds = segundo;
         this.minutes = minuto;
         this.hour = hora;
-
-
         this.flashMessage.setStrategy("multiple");
         this.form.cirugia_id = this.$props.idSecCirPro;
         /**
@@ -2361,7 +2376,6 @@ export default {
                         this.agregarHora();
                         //this.lista_horas_avanzadas_v = [];
                         this.agregarHorasInicial();
-
                         //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
                         if (this.indice_hora % 5 == 0) {
                             this.getNewIdRegistroAnestesia();
@@ -2383,22 +2397,56 @@ export default {
     },
     beforeDestroy: function() {},
     methods: {
-        agregarObjetoPorHora(){
+        agregarObjetoPorHora() {
             // Validar que se haya guardado todos los valores
-
             //var valor;
             //this.lista_horas_avanzadas_v[this.indice_hora].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes
             var acumulador = 0;
             for (let i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
                 if (this.lista_horas_avanzadas_v[i] != "") {
                     if (i == this.indice_hora) {
-                        for (let j = 0;j < this.lista_horas_avanzadas_v[i].datos.length;j++) {
-                            if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
-                                for (let k = 0;k <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length;k++) {
-                                    if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
-                                        for (let l = 0;l <this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length;l++) {
-                                            if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
-                                                if(this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l].agentes.length > 0){
+                        for (
+                            let j = 0;
+                            j < this.lista_horas_avanzadas_v[i].datos.length;
+                            j++
+                        ) {
+                            if (
+                                this.lista_horas_avanzadas_v[i].datos[j] != ""
+                            ) {
+                                for (
+                                    let k = 0;
+                                    k <
+                                    this.lista_horas_avanzadas_v[i].datos[j]
+                                        .columnasQuinceMin.length;
+                                    k++
+                                ) {
+                                    if (
+                                        this.lista_horas_avanzadas_v[i].datos[j]
+                                            .columnasQuinceMin[k] != ""
+                                    ) {
+                                        for (
+                                            let l = 0;
+                                            l <
+                                            this.lista_horas_avanzadas_v[i]
+                                                .datos[j].columnasQuinceMin[k]
+                                                .columnas.length;
+                                            l++
+                                        ) {
+                                            if (
+                                                this.lista_horas_avanzadas_v[i]
+                                                    .datos[j].columnasQuinceMin[
+                                                    k
+                                                ].columnas != ""
+                                            ) {
+                                                if (
+                                                    this
+                                                        .lista_horas_avanzadas_v[
+                                                        i
+                                                    ].datos[j]
+                                                        .columnasQuinceMin[k]
+                                                        .columnas[l].agentes
+                                                        .length > 0
+                                                ) {
                                                     acumulador += 1;
                                                 }
                                             }
@@ -2410,7 +2458,7 @@ export default {
                     }
                 }
             }
-            if(acumulador >= 4){
+            if (acumulador >= 4) {
                 acumulador = 0;
                 this.indice_hora += 1;
                 this.iniciado_eliminar = true;
@@ -2418,14 +2466,13 @@ export default {
                 //arreglo de datos
                 this.agregarHora();
             }
-
         },
-        eliminarObjetoPorHora(){
-            if(this.lista_horas_avanzadas_v.length > 1){
+        eliminarObjetoPorHora() {
+            if (this.lista_horas_avanzadas_v.length > 1) {
                 this.lista_horas_avanzadas_v.splice(this.indice_hora, 1);
                 this.indice_hora -= 1;
             }
-            if(this.lista_horas_avanzadas_v.length == 1){
+            if (this.lista_horas_avanzadas_v.length == 1) {
                 this.iniciado_eliminar = false;
             }
         },
@@ -2436,10 +2483,13 @@ export default {
             index_minutos_columna,
             index_agente,
             t_init,
+            t_fin,
             src,
             descripcion,
             valor,
-            id
+            id,
+            es_agente,
+            es_posicion
         ) {
             this.limpiarDatosEliminarAgente();
             this.datos_eliminar_agente.index = index;
@@ -2447,8 +2497,24 @@ export default {
             this.datos_eliminar_agente.index_columna = index_columna;
             this.datos_eliminar_agente.index_minutos_columna = index_minutos_columna;
             this.datos_eliminar_agente.index_agente = index_agente;
-            this.datos_eliminar_agente.minutes = t_init;
-            this.datos_eliminar_agente.adicional = { system_name: descripcion };
+            this.datos_eliminar_agente.is_tpo_init = t_init;
+            this.datos_eliminar_agente.is_tpo_fin = t_fin;
+            if (es_agente && index_fila != 29) {
+                this.datos_eliminar_agente.adicional = {
+                    system_name: descripcion,
+                    tipo: "agente"
+                };
+            } else if (es_agente && index_fila == 29) {
+                this.datos_eliminar_agente.adicional = {
+                    system_name: descripcion,
+                    tipo: "respiracion"
+                };
+            } else if (es_posicion) {
+                this.datos_eliminar_agente.adicional = {
+                    system_name: descripcion,
+                    tipo: "posicion"
+                };
+            }
             this.datos_eliminar_agente.ruta_icono = src;
             this.datos_eliminar_agente.descripcion = descripcion;
             this.datos_eliminar_agente.valor = valor;
@@ -2472,8 +2538,11 @@ export default {
         },
         handleSeleccionarClick(value) {
             if (value.respuesta) {
+                alert(value.respuesta);
                 var valor = parseInt(value.valorNuevo);
-                var minutes = value.minutes;
+                var minutes = value.is_tpo_init;
+                var is_tpo_init = value.is_tpo_init;
+                var is_tpo_fin = value.is_tpo_fin;
                 var adicional = value.adicional;
                 var ruta_icono = value.ruta_icono;
                 this.form.id_datos_agente = value.id;
@@ -2522,9 +2591,17 @@ export default {
                             }
                         }
                     }
-                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+                    this.lista_horas_avanzadas_v[value.index].datos[
+                        value.index_fila
+                    ].columnasQuinceMin[value.index_columna].columnas[
+                        value.index_minutos_columna
+                    ].agentes.splice(value.indexLista, 1);
                 } else if (adicional.tipo == "respiracion") {
-                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.push({
+                    this.lista_horas_avanzadas_v[value.index].datos[
+                        value.index_fila
+                    ].columnasQuinceMin[value.index_columna].columnas[
+                        value.index_minutos_columna
+                    ].agentes.push({
                         descripcion: adicional.system_name,
                         valor: 0,
                         _src: ruta_icono
@@ -2542,9 +2619,15 @@ export default {
                         },
                         adicional.tipo
                     );
-                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+                    this.lista_horas_avanzadas_v[value.index].datos[
+                        value.index_fila
+                    ].columnasQuinceMin[value.index_columna].columnas[
+                        value.index_minutos_columna
+                    ].agentes.splice(value.indexLista, 1);
                 } else if (adicional.tipo == "posicion") {
-                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].posicion = {
+                    this.lista_horas_avanzadas_v[value.index].datos[
+                        value.index_fila
+                    ].columnasQuinceMin[value.index_columna].posicion = {
                         descripcion: adicional.system_name,
                         idRe: valor,
                         img_url: ruta_icono,
@@ -2569,6 +2652,34 @@ export default {
                     status: "success",
                     title: "Éxito al procesar",
                     message: "Agente Modificado Correctamente",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/success.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background: "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+            } else if (value.respuestaEliminar) {
+                var adicional = value.adicional;
+                if (adicional.tipo == "agente") {
+                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+                } else if (adicional.tipo == "respiracion") {
+                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+                } else if (adicional.tipo == "posicion") {
+                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].posicion = {
+                        descripcion: "",
+                        idRe: "",
+                        img_url: "",
+                        name_system: ""
+                    };
+                }
+                /* Esta linea eliminará el agente de la grafica */
+                this.flashMessage.show({
+                    status: "success",
+                    title: "Éxito al procesar",
+                    message: "Agente Eliminados Correctamente",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/success.svg",
@@ -2637,7 +2748,6 @@ export default {
             // if(posicion)debugger
             var indice_fila =
                 fila_indice != 0 ? fila_indice : this.obtenerIndice(valor);
-
             // Verifica el índice según la hora
             for (const column_quince of this.lista_horas_avanzadas_v[
                 this.indice_hora
@@ -2652,7 +2762,7 @@ export default {
                             column_quince.tiempo_inicio <= this.minutes &&
                             column_quince.tiempo_fin > this.minutes
                         ) {
-                            if(column_quince.posicion.id == 0){
+                            if (column_quince.posicion.id == 0) {
                                 // Agregar dato de envío
                                 this.enviarDatosAgente(
                                     {
@@ -2676,8 +2786,6 @@ export default {
                                 );
                                 return;
                             }
-
-
                             //Pinta en la grafica los valores
                             //Si funciona, llevar este codigo a donde guarda en base
                             /* Object.assign(posicion,{nue:0});
@@ -2695,7 +2803,7 @@ export default {
                                     this.minutes >= col_cince_min.t_init &&
                                     col_cince_min.t_fin > this.minutes
                                 ) {
-                                    if(col_cince_min.agentes.length == 0){
+                                    if (col_cince_min.agentes.length == 0) {
                                         // Agregar dato de envío
                                         this.enviarDatosAgente(
                                             {
@@ -2740,19 +2848,29 @@ export default {
         },
         consultarSello() {
             let that = this;
-            if (this.form.id_medico > 0) {
+            if (this.$props.user.id > 0) {
                 var loader = that.$loading.show();
                 let url =
                     "/modulos/cirugia/anestesia/cargar_sello/" +
-                    this.form.id_medico;
+                    this.$props.user.id;
                 axios
                     .get(url)
                     .then(function(response) {
                         if (response.data.sello != null) {
                             if (response.data.sello.seguridad_medico != null) {
-                                if (response.data.sello.seguridad_medico.medico != null) {
-                                    if (response.data.sello.seguridad_medico.medico.medico_sellos != null) {
-                                        that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
+                                if (
+                                    response.data.sello.seguridad_medico
+                                        .medico != null
+                                ) {
+                                    if (
+                                        response.data.sello.seguridad_medico
+                                            .medico.medico_sellos != null
+                                    ) {
+                                        that.rutaSello =
+                                            "data:image/jpeg;base64," +
+                                            response.data.sello.seguridad_medico
+                                                .medico.medico_sellos
+                                                .IMAGEN_SELLO;
                                     }
                                 }
                             }
@@ -2783,7 +2901,6 @@ export default {
         getNewIdRegistroAnestesia() {
             if (this.iniciado) return;
             this.iniciado = true;
-
             let url = "/modulos/cirugia/anestesia/registro/post";
             axios
                 .post(url, this.form)
@@ -2914,7 +3031,7 @@ export default {
             if (value != null) {
                 this.form.id_medico = value.id_medico;
                 loader.hide();
-                this.consultarSello();
+                //this.consultarSello();
             }
             axios
                 .get(url)
@@ -3031,7 +3148,7 @@ export default {
         ) {
             let that = this;
             this.form.cirugia_id = this.$props.idSecCirPro;
-            let url ="/modulos/cirugia/anestesia/agentes/guardado";
+            let url = "/modulos/cirugia/anestesia/agentes/guardado";
             axios
                 .post(url, {
                     id_datos_agente: this.form.id_datos_agente,
@@ -3042,16 +3159,16 @@ export default {
                 })
                 .then(response => {
                     this.datos_server = response.data;
-                    if(es_posicion == false){
-                            col_cince_min.agentes.push({
+                    if (es_posicion == false) {
+                        col_cince_min.agentes.push({
                             descripcion: descripcion,
                             valor: valor,
                             _src: src,
                             id: response.data.datos
                         });
-                    }else{
-                        Object.assign(posicion,{
-                            idRe:response.data.datos
+                    } else {
+                        Object.assign(posicion, {
+                            idRe: response.data.datos
                         });
                         column_quince.posicion = posicion;
                     }
@@ -3082,8 +3199,7 @@ export default {
             if (this.iniciado) return;
             this.iniciado = true;
             this.agregarHorasInicial();
-            //this.consultarSello();
-
+            this.consultarSello();
             //Guardar datos en la tabla tb_registro_anestesia
             let url = "/modulos/cirugia/anestesia/registro/post";
             let $id = await axios.post(url, this.form).then(response => {
@@ -3197,7 +3313,6 @@ export default {
                 imgGrafica: that.form.imgGrafica
             };
             url = "/modulos/cirugia/anestesia/guardar_img_grafica";
-
             var loader = that.$loading.show();
             axios
                 .post(url, formNew)
@@ -3245,9 +3360,7 @@ export default {
                 frm_registro_anestesia_id: that.form.registro_anestesia_id,
                 frm_descripciones: that.drogas_administradas
             };
-
             url = "/modulos/cirugia/anestesia/guardar_droga_administrada";
-
             var loader = that.$loading.show();
             axios
                 .post(url, formNew)
@@ -3293,7 +3406,6 @@ export default {
             let url = "";
             let mensaje = "";
             url = "/modulos/cirugia/anestesia/modifcar_registro_anestesia";
-
             var loader = that.$loading.show();
             axios
                 .post(url, that.form)
@@ -3343,7 +3455,6 @@ export default {
                 infusiones: that.form.infusiones
             };
             url = "/modulos/cirugia/anestesia/guardar_registro_infusiones";
-
             var loader = that.$loading.show();
             axios
                 .post(url, formNew)
@@ -3492,7 +3603,6 @@ export default {
                     loader.hide();
                 });
         },
-
         /**
          * Método para obtener el índice en la posición Y, según el valor que se le envíe, usa los valores estáticos 'valoresAnestecia_v'
          * @return int
@@ -3502,7 +3612,6 @@ export default {
                 ob_limite => ob_limite.inicio <= valor && ob_limite.fin > valor
             );
         },
-
         /**
          * Agrega datos a la rejilla
          */
@@ -3518,7 +3627,6 @@ export default {
         /**
          *
          */
-
         validarCampoAgente() {
             var validarCampo = false;
             if (
@@ -3581,12 +3689,12 @@ export default {
                 });
                 return validarCampo;
             }
-            if(this.valoresFormulario.valor_pulso.valor == undefined || this.valoresFormulario.valor_pulso.valor == 0){
+            if (this.valoresFormulario.respiracion.descripcion == undefined) {
                 validarCampo = true;
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia Campos Vacios",
-                    message: "El campo PULSO, necesita una valor.",
+                    message: "El campo RESPIRACIÓN, necesita ser marcado.",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -3598,27 +3706,11 @@ export default {
                 });
                 return validarCampo;
             }
-            if(this.chk.respiracion){
-                if(this.valoresFormulario.respiracion.valor == undefined || this.valoresFormulario.respiracion.valor == 0){
-                    validarCampo = true;
-                    this.flashMessage.show({
-                        status: "warning",
-                        title: "Advertencia Campos Vacios",
-                        message: "El campo RESPIRACIÓN, necesita ser marcado.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/warning.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    return validarCampo;
-                }
-            }
-            if(this.chk.temperatura){
-                if(this.valoresFormulario.temperatura.valor == undefined || this.valoresFormulario.temperatura.valor == 0){
+            if (this.chk.temperatura) {
+                if (
+                    this.valoresFormulario.temperatura.valor == undefined ||
+                    this.valoresFormulario.temperatura.valor == 0
+                ) {
                     validarCampo = true;
                     this.flashMessage.show({
                         status: "warning",
@@ -3702,7 +3794,7 @@ export default {
                     return validarCampo;
                 }
             }
-            if(this.valoresFormulario.posicion.id == 0){
+            if (this.valoresFormulario.posicion.descripcion == undefined) {
                 validarCampo = true;
                 this.flashMessage.show({
                     status: "warning",
@@ -3727,32 +3819,24 @@ export default {
             }
             this.agregarDatos(this.valoresFormulario.ta_max);
             this.agregarDatos(this.valoresFormulario.ta_min);
-
             this.agregarDatos(this.valoresFormulario.valor_pulso);
-
             // debugger
             this.agregarDatoRespiracion();
             //this.agregarDatos(this.valoresFormulario.respiracion);
-
             if (this.chk.temperatura) {
                 this.agregarDatos(this.valoresFormulario.temperatura);
             }
-
             if (this.chk.feto) {
                 this.agregarDatos(this.valoresFormulario.feto);
             }
-
             if (this.chk.pares_venosa) {
                 this.agregarDatos(this.valoresFormulario.pares_venosa);
             }
-
             if (this.chk.torniquete) {
                 this.agregarDatos(this.valoresFormulario.torniquete);
             }
-
             //Aqui va el metodo de guardar los text
             //this.guardarModificarAgenteText();
-
             // Agregar posición en la rejilla
             let post_text = this.posiciones.find(
                 e => e.id == this.valoresFormulario.posicion.id
@@ -3788,7 +3872,6 @@ export default {
                 }
             });
         },
-
         agregarDatoRespiracion() {
             this.valoresFormulario.respiracion.img_url =
                 this.valoresFormulario.respiracion.descripcion == "ESP"
@@ -3816,9 +3899,7 @@ export default {
                 true
             );
         },
-
         // Datos de ingreso
-
         columnaCincoMin(t_ini, t_fin, mostrar_t_ini, mostrar_t_fin) {
             return {
                 mostrar_t_ini: mostrar_t_ini,
@@ -3833,7 +3914,6 @@ export default {
                 agentes: []
             };
         },
-
         /**
          *
          * @param {*} inicio
@@ -3880,7 +3960,6 @@ export default {
                     )
                 );
             }
-
             return {
                 tiempo_inicio: inicio,
                 tiempo_fin: fin,
@@ -3895,7 +3974,6 @@ export default {
                 }
             };
         },
-
         /**
          * Ex;: 0 , 15, true, false, false,
          * @param {*} tiempo_inicio
@@ -3923,7 +4001,6 @@ export default {
                 columnas: []
             };
         },
-
         /**
          *
          * @param {*} height
@@ -3963,14 +4040,12 @@ export default {
             hora.datos.push(this.agregarFilaEnHora(false, true));
             hora.datos.push(this.agregarFilaEnHora(false, true));
             hora.datos.push(this.agregarFilaEnHora(false, true));
-
             // Filas
             for (const items of this.valoresAnestecia_v) {
                 hora.datos.push(this.agregarFilaEnHora(false, false, true));
             }
             hora.datos.push(this.agregarFilaEnHora(false, false, false, true));
             hora.datos.push(this.agregarFilaEnHora(false, false, true));
-
             for (const dato of hora.datos) {
                 dato.columnasQuinceMin.push(
                     this.agregarDatoEnColumna(0, 14, dato.es_agente)
@@ -3985,10 +4060,8 @@ export default {
                     this.agregarDatoEnColumna(45, 60, dato.es_agente)
                 );
             }
-
             this.lista_horas_avanzadas_v.push(hora);
         },
-
         llenarDatos() {
             var hora = this.agregarNuevaHora("auto");
             hora.datos.push(this.agregarFilaEnHora(true));
@@ -3996,14 +4069,12 @@ export default {
             hora.datos.push(this.agregarFilaEnHora(false, true));
             hora.datos.push(this.agregarFilaEnHora(false, true));
             hora.datos.push(this.agregarFilaEnHora(false, true));
-
             // Filas
             for (const items of this.valoresAnestecia_v) {
                 hora.datos.push(this.agregarFilaEnHora(false, false, true));
             }
             hora.datos.push(this.agregarFilaEnHora(false, false, false, true));
             hora.datos.push(this.agregarFilaEnHora(false, false, true));
-
             for (const dato of hora.datos) {
                 dato.columnasQuinceMin.push(
                     this.agregarDatoEnColumna(0, 14, dato.es_agente)
@@ -4020,7 +4091,6 @@ export default {
             }
             // hora.datos.push(agregarFilaEnHora(false, false, true));
             // hora.datos.push(agregarFilaEnHora(false, false, true));
-
             this.lista_horas_avanzadas_v.push(hora);
         }
     }
@@ -4037,7 +4107,6 @@ table {
 .flex-y {
     flex-direction: column;
 }
-
 .flex-x {
     flex-direction: row;
 }
@@ -4059,15 +4128,12 @@ table {
 .border-top {
     border-top: 1px solid #000 !important;
 }
-
 .border-b {
     border-bottom: 1px solid #000;
 }
-
 .upper {
     text-transform: uppercase;
 }
-
 .input-line {
     border: none;
     border-bottom: 1px solid #000;
@@ -4077,7 +4143,6 @@ table {
     border: none;
     outline: none;
 }
-
 .space-left {
     box-sizing: border-box;
     padding-left: 5px;
@@ -4085,7 +4150,6 @@ table {
 .m-w {
     max-width: 35px;
 }
-
 .no-line {
     border: none;
     outline: none;
@@ -4093,30 +4157,24 @@ table {
 .w-100p {
     width: 100%;
 }
-
 .border-none-b- {
     border: none;
     outline: none;
     border-bottom: 1px solid #000;
 }
-
 .grid {
     display: grid;
 }
-
 .grid-2-c {
     grid-template-columns: 1fr 1fr;
 }
-
 .grid-center {
     align-self: center;
     justify-self: center;
 }
-
 .flex-x-end {
     justify-content: flex-end;
 }
-
 .he25 {
     height: 25px;
 }
@@ -4126,7 +4184,6 @@ table {
 .wrap-flex {
     flex-wrap: wrap;
 }
-
 .no-wrap-flex {
     flex-wrap: nowrap !important;
 }
@@ -4135,14 +4192,12 @@ table {
     height: 20px;
     display: flex;
 }
-
 .space-btw {
     justify-content: space-between;
 }
 .width-100-p {
     width: 100%;
 }
-
 .time-triangle-abs {
     width: 15px;
     position: absolute;
@@ -4150,7 +4205,6 @@ table {
     /* left: -18px; */
     z-index: 1000;
 }
-
 .grid {
     display: grid;
 }
@@ -4160,11 +4214,9 @@ table {
 .relative {
     position: relative;
 }
-
 .figure-celds {
     position: absolute;
 }
-
 .figure-celds:nth-child(1) {
     left: 0;
 }

@@ -2357,7 +2357,7 @@ __webpack_require__.r(__webpack_exports__);
         this.flashMessage.show({
           status: "warning",
           title: "Advertencia al cambiar tiempo",
-          message: "No puede cambiar el estado, sin haber empezado el anterior",
+          message: "No puede cambiar el estado, sin haber cambiado el anterior",
           clickable: true,
           time: 5000,
           icon: "/iconsflashMessage/warning.svg",
@@ -2446,11 +2446,11 @@ __webpack_require__.r(__webpack_exports__);
             if (this.registros_tiempos[0].estado == "Pendiente") {
               return true;
             }
-          } //Valida cuando Preparación De Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado
+          } //Valida cuando Preparación De Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado o Pendiente
 
 
           if (this.registros_tiempos[1].estado == "Iniciado") {
-            if (this.registros_tiempos[2].estado == "Iniciado") {
+            if (this.registros_tiempos[2].estado == "Iniciado" || this.registros_tiempos[2].estado == "Pendiente") {
               return true;
             }
           }
@@ -2464,11 +2464,11 @@ __webpack_require__.r(__webpack_exports__);
             if (this.registros_tiempos[1].estado == "Pendiente") {
               return true;
             }
-          } //Valida cuando Inducción se desea Finalizar, pero Cirugía sigue en Iniciado
+          } //Valida cuando Inducción se desea Finalizar, pero Cirugía sigue en Iniciado o Pendiente
 
 
           if (this.registros_tiempos[2].estado == "Iniciado") {
-            if (this.registros_tiempos[3].estado == "Iniciado") {
+            if (this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente") {
               return true;
             }
           }
@@ -2482,12 +2482,32 @@ __webpack_require__.r(__webpack_exports__);
             if (this.registros_tiempos[2].estado == "Pendiente") {
               return true;
             }
+          } //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Induccion sigue en iniciado
+
+
+          if (this.registros_tiempos[3].estado == "Finalizado") {
+            if (this.registros_tiempos[2].estado == "Iniciado") {
+              return true;
+            }
           }
         }
 
         if (this.form.id_detalle_tiempo == 1 || this.form.id_detalle_tiempo == 2 || this.form.id_detalle_tiempo == 3 || this.form.id_detalle_tiempo == 4) {
           if (this.registros_tiempos[0].estado == "Finalizado" && this.registros_tiempos[1].estado == "Finalizado" && this.registros_tiempos[2].estado == "Finalizado" && this.registros_tiempos[3].estado == "Finalizado") {
-            return true;
+            this.flashMessage.show({
+              status: "success",
+              title: "Éxisto al procesar",
+              message: "Usted ha finalizado correctamente. ",
+              clickable: true,
+              time: 50000,
+              icon: "/iconsflashMessage/success.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
+              }
+            });
+            return;
           }
         }
       }
@@ -2668,6 +2688,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     /* mostrar el botón deshacer y rehacer */
@@ -2677,21 +2704,24 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    validarConfirmarCandelar: function validarConfirmarCandelar(value) {
-      this.$props.datos.respuesta = value;
+    validarConfirmarCandelar: function validarConfirmarCandelar(modificar, eliminar) {
+      this.$props.datos.respuesta = modificar; //alert(this.$props.datos.respuesta);
+
+      this.$props.datos.respuestaEliminar = eliminar; //alert(this.$props.datos.respuestaEliminar);
+
       this.$emit("handleSeleccionarClick", this.$props.datos);
     },
     setSelectedRespiracion: function setSelectedRespiracion(value) {
       if (value != null) {
         this.$props.datos.ruta_icono = value.img;
-        this.$props.datos.valor = 0;
+        this.$props.datos.valorNuevo = 0;
         this.$props.datos.adicional.system_name = value.descripcion;
       }
     },
     setSelectedPosicion: function setSelectedPosicion(value) {
       if (value != null) {
         this.$props.datos.ruta_icono = value.img;
-        this.$props.datos.valor = 0;
+        this.$props.datos.valorNuevo = 0;
         this.$props.datos.adicional.system_name = value.descripcion;
       }
     }
@@ -4740,6 +4770,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -4763,7 +4817,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         index_agente: ""
       }, _defineProperty(_datos_eliminar_agent, "index", ""), _defineProperty(_datos_eliminar_agent, "minutes", ""), _defineProperty(_datos_eliminar_agent, "adicional", {
         system_name: "agente"
-      }), _defineProperty(_datos_eliminar_agent, "ruta_icono", ""), _defineProperty(_datos_eliminar_agent, "descripcion", ""), _defineProperty(_datos_eliminar_agent, "valor", 0), _defineProperty(_datos_eliminar_agent, "valorNuevo", 0), _defineProperty(_datos_eliminar_agent, "respuesta", false), _defineProperty(_datos_eliminar_agent, "id", 0), _datos_eliminar_agent),
+      }), _defineProperty(_datos_eliminar_agent, "ruta_icono", ""), _defineProperty(_datos_eliminar_agent, "descripcion", ""), _defineProperty(_datos_eliminar_agent, "valor", 0), _defineProperty(_datos_eliminar_agent, "valorNuevo", 0), _defineProperty(_datos_eliminar_agent, "respuesta", false), _defineProperty(_datos_eliminar_agent, "respuestaEliminar", false), _defineProperty(_datos_eliminar_agent, "id", 0), _datos_eliminar_agent),
       resConfirmarCancelar: false,
       icon: "",
       titulo: "",
@@ -4775,7 +4829,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       medicos: [],
       validarImgFirma: 0,
       isFirstPaintable: "firmaAnestesiologo",
-      rutaSello: "/img/selloFirma.png",
+      rutaSello: "",
+      ///img/selloFirma.png
       validarFinProceso: "",
       validarImprimir: 0,
       selectedTipoPosiciones: "",
@@ -5094,7 +5149,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     this.agregarHora();
                     //this.lista_horas_avanzadas_v = [];
                     this.agregarHorasInicial();
-                     //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
+                    //es para actualizar el registro_anestesia_id cada vez que se haya pasado mas de 4 horas
                     if (this.indice_hora % 5 == 0) {
                         this.getNewIdRegistroAnestesia();
                         this.getImgGrafica();
@@ -5162,17 +5217,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.iniciado_eliminar = false;
       }
     },
-    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, src, descripcion, valor, id) {
+    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente, t_init, t_fin, src, descripcion, valor, id, es_agente, es_posicion) {
       this.limpiarDatosEliminarAgente();
       this.datos_eliminar_agente.index = index;
       this.datos_eliminar_agente.index_fila = index_fila;
       this.datos_eliminar_agente.index_columna = index_columna;
       this.datos_eliminar_agente.index_minutos_columna = index_minutos_columna;
       this.datos_eliminar_agente.index_agente = index_agente;
-      this.datos_eliminar_agente.minutes = t_init;
-      this.datos_eliminar_agente.adicional = {
-        system_name: descripcion
-      };
+      this.datos_eliminar_agente.is_tpo_init = t_init;
+      this.datos_eliminar_agente.is_tpo_fin = t_fin;
+
+      if (es_agente && index_fila != 29) {
+        this.datos_eliminar_agente.adicional = {
+          system_name: descripcion,
+          tipo: "agente"
+        };
+      } else if (es_agente && index_fila == 29) {
+        this.datos_eliminar_agente.adicional = {
+          system_name: descripcion,
+          tipo: "respiracion"
+        };
+      } else if (es_posicion) {
+        this.datos_eliminar_agente.adicional = {
+          system_name: descripcion,
+          tipo: "posicion"
+        };
+      }
+
       this.datos_eliminar_agente.ruta_icono = src;
       this.datos_eliminar_agente.descripcion = descripcion;
       this.datos_eliminar_agente.valor = valor;
@@ -5197,8 +5268,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
       if (value.respuesta) {
+        alert(value.respuesta);
         var valor = parseInt(value.valorNuevo);
-        var minutes = value.minutes;
+        var minutes = value.is_tpo_init;
+        var is_tpo_init = value.is_tpo_init;
+        var is_tpo_fin = value.is_tpo_fin;
         var adicional = value.adicional;
         var ruta_icono = value.ruta_icono;
         this.form.id_datos_agente = value.id;
@@ -5302,6 +5376,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           status: "success",
           title: "Éxito al procesar",
           message: "Agente Modificado Correctamente",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      } else if (value.respuestaEliminar) {
+        var adicional = value.adicional;
+
+        if (adicional.tipo == "agente") {
+          this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+        } else if (adicional.tipo == "respiracion") {
+          this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+        } else if (adicional.tipo == "posicion") {
+          this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].posicion = {
+            descripcion: "",
+            idRe: "",
+            img_url: "",
+            name_system: ""
+          };
+        }
+        /* Esta linea eliminará el agente de la grafica */
+
+
+        this.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar",
+          message: "Agente Eliminados Correctamente",
           clickable: true,
           time: 5000,
           icon: "/iconsflashMessage/success.svg",
@@ -5464,9 +5569,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     consultarSello: function consultarSello() {
       var that = this;
 
-      if (this.form.id_medico > 0) {
+      if (this.$props.user.id > 0) {
         var loader = that.$loading.show();
-        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.form.id_medico;
+        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
         axios.get(url).then(function (response) {
           if (response.data.sello != null) {
             if (response.data.sello.seguridad_medico != null) {
@@ -5612,8 +5717,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (value != null) {
         this.form.id_medico = value.id_medico;
-        loader.hide();
-        this.consultarSello();
+        loader.hide(); //this.consultarSello();
       }
 
       axios.get(url).then(function (response) {
@@ -5786,16 +5890,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 2:
                 this.iniciado = true;
-                this.agregarHorasInicial(); //this.consultarSello();
-                //Guardar datos en la tabla tb_registro_anestesia
+                this.agregarHorasInicial();
+                this.consultarSello(); //Guardar datos en la tabla tb_registro_anestesia
 
                 url = "/modulos/cirugia/anestesia/registro/post";
-                _context.next = 7;
+                _context.next = 8;
                 return axios.post(url, this.form).then(function (response) {
                   _this4.form.registro_anestesia_id = response.data.id;
                 });
 
-              case 7:
+              case 8:
                 $id = _context.sent;
                 this.$emit("guardarCabecera", this.form.registro_anestesia_id); //Guardar datos en la tabla tb_tipo_agente_anestesia
                 // Poner el dato al inicio de la rejilla cuando se haya iniciado
@@ -5818,7 +5922,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   }
                 });
 
-              case 11:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -6272,12 +6376,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return validarCampo;
       }
 
-      if (this.valoresFormulario.valor_pulso.valor == undefined || this.valoresFormulario.valor_pulso.valor == 0) {
+      if (this.valoresFormulario.respiracion.descripcion == undefined) {
         validarCampo = true;
         this.flashMessage.show({
           status: "warning",
           title: "Advertencia Campos Vacios",
-          message: "El campo PULSO, necesita una valor.",
+          message: "El campo RESPIRACIÓN, necesita ser marcado.",
           clickable: true,
           time: 5000,
           icon: "/iconsflashMessage/warning.svg",
@@ -6288,26 +6392,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         });
         return validarCampo;
-      }
-
-      if (this.chk.respiracion) {
-        if (this.valoresFormulario.respiracion.valor == undefined || this.valoresFormulario.respiracion.valor == 0) {
-          validarCampo = true;
-          this.flashMessage.show({
-            status: "warning",
-            title: "Advertencia Campos Vacios",
-            message: "El campo RESPIRACIÓN, necesita ser marcado.",
-            clickable: true,
-            time: 5000,
-            icon: "/iconsflashMessage/warning.svg",
-            customStyle: {
-              flashMessageStyle: {
-                background: "linear-gradient(#e66465, #9198e5)"
-              }
-            }
-          });
-          return validarCampo;
-        }
       }
 
       if (this.chk.temperatura) {
@@ -6390,7 +6474,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
 
-      if (this.valoresFormulario.posicion.id == 0) {
+      if (this.valoresFormulario.posicion.descripcion == undefined) {
         validarCampo = true;
         this.flashMessage.show({
           status: "warning",
@@ -59779,13 +59863,13 @@ var render = function() {
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
-                      return _vm.validarConfirmarCandelar(true)
+                      return _vm.validarConfirmarCandelar(true, false)
                     }
                   }
                 },
                 [
                   _vm._v(
-                    "\n                        Aceptar\n                    "
+                    "\n                        Modificar\n                    "
                   )
                 ]
               ),
@@ -59797,7 +59881,25 @@ var render = function() {
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
-                      return _vm.validarConfirmarCandelar(false)
+                      return _vm.validarConfirmarCandelar(false, true)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                        Eliminar\n                    "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-info",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.validarConfirmarCandelar(false, false)
                     }
                   }
                 },
@@ -59872,7 +59974,7 @@ var render = function() {
               staticStyle: { "font-size": "1.0em" }
             },
             [
-              _vm._v("\n                Tiempo: "),
+              _vm._v("\n                Tiempo:\n                "),
               _c("span", [
                 _c("input", {
                   directives: [
@@ -61199,10 +61301,15 @@ var render = function() {
                                                                                   minutos_columna[
                                                                                     "t_init"
                                                                                   ],
+                                                                                  minutos_columna[
+                                                                                    "t_fin"
+                                                                                  ],
                                                                                   agente._src,
                                                                                   agente.descripcion,
                                                                                   agente.valor,
-                                                                                  agente.id
+                                                                                  agente.id,
+                                                                                  dato.es_agente,
+                                                                                  dato.es_posicion
                                                                                 )
                                                                               }
                                                                             }
@@ -64972,7 +65079,7 @@ var render = function() {
                         },
                         [
                           _c("vue-painttable", {
-                            ref: "paintFirma2",
+                            ref: "paintFirma",
                             attrs: {
                               hidePaintable: true,
                               isFirstPaintable: _vm.isFirstPaintable,

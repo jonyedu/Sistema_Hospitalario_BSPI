@@ -451,7 +451,7 @@ export default {
                     status: "warning",
                     title: "Advertencia al cambiar tiempo",
                     message:
-                        "No puede cambiar el estado, sin haber empezado el anterior",
+                        "No puede cambiar el estado, sin haber cambiado el anterior",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -522,8 +522,7 @@ export default {
                     //Valida cuando Uso De Quirófano se desea Finalizar, pero Cirugía sigue Iniciado
                     if (this.registros_tiempos[0].estado == "Iniciado") {
                         if (
-                            this.registros_tiempos[3].estado == "Iniciado" ||
-                            this.registros_tiempos[3].estado == "Pendiente"
+                            this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente"
                         ) {
                             return true;
                         }
@@ -543,9 +542,9 @@ export default {
                             return true;
                         }
                     }
-                    //Valida cuando Preparación De Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado
+                    //Valida cuando Preparación De Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado o Pendiente
                     if (this.registros_tiempos[1].estado == "Iniciado") {
-                        if (this.registros_tiempos[2].estado == "Iniciado") {
+                        if (this.registros_tiempos[2].estado == "Iniciado" || this.registros_tiempos[2].estado == "Pendiente") {
                             return true;
                         }
                     }
@@ -558,9 +557,9 @@ export default {
                             return true;
                         }
                     }
-                    //Valida cuando Inducción se desea Finalizar, pero Cirugía sigue en Iniciado
+                    //Valida cuando Inducción se desea Finalizar, pero Cirugía sigue en Iniciado o Pendiente
                     if (this.registros_tiempos[2].estado == "Iniciado") {
-                        if (this.registros_tiempos[3].estado == "Iniciado") {
+                        if (this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente") {
                             return true;
                         }
                     }
@@ -569,7 +568,13 @@ export default {
                 if (this.form.id_detalle_tiempo == 4) {
                     //Valida cuando Cirugía se desea Iniciar, pero Induccion sigue en pendiente
                     if (this.registros_tiempos[3].estado == "Pendiente") {
-                        if (this.registros_tiempos[2].estado == "Pendiente") {
+                        if (this.registros_tiempos[2].estado == "Pendiente" ) {
+                            return true;
+                        }
+                    }
+                    //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Induccion sigue en iniciado
+                    if (this.registros_tiempos[3].estado == "Finalizado") {
+                        if (this.registros_tiempos[2].estado == "Iniciado" ) {
                             return true;
                         }
                     }
@@ -586,7 +591,20 @@ export default {
                         this.registros_tiempos[2].estado == "Finalizado" &&
                         this.registros_tiempos[3].estado == "Finalizado"
                     ) {
-                        return true;
+                        this.flashMessage.show({
+                            status: "success",
+                            title:"Éxisto al procesar",
+                            message:"Usted ha finalizado correctamente. ",
+                            clickable: true,
+                            time: 50000,
+                            icon: "/iconsflashMessage/success.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background: "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
+                        return ;
                     }
                 }
             }
