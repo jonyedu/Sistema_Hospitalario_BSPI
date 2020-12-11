@@ -257,6 +257,7 @@ class RegistroAnestesiaController extends Controller
 
                  $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
                  $datosPaciente = [];
+                 $datosMedico = [];
                  $datosprocedimiento= [];
                  $id_registro_anestesia = 34;
 
@@ -283,6 +284,10 @@ class RegistroAnestesiaController extends Controller
                 ->with('graficoFirmaMedico','cirujano','Ayudante','Ayudante2','Instrumentrista','DiagnosticoPost','DiagnosticoPre','Anestesiologo')
                 ->first();
 
+                $datosMedico = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
+                ->with('graficoFirmaMedico','cirujano','Ayudante','Ayudante2','Instrumentrista','DiagnosticoPost','DiagnosticoPre','Anestesiologo')
+                ->first();
+
 
                 $pdf = PDF::loadView('reports.pdf.formulario-registro-anestesia',
                 ['datosValoracionPreanestesica' => $datosValoracionPreanestesica,
@@ -290,9 +295,9 @@ class RegistroAnestesiaController extends Controller
                 'Tarifario' => $TarifarioMedicina]);
                  return $pdf->stream($nombreArchivo);
 
-                // return  response()->json(['datosValoracionPreanestesica' => $datosValoracionPreanestesica,
-                // 'datosPaciente' => $datosPaciente,
-                // 'Tarifario' => $TarifarioMedicina], 200);
+                return  response()->json(['datosValoracionPreanestesica' => $datosValoracionPreanestesica,
+                'datosPaciente' => $datosPaciente,
+                'Tarifario' => $TarifarioMedicina], 200);
             } catch (Exception $e) {
                 return response()->json(['mensaje' => $e->getMessage()], 500);
             }

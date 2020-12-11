@@ -88,7 +88,7 @@ class RegistroAnestesia extends Model
     }
     public function graficoCirugia()
     {
-        return $this->hasOne('App\Models\Modulos\Imagenes\GraficaPorCirugia', 'registro_anestesia_id', 'id');
+        return $this->hasOne('App\Models\Modulos\Imagenes\GraficaPorCirugia', 'registro_anestesia_id', 'id')->orderByDesc('id');
     }
     public function drogaAdministradaRpt()
     {
