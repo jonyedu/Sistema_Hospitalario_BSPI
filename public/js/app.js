@@ -2353,11 +2353,13 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     guardarRegistroTiempo: function guardarRegistroTiempo() {
-      if (this.validarCambioTiempo()) {
+      var mensaje = this.validarCambioTiempo();
+
+      if (mensaje != undefined) {
         this.flashMessage.show({
           status: "warning",
           title: "Advertencia al cambiar tiempo",
-          message: "No puede cambiar el estado, sin haber cambiado el anterior",
+          message: mensaje,
           clickable: true,
           time: 5000,
           icon: "/iconsflashMessage/warning.svg",
@@ -2371,28 +2373,27 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       var that = this;
-      var url = "";
-      var mensaje = "Datos guardados correctamente.";
+      var url = ""; //let mensaje = "Datos guardados correctamente.";
+
       url = "/modulos/cirugia/registro_tiempo/guardar_registro_tiempo";
       var loader = that.$loading.show();
       axios.post(url, this.form).then(function (response) {
         that.iniciado = true;
         that.disabledDetalleTiempo = false;
         that.cargarRegistroTiempoPorSecCirPro();
-        /* that.flashMessage.show({
-            status: "success",
-            title: "Éxito al procesar",
-            message: mensaje,
-            clickable: true,
-            time: 5000,
-            icon: "/iconsflashMessage/success.svg",
-            customStyle: {
-                flashMessageStyle: {
-                    background: "linear-gradient(#e66465, #9198e5)"
-                }
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar",
+          message: mensaje,
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
             }
-        }); */
-
+          }
+        });
         loader.hide();
       })["catch"](function (error) {
         //Errores de validación
@@ -2426,14 +2427,14 @@ __webpack_require__.r(__webpack_exports__);
           //Valida cuando Uso De Quirófano se desea Finalizar, pero Cirugía sigue Iniciado
           if (this.registros_tiempos[0].estado == "Iniciado") {
             if (this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente") {
-              return true;
+              return 'No puede finalizar Uso De Quirófano, cuando Cirugía sigue Iniciado.';
             }
           } //Valida cuando Uso De Quirófano se desea Finalizar, pero Preparación De Anestesiólogo sigue en Iniciado
 
 
           if (this.registros_tiempos[0].estado == "Iniciado") {
             if (this.registros_tiempos[1].estado == "Iniciado") {
-              return true;
+              return 'No puede finalizar Uso De Quirófano, cuando Preparación De Anestesiólogo sigue Iniciado.';
             }
           }
         }
@@ -2444,14 +2445,21 @@ __webpack_require__.r(__webpack_exports__);
           //Valida cuando Preparación De Anestesiólogo se desea Iniciar, pero Uso De Quirófano sigue en pendiente
           if (this.registros_tiempos[1].estado == "Pendiente") {
             if (this.registros_tiempos[0].estado == "Pendiente") {
-              return true;
+              return 'No puede Iniciar Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Pendiente.';
             }
           } //Valida cuando Preparación De Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado o Pendiente
 
 
           if (this.registros_tiempos[1].estado == "Iniciado") {
             if (this.registros_tiempos[2].estado == "Iniciado" || this.registros_tiempos[2].estado == "Pendiente") {
-              return true;
+              return 'No puede finalizar Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Pendiente.';
+            }
+          } //Valida cuando se quiere dar click en Preparación De Anestesiólogo estando Finalizado, pero Uso de Quirófano sigue en iniciado
+
+
+          if (this.registros_tiempos[1].estado == "Finalizado") {
+            if (this.registros_tiempos[0].estado == "Iniciado") {
+              return 'No puede dar click nuevamente en Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Iniciado.';
             }
           }
         }
@@ -2462,14 +2470,21 @@ __webpack_require__.r(__webpack_exports__);
           //Valida cuando Inducción se desea Iniciar, pero Preparación De Anestesiólogo sigue en pendiente
           if (this.registros_tiempos[2].estado == "Pendiente") {
             if (this.registros_tiempos[1].estado == "Pendiente") {
-              return true;
+              return 'No puede Iniciar Inducción, cuando Preparación De Anestesiólogo sigue Pendiente.';
             }
           } //Valida cuando Inducción se desea Finalizar, pero Cirugía sigue en Iniciado o Pendiente
 
 
           if (this.registros_tiempos[2].estado == "Iniciado") {
             if (this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente") {
-              return true;
+              return 'No puede Finalizar Inducción, cuando Cirugía sigue Iniciado o Pendiente.';
+            }
+          } //Valida cuando se quiere dar click en Inducción estando Finalizado, pero Preparación De Anestesiólogo sigue en iniciado
+
+
+          if (this.registros_tiempos[2].estado == "Finalizado") {
+            if (this.registros_tiempos[1].estado == "Iniciado") {
+              return 'No puede dar click nuevamente en Inducción, cuando Preparación De Anestesiólogo sigue Iniciado.';
             }
           }
         }
@@ -2480,34 +2495,21 @@ __webpack_require__.r(__webpack_exports__);
           //Valida cuando Cirugía se desea Iniciar, pero Induccion sigue en pendiente
           if (this.registros_tiempos[3].estado == "Pendiente") {
             if (this.registros_tiempos[2].estado == "Pendiente") {
-              return true;
+              return 'No puede Iniciar Cirugía, cuando Induccion sigue Pendiente.';
             }
           } //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Induccion sigue en iniciado
 
 
           if (this.registros_tiempos[3].estado == "Finalizado") {
             if (this.registros_tiempos[2].estado == "Iniciado") {
-              return true;
+              return 'No puede dar click nuevamente en Cirugia, cuando Induccion sigue Iniciado.';
             }
           }
         }
 
         if (this.form.id_detalle_tiempo == 1 || this.form.id_detalle_tiempo == 2 || this.form.id_detalle_tiempo == 3 || this.form.id_detalle_tiempo == 4) {
           if (this.registros_tiempos[0].estado == "Finalizado" && this.registros_tiempos[1].estado == "Finalizado" && this.registros_tiempos[2].estado == "Finalizado" && this.registros_tiempos[3].estado == "Finalizado") {
-            this.flashMessage.show({
-              status: "success",
-              title: "Éxisto al procesar",
-              message: "Usted ha finalizado correctamente. ",
-              clickable: true,
-              time: 50000,
-              icon: "/iconsflashMessage/success.svg",
-              customStyle: {
-                flashMessageStyle: {
-                  background: "linear-gradient(#e66465, #9198e5)"
-                }
-              }
-            });
-            return;
+            return 'Usted ha finalizado correctamente.';
           }
         }
       }
@@ -17582,6 +17584,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -82120,7 +82126,14 @@ var render = function() {
                           props.row.estado == "Iniciado"
                             ? _c(
                                 "div",
-                                { staticStyle: { background: "#FFFB00" } },
+                                {
+                                  staticStyle: { background: "#FFFB00" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.handleRowClick(props.row)
+                                    }
+                                  }
+                                },
                                 [
                                   _c(
                                     "span",
@@ -82137,7 +82150,14 @@ var render = function() {
                             : props.row.estado == "Finalizado"
                             ? _c(
                                 "div",
-                                { staticStyle: { background: "#BBED8C" } },
+                                {
+                                  staticStyle: { background: "#BBED8C" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.handleRowClick(props.row)
+                                    }
+                                  }
+                                },
                                 [
                                   _c(
                                     "span",
@@ -82154,7 +82174,14 @@ var render = function() {
                             : props.row.estado == "Pendiente"
                             ? _c(
                                 "div",
-                                { staticStyle: { background: "#FF0000" } },
+                                {
+                                  staticStyle: { background: "#FF0000" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.handleRowClick(props.row)
+                                    }
+                                  }
+                                },
                                 [
                                   _c(
                                     "span",
@@ -99674,15 +99701,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************************************************!*\
   !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue ***!
   \**********************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _registro_anestesico_vue_vue_type_template_id_0efa7f95___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=template&id=0efa7f95& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=template&id=0efa7f95&");
 /* harmony import */ var _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _registro_anestesico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _registro_anestesico_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registro-anestesico.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -99714,7 +99740,7 @@ component.options.__file = "resources/js/components/Modulos/Cirugia/anestesia/co
 /*!***********************************************************************************************************************!*\
   !*** ./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
