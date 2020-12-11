@@ -7538,11 +7538,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.flashMessage.setStrategy("multiple");
-    this.setSelectedCirujano();
-    this.setSelectedAnestesiologo();
-    this.setSelectedAyudante();
-    this.setSelectedDiagnostico();
-    this.setSelectedTarifaria();
     /*  var user = this.$attrs;
     console.log(user); */
 
@@ -7933,6 +7928,11 @@ __webpack_require__.r(__webpack_exports__);
               }
             }); //loader.hide();
           } else {
+            that.setSelectedCirujano();
+            that.setSelectedAnestesiologo();
+            that.setSelectedAyudante();
+            that.setSelectedDiagnostico();
+            that.setSelectedTarifaria();
             that.cargarDiagnosticoPorCodigo(value);
           }
         })["catch"](function (error) {

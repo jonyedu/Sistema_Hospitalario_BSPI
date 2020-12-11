@@ -801,12 +801,6 @@ export default {
     },
     mounted: function() {
         this.flashMessage.setStrategy("multiple");
-        this.setSelectedCirujano();
-        this.setSelectedAnestesiologo();
-        this.setSelectedAyudante();
-        this.setSelectedDiagnostico();
-        this.setSelectedTarifaria();
-
         /*  var user = this.$attrs;
         console.log(user); */
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
@@ -1257,6 +1251,11 @@ export default {
                             });
                             //loader.hide();
                         }else{
+                            that.setSelectedCirujano();
+                            that.setSelectedAnestesiologo();
+                            that.setSelectedAyudante();
+                            that.setSelectedDiagnostico();
+                            that.setSelectedTarifaria();
                             that.cargarDiagnosticoPorCodigo(value);
                         }
 
