@@ -52,7 +52,7 @@ class DatosRegistro extends Model
     ];
     public function graficoFirmaMedico()
     {
-        return $this->hasOne('App\Models\Modulos\Imagenes\FirmasPorAtencion', 'id_atencion', 'registro_anestesia_id');
+        return $this->hasOne('App\Models\Modulos\Imagenes\FirmasPorAtencion', 'id_atencion', 'registro_anestesia_id')->orderByDesc('fecha_ingreso');
     }
     public function Ayudante()
     {

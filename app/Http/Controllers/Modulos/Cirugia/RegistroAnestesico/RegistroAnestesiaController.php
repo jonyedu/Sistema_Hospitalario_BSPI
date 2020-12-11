@@ -247,14 +247,15 @@ class RegistroAnestesiaController extends Controller
                 // CARGA DATOS DE EL REGISTRO DE ANESTESIA 01/12
 
 
-                $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
-                $datosPaciente = [];
-                $datosprocedimiento = [];
-                $id_registro_anestesia = 34;
+                 $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
+                 $datosPaciente = [];
+                 $datosMedico = [];
+                 $datosprocedimiento= [];
+                 $id_registro_anestesia = 34;
 
                 $datosValoracionPreanestesica = RegistroAnestesia::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
-                    ->with('drogaAdministradaRpt', 'graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt', 'tipoPosicion')
+                    ->with('drogaAdministradaRpt', 'graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt', 'tipoPosicion','consultaSala','consultaMedico')
                     ->first();
 
 
@@ -274,6 +275,10 @@ class RegistroAnestesiaController extends Controller
                 $datosPaciente = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
                     ->with('graficoFirmaMedico', 'cirujano', 'Ayudante', 'Ayudante2', 'Instrumentrista', 'DiagnosticoPost', 'DiagnosticoPre', 'Anestesiologo')
                     ->first();
+
+                // $datosMedico = RegistroAnestesia::where('registro_anestesia_id', $id_registro_anestesia)
+                // ->with('graficoFirmaMedico','cirujano','Ayudante','Ayudante2','Instrumentrista','DiagnosticoPost','DiagnosticoPre','Anestesiologo')
+                // ->first();
 
 
                 $pdf = PDF::loadView(
