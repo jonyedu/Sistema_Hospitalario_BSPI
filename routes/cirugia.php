@@ -52,7 +52,9 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
     /* SubModulo registro de tiempo */
     Route::namespace('Modulos\Cirugia\RegistroTiempo')->prefix('registro_tiempo')->group(function () {
         Route::get('cargar_registro_tiempo_por_secCirPro/{id_cirugia_programada}', 'RegistroTiempoApiController@cargarRegistroTiempoPorSecCirPro');
+        Route::get('validar_secCirPro/{secCirPro}', 'RegistroTiempoApiController@validarSecCirPro');
         Route::post('guardar_registro_tiempo', 'RegistroTiempoApiController@guardarRegistroTiempo');
+
     });
 
     /* SubModulo anestesia */

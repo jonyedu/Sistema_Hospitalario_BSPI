@@ -2131,40 +2131,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2225,7 +2191,7 @@ __webpack_require__.r(__webpack_exports__);
     handleSeleccionarClick: function handleSeleccionarClick(value) {
       if (value != "") {
         var that = this;
-        var url = "/modulos/cirugia/anestesia/validar_secCirPro/" + value.SecCirPro; //var loader = that.$loading.show();
+        var url = "/modulos/cirugia/registro_tiempo/validar_secCirPro/" + value.SecCirPro; //var loader = that.$loading.show();
 
         axios.get(url).then(function (response) {
           //Obtiene los datos de Motivo Antecedentes
@@ -2384,7 +2350,7 @@ __webpack_require__.r(__webpack_exports__);
         that.flashMessage.show({
           status: "success",
           title: "Éxito al procesar",
-          message: mensaje,
+          message: "Tiempo agregado correctamente",
           clickable: true,
           time: 5000,
           icon: "/iconsflashMessage/success.svg",
@@ -2416,18 +2382,12 @@ __webpack_require__.r(__webpack_exports__);
     validarCambioTiempo: function validarCambioTiempo() {
       //Para validar los tiempos respetando su flujo de proceso
       if (this.iniciado) {
-        /* Se valida cuando no se haya seleccionado nada */
-
-        /* if(this.form.selected_detalle_tiempo == ""){
-            return true;
-        } */
-
         /* Valida cuando se seleccione Uso De Quirófano */
         if (this.form.id_detalle_tiempo == 1) {
           //Valida cuando Uso De Quirófano se desea Finalizar, pero Cirugía sigue Iniciado
           if (this.registros_tiempos[0].estado == "Iniciado") {
             if (this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente") {
-              return 'No puede finalizar Uso De Quirófano, cuando Cirugía sigue Iniciado.';
+              return 'No puede finalizar Uso De Quirófano, cuando Cirugía sigue Iniciado o Pendiente.';
             }
           } //Valida cuando Uso De Quirófano se desea Finalizar, pero Preparación De Anestesiólogo sigue en Iniciado
 
@@ -2452,7 +2412,7 @@ __webpack_require__.r(__webpack_exports__);
 
           if (this.registros_tiempos[1].estado == "Iniciado") {
             if (this.registros_tiempos[2].estado == "Iniciado" || this.registros_tiempos[2].estado == "Pendiente") {
-              return 'No puede finalizar Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Pendiente.';
+              return 'No puede finalizar Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Iniciado o Pendiente.';
             }
           } //Valida cuando se quiere dar click en Preparación De Anestesiólogo estando Finalizado, pero Uso de Quirófano sigue en iniciado
 
@@ -59407,19 +59367,7 @@ var render = function() {
                                   "\n                                            Nuevo\n                                        "
                                 )
                               ]
-                            ),
-                            _vm._v(" "),
-                            _vm.form.id_cirugia_programada > 0
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-outline-primary",
-                                    attrs: { type: "button" },
-                                    on: { click: _vm.guardarRegistroTiempo }
-                                  },
-                                  [_c("i", { staticClass: "fas fa-stopwatch" })]
-                                )
-                              : _vm._e()
+                            )
                           ]
                         )
                       ]
@@ -59459,7 +59407,22 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _vm._m(1)
+                          _c("div", { staticClass: "card-tools" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-tool",
+                                attrs: {
+                                  type: "button",
+                                  "data-card-widget": "collapse"
+                                },
+                                on: { click: _vm.guardarRegistroTiempo }
+                              },
+                              [_c("i", { staticClass: "fas fa-plus" })]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(1)
+                          ])
                         ]
                       ),
                       _vm._v(" "),
@@ -59547,25 +59510,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-tools" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-tool",
-          attrs: { type: "button", "data-card-widget": "collapse" }
-        },
-        [_c("i", { staticClass: "fas fa-plus" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-tool",
-          attrs: { type: "button", "data-card-widget": "remove" }
-        },
-        [_c("i", { staticClass: "fas fa-times" })]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-tool",
+        attrs: { type: "button", "data-card-widget": "remove" }
+      },
+      [_c("i", { staticClass: "fas fa-times" })]
+    )
   }
 ]
 render._withStripped = true

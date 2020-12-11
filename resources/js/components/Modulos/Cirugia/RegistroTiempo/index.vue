@@ -41,42 +41,9 @@
                                             >
                                                 Nuevo
                                             </button>
-                                            <button
-                                                    v-if="form.id_cirugia_programada > 0"
-                                                    type="button"
-                                                    class="btn btn-outline-primary"
-                                                    @click="
-                                                        guardarRegistroTiempo
-                                                    "
-                                                >
-                                                    <i
-                                                        class="fas fa-stopwatch"
-                                                    ></i>
-                                                </button>
                                         </div>
                                     </div>
-                                    <!-- <div
-                                        class="col-lg-1 col-md-1 col-sm-1"
-                                    >
-                                        <template
-                                            v-if="iniciado == false"
-                                        >
-                                            <span>
-                                                <button
-                                                    type="button"
-                                                    class="btn btn-outline-primary"
-                                                    @click="
-                                                        guardarRegistroTiempo
-                                                    "
-                                                >
-                                                    <i
-                                                        class="fas fa-stopwatch"
-                                                    ></i>
-                                                </button>
-                                            </span>
-                                        </template>
-                                    </div> -->
-                                    <!-- Fin de Butones Nueva, Modificar, Guardar, Imprimir, H.C. Digital -->
+                                    <!-- Fin de Butones Nueva -->
                                 </div>
                             </div>
                         </div>
@@ -88,8 +55,6 @@
                         class="col-lg-12 col-md-12 col-sm-12"
                         v-if="form.id_cirugia_programada > 0"
                     >
-                        <!-- Datos del Paciente -->
-                        <!-- card-green -->
                         <div class="card card-default collapsed-card">
                             <div
                                 class="card-header"
@@ -102,6 +67,7 @@
                                 <div class="card-tools">
                                     <button
                                         type="button"
+                                        @click="guardarRegistroTiempo"
                                         class="btn btn-tool"
                                         data-card-widget="collapse"
                                     >
@@ -274,7 +240,7 @@ export default {
             if (value != "") {
                 let that = this;
                 let url =
-                    "/modulos/cirugia/anestesia/validar_secCirPro/" +
+                    "/modulos/cirugia/registro_tiempo/validar_secCirPro/" +
                     value.SecCirPro;
                 //var loader = that.$loading.show();
                 axios
@@ -477,7 +443,7 @@ export default {
                     that.flashMessage.show({
                         status: "success",
                         title: "Éxito al procesar",
-                        message: mensaje,
+                        message: "Tiempo agregado correctamente",
                         clickable: true,
                         time: 5000,
                         icon: "/iconsflashMessage/success.svg",
@@ -513,10 +479,6 @@ export default {
         validarCambioTiempo() {
             //Para validar los tiempos respetando su flujo de proceso
             if (this.iniciado) {
-                /* Se valida cuando no se haya seleccionado nada */
-                /* if(this.form.selected_detalle_tiempo == ""){
-                    return true;
-                } */
                 /* Valida cuando se seleccione Uso De Quirófano */
                 if (this.form.id_detalle_tiempo == 1) {
                     //Valida cuando Uso De Quirófano se desea Finalizar, pero Cirugía sigue Iniciado
@@ -524,7 +486,7 @@ export default {
                         if (
                             this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente"
                         ) {
-                            return 'No puede finalizar Uso De Quirófano, cuando Cirugía sigue Iniciado.';
+                            return 'No puede finalizar Uso De Quirófano, cuando Cirugía sigue Iniciado o Pendiente.';
                         }
                     }
                     //Valida cuando Uso De Quirófano se desea Finalizar, pero Preparación De Anestesiólogo sigue en Iniciado
@@ -545,7 +507,7 @@ export default {
                     //Valida cuando Preparación De Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado o Pendiente
                     if (this.registros_tiempos[1].estado == "Iniciado") {
                         if (this.registros_tiempos[2].estado == "Iniciado" || this.registros_tiempos[2].estado == "Pendiente") {
-                            return 'No puede finalizar Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Pendiente.';
+                            return 'No puede finalizar Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Iniciado o Pendiente.';
                         }
                     }
                     //Valida cuando se quiere dar click en Preparación De Anestesiólogo estando Finalizado, pero Uso de Quirófano sigue en iniciado
