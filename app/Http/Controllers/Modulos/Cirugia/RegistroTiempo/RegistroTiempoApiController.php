@@ -11,6 +11,17 @@ use Illuminate\Support\Facades\Auth;
 
 class RegistroTiempoApiController extends Controller
 {
+    public function validarSecCirPro($secCirPro)
+    {
+        try {
+            $secCirPro = RegistroTiempo::where('SecCirPro', $secCirPro)
+                ->first();
+            //$grafica = GraficaPorCirugia::where('SecCirPro', 1)->first();
+            return  response()->json(['secCirPro' => $secCirPro], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
     public function cargarRegistroTiempoPorSecCirPro($id_cirugia_programada)
     {
         try {
