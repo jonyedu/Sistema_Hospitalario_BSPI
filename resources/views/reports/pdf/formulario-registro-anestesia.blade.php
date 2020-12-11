@@ -1361,7 +1361,7 @@
                 </td>
                 @else
                 <th style="background-color: white;width:29%;border-bottom:none; ">
-                  CONDUCIDO A : &nbsp; {{$datosValoracionPreanestesica->conducido_a}} 
+                  CONDUCIDO A : &nbsp; {{   $datosValoracionPreanestesica->consultaSala["descripcion"] }} 
                 </td>
                 @endif
                 
@@ -1407,7 +1407,8 @@
                 </th>
                 @else
                 <th >
-                 POR : &nbsp;  {{ $datosValoracionPreanestesica->por}} 
+                    
+                 POR : &nbsp;   {{  $datosValoracionPreanestesica->consultaMedico["nombres"].' '.$datosValoracionPreanestesica->consultaMedico["apellidos"] }}
                 </th>
                 @endif
             </tr>

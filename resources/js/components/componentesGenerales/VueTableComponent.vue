@@ -180,9 +180,10 @@
                             }}</span>
                         </div>
                     </span>
-                    <!-- Para mostrar color en los estados de Signos Vitales -->
+                    <!-- Para mostrar color en los estados de Registro de Tiempo -->
                     <span v-else-if="props.column.field == 'estado'">
                         <div
+                            @click="handleRowClick(props.row)"
                             style="background:#FFFB00;"
                             v-if="
                                 props.row.estado == 'Iniciado'
@@ -190,9 +191,11 @@
                         >
                             <span style="font-weight: bold; color: #000000;">{{
                                 props.row.estado
+
                             }}</span>
                         </div>
                         <div
+                            @click="handleRowClick(props.row)"
                             style="background:#BBED8C;"
                             v-else-if="
                                 props.row.estado == 'Finalizado'
@@ -203,6 +206,7 @@
                             }}</span>
                         </div>
                         <div
+                            @click="handleRowClick(props.row)"
                             style="background:#FF0000;"
                             v-else-if="
                                 props.row.estado == 'Pendiente'

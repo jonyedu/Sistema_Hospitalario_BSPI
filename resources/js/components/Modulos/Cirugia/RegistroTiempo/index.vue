@@ -446,12 +446,12 @@ export default {
             }
         },
         guardarRegistroTiempo() {
-            if (this.validarCambioTiempo()) {
+            var mensaje = this.validarCambioTiempo();
+            if (mensaje != undefined ) {
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia al cambiar tiempo",
-                    message:
-                        "No puede cambiar el estado, sin haber empezado el anterior",
+                    message:mensaje,
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -465,7 +465,7 @@ export default {
             }
             let that = this;
             let url = "";
-            let mensaje = "Datos guardados correctamente.";
+            //let mensaje = "Datos guardados correctamente.";
             url = "/modulos/cirugia/registro_tiempo/guardar_registro_tiempo";
             var loader = that.$loading.show();
             axios
@@ -474,7 +474,7 @@ export default {
                     that.iniciado = true;
                     that.disabledDetalleTiempo = false;
                     that.cargarRegistroTiempoPorSecCirPro();
-                    /* that.flashMessage.show({
+                    that.flashMessage.show({
                         status: "success",
                         title: "Éxito al procesar",
                         message: mensaje,
@@ -486,7 +486,7 @@ export default {
                                 background: "linear-gradient(#e66465, #9198e5)"
                             }
                         }
-                    }); */
+                    });
                     loader.hide();
                 })
                 .catch(error => {
@@ -522,16 +522,15 @@ export default {
                     //Valida cuando Uso De Quirófano se desea Finalizar, pero Cirugía sigue Iniciado
                     if (this.registros_tiempos[0].estado == "Iniciado") {
                         if (
-                            this.registros_tiempos[3].estado == "Iniciado" ||
-                            this.registros_tiempos[3].estado == "Pendiente"
+                            this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente"
                         ) {
-                            return true;
+                            return 'No puede finalizar Uso De Quirófano, cuando Cirugía sigue Iniciado.';
                         }
                     }
                     //Valida cuando Uso De Quirófano se desea Finalizar, pero Preparación De Anestesiólogo sigue en Iniciado
                     if (this.registros_tiempos[0].estado == "Iniciado") {
                         if (this.registros_tiempos[1].estado == "Iniciado") {
-                            return true;
+                            return 'No puede finalizar Uso De Quirófano, cuando Preparación De Anestesiólogo sigue Iniciado.';
                         }
                     }
                 }
@@ -540,13 +539,19 @@ export default {
                     //Valida cuando Preparación De Anestesiólogo se desea Iniciar, pero Uso De Quirófano sigue en pendiente
                     if (this.registros_tiempos[1].estado == "Pendiente") {
                         if (this.registros_tiempos[0].estado == "Pendiente") {
-                            return true;
+                            return 'No puede Iniciar Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Pendiente.';
                         }
                     }
-                    //Valida cuando Preparación De Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado
+                    //Valida cuando Preparación De Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado o Pendiente
                     if (this.registros_tiempos[1].estado == "Iniciado") {
-                        if (this.registros_tiempos[2].estado == "Iniciado") {
-                            return true;
+                        if (this.registros_tiempos[2].estado == "Iniciado" || this.registros_tiempos[2].estado == "Pendiente") {
+                            return 'No puede finalizar Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Pendiente.';
+                        }
+                    }
+                    //Valida cuando se quiere dar click en Preparación De Anestesiólogo estando Finalizado, pero Uso de Quirófano sigue en iniciado
+                    if (this.registros_tiempos[1].estado == "Finalizado") {
+                        if (this.registros_tiempos[0].estado == "Iniciado" ) {
+                            return 'No puede dar click nuevamente en Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Iniciado.';
                         }
                     }
                 }
@@ -555,13 +560,19 @@ export default {
                     //Valida cuando Inducción se desea Iniciar, pero Preparación De Anestesiólogo sigue en pendiente
                     if (this.registros_tiempos[2].estado == "Pendiente") {
                         if (this.registros_tiempos[1].estado == "Pendiente") {
-                            return true;
+                            return 'No puede Iniciar Inducción, cuando Preparación De Anestesiólogo sigue Pendiente.';
                         }
                     }
-                    //Valida cuando Inducción se desea Finalizar, pero Cirugía sigue en Iniciado
+                    //Valida cuando Inducción se desea Finalizar, pero Cirugía sigue en Iniciado o Pendiente
                     if (this.registros_tiempos[2].estado == "Iniciado") {
-                        if (this.registros_tiempos[3].estado == "Iniciado") {
-                            return true;
+                        if (this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente") {
+                            return 'No puede Finalizar Inducción, cuando Cirugía sigue Iniciado o Pendiente.';
+                        }
+                    }
+                    //Valida cuando se quiere dar click en Inducción estando Finalizado, pero Preparación De Anestesiólogo sigue en iniciado
+                    if (this.registros_tiempos[2].estado == "Finalizado") {
+                        if (this.registros_tiempos[1].estado == "Iniciado" ) {
+                            return 'No puede dar click nuevamente en Inducción, cuando Preparación De Anestesiólogo sigue Iniciado.';
                         }
                     }
                 }
@@ -569,8 +580,14 @@ export default {
                 if (this.form.id_detalle_tiempo == 4) {
                     //Valida cuando Cirugía se desea Iniciar, pero Induccion sigue en pendiente
                     if (this.registros_tiempos[3].estado == "Pendiente") {
-                        if (this.registros_tiempos[2].estado == "Pendiente") {
-                            return true;
+                        if (this.registros_tiempos[2].estado == "Pendiente" ) {
+                            return 'No puede Iniciar Cirugía, cuando Induccion sigue Pendiente.';
+                        }
+                    }
+                    //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Induccion sigue en iniciado
+                    if (this.registros_tiempos[3].estado == "Finalizado") {
+                        if (this.registros_tiempos[2].estado == "Iniciado" ) {
+                            return 'No puede dar click nuevamente en Cirugia, cuando Induccion sigue Iniciado.';
                         }
                     }
                 }
@@ -586,7 +603,7 @@ export default {
                         this.registros_tiempos[2].estado == "Finalizado" &&
                         this.registros_tiempos[3].estado == "Finalizado"
                     ) {
-                        return true;
+                        return 'Usted ha finalizado correctamente.';
                     }
                 }
             }

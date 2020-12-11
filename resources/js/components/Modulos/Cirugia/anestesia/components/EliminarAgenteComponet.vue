@@ -137,14 +137,21 @@
                         <button
                             type="button"
                             class="btn btn-primary"
-                            @click="validarConfirmarCandelar(true)"
+                            @click="validarConfirmarCandelar(true, false)"
                         >
-                            Aceptar
+                            Modificar
                         </button>
                         <button
                             type="button"
                             class="btn btn-danger"
-                            @click="validarConfirmarCandelar(false)"
+                            @click="validarConfirmarCandelar(false, true)"
+                        >
+                            Eliminar
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-info"
+                            @click="validarConfirmarCandelar(false, false)"
                         >
                             Cancelar
                         </button>
@@ -165,21 +172,24 @@ export default {
         }
     },
     methods: {
-        validarConfirmarCandelar(value) {
-            this.$props.datos.respuesta = value;
+        validarConfirmarCandelar(modificar, eliminar) {
+            this.$props.datos.respuesta = modificar;
+            //alert(this.$props.datos.respuesta);
+            this.$props.datos.respuestaEliminar = eliminar;
+            //alert(this.$props.datos.respuestaEliminar);
             this.$emit("handleSeleccionarClick", this.$props.datos);
         },
         setSelectedRespiracion(value) {
             if(value != null){
                 this.$props.datos.ruta_icono = value.img;
-                this.$props.datos.valor = 0;
+                this.$props.datos.valorNuevo = 0;
                 this.$props.datos.adicional.system_name = value.descripcion;
             }
         },
         setSelectedPosicion(value) {
             if(value != null){
                 this.$props.datos.ruta_icono = value.img;
-                this.$props.datos.valor = 0;
+                this.$props.datos.valorNuevo = 0;
                 this.$props.datos.adicional.system_name = value.descripcion;
             }
         }

@@ -81,6 +81,15 @@ class RegistroAnestesia extends Model
         'pcip',
         'status',
     ];
+    public function consultaMedico()
+    {
+        return $this->hasOne('App\Models\Modulos\Admision\Medico\Medico', 'id', 'por');
+    }
+   
+    public function consultaSala()
+    {
+        return $this->hasOne('App\Models\Modulos\Parametrizacion\Sala\Sala', 'codigo', 'conducido_a');
+    }
 
     public function drogaAdministrada()
     {
