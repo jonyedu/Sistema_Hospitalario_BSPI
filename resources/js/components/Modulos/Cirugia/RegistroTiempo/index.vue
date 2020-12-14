@@ -41,42 +41,9 @@
                                             >
                                                 Nuevo
                                             </button>
-                                            <button
-                                                    v-if="form.id_cirugia_programada > 0"
-                                                    type="button"
-                                                    class="btn btn-outline-primary"
-                                                    @click="
-                                                        guardarRegistroTiempo
-                                                    "
-                                                >
-                                                    <i
-                                                        class="fas fa-stopwatch"
-                                                    ></i>
-                                                </button>
                                         </div>
                                     </div>
-                                    <!-- <div
-                                        class="col-lg-1 col-md-1 col-sm-1"
-                                    >
-                                        <template
-                                            v-if="iniciado == false"
-                                        >
-                                            <span>
-                                                <button
-                                                    type="button"
-                                                    class="btn btn-outline-primary"
-                                                    @click="
-                                                        guardarRegistroTiempo
-                                                    "
-                                                >
-                                                    <i
-                                                        class="fas fa-stopwatch"
-                                                    ></i>
-                                                </button>
-                                            </span>
-                                        </template>
-                                    </div> -->
-                                    <!-- Fin de Butones Nueva, Modificar, Guardar, Imprimir, H.C. Digital -->
+                                    <!-- Fin de Butones Nueva -->
                                 </div>
                             </div>
                         </div>
@@ -88,8 +55,6 @@
                         class="col-lg-12 col-md-12 col-sm-12"
                         v-if="form.id_cirugia_programada > 0"
                     >
-                        <!-- Datos del Paciente -->
-                        <!-- card-green -->
                         <div class="card card-default collapsed-card">
                             <div
                                 class="card-header"
@@ -102,6 +67,7 @@
                                 <div class="card-tools">
                                     <button
                                         type="button"
+                                        @click="guardarRegistroTiempo"
                                         class="btn btn-tool"
                                         data-card-widget="collapse"
                                     >
@@ -274,7 +240,7 @@ export default {
             if (value != "") {
                 let that = this;
                 let url =
-                    "/modulos/cirugia/anestesia/validar_secCirPro/" +
+                    "/modulos/cirugia/registro_tiempo/validar_secCirPro/" +
                     value.SecCirPro;
                 //var loader = that.$loading.show();
                 axios
@@ -446,12 +412,12 @@ export default {
             }
         },
         guardarRegistroTiempo() {
-            if (this.validarCambioTiempo()) {
+            var mensaje = this.validarCambioTiempo();
+            if (mensaje != undefined ) {
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia al cambiar tiempo",
-                    message:
-                        "No puede cambiar el estado, sin haber cambiado el anterior",
+                    message:mensaje,
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -465,7 +431,7 @@ export default {
             }
             let that = this;
             let url = "";
-            let mensaje = "Datos guardados correctamente.";
+            //let mensaje = "Datos guardados correctamente.";
             url = "/modulos/cirugia/registro_tiempo/guardar_registro_tiempo";
             var loader = that.$loading.show();
             axios
@@ -474,10 +440,10 @@ export default {
                     that.iniciado = true;
                     that.disabledDetalleTiempo = false;
                     that.cargarRegistroTiempoPorSecCirPro();
-                    /* that.flashMessage.show({
+                    that.flashMessage.show({
                         status: "success",
                         title: "Éxito al procesar",
-                        message: mensaje,
+                        message: "Tiempo agregado correctamente",
                         clickable: true,
                         time: 5000,
                         icon: "/iconsflashMessage/success.svg",
@@ -486,7 +452,7 @@ export default {
                                 background: "linear-gradient(#e66465, #9198e5)"
                             }
                         }
-                    }); */
+                    });
                     loader.hide();
                 })
                 .catch(error => {
@@ -513,10 +479,6 @@ export default {
         validarCambioTiempo() {
             //Para validar los tiempos respetando su flujo de proceso
             if (this.iniciado) {
-                /* Se valida cuando no se haya seleccionado nada */
-                /* if(this.form.selected_detalle_tiempo == ""){
-                    return true;
-                } */
                 /* Valida cuando se seleccione Uso De Quirófano */
                 if (this.form.id_detalle_tiempo == 1) {
                     //Valida cuando Uso De Quirófano se desea Finalizar, pero Cirugía sigue Iniciado
@@ -524,13 +486,13 @@ export default {
                         if (
                             this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente"
                         ) {
-                            return true;
+                            return 'No puede finalizar Uso De Quirófano, cuando Cirugía sigue Iniciado o Pendiente.';
                         }
                     }
                     //Valida cuando Uso De Quirófano se desea Finalizar, pero Preparación De Anestesiólogo sigue en Iniciado
                     if (this.registros_tiempos[0].estado == "Iniciado") {
                         if (this.registros_tiempos[1].estado == "Iniciado") {
-                            return true;
+                            return 'No puede finalizar Uso De Quirófano, cuando Preparación De Anestesiólogo sigue Iniciado.';
                         }
                     }
                 }
@@ -539,13 +501,19 @@ export default {
                     //Valida cuando Preparación De Anestesiólogo se desea Iniciar, pero Uso De Quirófano sigue en pendiente
                     if (this.registros_tiempos[1].estado == "Pendiente") {
                         if (this.registros_tiempos[0].estado == "Pendiente") {
-                            return true;
+                            return 'No puede Iniciar Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Pendiente.';
                         }
                     }
                     //Valida cuando Preparación De Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado o Pendiente
                     if (this.registros_tiempos[1].estado == "Iniciado") {
                         if (this.registros_tiempos[2].estado == "Iniciado" || this.registros_tiempos[2].estado == "Pendiente") {
-                            return true;
+                            return 'No puede finalizar Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Iniciado o Pendiente.';
+                        }
+                    }
+                    //Valida cuando se quiere dar click en Preparación De Anestesiólogo estando Finalizado, pero Uso de Quirófano sigue en iniciado
+                    if (this.registros_tiempos[1].estado == "Finalizado") {
+                        if (this.registros_tiempos[0].estado == "Iniciado" ) {
+                            return 'No puede dar click nuevamente en Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Iniciado.';
                         }
                     }
                 }
@@ -554,13 +522,19 @@ export default {
                     //Valida cuando Inducción se desea Iniciar, pero Preparación De Anestesiólogo sigue en pendiente
                     if (this.registros_tiempos[2].estado == "Pendiente") {
                         if (this.registros_tiempos[1].estado == "Pendiente") {
-                            return true;
+                            return 'No puede Iniciar Inducción, cuando Preparación De Anestesiólogo sigue Pendiente.';
                         }
                     }
                     //Valida cuando Inducción se desea Finalizar, pero Cirugía sigue en Iniciado o Pendiente
                     if (this.registros_tiempos[2].estado == "Iniciado") {
                         if (this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente") {
-                            return true;
+                            return 'No puede Finalizar Inducción, cuando Cirugía sigue Iniciado o Pendiente.';
+                        }
+                    }
+                    //Valida cuando se quiere dar click en Inducción estando Finalizado, pero Preparación De Anestesiólogo sigue en iniciado
+                    if (this.registros_tiempos[2].estado == "Finalizado") {
+                        if (this.registros_tiempos[1].estado == "Iniciado" ) {
+                            return 'No puede dar click nuevamente en Inducción, cuando Preparación De Anestesiólogo sigue Iniciado.';
                         }
                     }
                 }
@@ -569,13 +543,13 @@ export default {
                     //Valida cuando Cirugía se desea Iniciar, pero Induccion sigue en pendiente
                     if (this.registros_tiempos[3].estado == "Pendiente") {
                         if (this.registros_tiempos[2].estado == "Pendiente" ) {
-                            return true;
+                            return 'No puede Iniciar Cirugía, cuando Induccion sigue Pendiente.';
                         }
                     }
                     //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Induccion sigue en iniciado
                     if (this.registros_tiempos[3].estado == "Finalizado") {
                         if (this.registros_tiempos[2].estado == "Iniciado" ) {
-                            return true;
+                            return 'No puede dar click nuevamente en Cirugia, cuando Induccion sigue Iniciado.';
                         }
                     }
                 }
@@ -591,20 +565,7 @@ export default {
                         this.registros_tiempos[2].estado == "Finalizado" &&
                         this.registros_tiempos[3].estado == "Finalizado"
                     ) {
-                        this.flashMessage.show({
-                            status: "success",
-                            title:"Éxisto al procesar",
-                            message:"Usted ha finalizado correctamente. ",
-                            clickable: true,
-                            time: 50000,
-                            icon: "/iconsflashMessage/success.svg",
-                            customStyle: {
-                                flashMessageStyle: {
-                                    background: "linear-gradient(#e66465, #9198e5)"
-                                }
-                            }
-                        });
-                        return ;
+                        return 'Usted ha finalizado correctamente.';
                     }
                 }
             }
