@@ -4841,7 +4841,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         abreviatura: "T",
         valor: 0
       }]), _defineProperty(_form, "total", 0), _defineProperty(_form, "imgFirma", null), _defineProperty(_form, "imgGrafica", null), _form),
-      registro_id: 1,
+      //registro_id: 1,
       drogas_administradas: [],
       peso: "",
       estatura: "",
@@ -5230,7 +5230,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
       if (value.respuesta) {
-        alert(value.respuesta);
         var valor = parseInt(value.valorNuevo);
         var minutes = value.is_tpo_init;
         var is_tpo_init = value.is_tpo_init;
@@ -5278,7 +5277,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                           valor: valor,
                           name: adicional.system_name,
                           indice_hora: this.indice_hora
-                        }, adicional.tipo);
+                        }, adicional.tipo, value.es_posicion, {}, adicional.system_name, valor, ruta_icono, {}, column_quince);
                       }
                     }
                   }
@@ -5798,6 +5797,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         SecCirPro: this.form.cirugia_id
       }).then(function (response) {
         _this3.datos_server = response.data;
+        alert("es_posicion:" + es_posicion);
 
         if (es_posicion == false) {
           col_cince_min.agentes.push({
@@ -7502,7 +7502,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       form: {
-        idCirugiaProgramada: "",
+        idCirugiaProgramada: "0001",
         idCirugiaProgramadaTemporal: "",
         registro_anestesia_id: 0,
 
@@ -8045,65 +8045,61 @@ __webpack_require__.r(__webpack_exports__);
             resolve(poseeErrores);
         });
     }, */
-    onComplete: function onComplete() {
-      this.$refs.paraclinico.guardarModificar();
-      this.respuestaImprimir = 1;
-      /* if(this.respuestaFinProceso){
-          this.form.idCirugiaProgramada = "";
-      } */
-    },
-    onChangeTab: function onChangeTab(prevIndex, nextIndex) {
-      //Se debera realizar las validaciones respectivas para cada tab
-      this.setFormTitle(nextIndex);
-      this.guardarModificar(prevIndex);
-    },
-    setFormTitle: function setFormTitle(index) {
-      switch (index) {
-        case 0:
-          this.titulo_seleccionado = "Revisión por Sistemas";
-          this.$refs.revisionSistema.cargarRevisionSistema();
-          break;
 
-        case 1:
-          this.titulo_seleccionado = "Antecedentes";
-          this.$refs.antecedente.cargarAntecedente();
-          break;
+    /* onComplete: function() {
+        this.$refs.paraclinico.guardarModificar();
+        this.respuestaImprimir = 1;
+        if(this.respuestaFinProceso){
+            this.form.idCirugiaProgramada = "";
+        }
+    }, */
 
-        case 2:
-          this.titulo_seleccionado = "Examen Físico";
-          this.$refs.examenFisico.cargarExamenFisico();
-          break;
+    /* onChangeTab(prevIndex, nextIndex) {
+        //Se debera realizar las validaciones respectivas para cada tab
+        this.setFormTitle(nextIndex);
+        this.guardarModificar(prevIndex);
+    }, */
 
-        case 3:
-          this.titulo_seleccionado = "Paraclinicos";
-          this.$refs.paraclinico.cargarParaclinico();
-          break;
+    /* setFormTitle(index) {
+        switch (index) {
+            case 0:
+                this.titulo_seleccionado = "Revisión por Sistemas";
+                this.$refs.revisionSistema.cargarRevisionSistema();
+                break;
+            case 1:
+                this.titulo_seleccionado = "Antecedentes";
+                this.$refs.antecedente.cargarAntecedente();
+                break;
+            case 2:
+                this.titulo_seleccionado = "Examen Físico";
+                this.$refs.examenFisico.cargarExamenFisico();
+                break;
+            case 3:
+                this.titulo_seleccionado = "Paraclinicos";
+                this.$refs.paraclinico.cargarParaclinico();
+                break;
+            default:
+                this.titulo_seleccionado = "";
+        }
+    }, */
 
-        default:
-          this.titulo_seleccionado = "";
-      }
-    },
-    guardarModificar: function guardarModificar(index) {
-      switch (index) {
-        case 0:
-          this.$refs.revisionSistema.guardarModificar();
-          break;
-
-        case 1:
-          this.$refs.antecedente.guardarModificar();
-          break;
-
-        case 2:
-          this.$refs.examenFisico.guardarModificar();
-          break;
-
-        case 3:
-          break;
-
-        default: //this.titulo_seleccionado = "";
-
-      }
-    },
+    /* guardarModificar(index) {
+        switch (index) {
+            case 0:
+                this.$refs.revisionSistema.guardarModificar();
+                break;
+            case 1:
+                this.$refs.antecedente.guardarModificar();
+                break;
+            case 2:
+                this.$refs.examenFisico.guardarModificar();
+                break;
+            case 3:
+                break;
+            default:
+            //this.titulo_seleccionado = "";
+        }
+    }, */
     llamarMetodoImprimir: function llamarMetodoImprimir() {
       if (this.respuestaImprimir) {
         window.open("/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" + this.form.idCirugiaProgramadaTemporal);
@@ -10454,17 +10450,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     seleccionarButton: {
@@ -10479,15 +10464,15 @@ __webpack_require__.r(__webpack_exports__);
         frm_fecha: ""
       },
       columns: [{
-        label: "Hora Programada",
+        label: "HorPro",
         field: "horaProgramada",
         type: "String"
       }, {
-        label: "Hora Inicio",
+        label: "HorIni",
         field: "horaInicio",
         type: "String"
       }, {
-        label: "Hora Fin",
+        label: "HorFin",
         field: "horaFin",
         type: "String"
       }, {
@@ -10502,11 +10487,13 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         label: "Sala-Cama",
         field: "sala_cama",
-        type: "String"
+        type: "String",
+        width: "200px"
       }, {
         label: "Procedimiento",
         field: "procedimiento",
-        type: "String"
+        type: "String",
+        width: "300px"
       }, {
         label: "Cirujano",
         field: "cirujano",
@@ -10572,7 +10559,7 @@ __webpack_require__.r(__webpack_exports__);
           } //datos para mostrar en la tabla padre
 
 
-          objeto.horaProgramada = lista.CirProHorPro;
+          objeto.horaProgramada = lista.HORPRO;
           objeto.horaInicio = lista.CirProHoraFin == null ? '00:00:00' : lista.CirProHoraInicio;
           objeto.horaFin = lista.CirProHoraFin == null ? '00:00:00' : lista.CirProHoraFin;
           objeto.cirujano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProCirujano);
@@ -16910,7 +16897,7 @@ __webpack_require__.r(__webpack_exports__);
                     if(response.data.modulo[0] != null){
                         that.cargarSubModulos(response.data.modulo[0].codigo);
                     }
-                  }
+                 }
             })
             .catch(error => {
                 //Errores
@@ -17794,6 +17781,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     columnsData: {
@@ -17965,7 +17953,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (!encontradoSeleccionar) {
         this.$data.columns.unshift({
-          label: "Seleccionar",
+          label: "Elegir",
           field: "seleccionar",
           html: true
         });
@@ -18138,7 +18126,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, "\ntable {\r\n    border-collapse: collapse;\n}\n.flex {\r\n    display: flex;\n}\n.flex-y {\r\n    flex-direction: column;\n}\n.flex-x {\r\n    flex-direction: row;\n}\n.border-t {\r\n    border: 1px solid #000;\n}\n.border-l {\r\n    border-left: 1px solid #000;\n}\n.border-r {\r\n    border-right: 1px solid #000;\n}\n.flex-center-x {\r\n    justify-content: center;\n}\n.flex-center-y {\r\n    align-items: center;\n}\n.border-top {\r\n    border-top: 1px solid #000 !important;\n}\n.border-b {\r\n    border-bottom: 1px solid #000;\n}\n.upper {\r\n    text-transform: uppercase;\n}\n.input-line {\r\n    border: none;\r\n    border-bottom: 1px solid #000;\r\n    outline: none;\n}\n.input-no-line {\r\n    border: none;\r\n    outline: none;\n}\n.space-left {\r\n    box-sizing: border-box;\r\n    padding-left: 5px;\n}\n.m-w {\r\n    max-width: 35px;\n}\n.no-line {\r\n    border: none;\r\n    outline: none;\n}\n.w-100p {\r\n    width: 100%;\n}\n.border-none-b- {\r\n    border: none;\r\n    outline: none;\r\n    border-bottom: 1px solid #000;\n}\n.grid {\r\n    display: grid;\n}\n.grid-2-c {\r\n    grid-template-columns: 1fr 1fr;\n}\n.grid-center {\r\n    align-self: center;\r\n    justify-self: center;\n}\n.flex-x-end {\r\n    justify-content: flex-end;\n}\n.he25 {\r\n    height: 25px;\n}\n.overflow-x-hidden {\r\n    overflow-x: scroll;\n}\n.wrap-flex {\r\n    flex-wrap: wrap;\n}\n.no-wrap-flex {\r\n    flex-wrap: nowrap !important;\n}\n.line-second {\r\n    width: 20px;\r\n    height: 20px;\r\n    display: flex;\n}\n.space-btw {\r\n    justify-content: space-between;\n}\n.width-100-p {\r\n    width: 100%;\n}\n.time-triangle-abs {\r\n    width: 15px;\r\n    position: absolute;\r\n    bottom: 0;\r\n    /* left: -18px; */\r\n    z-index: 1000;\n}\n.grid {\r\n    display: grid;\n}\n.grid-4-c {\r\n    /* grid-template-columns: repeat(4 , 1fr); */\n}\n.relative {\r\n    position: relative;\n}\n.figure-celds {\r\n    position: absolute;\n}\n.figure-celds:nth-child(1) {\r\n    left: 0;\n}\n.figure-celds:nth-child(2) {\r\n    left: 15px;\n}\n.figure-celds:nth-child(3) {\r\n    left: 30px;\n}\n.figure-celds:nth-child(4) {\r\n    left: 45px;\n}\n.figure-celds:nth-child(5) {\r\n    left: 60px;\n}\n.figure-celds:nth-child(6) {\r\n    left: 75px;\n}\n.input-registro {\r\n    border-bottom: 1px solid;\r\n    width: 100%;\n}\np.blue {\r\n    background: #5178d0;\r\n    border-radius: 0.8em;\r\n    -moz-border-radius: 0.8em;\r\n    -webkit-border-radius: 0.8em;\r\n    color: #ffffff;\r\n    display: inline-block;\r\n    font-weight: bold;\r\n    line-height: 1.6em;\r\n    margin-right: 15px;\r\n    text-align: center;\r\n    width: 1.6em;\n}\r\n", ""]);
+exports.push([module.i, "\ntable {\n    border-collapse: collapse;\n}\n.flex {\n    display: flex;\n}\n.flex-y {\n    flex-direction: column;\n}\n.flex-x {\n    flex-direction: row;\n}\n.border-t {\n    border: 1px solid #000;\n}\n.border-l {\n    border-left: 1px solid #000;\n}\n.border-r {\n    border-right: 1px solid #000;\n}\n.flex-center-x {\n    justify-content: center;\n}\n.flex-center-y {\n    align-items: center;\n}\n.border-top {\n    border-top: 1px solid #000 !important;\n}\n.border-b {\n    border-bottom: 1px solid #000;\n}\n.upper {\n    text-transform: uppercase;\n}\n.input-line {\n    border: none;\n    border-bottom: 1px solid #000;\n    outline: none;\n}\n.input-no-line {\n    border: none;\n    outline: none;\n}\n.space-left {\n    box-sizing: border-box;\n    padding-left: 5px;\n}\n.m-w {\n    max-width: 35px;\n}\n.no-line {\n    border: none;\n    outline: none;\n}\n.w-100p {\n    width: 100%;\n}\n.border-none-b- {\n    border: none;\n    outline: none;\n    border-bottom: 1px solid #000;\n}\n.grid {\n    display: grid;\n}\n.grid-2-c {\n    grid-template-columns: 1fr 1fr;\n}\n.grid-center {\n    align-self: center;\n    justify-self: center;\n}\n.flex-x-end {\n    justify-content: flex-end;\n}\n.he25 {\n    height: 25px;\n}\n.overflow-x-hidden {\n    overflow-x: scroll;\n}\n.wrap-flex {\n    flex-wrap: wrap;\n}\n.no-wrap-flex {\n    flex-wrap: nowrap !important;\n}\n.line-second {\n    width: 20px;\n    height: 20px;\n    display: flex;\n}\n.space-btw {\n    justify-content: space-between;\n}\n.width-100-p {\n    width: 100%;\n}\n.time-triangle-abs {\n    width: 15px;\n    position: absolute;\n    bottom: 0;\n    /* left: -18px; */\n    z-index: 1000;\n}\n.grid {\n    display: grid;\n}\n.grid-4-c {\n    /* grid-template-columns: repeat(4 , 1fr); */\n}\n.relative {\n    position: relative;\n}\n.figure-celds {\n    position: absolute;\n}\n.figure-celds:nth-child(1) {\n    left: 0;\n}\n.figure-celds:nth-child(2) {\n    left: 15px;\n}\n.figure-celds:nth-child(3) {\n    left: 30px;\n}\n.figure-celds:nth-child(4) {\n    left: 45px;\n}\n.figure-celds:nth-child(5) {\n    left: 60px;\n}\n.figure-celds:nth-child(6) {\n    left: 75px;\n}\n.input-registro {\n    border-bottom: 1px solid;\n    width: 100%;\n}\np.blue {\n    background: #5178d0;\n    border-radius: 0.8em;\n    -moz-border-radius: 0.8em;\n    -webkit-border-radius: 0.8em;\n    color: #ffffff;\n    display: inline-block;\n    font-weight: bold;\n    line-height: 1.6em;\n    margin-right: 15px;\n    text-align: center;\n    width: 1.6em;\n}\n", ""]);
 
 // exports
 
@@ -18157,7 +18145,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    font-family: Helvetica, Arial, sans-serif;\r\n    position: initial !important;\n}\r\n/* .control {\r\n    margin: 20px;\r\n} */\n.paint {\r\n    border: 2px solid #000;\r\n    border-radius: 5px;\r\n    margin: 40px auto;\r\n    box-sizing: border-box;\r\n    display: block;\r\n    width: auto;\r\n    height: auto;\r\n    position: relative !important;\r\n    overflow: hidden;\n}\n.custom-navigation .controls {\r\n    margin: 10px 0 0 0;\r\n    border: 1px solid #ddd;\r\n    padding: 20px;\r\n    border-radius: 5px;\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\n    font-family: Helvetica, Arial, sans-serif;\n    position: initial !important;\n}\n/* .control {\n    margin: 20px;\n} */\n.paint {\n    border: 2px solid #000;\n    border-radius: 5px;\n    margin: 40px auto;\n    box-sizing: border-box;\n    display: block;\n    width: auto;\n    height: auto;\n    position: relative !important;\n    overflow: hidden;\n}\n.custom-navigation .controls {\n    margin: 10px 0 0 0;\n    border: 1px solid #ddd;\n    padding: 20px;\n    border-radius: 5px;\n}\n", ""]);
 
 // exports
 
@@ -71177,70 +71165,35 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "col-lg-8 col-md-8 col-sm-12 mt-2",
-        staticStyle: { "margin-left": "auto", "margin-right": "auto" }
-      },
-      [
-        _c("div", { staticClass: "form-inline" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-lg-4 col-md-4 col-sm-4",
-              attrs: { for: "fecha_hasta" }
-            },
-            [_vm._v("Buscar por Fecha")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.frm_fecha,
-                expression: "form.frm_fecha"
-              }
-            ],
-            staticClass: "form-control col-lg-6 col-md-6 col-sm-6",
-            attrs: {
-              type: "date",
-              id: "fecha_hasta",
-              placeholder: "Seleccione la fecha de fin"
-            },
-            domProps: { value: _vm.form.frm_fecha },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "frm_fecha", $event.target.value)
-              }
+    _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.frm_fecha,
+            expression: "form.frm_fecha"
+          }
+        ],
+        staticClass: "form-control col-lg-3 col-md-3 col-sm-3",
+        staticStyle: { margin: "0px auto", display: "block" },
+        attrs: {
+          type: "date",
+          id: "fecha_hasta",
+          placeholder: "Seleccione la fecha de fin"
+        },
+        domProps: { value: _vm.form.frm_fecha },
+        on: {
+          change: _vm.cargarListaCirugiaProgramadaPaciente,
+          input: function($event) {
+            if ($event.target.composing) {
+              return
             }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-success col-lg-2 col-md-2 col-sm-2",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  return _vm.cargarListaCirugiaProgramadaPaciente()
-                }
-              }
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-search",
-                attrs: { "aria-hidden": "true" }
-              })
-            ]
-          )
-        ])
-      ]
-    ),
+            _vm.$set(_vm.form, "frm_fecha", $event.target.value)
+          }
+        }
+      })
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
       _c("div", { staticClass: "card" }, [
@@ -71274,7 +71227,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+    return _c("div", { staticClass: "col-lg-12 col-md-10 col-sm-10" }, [
       _c(
         "h1",
         {
@@ -81761,6 +81714,7 @@ var render = function() {
         _c(
           "vue-good-table",
           {
+            staticClass: "col-lg-12 col-md-12 col-sm-12",
             attrs: {
               "max-height": "400px",
               columns: _vm.columns,
@@ -101128,6 +101082,28 @@ var funcionesGlobales = {
     } else {
       return pieces = "";
     }
+  },
+  //Metodo para obtener la fecha actual
+  getDate: function getDate() {
+    var date = new Date();
+    var d = this.addCeroToTime(date.getDate());
+    var me = this.addCeroToTime(date.getMonth() + 1);
+    var y = date.getFullYear();
+    return d + "/" + me + "/" + y;
+  },
+  //Metodo para obtener el hora actual
+  getTime: function getTime() {
+    var time = new Date();
+    var h = time.getHours();
+    var mi = time.getMinutes();
+    var s = time.getSeconds();
+    return h + ":" + mi + ":" + s;
+  },
+  //Metodo para obtener la fecha y hora actual
+  getDateTime: function getDateTime() {
+    var date = this.getDate();
+    var time = this.getTime();
+    return date + " " + time;
   }
 };
 
@@ -101225,7 +101201,7 @@ var prefix = "/LeonBecerra";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Sistema_Hospitalario_BSPI\Sistema_Hospitalario_BSPI\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\jonat\OneDrive\TrabajoBSPI\Proyecto\Sistema_Hospitalario_BSPI\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ })

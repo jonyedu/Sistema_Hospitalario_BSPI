@@ -558,24 +558,15 @@
                                                                                 index_agente
                                                                             "
                                                                             @click="
-                                                                                eliminarAgente(
+                                                                                eliminarAgente1(
                                                                                     index,
                                                                                     index_fila,
                                                                                     index_columna,
                                                                                     index_minutos_columna,
                                                                                     index_agente,
-                                                                                    minutos_columna[
-                                                                                        't_init'
-                                                                                    ],
-                                                                                    minutos_columna[
-                                                                                        't_fin'
-                                                                                    ],
-                                                                                    agente._src,
-                                                                                    agente.descripcion,
-                                                                                    agente.valor,
-                                                                                    agente.id,
-                                                                                    dato.es_agente,
-                                                                                    dato.es_posicion
+                                                                                    minutos_columna,
+                                                                                    agente,
+                                                                                    dato
                                                                                 )
                                                                             "
                                                                             ><img
@@ -616,7 +607,7 @@
                                                                             0
                                                                     "
                                                                     @click="
-                                                                        eliminarPosicion(
+                                                                        eliminarPosicion1(
                                                                             index,
                                                                             index_fila,
                                                                             index_columna,
@@ -2010,6 +2001,39 @@ export default {
     data: function() {
         return {
             iniciado_eliminar: false,
+            datos_eliminar_agente1: {
+                respuesta_modificar: false,
+                respuesta_eliminar: false,
+                index_all:{
+                    index: "",
+                    index_fila: "",
+                    index_columna: "",
+                    index_minutos_columna: "",
+                    index_agente: "",
+                },
+                columnas:{
+                    agente:{
+                        src: "",
+                        description: "",
+                        cod:"",
+                        value:"",
+                        valueNew: "",
+                    },
+                    t_fin: "",
+                    t_init: "",
+                },
+                posicion:{
+                    description: "",
+                    cod: "",
+                    codRe: "",
+                    src: "",
+                    nombre_sistema: "",
+                },
+                dato:{
+                    es_agente: "",
+                    es_posicion: ""
+                },
+            },
             datos_eliminar_agente: {
                 index: "",
                 index_fila: "",
@@ -2476,6 +2500,54 @@ export default {
                 this.iniciado_eliminar = false;
             }
         },
+        eliminarAgente1(
+            index,
+            index_fila,
+            index_columna,
+            index_minutos_columna,
+            index_agente,
+            minutos_columna = {},
+            agente = {},
+            dato = {}
+        ) {
+            this.lmpDatosEliminarAgente();
+            //Inicia la optimizacion
+            this.datos_eliminar_agente1.index_all.index = index;
+            this.datos_eliminar_agente1.index_all.index_fila = index_fila;
+            this.datos_eliminar_agente1.index_all.index_columna = index_columna;
+            this.datos_eliminar_agente1.index_all.index_minutos_columna = index_minutos_columna;
+            this.datos_eliminar_agente1.index_all.index_agente = index_agente;
+            this.datos_eliminar_agente1.columnas.t_init = minutos_columna['t_init'];
+            this.datos_eliminar_agente1.columnas.t_fin = minutos_columna['t_fin'];
+            this.datos_eliminar_agente1.columnas.agente = agente;
+            this.datos_eliminar_agente1.dato.es_agente = dato.es_agente;
+            this.datos_eliminar_agente1.dato.es_posicion = dato.es_posicion;
+            //Fin la optimizacion
+
+            /* this.datos_eliminar_agente.is_tpo_init = t_init;
+            this.datos_eliminar_agente.is_tpo_fin = t_fin;
+            if (es_agente && index_fila != 29) {
+                this.datos_eliminar_agente.adicional = {
+                    system_name: descripcion,
+                    tipo: "agente"
+                };
+            } else if (es_agente && index_fila == 29) {
+                this.datos_eliminar_agente.adicional = {
+                    system_name: descripcion,
+                    tipo: "respiracion"
+                };
+            } else if (es_posicion) {
+                this.datos_eliminar_agente.adicional = {
+                    system_name: descripcion,
+                    tipo: "posicion"
+                };
+            }
+            this.datos_eliminar_agente.ruta_icono = src;
+            this.datos_eliminar_agente.descripcion = descripcion;
+            this.datos_eliminar_agente.valor = valor;
+            this.datos_eliminar_agente.id = id; */
+            this.$modal.show("EliminarAgente");
+        },
         eliminarAgente(
             index,
             index_fila,
@@ -2492,6 +2564,12 @@ export default {
             es_posicion
         ) {
             this.limpiarDatosEliminarAgente();
+            //Inicia la optimizacion
+            this.datos_eliminar_agente1.index_all.index = index;
+            //Fin la optimizacion
+
+
+
             this.datos_eliminar_agente.index = index;
             this.datos_eliminar_agente.index_fila = index_fila;
             this.datos_eliminar_agente.index_columna = index_columna;
@@ -2519,6 +2597,28 @@ export default {
             this.datos_eliminar_agente.descripcion = descripcion;
             this.datos_eliminar_agente.valor = valor;
             this.datos_eliminar_agente.id = id;
+            this.$modal.show("EliminarAgente");
+        },
+        eliminarPosicion1(
+            index,
+            index_fila,
+            index_columna,
+            posicion = {}
+        ) {
+            this.lmpDatosEliminarAgente();
+            this.datos_eliminar_agente1.index_all.index = index;
+            this.datos_eliminar_agente1.index_all.index_fila = index_fila;
+            this.datos_eliminar_agente1.index_all.index_columna = index_columna;
+            this.datos_eliminar_agente1.posicion = posicion;
+
+            /* this.datos_eliminar_agente.adicional = {
+                system_name: posicion.descripcion,
+                tipo: "posicion"
+            };
+            this.datos_eliminar_agente.ruta_icono = posicion.img_url;
+            this.datos_eliminar_agente.descripcion = posicion.descripcion;
+            this.datos_eliminar_agente.valor = 0;
+            this.datos_eliminar_agente.id = posicion.idRe; */
             this.$modal.show("EliminarAgente");
         },
         eliminarPosicion(index, index_fila, index_columna, posicion = {}) {
@@ -2697,6 +2797,35 @@ export default {
                 });
             }
             this.$modal.hide("EliminarAgente");
+        },
+        lmpDatosEliminarAgente(){
+            src: "",
+                        description: "",
+                        cod:"",
+                        value:"",
+                        valueNew: "",
+
+            this.datos_eliminar_agente1.respuesta_modificar = false;
+            this.datos_eliminar_agente1.respuesta_modificar = false;
+            this.datos_eliminar_agente1.index_all.index = "";
+            this.datos_eliminar_agente1.index_all.index_fila = "";
+            this.datos_eliminar_agente1.index_all.index_columna = "";
+            this.datos_eliminar_agente1.index_all.index_minutos_columna = "";
+            this.datos_eliminar_agente1.index_all.index_agente = "";
+            this.datos_eliminar_agente1.columnas.agente.src = "";
+            this.datos_eliminar_agente1.columnas.agente.descripcion = "";
+            this.datos_eliminar_agente1.columnas.agente.id ="";
+            this.datos_eliminar_agente1.columnas.agente.valor ="";
+            this.datos_eliminar_agente1.columnas.agente.valorNuevo = "";
+            this.datos_eliminar_agente1.columnas.t_fin = "";
+            this.datos_eliminar_agente1.columnas.t_init = "";
+            this.datos_eliminar_agente1.posicion.descripcion = "";
+            this.datos_eliminar_agente1.posicion.id = "";
+            this.datos_eliminar_agente1.posicion.idRe = "";
+            this.datos_eliminar_agente1.posicion.img_url = "";
+            this.datos_eliminar_agente1.posicion.name_system = "";
+            this.datos_eliminar_agente1.dato.es_agente = "";
+            this.datos_eliminar_agente1.dato.es_posicion = ""
         },
         limpiarDatosEliminarAgente() {
             this.datos_eliminar_agente.index = "";

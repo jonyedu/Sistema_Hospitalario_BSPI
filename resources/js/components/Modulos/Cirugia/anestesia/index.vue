@@ -768,7 +768,7 @@ export default {
             respuestaFinProceso: 0,
             respuestaImprimir: 0,
             form: {
-                idCirugiaProgramada: "",
+                idCirugiaProgramada: "0001",
                 idCirugiaProgramadaTemporal: "",
                 registro_anestesia_id: 0,
                 /* Datos del paciente */
@@ -1385,19 +1385,19 @@ export default {
                 resolve(poseeErrores);
             });
         }, */
-        onComplete: function() {
+        /* onComplete: function() {
             this.$refs.paraclinico.guardarModificar();
             this.respuestaImprimir = 1;
-            /* if(this.respuestaFinProceso){
+            if(this.respuestaFinProceso){
                 this.form.idCirugiaProgramada = "";
-            } */
-        },
-        onChangeTab(prevIndex, nextIndex) {
+            }
+        }, */
+        /* onChangeTab(prevIndex, nextIndex) {
             //Se debera realizar las validaciones respectivas para cada tab
             this.setFormTitle(nextIndex);
             this.guardarModificar(prevIndex);
-        },
-        setFormTitle(index) {
+        }, */
+        /* setFormTitle(index) {
             switch (index) {
                 case 0:
                     this.titulo_seleccionado = "Revisión por Sistemas";
@@ -1418,8 +1418,8 @@ export default {
                 default:
                     this.titulo_seleccionado = "";
             }
-        },
-        guardarModificar(index) {
+        }, */
+        /* guardarModificar(index) {
             switch (index) {
                 case 0:
                     this.$refs.revisionSistema.guardarModificar();
@@ -1435,7 +1435,7 @@ export default {
                 default:
                 //this.titulo_seleccionado = "";
             }
-        },
+        }, */
         llamarMetodoImprimir() {
             if (this.respuestaImprimir) {
                 window.open(
