@@ -235,6 +235,7 @@
                                 <tab-content
                                     title="Examen Físico"
                                     icon="ti-signal"
+                                    :before-change="validateFirstStep"
                                 >
                                     <examen-fisico
                                         :id-sec-cir-pro="
@@ -248,6 +249,7 @@
                                     icon="ti-support"
                                 >
                                     <paraclinico
+                                        :user="user"
                                         :id-sec-cir-pro="
                                             form.frm_idCirugiaProgramada
                                         "
@@ -279,13 +281,13 @@
             ></lista-cirugia-programa-paciente>
         </modal>
         <!-- Fin Seccion donde muestra la lista de los pacientes que tienen una cita -->
+        <FlashMessage ></FlashMessage>
     </div>
 </template>
 <script>
 import { prefix } from "../../../../variables";
 export default {
     props: {
-        
         user: {
             type: Object
         }
@@ -314,7 +316,7 @@ export default {
         };
     },
     mounted: function() {
-      
+
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
         let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
             .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
@@ -358,18 +360,16 @@ export default {
         /* Metodos para los form-wizard */
         onValidateTab(validationResult, activeTabIndex) {
             //Se debera realizar las validaciones respectivas para cada tab
-            console.log("PATRIA");
-            console.log(activeTabIndex);
-            console.log(validationResult);
         },
-        /* validateFirstStep() {
+        validateFirstStep() {
             return new Promise((resolve, reject) => {
-                let poseeErrores = this.$refs.revisionSistema.validarForm();
+                let poseeErrores = this.$refs.examenFisico.validarForm();
                 resolve(poseeErrores);
             });
-        }, */
+        },
         onComplete() {
             this.$refs.paraclinico.guardarModificar();
+            this.$refs.paraclinico.guardarFirmaPorAtencion();
             //await this.$refs.paraclinico.cargarParaclinico();
             //await this.cambiarEstado();
         },
@@ -438,7 +438,7 @@ export default {
                 let url =
                     "/modulos/cirugia/anestesia/cargar_sello/" +
                     this.$props.user.id;
-                  
+
                 axios
                     .get(url)
                     .then(function(response) {
@@ -454,7 +454,7 @@ export default {
                         loader.hide();
                     })
                     .catch(error => {
-                        
+
                         that.flashMessage.show({
                             status: "error",
                             title: "Error al procesar consultarSello",

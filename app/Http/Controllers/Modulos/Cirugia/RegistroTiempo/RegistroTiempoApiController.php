@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Modulos\Cirugia\RegistroTiempo;
 
 use App\Http\Controllers\Controller;
+use App\Models\Modulos\Cirugia\CirugiaProgramadas;
+use App\Models\Modulos\Cirugia\RegistroTiempo\CirugiaSuspendida;
 use App\Models\Modulos\Cirugia\RegistroTiempo\RegistroTiempo;
 use App\Models\Modulos\Parametrizacion\DetalleTiempo\DetalleTiempo;
 use Exception;
@@ -105,6 +107,61 @@ class RegistroTiempoApiController extends Controller
                 }
             }
 
+
+            return  response()->json(['msj' => 'OK'], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+    public function suspenderRegistroTiempo(Request $request)
+    {
+        try {
+            $user = Auth::user();
+
+            //aqui es para guardar uno por uno los tiempos
+            $registroTiempo = RegistroTiempo::where('SecCirPro', $request->input('id_cirugia_programada'))
+                ->get();
+            if (sizeOf($registroTiempo) <= 12 && sizeOf($registroTiempo) >= 1) {
+                RegistroTiempo::where('SecCirPro', $request->input('id_cirugia_programada'))
+                    ->where('status', '1')
+                    ->update([
+                        'usu_created_update' => $user->id,
+                        'pcip' => $_SERVER["REMOTE_ADDR"],
+                        'status' => 0,
+                    ]);
+            }
+            CirugiaSuspendida::create([
+                //'SecCirPro', $request->input('id_cirugia_programada'),
+                'SecCirPro' => $request->input('id_cirugia_programada'),
+                'observacion' => $request->input('observacion'),
+                'tiempo' => date("Y-m-d H:i:s"),
+                'usu_created_update' => $user->id,
+                'pcip' => $_SERVER["REMOTE_ADDR"],
+                'status' => 1,
+            ]);
+
+            CirugiaProgramadas::where('SecCirPro', $request->input('id_cirugia_programada'))
+            ->update([
+                'CirProEstado' => 4
+            ]);
+
+            $detallesTiempos = DetalleTiempo::where('status', 1)
+                ->get();
+            if (sizeOf($detallesTiempos) > 0) {
+                foreach ($detallesTiempos as $detalleTiempo) {
+                    RegistroTiempo::Create(
+                        [
+                            'id_detalle_tiempo' => $detalleTiempo->id_detalle_tiempo,
+                            'SecCirPro' => $request->input('id_cirugia_programada'),
+                            'tiempo' => date("H:i:s"),
+                            'estado' => 'S',
+                            'usu_created_update' => $user->id,
+                            'pcip' => $_SERVER["REMOTE_ADDR"],
+                            'status' => 1,
+                        ]
+                    );
+                }
+            }
 
             return  response()->json(['msj' => 'OK'], 200);
         } catch (Exception $e) {
