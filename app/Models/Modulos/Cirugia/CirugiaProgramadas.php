@@ -2,6 +2,7 @@
 
 namespace App\Models\Modulos\Cirugia;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -44,6 +45,16 @@ class CirugiaProgramadas extends Model
         ,'Ayudante2'
         ,'CirProHospit'
     ];
+
+    protected $appends = [
+        'HORPRO'
+    ];
+
+    public function getHORPROattribute()
+    {
+
+        return str_replace('.0000000', '', $this->CirProHorPro);
+    }
     public function pacienteLista()
     {
         return $this->hasOne('App\Models\Modulos\Admision\Paciente', 'id', 'CirProHisCli');

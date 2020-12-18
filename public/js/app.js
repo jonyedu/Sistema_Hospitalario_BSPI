@@ -4841,7 +4841,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         abreviatura: "T",
         valor: 0
       }]), _defineProperty(_form, "total", 0), _defineProperty(_form, "imgFirma", null), _defineProperty(_form, "imgGrafica", null), _form),
-      registro_id: 1,
+      //registro_id: 1,
       drogas_administradas: [],
       peso: "",
       estatura: "",
@@ -5230,7 +5230,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
       if (value.respuesta) {
-        alert(value.respuesta);
         var valor = parseInt(value.valorNuevo);
         var minutes = value.is_tpo_init;
         var is_tpo_init = value.is_tpo_init;
@@ -5278,7 +5277,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                           valor: valor,
                           name: adicional.system_name,
                           indice_hora: this.indice_hora
-                        }, adicional.tipo);
+                        }, adicional.tipo, value.es_posicion, {}, adicional.system_name, valor, ruta_icono, {}, column_quince);
                       }
                     }
                   }
@@ -7502,7 +7501,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       form: {
-        idCirugiaProgramada: "",
+        idCirugiaProgramada: "0001",
         idCirugiaProgramadaTemporal: "",
         registro_anestesia_id: 0,
 
@@ -8045,65 +8044,61 @@ __webpack_require__.r(__webpack_exports__);
             resolve(poseeErrores);
         });
     }, */
-    onComplete: function onComplete() {
-      this.$refs.paraclinico.guardarModificar();
-      this.respuestaImprimir = 1;
-      /* if(this.respuestaFinProceso){
-          this.form.idCirugiaProgramada = "";
-      } */
-    },
-    onChangeTab: function onChangeTab(prevIndex, nextIndex) {
-      //Se debera realizar las validaciones respectivas para cada tab
-      this.setFormTitle(nextIndex);
-      this.guardarModificar(prevIndex);
-    },
-    setFormTitle: function setFormTitle(index) {
-      switch (index) {
-        case 0:
-          this.titulo_seleccionado = "Revisión por Sistemas";
-          this.$refs.revisionSistema.cargarRevisionSistema();
-          break;
 
-        case 1:
-          this.titulo_seleccionado = "Antecedentes";
-          this.$refs.antecedente.cargarAntecedente();
-          break;
+    /* onComplete: function() {
+        this.$refs.paraclinico.guardarModificar();
+        this.respuestaImprimir = 1;
+        if(this.respuestaFinProceso){
+            this.form.idCirugiaProgramada = "";
+        }
+    }, */
 
-        case 2:
-          this.titulo_seleccionado = "Examen Físico";
-          this.$refs.examenFisico.cargarExamenFisico();
-          break;
+    /* onChangeTab(prevIndex, nextIndex) {
+        //Se debera realizar las validaciones respectivas para cada tab
+        this.setFormTitle(nextIndex);
+        this.guardarModificar(prevIndex);
+    }, */
 
-        case 3:
-          this.titulo_seleccionado = "Paraclinicos";
-          this.$refs.paraclinico.cargarParaclinico();
-          break;
+    /* setFormTitle(index) {
+        switch (index) {
+            case 0:
+                this.titulo_seleccionado = "Revisión por Sistemas";
+                this.$refs.revisionSistema.cargarRevisionSistema();
+                break;
+            case 1:
+                this.titulo_seleccionado = "Antecedentes";
+                this.$refs.antecedente.cargarAntecedente();
+                break;
+            case 2:
+                this.titulo_seleccionado = "Examen Físico";
+                this.$refs.examenFisico.cargarExamenFisico();
+                break;
+            case 3:
+                this.titulo_seleccionado = "Paraclinicos";
+                this.$refs.paraclinico.cargarParaclinico();
+                break;
+            default:
+                this.titulo_seleccionado = "";
+        }
+    }, */
 
-        default:
-          this.titulo_seleccionado = "";
-      }
-    },
-    guardarModificar: function guardarModificar(index) {
-      switch (index) {
-        case 0:
-          this.$refs.revisionSistema.guardarModificar();
-          break;
-
-        case 1:
-          this.$refs.antecedente.guardarModificar();
-          break;
-
-        case 2:
-          this.$refs.examenFisico.guardarModificar();
-          break;
-
-        case 3:
-          break;
-
-        default: //this.titulo_seleccionado = "";
-
-      }
-    },
+    /* guardarModificar(index) {
+        switch (index) {
+            case 0:
+                this.$refs.revisionSistema.guardarModificar();
+                break;
+            case 1:
+                this.$refs.antecedente.guardarModificar();
+                break;
+            case 2:
+                this.$refs.examenFisico.guardarModificar();
+                break;
+            case 3:
+                break;
+            default:
+            //this.titulo_seleccionado = "";
+        }
+    }, */
     llamarMetodoImprimir: function llamarMetodoImprimir() {
       if (this.respuestaImprimir) {
         window.open("/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" + this.form.idCirugiaProgramadaTemporal);
@@ -10454,17 +10449,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     seleccionarButton: {
@@ -10479,15 +10463,15 @@ __webpack_require__.r(__webpack_exports__);
         frm_fecha: ""
       },
       columns: [{
-        label: "Hora Programada",
+        label: "HorPro",
         field: "horaProgramada",
         type: "String"
       }, {
-        label: "Hora Inicio",
+        label: "HorIni",
         field: "horaInicio",
         type: "String"
       }, {
-        label: "Hora Fin",
+        label: "HorFin",
         field: "horaFin",
         type: "String"
       }, {
@@ -10502,11 +10486,13 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         label: "Sala-Cama",
         field: "sala_cama",
-        type: "String"
+        type: "String",
+        width: "200px"
       }, {
         label: "Procedimiento",
         field: "procedimiento",
-        type: "String"
+        type: "String",
+        width: "300px"
       }, {
         label: "Cirujano",
         field: "cirujano",
@@ -10572,7 +10558,7 @@ __webpack_require__.r(__webpack_exports__);
           } //datos para mostrar en la tabla padre
 
 
-          objeto.horaProgramada = lista.CirProHorPro;
+          objeto.horaProgramada = lista.HORPRO;
           objeto.horaInicio = lista.CirProHoraFin == null ? '00:00:00' : lista.CirProHoraInicio;
           objeto.horaFin = lista.CirProHoraFin == null ? '00:00:00' : lista.CirProHoraFin;
           objeto.cirujano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProCirujano);
@@ -17794,6 +17780,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     columnsData: {
@@ -17965,7 +17952,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (!encontradoSeleccionar) {
         this.$data.columns.unshift({
-          label: "Seleccionar",
+          label: "Elegir",
           field: "seleccionar",
           html: true
         });
@@ -71177,70 +71164,35 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "col-lg-8 col-md-8 col-sm-12 mt-2",
-        staticStyle: { "margin-left": "auto", "margin-right": "auto" }
-      },
-      [
-        _c("div", { staticClass: "form-inline" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-lg-4 col-md-4 col-sm-4",
-              attrs: { for: "fecha_hasta" }
-            },
-            [_vm._v("Buscar por Fecha")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.frm_fecha,
-                expression: "form.frm_fecha"
-              }
-            ],
-            staticClass: "form-control col-lg-6 col-md-6 col-sm-6",
-            attrs: {
-              type: "date",
-              id: "fecha_hasta",
-              placeholder: "Seleccione la fecha de fin"
-            },
-            domProps: { value: _vm.form.frm_fecha },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "frm_fecha", $event.target.value)
-              }
+    _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.frm_fecha,
+            expression: "form.frm_fecha"
+          }
+        ],
+        staticClass: "form-control col-lg-3 col-md-3 col-sm-3",
+        staticStyle: { margin: "0px auto", display: "block" },
+        attrs: {
+          type: "date",
+          id: "fecha_hasta",
+          placeholder: "Seleccione la fecha de fin"
+        },
+        domProps: { value: _vm.form.frm_fecha },
+        on: {
+          change: _vm.cargarListaCirugiaProgramadaPaciente,
+          input: function($event) {
+            if ($event.target.composing) {
+              return
             }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-success col-lg-2 col-md-2 col-sm-2",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  return _vm.cargarListaCirugiaProgramadaPaciente()
-                }
-              }
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-search",
-                attrs: { "aria-hidden": "true" }
-              })
-            ]
-          )
-        ])
-      ]
-    ),
+            _vm.$set(_vm.form, "frm_fecha", $event.target.value)
+          }
+        }
+      })
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
       _c("div", { staticClass: "card" }, [
@@ -71274,7 +71226,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+    return _c("div", { staticClass: "col-lg-12 col-md-10 col-sm-10" }, [
       _c(
         "h1",
         {
@@ -81761,6 +81713,7 @@ var render = function() {
         _c(
           "vue-good-table",
           {
+            staticClass: "col-lg-12 col-md-12 col-sm-12",
             attrs: {
               "max-height": "400px",
               columns: _vm.columns,
@@ -101128,6 +101081,28 @@ var funcionesGlobales = {
     } else {
       return pieces = "";
     }
+  },
+  //Metodo para obtener la fecha actual
+  getDate: function getDate() {
+    var date = new Date();
+    var d = this.addCeroToTime(date.getDate());
+    var me = this.addCeroToTime(date.getMonth() + 1);
+    var y = date.getFullYear();
+    return d + "/" + me + "/" + y;
+  },
+  //Metodo para obtener el hora actual
+  getTime: function getTime() {
+    var time = new Date();
+    var h = time.getHours();
+    var mi = time.getMinutes();
+    var s = time.getSeconds();
+    return h + ":" + mi + ":" + s;
+  },
+  //Metodo para obtener la fecha y hora actual
+  getDateTime: function getDateTime() {
+    var date = this.getDate();
+    var time = this.getTime();
+    return date + " " + time;
   }
 };
 

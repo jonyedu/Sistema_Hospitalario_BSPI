@@ -3165,6 +3165,7 @@ export default {
                 })
                 .then(response => {
                     this.datos_server = response.data;
+                    alert("es_posicion:" + es_posicion);
                     if (es_posicion == false) {
                         col_cince_min.agentes.push({
                             descripcion: descripcion,
