@@ -984,6 +984,10 @@ export default {
         },
         user: {
             type: Object
+        },
+        idRevisionSistema:{
+            type: String,
+            required: false
         }
     },
     data: function() {
@@ -1424,8 +1428,7 @@ export default {
           // alert(that.form.imgFirma);
             let formNew = {
                 tipo_servicio:4,
-                id_atencion:0,
-                // that.form.id_lista,
+                id_atencion:0, //id de revision de sistema
                 id_visita:0,
                 id_tipo_documento:13,
                 imgFirma: that.frmimg.imgFirma,

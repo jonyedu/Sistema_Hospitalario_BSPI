@@ -10200,38 +10200,50 @@ __webpack_require__.r(__webpack_exports__);
 
       }
     },
-    consultarSello: function consultarSello() {
-      var that = this;
 
-      if (this.$props.user.id > 0) {
-        var loader = that.$loading.show();
-        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
-        axios.get(url).then(function (response) {
-          if (response.data.sello != null) {
-            if (response.data.sello.seguridad_medico != null) {
-              that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO; // alert( response.data.sello.medico_sellos);
-            }
-          }
-
-          loader.hide();
-        })["catch"](function (error) {
-          that.flashMessage.show({
-            status: "error",
-            title: "Error al procesar consultarSello",
-            message: "Por favor comuníquese con el administrador. " + error,
-            clickable: true,
-            time: 0,
-            icon: "/iconsflashMessage/error.svg",
-            customStyle: {
-              flashMessageStyle: {
-                background: "linear-gradient(#e66465, #9198e5)"
-              }
-            }
-          });
-          loader.hide();
-        });
-      }
-    },
+    /*
+    consultarSello() {
+        let that = this;
+        if (this.$props.user.id > 0) {
+            var loader = that.$loading.show();
+            let url =
+                "/modulos/cirugia/anestesia/cargar_sello/" +
+                this.$props.user.id;
+             axios
+                .get(url)
+                .then(function(response) {
+                    if (response.data.sello != null) {
+                        if (response.data.sello.seguridad_medico != null) {
+                            that.rutaSello =
+                                "data:image/jpeg;base64," +
+                                response.data.sello.seguridad_medico.medico.medico_sellos
+                                    .IMAGEN_SELLO;
+                                     // alert( response.data.sello.medico_sellos);
+                        }
+                    }
+                    loader.hide();
+                })
+                .catch(error => {
+                     that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar consultarSello",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background:
+                                    "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        }
+    }, */
     llamarMetodoImprimir: function llamarMetodoImprimir() {
       if (this.respuestaFinProceso || this.respuestaImprimir) {
         window.open("/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" + this.form.frm_idCirugiaProgramada);
@@ -11406,7 +11418,7 @@ __webpack_require__.r(__webpack_exports__);
                     text: "La descripción no debe estar vacia"
                 });
                 return false;
-              }
+             }
         }
         return true;
     }, */
@@ -14241,7 +14253,7 @@ __webpack_require__.r(__webpack_exports__);
       var formNew = {
         tipo_servicio: 4,
         id_atencion: 0,
-        // that.form.id_lista,
+        //id de revision de sistema
         id_visita: 0,
         id_tipo_documento: 13,
         imgFirma: that.frmimg.imgFirma
@@ -15201,6 +15213,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       form: {
         frm_idCirugiaProgramada: "",
+        frm_id_revision_sistema: 0,
 
         /* Cardiovascular  */
         frm_hipertension: 0,
@@ -15393,12 +15406,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.form.frm_idCirugiaProgramada = idCirugiaProgramada;
         axios.post(url, this.form).then(function (response) {
           loader.hide();
+
+          if (that.form.frm_id_revision_sistema <= 0) {
+            that.form.frm_id_revision_sistema = response.data.value;
+          }
           /* that.$swal({
               icon: "success",
               title: "Proceso realizado exitosamente",
               text: that.mensaje
           }); */
           //that.cargarAtencionMotivo();
+
         })["catch"](function (error) {
           that.flashMessage.show({
             status: "error",
@@ -16823,7 +16841,7 @@ __webpack_require__.r(__webpack_exports__);
                     if(response.data.modulo[0] != null){
                         that.cargarSubModulos(response.data.modulo[0].codigo);
                     }
-                  }
+                 }
             })
             .catch(error => {
                 //Errores
@@ -18089,7 +18107,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, "\ntable {\r\n    border-collapse: collapse;\n}\n.flex {\r\n    display: flex;\n}\n.flex-y {\r\n    flex-direction: column;\n}\n.flex-x {\r\n    flex-direction: row;\n}\n.border-t {\r\n    border: 1px solid #000;\n}\n.border-l {\r\n    border-left: 1px solid #000;\n}\n.border-r {\r\n    border-right: 1px solid #000;\n}\n.flex-center-x {\r\n    justify-content: center;\n}\n.flex-center-y {\r\n    align-items: center;\n}\n.border-top {\r\n    border-top: 1px solid #000 !important;\n}\n.border-b {\r\n    border-bottom: 1px solid #000;\n}\n.upper {\r\n    text-transform: uppercase;\n}\n.input-line {\r\n    border: none;\r\n    border-bottom: 1px solid #000;\r\n    outline: none;\n}\n.input-no-line {\r\n    border: none;\r\n    outline: none;\n}\n.space-left {\r\n    box-sizing: border-box;\r\n    padding-left: 5px;\n}\n.m-w {\r\n    max-width: 35px;\n}\n.no-line {\r\n    border: none;\r\n    outline: none;\n}\n.w-100p {\r\n    width: 100%;\n}\n.border-none-b- {\r\n    border: none;\r\n    outline: none;\r\n    border-bottom: 1px solid #000;\n}\n.grid {\r\n    display: grid;\n}\n.grid-2-c {\r\n    grid-template-columns: 1fr 1fr;\n}\n.grid-center {\r\n    align-self: center;\r\n    justify-self: center;\n}\n.flex-x-end {\r\n    justify-content: flex-end;\n}\n.he25 {\r\n    height: 25px;\n}\n.overflow-x-hidden {\r\n    overflow-x: scroll;\n}\n.wrap-flex {\r\n    flex-wrap: wrap;\n}\n.no-wrap-flex {\r\n    flex-wrap: nowrap !important;\n}\n.line-second {\r\n    width: 20px;\r\n    height: 20px;\r\n    display: flex;\n}\n.space-btw {\r\n    justify-content: space-between;\n}\n.width-100-p {\r\n    width: 100%;\n}\n.time-triangle-abs {\r\n    width: 15px;\r\n    position: absolute;\r\n    bottom: 0;\r\n    /* left: -18px; */\r\n    z-index: 1000;\n}\n.grid {\r\n    display: grid;\n}\n.grid-4-c {\r\n    /* grid-template-columns: repeat(4 , 1fr); */\n}\n.relative {\r\n    position: relative;\n}\n.figure-celds {\r\n    position: absolute;\n}\n.figure-celds:nth-child(1) {\r\n    left: 0;\n}\n.figure-celds:nth-child(2) {\r\n    left: 15px;\n}\n.figure-celds:nth-child(3) {\r\n    left: 30px;\n}\n.figure-celds:nth-child(4) {\r\n    left: 45px;\n}\n.figure-celds:nth-child(5) {\r\n    left: 60px;\n}\n.figure-celds:nth-child(6) {\r\n    left: 75px;\n}\n.input-registro {\r\n    border-bottom: 1px solid;\r\n    width: 100%;\n}\np.blue {\r\n    background: #5178d0;\r\n    border-radius: 0.8em;\r\n    -moz-border-radius: 0.8em;\r\n    -webkit-border-radius: 0.8em;\r\n    color: #ffffff;\r\n    display: inline-block;\r\n    font-weight: bold;\r\n    line-height: 1.6em;\r\n    margin-right: 15px;\r\n    text-align: center;\r\n    width: 1.6em;\n}\r\n", ""]);
+exports.push([module.i, "\ntable {\n    border-collapse: collapse;\n}\n.flex {\n    display: flex;\n}\n.flex-y {\n    flex-direction: column;\n}\n.flex-x {\n    flex-direction: row;\n}\n.border-t {\n    border: 1px solid #000;\n}\n.border-l {\n    border-left: 1px solid #000;\n}\n.border-r {\n    border-right: 1px solid #000;\n}\n.flex-center-x {\n    justify-content: center;\n}\n.flex-center-y {\n    align-items: center;\n}\n.border-top {\n    border-top: 1px solid #000 !important;\n}\n.border-b {\n    border-bottom: 1px solid #000;\n}\n.upper {\n    text-transform: uppercase;\n}\n.input-line {\n    border: none;\n    border-bottom: 1px solid #000;\n    outline: none;\n}\n.input-no-line {\n    border: none;\n    outline: none;\n}\n.space-left {\n    box-sizing: border-box;\n    padding-left: 5px;\n}\n.m-w {\n    max-width: 35px;\n}\n.no-line {\n    border: none;\n    outline: none;\n}\n.w-100p {\n    width: 100%;\n}\n.border-none-b- {\n    border: none;\n    outline: none;\n    border-bottom: 1px solid #000;\n}\n.grid {\n    display: grid;\n}\n.grid-2-c {\n    grid-template-columns: 1fr 1fr;\n}\n.grid-center {\n    align-self: center;\n    justify-self: center;\n}\n.flex-x-end {\n    justify-content: flex-end;\n}\n.he25 {\n    height: 25px;\n}\n.overflow-x-hidden {\n    overflow-x: scroll;\n}\n.wrap-flex {\n    flex-wrap: wrap;\n}\n.no-wrap-flex {\n    flex-wrap: nowrap !important;\n}\n.line-second {\n    width: 20px;\n    height: 20px;\n    display: flex;\n}\n.space-btw {\n    justify-content: space-between;\n}\n.width-100-p {\n    width: 100%;\n}\n.time-triangle-abs {\n    width: 15px;\n    position: absolute;\n    bottom: 0;\n    /* left: -18px; */\n    z-index: 1000;\n}\n.grid {\n    display: grid;\n}\n.grid-4-c {\n    /* grid-template-columns: repeat(4 , 1fr); */\n}\n.relative {\n    position: relative;\n}\n.figure-celds {\n    position: absolute;\n}\n.figure-celds:nth-child(1) {\n    left: 0;\n}\n.figure-celds:nth-child(2) {\n    left: 15px;\n}\n.figure-celds:nth-child(3) {\n    left: 30px;\n}\n.figure-celds:nth-child(4) {\n    left: 45px;\n}\n.figure-celds:nth-child(5) {\n    left: 60px;\n}\n.figure-celds:nth-child(6) {\n    left: 75px;\n}\n.input-registro {\n    border-bottom: 1px solid;\n    width: 100%;\n}\np.blue {\n    background: #5178d0;\n    border-radius: 0.8em;\n    -moz-border-radius: 0.8em;\n    -webkit-border-radius: 0.8em;\n    color: #ffffff;\n    display: inline-block;\n    font-weight: bold;\n    line-height: 1.6em;\n    margin-right: 15px;\n    text-align: center;\n    width: 1.6em;\n}\n", ""]);
 
 // exports
 
@@ -18108,7 +18126,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nbody {\r\n    font-family: Helvetica, Arial, sans-serif;\r\n    position: initial !important;\n}\r\n/* .control {\r\n    margin: 20px;\r\n} */\n.paint {\r\n    border: 2px solid #000;\r\n    border-radius: 5px;\r\n    margin: 40px auto;\r\n    box-sizing: border-box;\r\n    display: block;\r\n    width: auto;\r\n    height: auto;\r\n    position: relative !important;\r\n    overflow: hidden;\n}\n.custom-navigation .controls {\r\n    margin: 10px 0 0 0;\r\n    border: 1px solid #ddd;\r\n    padding: 20px;\r\n    border-radius: 5px;\n}\r\n", ""]);
+exports.push([module.i, "\nbody {\n    font-family: Helvetica, Arial, sans-serif;\n    position: initial !important;\n}\n/* .control {\n    margin: 20px;\n} */\n.paint {\n    border: 2px solid #000;\n    border-radius: 5px;\n    margin: 40px auto;\n    box-sizing: border-box;\n    display: block;\n    width: auto;\n    height: auto;\n    position: relative !important;\n    overflow: hidden;\n}\n.custom-navigation .controls {\n    margin: 10px 0 0 0;\n    border: 1px solid #ddd;\n    padding: 20px;\n    border-radius: 5px;\n}\n", ""]);
 
 // exports
 
@@ -99661,7 +99679,7 @@ var prefix = "/LeonBecerra";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Sistema_Hospitalario_BSPI\Sistema_Hospitalario_BSPI\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\jonat\OneDrive\TrabajoBSPI\Proyecto\Sistema_Hospitalario_BSPI\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ })

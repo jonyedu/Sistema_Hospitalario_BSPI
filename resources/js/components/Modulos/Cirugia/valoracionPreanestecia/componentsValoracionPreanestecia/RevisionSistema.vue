@@ -799,6 +799,7 @@ export default {
             },
             form: {
                 frm_idCirugiaProgramada: "",
+                frm_id_revision_sistema: 0,
 
                 /* Cardiovascular  */
                 frm_hipertension: 0,
@@ -1070,6 +1071,10 @@ export default {
                     .post(url, this.form)
                     .then(function(response) {
                         loader.hide();
+                        if(that.form.frm_id_revision_sistema <= 0){
+                            that.form.frm_id_revision_sistema = response.data.value;
+                            that.$emit("IdRevisionSistema", response.data.value);
+                        }
                         /* that.$swal({
                             icon: "success",
                             title: "Proceso realizado exitosamente",

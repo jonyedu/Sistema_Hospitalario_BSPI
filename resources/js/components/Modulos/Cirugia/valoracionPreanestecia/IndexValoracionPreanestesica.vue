@@ -215,6 +215,7 @@
                                         @ValidarCargarDatos="
                                             respuestaCargarDatos = $event
                                         "
+                                        @IdRevisionSistema="form.frm_id_revision_sistema = $event"
                                         @RespuestaImprimir="
                                             respuestaImprimir = $event
                                         "
@@ -249,6 +250,7 @@
                                     icon="ti-support"
                                 >
                                     <paraclinico
+                                        :id-revision-sistema="frm_id_revision_sistema"
                                         :user="user"
                                         :id-sec-cir-pro="
                                             form.frm_idCirugiaProgramada
@@ -299,7 +301,7 @@ export default {
             respuestaFinProceso: 0,
             respuestaImprimir: 0,
             respuestaCargarDatos: 0,
-             rutaSello: "",
+            rutaSello: "",
             frmimg: {
                 imgFirma: null,
                 imgGrafica: null,
@@ -307,6 +309,7 @@ export default {
             form: {
                 /* Datos del paciente */
                 frm_idCirugiaProgramada: "", //2890
+                frm_id_revision_sistema: 0,
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
@@ -431,6 +434,7 @@ export default {
                 //this.titulo_seleccionado = "";
             }
         },
+        /*
         consultarSello() {
             let that = this;
             if (this.$props.user.id > 0) {
@@ -474,7 +478,7 @@ export default {
                         loader.hide();
                     });
             }
-        },
+        }, */
 
         llamarMetodoImprimir() {
             if (this.respuestaFinProceso || this.respuestaImprimir) {
