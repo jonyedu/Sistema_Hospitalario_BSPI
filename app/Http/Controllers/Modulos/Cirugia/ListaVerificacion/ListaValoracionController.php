@@ -37,74 +37,75 @@ class ListaValoracionController extends Controller
     {
         //
         try {
+           // $objeto = $request->input('objeto1');
 
             
-            // $listaValoracion = tb_listado_verificacion::updateOrCreate(                
-            //     ['SecCirPro' => $request->input('frm_idCirugiaProgramada')],
-            //     [ 
-            //         'chkentrada01' => $request->input('chkentrada01'),
-            //         'chkentrada02' => $request->input('chkentrada02'), 
-            //         'chkentrada03' => $request->input('chkentrada03'), 
-            //         'chkentrada04' => $request->input('chkentrada04'), 
-            //         'chkentrada05' => $request->input('chkentrada05'), 
-            //         'chkentrada06' => $request->input('chkentrada06'), 
-            //         'chkentrada07' => $request->input('chkentrada07'), 
-            //         'chkquirurgica01' => $request->input('chkquirurgica01'), 
-            //         'chkquirurgica02' => $request->input('chkquirurgica02'), 
-            //         'chkquirurgica03' => $request->input('chkquirurgica03'), 
-            //         'chkquirurgica04' => $request->input('chkquirurgica04'), 
-            //         'chkquirurgica05' => $request->input('chkquirurgica05'), 
-            //         'chkquirurgica06' => $request->input('chkquirurgica06'), 
-            //         'chkquirurgica07' => $request->input('chkquirurgica07'), 
-            //         'chksalida01' => $request->input('chksalida01'), 
-            //         'chksalida02' => $request->input('chksalida02'), 
-            //         'chksalida03' => $request->input('chksalida03'), 
-            //         'chksalida04' => $request->input('chksalida04'), 
-            //         'chksalida05' => $request->input('chksalida05'), 
-            //         'user_id' => auth()->id(), 
-            //         'cargo' => 1, 
-            //         'observacion' => $request->input('observacion'), 
-            //         'firma' => 1
-            //     ]
-            // );
-          //  echo "el id ".$listaValoracion->id;
-            //return response()->json(['listaValoracion' => $listaValoracion], 200);
-             $request ->validate([ 
+            $listaValoracion = tb_listado_verificacion::updateOrCreate(                
+                ['SecCirPro' => $request->input('frm_idCirugiaProgramada')],
+                [ 
+                    'chkentrada01' => $request->input('chkentrada01'),
+                    'chkentrada02' => $request->input('chkentrada02'), 
+                    'chkentrada03' => $request->input('chkentrada03'), 
+                    'chkentrada04' => $request->input('chkentrada04'), 
+                    'chkentrada05' => $request->input('chkentrada05'), 
+                    'chkentrada06' => $request->input('chkentrada06'), 
+                    'chkentrada07' => $request->input('chkentrada07'), 
+                    'chkquirurgica01' => $request->input('chkquirurgica01'), 
+                    'chkquirurgica02' => $request->input('chkquirurgica02'), 
+                    'chkquirurgica03' => $request->input('chkquirurgica03'), 
+                    'chkquirurgica04' => $request->input('chkquirurgica04'), 
+                    'chkquirurgica05' => $request->input('chkquirurgica05'), 
+                    'chkquirurgica06' => $request->input('chkquirurgica06'), 
+                    'chkquirurgica07' => $request->input('chkquirurgica07'), 
+                    'chksalida01' => $request->input('chksalida01'), 
+                    'chksalida02' => $request->input('chksalida02'), 
+                    'chksalida03' => $request->input('chksalida03'), 
+                    'chksalida04' => $request->input('chksalida04'), 
+                    'chksalida05' => $request->input('chksalida05'), 
+                    'user_id' => auth()->id(), 
+                    'cargo' => 1, 
+                    'observacion' => $request->input('observacion'), 
+                    'firma' => 1
+                ]
+            );
+           echo "el id ".$listaValoracion->id;
+            return response()->json(['listaValoracion' => $listaValoracion], 200);
+    //          $request ->validate([ 
           
-            'observacion'=>'required']
-        );
+    //         'observacion'=>'required']
+    //     );
 
-      $listaValoracion = new tb_listado_verificacion;
-      $listaValoracion->SecCirPro = $request->SecCirPro;
-      $listaValoracion->chkentrada01 = $request->chkentrada01;
-      $listaValoracion->chkentrada02 = $request->chkentrada02;
-      $listaValoracion->chkentrada03 = $request->chkentrada03;
-      $listaValoracion->chkentrada04 = $request->chkentrada04;
-      $listaValoracion->chkentrada05 = $request->chkentrada05;
-      $listaValoracion->chkentrada06 = $request->chkentrada06;
-      $listaValoracion->chkentrada07 = $request->chkentrada07;
-      $listaValoracion->chkquirurgica01 = $request->chkquirurgica01;
-      $listaValoracion->chkquirurgica02 = $request->chkquirurgica02;
-      $listaValoracion->chkquirurgica03 = $request->chkquirurgica03;
-      $listaValoracion->chkquirurgica04 = $request->chkquirurgica04;
-      $listaValoracion->chkquirurgica05 = $request->chkquirurgica05;
-      $listaValoracion->chkquirurgica06 = $request->chkquirurgica06;
-      $listaValoracion->chkquirurgica07 = $request->chkquirurgica07;
-      $listaValoracion->chksalida01 = $request->chksalida01;
-      $listaValoracion->chksalida02 = $request->chksalida02;
-      $listaValoracion->chksalida03 = $request->chksalida03;
-      $listaValoracion->chksalida04 = $request->chksalida04;
-      $listaValoracion->chksalida05 = $request->chksalida05;
-      $listaValoracion->user_id = auth()->id();
-      $listaValoracion->cargo = 1;
-      $listaValoracion->observacion = $request->observacion;
-      $listaValoracion->firma = 1;
+    //   $listaValoracion = new tb_listado_verificacion;
+    //   $listaValoracion->SecCirPro = $request->SecCirPro;
+    //   $listaValoracion->chkentrada01 = $request->chkentrada01;
+    //   $listaValoracion->chkentrada02 = $request->chkentrada02;
+    //   $listaValoracion->chkentrada03 = $request->chkentrada03;
+    //   $listaValoracion->chkentrada04 = $request->chkentrada04;
+    //   $listaValoracion->chkentrada05 = $request->chkentrada05;
+    //   $listaValoracion->chkentrada06 = $request->chkentrada06;
+    //   $listaValoracion->chkentrada07 = $request->chkentrada07;
+    //   $listaValoracion->chkquirurgica01 = $request->chkquirurgica01;
+    //   $listaValoracion->chkquirurgica02 = $request->chkquirurgica02;
+    //   $listaValoracion->chkquirurgica03 = $request->chkquirurgica03;
+    //   $listaValoracion->chkquirurgica04 = $request->chkquirurgica04;
+    //   $listaValoracion->chkquirurgica05 = $request->chkquirurgica05;
+    //   $listaValoracion->chkquirurgica06 = $request->chkquirurgica06;
+    //   $listaValoracion->chkquirurgica07 = $request->chkquirurgica07;
+    //   $listaValoracion->chksalida01 = $request->chksalida01;
+    //   $listaValoracion->chksalida02 = $request->chksalida02;
+    //   $listaValoracion->chksalida03 = $request->chksalida03;
+    //   $listaValoracion->chksalida04 = $request->chksalida04;
+    //   $listaValoracion->chksalida05 = $request->chksalida05;
+    //   $listaValoracion->user_id = auth()->id();
+    //   $listaValoracion->cargo = 1;
+    //   $listaValoracion->observacion = $request->observacion;
+    //   $listaValoracion->firma = 1;
 
-      $listaValoracion->save();
-      return response()->json(
-        ['id' => $listaValoracion->id],
-        200
-    );
+    //   $listaValoracion->save();
+    //   return response()->json(
+    //     ['id' => $listaValoracion->id],
+    //     200
+   // );
 
     //  return back()->with('mensaje','nota agregada',['id' => $listaValoracion->id]);
             //return response()->json(['id' => $listaValoracion->id], 200);

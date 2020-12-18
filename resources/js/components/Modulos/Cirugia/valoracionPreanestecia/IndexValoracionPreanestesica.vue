@@ -358,18 +358,28 @@ export default {
         /* Fin para llamar al Modal y la Tabla */
 
         /* Metodos para los form-wizard */
+        onChangeTab(prevIndex, nextIndex) {
+            //Se debera realizar las validaciones respectivas para cada tab
+           // this.setFormTitle(nextIndex);
+
+            /* if (typeof this.onChangeTab() === "function") {
+                alert("entra");
+                //Es seguro ejecutar la función
+                this.guardarModificar(prevIndex);
+            } */
+        },
         onValidateTab(validationResult, activeTabIndex) {
             //Se debera realizar las validaciones respectivas para cada tab
         },
         validateFirstStep() {
-            return new Promise((resolve, reject) => {
-                let poseeErrores = this.$refs.examenFisico.validarForm();
-                resolve(poseeErrores);
-            });
+            // return new Promise((resolve, reject) => {
+            //     let poseeErrores = this.$refs.examenFisico.validarForm();
+            //     resolve(poseeErrores);
+            // });
         },
         onComplete() {
-            this.$refs.paraclinico.guardarModificar();
-            this.$refs.paraclinico.guardarFirmaPorAtencion();
+          //  this.$refs.paraclinico.guardarModificar();
+            //this.$refs.paraclinico.guardarFirmaPorAtencion();
             //await this.$refs.paraclinico.cargarParaclinico();
             //await this.cambiarEstado();
         },

@@ -209,19 +209,22 @@
                                 :backButtonText="'Anterior'"
                                 :finishButtonText="'Finalizar'"
                                 :stepSize="'xs'"
-                                :shape="'square'"
+                                :shape="''"
                                 color="#590303"
                                 @on-change="onChangeTab"
                                 @on-validate="onValidateTab"
                                 @on-complete="onComplete"
                             >
-                            <img src="/logosbspipng/Logo BSPI (PNG).png">
+
+                          
                                 <tab-content 
                                     title="Entrada"
                                     icon="fas fa-user-check"
                                 >
-                                <lista-entrada>
-                                    
+                                <lista-entrada
+                                :id-sec="variableG"
+                                ref="listaEntrada">
+
                                 </lista-entrada>
                                 
                                     <!-- <revision-sistema
@@ -240,7 +243,7 @@
                                
                                 <tab-content
                                     title="Pausa Quirúrgica"
-                                    icon="ti-signal"
+                                    icon="fas fa-procedures"
                                 >
                                     <!-- <examen-fisico
                                         :id-sec-cir-pro="
@@ -248,11 +251,17 @@
                                         "
                                         ref="examenFisico"
                                     ></examen-fisico> -->
+                                    <lista-pausa>
+
+                                    </lista-pausa>
                                 </tab-content>
                                 <tab-content
                                     title="Salida"
-                                    icon="ti-support"
+                                    icon="fas fa-user-nurse"
                                 >
+                                <lista-salida>
+
+                                </lista-salida>
                                     <!-- <paraclinico
                                         :id-sec-cir-pro="
                                             form.frm_idCirugiaProgramada
@@ -318,10 +327,13 @@ export default {
        
         user: {
             type: Object
-        }
+        },
+        
     },
+     
     data() {
         return {
+                variableG :4,
                prefijo: "",
                isHidden: 'none',
                idHiddenNuevo:'none',
@@ -434,6 +446,31 @@ export default {
                     that.isHidden = 'none'
                 });
               //  llamarMetodoImprimir();
+        },
+          onChangeTab(prevIndex, nextIndex) {
+            //Se debera realizar las validaciones respectivas para cada tab
+          //  this.setFormTitle(nextIndex);
+
+            /* if (typeof this.onChangeTab() === "function") {
+                alert("entra");
+                //Es seguro ejecutar la función
+                this.guardarModificar(prevIndex);
+            } */
+          //  this.guardarModificar(prevIndex);
+        //   alert('holis');
+        //   this.listas.chksalida01 = $this.$refs.chkentrada01.value();
+        //      alert(this.listas.chksalida01);
+        this.$refs.listaEntrada.listas.chkentrada01 = true
+        alert(this.$refs.listaEntrada.listas.chkentrada01)
+        },
+        onValidateTab(validationResult, activeTabIndex) {
+            //Se debera realizar las validaciones respectivas para cada tab
+        },
+         onComplete() {
+          //  this.$refs.paraclinico.guardarModificar();
+            //this.$refs.paraclinico.guardarFirmaPorAtencion();
+            //await this.$refs.paraclinico.cargarParaclinico();
+            //await this.cambiarEstado();
         },
          guardarFirmaPorAtencion() {
             let that = this;

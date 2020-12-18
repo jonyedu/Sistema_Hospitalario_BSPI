@@ -125,6 +125,15 @@ Vue.component(
     "lista-entrada",
     require("./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaEntrada.vue").default
 );
+Vue.component(
+    "lista-pausa",
+    require("./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue").default
+);
+Vue.component(
+    "lista-salida",
+    require("./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue").default
+);
+
 
 
 /*
