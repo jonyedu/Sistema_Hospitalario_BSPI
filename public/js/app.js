@@ -10307,6 +10307,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -10330,6 +10332,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         /* Datos del paciente */
         frm_idCirugiaProgramada: "",
         //2890
+        frm_id_revision_sistema: 0,
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",
@@ -10463,37 +10466,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       default: //this.titulo_seleccionado = "";
 
-    }
-  }), _defineProperty(_methods, "consultarSello", function consultarSello() {
-    var that = this;
-
-    if (this.$props.user.id > 0) {
-      var loader = that.$loading.show();
-      var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
-      axios.get(url).then(function (response) {
-        if (response.data.sello != null) {
-          if (response.data.sello.seguridad_medico != null) {
-            that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO; // alert( response.data.sello.medico_sellos);
-          }
-        }
-
-        loader.hide();
-      })["catch"](function (error) {
-        that.flashMessage.show({
-          status: "error",
-          title: "Error al procesar consultarSello",
-          message: "Por favor comuníquese con el administrador. " + error,
-          clickable: true,
-          time: 0,
-          icon: "/iconsflashMessage/error.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-        loader.hide();
-      });
     }
   }), _defineProperty(_methods, "llamarMetodoImprimir", function llamarMetodoImprimir() {
     if (this.respuestaFinProceso || this.respuestaImprimir) {
@@ -14131,6 +14103,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     user: {
       type: Object
+    },
+    idRevisionSistema: {
+      type: String,
+      required: false
     }
   },
   data: function data() {
@@ -14503,7 +14479,7 @@ __webpack_require__.r(__webpack_exports__);
       var formNew = {
         tipo_servicio: 4,
         id_atencion: 0,
-        // that.form.id_lista,
+        //id de revision de sistema
         id_visita: 0,
         id_tipo_documento: 13,
         imgFirma: that.frmimg.imgFirma
@@ -15463,6 +15439,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       form: {
         frm_idCirugiaProgramada: "",
+        frm_id_revision_sistema: 0,
 
         /* Cardiovascular  */
         frm_hipertension: 0,
@@ -15655,12 +15632,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.form.frm_idCirugiaProgramada = idCirugiaProgramada;
         axios.post(url, this.form).then(function (response) {
           loader.hide();
+
+          if (that.form.frm_id_revision_sistema <= 0) {
+            that.form.frm_id_revision_sistema = response.data.value;
+            that.$emit("IdRevisionSistema", response.data.value);
+          }
           /* that.$swal({
               icon: "success",
               title: "Proceso realizado exitosamente",
               text: that.mensaje
           }); */
           //that.cargarAtencionMotivo();
+
         })["catch"](function (error) {
           that.flashMessage.show({
             status: "error",
@@ -70153,6 +70136,9 @@ var render = function() {
                                   ValidarCargarDatos: function($event) {
                                     _vm.respuestaCargarDatos = $event
                                   },
+                                  IdRevisionSistema: function($event) {
+                                    _vm.form.frm_id_revision_sistema = $event
+                                  },
                                   RespuestaImprimir: function($event) {
                                     _vm.respuestaImprimir = $event
                                   }
@@ -70215,6 +70201,8 @@ var render = function() {
                               _c("paraclinico", {
                                 ref: "paraclinico",
                                 attrs: {
+                                  "id-revision-sistema":
+                                    _vm.frm_id_revision_sistema,
                                   user: _vm.user,
                                   "id-sec-cir-pro":
                                     _vm.form.frm_idCirugiaProgramada

@@ -16,8 +16,8 @@ class RevisionSistemaApiController extends Controller
         if ($idSecCirPro !== '' && isset($idSecCirPro)) {
             try {
                 $revisionSistema = RevisionSistema::where('SecCirPro', $idSecCirPro)
-                ->where('status', '1')
-                ->first();
+                    ->where('status', '1')
+                    ->first();
                 return  response()->json(['revisionSistema' => $revisionSistema], 200);
             } catch (Exception $e) {
                 return response()->json(['mensaje' => $e->getMessage()], 500);
@@ -30,8 +30,9 @@ class RevisionSistemaApiController extends Controller
     public function guardarModificarRevisionSistema(Request $request)
     {
         try {
+            $id = 0;
             $user = Auth::user();
-            RevisionSistema::UpdateOrCreate(
+            $revisionSistema =  RevisionSistema::UpdateOrCreate(
                 [
                     'SecCirPro' => $request->input('frm_idCirugiaProgramada'),
                     'status' => '1',
@@ -70,7 +71,11 @@ class RevisionSistemaApiController extends Controller
                     'status' => '1'
                 ]
             );
-            return response()->json(['msg' => 'OK'], 200);
+            //return response()->json(['revisionSistema' => $revisionSistema], 200);
+            if (is_object($revisionSistema)) {
+                $id = $revisionSistema->idRevisionSistema;
+            }
+            return response()->json(['msg' => 'OK', 'value' => $id], 200);
         } catch (Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);
         }
