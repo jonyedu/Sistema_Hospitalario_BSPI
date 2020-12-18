@@ -121,6 +121,12 @@ Vue.component(
     require("./components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue").default
 );
 
+Vue.component(
+    "lista-entrada",
+    require("./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaEntrada.vue").default
+);
+
+
 /*
 Vue.component(
     "crear-modificar-tipo-agente",
