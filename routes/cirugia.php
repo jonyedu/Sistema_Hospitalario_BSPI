@@ -54,6 +54,7 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::get('cargar_registro_tiempo_por_secCirPro/{id_cirugia_programada}', 'RegistroTiempoApiController@cargarRegistroTiempoPorSecCirPro');
         Route::get('validar_secCirPro/{secCirPro}', 'RegistroTiempoApiController@validarSecCirPro');
         Route::post('guardar_registro_tiempo', 'RegistroTiempoApiController@guardarRegistroTiempo');
+        Route::post('suspender_registro_tiempo', 'RegistroTiempoApiController@suspenderRegistroTiempo');
 
     });
 

@@ -1,33 +1,22 @@
 <template>
     <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="col-lg-12 col-md-10 col-sm-10">
             <h1 class="mt-4 text-center" style="font-weight: bold;">
                 Lista de Cirugias Programas de los Pacientes
             </h1>
         </div>
         <div
-            class="col-lg-8 col-md-8 col-sm-12 mt-2"
-            style="margin-left:auto;margin-right:auto"
+            class="col-lg-12 col-md-12 col-sm-12"
         >
-            <div class="form-inline">
-                <label class="col-lg-4 col-md-4 col-sm-4" for="fecha_hasta"
-                    >Buscar por Fecha</label
-                >
-                <input
-                    type="date"
-                    class="form-control col-lg-6 col-md-6 col-sm-6"
-                    id="fecha_hasta"
-                    placeholder="Seleccione la fecha de fin"
-                    v-model="form.frm_fecha"
-                />
-                <button
-                    type="button"
-                    class="btn btn-success col-lg-2 col-md-2 col-sm-2"
-                    @click="cargarListaCirugiaProgramadaPaciente()"
-                >
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-            </div>
+            <input
+                style="margin:0px auto; display:block;"
+                type="date"
+                class="form-control col-lg-3 col-md-3 col-sm-3"
+                id="fecha_hasta"
+                placeholder="Seleccione la fecha de fin"
+                v-model="form.frm_fecha"
+                @change="cargarListaCirugiaProgramadaPaciente"
+            />
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="card">
@@ -65,17 +54,17 @@ export default {
             },
             columns: [
                 {
-                    label: "Hora Programada",
+                    label: "HorPro",
                     field: "horaProgramada",
                     type: "String"
                 },
                 {
-                    label: "Hora Inicio",
+                    label: "HorIni",
                     field: "horaInicio",
                     type: "String"
                 },
                 {
-                    label: "Hora Fin",
+                    label: "HorFin",
                     field: "horaFin",
                     type: "String"
                 },
@@ -93,12 +82,14 @@ export default {
                 {
                     label: "Sala-Cama",
                     field: "sala_cama",
-                    type: "String"
+                    type: "String",
+                    width: "200px"
                 },
                 {
                     label: "Procedimiento",
                     field: "procedimiento",
-                    type: "String"
+                    type: "String",
+                    width: "300px"
                 },
                 {
                     label: "Cirujano",
@@ -110,12 +101,12 @@ export default {
                     field: "anestesiologo",
                     type: "String"
                 },
-
-
             ]
         };
     },
     mounted: function() {
+        this.form.frm_fecha = this.$funcionesGlobales.getDate();
+        this.cargarListaCirugiaProgramadaPaciente();
         this.flashMessage.setStrategy("multiple");
         /* this.titulo_seleccionado = "Citas Agendadas";
     let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
@@ -168,7 +159,7 @@ export default {
                                     objeto.id_diagnostico = lista.paciente_hospitalizacion.principal;
                                 }
                                 //datos para mostrar en la tabla padre
-                                objeto.horaProgramada = lista.CirProHorPro;
+                                objeto.horaProgramada =  lista.HORPRO;
                                 objeto.horaInicio = lista.CirProHoraFin==null?'00:00:00':lista.CirProHoraInicio;
                                 objeto.horaFin = lista.CirProHoraFin==null?'00:00:00':lista.CirProHoraFin;
                                 objeto.cirujano = that.$funcionesGlobales.toCapitalFirstAllWords(lista.CirProCirujano);

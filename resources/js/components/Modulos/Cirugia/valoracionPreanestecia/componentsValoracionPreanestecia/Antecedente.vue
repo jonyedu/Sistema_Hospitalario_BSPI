@@ -290,15 +290,15 @@
                                                     >
                                                 </div>
                                                 <!-- G -->
-                                                <div class="col-sm-2">
+                                                <div class="col-lg-2 col-md-2 col-sm-2">
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-sm-2 col-form-label"
                                                             >G</label
                                                         >
-                                                        <div class="col-sm-5 mr-2">
+                                                        <div class="col-sm-10">
                                                             <input
-                                                                type="text"
+                                                                type="number"
                                                                 class="form-control"
                                                                 placeholder=""
                                                                 v-model="form.frm_g"
@@ -307,15 +307,15 @@
                                                     </div>
                                                 </div>
                                                 <!-- P -->
-                                                <div class="col-sm-2">
+                                                <div class="col-lg-2 col-md-2 col-sm-2">
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-sm-2 col-form-label"
                                                             >P</label
                                                         >
-                                                        <div class="col-sm-5 mr-2">
+                                                        <div class="col-sm-10">
                                                             <input
-                                                                type="text"
+                                                                type="number"
                                                                 class="form-control"
                                                                 placeholder=""
                                                                 v-model="form.frm_p"
@@ -324,15 +324,15 @@
                                                     </div>
                                                 </div>
                                                 <!-- A -->
-                                                <div class="col-sm-2">
+                                                <div class="col-lg-2 col-md-2 col-sm-2">
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-sm-2 col-form-label"
                                                             >A</label
                                                         >
-                                                        <div class="col-sm-5 mr-2">
+                                                        <div class="col-sm-10">
                                                             <input
-                                                                type="text"
+                                                                type="number"
                                                                 class="form-control"
                                                                 placeholder=""
                                                                 v-model="form.frm_a"
@@ -341,15 +341,15 @@
                                                     </div>
                                                 </div>
                                                 <!-- C -->
-                                                <div class="col-sm-2">
+                                                <div class="col-lg-2 col-md-2 col-sm-2">
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-sm-2 col-form-label"
                                                             >C</label
                                                         >
-                                                        <div class="col-sm-5 mr-2">
+                                                        <div class="col-sm-10">
                                                             <input
-                                                                type="text"
+                                                                type="number"
                                                                 class="form-control"
                                                                 placeholder=""
                                                                 v-model="form.frm_c"
@@ -358,15 +358,15 @@
                                                     </div>
                                                 </div>
                                                 <!-- FUR -->
-                                                <div class="col-sm-4">
+                                                <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-sm-2 col-form-label"
                                                             >FUR</label
                                                         >
-                                                        <div class="col-sm-3 mr-2">
+                                                        <div class="col-sm-10">
                                                             <input
-                                                                type="text"
+                                                                type="date"
                                                                 class="form-control"
                                                                 placeholder=""
                                                                 v-model="
@@ -907,7 +907,7 @@ export default {
         ); */
     },
     methods: {
-        validarForm(){
+        /* validarForm(){
             //Se comprueba que un checkbox tenga data
             let keys= Object.keys(this.form.checks);
             let poseeSeleccionCheck=false;
@@ -936,7 +936,7 @@ export default {
                 }
             }
             return true;
-        },
+        }, */
         //Metodo para cargar el motivo antecedente del paciente mediantes el cod cita
         cargarAntecedente: function() {
             let that = this;
@@ -1045,10 +1045,25 @@ export default {
                 .catch(error => {
                     //Errores
                     loader.hide();
-                    that.$swal({
+                    /* that.$swal({
                         icon: "error",
                         title: "Existe un error",
                         text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar cargarAntecedente",
+                        message:"Por favor comuníquese con el administrador. " +
+                                error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background:
+                                    "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
                 });
         },
@@ -1078,13 +1093,21 @@ export default {
                         that.cargarAntecedente();
                     })
                     .catch(error => {
-                        if (error.response.status === 421) {
-                            that.$swal({
-                                icon: "error",
-                                title: "Existe un error",
-                                text: error.response.data.msg
-                            });
-                        }
+                        that.flashMessage.show({
+                            status: "error",
+                            title: "Error al procesar guardarModificar",
+                            message:"Por favor comuníquese con el administrador. " +
+                                    error,
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/error.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
                         loader.hide();
                     });
             } else {

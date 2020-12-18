@@ -135,5 +135,27 @@ export const funcionesGlobales = {
         } else {
             return (pieces = "");
         }
-    }
+    },
+    //Metodo para obtener la fecha actual
+    getDate(){
+        var date = new Date();
+        var d = this.addCeroToTime(date.getDate());
+        var me = this.addCeroToTime(date.getMonth() + 1);
+        var y = date.getFullYear();
+        return y + "-" + me + "-" + d;
+    },
+    //Metodo para obtener el hora actual
+    getTime(){
+        var time = new Date();
+        var h = time.getHours();
+        var mi = time.getMinutes();
+        var s = time.getSeconds();
+        return h + ":" + mi + ":" + s;
+    },
+    //Metodo para obtener la fecha y hora actual
+    getDateTime(){
+        var date = this.getDate();
+        var time = this.getTime();
+        return date + " " + time;
+    },
 };

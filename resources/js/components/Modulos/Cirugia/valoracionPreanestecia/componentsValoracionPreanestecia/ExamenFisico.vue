@@ -24,7 +24,7 @@
                                                         >
                                                         <div class="col-sm-5 mr-2">
                                                             <input
-                                                                type="text"
+                                                                type="number"
                                                                 class="form-control"
                                                                 placeholder=""
                                                                 v-model="
@@ -43,7 +43,7 @@
                                                         >
                                                         <div class="col-sm-5 mr-2">
                                                             <input
-                                                                type="text"
+                                                                type="number"
                                                                 class="form-control"
                                                                 placeholder=""
                                                                 v-model="
@@ -62,7 +62,7 @@
                                                         >
                                                         <div class="col-sm-5 mr-2">
                                                             <input
-                                                                type="text"
+                                                                type="number"
                                                                 class="form-control"
                                                                 placeholder=""
                                                                 v-model="
@@ -81,7 +81,7 @@
                                                         >
                                                         <div class="col-sm-5 mr-2">
                                                             <input
-                                                                type="text"
+                                                                type="number"
                                                                 class="form-control"
                                                                 placeholder=""
                                                                 v-model="
@@ -95,56 +95,45 @@
                                                 <div class="col-sm-12">
                                                     <label>Estado General</label>
                                                 </div>
-                                                <!-- B Estado General-->
-                                                <div class="col-sm-3">
-                                                    <div class="form-group row">
-                                                        <label
-                                                            class="col-sm-4 col-form-label"
+                                                <div
+                                                    class="col-lg-12 col-md-12 col-sm-12 "
+                                                >
+                                                    <!-- B Estado General-->
+                                                    <span class="col-lg-4 col-md-4 col-sm-4">
+                                                        <label for="dentadura_b" class="mr-2"
                                                             >B</label
                                                         >
-                                                        <div class="col-sm-3 mr-2">
-                                                            <input
-                                                                type="text"
-                                                                class="form-control"
-                                                                placeholder=""
-                                                                v-model="form.frm_bEstadoGeneral"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- R Estado General-->
-                                                <div class="col-sm-3">
-                                                    <div class="form-group row">
-                                                        <label
-                                                            class="col-sm-4 col-form-label"
+                                                        <input
+                                                            type="radio"
+                                                            id="dentadura_b"
+                                                            value="b"
+                                                            v-model="form.frm_estado_general"
+                                                        />
+                                                    </span>
+                                                    <!-- R Estado General-->
+                                                    <span class="col-lg-4 col-md-4 col-sm-4">
+                                                        <label for="dentadura_r" class="mr-2"
                                                             >R</label
                                                         >
-                                                        <div class="col-sm-3 mr-2">
-                                                            <input
-                                                                type="text"
-                                                                class="form-control"
-                                                                placeholder=""
-                                                                v-model="form.frm_rEstadoGeneral"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- M Estado General-->
-                                                <div class="col-sm-3">
-                                                    <div class="form-group row">
-                                                        <label
-                                                            class="col-sm-4 col-form-label"
+                                                        <input
+                                                            type="radio"
+                                                            id="dentadura_r"
+                                                            value="r"
+                                                            v-model="form.frm_estado_general"
+                                                        />
+                                                    </span>
+                                                    <!-- M Estado General-->
+                                                    <span class="col-lg-4 col-md-4 col-sm-4">
+                                                        <label for="dentadura_m" class="mr-2"
                                                             >M</label
                                                         >
-                                                        <div class="col-sm-3 mr-2">
-                                                            <input
-                                                                type="text"
-                                                                class="form-control"
-                                                                placeholder=""
-                                                                v-model="form.frm_mEstadoGeneral"
-                                                            />
-                                                        </div>
-                                                    </div>
+                                                        <input
+                                                            type="radio"
+                                                            id="dentadura_m"
+                                                            value="m"
+                                                            v-model="form.frm_estado_general"
+                                                        />
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -189,7 +178,7 @@
                                                         >
                                                         <div class="col-sm-5 mr-2">
                                                             <input
-                                                                type="text"
+                                                                 type="number"
                                                                 class="form-control"
                                                                 placeholder=""
                                                                 v-model="
@@ -208,7 +197,7 @@
                                                         >
                                                         <div class="col-sm-5 mr-2">
                                                             <input
-                                                                type="text"
+                                                                 type="number"
                                                                 class="form-control"
                                                                 placeholder=""
                                                                 v-model="
@@ -224,62 +213,45 @@
                                                         >Movilidad del Cuello</label
                                                     >
                                                 </div>
-                                                <!-- B Movilidad del Cuello-->
-                                                <div class="col-sm-3">
-                                                    <div class="form-group row">
-                                                        <label
-                                                            class="col-sm-4 col-form-label"
+                                                <div
+                                                    class="col-lg-12 col-md-12 col-sm-12 "
+                                                >
+                                                    <!-- B Estado General-->
+                                                    <span class="col-lg-4 col-md-4 col-sm-4">
+                                                        <label for="movilidad_cuello_b" class="mr-2"
                                                             >B</label
                                                         >
-                                                        <div class="col-sm-3 mr-2">
-                                                            <input
-                                                                type="text"
-                                                                class="form-control"
-                                                                placeholder=""
-                                                                v-model="
-                                                                    form.frm_bMovilidadCuello
-                                                                "
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- R Movilidad del Cuello-->
-                                                <div class="col-sm-3">
-                                                    <div class="form-group row">
-                                                        <label
-                                                            class="col-sm-4 col-form-label"
+                                                        <input
+                                                            type="radio"
+                                                            id="movilidad_cuello_b"
+                                                            value="b"
+                                                            v-model="form.frm_movilidad_cuello"
+                                                        />
+                                                    </span>
+                                                    <!-- R Estado General-->
+                                                    <span class="col-lg-4 col-md-4 col-sm-4">
+                                                        <label for="movilidad_cuello_r" class="mr-2"
                                                             >R</label
                                                         >
-                                                        <div class="col-sm-3 mr-2">
-                                                            <input
-                                                                type="text"
-                                                                class="form-control"
-                                                                placeholder=""
-                                                                v-model="
-                                                                    form.frm_rMovilidadCuello
-                                                                "
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- M Movilidad del Cuello -->
-                                                <div class="col-sm-3">
-                                                    <div class="form-group row">
-                                                        <label
-                                                            class="col-sm-4 col-form-label"
+                                                        <input
+                                                            type="radio"
+                                                            id="movilidad_cuello_r"
+                                                            value="r"
+                                                            v-model="form.frm_movilidad_cuello"
+                                                        />
+                                                    </span>
+                                                    <!-- M Estado General-->
+                                                    <span class="col-lg-4 col-md-4 col-sm-4">
+                                                        <label for="movilidad_cuello_m" class="mr-2"
                                                             >M</label
                                                         >
-                                                        <div class="col-sm-3 mr-2">
-                                                            <input
-                                                                type="text"
-                                                                class="form-control"
-                                                                placeholder=""
-                                                                v-model="
-                                                                    form.frm_mMovilidadCuello
-                                                                "
-                                                            />
-                                                        </div>
-                                                    </div>
+                                                        <input
+                                                            type="radio"
+                                                            id="movilidad_cuello_m"
+                                                            value="m"
+                                                            v-model="form.frm_movilidad_cuello"
+                                                        />
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -445,9 +417,9 @@
                                                             class="col-sm-4 col-form-label"
                                                             >cm</label
                                                         >
-                                                        <div class="col-sm-3 mr-2">
+                                                        <div class="col-sm-8">
                                                             <input
-                                                                type="text"
+                                                                type="number"
                                                                 class="form-control"
                                                                 placeholder=""
                                                                 v-model="
@@ -461,8 +433,48 @@
                                                 <div class="col-sm-12">
                                                     <label>Dentadura</label>
                                                 </div>
+                                                <div
+                                                    class="col-lg-12 col-md-12 col-sm-12 "
+                                                >
+                                                    <!-- B Estado General-->
+                                                    <span class="col-lg-4 col-md-4 col-sm-4">
+                                                        <label for="estado_general_b" class="mr-2"
+                                                            >B</label
+                                                        >
+                                                        <input
+                                                            type="radio"
+                                                            id="estado_general_b"
+                                                            value="b"
+                                                            v-model="form.frm_dentadura"
+                                                        />
+                                                    </span>
+                                                    <!-- R Estado General-->
+                                                    <span class="col-lg-4 col-md-4 col-sm-4">
+                                                        <label for="estado_general_r" class="mr-2"
+                                                            >R</label
+                                                        >
+                                                        <input
+                                                            type="radio"
+                                                            id="estado_general_r"
+                                                            value="r"
+                                                            v-model="form.frm_dentadura"
+                                                        />
+                                                    </span>
+                                                    <!-- M Estado General-->
+                                                    <span class="col-lg-4 col-md-4 col-sm-4">
+                                                        <label for="estado_general_m" class="mr-2"
+                                                            >M</label
+                                                        >
+                                                        <input
+                                                            type="radio"
+                                                            id="_m"
+                                                            value="m"
+                                                            v-model="form.frm_dentadura"
+                                                        />
+                                                    </span>
+                                                </div>
                                                 <!-- B Dentadura -->
-                                                <div class="col-sm-3">
+                                                <!-- <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-sm-4 col-form-label"
@@ -479,9 +491,9 @@
                                                             />
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <!-- R Dentadura -->
-                                                <div class="col-sm-3">
+                                                <!-- <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-sm-4 col-form-label"
@@ -498,9 +510,9 @@
                                                             />
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <!-- M Dentadura -->
-                                                <div class="col-sm-3">
+                                                <!-- <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-sm-4 col-form-label"
@@ -517,7 +529,7 @@
                                                             />
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="w-100"></div>
                                                 <!-- Edéntulo -->
                                                 <div class="col-sm-2">
@@ -588,7 +600,7 @@
                                                             <input
                                                                 type="text"
                                                                 class="form-control"
-                                                                placeholder=""
+                                                                placeholder="Cardiovascular"
                                                                 v-model="
                                                                     form.frm_cardiovascular
                                                                 "
@@ -607,7 +619,7 @@
                                                             <input
                                                                 type="text"
                                                                 class="form-control"
-                                                                placeholder=""
+                                                                placeholder="Respiratorio"
                                                                 v-model="
                                                                     form.frm_respiratorio
                                                                 "
@@ -626,7 +638,7 @@
                                                             <input
                                                                 type="text"
                                                                 class="form-control"
-                                                                placeholder=""
+                                                                placeholder="Abdomen"
                                                                 v-model="
                                                                     form.frm_abdomen
                                                                 "
@@ -645,9 +657,28 @@
                                                             <input
                                                                 type="text"
                                                                 class="form-control"
-                                                                placeholder=""
+                                                                placeholder="Extremidades"
                                                                 v-model="
                                                                     form.frm_extremidades
+                                                                "
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Otros -->
+                                                <div class="col-sm-12">
+                                                    <div class="form-group row">
+                                                        <label
+                                                            class="col-sm-2 col-form-label"
+                                                            >Otros</label
+                                                        >
+                                                        <div class="col-sm-9 mr-2">
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                placeholder="Otros"
+                                                                v-model="
+                                                                    form.frm_otros
                                                                 "
                                                             />
                                                         </div>
@@ -727,9 +758,9 @@
                                                             class="col-sm-4 col-form-label"
                                                             >PUNTUACIÓN</label
                                                         >
-                                                        <div class="col-sm-2 mr-2">
+                                                        <div class="col-sm-4 mr-2">
                                                             <input
-                                                                type="text"
+                                                                type="number"
                                                                 class="form-control"
                                                                 placeholder=""
                                                                 v-model="
@@ -795,9 +826,7 @@ export default {
                 frm_talla: "",
 
                 /* Estado General */
-                frm_bEstadoGeneral: "",
-                frm_rEstadoGeneral: "",
-                frm_mEstadoGeneral: "",
+                frm_estado_general: "",
 
                 /* Cuello Corto */
                 frm_cuelloCorto: false,
@@ -805,9 +834,7 @@ export default {
                 frm_cmCuelloCorto: "",
 
                 /* Movilidad del Cuello */
-                frm_bMovilidadCuello: "",
-                frm_rMovilidadCuello: "",
-                frm_mMovilidadCuello: "",
+                frm_movilidad_cuello: "",
 
                 /* Escala de Malla */
                 frm_clase1: false,
@@ -820,9 +847,7 @@ export default {
                 frm_cmBocaAperturaOral: "",
 
                 /* Dentadura */
-                frm_bDentadura: "",
-                frm_rDentadura: "",
-                frm_mDentadura: "",
+                frm_dentadura: "",
                 frm_edentulo: false,
                 frm_protesis: false,
 
@@ -831,9 +856,10 @@ export default {
                 frm_respiratorio: "",
                 frm_abdomen: "",
                 frm_extremidades: "",
+                frm_otros: "",
 
                 /* Neurologico: ESCALA DE GLASGOW */
-                frm_puntuacionNeurologico: ""
+                frm_puntuacionNeurologico: 0
             }
         };
     },
@@ -863,31 +889,23 @@ export default {
     methods: {
         validarForm(){
             //Se comprueba que un checkbox tenga data
-            let keys= Object.keys(this.form.checks);
-            let poseeSeleccionCheck=false;
-            keys.forEach(element => {
-                console.log(this.form.checks[element])
-                if(this.form.checks[element]){
-                    poseeSeleccionCheck=true;
-                }
-            });
-            if(!poseeSeleccionCheck){
-                this.$swal({
-                        icon: "warning",
-                        title: "Existen campos requeridos",
-                        text: "Debe seleccionar por lo menos un motivo"
-                    });
+            if(this.form.frm_puntuacionNeurologico <0 || this.form.frm_puntuacionNeurologico > 15){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "El campo puntuación debe sumar ser mayor 0 o menor a 15 ",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
                 return false;
-            }else{
-                if(this.form.descripcion=='' || this.form.descripcion==null){
-                    this.$swal({
-                        icon: "warning",
-                        title: "Existen campos requeridos",
-                        text: "La descripción no debe estar vacia"
-                    });
-                    return false;
-
-                }
             }
             return true;
         },
@@ -914,11 +932,7 @@ export default {
                         that.form.frm_talla = response.data.examenFisico.talla;
 
                         /* Estado General  */
-                        that.form.frm_bEstadoGeneral = response.data.examenFisico.bEstadoGeneral;
-
-                        that.form.frm_rEstadoGeneral = response.data.examenFisico.rEstadoGeneral;
-
-                        that.form.frm_mEstadoGeneral = response.data.examenFisico.mEstadoGeneral;
+                        that.form.frm_estado_general = response.data.examenFisico.estado_general;
 
                         /* Cuello Corto */
                         that.chk.chk_cuelloCorto = +response.data.examenFisico.cuelloCorto;
@@ -928,11 +942,7 @@ export default {
 
                         that.form.frm_cmCuelloCorto = response.data.examenFisico.cmCuelloCorto;
 
-                        that.form.frm_bMovilidadCuello = response.data.examenFisico.bMovilidadCuello;
-
-                        that.form.frm_rMovilidadCuello = response.data.examenFisico.rMovilidadCuello;
-
-                        that.form.frm_mMovilidadCuello = response.data.examenFisico.mMovilidadCuello;
+                        that.form.frm_movilidad_cuello = response.data.examenFisico.movilidad_cuello;
 
                         /* Escala de Malla MPATI */
                         that.chk.chk_clase1 = +response.data.examenFisico.clase1;
@@ -954,11 +964,7 @@ export default {
                         that.form.frm_cmBocaAperturaOral = response.data.examenFisico.cmBocaAperturaOral;
 
                         /* Dentadura */
-                        that.form.frm_bDentadura = response.data.examenFisico.bDentadura;
-
-                        that.form.frm_rDentadura = response.data.examenFisico.rDentadura;
-
-                        that.form.frm_mDentadura = response.data.examenFisico.mDentadura;
+                        that.form.frm_dentadura = response.data.examenFisico.dentadura;
 
                         that.chk.chk_edentulo = +response.data.examenFisico.edentulo;
                         that.form.frm_edentulo  = +response.data.examenFisico.edentulo;
@@ -974,6 +980,7 @@ export default {
                         that.form.frm_abdomen = response.data.examenFisico.abdomen;
 
                         that.form.frm_extremidades = response.data.examenFisico.extremidades;
+                        that.form.frm_otros = response.data.examenFisico.otros;
 
                         that.form.frm_puntuacionNeurologico = response.data.examenFisico.puntuacionNeurologico;
 
@@ -983,10 +990,25 @@ export default {
                 .catch(error => {
                     //Errores
                     loader.hide();
-                    that.$swal({
+                    /* that.$swal({
                         icon: "error",
                         title: "Existe un error",
                         text: error
+                    }); */
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar cargarExamenFisico",
+                        message:"Por favor comuníquese con el administrador. " +
+                                error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background:
+                                    "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
                 });
         },
@@ -1016,21 +1038,44 @@ export default {
                         //that.cargarAtencionMotivo();
                     })
                     .catch(error => {
-                        if (error.response.status === 421) {
-                            that.$swal({
-                                icon: "error",
-                                title: "Existe un error",
-                                text: error.response.data.msg
-                            });
-                        }
+                        that.flashMessage.show({
+                            status: "error",
+                            title: "Error al procesar cargarExamenFisico",
+                            message:"Por favor comuníquese con el administrador. " +
+                                    error,
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/error.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
                         loader.hide();
                     });
             } else {
                 let that = this;
-                that.$swal({
+                /* that.$swal({
                     icon: "error",
                     title: "Citas",
                     text: "Debe seleccionar un paciente"
+                }); */
+                that.flashMessage.show({
+                    status: "error",
+                    title: "Error al procesar guardarModificar",
+                    message:"Por favor comuníquese con el administrador. " +
+                            error,
+                    clickable: true,
+                    time: 0,
+                    icon: "/iconsflashMessage/error.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
                 });
             }
         },

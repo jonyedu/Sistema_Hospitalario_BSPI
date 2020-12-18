@@ -54,7 +54,7 @@ class DatosAgentesController extends Controller
                         ]);
                         return response()->json(['status' => 'Guarado Respiracion', 'datos' => $datos->id], 201);
                     } else {
-                        $datos = DatosRespiracion::where('id', $datos->id_datos_agente)
+                        DatosRespiracion::where('id', $datos->id_datos_agente)
                             ->where('registro_anestesia_id', $datos->registro_anestesia_id,)
                             ->update([
                                 'registro_anestesia_id'   => $datos->registro_anestesia_id,
@@ -69,7 +69,7 @@ class DatosAgentesController extends Controller
                                 'pcip' => $_SERVER["REMOTE_ADDR"],
                                 'status' => '1'
                             ]);
-                        return response()->json(['status' => 'Modificado Respiracion'], 201);
+                        return response()->json(['status' => 'Modificado Respiracion', 'datos' => $datos->id_datos_agente], 201);
                     }
                 }
                 break;
@@ -95,7 +95,7 @@ class DatosAgentesController extends Controller
                         );
                         return response()->json(['status' => 'Guarado Agente', 'datos' => $datos->id], 201);
                     } else {
-                        $datos = DatosAgentes::where('id', $datos->id_datos_agente)
+                        DatosAgentes::where('id', $datos->id_datos_agente)
                             ->where('registro_anestesia_id', $datos->registro_anestesia_id,)
                             ->update(
                                 [
@@ -111,7 +111,7 @@ class DatosAgentesController extends Controller
                                     'status' => '1'
                                 ]
                             );
-                        return response()->json(['status' => 'Modificado Agente'], 201);
+                        return response()->json(['status' => 'Modificado Agente', 'datos' => $datos->id_datos_agente], 201);
                     }
                 }
                 break;
@@ -147,7 +147,7 @@ class DatosAgentesController extends Controller
                                 'pcip' => $_SERVER["REMOTE_ADDR"],
                                 'status' => '1'
                             ]);
-                        return response()->json(['status' => 'Guarado Posiciones'], 201);
+                        return response()->json(['status' => 'Modificado Posiciones', 'datos' => $datos->id_datos_agente], 201);
                     }
                 }
                 break;

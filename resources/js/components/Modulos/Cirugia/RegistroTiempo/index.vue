@@ -41,7 +41,18 @@
                                             >
                                                 Nuevo
                                             </button>
+                                            <button
+                                            v-if="iniciado"
+                                                type="button"
+                                                class="btn btn-outline-danger"
+                                                @click="
+                                                    mostrarModalConfirmarCandelar()
+                                                "
+                                            >
+                                                Suspender Cirugía
+                                            </button>
                                         </div>
+
                                     </div>
                                     <!-- Fin de Butones Nueva -->
                                 </div>
@@ -165,6 +176,23 @@
             ></lista-cirugia-programa-paciente>
         </modal>
         <!-- Fin Seccion donde muestra la lista de los pacientes que tienen una cita -->
+        <modal
+            :width="'30%'"
+            height="auto"
+            :scrollable="true"
+            name="ConfirmarCandelar"
+            style="z-index: 1200;"
+        >
+            <vue-confirmar-cancelar
+                :icon="icon"
+                :titulo="titulo"
+                :mensaje="mensaje"
+                :campoObservacion="true"
+                ref="ConfirmarCandelar"
+                @Observacion="form.observacion=$event"
+                @respuestaConfirmarCancelar="respuestaConfirmarCancelar"
+            ></vue-confirmar-cancelar>
+        </modal>
         <FlashMessage></FlashMessage>
     </div>
 </template>
@@ -185,7 +213,6 @@ export default {
 
             //Variables de Bandera
             iniciado: false,
-            disabledDetalleTiempo: true,
 
             //Variables para la Tabla
             columns: [
@@ -201,6 +228,12 @@ export default {
                 }
             ],
 
+            //Variables para Cancelar Confirmar
+            resConfirmarCancelar: false,
+            icon: "",
+            titulo: "",
+            mensaje: "",
+
             //Variables para la Tabla
             registros_tiempos: [],
 
@@ -213,7 +246,8 @@ export default {
                 selected_detalle_tiempo: "",
                 detalles_tiempos: [],
 
-                nombre: ""
+                nombre: "",
+                observacion: ""
             }
         };
     },
@@ -333,6 +367,8 @@ export default {
                                                 ? "Finalizado"
                                                 : registroTiempo.estado == "P"
                                                 ? "Pendiente"
+                                                : registroTiempo.estado == "S"
+                                                ? "Suspendido"
                                                 : ""
                                     };
                                     registros_tiempos.push(objeto);
@@ -411,7 +447,66 @@ export default {
                     });
             }
         },
+        mostrarModalConfirmarCandelar() {
+            this.icon = "/iconsflashMessage/warning.svg";
+            this.titulo = "¿Desea suspender la Cirugía?";
+            this.mensaje = "Al dar en Aceptar, la cirugía quedará suspendida y no podrá volver a seleccionarla.";
+            this.$modal.show("ConfirmarCandelar");
+        },
+        respuestaConfirmarCancelar(value) {
+            this.resConfirmarCancelar = value;
+            if(this.resConfirmarCancelar){
+                this.suspenderCirugia();
+            }
+            this.$modal.hide("ConfirmarCandelar");
+        },
+        suspenderCirugia() {
+            let that = this;
+            let url = "";
+            url = "/modulos/cirugia/registro_tiempo/suspender_registro_tiempo";
+            var loader = that.$loading.show();
+            axios
+                .post(url, this.form)
+                .then(function(response) {
+                    that.cargarRegistroTiempoPorSecCirPro();
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar",
+                        message: "La cirugía se ha suspendido correctamente",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores de validación
+                    loader.hide();
+                    that.flashMessage.show({
+                        status: "error",
+                        title:
+                            "Error al procesar suspenderCirugia",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                });
+        },
         guardarRegistroTiempo() {
+            this.iniciado = true;
             var mensaje = this.validarCambioTiempo();
             if (mensaje != undefined ) {
                 this.flashMessage.show({
@@ -496,24 +591,24 @@ export default {
                         }
                     }
                 }
-                /* Valida cuando se seleccione Preparación De Anestesiólogo */
+                /* Valida cuando se seleccione Ingreso de Anestesiólogo */
                 if (this.form.id_detalle_tiempo == 2) {
-                    //Valida cuando Preparación De Anestesiólogo se desea Iniciar, pero Uso De Quirófano sigue en pendiente
+                    //Valida cuando Ingreso de Anestesiólogo se desea Iniciar, pero Uso De Quirófano sigue en pendiente
                     if (this.registros_tiempos[1].estado == "Pendiente") {
                         if (this.registros_tiempos[0].estado == "Pendiente") {
-                            return 'No puede Iniciar Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Pendiente.';
+                            return 'No puede Iniciar Ingreso de Anestesiólogo, cuando Uso De Quirófano sigue Pendiente.';
                         }
                     }
-                    //Valida cuando Preparación De Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado o Pendiente
+                    //Valida cuando Ingreso de Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado o Pendiente
                     if (this.registros_tiempos[1].estado == "Iniciado") {
                         if (this.registros_tiempos[2].estado == "Iniciado" || this.registros_tiempos[2].estado == "Pendiente") {
-                            return 'No puede finalizar Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Iniciado o Pendiente.';
+                            return 'No puede finalizar Ingreso de Anestesiólogo, cuando Uso De Quirófano sigue Iniciado o Pendiente.';
                         }
                     }
-                    //Valida cuando se quiere dar click en Preparación De Anestesiólogo estando Finalizado, pero Uso de Quirófano sigue en iniciado
+                    //Valida cuando se quiere dar click en Ingreso de Anestesiólogo estando Finalizado, pero Uso de Quirófano sigue en iniciado
                     if (this.registros_tiempos[1].estado == "Finalizado") {
                         if (this.registros_tiempos[0].estado == "Iniciado" ) {
-                            return 'No puede dar click nuevamente en Preparación De Anestesiólogo, cuando Uso De Quirófano sigue Iniciado.';
+                            return 'No puede dar click nuevamente en Ingreso de Anestesiólogo, cuando Uso De Quirófano sigue Iniciado.';
                         }
                     }
                 }
@@ -537,6 +632,12 @@ export default {
                             return 'No puede dar click nuevamente en Inducción, cuando Preparación De Anestesiólogo sigue Iniciado.';
                         }
                     }
+                    //Valida cuando se quiere dar click en Inducción estando Finalizado, pero Uso de Quirófano sigue en iniciado
+                    if (this.registros_tiempos[2].estado == "Finalizado") {
+                        if (this.registros_tiempos[0].estado == "Iniciado" ) {
+                            return 'No puede dar click nuevamente en Inducción, cuando Uso de Quirófano sigue Iniciado.';
+                        }
+                    }
                 }
                 /* Valida cuando se seleccione Cirugía */
                 if (this.form.id_detalle_tiempo == 4) {
@@ -548,10 +649,17 @@ export default {
                     }
                     //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Induccion sigue en iniciado
                     if (this.registros_tiempos[3].estado == "Finalizado") {
+                        if (this.registros_tiempos[2].estado == "Iniciado"  || this.registros_tiempos[2].estado == "Finalizado" ) {
+                            return 'No puede dar click nuevamente en Cirugia, cuando Induccion sigue Iniciado o Finalizado.';
+                        }
+                    }
+                    //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Induccion sigue en iniciado
+                    if (this.registros_tiempos[3].estado == "Finalizado") {
                         if (this.registros_tiempos[2].estado == "Iniciado" ) {
                             return 'No puede dar click nuevamente en Cirugia, cuando Induccion sigue Iniciado.';
                         }
                     }
+
                 }
                 if (
                     this.form.id_detalle_tiempo == 1 ||
@@ -566,6 +674,21 @@ export default {
                         this.registros_tiempos[3].estado == "Finalizado"
                     ) {
                         return 'Usted ha finalizado correctamente.';
+                    }
+                }
+                if (
+                    this.form.id_detalle_tiempo == 1 ||
+                    this.form.id_detalle_tiempo == 2 ||
+                    this.form.id_detalle_tiempo == 3 ||
+                    this.form.id_detalle_tiempo == 4
+                ) {
+                    if (
+                        this.registros_tiempos[0].estado == "Suspendido" &&
+                        this.registros_tiempos[1].estado == "Suspendido" &&
+                        this.registros_tiempos[2].estado == "Suspendido" &&
+                        this.registros_tiempos[3].estado == "Suspendido"
+                    ) {
+                        return 'Usted ha suspendido la cirugía.';
                     }
                 }
             }

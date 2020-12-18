@@ -19,8 +19,6 @@ class CirugiaProgramadas extends Model
      */
     protected $connection = 'admin_db_sql';
 
-    public $timestamps = false;
-
     protected $fillable = [
         'SecCirPro'
         ,'CirProFecPro'

@@ -2,6 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <vue-good-table
+                class="col-lg-12 col-md-12 col-sm-12"
                 max-height="400px"
                 :columns="columns"
                 :rows="rowsData"
@@ -209,7 +210,7 @@
                             @click="handleRowClick(props.row)"
                             style="background:#FF0000;"
                             v-else-if="
-                                props.row.estado == 'Pendiente'
+                                props.row.estado == 'Pendiente' || props.row.estado == 'Suspendido'
                             "
                         >
                             <span style="font-weight: bold; color: #FFFFFF;">{{
@@ -404,7 +405,7 @@ export default {
             }
             if (!encontradoSeleccionar) {
                 this.$data.columns.unshift({
-                    label: "Seleccionar",
+                    label: "Elegir",
                     field: "seleccionar",
                     html: true
                 });
