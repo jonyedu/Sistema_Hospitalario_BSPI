@@ -250,7 +250,7 @@
                                     icon="ti-support"
                                 >
                                     <paraclinico
-                                        :id-revision-sistema="frm_id_revision_sistema"
+                                        :id-revision-sistema="form.frm_id_revision_sistema"
                                         :user="user"
                                         :id-sec-cir-pro="
                                             form.frm_idCirugiaProgramada
@@ -353,7 +353,7 @@ export default {
             this.form.frm_quirofano = value.quirofano;
             this.form.frm_procedimiento = value.procedimiento;
             this.$modal.hide("ListaCirugiaProgramadaPaciente");
-              this.consultarSello();
+              //this.consultarSello();
             /* if (this.$refs.revisionSistema != null) {
                 this.$refs.revisionSistema.cargarRevisionSistema();
             } */
@@ -372,7 +372,6 @@ export default {
         },
         onComplete() {
             this.$refs.paraclinico.guardarModificar();
-            this.$refs.paraclinico.guardarFirmaPorAtencion();
             //await this.$refs.paraclinico.cargarParaclinico();
             //await this.cambiarEstado();
         },

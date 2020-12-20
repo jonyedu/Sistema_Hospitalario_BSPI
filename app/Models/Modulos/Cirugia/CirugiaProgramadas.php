@@ -65,4 +65,5 @@ class CirugiaProgramadas extends Model
     {
         return $this->hasOne('App\Models\Modulos\Admision\Hospitalizacion', 'id', 'CirProHospit');
     }
+
 }

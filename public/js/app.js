@@ -7717,9 +7717,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -10045,6 +10042,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -10068,6 +10067,7 @@ __webpack_require__.r(__webpack_exports__);
         /* Datos del paciente */
         frm_idCirugiaProgramada: "",
         //2890
+        frm_id_revision_sistema: 0,
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",
@@ -10109,8 +10109,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form.frm_anestesiologo = value.anestesiologo;
       this.form.frm_quirofano = value.quirofano;
       this.form.frm_procedimiento = value.procedimiento;
-      this.$modal.hide("ListaCirugiaProgramadaPaciente");
-      this.consultarSello();
+      this.$modal.hide("ListaCirugiaProgramadaPaciente"); //this.consultarSello();
+
       /* if (this.$refs.revisionSistema != null) {
           this.$refs.revisionSistema.cargarRevisionSistema();
       } */
@@ -10131,8 +10131,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     onComplete: function onComplete() {
-      this.$refs.paraclinico.guardarModificar();
-      this.$refs.paraclinico.guardarFirmaPorAtencion(); //await this.$refs.paraclinico.cargarParaclinico();
+      this.$refs.paraclinico.guardarModificar(); //await this.$refs.paraclinico.cargarParaclinico();
       //await this.cambiarEstado();
     },
     cambiarEstado: function cambiarEstado() {
@@ -13881,6 +13880,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     user: {
       type: Object
+    },
+    idRevisionSistema: {
+      type: Number,
+      required: false
     }
   },
   data: function data() {
@@ -14168,45 +14171,43 @@ __webpack_require__.r(__webpack_exports__);
     },
     //Metodo para guardar o modificar los datos de motivo antecedente
     guardarModificar: function guardarModificar() {
-      if (this.$props.idSecCirPro != "" || this.$props.idSecCirPro) {
-        var idSecCirPro = this.$props.idSecCirPro;
-        var url = "/modulos/cirugia/valoracionPreanestecia/guardar_modificar_paraclinico";
-        var that = this;
+      if (this.frmimg.imgFirma != null) {
+        if (this.$props.idSecCirPro != "" || this.$props.idSecCirPro) {
+          var idSecCirPro = this.$props.idSecCirPro;
+          var url = "/modulos/cirugia/valoracionPreanestecia/guardar_modificar_paraclinico";
+          var that = this;
 
-        if (this.validarGuardarModificar == 1) {
-          that.mensaje = "Datos modificados correctamente.";
-        } else {
-          that.mensaje = "Datos guardados correctamente.";
-        }
+          if (this.validarGuardarModificar == 1) {
+            that.mensaje = "Datos modificados correctamente.";
+          } else {
+            that.mensaje = "Datos guardados correctamente.";
+          }
 
-        var loader = that.$loading.show();
-        this.form.frm_idCirugiaProgramada = idSecCirPro;
-        axios.post(url, this.form).then(function (response) {
-          loader.hide();
-          /* that.$swal({
-              icon: "success",
-              title: "Proceso realizado exitosamente",
-              text: that.mensaje
-          }); */
-
-          that.flashMessage.show({
-            status: "success",
-            title: "Proceso realizado exitosamente",
-            message: that.mensaje,
-            clickable: true,
-            time: 5000,
-            icon: "/iconsflashMessage/success.svg",
-            customStyle: {
-              flashMessageStyle: {
-                background: "linear-gradient(#e66465, #9198e5)"
+          var loader = that.$loading.show();
+          this.form.frm_idCirugiaProgramada = idSecCirPro;
+          axios.post(url, this.form).then(function (response) {
+            loader.hide();
+            that.guardarFirmaPorAtencion();
+          })["catch"](function (error) {
+            that.flashMessage.show({
+              status: "error",
+              title: "Error al procesar guardarModificar",
+              message: "Por favor comuníquese con el administrador. " + error,
+              clickable: true,
+              time: 0,
+              icon: "/iconsflashMessage/error.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
               }
-            }
+            });
+            loader.hide();
           });
-          that.validarFinProceso = 1;
-          that.$emit("validarFinProceso", that.validarFinProceso);
-          that.$emit("FinProceso");
-        })["catch"](function (error) {
-          that.flashMessage.show({
+        } else {
+          var _that = this;
+
+          _that.flashMessage.show({
             status: "error",
             title: "Error al procesar guardarModificar",
             message: "Por favor comuníquese con el administrador. " + error,
@@ -14219,24 +14220,15 @@ __webpack_require__.r(__webpack_exports__);
               }
             }
           });
-          loader.hide();
-        });
+        }
       } else {
-        var _that = this;
-        /* that.$swal({
-            icon: "error",
-            title: "Citas",
-            text: "Debe seleccionar un paciente"
-        }); */
-
-
-        _that.flashMessage.show({
-          status: "error",
-          title: "Error al procesar guardarModificar",
-          message: "Por favor comuníquese con el administrador. " + error,
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia al finalizar con el proceso",
+          message: "Se necesita una firma por favor.",
           clickable: true,
           time: 0,
-          icon: "/iconsflashMessage/error.svg",
+          icon: "/iconsflashMessage/warning.svg",
           customStyle: {
             flashMessageStyle: {
               background: "linear-gradient(#e66465, #9198e5)"
@@ -14252,7 +14244,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var formNew = {
         tipo_servicio: 4,
-        id_atencion: 0,
+        id_atencion: that.$props.idRevisionSistema,
         //id de revision de sistema
         id_visita: 0,
         id_tipo_documento: 13,
@@ -14264,8 +14256,8 @@ __webpack_require__.r(__webpack_exports__);
         loader.hide();
         that.flashMessage.show({
           status: "success",
-          title: "Éxito al procesar Firma por Atención",
-          message: "Datos guardados correctamente.",
+          title: "Proceso realizado exitosamente",
+          message: that.mensaje,
           clickable: true,
           time: 5000,
           icon: "/iconsflashMessage/success.svg",
@@ -14275,6 +14267,9 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         });
+        that.validarFinProceso = 1;
+        that.$emit("validarFinProceso", that.validarFinProceso);
+        that.$emit("FinProceso");
       })["catch"](function (error) {
         that.resConfirmarCancelar = false;
         that.flashMessage.show({
@@ -15409,6 +15404,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           if (that.form.frm_id_revision_sistema <= 0) {
             that.form.frm_id_revision_sistema = response.data.value;
+            that.$emit("IdRevisionSistema", response.data.value);
           }
           /* that.$swal({
               icon: "success",
@@ -68985,6 +68981,9 @@ var render = function() {
                                   ValidarCargarDatos: function($event) {
                                     _vm.respuestaCargarDatos = $event
                                   },
+                                  IdRevisionSistema: function($event) {
+                                    _vm.form.frm_id_revision_sistema = $event
+                                  },
                                   RespuestaImprimir: function($event) {
                                     _vm.respuestaImprimir = $event
                                   }
@@ -69047,6 +69046,8 @@ var render = function() {
                               _c("paraclinico", {
                                 ref: "paraclinico",
                                 attrs: {
+                                  "id-revision-sistema":
+                                    _vm.form.frm_id_revision_sistema,
                                   user: _vm.user,
                                   "id-sec-cir-pro":
                                     _vm.form.frm_idCirugiaProgramada

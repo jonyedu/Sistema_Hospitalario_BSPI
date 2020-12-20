@@ -986,7 +986,7 @@ export default {
             type: Object
         },
         idRevisionSistema:{
-            type: String,
+            type: Number,
             required: false
         }
     },
@@ -1339,86 +1339,76 @@ export default {
         },
         //Metodo para guardar o modificar los datos de motivo antecedente
         guardarModificar: function() {
-            if (this.$props.idSecCirPro != "" || this.$props.idSecCirPro) {
-                let idSecCirPro = this.$props.idSecCirPro;
-                let url =
-                    "/modulos/cirugia/valoracionPreanestecia/guardar_modificar_paraclinico";
-                let that = this;
-                if (this.validarGuardarModificar == 1) {
-                    that.mensaje = "Datos modificados correctamente.";
+            if(this.frmimg.imgFirma != null){
+                if (this.$props.idSecCirPro != "" || this.$props.idSecCirPro) {
+                    let idSecCirPro = this.$props.idSecCirPro;
+                    let url = "/modulos/cirugia/valoracionPreanestecia/guardar_modificar_paraclinico";
+                    let that = this;
+                    if (this.validarGuardarModificar == 1) {
+                        that.mensaje = "Datos modificados correctamente.";
+                    } else {
+                        that.mensaje = "Datos guardados correctamente.";
+                    }
+                    var loader = that.$loading.show();
+                    this.form.frm_idCirugiaProgramada = idSecCirPro;
+                    axios
+                        .post(url, this.form)
+                        .then(function(response) {
+                            loader.hide();
+                            that.guardarFirmaPorAtencion();
+                        })
+                        .catch(error => {
+                            that.flashMessage.show({
+                                status: "error",
+                                title: "Error al procesar guardarModificar",
+                                message:"Por favor comuníquese con el administrador. " +
+                                        error,
+                                clickable: true,
+                                time: 0,
+                                icon: "/iconsflashMessage/error.svg",
+                                customStyle: {
+                                    flashMessageStyle: {
+                                        background:
+                                            "linear-gradient(#e66465, #9198e5)"
+                                    }
+                                }
+                            });
+                            loader.hide();
+                        });
                 } else {
-                    that.mensaje = "Datos guardados correctamente.";
-                }
-                var loader = that.$loading.show();
-                this.form.frm_idCirugiaProgramada = idSecCirPro;
-                axios
-                    .post(url, this.form)
-                    .then(function(response) {
-                        loader.hide();
-                        /* that.$swal({
-                            icon: "success",
-                            title: "Proceso realizado exitosamente",
-                            text: that.mensaje
-                        }); */
-                        that.flashMessage.show({
-                            status: "success",
-                            title: "Proceso realizado exitosamente",
-                            message:that.mensaje,
-                            clickable: true,
-                            time: 5000,
-                            icon: "/iconsflashMessage/success.svg",
-                            customStyle: {
-                                flashMessageStyle: {
-                                    background:
-                                        "linear-gradient(#e66465, #9198e5)"
-                                }
+                    let that = this;
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarModificar",
+                        message:"Por favor comuníquese con el administrador. " +
+                                error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background:
+                                    "linear-gradient(#e66465, #9198e5)"
                             }
-                        });
-                        that.validarFinProceso = 1;
-                        that.$emit("validarFinProceso", that.validarFinProceso);
-                        that.$emit("FinProceso");
-                    })
-                    .catch(error => {
-                        that.flashMessage.show({
-                            status: "error",
-                            title: "Error al procesar guardarModificar",
-                            message:"Por favor comuníquese con el administrador. " +
-                                    error,
-                            clickable: true,
-                            time: 0,
-                            icon: "/iconsflashMessage/error.svg",
-                            customStyle: {
-                                flashMessageStyle: {
-                                    background:
-                                        "linear-gradient(#e66465, #9198e5)"
-                                }
-                            }
-                        });
-                        loader.hide();
+                        }
                     });
-            } else {
-                let that = this;
-                /* that.$swal({
-                    icon: "error",
-                    title: "Citas",
-                    text: "Debe seleccionar un paciente"
-                }); */
-                that.flashMessage.show({
-                    status: "error",
-                    title: "Error al procesar guardarModificar",
-                    message:"Por favor comuníquese con el administrador. " +
-                            error,
+                }
+            }else{
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia al finalizar con el proceso",
+                    message: "Se necesita una firma por favor.",
                     clickable: true,
                     time: 0,
-                    icon: "/iconsflashMessage/error.svg",
+                    icon: "/iconsflashMessage/warning.svg",
                     customStyle: {
                         flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
+                            background: "linear-gradient(#e66465, #9198e5)"
                         }
                     }
                 });
             }
+
         },
 
         guardarFirmaPorAtencion() {
@@ -1428,32 +1418,34 @@ export default {
           // alert(that.form.imgFirma);
             let formNew = {
                 tipo_servicio:4,
-                id_atencion:0, //id de revision de sistema
+                id_atencion:that.$props.idRevisionSistema, //id de revision de sistema
                 id_visita:0,
                 id_tipo_documento:13,
                 imgFirma: that.frmimg.imgFirma,
             };
             url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
-
             var loader = that.$loading.show();
             axios
                 .post(url, formNew)
                 .then(function(response) {
-
                     loader.hide();
                     that.flashMessage.show({
                         status: "success",
-                        title: "Éxito al procesar Firma por Atención",
-                        message: "Datos guardados correctamente.",
+                        title: "Proceso realizado exitosamente",
+                        message:that.mensaje,
                         clickable: true,
                         time: 5000,
                         icon: "/iconsflashMessage/success.svg",
                         customStyle: {
                             flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
+                                background:
+                                    "linear-gradient(#e66465, #9198e5)"
                             }
                         }
                     });
+                    that.validarFinProceso = 1;
+                    that.$emit("validarFinProceso", that.validarFinProceso);
+                    that.$emit("FinProceso");
 
                 })
                 .catch(error => {
