@@ -158,10 +158,7 @@ export default {
         user: {
             type: Object
         },
-        idSec:{
-            type:Number
-
-        }
+         
     },
     data() {
         return {
@@ -185,7 +182,7 @@ export default {
         };
     },
     mounted() {
-        alert(this.$props.idSec)
+        
         
     },
     methods: {

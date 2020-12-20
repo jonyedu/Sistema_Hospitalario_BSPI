@@ -8370,9 +8370,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
-//
-//
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -8704,9 +8710,10 @@ __webpack_require__.r(__webpack_exports__);
     return {
       variableG: 4,
       prefijo: "",
-      isHidden: 'none',
-      idHiddenNuevo: 'none',
+      isHidden: "none",
+      idHiddenNuevo: "none",
       rutaSello: "",
+      idPromesa: [],
       listas: {
         SecCirPro: "",
         frm_id_user: "",
@@ -8739,6 +8746,7 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         /* Datos del paciente */
         // frm_idCirugiaProgramada: "",
+        frm_idCirugiaProgramada: 0,
         id_lista: 0,
         tipo_servicio: 4,
         id_visita: 0,
@@ -8753,8 +8761,77 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  mounted: function mounted() {// this.$refs.listaEntrada.listas.chkentrada01 = true
+    // alert(this.$refs.listaEntrada.listas.chkentrada01)
+  },
   methods: {
     /* Metodos para Llamar al Modal y la Tabla */
+    validateAsync: function validateAsync() {
+      var that = this;
+      that.listas.chkentrada01 = that.$refs.listaEntrada.listas.chkentrada01;
+      that.listas.chkentrada02 = that.$refs.listaEntrada.listas.chkentrada02;
+      that.listas.chkentrada03 = that.$refs.listaEntrada.listas.chkentrada03;
+      that.listas.chkentrada04 = that.$refs.listaEntrada.listas.chkentrada04;
+      that.listas.chkentrada05 = that.$refs.listaEntrada.listas.chkentrada05;
+      that.listas.chkentrada06 = that.$refs.listaEntrada.listas.chkentrada06;
+      that.listas.chkentrada07 = that.$refs.listaEntrada.listas.chkentrada07;
+      that.listas.chkquirurgica01 = that.$refs.listaPausa.listas.chkquirurgica01;
+      that.listas.chkquirurgica02 = that.$refs.listaPausa.listas.chkquirurgica02;
+      that.listas.chkquirurgica03 = that.$refs.listaPausa.listas.chkquirurgica03;
+      that.listas.chkquirurgica04 = that.$refs.listaPausa.listas.chkquirurgica04;
+      that.listas.chkquirurgica05 = that.$refs.listaPausa.listas.chkquirurgica05;
+      that.listas.chkquirurgica06 = that.$refs.listaPausa.listas.chkquirurgica06;
+      that.listas.chkquirurgica07 = that.$refs.listaPausa.listas.chkquirurgica07;
+      that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
+      that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
+      that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
+      that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
+      that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
+      that.listas.observacion = that.$refs.listaSalida.listas.observacion; // console.log(that.listas);
+      // if (that.validarImgFirma == 0) {
+      //     that.$swal({
+      //         icon: "error",
+      //         title: "Favor Guardar la Firma",
+      //         text: "."
+      //     });
+      //     return;
+      // }
+      // var loader = that.$loading.show();
+
+      var ListaInsert = this.listas; //console.log(this.listas);
+
+      this.listas = {
+        SecCirPro: "",
+        id_lista: 0,
+        chkentrada01: false,
+        chkentrada02: false,
+        chkentrada03: false,
+        chkentrada04: false,
+        chkentrada05: false,
+        chkentrada06: false,
+        chkentrada07: false,
+        chkquirurgica01: false,
+        chkquirurgica02: false,
+        chkquirurgica03: false,
+        chkquirurgica04: false,
+        chkquirurgica05: false,
+        chkquirurgica06: false,
+        chkquirurgica07: false,
+        chksalida01: false,
+        chksalida02: false,
+        chksalida03: false,
+        chksalida04: false,
+        chksalida05: false,
+        user_id: "",
+        cargo: "",
+        observacion: "",
+        firma: ""
+      };
+      axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
+        that.$refs.formValoracionPreanestecia[3].activeTabIndex;
+      })["catch"](function (e) {// this.errors.push(e);
+      }); // resolve(este);
+    },
     mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
       this.$modal.show("ListaCirugiaProgramadaPaciente");
     },
@@ -8769,8 +8846,7 @@ __webpack_require__.r(__webpack_exports__);
       //     this.$refs.revisionSistema.cargarRevisionSistema();
       // }
 
-      this.cargarLista(value.SecCirPro);
-      this.consultarSello();
+      this.cargarLista(value.SecCirPro); // this.consultarSello();
     },
     cargarLista: function cargarLista(value) {
       var that = this;
@@ -8778,20 +8854,37 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(url).then(function (response) {
         if (response.data.contador > 0) {
-          that.$swal({
-            icon: "success",
-            title: "El proceso ya se encuentra realizado, Seleccione Imprimir para visualizar el reporte",
-            text: "."
-          }), that.isHidden = 'block';
-          that.idHiddenNuevo = 'none';
-        } else {
-          that.$swal({
-            icon: "success",
-            title: "Paciente Nuevo",
-            text: "."
+          that.flashMessage.show({
+            status: "success",
+            title: "Éxito al procesar IdRegistroAnestesia",
+            message: "El proceso ya se encuentra realizado, Seleccione Imprimir para visualizar el reporte",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/success.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
           });
-          that.isHidden = 'none';
-          that.idHiddenNuevo = 'block';
+          that.isHidden = "block";
+          that.idHiddenNuevo = "none";
+        } else {
+          that.flashMessage.show({
+            status: "success",
+            title: "Lista de Verifacion",
+            message: "Paciente Nuevo",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/success.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          that.isHidden = "none";
+          that.idHiddenNuevo = "block";
         }
       })["catch"](function (error) {
         //Errores
@@ -8800,10 +8893,14 @@ __webpack_require__.r(__webpack_exports__);
           title: "Paciente Nuevo",
           text: "."
         });
-        that.isHidden = 'none';
+        that.isHidden = "none";
       }); //  llamarMetodoImprimir();
     },
-    onChangeTab: function onChangeTab(prevIndex, nextIndex) {
+    onChangeTab: function onChangeTab(prevIndex, nextIndex) {// if (nextIndex == 3) {
+      //     this.guardarLista();
+      //     // nextIndex = 0
+      //     //this.$refs.formValoracionPreanestecia.changeTab(0,1)
+      // }
       //Se debera realizar las validaciones respectivas para cada tab
       //  this.setFormTitle(nextIndex);
 
@@ -8813,15 +8910,14 @@ __webpack_require__.r(__webpack_exports__);
           this.guardarModificar(prevIndex);
       } */
       //  this.guardarModificar(prevIndex);
-      //   alert('holis');
+      // alert(nextIndex);
       //   this.listas.chksalida01 = $this.$refs.chkentrada01.value();
       //      alert(this.listas.chksalida01);
-      this.$refs.listaEntrada.listas.chkentrada01 = true;
-      alert(this.$refs.listaEntrada.listas.chkentrada01);
     },
     onValidateTab: function onValidateTab(validationResult, activeTabIndex) {//Se debera realizar las validaciones respectivas para cada tab
     },
-    onComplete: function onComplete() {//  this.$refs.paraclinico.guardarModificar();
+    onComplete: function onComplete() {
+      this.guardarLista(); //  this.$refs.paraclinico.guardarModificar();
       //this.$refs.paraclinico.guardarFirmaPorAtencion();
       //await this.$refs.paraclinico.cargarParaclinico();
       //await this.cambiarEstado();
@@ -8907,73 +9003,91 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     guardarLista: function guardarLista() {
-      var that = this;
+      var _this = this;
 
-      if (that.validarImgFirma == 0) {
-        that.$swal({
-          icon: "error",
-          title: "Favor Guardar la Firma",
-          text: "."
-        });
-        return;
-      } // var loader = that.$loading.show();
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var that, ListaInsert, url, $id;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                //validamos la lista segun la referencia listaPausa listaSalida
+                that = _this;
+                that.listas.chkentrada01 = that.$refs.listaEntrada.listas.chkentrada01;
+                that.listas.chkentrada02 = that.$refs.listaEntrada.listas.chkentrada02;
+                that.listas.chkentrada03 = that.$refs.listaEntrada.listas.chkentrada03;
+                that.listas.chkentrada04 = that.$refs.listaEntrada.listas.chkentrada04;
+                that.listas.chkentrada05 = that.$refs.listaEntrada.listas.chkentrada05;
+                that.listas.chkentrada06 = that.$refs.listaEntrada.listas.chkentrada06;
+                that.listas.chkentrada07 = that.$refs.listaEntrada.listas.chkentrada07;
+                that.listas.chkquirurgica01 = that.$refs.listaPausa.listas.chkquirurgica01;
+                that.listas.chkquirurgica02 = that.$refs.listaPausa.listas.chkquirurgica02;
+                that.listas.chkquirurgica03 = that.$refs.listaPausa.listas.chkquirurgica03;
+                that.listas.chkquirurgica04 = that.$refs.listaPausa.listas.chkquirurgica04;
+                that.listas.chkquirurgica05 = that.$refs.listaPausa.listas.chkquirurgica05;
+                that.listas.chkquirurgica06 = that.$refs.listaPausa.listas.chkquirurgica06;
+                that.listas.chkquirurgica07 = that.$refs.listaPausa.listas.chkquirurgica07;
+                that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
+                that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
+                that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
+                that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
+                that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
+                that.listas.observacion = that.$refs.listaSalida.listas.observacion; // console.log(that.listas);
+                // if (that.validarImgFirma == 0) {
+                //     that.$swal({
+                //         icon: "error",
+                //         title: "Favor Guardar la Firma",
+                //         text: "."
+                //     });
+                //     return;
+                // }
+                // var loader = that.$loading.show();
 
+                ListaInsert = _this.listas; //console.log(this.listas);
 
-      var ListaInsert = this.listas; //console.log(this.listas);
+                _this.listas = {
+                  SecCirPro: "",
+                  id_lista: 0,
+                  chkentrada01: false,
+                  chkentrada02: false,
+                  chkentrada03: false,
+                  chkentrada04: false,
+                  chkentrada05: false,
+                  chkentrada06: false,
+                  chkentrada07: false,
+                  chkquirurgica01: false,
+                  chkquirurgica02: false,
+                  chkquirurgica03: false,
+                  chkquirurgica04: false,
+                  chkquirurgica05: false,
+                  chkquirurgica06: false,
+                  chkquirurgica07: false,
+                  chksalida01: false,
+                  chksalida02: false,
+                  chksalida03: false,
+                  chksalida04: false,
+                  chksalida05: false,
+                  user_id: "",
+                  cargo: "",
+                  observacion: "",
+                  firma: ""
+                };
+                url = "/modulos/cirugia/lista_verificacion/ListarValoracion";
+                _context.next = 26;
+                return axios.post(url, ListaInsert).then(function (response) {
+                  _this.idPromesa = response.data.id;
+                });
 
-      this.listas = {
-        SecCirPro: "",
-        id_lista: 0,
-        chkentrada01: false,
-        chkentrada02: false,
-        chkentrada03: false,
-        chkentrada04: false,
-        chkentrada05: false,
-        chkentrada06: false,
-        chkentrada07: false,
-        chkquirurgica01: false,
-        chkquirurgica02: false,
-        chkquirurgica03: false,
-        chkquirurgica04: false,
-        chkquirurgica05: false,
-        chkquirurgica06: false,
-        chkquirurgica07: false,
-        chksalida01: false,
-        chksalida02: false,
-        chksalida03: false,
-        chksalida04: false,
-        chksalida05: false,
-        user_id: "",
-        cargo: "",
-        observacion: "",
-        firma: ""
-      }, axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
-        that.form.id_lista = response.data.id; // alert(response.data.id);
-        //  loader.hide();
-        //alert(that.form.id_lista);
+              case 26:
+                $id = _context.sent;
 
-        that.guardarFirmaPorAtencion();
-        that.form = {
-          id_lista: 0,
-          tipo_servicio: 4,
-          id_visita: 0,
-          id_tipo_documento: 13,
-          frm_paciente: "",
-          frm_cirujano: "",
-          frm_anestesiologo: "",
-          frm_quirofano: "",
-          frm_procedimiento: "",
-          imgFirma: null,
-          imgGrafica: null
-        };
-        that.$swal({
-          icon: "success",
-          title: "Proceso Realizado con Exito",
-          text: "."
-        });
-      }); //   alert( that.form.id_lista);
-      // guardarFirmaPorAtencion();
-      // aui
+              case 27:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
       window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.SecCirPro);
@@ -9150,9 +9264,6 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     user: {
       type: Object
-    },
-    idSec: {
-      type: Number
     }
   },
   data: function data() {
@@ -9174,9 +9285,101 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  mounted: function mounted() {
-    alert(this.$props.idSec);
+  mounted: function mounted() {},
+  methods: {
+    enviarvalor: function enviarvalor() {// this.$$refs.formValoracionPreanestecia.chkentrada01 = this.chkentrada01
+      // alert(this.$$refs.formValoracionPreanestecia.chkentrada01);
+      // console.log(this.$$refs.formValoracionPreanestecia.chkentrada01);
+    }
+    /* Metodos para Llamar al Modal y la Tabla */
+
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
   },
+  data: function data() {
+    return {
+      prefijo: "",
+      isHidden: "none",
+      idHiddenNuevo: "none",
+      rutaSello: "",
+      validarImgFirma: 0,
+      isFirstPaintable: "firmaAnestesiologo",
+      listas: {
+        SecCirPro: "",
+        frm_id_user: "",
+        chkentrada01: false,
+        chkentrada02: false,
+        chkentrada03: false,
+        chkentrada04: false,
+        chkentrada05: false,
+        chkentrada06: false,
+        chkentrada07: false,
+        user_id: "",
+        cargo: "",
+        observacion: "",
+        firma: ""
+      }
+    };
+  },
+  mounted: function mounted() {},
   methods: {
     enviarvalor: function enviarvalor() {// this.$$refs.formValoracionPreanestecia.chkentrada01 = this.chkentrada01
       // alert(this.$$refs.formValoracionPreanestecia.chkentrada01);
@@ -9532,6 +9735,87 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     /* Metodos para Llamar al Modal y la Tabla */
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
+      listas: {
+        SecCirPro: "",
+        frm_id_user: "",
+        chkentrada01: false,
+        chkentrada02: false,
+        chkentrada03: false,
+        chkentrada04: false,
+        chkentrada05: false,
+        chkentrada06: false,
+        chkentrada07: false,
+        user_id: "",
+        cargo: "",
+        observacion: "",
+        firma: ""
+      }
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    enviarvalor: function enviarvalor() {// this.$$refs.formValoracionPreanestecia.chkentrada01 = this.chkentrada01
+      // alert(this.$$refs.formValoracionPreanestecia.chkentrada01);
+      // console.log(this.$$refs.formValoracionPreanestecia.chkentrada01);
+    }
+    /* Metodos para Llamar al Modal y la Tabla */
+
   }
 });
 
@@ -10307,8 +10591,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -10332,7 +10614,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         /* Datos del paciente */
         frm_idCirugiaProgramada: "",
         //2890
-        frm_id_revision_sistema: 0,
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",
@@ -10400,8 +10681,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       //     resolve(poseeErrores);
       // });
     },
-    onComplete: function onComplete() {//  this.$refs.paraclinico.guardarModificar();
-      //this.$refs.paraclinico.guardarFirmaPorAtencion();
+    onComplete: function onComplete() {
+      this.$refs.paraclinico.guardarModificar(); //this.$refs.paraclinico.guardarFirmaPorAtencion();
       //await this.$refs.paraclinico.cargarParaclinico();
       //await this.cambiarEstado();
     },
@@ -10466,6 +10747,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       default: //this.titulo_seleccionado = "";
 
+    }
+  }), _defineProperty(_methods, "consultarSello", function consultarSello() {
+    var that = this;
+
+    if (this.$props.user.id > 0) {
+      var loader = that.$loading.show();
+      var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
+      axios.get(url).then(function (response) {
+        if (response.data.sello != null) {
+          if (response.data.sello.seguridad_medico != null) {
+            that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO; // alert( response.data.sello.medico_sellos);
+          }
+        }
+
+        loader.hide();
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar consultarSello",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
     }
   }), _defineProperty(_methods, "llamarMetodoImprimir", function llamarMetodoImprimir() {
     if (this.respuestaFinProceso || this.respuestaImprimir) {
@@ -67588,7 +67900,9 @@ var render = function() {
                                 "button",
                                 {
                                   staticClass: "btn btn-outline-primary",
-                                  style: { display: _vm.isHidden },
+                                  style: {
+                                    display: _vm.isHidden
+                                  },
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
@@ -67655,7 +67969,7 @@ var render = function() {
                                                     rawName: "v-model",
                                                     value: _vm.listas.SecCirPro,
                                                     expression:
-                                                      "\n                                                            listas.SecCirPro\n                                                        "
+                                                      "\n                                                        listas.SecCirPro\n                                                    "
                                                   }
                                                 ],
                                                 attrs: {
@@ -67867,12 +68181,7 @@ var render = function() {
                                 icon: "fas fa-user-check"
                               }
                             },
-                            [
-                              _c("lista-entrada", {
-                                ref: "listaEntrada",
-                                attrs: { "id-sec": _vm.variableG }
-                              })
-                            ],
+                            [_c("lista-entrada", { ref: "listaEntrada" })],
                             1
                           ),
                           _vm._v(" "),
@@ -67884,7 +68193,7 @@ var render = function() {
                                 icon: "fas fa-procedures"
                               }
                             },
-                            [_c("lista-pausa")],
+                            [_c("lista-pausa", { ref: "listaPausa" })],
                             1
                           ),
                           _vm._v(" "),
@@ -67893,20 +68202,32 @@ var render = function() {
                             {
                               attrs: {
                                 title: "Salida",
-                                icon: "fas fa-user-nurse"
+                                icon: "fas fa-user-nurse",
+                                "before-change": _vm.validateAsync
                               }
                             },
-                            [_c("lista-salida")],
+                            [_c("lista-salida", { ref: "listaSalida" })],
                             1
                           ),
                           _vm._v(" "),
-                          _c("tab-content", {
-                            attrs: { title: "Visualización", icon: "ti-folder" }
-                          }),
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Visualización",
+                                icon: "ti-folder"
+                              }
+                            },
+                            [_c("lista-visualizacion")],
+                            1
+                          ),
                           _vm._v(" "),
-                          _c("tab-content", {
-                            attrs: { title: "Firma", icon: "ti-folder" }
-                          })
+                          _c(
+                            "tab-content",
+                            { attrs: { title: "Firma", icon: "ti-folder" } },
+                            [_c("lista-firma")],
+                            1
+                          )
                         ],
                         1
                       )
@@ -67954,7 +68275,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", [
       _c("p", { staticStyle: { "margin-left": "10px" } }, [
-        _vm._v("Listas de Verificacion")
+        _vm._v(
+          "\n                                Listas de Verificacion\n                            "
+        )
       ])
     ])
   },
@@ -68549,6 +68872,76 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=template&id=4a086052&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=template&id=4a086052& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", {}, [
+      _c("div", { staticStyle: { height: "70px" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex flex-y" }, [
+        _c(
+          "span",
+          {
+            staticClass: "col-md-5 text-center",
+            staticStyle: { margin: "auto" }
+          },
+          [
+            _c("vue-painttable", {
+              ref: "paintFirma",
+              attrs: {
+                hidePaintable: true,
+                isFirstPaintable: _vm.isFirstPaintable,
+                disableNavigation: true,
+                showUndoRedo: false,
+                showLineWidth: false,
+                rutaImagen: _vm.rutaSello,
+                width: 800,
+                height: 800
+              },
+              on: {
+                getOutput: function($event) {
+                  _vm.form.imgFirma = $event
+                },
+                RespuestaImgFirma: function($event) {
+                  _vm.validarImgFirma = $event
+                }
+              }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("span", { staticClass: "col-md-12 text-center" }, [
+          _vm._v("______________________________________________")
+        ]),
+        _vm._v(" "),
+        _c("span", { staticClass: "col-md-12 text-center" }, [
+          _vm._v("FIRMA DEL ANESTESIOLOGO:")
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -69501,6 +69894,65 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=template&id=5df3a765&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=template&id=5df3a765& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("h2", { staticClass: "card-title" }, [
+              _vm._v(
+                "\n                        Visualizacion Antes de Grabar\n                    "
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("embed", {
+            attrs: {
+              src:
+                "http://127.0.0.1:8000/modulos/cirugia/lista_verificacion/mostrarreporte/3729",
+              type: "application/pdf",
+              width: "100%",
+              height: "980px"
+            }
+          })
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=template&id=d5d5cba4&":
 /*!*****************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue?vue&type=template&id=d5d5cba4& ***!
@@ -70136,9 +70588,6 @@ var render = function() {
                                   ValidarCargarDatos: function($event) {
                                     _vm.respuestaCargarDatos = $event
                                   },
-                                  IdRevisionSistema: function($event) {
-                                    _vm.form.frm_id_revision_sistema = $event
-                                  },
                                   RespuestaImprimir: function($event) {
                                     _vm.respuestaImprimir = $event
                                   }
@@ -70201,8 +70650,6 @@ var render = function() {
                               _c("paraclinico", {
                                 ref: "paraclinico",
                                 attrs: {
-                                  "id-revision-sistema":
-                                    _vm.frm_id_revision_sistema,
                                   user: _vm.user,
                                   "id-sec-cir-pro":
                                     _vm.form.frm_idCirugiaProgramada
@@ -98910,6 +99357,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("eliminar-agente", __webpac
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-entrada", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaEntrada.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaEntrada.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-pausa", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-salida", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-visualizacion", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-firma", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue")["default"]);
 /*
 Vue.component(
     "crear-modificar-tipo-agente",
@@ -99464,6 +99913,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue ***!
+  \***************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ListaFirma_vue_vue_type_template_id_4a086052___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListaFirma.vue?vue&type=template&id=4a086052& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=template&id=4a086052&");
+/* harmony import */ var _ListaFirma_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListaFirma.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ListaFirma_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ListaFirma_vue_vue_type_template_id_4a086052___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ListaFirma_vue_vue_type_template_id_4a086052___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaFirma_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListaFirma.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaFirma_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=template&id=4a086052&":
+/*!**********************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=template&id=4a086052& ***!
+  \**********************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaFirma_vue_vue_type_template_id_4a086052___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListaFirma.vue?vue&type=template&id=4a086052& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=template&id=4a086052&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaFirma_vue_vue_type_template_id_4a086052___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaFirma_vue_vue_type_template_id_4a086052___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue":
 /*!***************************************************************************************************************!*\
   !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue ***!
@@ -99597,6 +100115,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaSalida_vue_vue_type_template_id_0f01fb44___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaSalida_vue_vue_type_template_id_0f01fb44___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue":
+/*!***********************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue ***!
+  \***********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VisualizacionLista_vue_vue_type_template_id_5df3a765___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VisualizacionLista.vue?vue&type=template&id=5df3a765& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=template&id=5df3a765&");
+/* harmony import */ var _VisualizacionLista_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VisualizacionLista.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _VisualizacionLista_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _VisualizacionLista_vue_vue_type_template_id_5df3a765___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _VisualizacionLista_vue_vue_type_template_id_5df3a765___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VisualizacionLista_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./VisualizacionLista.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VisualizacionLista_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=template&id=5df3a765&":
+/*!******************************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=template&id=5df3a765& ***!
+  \******************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VisualizacionLista_vue_vue_type_template_id_5df3a765___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./VisualizacionLista.vue?vue&type=template&id=5df3a765& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=template&id=5df3a765&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VisualizacionLista_vue_vue_type_template_id_5df3a765___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VisualizacionLista_vue_vue_type_template_id_5df3a765___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -20,4 +20,8 @@ class tb_listado_verificacion extends Model
         //return "";
         return $this->hasOne('App\Models\Modulos\Cirugia\valoracionPreanestecia\Antecedente', 'SecCirPro', 'SecCirPro');
     }
+    public function GetBuscarCirugias(){
+        //return "";
+        return $this->hasOne('App\Models\Modulos\Cirugia\CirugiaProgramadas', 'SecCirPro', 'SecCirPro');
+    }
 }
