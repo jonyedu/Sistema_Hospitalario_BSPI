@@ -8367,7 +8367,22 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8690,10 +8705,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      variableG: 4,
       prefijo: "",
-      isHidden: 'none',
-      idHiddenNuevo: 'none',
+      isHidden: "none",
+      idHiddenNuevo: "none",
       rutaSello: "",
+      idPromesa: [],
       listas: {
         SecCirPro: "",
         frm_id_user: "",
@@ -8726,6 +8743,7 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         /* Datos del paciente */
         // frm_idCirugiaProgramada: "",
+        frm_idCirugiaProgramada: 0,
         id_lista: 0,
         tipo_servicio: 4,
         id_visita: 0,
@@ -8740,8 +8758,77 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  mounted: function mounted() {// this.$refs.listaEntrada.listas.chkentrada01 = true
+    // alert(this.$refs.listaEntrada.listas.chkentrada01)
+  },
   methods: {
     /* Metodos para Llamar al Modal y la Tabla */
+    validateAsync: function validateAsync() {
+      var that = this;
+      that.listas.chkentrada01 = that.$refs.listaEntrada.listas.chkentrada01;
+      that.listas.chkentrada02 = that.$refs.listaEntrada.listas.chkentrada02;
+      that.listas.chkentrada03 = that.$refs.listaEntrada.listas.chkentrada03;
+      that.listas.chkentrada04 = that.$refs.listaEntrada.listas.chkentrada04;
+      that.listas.chkentrada05 = that.$refs.listaEntrada.listas.chkentrada05;
+      that.listas.chkentrada06 = that.$refs.listaEntrada.listas.chkentrada06;
+      that.listas.chkentrada07 = that.$refs.listaEntrada.listas.chkentrada07;
+      that.listas.chkquirurgica01 = that.$refs.listaPausa.listas.chkquirurgica01;
+      that.listas.chkquirurgica02 = that.$refs.listaPausa.listas.chkquirurgica02;
+      that.listas.chkquirurgica03 = that.$refs.listaPausa.listas.chkquirurgica03;
+      that.listas.chkquirurgica04 = that.$refs.listaPausa.listas.chkquirurgica04;
+      that.listas.chkquirurgica05 = that.$refs.listaPausa.listas.chkquirurgica05;
+      that.listas.chkquirurgica06 = that.$refs.listaPausa.listas.chkquirurgica06;
+      that.listas.chkquirurgica07 = that.$refs.listaPausa.listas.chkquirurgica07;
+      that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
+      that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
+      that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
+      that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
+      that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
+      that.listas.observacion = that.$refs.listaSalida.listas.observacion; // console.log(that.listas);
+      // if (that.validarImgFirma == 0) {
+      //     that.$swal({
+      //         icon: "error",
+      //         title: "Favor Guardar la Firma",
+      //         text: "."
+      //     });
+      //     return;
+      // }
+      // var loader = that.$loading.show();
+
+      var ListaInsert = this.listas; //console.log(this.listas);
+
+      this.listas = {
+        SecCirPro: "",
+        id_lista: 0,
+        chkentrada01: false,
+        chkentrada02: false,
+        chkentrada03: false,
+        chkentrada04: false,
+        chkentrada05: false,
+        chkentrada06: false,
+        chkentrada07: false,
+        chkquirurgica01: false,
+        chkquirurgica02: false,
+        chkquirurgica03: false,
+        chkquirurgica04: false,
+        chkquirurgica05: false,
+        chkquirurgica06: false,
+        chkquirurgica07: false,
+        chksalida01: false,
+        chksalida02: false,
+        chksalida03: false,
+        chksalida04: false,
+        chksalida05: false,
+        user_id: "",
+        cargo: "",
+        observacion: "",
+        firma: ""
+      };
+      axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
+        that.$refs.formValoracionPreanestecia[3].activeTabIndex;
+      })["catch"](function (e) {// this.errors.push(e);
+      }); // resolve(este);
+    },
     mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
       this.$modal.show("ListaCirugiaProgramadaPaciente");
     },
@@ -8756,8 +8843,7 @@ __webpack_require__.r(__webpack_exports__);
       //     this.$refs.revisionSistema.cargarRevisionSistema();
       // }
 
-      this.cargarLista(value.SecCirPro);
-      this.consultarSello();
+      this.cargarLista(value.SecCirPro); // this.consultarSello();
     },
     cargarLista: function cargarLista(value) {
       var that = this;
@@ -8765,20 +8851,37 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(url).then(function (response) {
         if (response.data.contador > 0) {
-          that.$swal({
-            icon: "success",
-            title: "El proceso ya se encuentra realizado, Seleccione Imprimir para visualizar el reporte",
-            text: "."
-          }), that.isHidden = 'block';
-          that.idHiddenNuevo = 'none';
-        } else {
-          that.$swal({
-            icon: "success",
-            title: "Paciente Nuevo",
-            text: "."
+          that.flashMessage.show({
+            status: "success",
+            title: "Éxito al procesar IdRegistroAnestesia",
+            message: "El proceso ya se encuentra realizado, Seleccione Imprimir para visualizar el reporte",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/success.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
           });
-          that.isHidden = 'none';
-          that.idHiddenNuevo = 'block';
+          that.isHidden = "block";
+          that.idHiddenNuevo = "none";
+        } else {
+          that.flashMessage.show({
+            status: "success",
+            title: "Lista de Verifacion",
+            message: "Paciente Nuevo",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/success.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          that.isHidden = "none";
+          that.idHiddenNuevo = "block";
         }
       })["catch"](function (error) {
         //Errores
@@ -8787,8 +8890,34 @@ __webpack_require__.r(__webpack_exports__);
           title: "Paciente Nuevo",
           text: "."
         });
-        that.isHidden = 'none';
+        that.isHidden = "none";
       }); //  llamarMetodoImprimir();
+    },
+    onChangeTab: function onChangeTab(prevIndex, nextIndex) {// if (nextIndex == 3) {
+      //     this.guardarLista();
+      //     // nextIndex = 0
+      //     //this.$refs.formValoracionPreanestecia.changeTab(0,1)
+      // }
+      //Se debera realizar las validaciones respectivas para cada tab
+      //  this.setFormTitle(nextIndex);
+
+      /* if (typeof this.onChangeTab() === "function") {
+          alert("entra");
+          //Es seguro ejecutar la función
+          this.guardarModificar(prevIndex);
+      } */
+      //  this.guardarModificar(prevIndex);
+      // alert(nextIndex);
+      //   this.listas.chksalida01 = $this.$refs.chkentrada01.value();
+      //      alert(this.listas.chksalida01);
+    },
+    onValidateTab: function onValidateTab(validationResult, activeTabIndex) {//Se debera realizar las validaciones respectivas para cada tab
+    },
+    onComplete: function onComplete() {
+      this.guardarLista(); //  this.$refs.paraclinico.guardarModificar();
+      //this.$refs.paraclinico.guardarFirmaPorAtencion();
+      //await this.$refs.paraclinico.cargarParaclinico();
+      //await this.cambiarEstado();
     },
     guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
       var that = this;
@@ -8871,73 +9000,91 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     guardarLista: function guardarLista() {
-      var that = this;
+      var _this = this;
 
-      if (that.validarImgFirma == 0) {
-        that.$swal({
-          icon: "error",
-          title: "Favor Guardar la Firma",
-          text: "."
-        });
-        return;
-      } // var loader = that.$loading.show();
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var that, ListaInsert, url, $id;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                //validamos la lista segun la referencia listaPausa listaSalida
+                that = _this;
+                that.listas.chkentrada01 = that.$refs.listaEntrada.listas.chkentrada01;
+                that.listas.chkentrada02 = that.$refs.listaEntrada.listas.chkentrada02;
+                that.listas.chkentrada03 = that.$refs.listaEntrada.listas.chkentrada03;
+                that.listas.chkentrada04 = that.$refs.listaEntrada.listas.chkentrada04;
+                that.listas.chkentrada05 = that.$refs.listaEntrada.listas.chkentrada05;
+                that.listas.chkentrada06 = that.$refs.listaEntrada.listas.chkentrada06;
+                that.listas.chkentrada07 = that.$refs.listaEntrada.listas.chkentrada07;
+                that.listas.chkquirurgica01 = that.$refs.listaPausa.listas.chkquirurgica01;
+                that.listas.chkquirurgica02 = that.$refs.listaPausa.listas.chkquirurgica02;
+                that.listas.chkquirurgica03 = that.$refs.listaPausa.listas.chkquirurgica03;
+                that.listas.chkquirurgica04 = that.$refs.listaPausa.listas.chkquirurgica04;
+                that.listas.chkquirurgica05 = that.$refs.listaPausa.listas.chkquirurgica05;
+                that.listas.chkquirurgica06 = that.$refs.listaPausa.listas.chkquirurgica06;
+                that.listas.chkquirurgica07 = that.$refs.listaPausa.listas.chkquirurgica07;
+                that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
+                that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
+                that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
+                that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
+                that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
+                that.listas.observacion = that.$refs.listaSalida.listas.observacion; // console.log(that.listas);
+                // if (that.validarImgFirma == 0) {
+                //     that.$swal({
+                //         icon: "error",
+                //         title: "Favor Guardar la Firma",
+                //         text: "."
+                //     });
+                //     return;
+                // }
+                // var loader = that.$loading.show();
 
+                ListaInsert = _this.listas; //console.log(this.listas);
 
-      var ListaInsert = this.listas; //console.log(this.listas);
+                _this.listas = {
+                  SecCirPro: "",
+                  id_lista: 0,
+                  chkentrada01: false,
+                  chkentrada02: false,
+                  chkentrada03: false,
+                  chkentrada04: false,
+                  chkentrada05: false,
+                  chkentrada06: false,
+                  chkentrada07: false,
+                  chkquirurgica01: false,
+                  chkquirurgica02: false,
+                  chkquirurgica03: false,
+                  chkquirurgica04: false,
+                  chkquirurgica05: false,
+                  chkquirurgica06: false,
+                  chkquirurgica07: false,
+                  chksalida01: false,
+                  chksalida02: false,
+                  chksalida03: false,
+                  chksalida04: false,
+                  chksalida05: false,
+                  user_id: "",
+                  cargo: "",
+                  observacion: "",
+                  firma: ""
+                };
+                url = "/modulos/cirugia/lista_verificacion/ListarValoracion";
+                _context.next = 26;
+                return axios.post(url, ListaInsert).then(function (response) {
+                  _this.idPromesa = response.data.id;
+                });
 
-      this.listas = {
-        SecCirPro: "",
-        id_lista: 0,
-        chkentrada01: false,
-        chkentrada02: false,
-        chkentrada03: false,
-        chkentrada04: false,
-        chkentrada05: false,
-        chkentrada06: false,
-        chkentrada07: false,
-        chkquirurgica01: false,
-        chkquirurgica02: false,
-        chkquirurgica03: false,
-        chkquirurgica04: false,
-        chkquirurgica05: false,
-        chkquirurgica06: false,
-        chkquirurgica07: false,
-        chksalida01: false,
-        chksalida02: false,
-        chksalida03: false,
-        chksalida04: false,
-        chksalida05: false,
-        user_id: "",
-        cargo: "",
-        observacion: "",
-        firma: ""
-      }, axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
-        that.form.id_lista = response.data.id; // alert(response.data.id);
-        //  loader.hide();
-        //alert(that.form.id_lista);
+              case 26:
+                $id = _context.sent;
 
-        that.guardarFirmaPorAtencion();
-        that.form = {
-          id_lista: 0,
-          tipo_servicio: 4,
-          id_visita: 0,
-          id_tipo_documento: 13,
-          frm_paciente: "",
-          frm_cirujano: "",
-          frm_anestesiologo: "",
-          frm_quirofano: "",
-          frm_procedimiento: "",
-          imgFirma: null,
-          imgGrafica: null
-        };
-        that.$swal({
-          icon: "success",
-          title: "Proceso Realizado con Exito",
-          text: "."
-        });
-      }); //   alert( that.form.id_lista);
-      // guardarFirmaPorAtencion();
-      // aui
+              case 27:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
       window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.SecCirPro);
@@ -9110,6 +9257,189 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
+      listas: {
+        SecCirPro: "",
+        frm_id_user: "",
+        chkentrada01: false,
+        chkentrada02: false,
+        chkentrada03: false,
+        chkentrada04: false,
+        chkentrada05: false,
+        chkentrada06: false,
+        chkentrada07: false,
+        user_id: "",
+        cargo: "",
+        observacion: "",
+        firma: ""
+      }
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    enviarvalor: function enviarvalor() {// this.$$refs.formValoracionPreanestecia.chkentrada01 = this.chkentrada01
+      // alert(this.$$refs.formValoracionPreanestecia.chkentrada01);
+      // console.log(this.$$refs.formValoracionPreanestecia.chkentrada01);
+    }
+    /* Metodos para Llamar al Modal y la Tabla */
+
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
+      prefijo: "",
+      isHidden: "none",
+      idHiddenNuevo: "none",
+      rutaSello: "",
+      validarImgFirma: 0,
+      isFirstPaintable: "firmaAnestesiologo",
+      listas: {
+        SecCirPro: "",
+        frm_id_user: "",
+        chkentrada01: false,
+        chkentrada02: false,
+        chkentrada03: false,
+        chkentrada04: false,
+        chkentrada05: false,
+        chkentrada06: false,
+        chkentrada07: false,
+        user_id: "",
+        cargo: "",
+        observacion: "",
+        firma: ""
+      }
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    enviarvalor: function enviarvalor() {// this.$$refs.formValoracionPreanestecia.chkentrada01 = this.chkentrada01
+      // alert(this.$$refs.formValoracionPreanestecia.chkentrada01);
+      // console.log(this.$$refs.formValoracionPreanestecia.chkentrada01);
+    }
+    /* Metodos para Llamar al Modal y la Tabla */
+
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -9231,10 +9561,233 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      prefijo: "",
-      isHidden: 'none',
-      idHiddenNuevo: 'none',
-      rutaSello: "",
+      listas: {
+        SecCirPro: "",
+        frm_id_user: "",
+        chkquirurgica01: false,
+        chkquirurgica02: false,
+        chkquirurgica03: false,
+        chkquirurgica04: false,
+        chkquirurgica05: false,
+        chkquirurgica06: false,
+        chkquirurgica07: false,
+        user_id: "",
+        cargo: "",
+        observacion: "",
+        firma: ""
+      }
+    };
+  },
+  methods: {
+    /* Metodos para Llamar al Modal y la Tabla */
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
+      listas: {
+        SecCirPro: "",
+        frm_id_user: "",
+        chksalida01: false,
+        chksalida02: false,
+        chksalida03: false,
+        chksalida04: false,
+        chksalida05: false,
+        user_id: "",
+        cargo: "",
+        observacion: "",
+        firma: ""
+      }
+    };
+  },
+  methods: {
+    /* Metodos para Llamar al Modal y la Tabla */
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
       listas: {
         SecCirPro: "",
         frm_id_user: "",
@@ -9249,28 +9802,17 @@ __webpack_require__.r(__webpack_exports__);
         cargo: "",
         observacion: "",
         firma: ""
-      },
-      validarImgFirma: 0,
-      isFirstPaintable: "firmaAnestesiologo",
-      form: {
-        /* Datos del paciente */
-        // frm_idCirugiaProgramada: "",
-        id_lista: 0,
-        tipo_servicio: 4,
-        id_visita: 0,
-        id_tipo_documento: 13,
-        frm_paciente: "",
-        frm_cirujano: "",
-        frm_anestesiologo: "",
-        frm_quirofano: "",
-        frm_procedimiento: "",
-        imgFirma: null,
-        imgGrafica: null
       }
     };
   },
+  mounted: function mounted() {},
   methods: {
+    enviarvalor: function enviarvalor() {// this.$$refs.formValoracionPreanestecia.chkentrada01 = this.chkentrada01
+      // alert(this.$$refs.formValoracionPreanestecia.chkentrada01);
+      // console.log(this.$$refs.formValoracionPreanestecia.chkentrada01);
+    }
     /* Metodos para Llamar al Modal y la Tabla */
+
   }
 });
 
@@ -9756,7 +10298,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
-//
+var _methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -10067,7 +10612,6 @@ __webpack_require__.r(__webpack_exports__);
         /* Datos del paciente */
         frm_idCirugiaProgramada: "",
         //2890
-        frm_id_revision_sistema: 0,
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",
@@ -10097,7 +10641,7 @@ __webpack_require__.r(__webpack_exports__);
         "Salida"
     ); */
   },
-  methods: {
+  methods: (_methods = {
     /* Metodos para Llamar al Modal y la Tabla */
     mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
       this.$modal.show("ListaCirugiaProgramadaPaciente");
@@ -10119,16 +10663,21 @@ __webpack_require__.r(__webpack_exports__);
     /* Fin para llamar al Modal y la Tabla */
 
     /* Metodos para los form-wizard */
+    onChangeTab: function onChangeTab(prevIndex, nextIndex) {//Se debera realizar las validaciones respectivas para cada tab
+      // this.setFormTitle(nextIndex);
+
+      /* if (typeof this.onChangeTab() === "function") {
+          alert("entra");
+          //Es seguro ejecutar la función
+          this.guardarModificar(prevIndex);
+      } */
+    },
     onValidateTab: function onValidateTab(validationResult, activeTabIndex) {//Se debera realizar las validaciones respectivas para cada tab
     },
-    validateFirstStep: function validateFirstStep() {
-      var _this = this;
-
-      return new Promise(function (resolve, reject) {
-        var poseeErrores = _this.$refs.examenFisico.validarForm();
-
-        resolve(poseeErrores);
-      });
+    validateFirstStep: function validateFirstStep() {// return new Promise((resolve, reject) => {
+      //     let poseeErrores = this.$refs.examenFisico.validarForm();
+      //     resolve(poseeErrores);
+      // });
     },
     onComplete: function onComplete() {
       this.$refs.paraclinico.guardarModificar(); //await this.$refs.paraclinico.cargarParaclinico();
@@ -10140,115 +10689,98 @@ __webpack_require__.r(__webpack_exports__);
         this.respuestaImprimir = 1;
         this.$refs.formValoracionPreanestecia.reset();
       }
-    },
-    onChangeTab: function onChangeTab(prevIndex, nextIndex) {
-      //Se debera realizar las validaciones respectivas para cada tab
-      this.setFormTitle(nextIndex);
-      /* if (typeof this.onChangeTab() === "function") {
-          alert("entra");
-          //Es seguro ejecutar la función
-          this.guardarModificar(prevIndex);
-      } */
-
-      this.guardarModificar(prevIndex);
-    },
-    setFormTitle: function setFormTitle(index) {
-      switch (index) {
-        case 0:
-          this.titulo_seleccionado = "Revisión por Sistemas";
-          this.$refs.revisionSistema.cargarRevisionSistema();
-          break;
-
-        case 1:
-          this.titulo_seleccionado = "Antecedentes";
-          this.$refs.antecedente.cargarAntecedente();
-          break;
-
-        case 2:
-          this.titulo_seleccionado = "Examen Físico";
-          this.$refs.examenFisico.cargarExamenFisico();
-          break;
-
-        case 3:
-          this.titulo_seleccionado = "Paraclinicos";
-          this.$refs.paraclinico.cargarParaclinico();
-          break;
-
-        default:
-          this.titulo_seleccionado = "";
-      }
-    },
-    guardarModificar: function guardarModificar(index) {
-      switch (index) {
-        case 0:
-          this.$refs.revisionSistema.guardarModificar();
-          break;
-
-        case 1:
-          this.$refs.antecedente.guardarModificar();
-          break;
-
-        case 2:
-          this.$refs.examenFisico.guardarModificar();
-          break;
-
-        case 3:
-          break;
-
-        default: //this.titulo_seleccionado = "";
-
-      }
-    },
-
-    /*
-    consultarSello() {
-        let that = this;
-        if (this.$props.user.id > 0) {
-            var loader = that.$loading.show();
-            let url =
-                "/modulos/cirugia/anestesia/cargar_sello/" +
-                this.$props.user.id;
-             axios
-                .get(url)
-                .then(function(response) {
-                    if (response.data.sello != null) {
-                        if (response.data.sello.seguridad_medico != null) {
-                            that.rutaSello =
-                                "data:image/jpeg;base64," +
-                                response.data.sello.seguridad_medico.medico.medico_sellos
-                                    .IMAGEN_SELLO;
-                                     // alert( response.data.sello.medico_sellos);
-                        }
-                    }
-                    loader.hide();
-                })
-                .catch(error => {
-                     that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar consultarSello",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background:
-                                    "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        }
-    }, */
-    llamarMetodoImprimir: function llamarMetodoImprimir() {
-      if (this.respuestaFinProceso || this.respuestaImprimir) {
-        window.open("/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" + this.form.frm_idCirugiaProgramada);
-      }
     }
-  }
+  }, _defineProperty(_methods, "onChangeTab", function onChangeTab(prevIndex, nextIndex) {
+    //Se debera realizar las validaciones respectivas para cada tab
+    this.setFormTitle(nextIndex);
+    /* if (typeof this.onChangeTab() === "function") {
+        alert("entra");
+        //Es seguro ejecutar la función
+        this.guardarModificar(prevIndex);
+    } */
+
+    this.guardarModificar(prevIndex);
+  }), _defineProperty(_methods, "setFormTitle", function setFormTitle(index) {
+    switch (index) {
+      case 0:
+        this.titulo_seleccionado = "Revisión por Sistemas";
+        this.$refs.revisionSistema.cargarRevisionSistema();
+        break;
+
+      case 1:
+        this.titulo_seleccionado = "Antecedentes";
+        this.$refs.antecedente.cargarAntecedente();
+        break;
+
+      case 2:
+        this.titulo_seleccionado = "Examen Físico";
+        this.$refs.examenFisico.cargarExamenFisico();
+        break;
+
+      case 3:
+        this.titulo_seleccionado = "Paraclinicos";
+        this.$refs.paraclinico.cargarParaclinico();
+        break;
+
+      default:
+        this.titulo_seleccionado = "";
+    }
+  }), _defineProperty(_methods, "guardarModificar", function guardarModificar(index) {
+    switch (index) {
+      case 0:
+        this.$refs.revisionSistema.guardarModificar();
+        break;
+
+      case 1:
+        this.$refs.antecedente.guardarModificar();
+        break;
+
+      case 2:
+        this.$refs.examenFisico.guardarModificar();
+        break;
+
+      case 3:
+        break;
+
+      default: //this.titulo_seleccionado = "";
+
+    }
+  }), _defineProperty(_methods, "consultarSello", function consultarSello() {
+    var that = this;
+
+    if (this.$props.user.id > 0) {
+      var loader = that.$loading.show();
+      var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
+      axios.get(url).then(function (response) {
+        if (response.data.sello != null) {
+          if (response.data.sello.seguridad_medico != null) {
+            that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO; // alert( response.data.sello.medico_sellos);
+          }
+        }
+
+        loader.hide();
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar consultarSello",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    }
+  }), _defineProperty(_methods, "llamarMetodoImprimir", function llamarMetodoImprimir() {
+    if (this.respuestaFinProceso || this.respuestaImprimir) {
+      window.open("/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" + this.form.frm_idCirugiaProgramada);
+    }
+  }), _methods)
 });
 
 /***/ }),
@@ -67357,7 +67889,9 @@ var render = function() {
                                 "button",
                                 {
                                   staticClass: "btn btn-outline-primary",
-                                  style: { display: _vm.isHidden },
+                                  style: {
+                                    display: _vm.isHidden
+                                  },
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
@@ -67424,7 +67958,7 @@ var render = function() {
                                                     rawName: "v-model",
                                                     value: _vm.listas.SecCirPro,
                                                     expression:
-                                                      "\n                                                            listas.SecCirPro\n                                                        "
+                                                      "\n                                                        listas.SecCirPro\n                                                    "
                                                   }
                                                 ],
                                                 attrs: {
@@ -67618,7 +68152,7 @@ var render = function() {
                             backButtonText: "Anterior",
                             finishButtonText: "Finalizar",
                             stepSize: "xs",
-                            shape: "square",
+                            shape: "",
                             color: "#590303"
                           },
                           on: {
@@ -67628,10 +68162,6 @@ var render = function() {
                           }
                         },
                         [
-                          _c("img", {
-                            attrs: { src: "/logosbspipng/Logo BSPI (PNG).png" }
-                          }),
-                          _vm._v(" "),
                           _c(
                             "tab-content",
                             {
@@ -67640,28 +68170,53 @@ var render = function() {
                                 icon: "fas fa-user-check"
                               }
                             },
-                            [_c("lista-entrada")],
+                            [_c("lista-entrada", { ref: "listaEntrada" })],
                             1
                           ),
                           _vm._v(" "),
-                          _c("tab-content", {
-                            attrs: {
-                              title: "Pausa Quirúrgica",
-                              icon: "ti-signal"
-                            }
-                          }),
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Pausa Quirúrgica",
+                                icon: "fas fa-procedures"
+                              }
+                            },
+                            [_c("lista-pausa", { ref: "listaPausa" })],
+                            1
+                          ),
                           _vm._v(" "),
-                          _c("tab-content", {
-                            attrs: { title: "Salida", icon: "ti-support" }
-                          }),
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Salida",
+                                icon: "fas fa-user-nurse",
+                                "before-change": _vm.validateAsync
+                              }
+                            },
+                            [_c("lista-salida", { ref: "listaSalida" })],
+                            1
+                          ),
                           _vm._v(" "),
-                          _c("tab-content", {
-                            attrs: { title: "Visualización", icon: "ti-folder" }
-                          }),
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Visualización",
+                                icon: "ti-folder"
+                              }
+                            },
+                            [_c("lista-visualizacion")],
+                            1
+                          ),
                           _vm._v(" "),
-                          _c("tab-content", {
-                            attrs: { title: "Firma", icon: "ti-folder" }
-                          })
+                          _c(
+                            "tab-content",
+                            { attrs: { title: "Firma", icon: "ti-folder" } },
+                            [_c("lista-firma")],
+                            1
+                          )
                         ],
                         1
                       )
@@ -67709,7 +68264,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", [
       _c("p", { staticStyle: { "margin-left": "10px" } }, [
-        _vm._v("Listas de Verificacion")
+        _vm._v(
+          "\n                                Listas de Verificacion\n                            "
+        )
       ])
     ])
   },
@@ -67793,9 +68350,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-body", staticStyle: { display: "none" } }, [
+    _c("div", { staticClass: "card-body" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-6" }, [
           _c("div", { staticClass: "custom-control custom-checkbox" }, [
@@ -67805,8 +68366,7 @@ var render = function() {
                   name: "model",
                   rawName: "v-model",
                   value: _vm.listas.chkentrada01,
-                  expression:
-                    "\n                                                                            listas.chkentrada01\n                                                                        "
+                  expression: "listas.chkentrada01"
                 }
               ],
               staticClass: "custom-control-input",
@@ -67821,28 +68381,37 @@ var render = function() {
                   : _vm.listas.chkentrada01
               },
               on: {
-                change: function($event) {
-                  var $$a = _vm.listas.chkentrada01,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 &&
-                        _vm.$set(_vm.listas, "chkentrada01", $$a.concat([$$v]))
+                change: [
+                  function($event) {
+                    var $$a = _vm.listas.chkentrada01,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(
+                            _vm.listas,
+                            "chkentrada01",
+                            $$a.concat([$$v])
+                          )
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.listas,
+                            "chkentrada01",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
                     } else {
-                      $$i > -1 &&
-                        _vm.$set(
-                          _vm.listas,
-                          "chkentrada01",
-                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                        )
+                      _vm.$set(_vm.listas, "chkentrada01", $$c)
                     }
-                  } else {
-                    _vm.$set(_vm.listas, "chkentrada01", $$c)
+                  },
+                  function($event) {
+                    return _vm.enviarvalor()
                   }
-                }
+                ]
               }
             }),
             _vm._v(" "),
@@ -67852,11 +68421,7 @@ var render = function() {
                 staticClass: "custom-control-label",
                 attrs: { for: "chkentrada01" }
               },
-              [
-                _vm._v(
-                  "EL\n                                                                        PACIENTE\n                                                                        HA\n                                                                        CONFIRMADO"
-                )
-              ]
+              [_vm._v("EL PACIENTE HA CONFIRMADO")]
             ),
             _vm._v(" "),
             _vm._m(1)
@@ -67869,8 +68434,7 @@ var render = function() {
                   name: "model",
                   rawName: "v-model",
                   value: _vm.listas.chkentrada02,
-                  expression:
-                    "\n                                                                            listas.chkentrada02\n                                                                        "
+                  expression: "listas.chkentrada02"
                 }
               ],
               staticClass: "custom-control-input",
@@ -67916,11 +68480,7 @@ var render = function() {
                 staticClass: "custom-control-label",
                 attrs: { for: "chkentrada02" }
               },
-              [
-                _vm._v(
-                  "DEMARCACION\n                                                                        DEL\n                                                                        SITIO/NO\n                                                                        PROCEDE"
-                )
-              ]
+              [_vm._v("DEMARCACION DEL SITIO/NO PROCEDE")]
             )
           ]),
           _vm._v(" "),
@@ -67931,8 +68491,7 @@ var render = function() {
                   name: "model",
                   rawName: "v-model",
                   value: _vm.listas.chkentrada03,
-                  expression:
-                    "\n                                                                            listas.chkentrada03\n                                                                        "
+                  expression: "listas.chkentrada03"
                 }
               ],
               staticClass: "custom-control-input",
@@ -67980,7 +68539,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "SE HA\n                                                                        COMPLEMENTADO\n                                                                        EL\n                                                                        CONTROL\n                                                                        DE LA\n                                                                        SEGURIDAD\n                                                                        DE LA\n                                                                        ANESTESIA"
+                  "SE HA COMPLEMENTADO EL CONTROL DE LA SEGURIDAD DE\n                        LA ANESTESIA"
                 )
               ]
             )
@@ -67995,8 +68554,7 @@ var render = function() {
                   name: "model",
                   rawName: "v-model",
                   value: _vm.listas.chkentrada04,
-                  expression:
-                    "\n                                                                            listas.chkentrada04\n                                                                        "
+                  expression: "listas.chkentrada04"
                 }
               ],
               staticClass: "custom-control-input",
@@ -68042,11 +68600,7 @@ var render = function() {
                 staticClass: "custom-control-label",
                 attrs: { for: "chkentrada04" }
               },
-              [
-                _vm._v(
-                  "PULSIOXIMETRO\n                                                                        COLOCADO\n                                                                        Y EN\n                                                                        FUNCIONAMIENTO"
-                )
-              ]
+              [_vm._v("PULSIOXIMETRO COLOCADO Y EN FUNCIONAMIENTO")]
             )
           ]),
           _vm._v(" "),
@@ -68057,8 +68611,7 @@ var render = function() {
                   name: "model",
                   rawName: "v-model",
                   value: _vm.listas.chkentrada05,
-                  expression:
-                    "\n                                                                            listas.chkentrada05\n                                                                        "
+                  expression: "listas.chkentrada05"
                 }
               ],
               staticClass: "custom-control-input",
@@ -68104,11 +68657,7 @@ var render = function() {
                 staticClass: "custom-control-label",
                 attrs: { for: "chkentrada05" }
               },
-              [
-                _vm._v(
-                  "TIENE\n                                                                        EL\n                                                                        PACIENTE:\n                                                                        ALERGIAS\n                                                                        CONOCIDAD?"
-                )
-              ]
+              [_vm._v("TIENE EL PACIENTE: ALERGIAS CONOCIDAD?")]
             )
           ]),
           _vm._v(" "),
@@ -68119,8 +68668,7 @@ var render = function() {
                   name: "model",
                   rawName: "v-model",
                   value: _vm.listas.chkentrada06,
-                  expression:
-                    "\n                                                                            listas.chkentrada06\n                                                                        "
+                  expression: "listas.chkentrada06"
                 }
               ],
               staticClass: "custom-control-input",
@@ -68168,7 +68716,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "VIA\n                                                                        AÉREA\n                                                                        DIFICIL/RIESGO\n                                                                        DE\n                                                                        ASPIRACION\n                                                                    "
+                  "VIA AÉREA DIFICIL/RIESGO DE ASPIRACION\n                    "
                 )
               ]
             ),
@@ -68183,8 +68731,7 @@ var render = function() {
                   name: "model",
                   rawName: "v-model",
                   value: _vm.listas.chkentrada07,
-                  expression:
-                    "\n                                                                            listas.chkentrada07\n                                                                        "
+                  expression: "listas.chkentrada07"
                 }
               ],
               staticClass: "custom-control-input",
@@ -68232,7 +68779,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "RIESGO\n                                                                        DE\n                                                                        HEMORRAGIA\n                                                                        > 500 ML\n                                                                        (7ML VKG\n                                                                        EN\n                                                                        NIÑOS)?"
+                  "RIESGO DE HEMORRAGIA > 500 ML (7ML VKG EN\n                        NIÑOS)?"
                 )
               ]
             ),
@@ -68249,41 +68796,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "card-header", staticStyle: { background: "#590303" } },
-      [
-        _c(
-          "h3",
-          { staticClass: "card-title", staticStyle: { color: "#FFFFFF" } },
-          [
-            _vm._v(
-              "\n                                                            ANTES DE LA\n                                                            INDUCCIÓN DE LA\n                                                            ANESTESIA (ENTRADA)\n                                                        "
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-tools" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-tool",
-              attrs: { type: "button", "data-card-widget": "collapse" }
-            },
-            [_c("i", { staticClass: "fas fa-plus" })]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-tool",
-              attrs: { type: "button", "data-card-widget": "remove" }
-            },
-            [_c("i", { staticClass: "fas fa-times" })]
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("h2", { staticClass: "card-title" }, [
+          _vm._v(
+            "\n                        ANTES DE LA INDUCCIÓN DE LA ANESTESIA (ENTRADA)\n                    "
           )
         ])
-      ]
-    )
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -68292,25 +68813,25 @@ var staticRenderFns = [
     return _c("ul", [
       _c("li", [
         _vm._v(
-          "\n                                                                            Su\n                                                                            Identidad\n                                                                        "
+          "\n                            Su Identidad\n                        "
         )
       ]),
       _vm._v(" "),
       _c("li", [
         _vm._v(
-          "\n                                                                            El\n                                                                            Sitio\n                                                                            Quirurgico\n                                                                        "
+          "\n                            El Sitio Quirurgico\n                        "
         )
       ]),
       _vm._v(" "),
       _c("li", [
         _vm._v(
-          "\n                                                                            El\n                                                                            Procedimiento\n                                                                        "
+          "\n                            El Procedimiento\n                        "
         )
       ]),
       _vm._v(" "),
       _c("li", [
         _vm._v(
-          "\n                                                                            Su\n                                                                            Consentimiento\n                                                                        "
+          "\n                            Su Consentimiento\n                        "
         )
       ])
     ])
@@ -68322,7 +68843,7 @@ var staticRenderFns = [
     return _c("ul", [
       _c("li", [
         _vm._v(
-          "\n                                                                            SI\n                                                                            HAY\n                                                                            INSTRUMENTAL\n                                                                            Y\n                                                                            EQUIPOS/AYUDA\n                                                                            DISPONIBLE\n                                                                        "
+          "\n                            SI HAY INSTRUMENTAL Y EQUIPOS/AYUDA DISPONIBLE\n                        "
         )
       ])
     ])
@@ -68334,8 +68855,1083 @@ var staticRenderFns = [
     return _c("ul", [
       _c("li", [
         _vm._v(
-          "\n                                                                            SI,\n                                                                            Y SE\n                                                                            HA\n                                                                            PREVISTO\n                                                                            LA\n                                                                            DISPONIBILIDAD\n                                                                            DE\n                                                                            ACCESO\n                                                                            INTRAVENOSO\n                                                                            Y\n                                                                            LIQUIDOS\n                                                                            ADECUADOS\n                                                                        "
+          "\n                            SI, Y SE HA PREVISTO LA DISPONIBILIDAD DE ACCESO\n                            INTRAVENOSO Y LIQUIDOS ADECUADOS\n                        "
         )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=template&id=4a086052&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=template&id=4a086052& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", {}, [
+      _c("div", { staticStyle: { height: "70px" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex flex-y" }, [
+        _c(
+          "span",
+          {
+            staticClass: "col-md-5 text-center",
+            staticStyle: { margin: "auto" }
+          },
+          [
+            _c("vue-painttable", {
+              ref: "paintFirma",
+              attrs: {
+                hidePaintable: true,
+                isFirstPaintable: _vm.isFirstPaintable,
+                disableNavigation: true,
+                showUndoRedo: false,
+                showLineWidth: false,
+                rutaImagen: _vm.rutaSello,
+                width: 800,
+                height: 800
+              },
+              on: {
+                getOutput: function($event) {
+                  _vm.form.imgFirma = $event
+                },
+                RespuestaImgFirma: function($event) {
+                  _vm.validarImgFirma = $event
+                }
+              }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("span", { staticClass: "col-md-12 text-center" }, [
+          _vm._v("______________________________________________")
+        ]),
+        _vm._v(" "),
+        _c("span", { staticClass: "col-md-12 text-center" }, [
+          _vm._v("FIRMA DEL ANESTESIOLOGO:")
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue?vue&type=template&id=0f8e8466&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue?vue&type=template&id=0f8e8466& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "card-body" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "custom-control custom-checkbox" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.listas.chkquirurgica01,
+                  expression: "listas.chkquirurgica01"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: {
+                type: "checkbox",
+                name: "chkquirurgica01",
+                id: "chkquirurgica01"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.listas.chkquirurgica01)
+                  ? _vm._i(_vm.listas.chkquirurgica01, null) > -1
+                  : _vm.listas.chkquirurgica01
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.listas.chkquirurgica01,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica01",
+                          $$a.concat([$$v])
+                        )
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica01",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.listas, "chkquirurgica01", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "chkquirurgica01" }
+              },
+              [
+                _vm._v(
+                  "CONFIRMA QUE TODOS LOS MIENBROS DEL EQUIPO SE HAYAN\n                        PRESENTADO POR SU NOMBRE Y FUNCIÓN"
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.listas.chkquirurgica02,
+                  expression: "listas.chkquirurgica02"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: {
+                type: "checkbox",
+                name: "chkquirurgica02",
+                id: "chkquirurgica02"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.listas.chkquirurgica02)
+                  ? _vm._i(_vm.listas.chkquirurgica02, null) > -1
+                  : _vm.listas.chkquirurgica02
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.listas.chkquirurgica02,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica02",
+                          $$a.concat([$$v])
+                        )
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica02",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.listas, "chkquirurgica02", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "chkquirurgica02" }
+              },
+              [
+                _vm._v(
+                  "CIRUJANO, ANESTESISTA Y ENFERMERO CONFIRMAN\n                        VERBALMENTE:"
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _vm._m(1)
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox" }, [
+            _c("label", { attrs: { for: "chkquirurgica03" } }, [
+              _vm._v("PREVISIÓN DE EVENTOS CRÍTICOS")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.listas.chkquirurgica03,
+                  expression: "listas.chkquirurgica03"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: {
+                type: "checkbox",
+                name: "chkquirurgica03",
+                id: "chkquirurgica03"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.listas.chkquirurgica03)
+                  ? _vm._i(_vm.listas.chkquirurgica03, null) > -1
+                  : _vm.listas.chkquirurgica03
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.listas.chkquirurgica03,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica03",
+                          $$a.concat([$$v])
+                        )
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica03",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.listas, "chkquirurgica03", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "chkquirurgica03" }
+              },
+              [
+                _vm._v(
+                  "EL CIRUJANO REVISA: LOS PASOS CRITICOS O IMPREVISTO\n                        LA DURACION DE LA OPERACION Y LA PERDIDA DE SANGRE\n                        PERVISTA"
+                )
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "custom-control custom-checkbox" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.listas.chkquirurgica04,
+                  expression: "listas.chkquirurgica04"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: {
+                type: "checkbox",
+                name: "chkquirurgica04",
+                id: "chkquirurgica04"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.listas.chkquirurgica04)
+                  ? _vm._i(_vm.listas.chkquirurgica04, null) > -1
+                  : _vm.listas.chkquirurgica04
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.listas.chkquirurgica04,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica04",
+                          $$a.concat([$$v])
+                        )
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica04",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.listas, "chkquirurgica04", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "chkquirurgica04" }
+              },
+              [
+                _vm._v(
+                  "EL EQUIPO DE ANESTESIA REVISA: SI EL PACIENTE\n                        PRESENTA ALGUN PROBLEMA ESPECIFICO"
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.listas.chkquirurgica05,
+                  expression: "listas.chkquirurgica05"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: {
+                type: "checkbox",
+                name: "chkquirurgica05",
+                id: "chkquirurgica05"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.listas.chkquirurgica05)
+                  ? _vm._i(_vm.listas.chkquirurgica05, null) > -1
+                  : _vm.listas.chkquirurgica05
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.listas.chkquirurgica05,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica05",
+                          $$a.concat([$$v])
+                        )
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica05",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.listas, "chkquirurgica05", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "chkquirurgica05" }
+              },
+              [
+                _vm._v(
+                  "EL EQUIPO DE ENFERMERIA REVISA: SI SE HA CONFIRMADO\n                        LA ESTERILIDAD (CON RESULTADOS DE LOS INDICADORES; Y\n                        SI EXISTEN DUDAS O PROBLEMAS RELACIONADOS CON EL\n                        INSTRUMENTAL Y LOS EQUIPOS"
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.listas.chkquirurgica06,
+                  expression: "listas.chkquirurgica06"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: {
+                type: "checkbox",
+                name: "chkquirurgica06",
+                id: "chkquirurgica06"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.listas.chkquirurgica06)
+                  ? _vm._i(_vm.listas.chkquirurgica06, null) > -1
+                  : _vm.listas.chkquirurgica06
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.listas.chkquirurgica06,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica06",
+                          $$a.concat([$$v])
+                        )
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica06",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.listas, "chkquirurgica06", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "chkquirurgica06" }
+              },
+              [
+                _vm._v(
+                  "SI SE HA ADMINISTRADO PROFILAXIS ANTIBIOTICA EN LOS\n                    "
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.listas.chkquirurgica07,
+                  expression: "listas.chkquirurgica07"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: {
+                type: "checkbox",
+                name: "chkquirurgica07",
+                id: "chkquirurgica07"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.listas.chkquirurgica07)
+                  ? _vm._i(_vm.listas.chkquirurgica07, null) > -1
+                  : _vm.listas.chkquirurgica07
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.listas.chkquirurgica07,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica07",
+                          $$a.concat([$$v])
+                        )
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chkquirurgica07",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.listas, "chkquirurgica07", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "chkquirurgica07" }
+              },
+              [
+                _vm._v(
+                  "PUEDEN VISUALIZAR LAS IMAGENES\n                        DIAGNOSTICADAS"
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _vm._m(2)
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("h2", { staticClass: "card-title" }, [
+          _vm._v(
+            "\n                    ANTES DE A INCISIÓN CUTÁNEA (PAUSA QUIRURGICA)\n                "
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c("li", [
+        _vm._v(
+          "\n                            La Identidad del Paciente\n                        "
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v(
+          "\n                            El Sitio Quirurgico\n                        "
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._v(
+          "\n                            El Procedimiento\n                        "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c("li", [
+        _vm._v(
+          "\n                            NO, NO PROCEDE\n                        "
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue?vue&type=template&id=0f01fb44&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue?vue&type=template&id=0f01fb44& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "card-body" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("label", { staticClass: "card-blue", attrs: { for: "" } }, [
+        _vm._v(
+          "\n            EL ENFERMERO CONFIRMA VERBALMENTE CON EL EQUIPO:\n        "
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "custom-control custom-checkbox" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.listas.chksalida01,
+                  expression: "listas.chksalida01"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: {
+                type: "checkbox",
+                name: "chksalida01",
+                id: "chksalida01"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.listas.chksalida01)
+                  ? _vm._i(_vm.listas.chksalida01, null) > -1
+                  : _vm.listas.chksalida01
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.listas.chksalida01,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(_vm.listas, "chksalida01", $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chksalida01",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.listas, "chksalida01", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "chksalida01" }
+              },
+              [_vm._v("EL NOMBRE DEL PROCEDIMIENTO REALIZADO.")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.listas.chksalida02,
+                  expression: "listas.chksalida02"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: {
+                type: "checkbox",
+                name: "chksalida02",
+                id: "chksalida02"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.listas.chksalida02)
+                  ? _vm._i(_vm.listas.chksalida02, null) > -1
+                  : _vm.listas.chksalida02
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.listas.chksalida02,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(_vm.listas, "chksalida02", $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chksalida02",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.listas, "chksalida02", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "chksalida02" }
+              },
+              [
+                _vm._v(
+                  "\n                        QUE LOS RECUENTOS DE INSTRUMENTOS, GASAS AGUJAS SON\n                        CORRECTOS"
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.listas.chksalida03,
+                  expression: "listas.chksalida03"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: {
+                type: "checkbox",
+                name: "chksalida03",
+                id: "chksalida03"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.listas.chksalida03)
+                  ? _vm._i(_vm.listas.chksalida03, null) > -1
+                  : _vm.listas.chksalida03
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.listas.chksalida03,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(_vm.listas, "chksalida03", $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chksalida03",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.listas, "chksalida03", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "chksalida03" }
+              },
+              [
+                _vm._v(
+                  "EL ETIQUETADO DE LAS MUESTRAS (QUE FIGURE EL NOMBRE\n                        DEL PACIENTE)"
+                )
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "custom-control custom-checkbox" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.listas.chksalida04,
+                  expression: "listas.chksalida04"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: {
+                type: "checkbox",
+                name: "chksalida04",
+                id: "chksalida04"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.listas.chksalida04)
+                  ? _vm._i(_vm.listas.chksalida04, null) > -1
+                  : _vm.listas.chksalida04
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.listas.chksalida04,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(_vm.listas, "chksalida04", $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chksalida04",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.listas, "chksalida04", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "chksalida04" }
+              },
+              [
+                _vm._v(
+                  "SI HAY PROBLEMAS QUE RESOLVER RELACIONADOS CON EL\n                        INSTRUMENTAL Y LOS EQUIPOS"
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.listas.chksalida05,
+                  expression: "listas.chksalida05"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: {
+                type: "checkbox",
+                name: "chksalida05",
+                id: "chksalida05"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.listas.chksalida05)
+                  ? _vm._i(_vm.listas.chksalida05, null) > -1
+                  : _vm.listas.chksalida05
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.listas.chksalida05,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(_vm.listas, "chksalida05", $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.listas,
+                          "chksalida05",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.listas, "chksalida05", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "chksalida05" }
+              },
+              [
+                _vm._v(
+                  "EL CIRUJANO, EL ANESTESISTA Y EL ENFERMERO REVISAN\n                        LOS PRINCIPALES ASPECTOS DE LA RECUPERACION Y EL\n                        TRATAMIENTO DEL PACIENTE"
+                )
+              ]
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Observacion")]),
+        _vm._v(" "),
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.listas.observacion,
+              expression: "listas.observacion"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            rows: "3",
+            placeholder: "Enter ...",
+            name: "observacion",
+            id: "observacion",
+            required: ""
+          },
+          domProps: { value: _vm.listas.observacion },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.listas, "observacion", $event.target.value)
+            }
+          }
+        })
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("h2", { staticClass: "card-title" }, [
+          _vm._v(
+            "\n                    ANTES DEL QUE PACIENTE SALGA DEL QUIRÓFANO(SALIDA)\n                "
+          )
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=template&id=5df3a765&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=template&id=5df3a765& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("h2", { staticClass: "card-title" }, [
+              _vm._v(
+                "\n                        Visualizacion Antes de Grabar\n                    "
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("embed", {
+            attrs: {
+              src:
+                "http://127.0.0.1:8000/modulos/cirugia/lista_verificacion/mostrarreporte/3729",
+              type: "application/pdf",
+              width: "100%",
+              height: "980px"
+            }
+          })
+        ])
       ])
     ])
   }
@@ -68980,9 +70576,6 @@ var render = function() {
                                 on: {
                                   ValidarCargarDatos: function($event) {
                                     _vm.respuestaCargarDatos = $event
-                                  },
-                                  IdRevisionSistema: function($event) {
-                                    _vm.form.frm_id_revision_sistema = $event
                                   },
                                   RespuestaImprimir: function($event) {
                                     _vm.respuestaImprimir = $event
@@ -97753,6 +99346,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("paraclinico", __webpack_re
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("registro-anestesico", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("eliminar-agente", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-entrada", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaEntrada.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaEntrada.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-pausa", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-salida", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-visualizacion", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-firma", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue")["default"]);
 /*
 Vue.component(
     "crear-modificar-tipo-agente",
@@ -98302,6 +99899,282 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaEntrada_vue_vue_type_template_id_72c3796a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaEntrada_vue_vue_type_template_id_72c3796a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue ***!
+  \***************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ListaFirma_vue_vue_type_template_id_4a086052___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListaFirma.vue?vue&type=template&id=4a086052& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=template&id=4a086052&");
+/* harmony import */ var _ListaFirma_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListaFirma.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ListaFirma_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ListaFirma_vue_vue_type_template_id_4a086052___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ListaFirma_vue_vue_type_template_id_4a086052___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaFirma_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListaFirma.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaFirma_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=template&id=4a086052&":
+/*!**********************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=template&id=4a086052& ***!
+  \**********************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaFirma_vue_vue_type_template_id_4a086052___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListaFirma.vue?vue&type=template&id=4a086052& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue?vue&type=template&id=4a086052&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaFirma_vue_vue_type_template_id_4a086052___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaFirma_vue_vue_type_template_id_4a086052___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue ***!
+  \***************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ListaPausa_vue_vue_type_template_id_0f8e8466___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListaPausa.vue?vue&type=template&id=0f8e8466& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue?vue&type=template&id=0f8e8466&");
+/* harmony import */ var _ListaPausa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListaPausa.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ListaPausa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ListaPausa_vue_vue_type_template_id_0f8e8466___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ListaPausa_vue_vue_type_template_id_0f8e8466___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaPausa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListaPausa.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaPausa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue?vue&type=template&id=0f8e8466&":
+/*!**********************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue?vue&type=template&id=0f8e8466& ***!
+  \**********************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaPausa_vue_vue_type_template_id_0f8e8466___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListaPausa.vue?vue&type=template&id=0f8e8466& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue?vue&type=template&id=0f8e8466&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaPausa_vue_vue_type_template_id_0f8e8466___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaPausa_vue_vue_type_template_id_0f8e8466___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue ***!
+  \****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ListaSalida_vue_vue_type_template_id_0f01fb44___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListaSalida.vue?vue&type=template&id=0f01fb44& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue?vue&type=template&id=0f01fb44&");
+/* harmony import */ var _ListaSalida_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListaSalida.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ListaSalida_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ListaSalida_vue_vue_type_template_id_0f01fb44___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ListaSalida_vue_vue_type_template_id_0f01fb44___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaSalida_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListaSalida.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaSalida_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue?vue&type=template&id=0f01fb44&":
+/*!***********************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue?vue&type=template&id=0f01fb44& ***!
+  \***********************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaSalida_vue_vue_type_template_id_0f01fb44___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ListaSalida.vue?vue&type=template&id=0f01fb44& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue?vue&type=template&id=0f01fb44&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaSalida_vue_vue_type_template_id_0f01fb44___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListaSalida_vue_vue_type_template_id_0f01fb44___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue":
+/*!***********************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue ***!
+  \***********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VisualizacionLista_vue_vue_type_template_id_5df3a765___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VisualizacionLista.vue?vue&type=template&id=5df3a765& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=template&id=5df3a765&");
+/* harmony import */ var _VisualizacionLista_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VisualizacionLista.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _VisualizacionLista_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _VisualizacionLista_vue_vue_type_template_id_5df3a765___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _VisualizacionLista_vue_vue_type_template_id_5df3a765___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VisualizacionLista_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./VisualizacionLista.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VisualizacionLista_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=template&id=5df3a765&":
+/*!******************************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=template&id=5df3a765& ***!
+  \******************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VisualizacionLista_vue_vue_type_template_id_5df3a765___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./VisualizacionLista.vue?vue&type=template&id=5df3a765& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue?vue&type=template&id=5df3a765&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VisualizacionLista_vue_vue_type_template_id_5df3a765___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VisualizacionLista_vue_vue_type_template_id_5df3a765___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

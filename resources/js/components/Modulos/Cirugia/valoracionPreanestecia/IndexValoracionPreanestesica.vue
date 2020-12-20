@@ -215,7 +215,6 @@
                                         @ValidarCargarDatos="
                                             respuestaCargarDatos = $event
                                         "
-                                        @IdRevisionSistema="form.frm_id_revision_sistema = $event"
                                         @RespuestaImprimir="
                                             respuestaImprimir = $event
                                         "
@@ -301,7 +300,7 @@ export default {
             respuestaFinProceso: 0,
             respuestaImprimir: 0,
             respuestaCargarDatos: 0,
-            rutaSello: "",
+             rutaSello: "",
             frmimg: {
                 imgFirma: null,
                 imgGrafica: null,
@@ -309,7 +308,6 @@ export default {
             form: {
                 /* Datos del paciente */
                 frm_idCirugiaProgramada: "", //2890
-                frm_id_revision_sistema: 0,
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
@@ -361,14 +359,24 @@ export default {
         /* Fin para llamar al Modal y la Tabla */
 
         /* Metodos para los form-wizard */
+        onChangeTab(prevIndex, nextIndex) {
+            //Se debera realizar las validaciones respectivas para cada tab
+           // this.setFormTitle(nextIndex);
+
+            /* if (typeof this.onChangeTab() === "function") {
+                alert("entra");
+                //Es seguro ejecutar la función
+                this.guardarModificar(prevIndex);
+            } */
+        },
         onValidateTab(validationResult, activeTabIndex) {
             //Se debera realizar las validaciones respectivas para cada tab
         },
         validateFirstStep() {
-            return new Promise((resolve, reject) => {
-                let poseeErrores = this.$refs.examenFisico.validarForm();
-                resolve(poseeErrores);
-            });
+            // return new Promise((resolve, reject) => {
+            //     let poseeErrores = this.$refs.examenFisico.validarForm();
+            //     resolve(poseeErrores);
+            // });
         },
         onComplete() {
             this.$refs.paraclinico.guardarModificar();
@@ -433,7 +441,6 @@ export default {
                 //this.titulo_seleccionado = "";
             }
         },
-        /*
         consultarSello() {
             let that = this;
             if (this.$props.user.id > 0) {
@@ -477,7 +484,7 @@ export default {
                         loader.hide();
                     });
             }
-        }, */
+        },
 
         llamarMetodoImprimir() {
             if (this.respuestaFinProceso || this.respuestaImprimir) {
