@@ -68,10 +68,10 @@ class ListaValoracionController extends Controller
                     'firma' => 1
                 ]
             );
-            return true;
+            //return true;
             //  echo "el id ".$listaValoracion->id;
             // return response()->json(['listaValoracion' => $listaValoracion], 200);
-            //          $request ->validate([ 
+            //          $request ->validate([
 
             //         'observacion'=>'required']
             //     );
@@ -109,7 +109,7 @@ class ListaValoracionController extends Controller
             // );
 
             //  return back()->with('mensaje','nota agregada',['id' => $listaValoracion->id]);
-            return response()->json(['id' => 1], 200);
+            return response()->json(['id' => 1, 'Guardado Correctamente'], 200);
         } catch (Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);
         }
@@ -157,9 +157,10 @@ class ListaValoracionController extends Controller
             //return response()->json(['listaValoracion' => 0], 500);
         }
     }
-    public function mostrarr($id)
+    public function mostrar($id)
     {
         try {
+            //echo "entra";
             //  $modulo = [];
            // $modulo = DB::connection('control_hospitalario_db_sql')->select("exec spConsultarListadoCirugia " . $id);
             //modulo de firmas
@@ -180,15 +181,19 @@ class ListaValoracionController extends Controller
             //return  response()->json(['datosPaciente' => $modulo], 200);
 
 
-            $pdf =  PDF::loadView('reports.pdf.formulario-lista-verificacion', [
+           /*  $pdf =  PDF::loadView('reports.pdf.formulario-lista-verificacion', [
                 'datosPaciente' => $modulo])->setPaper('a4', 'landscape');
-            return $pdf->stream('Formulario');
-           
+            return $pdf->stream('Formulario'); */
+
+            $pdf = PDF::loadView('reports.pdf.formulario-lista-verificacion', [
+                'datosPaciente' => $modulo
+            ]);
+            return $pdf->stream("Formulario");
             //  return  response()->json(['datosPaciente' => $modulo], 200);
 
 
         } catch (Exception $e) {
-            //throw $th;
+            return response()->json(['mensaje' => $e->getMessage()], 500);
         }
     }
 

@@ -12,6 +12,7 @@
             position: absolute;
             z-index: 25;
         }
+
         /* Estilo para todas las tablas */
         .tableStyleAll {
             width: 100%;
@@ -19,11 +20,11 @@
         }
 
         .cabeceraPrin td {
-           /*  border: 1px solid #000000; */
+            /*  border: 1px solid #000000; */
             height: 10px;
         }
 
-        .cabezaAll{
+        .cabezaAll {
             top: -50px;
         }
 
@@ -120,24 +121,14 @@
                 <th>SEGUNDO NOMBRE</th>
                 <th>N° HISTORIA CLINICA</th>
             </tr>
-            @if(sizeOf($datosPaciente)> 0)
-            @forelse($datosPaciente as $paciente)
+            @if($datosPaciente != null)
             <tr>
-                <td>{{ $paciente->Apellido_paterno }} </td>
-                <td>{{ $paciente->Apellido_materno }} </td>
-                <td>{{ $paciente->Primer_nombre }} </td>
-                <td>{{ $paciente->Segundo_nombre }} </td>
-                <td>{{ $paciente->HistoriaClinica }} </td>
+                <td>{{ $datosPaciente->pacienteLista->apellido_paterno }} </td>
+                <td>{{ $datosPaciente->pacienteLista->apellido_materno }} </td>
+                <td>{{ $datosPaciente->pacienteLista->primer_nombre }} </td>
+                <td>{{ $datosPaciente->pacienteLista->segundo_nombre }} </td>
+                <td>{{ $datosPaciente->pacienteLista->id }} </td>
             </tr>
-            @empty
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            @endforelse
             @else
             <tr>
                 <td></td>
@@ -159,20 +150,19 @@
                 <th colspan=4>SEXO</th>
                 <th>FECHA</th>
             </tr>
-            @if(sizeOf($datosPaciente)> 0)
-            @forelse($datosPaciente as $paciente)
+            @if($datosPaciente != null)
             <tr>
-                <td>{{$paciente->Pensionado}}</td>
+                <td>{{stripos($datosPaciente->CirProSala, 'S')?$datosPaciente->CirProSala:""}}</td>
                 <td></td>
-                <td>{{$paciente->Sala}} </td>
+                <td>{{stripos($datosPaciente->CirProSala, 'P')?$datosPaciente->CirProSala:""}}</td>
                 <td></td>
                 <td>{{$edadPaciente}} </td>
-                @if($paciente->Genero == 'M')
+                @if($datosPaciente->pacienteLista->genero == 'M')
                 <td>M</td>
                 <td>X</td>
                 <td>F</td>
                 <td style="color: white;">X</td>
-                @elseif($paciente->Genero == 'F')
+                @elseif($datosPaciente->pacienteLista->genero == 'F')
                 <td>M</td>
                 <td style="color: white;">X</td>
                 <td>F</td>
@@ -186,20 +176,6 @@
 
                 <td>{{date('Y-m-d H:i:s')}} </td>
             </tr>
-            @empty
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>M</td>
-                <td></td>
-                <td>F</td>
-                <td></td>
-                <td></td>
-            </tr>
-            @endforelse
             @else
             <tr>
                 <td></td>
@@ -236,88 +212,88 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Hipertensión</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->hipertension)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->hipertension)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
                 @endif
                 <!-- Fin Validar Hipertensión -->
                 <!-- Validar Enf. Coronaria -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Enf. Coronaria</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->enfCoronaria)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->enfCoronaria)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
                 @endif
                 <!-- Fin Validar Enf. Coronaria -->
                 <!-- Validar Arritmias -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Arritmias</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->arritmias)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->arritmias)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
                 @endif
                 <!-- Fin Validar Arritmias -->
                 <!-- Validar Otros Cardiovascular -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Otros</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->otrosCardiovascular)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->otrosCardiovascular)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
                 @endif
                 <td style="width:5px;color:white;">x</td>
             </tr>
@@ -326,66 +302,66 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Enf. Valvula</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->enfValvular)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->enfValvular)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Enf. Valvula -->
                 <!-- Validar Várices -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Várices</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->varices)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->varices)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Várices -->
                 <!-- Validar Ciaudicación -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Ciaudicación</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->claudicacion)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->claudicacion)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Ciaudicación -->
                 <td style="width:20px;color:white;">x</td>
@@ -407,88 +383,88 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">EPOC</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->epoc)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->epoc)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar EPOC -->
                 <!-- Validar ASMA -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">ASMA</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->asma)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->asma)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar ASMA -->
                 <!-- Validar TBC -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">TBC</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->tbc)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->tbc)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar TBC -->
                 <!-- Validar Otros Respiratorio -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Otros</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->otrosRespiratorio)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->otrosRespiratorio)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Otros Respiratorio -->
                 <td style="width:5px;color:white;">x</td>
@@ -509,88 +485,88 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Convulsiones</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->convulsiones)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->convulsiones)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Convulsiones -->
                 <!-- Validar ECV -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">ECV</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->ecv)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->ecv)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar ECV -->
                 <!-- Validar Meningitis -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Meningitis</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->meningitis)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->meningitis)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Meningitis -->
                 <!-- Validar Enf. Menta -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Enf. Menta</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->enfMental)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->enfMental)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Enf. Menta -->
                 <td style="width:5px;color:white;">x</td>
@@ -600,22 +576,22 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Otros</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->otrosNeurologico)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->otrosNeurologico)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validacion Otros Neurologico -->
                 <td style="width:20px;color:white;">x</td>
@@ -637,88 +613,88 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">IRA</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->ira)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->ira)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validacion IRA -->
                 <!-- Validacion Infección Urinaria -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Infección Urinaria</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->infeccionUnitaria )
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->infeccionUnitaria )
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validacion Infección Urinaria -->
                 <!-- Validacion IRC -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">IRC</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->irc)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->irc)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validacion IRC -->
                 <!-- Validacion Otros Nefrologicos -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Otros</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->otrosNefrologicos)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->otrosNefrologicos)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validacion Otros Nefrologicos -->
                 <td style="width:5px;color:white;">x</td>
@@ -739,66 +715,66 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Ulcera</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->ulcera)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->ulcera)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Ulcera -->
                 <!-- Validar Estomago Lleno -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Estomago Lleno</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->estomagoLleno)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->estomagoLleno)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Estomago Lleno -->
                 <!-- Validar Otros Gastrointestinal -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Otros</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->otrosGastrointestinal)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->otrosGastrointestinal)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Otros Gastrointestinal -->
                 <td style="width:20px;color:white;">x</td>
@@ -825,88 +801,88 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Diabetes</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->diabetes)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->diabetes)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validacion Diabetes -->
                 <!-- Validacion Hipertiroidismo -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Hipertiroidismo</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->hipertiroidismo )
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->hipertiroidismo )
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validacion Hipertiroidismo -->
                 <!-- Validacion Obecidad -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Obecidad</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->obecidad)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->obecidad)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validacion Obecidad -->
                 <!-- Validacion Otros Otros istema Endocrima -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Otros</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->otrosSistemaEndocrima)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->otrosSistemaEndocrima)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validacion Otros istema Endocrima -->
                 <td style="width:5px;color:white;">x</td>
@@ -935,60 +911,60 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Quirúrgico</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->quirurgico)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->quirurgico)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Quirúrgico -->
                 <!-- Validar Traumáticos -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:60px;">Traumáticos</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->traumatico)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->traumatico)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Quirúrgico -->
                 <!-- Validar Quirúrgico Descripcion -->
                 <td style="width:20px;color:white;">x</td>
                 @if($datosValoracionPreanestesica != null)
-                    <th style="width:80px;"> {{$datosValoracionPreanestesica->antecedente->descripcionQuirurgico}} </th>
+                <th style="width:80px;"> {{$datosValoracionPreanestesica->antecedente->descripcionQuirurgico}} </th>
                 @else
-                    <th style="width:80px;color:#ccffcc;">x</th>
+                <th style="width:80px;color:#ccffcc;">x</th>
                 @endif
                 <td style="width:5px;color:white;"></td>
                 <!-- Fin Validar Quirúrgico Descripcion -->
                 <!-- Validar Traumáticos Descripcion -->
                 @if($datosValoracionPreanestesica != null)
-                    <th style="width:80px;"> {{$datosValoracionPreanestesica->antecedente->descripcionTraumatico}} </th>
+                <th style="width:80px;"> {{$datosValoracionPreanestesica->antecedente->descripcionTraumatico}} </th>
                 @else
-                    <th style="width:80px;color:#ccffcc;">x</th>
+                <th style="width:80px;color:#ccffcc;">x</th>
                 @endif
                 <td style="width:5px;color:white;">x</td>
                 <!-- Fin Validar Traumáticos Descripcion -->
@@ -1004,22 +980,22 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Alergias</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->alergia)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->alergia)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Alergias -->
                 <td style="width:330px;color:white;">x</td>
@@ -1033,75 +1009,75 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:62px;">Tóxicos: Tabaco</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->tabaco)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->tabaco)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Tabaco -->
                 <!-- Validar Cocaina -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:40px;">Cocaina</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->cocaina)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->cocaina)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Cocaina -->
                 <!-- Validar Marihuana -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:40px;">Marihuana</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->marihuana)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->marihuana)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Cocaina -->
                 <!-- Validar Otros Toxico -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:35px;">Otros cuál?</td>
                 @if($datosValoracionPreanestesica != null)
-                    <th style="width:80px;"> {{$datosValoracionPreanestesica->antecedente->cual_otrosToxico}} </th>
+                <th style="width:80px;"> {{$datosValoracionPreanestesica->antecedente->cual_otrosToxico}} </th>
                 @else
-                    <th style="width:80px;color:white;">x</th>
+                <th style="width:80px;color:white;">x</th>
                 @endif
                 <td style="width:5px;color:white;">x</td>
                 <!-- Validar Otros Toxico -->
@@ -1113,33 +1089,33 @@
                 <td style="width:70px;">Gineco-obstétricos</td>
                 <td style="width:10px;">G</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:40px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->antecedente->g}} </td>
+                <td style="width:40px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->antecedente->g}} </td>
                 @else
-                    <td style="width:40px;color:#ccffcc;">x</td>
+                <td style="width:40px;color:#ccffcc;">x</td>
                 @endif
                 <td style="width:10px;">P</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:40px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->antecedente->p}} </td>
+                <td style="width:40px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->antecedente->p}} </td>
                 @else
-                    <td style="width:40px;color:#ccffcc;">x</td>
+                <td style="width:40px;color:#ccffcc;">x</td>
                 @endif
                 <td style="width:10px;">A</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:40px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->antecedente->a}} </td>
+                <td style="width:40px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->antecedente->a}} </td>
                 @else
-                    <td style="width:40px;color:#ccffcc;">x</td>
+                <td style="width:40px;color:#ccffcc;">x</td>
                 @endif
                 <td style="width:10px;">C</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:40px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->antecedente->c}} </td>
+                <td style="width:40px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->antecedente->c}} </td>
                 @else
-                    <td style="width:40px;color:#ccffcc;">x</td>
+                <td style="width:40px;color:#ccffcc;">x</td>
                 @endif
                 <td style="width:10px;">FUR</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:100px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->antecedente->fur}} </td>
+                <td style="width:100px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->antecedente->fur}} </td>
                 @else
-                    <td style="width:100px;color:#ccffcc;">x</td>
+                <td style="width:100px;color:#ccffcc;">x</td>
                 @endif
                 <td style="width:5px;color:white;">x</td>
             </tr>
@@ -1153,30 +1129,30 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Familiares</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->familiar)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->familiar)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
                 @endif
                 <!-- Fin Validar Familiares -->
                 <td style="width:40px;color:white;">x</td>
                 <td style="width:60px;">Otros cuáles?</td>
                 @if($datosValoracionPreanestesica != null)
-                    <th style="width:80px;"> {{$datosValoracionPreanestesica->antecedente->cual_familiar}} </th>
+                <th style="width:80px;"> {{$datosValoracionPreanestesica->antecedente->cual_familiar}} </th>
                 @else
-                    <th style="width:80px;color:#ccffcc;">x</th>
+                <th style="width:80px;color:#ccffcc;">x</th>
                 @endif
                 <td style="width:5px;color:white;">x</td>
             </tr>
@@ -1191,78 +1167,78 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Esteroides</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->esteroide)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->esteroide)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Esteroides -->
                 <!-- Validar AINES -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:60px;">AINES</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->aines)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->aines)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar AINES -->
                 <!-- Validar IECA -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:60px;">IECA</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->ieca)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->ieca)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar IECA -->
                 <!-- Validar Inotrópicos -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:60px;">Inotrópicos</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->inetropico)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->inetropico)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Inotrópicos -->
                 <!-- Validar AntiH2 -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:60px;">AntiH2</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->anti_h2)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->anti_h2)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar AntiH2 -->
                 <!-- Validar ASA -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:60px;">ASA</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->asa)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->asa)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:5px;color:white;">x</td>
                 <!-- Fin Validar ASA -->
@@ -1272,65 +1248,65 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Antibióticos</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->antibiotico)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->antibiotico)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Antibióticos -->
                 <!-- Validar Betabloqueadores -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:60px;">Betabloqueadores</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->betabloqueador)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->betabloqueador)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Betabloqueadores -->
                 <!-- Validar Diuréticos -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:60px;">Diuréticos</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->diuretico)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->diuretico)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Diuréticos -->
                 <!-- Validar Anticoagulantes -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:60px;">Anticoagulantes</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->anticoagulante)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->anticoagulante)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Anticoagulantes -->
                 <!-- Validar Calcioantagonista -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:60px;">Calcioantagonista</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->calcioantagonista)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->calcioantagonista)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Calcioantagonista -->
                 <td style="color:white;" colspan=3>x</td>
@@ -1341,48 +1317,48 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">ACOS</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->acos)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->acos)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar ACOS -->
                 <!-- Validar Anticolinesterásico -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:60px;">Anticolinesterásico</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->anticolinesterasico)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->anticolinesterasico)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Anticolinesterásico -->
                 <!-- Validar Otros -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:60px;">Otros</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->antecedente->otrasDroga)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->antecedente->otrasDroga)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <!-- Fin Validar Otros -->
                 <!-- Validar otras Droga -->
                 <td style="width:10px;color:white;">x</td>
                 <td style="width:60px;">Cuál?</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;" colspan=6> {{$datosValoracionPreanestesica->antecedente->cual_otrasDroga}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;" colspan=6> {{$datosValoracionPreanestesica->antecedente->cual_otrasDroga}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;" colspan=7>x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;" colspan=7>x</td>
                 @endif
                 <!-- Fin Validar otras Droga -->
                 <td style="width:5px;color:white;">x</td>
@@ -1410,33 +1386,33 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:20px;">PA</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;" colspan=2> {{$datosValoracionPreanestesica->examenFisico->pa}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;" colspan=2> {{$datosValoracionPreanestesica->examenFisico->pa}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;" colspan=2>x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;" colspan=2>x</td>
                 @endif
                 <!-- Fin Validar PA -->
                 <!-- Validar PC -->
-                <td style="width:20px;">PC</td>
+                <td style="width:20px;">FC</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;" colspan=2> {{$datosValoracionPreanestesica->examenFisico->pc}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;" colspan=2> {{$datosValoracionPreanestesica->examenFisico->fc}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;" colspan=2>x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;" colspan=2>x</td>
                 @endif
                 <!-- Fin Validar PC -->
                 <!-- Validar PESO -->
                 <td style="width:20px;">PESO</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;" colspan=2> {{$datosValoracionPreanestesica->examenFisico->peso}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;" colspan=2> {{$datosValoracionPreanestesica->examenFisico->peso}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;" colspan=2>x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;" colspan=2>x</td>
                 @endif
                 <!-- Fin Validar PESO -->
                 <!-- Validar TALLA -->
                 <td style="width:20px;">TALLA</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;" colspan=2> {{$datosValoracionPreanestesica->examenFisico->talla}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;" colspan=2> {{$datosValoracionPreanestesica->examenFisico->talla}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;" colspan=2>x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;" colspan=2>x</td>
                 @endif
                 <!-- Fin Validar TALLA -->
 
@@ -1445,25 +1421,25 @@
                 <!-- Validar B-->
                 <td style="width:10px;">B</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->bEstadoGeneral}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->estado_general=='b'?'X':''}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <!-- Fin Validar B -->
                 <!-- Validar R -->
                 <td style="width:10px;">R</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->rEstadoGeneral}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->estado_general=='r'?'X':''}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <!-- Fin Validar R -->
                 <!-- Validar M -->
                 <td style="width:10px;">M</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->mEstadoGeneral}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->estado_general=='m'?'X':''}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <!-- Fin Validar M -->
                 <td style="width:5px;color:white;">x</td>
@@ -1479,40 +1455,40 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Cuello: Corto</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->examenFisico->cuelloCorto)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->examenFisico->cuelloCorto)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
                 @endif
                 <!-- Fin Validar Cuello: Corto -->
                 <!-- Validar DMT -->
                 <td style="width:20px;color:white;">x</td>
                 <td style="width:20px;">DMT</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:20px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->dmt}} </td>
+                <td style="width:20px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->dmt}} </td>
                 @else
-                    <td style="width:20px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:20px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <!-- Fin Validar DMT -->
                 <!-- Validar cm -->
                 <td style="width:40px;color:white;">x</td>
                 <td style="width:20px;">cm</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:20px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->cmCuelloCorto}} </td>
+                <td style="width:20px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->cmCuelloCorto}} </td>
                 @else
-                    <td style="width:20px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:20px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <!-- Fin Validar cm -->
                 <td style="width:40px;color:white;">x</td>
@@ -1520,25 +1496,25 @@
                 <!-- Validar B -->
                 <td style="width:10px;">B</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->bMovilidadCuello}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->movilidad_cuello=='b'?'X':''}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <!-- Fin Validar B -->
                 <!-- Validar R -->
                 <td style="width:10px;">R</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->rMovilidadCuello}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->movilidad_cuello=='r'?'X':''}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <!-- Fin Validar R -->
                 <!-- Validar M -->
                 <td style="width:10px;">M</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->mMovilidadCuello}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->movilidad_cuello=='m'?'X':''}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <!-- Fin Validar M -->
                 <td style="width:5px;color:white;">x</td>
@@ -1559,13 +1535,13 @@
                 <td style="width:300px;">Clases 1: Total visibilidad de las amígdalas, úvula y paladar blando.</td>
                 <td style="width:50px;color:white;">x</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->examenFisico->clase1)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->examenFisico->clase1)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:100px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -1575,13 +1551,13 @@
                 <td style="width:300px;">Clases 2: visilidad del paladar duro y blando, porción superior de las amígdalas y úvula.</td>
                 <td style="width:50px;color:white;">x</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->examenFisico->clase2)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->examenFisico->clase2)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:100px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -1591,13 +1567,13 @@
                 <td style="width:300px;">Clases 3: son visibles el paladar duro y blando y la base de la úvula.</td>
                 <td style="width:50px;color:white;">x</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->examenFisico->clase3)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->examenFisico->clase3)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:100px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -1607,13 +1583,13 @@
                 <td style="width:300px;">Clases 4: solo es visible el paladar duro.</td>
                 <td style="width:50px;color:white;">x</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->examenFisico->clase4)
-                        <th style="width:10px;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->examenFisico->clase4)
+                <th style="width:10px;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:100px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -1625,22 +1601,22 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Ingurgitación Yugular</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->examenFisico->ingurgitacionYugular)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->examenFisico->ingurgitacionYugular)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
                 @endif
                 <td style="width:350px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -1654,67 +1630,67 @@
                 <td style="width:1px;color:white;">X</td>
                 <td style="width:10px;">cm</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->cmBocaAperturaOral}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->cmBocaAperturaOral}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <td style="width:50px;">Dentadura B</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->bDentadura}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->dentadura=='b'?'X':''}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <td style="width:10px;">R</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->rDentadura}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->dentadura=='r'?'X':''}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <td style="width:10px;">M</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->mDentadura}} </td>
+                <td style="width:10px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->dentadura=='m'?'X':''}} </td>
                 @else
-                    <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:10px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <td style="width:30px;color:white;">x</td>
                 <td style="width:60px;">Edéntulo</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->examenFisico->edentulo)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->examenFisico->edentulo)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
                 @endif
                 <td style="width:30px;color:white;">x</td>
                 <td style="width:60px;">Prótesis</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->examenFisico->protesis)
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @else
-                        <td style="width:10px;">Si</td>
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                        <td style="width:10px;">No</td>
-                        <th style="width:10px;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->examenFisico->protesis)
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @else
-                    <td style="width:10px;">Si</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
-                    <td style="width:10px;">No</td>
-                    <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;">X</th>
+                @endif
+                @else
+                <td style="width:10px;">Si</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
+                <td style="width:10px;">No</td>
+                <th style="width:10px;color:#ccffcc;;">X</th>
                 @endif
                 <td style="width:5px;color:white;">x</td>
             </tr>
@@ -1725,9 +1701,9 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Cardiovascular</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:500px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->cardiovascular}} </td>
+                <td style="width:500px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->cardiovascular}} </td>
                 @else
-                    <td style="width:500px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:500px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <td style="width:5px;color:white;">x</td>
             </tr>
@@ -1735,9 +1711,9 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Respiratorio</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:500px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->respiratorio}} </td>
+                <td style="width:500px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->respiratorio}} </td>
                 @else
-                    <td style="width:500px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:500px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <td style="width:5px;color:white;">x</td>
             </tr>
@@ -1745,9 +1721,9 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Abdomen</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:500px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->abdomen}} </td>
+                <td style="width:500px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->abdomen}} </td>
                 @else
-                    <td style="width:500px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:500px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <td style="width:5px;color:white;">x</td>
             </tr>
@@ -1755,9 +1731,19 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">Extremidades</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:500px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->extremidades}} </td>
+                <td style="width:500px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->extremidades}} </td>
                 @else
-                    <td style="width:500px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:500px;color:white;border-bottom: #000000 1px solid;">x</td>
+                @endif
+                <td style="width:5px;color:white;">x</td>
+            </tr>
+            <tr>
+                <td style="width:5px;color:white;">x</td>
+                <td style="width:60px;">Otros</td>
+                @if($datosValoracionPreanestesica != null)
+                <td style="width:500px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->examenFisico->otros}} </td>
+                @else
+                <td style="width:500px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <td style="width:5px;color:white;">x</td>
             </tr>
@@ -1868,9 +1854,9 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:20px;">PUNTUACIÓN</td>
                 @if($datosValoracionPreanestesica != null)
-                    <th style="width:20px;"> {{$datosValoracionPreanestesica->examenFisico->puntuacionNeurologico}} </th>
+                <th style="width:20px;"> {{$datosValoracionPreanestesica->examenFisico->puntuacionNeurologico}} </th>
                 @else
-                    <th style="width:20px;color:white;">x</th>
+                <th style="width:20px;color:white;">x</th>
                 @endif
                 <td style="width:500px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -1895,158 +1881,193 @@
             <tr>
                 <td style="width:40px;text-align: center;">Hb</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->hb)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->hb)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->hb_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:40px;text-align: center;">Hcto</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->hcto)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->hcto)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->hcto_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:60px;text-align: center;">Leucocitos</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->leucocito)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->leucocito)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->leucocito_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:40px;text-align: center;">Na</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->na)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->na)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->na_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:40px;text-align: center;">CI</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->ci)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->ci)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->ci_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:40px;text-align: center;">K</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->k)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->k)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->k_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:40px;text-align: center;">Ca</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->ca)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->ca)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->paraclinico_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
             </tr>
             <tr>
                 <td style="width:40px;text-align: center;">BUN</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->bun)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->bun)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->bun_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:40px;text-align: center;">Creati</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->creati)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->creati)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->creati_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:60px;text-align: center;">Glicemia</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->glicemia)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->glicemia)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->glicemia_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:40px;text-align: center;">Plaquetas</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->plaqueta)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->plaqueta)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->plaqueta_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:40px;text-align: center;">T.P.</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->tp)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->tp)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->tp_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:40px;text-align: center;">T.P.T</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->tpt)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->tpt)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->tpt_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:40px;text-align: center;">Mg</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->mg)
-                    <th style="width:40px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->mg)
+                <th style="width:10px;text-align: center;">X</th>
+                <th style="width:10px;text-align: center;">{{$datosValoracionPreanestesica->paraclinico->mg_valor}}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
             </tr>
             <tr>
                 <td style="width:40px;text-align: center;">Tipo Sangre</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->tipoSangre != null)
-                        <th style="width:40px;text-align: center;"> {{$datosValoracionPreanestesica->paraclinico->tipoSangre->descripcion }}</th>
-                    @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->tipoSangre != null)
+                <th style="width:10px;text-align: center;"> {{$datosValoracionPreanestesica->paraclinico->tipoSangre->descripcion }}</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
+                <td style="width:10px;color:#ccffcc;">X</td>
                 <td style="width:10px;color:#ccffcc;">X</td>
                 <td style="width:10px;color:#ccffcc;">X</td>
                 <td style="width:10px;color:#ccffcc;">X</td>
@@ -2070,9 +2091,9 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:40px;">E.K.G</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:400px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->paraclinico->ekg}} </td>
+                <td style="width:400px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->paraclinico->ekg}} </td>
                 @else
-                    <td style="width:400px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:400px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <td style="width:5px;color:white;">x</td>
             </tr>
@@ -2080,9 +2101,9 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:40px;">Ecocardiograma</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:400px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->paraclinico->ecocardiograma}} </td>
+                <td style="width:400px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->paraclinico->ecocardiograma}} </td>
                 @else
-                    <td style="width:400px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:400px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <td style="width:5px;color:white;">x</td>
             </tr>
@@ -2090,9 +2111,19 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:40px;">Rx Tórax</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:400px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->paraclinico->rxTorax}} </td>
+                <td style="width:400px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->paraclinico->rxTorax}} </td>
                 @else
-                    <td style="width:400px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:400px;color:white;border-bottom: #000000 1px solid;">x</td>
+                @endif
+                <td style="width:5px;color:white;">x</td>
+            </tr>
+            <tr>
+                <td style="width:5px;color:white;">x</td>
+                <td style="width:40px;">Otros</td>
+                @if($datosValoracionPreanestesica != null)
+                <td style="width:400px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->paraclinico->otros}} </td>
+                @else
+                <td style="width:400px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <td style="width:5px;color:white;">x</td>
             </tr>
@@ -2103,7 +2134,7 @@
     </div>
 
     <!-- CLASIFICACIÓN ASA -->
-    <div class="tableGeneral" style="top:400px;border: #000000 1px solid;">
+    <div class="tableGeneral" style="top:420px;border: #000000 1px solid;">
         <!-- CLASIFICACIÓN ASA -->
         <table class="tableStyleAll">
             <tr>
@@ -2117,13 +2148,13 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:200px;">ASA 1</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->asa1)
-                        <th style="width:10px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->clasificacion_asa == 'asa1')
+                <th style="width:10px;text-align: center;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:200px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -2132,13 +2163,13 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:200px;">ASA 2</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->asa2)
-                        <th style="width:10px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->clasificacion_asa == 'asa2')
+                <th style="width:10px;text-align: center;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:200px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -2147,13 +2178,13 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:200px;">ASA 3</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->asa3)
-                        <th style="width:10px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->clasificacion_asa == 'asa3')
+                <th style="width:10px;text-align: center;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:200px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -2162,13 +2193,13 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:200px;">ASA 4</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->asa4)
-                        <th style="width:10px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->clasificacion_asa == 'asa4')
+                <th style="width:10px;text-align: center;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:200px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -2177,13 +2208,13 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:200px;">ASA 5</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->asa5)
-                        <th style="width:10px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->clasificacion_asa == 'asa5')
+                <th style="width:10px;text-align: center;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:200px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -2192,13 +2223,13 @@
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:200px;">U</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->u)
-                        <th style="width:10px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->clasificacion_asa == 'u')
+                <th style="width:10px;text-align: center;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:200px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -2234,13 +2265,13 @@
                 <td style="width:300px;">Riesgo mínimo independiente de la anestesia. Procedimiento minimamente invasivo con poca o mínima pérdida sanguínea.</td>
                 <td style="width:50px;color:white;">x</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->categoria1)
-                        <th style="width:10px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->clasificacion_riesgo == 'categoria1')
+                <th style="width:10px;text-align: center;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:50px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -2263,13 +2294,13 @@
                 <td style="width:300px;">Procedimiento con invasividad leve o moderada. Pérdida sanguínea menor a 500 ml. Riesgo leve independiente de la anestesia.</td>
                 <td style="width:50px;color:white;">x</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->categoria2)
-                        <th style="width:10px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->clasificacion_riesgo == 'categoria2')
+                <th style="width:10px;text-align: center;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:50px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -2292,13 +2323,13 @@
                 <td style="width:300px;">Procedimiento moderado o significamente invasivo. Pérdida sanguínea potencial entre 500 y 1500 ml. Riesgo moderado independiente de la anestesia.</td>
                 <td style="width:50px;color:white;">x</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->categoria3)
-                        <th style="width:10px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->clasificacion_riesgo == 'categoria3')
+                <th style="width:10px;text-align: center;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:50px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -2321,13 +2352,13 @@
                 <td style="width:300px;">Procedimiento altamente invasivo. Pérdida sanguínea mayor a 1500 ml. Riesgo alto independiente de la anestesia.</td>
                 <td style="width:50px;color:white;">x</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->categoria4)
-                        <th style="width:10px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->clasificacion_riesgo == 'categoria4')
+                <th style="width:10px;text-align: center;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:50px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -2350,13 +2381,13 @@
                 <td style="width:300px;">Procedimiento altamente invasivo. Pérdida sanguínea mayor a 1500 ml. Riesgo crítico para el paciente independiente de la anestesia.</td>
                 <td style="width:50px;color:white;">x</td>
                 @if($datosValoracionPreanestesica != null)
-                    @if($datosValoracionPreanestesica->paraclinico->categoria5)
-                        <th style="width:10px;text-align: center;">X</th>
-                    @else
-                        <th style="width:10px;color:#ccffcc;">X</th>
-                    @endif
+                @if($datosValoracionPreanestesica->paraclinico->clasificacion_riesgo == 'categoria5')
+                <th style="width:10px;text-align: center;">X</th>
                 @else
-                    <th style="width:10px;color:#ccffcc;">X</th>
+                <th style="width:10px;color:#ccffcc;">X</th>
+                @endif
+                @else
+                <th style="width:10px;color:#ccffcc;">X</th>
                 @endif
                 <td style="width:50px;color:white;">x</td>
                 <td style="width:5px;color:white;">x</td>
@@ -2369,20 +2400,68 @@
     </div>
 
     <!-- OBSERVACIONES -->
-    <div class="tableGeneral" style="top:805px;border: #000000 1px solid;">
+    <div class="tableGeneral" style="top:830px;border: #000000 1px solid;">
         <table class="tableStyleAll">
             <tr>
                 <td style="width:5px;color:white;">x</td>
                 <td style="width:60px;">OBSERVACIONES:</td>
                 @if($datosValoracionPreanestesica != null)
-                    <td style="width:400px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->paraclinico->observacion}} </td>
+                <td style="width:400px;border-bottom: #000000 1px solid;"> {{$datosValoracionPreanestesica->paraclinico->observacion}} </td>
                 @else
-                    <td style="width:400px;color:white;border-bottom: #000000 1px solid;">x</td>
+                <td style="width:400px;color:white;border-bottom: #000000 1px solid;">x</td>
                 @endif
                 <td style="width:5px;color:white;">x</td>
             </tr>
             <tr>
                 <td style="height:1px;color:white;" colspan=4>x</td>
+            </tr>
+        </table>
+    </div>
+    <div class="tableGeneral" style="top:950px;border: #000000 1px solid;">
+        <table class="tableStyleAll">
+            <tr>
+                <th rowspan="8" style="width:60%">
+                    Observacion :
+                    <br>
+
+                </th>
+                <th rowspan="6" style="width:40%">
+                    @if ( isset($firma->FIRMAS))
+                    <img src="data:image/jpeg;base64,'{{ $firma->FIRMAS }}'" border="0" width="300px" height="100px">
+                    @else
+                    no hay imagen ;(
+                    {{-- <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->graficoCirugia->GRAFICAS }}'" border="0" width="690px" height="360px"> --}}
+                    @endif
+                </th>
+            </tr>
+            {{-- FILAS --}}
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <td>
+
+                    _______________________________________
+                    <br>
+                    Nombre del Responsable
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+
+                    _______________________________________
+                    <br>
+                    Cargo
+                </td>
+
             </tr>
         </table>
     </div>

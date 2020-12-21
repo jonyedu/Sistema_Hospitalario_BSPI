@@ -67,10 +67,11 @@
                         class="col-lg-12 col-md-12 col-sm-12"
                         v-if="form.frm_idCirugiaProgramada != ''"
                     >
-                        <div
-                            class="card card-default collapsed-card"
-                        >
-                            <div class="card-header" style="background: #590303">
+                        <div class="card card-default collapsed-card">
+                            <div
+                                class="card-header"
+                                style="background: #590303"
+                            >
                                 <h3 class="card-title" style="color: #FFFFFF">
                                     DATOS DEL PACIENTE
                                 </h3>
@@ -99,90 +100,81 @@
                                         <div
                                             class="text-left col-lg-12 col-md-12 col-sm-12"
                                         >
-                                                <div class="row">
-                                                    <div
-                                                        class="col-sm-6 text-left"
+                                            <div class="row">
+                                                <div class="col-sm-6 text-left">
+                                                    <label
+                                                        class="col-form-label"
+                                                        >Paciente:</label
                                                     >
-                                                        <label
-                                                            class="col-form-label"
-                                                            >Paciente:</label
-                                                        >
-                                                        <span
-                                                            class="text-left"
-                                                            v-text="
-                                                                form.frm_paciente
-                                                            "
-                                                        ></span>
-                                                    </div>
-                                                    <div
-                                                        class="col-sm-6 text-left"
-                                                    >
-                                                        <label
-                                                            class="col-form-label"
-                                                            >Cirujano:</label
-                                                        >
-                                                        <span
-                                                            class="text-left"
-                                                            v-text="
-                                                                form.frm_cirujano
-                                                            "
-                                                        ></span>
-                                                    </div>
-                                                    <div
-                                                        class="col-sm-6 text-left"
-                                                    >
-                                                        <label
-                                                            class="col-form-label"
-                                                            >Anestesiologo:</label
-                                                        >
-                                                        <span
-                                                            class="text-left"
-                                                            v-text="
-                                                                form.frm_anestesiologo
-                                                            "
-                                                        ></span>
-                                                    </div>
-                                                    <div
-                                                        class="col-sm-6 text-left"
-                                                    >
-                                                        <label
-                                                            class="col-form-label"
-                                                            >Quirófano:</label
-                                                        >
-                                                        <span
-                                                            class="text-left"
-                                                            v-text="
-                                                                form.frm_quirofano
-                                                            "
-                                                        ></span>
-                                                    </div>
-                                                    <div
-                                                        class="col-sm-12 text-left"
-                                                    >
-                                                        <label
-                                                            class="col-form-label"
-                                                            >Procedimiento:</label
-                                                        >
-                                                        <span
-                                                            class="text-left"
-                                                            v-text="
-                                                                form.frm_procedimiento
-                                                            "
-                                                        ></span>
-                                                    </div>
+                                                    <span
+                                                        class="text-left"
+                                                        v-text="
+                                                            form.frm_paciente
+                                                        "
+                                                    ></span>
                                                 </div>
-
-                                                <button
-                                                    type="button"
-                                                    class="close"
-                                                    data-dismiss="alert"
-                                                    aria-label="Close"
-                                                >
-                                                    <span aria-hidden="true"
-                                                        >&times;</span
+                                                <div class="col-sm-6 text-left">
+                                                    <label
+                                                        class="col-form-label"
+                                                        >Cirujano:</label
                                                     >
-                                                </button>
+                                                    <span
+                                                        class="text-left"
+                                                        v-text="
+                                                            form.frm_cirujano
+                                                        "
+                                                    ></span>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <label
+                                                        class="col-form-label"
+                                                        >Anestesiologo:</label
+                                                    >
+                                                    <span
+                                                        class="text-left"
+                                                        v-text="
+                                                            form.frm_anestesiologo
+                                                        "
+                                                    ></span>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <label
+                                                        class="col-form-label"
+                                                        >Quirófano:</label
+                                                    >
+                                                    <span
+                                                        class="text-left"
+                                                        v-text="
+                                                            form.frm_quirofano
+                                                        "
+                                                    ></span>
+                                                </div>
+                                                <div
+                                                    class="col-sm-12 text-left"
+                                                >
+                                                    <label
+                                                        class="col-form-label"
+                                                        >Procedimiento:</label
+                                                    >
+                                                    <span
+                                                        class="text-left"
+                                                        v-text="
+                                                            form.frm_procedimiento
+                                                        "
+                                                    ></span>
+                                                </div>
+                                            </div>
 
+                                            <button
+                                                type="button"
+                                                class="close"
+                                                data-dismiss="alert"
+                                                aria-label="Close"
+                                            >
+                                                <span aria-hidden="true"
+                                                    >&times;</span
+                                                >
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -247,8 +239,12 @@
                                 <tab-content
                                     title="Paraclinicos"
                                     icon="ti-support"
+                                    :before-change="validateFirstStep"
                                 >
                                     <paraclinico
+                                        :id-revision-sistema="
+                                            form.frm_id_revision_sistema
+                                        "
                                         :user="user"
                                         :id-sec-cir-pro="
                                             form.frm_idCirugiaProgramada
@@ -259,6 +255,22 @@
                                         @FinProceso="cambiarEstado"
                                         ref="paraclinico"
                                     ></paraclinico>
+                                </tab-content>
+                                <tab-content
+                                    title="Visualización"
+                                    icon="fas fa-file-pdf"
+                                >
+                                    <div class="row">
+                                        <embed
+                                            :src="
+                                                '/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/' +
+                                                    form.frm_idCirugiaProgramada
+                                            "
+                                            type="application/pdf"
+                                            width="100%"
+                                            height="980px"
+                                        />
+                                    </div>
                                 </tab-content>
                             </form-wizard>
                         </div>
@@ -281,7 +293,7 @@
             ></lista-cirugia-programa-paciente>
         </modal>
         <!-- Fin Seccion donde muestra la lista de los pacientes que tienen una cita -->
-        <FlashMessage ></FlashMessage>
+        <FlashMessage></FlashMessage>
     </div>
 </template>
 <script>
@@ -299,14 +311,14 @@ export default {
             respuestaFinProceso: 0,
             respuestaImprimir: 0,
             respuestaCargarDatos: 0,
-             rutaSello: "",
+            rutaSello: "",
             frmimg: {
                 imgFirma: null,
-                imgGrafica: null,
+                imgGrafica: null
             },
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "", //2890
+                frm_idCirugiaProgramada: "2890", //2890
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
@@ -316,7 +328,6 @@ export default {
         };
     },
     mounted: function() {
-
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
         let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
             .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
@@ -350,39 +361,12 @@ export default {
             this.form.frm_quirofano = value.quirofano;
             this.form.frm_procedimiento = value.procedimiento;
             this.$modal.hide("ListaCirugiaProgramadaPaciente");
-              this.consultarSello();
+            //this.consultarSello();
             /* if (this.$refs.revisionSistema != null) {
                 this.$refs.revisionSistema.cargarRevisionSistema();
             } */
         },
         /* Fin para llamar al Modal y la Tabla */
-
-        /* Metodos para los form-wizard */
-        onChangeTab(prevIndex, nextIndex) {
-            //Se debera realizar las validaciones respectivas para cada tab
-           // this.setFormTitle(nextIndex);
-
-            /* if (typeof this.onChangeTab() === "function") {
-                alert("entra");
-                //Es seguro ejecutar la función
-                this.guardarModificar(prevIndex);
-            } */
-        },
-        onValidateTab(validationResult, activeTabIndex) {
-            //Se debera realizar las validaciones respectivas para cada tab
-        },
-        validateFirstStep() {
-            // return new Promise((resolve, reject) => {
-            //     let poseeErrores = this.$refs.examenFisico.validarForm();
-            //     resolve(poseeErrores);
-            // });
-        },
-        onComplete() {
-            this.$refs.paraclinico.guardarModificar();
-            //this.$refs.paraclinico.guardarFirmaPorAtencion();
-            //await this.$refs.paraclinico.cargarParaclinico();
-            //await this.cambiarEstado();
-        },
         cambiarEstado() {
             if (this.respuestaFinProceso) {
                 //this.form.frm_idCirugiaProgramada = "";
@@ -390,10 +374,40 @@ export default {
                 this.$refs.formValoracionPreanestecia.reset();
             }
         },
+        /* Metodos para los form-wizard */
+        onValidateTab(validationResult, activeTabIndex) {
+            //Se debera realizar las validaciones respectivas para cada tab
+        },
+        validateFirstStep() {
+            //alert(this.$refs.formValoracionPreanestecia.slotProps.activeTabIndex + 1);
+            var opc = this.$refs.formValoracionPreanestecia.slotProps.activeTabIndex;
+            let poseeErrores = null;
+            return new Promise((resolve, reject) => {
+                switch (opc) {
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        poseeErrores = this.$refs.examenFisico.validarForm();
+                        resolve(poseeErrores);
+                        break;
+                    case 3:
+                        poseeErrores = this.$refs.paraclinico.validarForm();
+                        resolve(poseeErrores);
+                    case 4:
+                        break;
+                    default:
+                }
+            });
+        },
+        onComplete() {
+            this.respuestaImprimir = 1;
+            this.$refs.formValoracionPreanestecia.reset();
+        },
         onChangeTab(prevIndex, nextIndex) {
             //Se debera realizar las validaciones respectivas para cada tab
             this.setFormTitle(nextIndex);
-
             /* if (typeof this.onChangeTab() === "function") {
                 alert("entra");
                 //Es seguro ejecutar la función
@@ -419,6 +433,8 @@ export default {
                     this.titulo_seleccionado = "Paraclinicos";
                     this.$refs.paraclinico.cargarParaclinico();
                     break;
+                case 4:
+                    break;
                 default:
                     this.titulo_seleccionado = "";
             }
@@ -433,15 +449,17 @@ export default {
                     break;
                 case 2:
                     this.$refs.examenFisico.guardarModificar();
-
                     break;
                 case 3:
+                    this.$refs.paraclinico.guardarModificar();
+                    break;
+                case 4:
                     break;
                 default:
                 //this.titulo_seleccionado = "";
             }
         },
-        consultarSello() {
+        /* consultarSello() {
             let that = this;
             if (this.$props.user.id > 0) {
                 var loader = that.$loading.show();
@@ -456,15 +474,13 @@ export default {
                             if (response.data.sello.seguridad_medico != null) {
                                 that.rutaSello =
                                     "data:image/jpeg;base64," +
-                                    response.data.sello.seguridad_medico.medico.medico_sellos
-                                        .IMAGEN_SELLO;
-                                         // alert( response.data.sello.medico_sellos);
+                                    response.data.sello.seguridad_medico.medico
+                                        .medico_sellos.IMAGEN_SELLO;
                             }
                         }
                         loader.hide();
                     })
                     .catch(error => {
-
                         that.flashMessage.show({
                             status: "error",
                             title: "Error al procesar consultarSello",
@@ -484,7 +500,7 @@ export default {
                         loader.hide();
                     });
             }
-        },
+        }, */
 
         llamarMetodoImprimir() {
             if (this.respuestaFinProceso || this.respuestaImprimir) {

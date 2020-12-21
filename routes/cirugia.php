@@ -103,7 +103,7 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
     Route::namespace('Modulos\Cirugia\ListaVerificacion')->prefix('lista_verificacion')->group(function () {
         Route::post('ListarValoracion','ListaValoracionController@create');
         Route::get('buscarpaciente/{id}','ListaValoracionController@show');
-        Route::get('mostrarreporte/{id}','ListaValoracionController@mostrarr');
+        Route::get('mostrarreporte/{id}','ListaValoracionController@mostrar');
 
         // Route::get('cargar_tipo_posiciones_table', 'TipoPosicionesController@cargarTipoPosicionesTabla');
         // Route::post('guardar_archivo_tipo_posiciones', 'TipoPosicionesController@guardarModificarArchivo');
