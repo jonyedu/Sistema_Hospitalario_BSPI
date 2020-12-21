@@ -12538,11 +12538,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -12610,62 +12605,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: (_methods = {
     /* Metodos para Llamar al Modal y la Tabla */
-    validateAsync: function validateAsync() {
-      var that = this;
-      that.listas.chkentrada01 = that.$refs.listaEntrada.listas.chkentrada01;
-      that.listas.chkentrada02 = that.$refs.listaEntrada.listas.chkentrada02;
-      that.listas.chkentrada03 = that.$refs.listaEntrada.listas.chkentrada03;
-      that.listas.chkentrada04 = that.$refs.listaEntrada.listas.chkentrada04;
-      that.listas.chkentrada05 = that.$refs.listaEntrada.listas.chkentrada05;
-      that.listas.chkentrada06 = that.$refs.listaEntrada.listas.chkentrada06;
-      that.listas.chkentrada07 = that.$refs.listaEntrada.listas.chkentrada07;
-      that.listas.chkquirurgica01 = that.$refs.listaPausa.listas.chkquirurgica01;
-      that.listas.chkquirurgica02 = that.$refs.listaPausa.listas.chkquirurgica02;
-      that.listas.chkquirurgica03 = that.$refs.listaPausa.listas.chkquirurgica03;
-      that.listas.chkquirurgica04 = that.$refs.listaPausa.listas.chkquirurgica04;
-      that.listas.chkquirurgica05 = that.$refs.listaPausa.listas.chkquirurgica05;
-      that.listas.chkquirurgica06 = that.$refs.listaPausa.listas.chkquirurgica06;
-      that.listas.chkquirurgica07 = that.$refs.listaPausa.listas.chkquirurgica07;
-      that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
-      that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
-      that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
-      that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
-      that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
-      that.listas.observacion = that.$refs.listaSalida.listas.observacion;
-      var ListaInsert = this.listas; //console.log(this.listas);
-
-      this.listas = {
-        SecCirPro: "",
-        id_lista: 0,
-        chkentrada01: false,
-        chkentrada02: false,
-        chkentrada03: false,
-        chkentrada04: false,
-        chkentrada05: false,
-        chkentrada06: false,
-        chkentrada07: false,
-        chkquirurgica01: false,
-        chkquirurgica02: false,
-        chkquirurgica03: false,
-        chkquirurgica04: false,
-        chkquirurgica05: false,
-        chkquirurgica06: false,
-        chkquirurgica07: false,
-        chksalida01: false,
-        chksalida02: false,
-        chksalida03: false,
-        chksalida04: false,
-        chksalida05: false,
-        user_id: "",
-        cargo: "",
-        observacion: "",
-        firma: ""
-      };
-      axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
-        that.$refs.formListaVerificacion[3].activeTabIndex;
-      })["catch"](function (e) {// this.errors.push(e);
-      }); // resolve(este);
-    },
     mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
       this.$modal.show("ListaCirugiaProgramadaPaciente");
     },
@@ -12680,8 +12619,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       //     this.$refs.revisionSistema.cargarRevisionSistema();
       // }
 
-      this.cargarLista(value.SecCirPro);
-      this.consultarSello();
+      this.cargarLista(value.SecCirPro); //this.consultarSello();
     },
     cargarLista: function cargarLista(value) {
       var that = this;
@@ -12758,8 +12696,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     validateFirstStep: function validateFirstStep() {
-      var _this = this;
-
       //alert(this.$refs.formValoracionPreanestecia.slotProps.activeTabIndex + 1);
       var opc = this.$refs.formListaVerificacion.slotProps.activeTabIndex;
       var poseeErrores = null;
@@ -12772,8 +12708,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             break;
 
           case 2:
-            poseeErrores = _this.$refs.listaSalida.validarForm();
-            resolve(poseeErrores);
+            //  poseeErrores = this.$refs.listaSalida.validarForm();
+            resolve(true);
             break;
 
           case 3:
@@ -12787,7 +12723,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     guardarLista: function guardarLista() {
-      var _this2 = this;
+      var _this = this;
 
       //validamos la lista segun la referencia listaPausa listaSalida
       var that = this;
@@ -12816,7 +12752,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       var url = "/modulos/cirugia/lista_verificacion/ListarValoracion";
       axios.post(url, ListaInsert).then(function (response) {
-        _this2.idPromesa = response.data.id;
+        _this.idPromesa = response.data.id;
         loader.hide();
       })["catch"](function (error) {
         that.flashMessage.show({
@@ -12920,7 +12856,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     }
   }, _defineProperty(_methods, "guardarLista", function guardarLista() {
-    var _this3 = this;
+    var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var that, ListaInsert, url, $id;
@@ -12929,7 +12865,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               //validamos la lista segun la referencia listaPausa listaSalida
-              that = _this3;
+              that = _this2;
               that.listas.chkentrada01 = that.$refs.listaEntrada.listas.chkentrada01;
               that.listas.chkentrada02 = that.$refs.listaEntrada.listas.chkentrada02;
               that.listas.chkentrada03 = that.$refs.listaEntrada.listas.chkentrada03;
@@ -12950,8 +12886,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
               that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
               that.listas.observacion = that.$refs.listaSalida.listas.observacion;
-              ListaInsert = _this3.listas;
-              _this3.listas = {
+              ListaInsert = _this2.listas;
+              _this2.listas = {
                 SecCirPro: "",
                 id_lista: 0,
                 chkentrada01: false,
@@ -12981,7 +12917,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               url = "/modulos/cirugia/lista_verificacion/ListarValoracion";
               _context.next = 26;
               return axios.post(url, ListaInsert).then(function (response) {
-                _this3.idPromesa = response.data.id;
+                _this2.idPromesa = response.data.id;
               });
 
             case 26:
@@ -79305,70 +79241,9 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _c(
-                              "tab-content",
-                              { attrs: { title: "Firma", icon: "ti-folder" } },
-                              [
-                                _c("div", {}, [
-                                  _c("div", {
-                                    staticStyle: { height: "70px" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "flex flex-y" }, [
-                                    _c(
-                                      "span",
-                                      {
-                                        staticClass: "col-md-5 text-center",
-                                        staticStyle: { margin: "auto" }
-                                      },
-                                      [
-                                        _c("vue-painttable", {
-                                          ref: "paintFirma",
-                                          attrs: {
-                                            hidePaintable: true,
-                                            isFirstPaintable:
-                                              _vm.isFirstPaintable,
-                                            disableNavigation: true,
-                                            showUndoRedo: false,
-                                            showLineWidth: false,
-                                            rutaImagen: _vm.rutaSello,
-                                            width: 800,
-                                            height: 800
-                                          },
-                                          on: {
-                                            getOutput: function($event) {
-                                              _vm.form.imgFirma = $event
-                                            },
-                                            RespuestaImgFirma: function(
-                                              $event
-                                            ) {
-                                              _vm.validarImgFirma = $event
-                                            }
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "span",
-                                      { staticClass: "col-md-12 text-center" },
-                                      [
-                                        _vm._v(
-                                          "______________________________________________"
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "span",
-                                      { staticClass: "col-md-12 text-center" },
-                                      [_vm._v("FIRMA DEL ANESTESIOLOGO:")]
-                                    )
-                                  ])
-                                ])
-                              ]
-                            )
+                            _c("tab-content", {
+                              attrs: { title: "Firma", icon: "ti-folder" }
+                            })
                           ],
                           1
                         )
