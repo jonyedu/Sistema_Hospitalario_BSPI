@@ -358,6 +358,7 @@ export default {
             });
         },
         saveCancas: async function() {
+            var loader = this.$loading.show();
             var idFlashMessage = this.flashMessage.show({
                 status: "info",
                 title: "Generando Firma",
@@ -379,6 +380,7 @@ export default {
             this.isActive = !this.isActive;
             this.respuestaImgFirma = 1;
             this.$emit("RespuestaImgFirma", this.respuestaImgFirma);
+            loader.hide();
             //loader.hide();
         },
         deleteCanvas: function() {

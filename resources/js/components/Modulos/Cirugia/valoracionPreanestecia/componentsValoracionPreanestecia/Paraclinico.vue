@@ -30,7 +30,11 @@
                                                             v-model="chk.chk_hb"
                                                         />
                                                         <label
-                                                            :class="form.frm_hb?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
+                                                            :class="
+                                                                form.frm_hb
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
                                                             for="defaultInline58"
                                                             >Hb</label
                                                         >
@@ -67,7 +71,11 @@
                                                             "
                                                         />
                                                         <label
-                                                            :class="form.frm_hcto?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
+                                                            :class="
+                                                                form.frm_hcto
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
                                                             for="defaultInline59"
                                                             >Hcto</label
                                                         >
@@ -104,13 +112,19 @@
                                                             "
                                                         />
                                                         <label
-                                                            :class="form.frm_leucocito?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
+                                                            :class="
+                                                                form.frm_leucocito
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
                                                             for="defaultInline60"
                                                             >Leucocitos</label
                                                         >
                                                         <div
                                                             class=""
-                                                            v-if="form.frm_leucocito"
+                                                            v-if="
+                                                                form.frm_leucocito
+                                                            "
                                                         >
                                                             <input
                                                                 type="number"
@@ -139,7 +153,11 @@
                                                             v-model="chk.chk_na"
                                                         />
                                                         <label
-                                                            :class="form.frm_na?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
+                                                            :class="
+                                                                form.frm_na
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
                                                             for="defaultInline61"
                                                             >Na</label
                                                         >
@@ -174,7 +192,11 @@
                                                             v-model="chk.chk_ci"
                                                         />
                                                         <label
-                                                            :class="form.frm_ci?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
+                                                            :class="
+                                                                form.frm_ci
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
                                                             for="defaultInline62"
                                                             >CI</label
                                                         >
@@ -209,7 +231,11 @@
                                                             v-model="chk.chk_k"
                                                         />
                                                         <label
-                                                            :class="form.frm_k?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
+                                                            :class="
+                                                                form.frm_k
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
                                                             for="defaultInline63"
                                                             >K</label
                                                         >
@@ -244,7 +270,11 @@
                                                             v-model="chk.chk_ca"
                                                         />
                                                         <label
-                                                            :class="form.frm_ca?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
+                                                            :class="
+                                                                form.frm_ca
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
                                                             for="defaultInline64"
                                                             >Ca</label
                                                         >
@@ -281,7 +311,11 @@
                                                             "
                                                         />
                                                         <label
-                                                            :class="form.frm_bun?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
+                                                            :class="
+                                                                form.frm_bun
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
                                                             for="defaultInline65"
                                                             >BUN</label
                                                         >
@@ -318,13 +352,19 @@
                                                             "
                                                         />
                                                         <label
-                                                            :class="form.frm_creati?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
+                                                            :class="
+                                                                form.frm_creati
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
                                                             for="defaultInline66"
                                                             >Creati</label
                                                         >
                                                         <div
                                                             class=""
-                                                            v-if="form.frm_creati"
+                                                            v-if="
+                                                                form.frm_creati
+                                                            "
                                                         >
                                                             <input
                                                                 type="number"
@@ -355,13 +395,19 @@
                                                             "
                                                         />
                                                         <label
-                                                            :class="form.frm_glicemia?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
+                                                            :class="
+                                                                form.frm_glicemia
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
                                                             for="defaultInline67"
                                                             >Glicemia</label
                                                         >
                                                         <div
                                                             class=""
-                                                            v-if="form.frm_glicemia"
+                                                            v-if="
+                                                                form.frm_glicemia
+                                                            "
                                                         >
                                                             <input
                                                                 type="number"
@@ -392,13 +438,19 @@
                                                             "
                                                         />
                                                         <label
-                                                            :class="form.frm_plaqueta?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
+                                                            :class="
+                                                                form.frm_plaqueta
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
                                                             for="defaultInline68"
                                                             >Plaquetas</label
                                                         >
                                                         <div
                                                             class=""
-                                                            v-if="form.frm_plaqueta"
+                                                            v-if="
+                                                                form.frm_plaqueta
+                                                            "
                                                         >
                                                             <input
                                                                 type="number"
@@ -427,7 +479,11 @@
                                                             v-model="chk.chk_tp"
                                                         />
                                                         <label
-                                                            :class="form.frm_tp?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
+                                                            :class="
+                                                                form.frm_tp
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
                                                             for="defaultInline69"
                                                             >T.P.</label
                                                         >
@@ -464,7 +520,11 @@
                                                             "
                                                         />
                                                         <label
-                                                            :class="form.frm_tpt?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
+                                                            :class="
+                                                                form.frm_tpt
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
                                                             for="defaultInline70"
                                                             >T.P.T</label
                                                         >
@@ -484,42 +544,44 @@
                                                     </div>
                                                 </div>
                                                 <!-- Mg -->
-                                                 <div class="col-sm-3">
-                                                     <div
-                                                         class="custom-control custom-checkbox custom-control-inline"
-                                                     >
-                                                         <input
-                                                             type="checkbox"
-                                                             class="col-sm-1 custom-control-input"
-                                                             id="defaultInline71"
-                                                             value="1"
-                                                             @click="
-                                                                 validarChkMg()
-                                                             "
-                                                             v-model="
-                                                                 chk.chk_mg
-                                                             "
-                                                         />
-                                                         <label
-                                                             :class="form.frm_mg?'col-sm-6 custom-control-label':'col-sm-12 custom-control-label'"
-                                                             for="defaultInline71"
-                                                             >Mg</label
-                                                         >
-                                                         <div
-                                                             class=""
-                                                             v-if="form.frm_mg"
-                                                         >
-                                                             <input
-                                                                 type="number"
-                                                                 class="col-sm-10 form-control"
-                                                                 placeholder=""
-                                                                 v-model="
-                                                                     form.frm_mg_valor
-                                                                 "
-                                                             />
-                                                         </div>
-                                                     </div>
-                                                 </div>
+                                                <div class="col-sm-3">
+                                                    <div
+                                                        class="custom-control custom-checkbox custom-control-inline"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            class="col-sm-1 custom-control-input"
+                                                            id="defaultInline71"
+                                                            value="1"
+                                                            @click="
+                                                                validarChkMg()
+                                                            "
+                                                            v-model="chk.chk_mg"
+                                                        />
+                                                        <label
+                                                            :class="
+                                                                form.frm_mg
+                                                                    ? 'col-sm-6 custom-control-label'
+                                                                    : 'col-sm-12 custom-control-label'
+                                                            "
+                                                            for="defaultInline71"
+                                                            >Mg</label
+                                                        >
+                                                        <div
+                                                            class=""
+                                                            v-if="form.frm_mg"
+                                                        >
+                                                            <input
+                                                                type="number"
+                                                                class="col-sm-10 form-control"
+                                                                placeholder=""
+                                                                v-model="
+                                                                    form.frm_mg_valor
+                                                                "
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div
                                                     class="col-lg-3 col-md-3 col-sm-3"
                                                 >
@@ -664,68 +726,102 @@
                                                     class="col-lg-12 col-md-12 col-sm-12 "
                                                 >
                                                     <!-- ASA 1 -->
-                                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                                        <label for="clasificacion_asi_1" class="mr-2"
+                                                    <div
+                                                        class="col-lg-4 col-md-4 col-sm-4"
+                                                    >
+                                                        <label
+                                                            for="clasificacion_asi_1"
+                                                            class="mr-2"
                                                             >ASA 1</label
                                                         >
                                                         <input
                                                             type="radio"
                                                             id="clasificacion_asi_1"
                                                             value="asa1"
-                                                            v-model="form.frm_clasificacion_asa"
+                                                            v-model="
+                                                                form.frm_clasificacion_asa
+                                                            "
                                                         />
                                                     </div>
                                                     <!-- ASA 2 -->
-                                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                                        <label for="clasificacion_asi_2" class="mr-2"
+                                                    <div
+                                                        class="col-lg-4 col-md-4 col-sm-4"
+                                                    >
+                                                        <label
+                                                            for="clasificacion_asi_2"
+                                                            class="mr-2"
                                                             >ASA 2</label
                                                         >
                                                         <input
                                                             type="radio"
                                                             id="clasificacion_asi_2"
                                                             value="asa2"
-                                                            v-model="form.frm_clasificacion_asa"
+                                                            v-model="
+                                                                form.frm_clasificacion_asa
+                                                            "
                                                         />
                                                     </div>
                                                     <!-- ASA 3 -->
-                                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                                        <label for="clasificacion_asi_3" class="mr-2"
+                                                    <div
+                                                        class="col-lg-4 col-md-4 col-sm-4"
+                                                    >
+                                                        <label
+                                                            for="clasificacion_asi_3"
+                                                            class="mr-2"
                                                             >ASA 3</label
                                                         >
                                                         <input
                                                             type="radio"
                                                             id="clasificacion_asi_3"
                                                             value="asa3"
-                                                            v-model="form.frm_clasificacion_asa"
+                                                            v-model="
+                                                                form.frm_clasificacion_asa
+                                                            "
                                                         />
                                                     </div>
                                                     <!-- ASA 4 -->
-                                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                                        <label for="clasificacion_asi_4" class="mr-2"
+                                                    <div
+                                                        class="col-lg-4 col-md-4 col-sm-4"
+                                                    >
+                                                        <label
+                                                            for="clasificacion_asi_4"
+                                                            class="mr-2"
                                                             >ASA 4</label
                                                         >
                                                         <input
                                                             type="radio"
                                                             id="clasificacion_asi_4"
                                                             value="asa4"
-                                                            v-model="form.frm_clasificacion_asa"
+                                                            v-model="
+                                                                form.frm_clasificacion_asa
+                                                            "
                                                         />
                                                     </div>
                                                     <!-- ASA 5 -->
-                                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                                        <label for="clasificacion_asi_5" class="mr-2"
+                                                    <div
+                                                        class="col-lg-4 col-md-4 col-sm-4"
+                                                    >
+                                                        <label
+                                                            for="clasificacion_asi_5"
+                                                            class="mr-2"
                                                             >ASA 5</label
                                                         >
                                                         <input
                                                             type="radio"
                                                             id="clasificacion_asi_5"
                                                             value="asa5"
-                                                            v-model="form.frm_clasificacion_asa"
+                                                            v-model="
+                                                                form.frm_clasificacion_asa
+                                                            "
                                                         />
                                                     </div>
                                                     <!-- U -->
-                                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                                        <label for="clasificacion_asi_u" class="mr-2"
+                                                    <div
+                                                        class="col-lg-4 col-md-4 col-sm-4"
+                                                    >
+                                                        <label
+                                                            for="clasificacion_asi_u"
+                                                            class="mr-2"
                                                             >U</label
                                                         >
                                                         <input
@@ -733,7 +829,9 @@
                                                             type="radio"
                                                             id="clasificacion_asi_u"
                                                             value="u"
-                                                            v-model="form.frm_clasificacion_asa"
+                                                            v-model="
+                                                                form.frm_clasificacion_asa
+                                                            "
                                                         />
                                                     </div>
                                                 </div>
@@ -756,20 +854,21 @@
                                                         type="radio"
                                                         id="categoria_1"
                                                         value="categoria1"
-                                                        v-model="form.frm_clasificacion_riesgo"
+                                                        v-model="
+                                                            form.frm_clasificacion_riesgo
+                                                        "
                                                     />
-                                                    <span
+                                                    <label
                                                         style="font-weight: normal;"
                                                         for="categoria_1"
-                                                        >Riesgo mínimo
-                                                        independiente de la
-                                                        anestesia.
-                                                        Procedimiento
-                                                        minimamente invasivo
-                                                        con poca o mínima
-                                                        pérdida
-                                                        sanguínea.</span
                                                     >
+                                                        Riesgo mínimo
+                                                        independiente de la
+                                                        anestesia. Procedimiento
+                                                        minimamente invasivo con
+                                                        poca o mínima pérdida
+                                                        sanguínea.
+                                                    </label>
                                                 </div>
                                                 <!-- CATEGORIA 2 -->
                                                 <div class="col-sm-12">
@@ -779,20 +878,22 @@
                                                 <div class="col-sm-12">
                                                     <input
                                                         type="radio"
-                                                        id="categoria2"
-                                                        value="u"
-                                                        v-model="form.frm_clasificacion_riesgo"
+                                                        id="categoria_2"
+                                                        value="categoria2"
+                                                        v-model="
+                                                            form.frm_clasificacion_riesgo
+                                                        "
                                                     />
-                                                    <span
+                                                    <label
                                                         style="font-weight: normal;"
-                                                        for="categoria_2"
+                                                        for="categoria_1"
                                                         >Procedimiento con
                                                         invasividad leve o
                                                         moderada. Pérdida
-                                                        sanguínea menor a
-                                                        500 ml. Riesgo leve
+                                                        sanguínea menor a 500
+                                                        ml. Riesgo leve
                                                         independiente de la
-                                                        anestesia.</span
+                                                        anestesia.</label
                                                     >
                                                 </div>
                                                 <!-- CATEGORIA 3 -->
@@ -805,20 +906,21 @@
                                                         type="radio"
                                                         id="categoria_3"
                                                         value="categoria3"
-                                                        v-model="form.frm_clasificacion_riesgo"
+                                                        v-model="
+                                                            form.frm_clasificacion_riesgo
+                                                        "
                                                     />
-                                                    <span
+                                                    <label
                                                         style="font-weight: normal;"
                                                         for="categoria_3"
-                                                        >Procedimiento
-                                                        moderado o
-                                                        significamente
+                                                        >Procedimiento moderado
+                                                        o significamente
                                                         invasivo. Pérdida
                                                         sanguínea potencial
                                                         entre 500 y 1500 ml.
                                                         Riesgo moderado
                                                         independiente de la
-                                                        anestesia.</span
+                                                        anestesia.</label
                                                     >
                                                 </div>
                                                 <!-- ECATEGORIA 4-->
@@ -831,18 +933,19 @@
                                                         type="radio"
                                                         id="categoria_4"
                                                         value="categoria4"
-                                                        v-model="form.frm_clasificacion_riesgo"
+                                                        v-model="
+                                                            form.frm_clasificacion_riesgo
+                                                        "
                                                     />
-                                                    <span
+                                                    <label
                                                         style="font-weight: normal;"
                                                         for="categoria_4"
-                                                        >Procedimiento
-                                                        altamente invasivo.
-                                                        Pérdida sanguínea
-                                                        mayor a 1500 ml.
-                                                        Riesgo alto
+                                                        >Procedimiento altamente
+                                                        invasivo. Pérdida
+                                                        sanguínea mayor a 1500
+                                                        ml. Riesgo alto
                                                         independiente de la
-                                                        anestesia.</span
+                                                        anestesia.</label
                                                     >
                                                 </div>
                                                 <!-- CATEGORIA 5 -->
@@ -855,19 +958,20 @@
                                                         type="radio"
                                                         id="categoria_5"
                                                         value="categoria5"
-                                                        v-model="form.frm_clasificacion_riesgo"
+                                                        v-model="
+                                                            form.frm_clasificacion_riesgo
+                                                        "
                                                     />
-                                                    <span
+                                                    <label
                                                         style="font-weight: normal;"
                                                         for="categoria_5"
-                                                        >Procedimiento
-                                                        altamente invasivo.
-                                                        Pérdida sanguínea
-                                                        mayor a 1500 ml.
-                                                        Riesgo crítico para
+                                                        >Procedimiento altamente
+                                                        invasivo. Pérdida
+                                                        sanguínea mayor a 1500
+                                                        ml. Riesgo crítico para
                                                         el paciente
                                                         independiente de la
-                                                        anestesia.</span
+                                                        anestesia.</label
                                                     >
                                                 </div>
                                             </div>
@@ -985,8 +1089,8 @@ export default {
         user: {
             type: Object
         },
-        idRevisionSistema:{
-            type: String,
+        idRevisionSistema: {
+            type: Number,
             required: false
         }
     },
@@ -1000,7 +1104,7 @@ export default {
             rutaSello: "",
             frmimg: {
                 imgFirma: null,
-                imgGrafica: null,
+                imgGrafica: null
             },
             chk: {
                 /* Paraclinicos */
@@ -1017,7 +1121,7 @@ export default {
                 chk_plaqueta: false,
                 chk_tp: false,
                 chk_tpt: false,
-                chk_mg: false,
+                chk_mg: false
             },
             form: {
                 frm_idCirugiaProgramada: "",
@@ -1075,7 +1179,6 @@ export default {
         this.setSelectedTipoSangre();
         this.consultarSello();
 
-
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
         let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
             .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
@@ -1088,9 +1191,7 @@ export default {
             this.cargarAtencionMotivo();
         } */
     },
-    created: function(){
-
-    },
+    created: function() {},
     beforeDestroy: function() {
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
         let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
@@ -1102,6 +1203,26 @@ export default {
         ); */
     },
     methods: {
+        validarForm(){
+            //Se comprueba que un checkbox tenga data
+            if (this.frmimg.imgFirma == null) {
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia al finalizar con el proceso",
+                    message: "Usted debe firmar porfavor.",
+                    clickable: true,
+                    time: 0,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background: "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
+            return true;
+        },
         consultarSello() {
             let that = this;
             if (this.$props.user.id > 0) {
@@ -1176,11 +1297,10 @@ export default {
                     });
                     that.tipoSangre = tipoSangre;
                     loader.hide();
-
                 })
                 .catch(error => {
                     //Errores
-                   /*  that.$swal({
+                    /*  that.$swal({
                         icon: "error",
                         title: "Existe un error",
                         text: error
@@ -1189,20 +1309,19 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar setSelectedTipoSangre",
-                        message:"Por favor comuníquese con el administrador. " +
-                                error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
                         customStyle: {
                             flashMessageStyle: {
-                                background:
-                                    "linear-gradient(#e66465, #9198e5)"
+                                background: "linear-gradient(#e66465, #9198e5)"
                             }
                         }
                     });
                 });
-
         },
         //Metodo para cargar el motivo antecedente del paciente mediantes el cod cita
         cargarParaclinico: function() {
@@ -1222,72 +1341,86 @@ export default {
                         /* hb, gcto, etc */
                         that.chk.chk_hb = +response.data.paraclinico.hb;
                         that.form.frm_hb = +response.data.paraclinico.hb;
-                        that.form.frm_hb_valor = response.data.paraclinico.hb_valor;
+                        that.form.frm_hb_valor =
+                            response.data.paraclinico.hb_valor;
 
                         that.chk.chk_hcto = +response.data.paraclinico.hcto;
                         that.form.frm_hcto = +response.data.paraclinico.hcto;
-                        that.form.frm_hcto_valor = response.data.paraclinico.hcto_valor;
+                        that.form.frm_hcto_valor =
+                            response.data.paraclinico.hcto_valor;
 
                         that.chk.chk_leucocito = +response.data.paraclinico
                             .leucocito;
                         that.form.frm_leucocito = +response.data.paraclinico
                             .leucocito;
-                        that.form.frm_leucocito_valor = response.data.paraclinico.leucocito_valor;
+                        that.form.frm_leucocito_valor =
+                            response.data.paraclinico.leucocito_valor;
 
                         that.chk.chk_na = +response.data.paraclinico.na;
                         that.form.frm_na = +response.data.paraclinico.na;
-                        that.form.frm_na_valor = response.data.paraclinico.na_valor;
+                        that.form.frm_na_valor =
+                            response.data.paraclinico.na_valor;
 
                         that.chk.chk_ci = +response.data.paraclinico.ci;
                         that.form.frm_ci = +response.data.paraclinico.ci;
-                        that.form.frm_ci_valor = response.data.paraclinico.ci_valor;
+                        that.form.frm_ci_valor =
+                            response.data.paraclinico.ci_valor;
 
                         that.chk.chk_k = +response.data.paraclinico.k;
                         that.form.frm_k = +response.data.paraclinico.k;
-                        that.form.frm_k_valor = response.data.paraclinico.k_valor;
+                        that.form.frm_k_valor =
+                            response.data.paraclinico.k_valor;
 
                         that.chk.chk_ca = +response.data.paraclinico.ca;
                         that.form.frm_ca = +response.data.paraclinico.ca;
-                        that.form.frm_ca_valor = response.data.paraclinico.ca_valor;
+                        that.form.frm_ca_valor =
+                            response.data.paraclinico.ca_valor;
 
                         that.chk.chk_bun = +response.data.paraclinico.bun;
                         that.form.frm_bun = +response.data.paraclinico.bun;
-                        that.form.frm_bun_valor = response.data.paraclinico.bun_valor;
+                        that.form.frm_bun_valor =
+                            response.data.paraclinico.bun_valor;
 
                         that.chk.chk_creati = +response.data.paraclinico.creati;
                         that.form.frm_creati = +response.data.paraclinico
                             .creati;
-                        that.form.frm_creati_valor = response.data.paraclinico.creati_valor;
+                        that.form.frm_creati_valor =
+                            response.data.paraclinico.creati_valor;
 
                         that.chk.chk_glicemia = +response.data.paraclinico
                             .glicemia;
                         that.form.frm_glicemia = +response.data.paraclinico
                             .glicemia;
-                        that.form.frm_glicemia_valor = response.data.paraclinico.glicemia_valor;
+                        that.form.frm_glicemia_valor =
+                            response.data.paraclinico.glicemia_valor;
 
                         that.chk.chk_plaqueta = +response.data.paraclinico
                             .plaqueta;
                         that.form.frm_plaqueta = +response.data.paraclinico
                             .plaqueta;
-                        that.form.frm_plaqueta_valor = response.data.paraclinico.plaqueta_valor;
+                        that.form.frm_plaqueta_valor =
+                            response.data.paraclinico.plaqueta_valor;
 
                         that.chk.chk_tp = +response.data.paraclinico.tp;
                         that.form.frm_tp = +response.data.paraclinico.tp;
-                        that.form.frm_tp_valor = response.data.paraclinico.tp_valor;
+                        that.form.frm_tp_valor =
+                            response.data.paraclinico.tp_valor;
 
                         that.chk.chk_tpt = +response.data.paraclinico.tpt;
                         that.form.frm_tpt = +response.data.paraclinico.tpt;
-                        that.form.frm_tpt_valor = response.data.paraclinico.tpt_valor;
+                        that.form.frm_tpt_valor =
+                            response.data.paraclinico.tpt_valor;
 
                         that.chk.chk_mg = +response.data.paraclinico.mg;
                         that.form.frm_mg = +response.data.paraclinico.mg;
-                        that.form.frm_mg_valor = response.data.paraclinico.mg_valor;
+                        that.form.frm_mg_valor =
+                            response.data.paraclinico.mg_valor;
 
-                        if(response.data.paraclinico.tipo_sangre != null){
+                        if (response.data.paraclinico.tipo_sangre != null) {
                             that.form.frm_id_tipo_sangre = +response.data
-                            .paraclinico.tipo_sangre.codigo;
+                                .paraclinico.tipo_sangre.codigo;
                             that.selectedTipoSangre =
-                            response.data.paraclinico.tipo_sangre.descripcion;
+                                response.data.paraclinico.tipo_sangre.descripcion;
                         }
 
                         that.form.frm_ekg = response.data.paraclinico.ekg;
@@ -1298,16 +1431,18 @@ export default {
                         that.form.frm_rxTorax =
                             response.data.paraclinico.rxTorax;
 
-                        that.form.frm_otros =
-                            response.data.paraclinico.otros;
+                        that.form.frm_otros = response.data.paraclinico.otros;
 
                         /* CLASIFICACIÓN ASA */
-                        that.form.frm_clasificacion_asa = response.data.paraclinico.clasificacion_asa;
+                        that.form.frm_clasificacion_asa =
+                            response.data.paraclinico.clasificacion_asa;
 
                         /* Clasificación de riesgo quirúrgico del Hospital Jonhs Hopkins */
-                        that.form.frm_clasificacion_riesgo = response.data.paraclinico.clasificacion_riesgo;
+                        that.form.frm_clasificacion_riesgo =
+                            response.data.paraclinico.clasificacion_riesgo;
 
-                        that.form.frm_observacion = response.data.paraclinico.observacion;
+                        that.form.frm_observacion =
+                            response.data.paraclinico.observacion;
                     } else {
                     }
                     loader.hide();
@@ -1323,15 +1458,15 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar cargarParaclinico",
-                        message:"Por favor comuníquese con el administrador. " +
-                                error,
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
                         clickable: true,
                         time: 0,
                         icon: "/iconsflashMessage/error.svg",
                         customStyle: {
                             flashMessageStyle: {
-                                background:
-                                    "linear-gradient(#e66465, #9198e5)"
+                                background: "linear-gradient(#e66465, #9198e5)"
                             }
                         }
                     });
@@ -1355,35 +1490,15 @@ export default {
                     .post(url, this.form)
                     .then(function(response) {
                         loader.hide();
-                        /* that.$swal({
-                            icon: "success",
-                            title: "Proceso realizado exitosamente",
-                            text: that.mensaje
-                        }); */
-                        that.flashMessage.show({
-                            status: "success",
-                            title: "Proceso realizado exitosamente",
-                            message:that.mensaje,
-                            clickable: true,
-                            time: 5000,
-                            icon: "/iconsflashMessage/success.svg",
-                            customStyle: {
-                                flashMessageStyle: {
-                                    background:
-                                        "linear-gradient(#e66465, #9198e5)"
-                                }
-                            }
-                        });
-                        that.validarFinProceso = 1;
-                        that.$emit("validarFinProceso", that.validarFinProceso);
-                        that.$emit("FinProceso");
+                        that.guardarFirmaPorAtencion();
                     })
                     .catch(error => {
                         that.flashMessage.show({
                             status: "error",
                             title: "Error al procesar guardarModificar",
-                            message:"Por favor comuníquese con el administrador. " +
-                                    error,
+                            message:
+                                "Por favor comuníquese con el administrador. " +
+                                error,
                             clickable: true,
                             time: 0,
                             icon: "/iconsflashMessage/error.svg",
@@ -1398,23 +1513,17 @@ export default {
                     });
             } else {
                 let that = this;
-                /* that.$swal({
-                    icon: "error",
-                    title: "Citas",
-                    text: "Debe seleccionar un paciente"
-                }); */
                 that.flashMessage.show({
                     status: "error",
                     title: "Error al procesar guardarModificar",
-                    message:"Por favor comuníquese con el administrador. " +
-                            error,
+                    message:
+                        "Por favor comuníquese con el administrador. " + error,
                     clickable: true,
                     time: 0,
                     icon: "/iconsflashMessage/error.svg",
                     customStyle: {
                         flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
+                            background: "linear-gradient(#e66465, #9198e5)"
                         }
                     }
                 });
@@ -1425,26 +1534,24 @@ export default {
             let that = this;
             let url = "";
             let mensaje = "";
-          // alert(that.form.imgFirma);
+            // alert(that.form.imgFirma);
             let formNew = {
-                tipo_servicio:4,
-                id_atencion:0, //id de revision de sistema
-                id_visita:0,
-                id_tipo_documento:13,
-                imgFirma: that.frmimg.imgFirma,
+                tipo_servicio: 4,
+                id_atencion: that.$props.idRevisionSistema, //id de revision de sistema
+                id_visita: 0,
+                id_tipo_documento: 13,
+                imgFirma: that.frmimg.imgFirma
             };
             url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
-
             var loader = that.$loading.show();
             axios
                 .post(url, formNew)
                 .then(function(response) {
-
                     loader.hide();
                     that.flashMessage.show({
                         status: "success",
-                        title: "Éxito al procesar Firma por Atención",
-                        message: "Datos guardados correctamente.",
+                        title: "Proceso realizado exitosamente",
+                        message: that.mensaje,
                         clickable: true,
                         time: 5000,
                         icon: "/iconsflashMessage/success.svg",
@@ -1454,10 +1561,11 @@ export default {
                             }
                         }
                     });
-
+                    /* that.validarFinProceso = 1;
+                    that.$emit("validarFinProceso", that.validarFinProceso);
+                    that.$emit("FinProceso"); */
                 })
                 .catch(error => {
-
                     that.resConfirmarCancelar = false;
                     that.flashMessage.show({
                         status: "error",
@@ -1576,9 +1684,8 @@ export default {
             } else {
                 this.form.frm_mg = 1;
             }
-        },
+        }
         /* Fin Paraclinicos */
-
     }
 };
 </script>

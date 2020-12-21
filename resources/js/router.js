@@ -9,14 +9,11 @@ import SubModulo from "./components/Modulos/Parametrizacion/sub_modulo/SubModulo
 //Cirugia
 import IndexValoracionPreanestesica from "./components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica";
 import IndexAnestesia from "./components/Modulos/Cirugia/anestesia/index";
+import IndexRegistroAnestesia from "./components/Modulos/Cirugia/RegistroAnestesia/index";
 import IndexRegistroTiempo from "./components/Modulos/Cirugia/RegistroTiempo/index";
 import TipoAgente from "./components/Modulos/Cirugia/tipo_agente/TipoAgente";
 import TipoPosiciones from "./components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones";
 import ListaVerificacion from "./components/Modulos/Cirugia/lista_verificacion/ListasComponent";
-
-//import emplo from "./components/ejenplo";
-
-
 
 Vue.use(VueRouter);
 let prefijo = prefix;
@@ -47,6 +44,12 @@ export default new VueRouter({
                 prefijo +
                 "/modulos/cirugia/anestesia",
             component: IndexAnestesia,
+        },
+        {
+            path:
+                prefijo +
+                "/modulos/cirugia/registro_anestesia/mostrar_registro_anestesia",
+            component: IndexRegistroAnestesia,
         },
         {
             path:

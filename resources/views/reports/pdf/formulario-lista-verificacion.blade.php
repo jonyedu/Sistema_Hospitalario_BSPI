@@ -106,7 +106,7 @@
          <table class="tableStyleAll">
              <tr>
                  <th style="border-style: none">
-                     LISTA DE VERIFICACIÓN DE LA SEGURIDAD DE LA CIRUGÍA  
+                     LISTA DE VERIFICACIÓN DE LA SEGURIDAD DE LA CIRUGÍA
                  </th>
              </tr>
 
@@ -117,7 +117,11 @@
                      <img src="{{ public_path('img/logoreport1.png') }}" borde="0" width="100px" height="70px" />
                  </th>
                  <th align="left" colspan="2" style="width: 40%; border-style: none;">
-                     <span ali> Nombre:  {{ $datosPaciente[0]->CirProNomPac }} </span>
+                    @if($datosPaciente->GetBuscarCirugias != null)
+                        <span ali> Nombre:  {{ $datosPaciente->GetBuscarCirugias->CirProNomPac }} </span>
+                    @else
+                        <span ali> Nombre: </span>
+                    @endif
                  </th>
                  <th colspan="2" style="width: 40%; border-style: none">
 
@@ -128,21 +132,33 @@
 
              </tr>
              <tr>
+                <td>
+                    @if ($datosPaciente->GetBuscarCirugias != null)
+                        N° Historia Clinica:    {{ $datosPaciente->GetBuscarCirugias->CirProHisCli }}
+                    @else
+                        N° Historia Clinica:
+                    @endif
                  <td>
-                     N° Historia Clinica:    {{ $datosPaciente[0]->historiac }}
-                 <td>
-                     Edad:  
+                     Edad:
                  </td>
                  <td>
-                     N° Quirofano:  {{ $datosPaciente[0]->CirProQuirofano }}
-                 </td>
+                    @if ($datosPaciente->GetBuscarCirugias != null)
+                        N° Quirofano:    {{ $datosPaciente->GetBuscarCirugias->CirProQuirofano }}
+                    @else
+                        N° Quirofano:
+                    @endif
                  <td>
-                     Fecha: {{ $datosPaciente[0]->created_at }}
+                 <td>
+                     Fecha: {{ $datosPaciente->created_at }}
                  </td>
              <tr>
-                 <td colspan="6">
-                     Procedimiento:  {{ $datosPaciente[0]->CirProProcedimiento }}
-                 </td>
+                <td colspan="6">
+                    @if ($datosPaciente->GetBuscarCirugias != null)
+                        Procedimiento:    {{ $datosPaciente->GetBuscarCirugias->CirProProcedimiento }}
+                    @else
+                        Procedimiento:
+                    @endif
+                 <td>
              </tr>
              </tr>
          </table>
@@ -202,28 +218,43 @@
 
 </tr>
 {{-- FILA --}}
+
 <tr>
+    @if ($datosPaciente->chkentrada01 == 0)
     <td style="width:2% ">
-        {{ $datosPaciente[0]->chkentrada01 }}
+
     </td>
+    @else
+    <td style="width:2% ">
+            X
+    </td>
+    @endif
+
     <td style="width:31.33%;border-style: none">
 
         EL PACIENTE HA CONFIRMADO
     </td>
-    <td style="width:2%">
-        {{ $datosPaciente[0]->chkquirurgica01 }}
+
+    @if ($datosPaciente->chkentrada01 == 0)
+    <td style="width:2% ">
+
     </td>
+    @else
+    <td style="width:2% ">
+            X
+    </td>
+    @endif
     <td style="width:31.33%;border-style: none">
         <b>CONFIRMAR QUE TODOS LOS MIEMBROS DEL EQUIPO SE</b>
-        
-        
+
+
 
     </td>
     <td style="width:2%;border-style: none">
-        
+
     </td>
     <td style="width:31.33%;border-style: none">
-      
+
 
     </td>
 
@@ -261,9 +292,16 @@
 
 
     </td>
-    <td style="width:2%">
-        {{ $datosPaciente[0]->chkquirurgica02 }}
+    @if ($datosPaciente->chkquirurgica02 == 0)
+    <td style="width:2% ">
+
     </td>
+    @else
+    <td style="width:2% ">
+            X
+    </td>
+    @endif
+
     <td style="width:31.33%;border-style: none">
 
         <b>EL CIRUJANO, ANESTESISTA Y ENFERMERO CONFIRMA VERBALMENTE</b>
@@ -278,10 +316,10 @@
 </tr>
              <tr>
                  <td style="width:2%;border-style: none">
-                   
+
                  </td>
                  <td rowspan="2" style="width:31.33%;border-style: none">
-                  
+
                      <ul>
                          <li> SU IDENTIDAD</li>
                          <li> EL SITIO QUIRURJICO</li>
@@ -290,14 +328,14 @@
                      </ul>
                  </td>
                  <td style="width:2%;border-style: none">
-                    
+
                  </td>
                  <td style="width:31.33%;border-style: none">
-                    
+
 
                  </td>
                  <td style="width:2%;border-style: none">
-                     
+
                  </td>
                  <td style="width:31.33%;border-style: none">
                      <b>EL ENFERMERO CONFIRMA VERBALMENTE CON EL EQUIPO :</b>
@@ -307,17 +345,17 @@
 
              </tr>
              {{-- aqui divie --}}
-             
+
              <tr>
                  <td style="width:2%;border-style: none">
 
                  </td>
 
                  <td rowspan="1" style="width:2%;height:2%;;border-style: none">
-                     
+
                  </td>
                  <td style="width:31.33%;border-style: none">
-                    
+
 
                      <ul>
                          <li> SU IDENTIDAD</li>
@@ -361,9 +399,16 @@
 
 </tr>
              <tr>
-                 <td style="width:2% ">
-                    {{ $datosPaciente[0]->chkentrada02 }}
-                 </td>
+                @if ($datosPaciente->chkentrada02 == 0)
+                <td style="width:2% ">
+
+                </td>
+                @else
+                <td style="width:2% ">
+                        X
+                </td>
+                @endif
+
 
 
                  <td style="width:31.33%;border-style: none ">
@@ -378,9 +423,17 @@
                  <td style="width:31.33%;border-style: none ">
 
                  </td>
-                 <td style="width:2%; ">
-                    {{ $datosPaciente[0]->chksalida01 }}
+                 @if ($datosPaciente->chksalida01 == 0)
+                 <td style="width:2% ">
+
                  </td>
+                 @else
+                 <td style="width:2% ">
+                         X
+                 </td>
+                 @endif
+
+
                  <td style="width:31.33%;border-style: none ">
 
                      <b>ELNOMBRE DEL PROCEDIMIENTO REALIZADO:</b>
@@ -391,25 +444,46 @@
 
              {{-- aqui finaliza --}}
              <tr>
-                 <td style="width:2% ">
-                    {{ $datosPaciente[0]->chkentrada03 }}
-                 </td>
+                @if ($datosPaciente->chkentrada03 == 0)
+                <td style="width:2% ">
+
+                </td>
+                @else
+                <td style="width:2% ">
+                        X
+                </td>
+                @endif
+
                  <td style="width:31.33%;border-style: none">
 
                      SE HA COMPLETADO EL CONTROL DE LA SEGURIDAD DE LA ANESTESIA
                  </td>
-                 <td style="width:2%">
-                    {{ $datosPaciente[0]->chkquirurgica03 }}
-                 </td>
+                 @if ($datosPaciente->chkquirurgica03 == 0)
+                <td style="width:2% ">
+
+                </td>
+                @else
+                <td style="width:2% ">
+                        X
+                </td>
+                @endif
+
                  <td style="width:31.33%;border-style: none">
                      <b> PREVISION DE EVENTOS CRITICOS EL CIRGUJANO REVISA </b>
                      LOS PASOS O IMPREVISTOS. DURACION DE LA OPERACION Y LA PERDIDA DE SANGRE PREVISTA
 
 
                  </td>
-                 <td style="width:2%">
-                    {{ $datosPaciente[0]->chksalida02 }}
+                 @if ($datosPaciente->chksalida02 == 0)
+                 <td style="width:2% ">
+
                  </td>
+                 @else
+                 <td style="width:2% ">
+                         X
+                 </td>
+                 @endif
+
                  <td style="width:31.33%;border-style: none">
                      <b>AGUJAS SON CORRECTOS:</b> O NO PROCEDEN
                      <br>
@@ -443,25 +517,46 @@
              </tr>
              {{-- FILA --}}
              <tr>
-                 <td style="width:2% ">
-                    {{ $datosPaciente[0]->chkentrada04 }}
-                 </td>
+                @if ($datosPaciente->chkentrada04 == 0)
+                <td style="width:2% ">
+
+                </td>
+                @else
+                <td style="width:2% ">
+                        X
+                </td>
+                @endif
+
                  <td style="width:31.33%;border-style: none">
 
                      PULSIOXIMETRO COLOCADO Y EN FUNCIONAMIENTO
                  </td>
-                 <td style="width:2%">
-                    {{ $datosPaciente[0]->chkquirurgica04 }}
+                 @if ($datosPaciente->chkquirurgica04 == 0)
+                 <td style="width:2% ">
+
                  </td>
+                 @else
+                 <td style="width:2% ">
+                         X
+                 </td>
+                 @endif
+
                  <td style="width:31.33%;border-style: none">
                      <b> EL EQUIPO DE ANESTESIA REVISA </b>
                      SI EL PACIENTE PRESENTA ALGUN PROBLEMA ESPECIFICO
 
 
                  </td>
-                 <td style="width:2%">
-                    {{ $datosPaciente[0]->chksalida03 }}
+                 @if ($datosPaciente->chksalida03 == 0)
+                 <td style="width:2% ">
+
                  </td>
+                 @else
+                 <td style="width:2% ">
+                         X
+                 </td>
+                 @endif
+
                  <td style="width:31.33%;border-style: none">
                      <b>EL ETIQUETADO DE LAS MUESTRAS</b> (QUE FIGURE EL NOMBRE DEL PACIENTE)
                      <br>
@@ -495,25 +590,46 @@
              </tr>
              {{-- FILA --}}
              <tr>
-                 <td style="width:2% ">
-                    {{ $datosPaciente[0]->chkquirurgica04 }}
-                 </td>
+                @if ($datosPaciente->chkquirurgica04 == 0)
+                <td style="width:2% ">
+
+                </td>
+                @else
+                <td style="width:2% ">
+                        X
+                </td>
+                @endif
+
                  <td style="width:31.33%;border-style: none">
 
                      <b> EL PACIENTE TIEN ALERGIA CONOCIDAS NO / SI
                      </b>
                  </td>
-                 <td style="width:2%">
-                    {{ $datosPaciente[0]->chkquirurgica05 }}
+                 @if ($datosPaciente->chkquirurgica05 == 0)
+                 <td style="width:2% ">
+
                  </td>
+                 @else
+                 <td style="width:2% ">
+                         X
+                 </td>
+                 @endif
+
                  <td style="width:31.33%;border-style: none">
                      <b> EL EQUIPO DE ENFERMERIA REVISA </b>
 
 
                  </td>
-                 <td style="width:2%">
-                    {{ $datosPaciente[0]->chksalida04 }}
+                 @if ($datosPaciente->chksalida04 == 0)
+                 <td style="width:2% ">
+
                  </td>
+                 @else
+                 <td style="width:2% ">
+                         X
+                 </td>
+                 @endif
+
                  <td style="width:31.33%;border-style: none">
                      <b>SI HAY PROBLEMAS QUE RESOLVER RELACIONADOS CON EL INSTRUMENTAL Y LOS EQUIPOS</b>
 
@@ -547,9 +663,16 @@
 
              </tr>
              <tr>
-                 <td style="width:2% ">
-                    {{ $datosPaciente[0]->chkentrada06 }}
-                 </td>
+                @if ($datosPaciente->chkentrada06 == 0)
+                <td style="width:2% ">
+
+                </td>
+                @else
+                <td style="width:2% ">
+                        X
+                </td>
+                @endif
+
                  <td style="width:31.33%;border-style: none">
 
                      <b> VIA AEREA DIFICIL / RIESGO DE ASPIRACION? NO
@@ -557,18 +680,32 @@
 
 
                  </td>
-                 <td style="width:2%">
-                    {{ $datosPaciente[0]->chkquirurgica06 }}
+                 @if ($datosPaciente->chkquirurgica06 == 0)
+                 <td style="width:2% ">
+
                  </td>
+                 @else
+                 <td style="width:2% ">
+                         X
+                 </td>
+                 @endif
+
                  <td style="width:31.33%;border-style: none">
                      <b> SE HA ADMINISTRADO PROFILAXIS ANTIBIOTICA EN LOS </b>
                      <br>
                      SI
 
                  </td>
-                 <td style="width:2%">
-                    {{ $datosPaciente[0]->chksalida05 }}
+                 @if ($datosPaciente->chksalida05 == 0)
+                 <td style="width:2% ">
+
                  </td>
+                 @else
+                 <td style="width:2% ">
+                         X
+                 </td>
+                 @endif
+
                  <td style="width:31.33%;border-style: none">
                      <b>EL CIRUJANO, EL ANESTESISTA Y EL ENFERMERO REVISAN LOS PRINCIPALES ASPECTOS</b>
 
@@ -576,9 +713,16 @@
 
              </tr>
              <tr>
-                 <td style="width:2% ">
-                    {{ $datosPaciente[0]->chksalida05 }}
-                 </td>
+                @if ($datosPaciente->chksalida05 == 0)
+                <td style="width:2% ">
+
+                </td>
+                @else
+                <td style="width:2% ">
+                        X
+                </td>
+                @endif
+
                  <td style="width:31.33%;border-style: none">
 
                      <b>
@@ -587,7 +731,7 @@
 
                  </td>
                  <td style="width:2%">
-                     X
+                      NO
                  </td>
                  <td style="width:31.33%;border-style: none">
                      <b>NO</b>
@@ -632,9 +776,16 @@
              {{-- aqui empieza*otra vez --}}
 
              <tr>
-                 <td style="width:2% ">
-                    {{ $datosPaciente[0]->chkentrada07 }}
-                 </td>
+                @if ($datosPaciente->chkentrada07 == 0)
+                <td style="width:2% ">
+
+                </td>
+                @else
+                <td style="width:2% ">
+                        X
+                </td>
+                @endif
+
                  <td style="width:31.33%;border-style: none">
 
                      <b>RIESGO DE HEMORRAGIA >500ML (7 MLVKG EN NIÑOS)
@@ -645,9 +796,16 @@
 
 
                  </td>
-                 <td style="width:2%">
-                    {{ $datosPaciente[0]->chkquirurgica07 }}
+                 @if ($datosPaciente->chkquirurgica07 == 0)
+                 <td style="width:2% ">
+
                  </td>
+                 @else
+                 <td style="width:2% ">
+                         X
+                 </td>
+                 @endif
+
                  <td style="width:31.33%;border-style: none">
                      <b>PUEDE VISUALIZAR IMAGENES DIAGNOSTICADAS </b>
                      <br>
@@ -665,9 +823,16 @@
              </tr>
              {{-- LINEA EN BLACO --}}
              <tr>
-                 <td style="width:2% ">
-                    {{ $datosPaciente[0]->chkentrada07 }}
-                 </td>
+                @if ($datosPaciente->chkentrada07 == 0)
+                <td style="width:2% ">
+
+                </td>
+                @else
+                <td style="width:2% ">
+                        X
+                </td>
+                @endif
+
                  <td style="width:31.33%;border-style: none">
 
                      <b>
@@ -675,9 +840,16 @@
                      </b> SI SE HA PREVISTO LA DISPONIBILIDAD DE ACCESO INTRAVENOSO Y LIQUIDOS ADECUADOS
 
                  </td>
-                 <td style="width:2%">
-                    {{ $datosPaciente[0]->chkquirurgica07 }}
+                 @if ($datosPaciente->chkquirurgica07 == 0)
+                 <td style="width:2% ">
+
                  </td>
+                 @else
+                 <td style="width:2% ">
+                         X
+                 </td>
+                 @endif
+
                  <td style="width:31.33%;border-style: none">
                      <b>NO PROCEDE</b>
 
@@ -720,46 +892,47 @@
 
          <table class="tableStyleAll">
              <tr>
+
                  <th rowspan="8" style="width:60%">
-                   Observacion : 
+                   Observacion :
                    <br>
-                   {{ $datosPaciente[0]->observacion }}
+                   {{ $datosPaciente->observacion }}
                  </th>
                  <th rowspan="6" style="width:40%">
-                    @if ( isset($firma->FIRMAS))
-                    <img src="data:image/jpeg;base64,'{{ $firma->FIRMAS }}'" border="0"  width="300px" height="100px"> 
+                    {{-- @if ( isset($firma->FIRMAS))
+                    <img src="data:image/jpeg;base64,'{{ $firma->FIRMAS }}'" border="0"  width="300px" height="100px">
                 @else
-                no hay imagen ;( 
-                     {{-- <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->graficoCirugia->GRAFICAS }}'" border="0" width="690px" height="360px"> --}}
-                @endif
-                    
-                   
-                    
+                no hay imagen ;(
+
+                @endif --}}
+
+
+
                  </th>
              </tr>
             {{-- FILAS --}}
              <tr>
-                  
-                
-             </tr>
-             <tr>
-                
+
 
              </tr>
              <tr>
-                 
+
 
              </tr>
              <tr>
-                 
+
+
              </tr>
              <tr>
-                 
+
+             </tr>
+             <tr>
+
 
              </tr>
              <tr>
                  <td>
-                    {{ $datosPaciente[0]->user_id }}
+                    {{ $datosPaciente->user_id }}
                 _______________________________________
                 <br>
                 Nombre del Responsable
@@ -768,7 +941,7 @@
              </tr>
              <tr>
                 <td>
-                    {{ $datosPaciente[0]->user_id }}
+                    {{ $datosPaciente->user_id }}
                     _______________________________________
                     <br>
                     Cargo

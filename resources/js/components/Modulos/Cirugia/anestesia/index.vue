@@ -711,8 +711,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Seccion donde muestra la lista de los pacientes que tienen una cita -->
         <modal
             :width="'65%'"
             height="auto"
@@ -725,7 +723,6 @@
                 @handleSeleccionarClick="handleSeleccionarClick"
             ></lista-cirugia-programa-paciente>
         </modal>
-        <!-- Fin Seccion donde muestra la lista de los pacientes que tienen una cita -->
         <FlashMessage ></FlashMessage>
     </div>
 </template>
