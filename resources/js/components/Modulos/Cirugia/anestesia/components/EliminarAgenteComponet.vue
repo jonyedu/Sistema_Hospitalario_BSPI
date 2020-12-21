@@ -5,14 +5,54 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="row">
                         <!-- Icono -->
-                        <div class="col-lg-12 col-md-12 col-sm-12 text-left">
-                            <img
-                                class="mt-5 mb-5"
-                                :src="'/' + datos.ruta_icono"
-                                alt="no carga"
-                                style="margin:auto;"
-                            />
-                        </div>
+                        <template>
+                            <!-- Cuando es agente, pero no incluye posicion -->
+                            <template v-if="datos.adicional.tipo == 'agente'">
+                                <div
+                                    class="col-lg-12 col-md-12 col-sm-12 text-left"
+                                >
+                                    <img
+                                        class="mt-5 mb-5"
+                                        :src="'/' + datos.columnas.agente.src"
+                                        alt="no carga"
+                                        style="margin:auto;"
+                                    />
+                                </div>
+                            </template>
+                            <!-- Cuando solo es respiracion -->
+                            <template
+                                v-else-if="
+                                    datos.adicional.tipo == 'respiracion'
+                                "
+                            >
+                                <div
+                                    class="col-lg-12 col-md-12 col-sm-12 text-left"
+                                >
+                                    <img
+                                        class="mt-5 mb-5"
+                                        :src="'/' + datos.columnas.agente.src"
+                                        alt="no carga"
+                                        style="margin:auto;"
+                                    />
+                                </div>
+                            </template>
+                            <!-- Cuando solo es posicion -->
+                            <template
+                                v-else-if="datos.adicional.tipo == 'posicion'"
+                            >
+                                <div
+                                    class="col-lg-12 col-md-12 col-sm-12 text-left"
+                                >
+                                    <img
+                                        class="mt-5 mb-5"
+                                        :src="'/' + datos.posicion.src"
+                                        alt="no carga"
+                                        style="margin:auto;"
+                                    />
+                                </div>
+                            </template>
+                        </template>
+
                         <!-- Nombre del Agente -->
                         <template>
                             <!-- Cuando es agente, pero no incluye posicion -->
@@ -42,7 +82,7 @@
                                         type="number"
                                         class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                         placeholder="Valor"
-                                        v-model="datos.valor"
+                                        v-model="datos.columnas.agente.value"
                                     />
                                 </div>
                             </template>
@@ -66,9 +106,7 @@
                             </template>
                             <!-- Cuando solo es posicion -->
                             <template
-                                v-else-if="
-                                    datos.adicional.tipo == 'posicion'
-                                "
+                                v-else-if="datos.adicional.tipo == 'posicion'"
                             >
                                 <div
                                     class="col-lg-12 col-md-12 col-sm-12 text-left"
@@ -94,7 +132,7 @@
                                         type="number"
                                         class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                         placeholder="Nuevo valor"
-                                        v-model="datos.valorNuevo"
+                                        v-model="datos.columnas.agente.valueNew"
                                     />
                                 </div>
                             </template>
@@ -105,7 +143,6 @@
                                 "
                             >
                                 <v-select
-
                                     :value="respiraciones.value"
                                     :options="respiraciones"
                                     label="descripcion"
@@ -116,9 +153,7 @@
                             </template>
                             <!-- Cuando solo es posicion -->
                             <template
-                                v-else-if="
-                                    datos.adicional.tipo == 'posicion'
-                                "
+                                v-else-if="datos.adicional.tipo == 'posicion'"
                             >
                                 <v-select
                                     :value="posiciones.value"
@@ -180,16 +215,16 @@ export default {
             this.$emit("handleSeleccionarClick", this.$props.datos);
         },
         setSelectedRespiracion(value) {
-            if(value != null){
-                this.$props.datos.ruta_icono = value.img;
-                this.$props.datos.valorNuevo = 0;
+            if (value != null) {
+                this.$props.datos.columnas.agente.src = value.img;
+                this.$props.datos.columnas.agente.valueNew = 0;
                 this.$props.datos.adicional.system_name = value.descripcion;
             }
         },
         setSelectedPosicion(value) {
-            if(value != null){
-                this.$props.datos.ruta_icono = value.img;
-                this.$props.datos.valorNuevo = 0;
+            if (value != null) {
+                this.$props.datos.posicion.src = value.img;
+                this.$props.datos.posicion.valorNuevo = 0;
                 this.$props.datos.adicional.system_name = value.descripcion;
             }
         }
@@ -241,7 +276,7 @@ export default {
                     descripcion: "DE LADO",
                     img: "img/icons/pos_lado.png"
                 }
-            ],
+            ]
         };
     },
     computed: {}

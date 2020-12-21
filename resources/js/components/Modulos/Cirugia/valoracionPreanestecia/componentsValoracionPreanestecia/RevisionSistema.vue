@@ -744,7 +744,7 @@ export default {
             type: Object
         },
         rutaSelloImg:{
-            type: String 
+            type: String
         }
     },
     data: function() {
@@ -799,6 +799,7 @@ export default {
             },
             form: {
                 frm_idCirugiaProgramada: "",
+                frm_id_revision_sistema: 0,
 
                 /* Cardiovascular  */
                 frm_hipertension: 0,
@@ -874,37 +875,6 @@ export default {
         ); */
     },
     methods: {
-        validarForm() {
-            //Se comprueba que un checkbox tenga data
-            let keys = Object.keys(this.chk);
-            let poseeSeleccionCheck = false;
-            keys.forEach(element => {
-                if (this.chk[element]) {
-                    poseeSeleccionCheck = true;
-                }
-            });
-            if (!poseeSeleccionCheck) {
-                this.$swal({
-                    icon: "warning",
-                    title: "Existen campos requeridos",
-                    text: "Debe seleccionar por lo menos un motivo"
-                });
-                return false;
-            } else {
-                if (
-                    this.form.descripcion == "" ||
-                    this.form.descripcion == null
-                ) {
-                    this.$swal({
-                        icon: "warning",
-                        title: "Existen campos requeridos",
-                        text: "La descripción no debe estar vacia"
-                    });
-                    return false;
-                }
-            }
-            return true;
-        },
         //Metodo para cargar el motivo antecedente del paciente mediantes el cod cita
         cargarRevisionSistema: function() {
             let that = this;
@@ -1062,12 +1032,21 @@ export default {
                     loader.hide();
                 })
                 .catch(error => {
-                    //Errores
                     loader.hide();
-                    that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar cargarRevisionSistema",
+                        message:"Por favor comuníquese con el administrador. " +
+                                error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background:
+                                    "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
                     });
                 });
         },
@@ -1092,6 +1071,10 @@ export default {
                     .post(url, this.form)
                     .then(function(response) {
                         loader.hide();
+                        if(that.form.frm_id_revision_sistema <= 0){
+                            that.form.frm_id_revision_sistema = response.data.value;
+                            that.$emit("IdRevisionSistema", response.data.value);
+                        }
                         /* that.$swal({
                             icon: "success",
                             title: "Proceso realizado exitosamente",
@@ -1100,13 +1083,21 @@ export default {
                         //that.cargarAtencionMotivo();
                     })
                     .catch(error => {
-                        if (error.response.status === 421) {
-                            that.$swal({
-                                icon: "error",
-                                title: "Existe un error",
-                                text: error.response.data.msg
-                            });
-                        }
+                        that.flashMessage.show({
+                            status: "error",
+                            title: "Error al procesar guardarModificar",
+                            message:"Por favor comuníquese con el administrador. " +
+                                    error,
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/error.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
                         loader.hide();
                     });
             } else {

@@ -23,6 +23,18 @@
                         align="center"
                         v-text="mensaje"
                     ></p>
+                    <div v-if="campoObservacion"
+                        class="col-lg-12 col-md-12 col-sm-12 text-center mt-4 mb-5"
+                    >
+                        <div class="form-group row">
+                            <textarea
+                                type="text"
+                                class="form-control"
+                                placeholder="Motivo de la Suspención"
+                                v-model="observacion"
+                            />
+                        </div>
+                    </div>
                     <div
                         class="col-lg-12 col-md-12 col-sm-12 text-center mt-4 mb-5"
                     >
@@ -62,17 +74,41 @@ export default {
         mensaje: {
             type: String,
             required: true
+        },
+        campoObservacion:{
+            type:Boolean,
+            default: false
         }
     },
     methods: {
         validarConfirmarCandelar(value) {
+            if (value) {
+                if (this.observacion == "") {
+                    this.flashMessage.show({
+                        status: "warning",
+                        title: "Advertencia",
+                        message: "Necesita una observación, para poder suspender la cirugía.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/warning.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    return;
+                }
+            }
             this.$emit("respuestaConfirmarCancelar", value);
+            this.$emit("Observacion", this.observacion);
         }
     },
     mounted: function() {},
     data: function() {
         return {
-            respuestaConfirmarCancelar: false
+            respuestaConfirmarCancelar: false,
+            observacion: ""
         };
     },
     computed: {}

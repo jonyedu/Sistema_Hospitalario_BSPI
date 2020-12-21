@@ -28,11 +28,11 @@ class CreateTbAntecedenteTable extends Migration
                 $table->unsignedInteger('marihuana')->default(0);
                 $table->unsignedInteger('otrosToxico')->default(0);
                 $table->string('cual_otrosToxico')->nullable();
-                $table->string('g')->nullable();
-                $table->string('p')->nullable();
-                $table->string('a')->nullable();
-                $table->string('c')->nullable();
-                $table->string('fur')->nullable();
+                $table->unsignedInteger('g')->nullable();
+                $table->unsignedInteger('p')->nullable();
+                $table->unsignedInteger('a')->nullable();
+                $table->unsignedInteger('c')->nullable();
+                $table->date('fur')->nullable();
                 $table->unsignedInteger('familiar')->default(0);
                 $table->string('cual_familiar')->nullable();
                 $table->unsignedInteger('esteroide')->default(0);

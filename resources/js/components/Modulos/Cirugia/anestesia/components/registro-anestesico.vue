@@ -564,18 +564,9 @@
                                                                                     index_columna,
                                                                                     index_minutos_columna,
                                                                                     index_agente,
-                                                                                    minutos_columna[
-                                                                                        't_init'
-                                                                                    ],
-                                                                                    minutos_columna[
-                                                                                        't_fin'
-                                                                                    ],
-                                                                                    agente._src,
-                                                                                    agente.descripcion,
-                                                                                    agente.valor,
-                                                                                    agente.id,
-                                                                                    dato.es_agente,
-                                                                                    dato.es_posicion
+                                                                                    minutos_columna,
+                                                                                    agente,
+                                                                                    dato
                                                                                 )
                                                                             "
                                                                             ><img
@@ -2011,21 +2002,41 @@ export default {
         return {
             iniciado_eliminar: false,
             datos_eliminar_agente: {
-                index: "",
-                index_fila: "",
-                index_columna: "",
-                index_minutos_columna: "",
-                index_agente: "",
-                index: "",
-                minutes: "",
-                adicional: { system_name: "agente" },
-                ruta_icono: "",
-                descripcion: "",
-                valor: 0,
-                valorNuevo: 0,
-                respuesta: false,
-                respuestaEliminar: false,
-                id: 0
+                respuesta_modificar: false,
+                respuesta_eliminar: false,
+                index_all:{
+                    index: "",
+                    index_fila: "",
+                    index_columna: "",
+                    index_minutos_columna: "",
+                    index_agente: "",
+                },
+                columnas:{
+                    agente:{
+                        src: "",
+                        description: "",
+                        cod:"",
+                        value:"",
+                        valueNew: "",
+                    },
+                    t_fin: "",
+                    t_init: "",
+                },
+                posicion:{
+                    description: "",
+                    cod: "",
+                    codRe: "",
+                    src: "",
+                    nombre_sistema: "",
+                },
+                dato:{
+                    es_agente: "",
+                    es_posicion: ""
+                },
+                adicional: {
+                    system_name: "",
+                    tipo: "",
+                },
             },
             resConfirmarCancelar: false,
             icon: "",
@@ -2482,77 +2493,78 @@ export default {
             index_columna,
             index_minutos_columna,
             index_agente,
-            t_init,
-            t_fin,
-            src,
-            descripcion,
-            valor,
-            id,
-            es_agente,
-            es_posicion
+            minutos_columna = {},
+            agente = {},
+            dato = {}
         ) {
-            this.limpiarDatosEliminarAgente();
-            this.datos_eliminar_agente.index = index;
-            this.datos_eliminar_agente.index_fila = index_fila;
-            this.datos_eliminar_agente.index_columna = index_columna;
-            this.datos_eliminar_agente.index_minutos_columna = index_minutos_columna;
-            this.datos_eliminar_agente.index_agente = index_agente;
-            this.datos_eliminar_agente.is_tpo_init = t_init;
-            this.datos_eliminar_agente.is_tpo_fin = t_fin;
-            if (es_agente && index_fila != 29) {
+            this.lmpDatosEliminarAgente();
+            //Inicia la optimizacion
+            this.datos_eliminar_agente.index_all.index = index;
+            this.datos_eliminar_agente.index_all.index_fila = index_fila;
+            this.datos_eliminar_agente.index_all.index_columna = index_columna;
+            this.datos_eliminar_agente.index_all.index_minutos_columna = index_minutos_columna;
+            this.datos_eliminar_agente.index_all.index_agente = index_agente;
+            this.datos_eliminar_agente.columnas.t_init = minutos_columna['t_init'];
+            this.datos_eliminar_agente.columnas.t_fin = minutos_columna['t_fin'];
+            //Agente
+            this.datos_eliminar_agente.columnas.agente.cod = agente.id;
+            this.datos_eliminar_agente.columnas.agente.description = agente.descripcion;
+            this.datos_eliminar_agente.columnas.agente.src = agente._src;
+            this.datos_eliminar_agente.columnas.agente.value = agente.valor;
+            //Fin Agente
+            this.datos_eliminar_agente.dato.es_agente = dato.es_agente;
+            this.datos_eliminar_agente.dato.es_posicion = dato.es_posicion;
+            //Fin la optimizacion
+
+            if (this.datos_eliminar_agente.dato.es_agente && this.datos_eliminar_agente.index_all.index_fila != 29) {
                 this.datos_eliminar_agente.adicional = {
-                    system_name: descripcion,
+                    system_name: this.datos_eliminar_agente.columnas.agente.description,
                     tipo: "agente"
                 };
-            } else if (es_agente && index_fila == 29) {
+            } else if (this.datos_eliminar_agente.dato.es_agente && this.datos_eliminar_agente.index_all.index_fila == 29) {
                 this.datos_eliminar_agente.adicional = {
-                    system_name: descripcion,
+                    system_name: this.datos_eliminar_agente.columnas.agente.description ,
                     tipo: "respiracion"
                 };
-            } else if (es_posicion) {
-                this.datos_eliminar_agente.adicional = {
-                    system_name: descripcion,
-                    tipo: "posicion"
-                };
             }
-            this.datos_eliminar_agente.ruta_icono = src;
-            this.datos_eliminar_agente.descripcion = descripcion;
-            this.datos_eliminar_agente.valor = valor;
-            this.datos_eliminar_agente.id = id;
             this.$modal.show("EliminarAgente");
         },
-        eliminarPosicion(index, index_fila, index_columna, posicion = {}) {
-            this.limpiarDatosEliminarPosicion();
-            this.datos_eliminar_agente.index = index;
-            this.datos_eliminar_agente.index_fila = index_fila;
-            this.datos_eliminar_agente.index_columna = index_columna;
+        eliminarPosicion(
+            index,
+            index_fila,
+            index_columna,
+            posicion = {}
+        ) {
+            this.lmpDatosEliminarAgente();
+            this.datos_eliminar_agente.index_all.index = index;
+            this.datos_eliminar_agente.index_all.index_fila = index_fila;
+            this.datos_eliminar_agente.index_all.index_columna = index_columna;
+            //Posicicion
+            this.datos_eliminar_agente.posicion.cod = posicion.id;
+            this.datos_eliminar_agente.posicion.codRe = posicion.idRe;
+            this.datos_eliminar_agente.posicion.description = posicion.descripcion;
+            this.datos_eliminar_agente.posicion.nombre_sistema = posicion.name_system;
+            this.datos_eliminar_agente.posicion.src = posicion.img_url;
+            //Fin
+
             this.datos_eliminar_agente.adicional = {
-                system_name: posicion.descripcion,
+                system_name: this.datos_eliminar_agente.posicion.description,
                 tipo: "posicion"
             };
-            this.datos_eliminar_agente.ruta_icono = posicion.img_url;
-            this.datos_eliminar_agente.descripcion = posicion.descripcion;
-            this.datos_eliminar_agente.valor = 0;
-            this.datos_eliminar_agente.id = posicion.idRe;
             this.$modal.show("EliminarAgente");
         },
         handleSeleccionarClick(value) {
             if (value.respuesta) {
-                var valor = parseInt(value.valorNuevo);
-                var minutes = value.is_tpo_init;
-                var is_tpo_init = value.is_tpo_init;
-                var is_tpo_fin = value.is_tpo_fin;
+                var valor = parseInt(value.columnas.agente.valueNew);
+                var minutes = value.columnas.t_init;
+                var is_tpo_init = value.columnas.t_init;
+                var is_tpo_fin = value.columnas.t_fin;
                 var adicional = value.adicional;
-                var ruta_icono = value.ruta_icono;
-                this.form.id_datos_agente = value.id;
+                var ruta_icono = value.posicion.src == "" ? value.columnas.agente.src:value.posicion.src;
+                this.form.id_datos_agente = value.posicion.codRe == "" ? value.columnas.agente.cod: value.posicion.codRe;
                 var indice_fila = this.obtenerIndice(valor);
                 if (adicional.tipo == "agente") {
-                    //Recorrer el arreglo para saber en que posicion se debe guardar
-                    // Verifica el índice según la hora
-                    for (const column_quince of this.lista_horas_avanzadas_v[
-                        this.indice_hora
-                    ].datos[indice_fila + this.index_points]
-                        .columnasQuinceMin) {
+                    for (const column_quince of this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin) {
                         // Recorre cada fila
                         // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
                         if (column_quince.columnas) {
@@ -2566,13 +2578,14 @@ export default {
                                         minutes >= col_cince_min.t_init &&
                                         col_cince_min.t_fin > minutes
                                     ) {
-                                        col_cince_min.agentes.push({
+                                        /* col_cince_min.agentes.push({
                                             descripcion: adicional.system_name,
                                             valor: valor,
-                                            _src: ruta_icono
-                                        });
+                                            _src: ruta_icono,
+                                            id: this.form.id_datos_agente
+                                        }); */
                                         // Agregar dato de envío
-                                        this.enviarDatosAgente(
+                                        this.enviarDatosAgente1(
                                             {
                                                 tpo_ini: is_tpo_init,
                                                 tpo_fin: is_tpo_fin,
@@ -2584,12 +2597,8 @@ export default {
                                                 indice_hora: this.indice_hora
                                             },
                                             adicional.tipo,
-                                            value.es_posicion,
-                                            {},
-                                            adicional.system_name,
-                                            valor,
-                                            ruta_icono,
-                                            {},
+                                            value,
+                                            col_cince_min,
                                             column_quince
                                         );
                                     }
@@ -2597,22 +2606,15 @@ export default {
                             }
                         }
                     }
-                    this.lista_horas_avanzadas_v[value.index].datos[
-                        value.index_fila
-                    ].columnasQuinceMin[value.index_columna].columnas[
-                        value.index_minutos_columna
-                    ].agentes.splice(value.indexLista, 1);
+                    this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.splice(value.index_all.indexLista, 1);
                 } else if (adicional.tipo == "respiracion") {
-                    this.lista_horas_avanzadas_v[value.index].datos[
-                        value.index_fila
-                    ].columnasQuinceMin[value.index_columna].columnas[
-                        value.index_minutos_columna
-                    ].agentes.push({
+                    /* this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.push({
                         descripcion: adicional.system_name,
                         valor: 0,
-                        _src: ruta_icono
-                    });
-                    this.enviarDatosAgente(
+                        _src: ruta_icono,
+                        id: this.form.id_datos_agente
+                    }); */
+                    this.enviarDatosAgente1(
                         {
                             tpo_ini: is_tpo_init,
                             tpo_fin: is_tpo_fin,
@@ -2623,23 +2625,19 @@ export default {
                             name: adicional.system_name,
                             indice_hora: this.indice_hora
                         },
-                        adicional.tipo
+                        adicional.tipo,
+                        value,
+                        this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna]
                     );
-                    this.lista_horas_avanzadas_v[value.index].datos[
-                        value.index_fila
-                    ].columnasQuinceMin[value.index_columna].columnas[
-                        value.index_minutos_columna
-                    ].agentes.splice(value.indexLista, 1);
+                    this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.splice(value.index_all.indexLista, 1);
                 } else if (adicional.tipo == "posicion") {
-                    this.lista_horas_avanzadas_v[value.index].datos[
-                        value.index_fila
-                    ].columnasQuinceMin[value.index_columna].posicion = {
+                    /* this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].posicion = {
                         descripcion: adicional.system_name,
-                        idRe: valor,
+                        idRe:this.form.id_datos_agente,
                         img_url: ruta_icono,
                         name_system: adicional.system_name
-                    };
-                    this.enviarDatosAgente(
+                    }; */
+                    this.enviarDatosAgente1(
                         {
                             tpo_ini: is_tpo_init,
                             tpo_fin: is_tpo_fin,
@@ -2650,7 +2648,11 @@ export default {
                             name: adicional.system_name,
                             indice_hora: this.indice_hora
                         },
-                        adicional.tipo
+                        adicional.tipo,
+                        value,
+                        {},
+                        this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna]
+
                     );
                 }
                 /* Esta linea eliminará el agente de la grafica */
@@ -2670,11 +2672,11 @@ export default {
             } else if (value.respuestaEliminar) {
                 var adicional = value.adicional;
                 if (adicional.tipo == "agente") {
-                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+                    this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.splice(value.index_all.indexLista, 1);
                 } else if (adicional.tipo == "respiracion") {
-                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes.splice(value.indexLista, 1);
+                    this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.splice(value.index_all.indexLista, 1);
                 } else if (adicional.tipo == "posicion") {
-                    this.lista_horas_avanzadas_v[value.index].datos[value.index_fila].columnasQuinceMin[value.index_columna].posicion = {
+                    this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].posicion = {
                         descripcion: "",
                         idRe: "",
                         img_url: "",
@@ -2697,6 +2699,29 @@ export default {
                 });
             }
             this.$modal.hide("EliminarAgente");
+        },
+        lmpDatosEliminarAgente(){
+            this.datos_eliminar_agente.respuesta_modificar = false;
+            this.datos_eliminar_agente.respuesta_modificar = false;
+            this.datos_eliminar_agente.index_all.index = "";
+            this.datos_eliminar_agente.index_all.index_fila = "";
+            this.datos_eliminar_agente.index_all.index_columna = "";
+            this.datos_eliminar_agente.index_all.index_minutos_columna = "";
+            this.datos_eliminar_agente.index_all.index_agente = "";
+            this.datos_eliminar_agente.columnas.agente.src = "";
+            this.datos_eliminar_agente.columnas.agente.description = "";
+            this.datos_eliminar_agente.columnas.agente.cod ="";
+            this.datos_eliminar_agente.columnas.agente.value ="";
+            this.datos_eliminar_agente.columnas.agente.valueNew = "";
+            this.datos_eliminar_agente.columnas.t_fin = "";
+            this.datos_eliminar_agente.columnas.t_init = "";
+            this.datos_eliminar_agente.posicion.description = "";
+            this.datos_eliminar_agente.posicion.cod = "";
+            this.datos_eliminar_agente.posicion.codRe = "";
+            this.datos_eliminar_agente.posicion.src = "";
+            this.datos_eliminar_agente.posicion.nombre_sistema = "";
+            this.datos_eliminar_agente.dato.es_agente = "";
+            this.datos_eliminar_agente.dato.es_posicion = ""
         },
         limpiarDatosEliminarAgente() {
             this.datos_eliminar_agente.index = "";
@@ -3141,6 +3166,65 @@ export default {
         /**
          * Método para enviar datos de la rejilla (agentes), cada que se registen (pasando 5 min)
          */
+        enviarDatosAgente1(
+            datos = {},
+            tipo,
+            agente = {},
+            col_cince_min = {},
+            column_quince = []
+        ) {
+            let that = this;
+            this.form.cirugia_id = this.$props.idSecCirPro;
+            let url = "/modulos/cirugia/anestesia/agentes/guardado";
+            axios
+                .post(url, {
+                    id_datos_agente: this.form.id_datos_agente,
+                    registro_anestesia_id: this.form.registro_anestesia_id,
+                    datos: datos,
+                    tipo: tipo,
+                    SecCirPro: this.form.cirugia_id
+                })
+                .then(response => {
+                    this.datos_server = response.data;
+                    //alert("es_posicion:" + es_posicion);
+                    if (agente.dato.es_agente) {
+                        console.log(agente);
+                        col_cince_min.agentes.push({
+                            descripcion: agente.columnas.agente.description,
+                            valor: agente.columnas.agente.valueNew ,
+                            _src: agente.columnas.agente.src,
+                            id: response.data.datos
+                        });
+                        console.log(col_cince_min.agentes);
+                    } else {
+                        /* Object.assign(agente.posicion, {
+                            idRe: response.data.datos
+                        }); */
+                        column_quince.posicion.descripcion = agente.posicion.description;
+                        column_quince.posicion.id = agente.posicion.cod;
+                        column_quince.posicion.img_url = agente.posicion.src;
+                        column_quince.posicion.idRe = agente.posicion.codRe;
+                    }
+                    this.form.id_datos_agente = 0;
+                })
+                .catch(error => {
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar enviarDatosAgente1",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                });
+        },
         enviarDatosAgente(
             datos = {},
             tipo,

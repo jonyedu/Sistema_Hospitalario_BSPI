@@ -26,9 +26,9 @@ class DetalleTiempoSeeder extends Seeder
                         'status' => '1',
                     ]);
                 }
-                if ($detalleTiempo->descripcion != 'Preparación de Anestesiólogo') {
+                if ($detalleTiempo->descripcion != 'Ingreso de Anestesiólogo') {
                     DetalleTiempo::create([
-                        'descripcion' => 'Preparación de Anestesiólogo',
+                        'descripcion' => 'Ingreso de Anestesiólogo',
                         'usu_created_update' => 1,
                         'pcip' => '192.168.1.196',
                         'status' => '1',
@@ -60,7 +60,7 @@ class DetalleTiempoSeeder extends Seeder
                 'status' => '1',
             ]);
             DetalleTiempo::create([
-                'descripcion' => 'Preparación de Anestesiólogo',
+                'descripcion' => 'Ingreso de Anestesiólogo',
                 'usu_created_update' => 1,
                 'pcip' => '192.168.1.196',
                 'status' => '1',

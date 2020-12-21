@@ -105,6 +105,8 @@ export default {
         };
     },
     mounted: function() {
+        this.form.frm_fecha = this.$funcionesGlobales.getDate();
+        this.cargarListaCirugiaProgramadaPaciente();
         this.flashMessage.setStrategy("multiple");
         /* this.titulo_seleccionado = "Citas Agendadas";
     let nombreModulo = this.$nombresModulo.gestion_hospitalaria;

@@ -32,7 +32,10 @@
                                         class="col-lg-12 col-md-12 col-sm-12 text-right"
                                     >
                                         <div class="btn-group" role="group">
-                                            <button
+                                            <a style="cursor:pointer;" title="Buscar Paciente" @click="mostrarModalListaCirugiaPaciente()">
+                                                <img width="50px" height="50px" src="/icons/busqueda.png">
+                                            </a>
+                                            <!-- <button
                                                 type="button"
                                                 class="btn btn-outline-primary"
                                                 @click="
@@ -40,7 +43,8 @@
                                                 "
                                             >
                                                 Nuevo
-                                            </button>
+                                                <i> <img   src="/icons/buscar.png"> </i>
+                                            </button> -->
                                             <template v-if="respuestaImprimir">
                                                 <button
                                                     type="button"
@@ -49,7 +53,8 @@
                                                         llamarMetodoImprimir()
                                                     "
                                                 >
-                                                    Imprimir
+                                                    <!-- Imprimir -->
+                                                    <i class="far fa-file-pdf"></i>
                                                 </button>
                                             </template>
                                         </div>
@@ -764,7 +769,7 @@ export default {
 
             prefijo: "",
             //cirugia_id: 0,
-            titulo_seleccionado: "Registro de anestecia",
+            titulo_seleccionado: "Registro de anestesia",
             respuestaFinProceso: 0,
             respuestaImprimir: 0,
             form: {

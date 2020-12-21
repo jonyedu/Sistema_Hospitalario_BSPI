@@ -142,7 +142,7 @@ export const funcionesGlobales = {
         var d = this.addCeroToTime(date.getDate());
         var me = this.addCeroToTime(date.getMonth() + 1);
         var y = date.getFullYear();
-        return d + "/" + me + "/" + y;
+        return y + "-" + me + "-" + d;
     },
     //Metodo para obtener el hora actual
     getTime(){
