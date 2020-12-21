@@ -297,7 +297,44 @@
                                 </tab-content>
 
                                 <tab-content title="Firma" icon="ti-folder">
-                                    <lista-firma> </lista-firma>
+                                    <div class="">
+                                        <div
+                                            class=""
+                                            style="height: 70px"
+                                        ></div>
+                                        <div class="flex flex-y">
+                                            <span
+                                                class="col-md-5 text-center"
+                                                style="margin: auto"
+                                            >
+                                                <vue-painttable
+                                                    @getOutput="
+                                                        form.imgFirma = $event
+                                                    "
+                                                    @RespuestaImgFirma="
+                                                        validarImgFirma = $event
+                                                    "
+                                                    :hidePaintable="true"
+                                                    :isFirstPaintable="
+                                                        isFirstPaintable
+                                                    "
+                                                    :disableNavigation="true"
+                                                    :showUndoRedo="false"
+                                                    :showLineWidth="false"
+                                                    :rutaImagen="rutaSello"
+                                                    :width="800"
+                                                    :height="800"
+                                                    ref="paintFirma"
+                                                ></vue-painttable>
+                                            </span>
+                                            <span class="col-md-12 text-center"
+                                                >______________________________________________</span
+                                            >
+                                            <span class="col-md-12 text-center"
+                                                >FIRMA DEL ANESTESIOLOGO:</span
+                                            >
+                                        </div>
+                                    </div>
                                     <!-- <antecedente
                                         :id-sec-cir-pro="
                                             form.frm_idCirugiaProgramada
@@ -347,7 +384,7 @@ export default {
             idPromesa: [],
 
             listas: {
-                SecCirPro: "0001",
+                SecCirPro: "",
                 frm_id_user: "",
                 chkentrada01: false,
                 chkentrada02: false,
@@ -403,20 +440,34 @@ export default {
         validateAsync: function() {
             let that = this;
 
-            that.listas.chkentrada01 = that.$refs.listaEntrada.listas.chkentrada01;
-            that.listas.chkentrada02 = that.$refs.listaEntrada.listas.chkentrada02;
-            that.listas.chkentrada03 = that.$refs.listaEntrada.listas.chkentrada03;
-            that.listas.chkentrada04 = that.$refs.listaEntrada.listas.chkentrada04;
-            that.listas.chkentrada05 = that.$refs.listaEntrada.listas.chkentrada05;
-            that.listas.chkentrada06 = that.$refs.listaEntrada.listas.chkentrada06;
-            that.listas.chkentrada07 = that.$refs.listaEntrada.listas.chkentrada07;
-            that.listas.chkquirurgica01 = that.$refs.listaPausa.listas.chkquirurgica01;
-            that.listas.chkquirurgica02 = that.$refs.listaPausa.listas.chkquirurgica02;
-            that.listas.chkquirurgica03 = that.$refs.listaPausa.listas.chkquirurgica03;
-            that.listas.chkquirurgica04 = that.$refs.listaPausa.listas.chkquirurgica04;
-            that.listas.chkquirurgica05 = that.$refs.listaPausa.listas.chkquirurgica05;
-            that.listas.chkquirurgica06 = that.$refs.listaPausa.listas.chkquirurgica06;
-            that.listas.chkquirurgica07 = that.$refs.listaPausa.listas.chkquirurgica07;
+            that.listas.chkentrada01 =
+                that.$refs.listaEntrada.listas.chkentrada01;
+            that.listas.chkentrada02 =
+                that.$refs.listaEntrada.listas.chkentrada02;
+            that.listas.chkentrada03 =
+                that.$refs.listaEntrada.listas.chkentrada03;
+            that.listas.chkentrada04 =
+                that.$refs.listaEntrada.listas.chkentrada04;
+            that.listas.chkentrada05 =
+                that.$refs.listaEntrada.listas.chkentrada05;
+            that.listas.chkentrada06 =
+                that.$refs.listaEntrada.listas.chkentrada06;
+            that.listas.chkentrada07 =
+                that.$refs.listaEntrada.listas.chkentrada07;
+            that.listas.chkquirurgica01 =
+                that.$refs.listaPausa.listas.chkquirurgica01;
+            that.listas.chkquirurgica02 =
+                that.$refs.listaPausa.listas.chkquirurgica02;
+            that.listas.chkquirurgica03 =
+                that.$refs.listaPausa.listas.chkquirurgica03;
+            that.listas.chkquirurgica04 =
+                that.$refs.listaPausa.listas.chkquirurgica04;
+            that.listas.chkquirurgica05 =
+                that.$refs.listaPausa.listas.chkquirurgica05;
+            that.listas.chkquirurgica06 =
+                that.$refs.listaPausa.listas.chkquirurgica06;
+            that.listas.chkquirurgica07 =
+                that.$refs.listaPausa.listas.chkquirurgica07;
             that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
             that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
             that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
@@ -484,7 +535,7 @@ export default {
             // }
 
             this.cargarLista(value.SecCirPro);
-            // this.consultarSello();
+            this.consultarSello();
         },
         cargarLista: function(value) {
             let that = this;
@@ -546,9 +597,7 @@ export default {
         onChangeTab(prevIndex, nextIndex) {
             this.guardarModificar(prevIndex);
         },
-        onValidateTab(validationResult, activeTabIndex) {
-
-        },
+        onValidateTab(validationResult, activeTabIndex) {},
         guardarModificar(index) {
             switch (index) {
                 case 0:
@@ -591,7 +640,7 @@ export default {
         guardarLista() {
             //validamos la lista segun la referencia listaPausa listaSalida
 
-           let that = this;
+            let that = this;
 
             that.listas.chkentrada01 =
                 that.$refs.listaEntrada.listas.chkentrada01;
@@ -640,24 +689,23 @@ export default {
                     loader.hide();
                 })
                 .catch(error => {
-                        that.flashMessage.show({
-                            status: "error",
-                            title: "Error al procesar guardarLista",
-                            message:
-                                "Por favor comuníquese con el administrador. " +
-                                error,
-                            clickable: true,
-                            time: 0,
-                            icon: "/iconsflashMessage/error.svg",
-                            customStyle: {
-                                flashMessageStyle: {
-                                    background:
-                                        "linear-gradient(#e66465, #9198e5)"
-                                }
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarLista",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
                             }
-                        });
-                        loader.hide();
+                        }
                     });
+                    loader.hide();
+                });
         },
         onComplete() {
             //this.guardarFirmaPorAtencion();
@@ -761,6 +809,121 @@ export default {
             }
         },
 
+        async guardarLista() {
+            //validamos la lista segun la referencia listaPausa listaSalida
+
+            let that = this;
+
+            that.listas.chkentrada01 =
+                that.$refs.listaEntrada.listas.chkentrada01;
+            that.listas.chkentrada02 =
+                that.$refs.listaEntrada.listas.chkentrada02;
+            that.listas.chkentrada03 =
+                that.$refs.listaEntrada.listas.chkentrada03;
+            that.listas.chkentrada04 =
+                that.$refs.listaEntrada.listas.chkentrada04;
+            that.listas.chkentrada05 =
+                that.$refs.listaEntrada.listas.chkentrada05;
+            that.listas.chkentrada06 =
+                that.$refs.listaEntrada.listas.chkentrada06;
+            that.listas.chkentrada07 =
+                that.$refs.listaEntrada.listas.chkentrada07;
+            that.listas.chkquirurgica01 =
+                that.$refs.listaPausa.listas.chkquirurgica01;
+            that.listas.chkquirurgica02 =
+                that.$refs.listaPausa.listas.chkquirurgica02;
+            that.listas.chkquirurgica03 =
+                that.$refs.listaPausa.listas.chkquirurgica03;
+            that.listas.chkquirurgica04 =
+                that.$refs.listaPausa.listas.chkquirurgica04;
+            that.listas.chkquirurgica05 =
+                that.$refs.listaPausa.listas.chkquirurgica05;
+            that.listas.chkquirurgica06 =
+                that.$refs.listaPausa.listas.chkquirurgica06;
+            that.listas.chkquirurgica07 =
+                that.$refs.listaPausa.listas.chkquirurgica07;
+            that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
+            that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
+            that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
+            that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
+            that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
+            that.listas.observacion = that.$refs.listaSalida.listas.observacion;
+
+            const ListaInsert = this.listas;
+
+            this.listas = {
+                SecCirPro: "",
+                id_lista: 0,
+                chkentrada01: false,
+                chkentrada02: false,
+                chkentrada03: false,
+                chkentrada04: false,
+                chkentrada05: false,
+                chkentrada06: false,
+                chkentrada07: false,
+                chkquirurgica01: false,
+                chkquirurgica02: false,
+                chkquirurgica03: false,
+                chkquirurgica04: false,
+                chkquirurgica05: false,
+                chkquirurgica06: false,
+                chkquirurgica07: false,
+                chksalida01: false,
+                chksalida02: false,
+                chksalida03: false,
+                chksalida04: false,
+                chksalida05: false,
+                user_id: "",
+                cargo: "",
+                observacion: "",
+                firma: ""
+            };
+            let url = "/modulos/cirugia/lista_verificacion/ListarValoracion";
+            let $id = await axios.post(url, ListaInsert).then(response => {
+                this.idPromesa = response.data.id;
+            });
+        },
+        //     axios
+        //         .post(
+        //             "/modulos/cirugia/lista_verificacion/ListarValoracion",
+        //             ListaInsert
+        //         )
+        //         .then(response => {
+        //             return true;
+        //         })
+        //         .catch(e => {
+        //             this.errors.push(e);
+        //         });
+        // return true;
+        // .then(function(response) {
+        //     that.form.id_lista = response.data.id;
+        //     // alert(response.data.id);
+        //     //  loader.hide();
+        //     //alert(that.form.id_lista);
+        //    // that.guardarFirmaPorAtencion();
+        //     // that.form = {
+        //     //     id_lista: 0,
+        //     //     tipo_servicio: 4,
+        //     //     id_visita: 0,
+        //     //     id_tipo_documento: 13,
+        //     //     frm_paciente: "",
+        //     //     frm_cirujano: "",
+        //     //     frm_anestesiologo: "",
+        //     //     frm_quirofano: "",
+        //     //     frm_procedimiento: "",
+        //     //     imgFirma: null,
+
+        //     //     imgGrafica: null
+        //     // };
+        //     // that.$swal({
+        //     //     icon: "success",
+        //     //     title: "Proceso Realizado con Exito",
+        //     //     text: "."
+        //     // });
+        // });
+
+        //   alert( that.form.id_lista);
+        // guardarFirmaPorAtencion();
 
         llamarMetodoImprimir() {
             window.open(
