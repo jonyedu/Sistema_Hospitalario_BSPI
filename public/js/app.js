@@ -12599,7 +12599,7 @@ __webpack_require__.r(__webpack_exports__);
 
     /* validateAsync: function() {
         let that = this;
-         that.listas.chkentrada01 =
+          that.listas.chkentrada01 =
             that.$refs.listaEntrada.listas.chkentrada01;
         that.listas.chkentrada02 =
             that.$refs.listaEntrada.listas.chkentrada02;
@@ -12633,7 +12633,7 @@ __webpack_require__.r(__webpack_exports__);
         that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
         that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
         that.listas.observacion = that.$refs.listaSalida.listas.observacion;
-         const ListaInsert = this.listas;
+          const ListaInsert = this.listas;
         //console.log(this.listas);
         this.listas = {
             SecCirPro: "",
@@ -12662,7 +12662,7 @@ __webpack_require__.r(__webpack_exports__);
             observacion: "",
             firma: ""
         };
-         axios
+          axios
             .post(
                 "/modulos/cirugia/lista_verificacion/ListarValoracion",
                 ListaInsert
@@ -12673,7 +12673,7 @@ __webpack_require__.r(__webpack_exports__);
             .catch(e => {
                 // this.errors.push(e);
             });
-         // resolve(este);
+          // resolve(este);
     }, */
     mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
       this.$modal.show("ListaCirugiaProgramadaPaciente");
