@@ -9032,19 +9032,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
                 that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
                 that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
-                that.listas.observacion = that.$refs.listaSalida.listas.observacion; // console.log(that.listas);
-                // if (that.validarImgFirma == 0) {
-                //     that.$swal({
-                //         icon: "error",
-                //         title: "Favor Guardar la Firma",
-                //         text: "."
-                //     });
-                //     return;
-                // }
-                // var loader = that.$loading.show();
-
-                ListaInsert = _this.listas; //console.log(this.listas);
-
+                that.listas.observacion = that.$refs.listaSalida.listas.observacion;
+                ListaInsert = _this.listas;
                 _this.listas = {
                   SecCirPro: "",
                   id_lista: 0,

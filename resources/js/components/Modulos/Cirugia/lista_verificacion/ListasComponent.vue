@@ -727,19 +727,9 @@ export default {
             that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
             that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
             that.listas.observacion = that.$refs.listaSalida.listas.observacion;
-            // console.log(that.listas);
-
-            // if (that.validarImgFirma == 0) {
-            //     that.$swal({
-            //         icon: "error",
-            //         title: "Favor Guardar la Firma",
-            //         text: "."
-            //     });
-            //     return;
-            // }
-            // var loader = that.$loading.show();
+          
             const ListaInsert = this.listas;
-            //console.log(this.listas);
+         
             (this.listas = {
                 SecCirPro: "",
                 id_lista: 0,
