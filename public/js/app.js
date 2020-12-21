@@ -21308,6 +21308,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -92064,39 +92065,9 @@ var render = function() {
           )
         }),
         _vm._v(" "),
-        _c("li", { staticClass: "nav-item has-treeview" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("ul", { staticClass: "nav nav-treeview" }, [
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "nav-link ml-3",
-                    attrs: {
-                      to:
-                        _vm.prefijo +
-                        "/modulos/cirugia/registro_anestesia/mostrar_registro_anestesia"
-                    }
-                  },
-                  [
-                    _c("i"),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "\n                            Registro Anestesia\n                        "
-                      )
-                    ])
-                  ]
-                )
-              ],
-              1
-            )
-          ])
-        ])
+        false
+          ? undefined
+          : _vm._e()
       ],
       2
     )
