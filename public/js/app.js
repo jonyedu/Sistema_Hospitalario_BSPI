@@ -12163,19 +12163,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
-
-
-var _methods;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+//
+//
+//
+//
 //
 //
 //
@@ -12600,10 +12592,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     };
   },
-  mounted: function mounted() {// this.$refs.listaEntrada.listas.chkentrada01 = true
-    // alert(this.$refs.listaEntrada.listas.chkentrada01)
-  },
-  methods: (_methods = {
+  mounted: function mounted() {},
+  methods: {
     /* Metodos para Llamar al Modal y la Tabla */
     mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
       this.$modal.show("ListaCirugiaProgramadaPaciente");
@@ -12619,7 +12609,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       //     this.$refs.revisionSistema.cargarRevisionSistema();
       // }
 
-      this.cargarLista(value.SecCirPro); //this.consultarSello();
+      this.cargarLista(value.SecCirPro);
+      this.consultarSello();
     },
     cargarLista: function cargarLista(value) {
       var that = this;
@@ -12671,6 +12662,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     onChangeTab: function onChangeTab(prevIndex, nextIndex) {
       this.guardarModificar(prevIndex);
+      this.guardarModificar2(nextIndex);
     },
     onValidateTab: function onValidateTab(validationResult, activeTabIndex) {},
     guardarModificar: function guardarModificar(index) {
@@ -12682,10 +12674,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           break;
 
         case 2:
-          this.guardarLista();
+          this.guardarLista(); //this.$refs.listvisualizacion.contentDocument.location.reload();
+
           break;
 
         case 3:
+          // this.$refs.listvisualizacion.contentDocument.location.reload();
+          break;
+
+        case 4:
+          break;
+
+        default: //this.titulo_seleccionado = "";
+
+      }
+    },
+    guardarModificar2: function guardarModificar2(index) {
+      switch (index) {
+        case 0:
+          break;
+
+        case 1:
+          break;
+
+        case 2:
+          //  this.$refs.listvisualizacion.contentDocument.location.reload();
+          // this.guardarLista();
+          break;
+
+        case 3:
+          //  this.$refs.listvisualizacion.contentDocument.location.reload();
           break;
 
         case 4:
@@ -12696,7 +12714,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     validateFirstStep: function validateFirstStep() {
-      //alert(this.$refs.formValoracionPreanestecia.slotProps.activeTabIndex + 1);
+      var _this = this;
+
       var opc = this.$refs.formListaVerificacion.slotProps.activeTabIndex;
       var poseeErrores = null;
       return new Promise(function (resolve, reject) {
@@ -12708,8 +12727,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             break;
 
           case 2:
-            //  poseeErrores = this.$refs.listaSalida.validarForm();
-            resolve(true);
+            poseeErrores = _this.$refs.listaSalida.validarForm();
+            resolve(poseeErrores);
             break;
 
           case 3:
@@ -12723,7 +12742,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     guardarLista: function guardarLista() {
-      var _this = this;
+      var _this2 = this;
 
       //validamos la lista segun la referencia listaPausa listaSalida
       var that = this;
@@ -12752,8 +12771,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       var url = "/modulos/cirugia/lista_verificacion/ListarValoracion";
       axios.post(url, ListaInsert).then(function (response) {
-        _this.idPromesa = response.data.id;
+        _this2.idPromesa = response.data.id;
         loader.hide();
+
+        _this2.$refs.listvisualizacion.contentDocument.location.reload();
       })["catch"](function (error) {
         that.flashMessage.show({
           status: "error",
@@ -12778,8 +12799,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
       var that = this;
       var url = "";
-      var mensaje = ""; // alert(that.form.imgFirma);
-
+      var mensaje = "";
       var formNew = {
         tipo_servicio: 4,
         id_atencion: that.form.id_lista,
@@ -12832,7 +12852,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         axios.get(url).then(function (response) {
           if (response.data.sello != null) {
             if (response.data.sello.seguridad_medico != null) {
-              that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO; // alert( response.data.sello.medico_sellos);
+              that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
             }
           }
 
@@ -12854,85 +12874,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           loader.hide();
         });
       }
+    },
+    llamarMetodoImprimir: function llamarMetodoImprimir() {
+      window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.SecCirPro);
     }
-  }, _defineProperty(_methods, "guardarLista", function guardarLista() {
-    var _this2 = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var that, ListaInsert, url, $id;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              //validamos la lista segun la referencia listaPausa listaSalida
-              that = _this2;
-              that.listas.chkentrada01 = that.$refs.listaEntrada.listas.chkentrada01;
-              that.listas.chkentrada02 = that.$refs.listaEntrada.listas.chkentrada02;
-              that.listas.chkentrada03 = that.$refs.listaEntrada.listas.chkentrada03;
-              that.listas.chkentrada04 = that.$refs.listaEntrada.listas.chkentrada04;
-              that.listas.chkentrada05 = that.$refs.listaEntrada.listas.chkentrada05;
-              that.listas.chkentrada06 = that.$refs.listaEntrada.listas.chkentrada06;
-              that.listas.chkentrada07 = that.$refs.listaEntrada.listas.chkentrada07;
-              that.listas.chkquirurgica01 = that.$refs.listaPausa.listas.chkquirurgica01;
-              that.listas.chkquirurgica02 = that.$refs.listaPausa.listas.chkquirurgica02;
-              that.listas.chkquirurgica03 = that.$refs.listaPausa.listas.chkquirurgica03;
-              that.listas.chkquirurgica04 = that.$refs.listaPausa.listas.chkquirurgica04;
-              that.listas.chkquirurgica05 = that.$refs.listaPausa.listas.chkquirurgica05;
-              that.listas.chkquirurgica06 = that.$refs.listaPausa.listas.chkquirurgica06;
-              that.listas.chkquirurgica07 = that.$refs.listaPausa.listas.chkquirurgica07;
-              that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
-              that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
-              that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
-              that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
-              that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
-              that.listas.observacion = that.$refs.listaSalida.listas.observacion;
-              ListaInsert = _this2.listas;
-              _this2.listas = {
-                SecCirPro: "",
-                id_lista: 0,
-                chkentrada01: false,
-                chkentrada02: false,
-                chkentrada03: false,
-                chkentrada04: false,
-                chkentrada05: false,
-                chkentrada06: false,
-                chkentrada07: false,
-                chkquirurgica01: false,
-                chkquirurgica02: false,
-                chkquirurgica03: false,
-                chkquirurgica04: false,
-                chkquirurgica05: false,
-                chkquirurgica06: false,
-                chkquirurgica07: false,
-                chksalida01: false,
-                chksalida02: false,
-                chksalida03: false,
-                chksalida04: false,
-                chksalida05: false,
-                user_id: "",
-                cargo: "",
-                observacion: "",
-                firma: ""
-              };
-              url = "/modulos/cirugia/lista_verificacion/ListarValoracion";
-              _context.next = 26;
-              return axios.post(url, ListaInsert).then(function (response) {
-                _this2.idPromesa = response.data.id;
-              });
-
-            case 26:
-              $id = _context.sent;
-
-            case 27:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
-  }), _defineProperty(_methods, "llamarMetodoImprimir", function llamarMetodoImprimir() {
-    window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.SecCirPro);
-  }), _methods)
+  }
 });
 
 /***/ }),
@@ -79227,8 +79173,10 @@ var render = function() {
                               },
                               [
                                 _c("div", { staticClass: "row" }, [
-                                  _c("embed", {
+                                  _c("iframe", {
+                                    ref: "listvisualizacion",
                                     attrs: {
+                                      id: "listvisualizacion",
                                       src:
                                         "/modulos/cirugia/lista_verificacion/mostrarreporte/" +
                                         _vm.listas.SecCirPro,
@@ -79241,9 +79189,70 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _c("tab-content", {
-                              attrs: { title: "Firma", icon: "ti-folder" }
-                            })
+                            _c(
+                              "tab-content",
+                              { attrs: { title: "Firma", icon: "ti-folder" } },
+                              [
+                                _c("div", {}, [
+                                  _c("div", {
+                                    staticStyle: { height: "70px" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "flex flex-y" }, [
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "col-md-5 text-center",
+                                        staticStyle: { margin: "auto" }
+                                      },
+                                      [
+                                        _c("vue-painttable", {
+                                          ref: "paintFirma",
+                                          attrs: {
+                                            hidePaintable: true,
+                                            isFirstPaintable:
+                                              _vm.isFirstPaintable,
+                                            disableNavigation: true,
+                                            showUndoRedo: false,
+                                            showLineWidth: false,
+                                            rutaImagen: _vm.rutaSello,
+                                            width: 800,
+                                            height: 800
+                                          },
+                                          on: {
+                                            getOutput: function($event) {
+                                              _vm.form.imgFirma = $event
+                                            },
+                                            RespuestaImgFirma: function(
+                                              $event
+                                            ) {
+                                              _vm.validarImgFirma = $event
+                                            }
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "span",
+                                      { staticClass: "col-md-12 text-center" },
+                                      [
+                                        _vm._v(
+                                          "______________________________________________"
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "span",
+                                      { staticClass: "col-md-12 text-center" },
+                                      [_vm._v("FIRMA DEL ANESTESIOLOGO:")]
+                                    )
+                                  ])
+                                ])
+                              ]
+                            )
                           ],
                           1
                         )
