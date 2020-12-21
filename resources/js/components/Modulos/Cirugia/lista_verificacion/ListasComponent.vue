@@ -208,7 +208,7 @@
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <form-wizard
-                                ref="formValoracionPreanestecia"
+                                ref="formListaVerificacion"
                                 :title="''"
                                 :subtitle="''"
                                 :nextButtonText="'Siguiente'"
@@ -258,7 +258,7 @@
                                 <tab-content
                                     title="Salida"
                                     icon="fas fa-user-nurse"
-                                   :before-change="validateAsync"
+                                    :before-change="validateFirstStep"
                                 >
                                     <lista-salida ref="listaSalida">
                                     </lista-salida>
@@ -273,22 +273,31 @@
                                         ref="paraclinico"
                                     ></paraclinico> -->
                                 </tab-content>
-                                <tab-content
+                                <!-- <tab-content
                                     title="Visualización"
                                     icon="ti-folder"
                                 >
-                                <lista-visualizacion></lista-visualizacion>
-                                    <!-- <antecedente
-                                        :id-sec-cir-pro="
-                                            form.frm_idCirugiaProgramada
-                                        "
-                                        ref="antecedente"
-                                    ></antecedente> -->
+                                    <lista-visualizacion></lista-visualizacion>
+                                </tab-content> -->
+                                <tab-content
+                                    title="Visualización"
+                                    icon="fas fa-file-pdf"
+                                >
+                                    <div class="row">
+                                        <embed
+                                            :src="
+                                                '/modulos/cirugia/lista_verificacion/mostrarreporte/' +
+                                                    listas.SecCirPro
+                                            "
+                                            type="application/pdf"
+                                            width="100%"
+                                            height="980px"
+                                        />
+                                    </div>
                                 </tab-content>
-                                <tab-content title="Firma" icon="ti-folder">
-                                    <lista-firma>
 
-                                    </lista-firma>
+                                <tab-content title="Firma" icon="ti-folder">
+                                    <lista-firma> </lista-firma>
                                     <!-- <antecedente
                                         :id-sec-cir-pro="
                                             form.frm_idCirugiaProgramada
@@ -315,6 +324,7 @@
                 </div>
             </div>
         </div>
+        <FlashMessage></FlashMessage>
     </div>
 </template>
 
@@ -334,10 +344,10 @@ export default {
             isHidden: "none",
             idHiddenNuevo: "none",
             rutaSello: "",
-            idPromesa:[],
+            idPromesa: [],
 
             listas: {
-                SecCirPro: "",
+                SecCirPro: "0001",
                 frm_id_user: "",
                 chkentrada01: false,
                 chkentrada02: false,
@@ -391,8 +401,197 @@ export default {
     methods: {
         /* Metodos para Llamar al Modal y la Tabla */
         validateAsync: function() {
-            
-              let that = this;
+            let that = this;
+
+            that.listas.chkentrada01 = that.$refs.listaEntrada.listas.chkentrada01;
+            that.listas.chkentrada02 = that.$refs.listaEntrada.listas.chkentrada02;
+            that.listas.chkentrada03 = that.$refs.listaEntrada.listas.chkentrada03;
+            that.listas.chkentrada04 = that.$refs.listaEntrada.listas.chkentrada04;
+            that.listas.chkentrada05 = that.$refs.listaEntrada.listas.chkentrada05;
+            that.listas.chkentrada06 = that.$refs.listaEntrada.listas.chkentrada06;
+            that.listas.chkentrada07 = that.$refs.listaEntrada.listas.chkentrada07;
+            that.listas.chkquirurgica01 = that.$refs.listaPausa.listas.chkquirurgica01;
+            that.listas.chkquirurgica02 = that.$refs.listaPausa.listas.chkquirurgica02;
+            that.listas.chkquirurgica03 = that.$refs.listaPausa.listas.chkquirurgica03;
+            that.listas.chkquirurgica04 = that.$refs.listaPausa.listas.chkquirurgica04;
+            that.listas.chkquirurgica05 = that.$refs.listaPausa.listas.chkquirurgica05;
+            that.listas.chkquirurgica06 = that.$refs.listaPausa.listas.chkquirurgica06;
+            that.listas.chkquirurgica07 = that.$refs.listaPausa.listas.chkquirurgica07;
+            that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
+            that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
+            that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
+            that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
+            that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
+            that.listas.observacion = that.$refs.listaSalida.listas.observacion;
+
+            const ListaInsert = this.listas;
+            //console.log(this.listas);
+            this.listas = {
+                SecCirPro: "",
+                id_lista: 0,
+                chkentrada01: false,
+                chkentrada02: false,
+                chkentrada03: false,
+                chkentrada04: false,
+                chkentrada05: false,
+                chkentrada06: false,
+                chkentrada07: false,
+                chkquirurgica01: false,
+                chkquirurgica02: false,
+                chkquirurgica03: false,
+                chkquirurgica04: false,
+                chkquirurgica05: false,
+                chkquirurgica06: false,
+                chkquirurgica07: false,
+                chksalida01: false,
+                chksalida02: false,
+                chksalida03: false,
+                chksalida04: false,
+                chksalida05: false,
+                user_id: "",
+                cargo: "",
+                observacion: "",
+                firma: ""
+            };
+
+            axios
+                .post(
+                    "/modulos/cirugia/lista_verificacion/ListarValoracion",
+                    ListaInsert
+                )
+                .then(response => {
+                    that.$refs.formListaVerificacion[3].activeTabIndex;
+                })
+                .catch(e => {
+                    // this.errors.push(e);
+                });
+
+            // resolve(este);
+        },
+        mostrarModalListaCirugiaPaciente() {
+            this.$modal.show("ListaCirugiaProgramadaPaciente");
+        },
+        handleSeleccionarClick(value) {
+            this.listas.SecCirPro = value.SecCirPro;
+            this.form.frm_paciente = value.nombrePaciente;
+            this.form.frm_cirujano = value.cirujano;
+            this.form.frm_anestesiologo = value.anestesiologo;
+            this.form.frm_quirofano = value.quirofano;
+            this.form.frm_procedimiento = value.procedimiento;
+            this.$modal.hide("ListaCirugiaProgramadaPaciente");
+            // if (this.$refs.revisionSistema != null) {
+            //     this.$refs.revisionSistema.cargarRevisionSistema();
+            // }
+
+            this.cargarLista(value.SecCirPro);
+            // this.consultarSello();
+        },
+        cargarLista: function(value) {
+            let that = this;
+            let url =
+                "/modulos/cirugia/lista_verificacion/buscarpaciente/" + value;
+            // var loader = that.$loading.show();
+            axios
+                .get(url)
+                .then(function(response) {
+                    if (response.data.contador > 0) {
+                        that.flashMessage.show({
+                            status: "success",
+                            title: "Éxito al procesar IdRegistroAnestesia",
+                            message:
+                                "El proceso ya se encuentra realizado, Seleccione Imprimir para visualizar el reporte",
+                            clickable: true,
+                            time: 5000,
+                            icon: "/iconsflashMessage/success.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
+
+                        that.isHidden = "block";
+                        that.idHiddenNuevo = "none";
+                    } else {
+                        that.flashMessage.show({
+                            status: "success",
+                            title: "Lista de Verifacion",
+                            message: "Paciente Nuevo",
+                            clickable: true,
+                            time: 5000,
+                            icon: "/iconsflashMessage/success.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
+                        that.isHidden = "none";
+                        that.idHiddenNuevo = "block";
+                    }
+                })
+                .catch(error => {
+                    //Errores
+                    that.$swal({
+                        icon: "success",
+                        title: "Paciente Nuevo",
+                        text: "."
+                    });
+                    that.isHidden = "none";
+                });
+            //  llamarMetodoImprimir();
+        },
+        onChangeTab(prevIndex, nextIndex) {
+            this.guardarModificar(prevIndex);
+        },
+        onValidateTab(validationResult, activeTabIndex) {
+
+        },
+        guardarModificar(index) {
+            switch (index) {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    this.guardarLista();
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                default:
+                //this.titulo_seleccionado = "";
+            }
+        },
+        validateFirstStep() {
+            //alert(this.$refs.formValoracionPreanestecia.slotProps.activeTabIndex + 1);
+            var opc = this.$refs.formListaVerificacion.slotProps.activeTabIndex;
+            let poseeErrores = null;
+            return new Promise((resolve, reject) => {
+                switch (opc) {
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        poseeErrores = this.$refs.listaSalida.validarForm();
+                        resolve(poseeErrores);
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    default:
+                }
+            });
+        },
+        guardarLista() {
+            //validamos la lista segun la referencia listaPausa listaSalida
+
+           let that = this;
 
             that.listas.chkentrada01 =
                 that.$refs.listaEntrada.listas.chkentrada01;
@@ -428,166 +627,41 @@ export default {
             that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
             that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
             that.listas.observacion = that.$refs.listaSalida.listas.observacion;
-            // console.log(that.listas);
 
-            // if (that.validarImgFirma == 0) {
-            //     that.$swal({
-            //         icon: "error",
-            //         title: "Favor Guardar la Firma",
-            //         text: "."
-            //     });
-            //     return;
-            // }
-            // var loader = that.$loading.show();
+            var loader = that.$loading.show();
             const ListaInsert = this.listas;
             //console.log(this.listas);
-            (this.listas = {
-                SecCirPro: "",
-                id_lista: 0,
-                chkentrada01: false,
-                chkentrada02: false,
-                chkentrada03: false,
-                chkentrada04: false,
-                chkentrada05: false,
-                chkentrada06: false,
-                chkentrada07: false,
-                chkquirurgica01: false,
-                chkquirurgica02: false,
-                chkquirurgica03: false,
-                chkquirurgica04: false,
-                chkquirurgica05: false,
-                chkquirurgica06: false,
-                chkquirurgica07: false,
-                chksalida01: false,
-                chksalida02: false,
-                chksalida03: false,
-                chksalida04: false,
-                chksalida05: false,
-                user_id: "",
-                cargo: "",
-                observacion: "",
-                firma: ""
-            });
-               
-                
-       
-                  axios
-                    .post(
-                        "/modulos/cirugia/lista_verificacion/ListarValoracion",
-                        ListaInsert
-                    )
-                    .then(response => {
-                      that.$refs.formValoracionPreanestecia[3].activeTabIndex;
-                    })
-                    .catch(e => {
-                       // this.errors.push(e);
-                    });
-                  
-           
-                // resolve(este);
-                
 
-            
-        },
-        mostrarModalListaCirugiaPaciente() {
-            this.$modal.show("ListaCirugiaProgramadaPaciente");
-        },
-        handleSeleccionarClick(value) {
-            this.listas.SecCirPro = value.SecCirPro;
-            this.form.frm_paciente = value.nombrePaciente;
-            this.form.frm_cirujano = value.cirujano;
-            this.form.frm_anestesiologo = value.anestesiologo;
-            this.form.frm_quirofano = value.quirofano;
-            this.form.frm_procedimiento = value.procedimiento;
-            this.$modal.hide("ListaCirugiaProgramadaPaciente");
-            // if (this.$refs.revisionSistema != null) {
-            //     this.$refs.revisionSistema.cargarRevisionSistema();
-            // }
-
-            this.cargarLista(value.SecCirPro);
-            // this.consultarSello();
-        },
-        cargarLista: function(value) {
-            let that = this;
-            let url =
-                "/modulos/cirugia/lista_verificacion/buscarpaciente/" + value;
-            // var loader = that.$loading.show();
+            let url = "/modulos/cirugia/lista_verificacion/ListarValoracion";
             axios
-                .get(url)
-                .then(function(response) {
-                    if (response.data.contador > 0) {
-                          that.flashMessage.show({
-                        status: "success",
-                        title: "Éxito al procesar IdRegistroAnestesia",
-                        message:"El proceso ya se encuentra realizado, Seleccione Imprimir para visualizar el reporte",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/success.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                         
-                            (that.isHidden = "block");
-                        that.idHiddenNuevo = "none";
-                    } else {
-                         that.flashMessage.show({
-                        status: "success",
-                        title: "Lista de Verifacion",
-                        message:"Paciente Nuevo",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/success.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                        that.isHidden = "none";
-                        that.idHiddenNuevo = "block";
-                    }
+                .post(url, ListaInsert)
+                .then(response => {
+                    this.idPromesa = response.data.id;
+                    loader.hide();
                 })
                 .catch(error => {
-                    //Errores
-                    that.$swal({
-                        icon: "success",
-                        title: "Paciente Nuevo",
-                        text: "."
+                        that.flashMessage.show({
+                            status: "error",
+                            title: "Error al procesar guardarLista",
+                            message:
+                                "Por favor comuníquese con el administrador. " +
+                                error,
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/error.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
+                        loader.hide();
                     });
-                    that.isHidden = "none";
-                });
-            //  llamarMetodoImprimir();
-        },
-        onChangeTab(prevIndex, nextIndex) {
-            // if (nextIndex == 3) {
-            //     this.guardarLista();
-            //     // nextIndex = 0
-            //     //this.$refs.formValoracionPreanestecia.changeTab(0,1)
-            // }
-            //Se debera realizar las validaciones respectivas para cada tab
-            //  this.setFormTitle(nextIndex);
-            /* if (typeof this.onChangeTab() === "function") {
-                alert("entra");
-                //Es seguro ejecutar la función
-                this.guardarModificar(prevIndex);
-            } */
-            //  this.guardarModificar(prevIndex);
-            // alert(nextIndex);
-            //   this.listas.chksalida01 = $this.$refs.chkentrada01.value();
-            //      alert(this.listas.chksalida01);
-        },
-        onValidateTab(validationResult, activeTabIndex) {
-            //Se debera realizar las validaciones respectivas para cada tab
         },
         onComplete() {
-            this.guardarLista();
-            //  this.$refs.paraclinico.guardarModificar();
-            //this.$refs.paraclinico.guardarFirmaPorAtencion();
-            //await this.$refs.paraclinico.cargarParaclinico();
-            //await this.cambiarEstado();
+            //this.guardarFirmaPorAtencion();
+            this.$refs.formListaVerificacion.reset();
         },
         guardarFirmaPorAtencion() {
             let that = this;
@@ -687,134 +761,7 @@ export default {
             }
         },
 
-        
-      async  guardarLista() {
-            //validamos la lista segun la referencia listaPausa listaSalida
 
-            let that = this;
-
-            that.listas.chkentrada01 =
-                that.$refs.listaEntrada.listas.chkentrada01;
-            that.listas.chkentrada02 =
-                that.$refs.listaEntrada.listas.chkentrada02;
-            that.listas.chkentrada03 =
-                that.$refs.listaEntrada.listas.chkentrada03;
-            that.listas.chkentrada04 =
-                that.$refs.listaEntrada.listas.chkentrada04;
-            that.listas.chkentrada05 =
-                that.$refs.listaEntrada.listas.chkentrada05;
-            that.listas.chkentrada06 =
-                that.$refs.listaEntrada.listas.chkentrada06;
-            that.listas.chkentrada07 =
-                that.$refs.listaEntrada.listas.chkentrada07;
-            that.listas.chkquirurgica01 =
-                that.$refs.listaPausa.listas.chkquirurgica01;
-            that.listas.chkquirurgica02 =
-                that.$refs.listaPausa.listas.chkquirurgica02;
-            that.listas.chkquirurgica03 =
-                that.$refs.listaPausa.listas.chkquirurgica03;
-            that.listas.chkquirurgica04 =
-                that.$refs.listaPausa.listas.chkquirurgica04;
-            that.listas.chkquirurgica05 =
-                that.$refs.listaPausa.listas.chkquirurgica05;
-            that.listas.chkquirurgica06 =
-                that.$refs.listaPausa.listas.chkquirurgica06;
-            that.listas.chkquirurgica07 =
-                that.$refs.listaPausa.listas.chkquirurgica07;
-            that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
-            that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
-            that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
-            that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
-            that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
-            that.listas.observacion = that.$refs.listaSalida.listas.observacion;
-            // console.log(that.listas);
-
-            // if (that.validarImgFirma == 0) {
-            //     that.$swal({
-            //         icon: "error",
-            //         title: "Favor Guardar la Firma",
-            //         text: "."
-            //     });
-            //     return;
-            // }
-            // var loader = that.$loading.show();
-            const ListaInsert = this.listas;
-            //console.log(this.listas);
-            (this.listas = {
-                SecCirPro: "",
-                id_lista: 0,
-                chkentrada01: false,
-                chkentrada02: false,
-                chkentrada03: false,
-                chkentrada04: false,
-                chkentrada05: false,
-                chkentrada06: false,
-                chkentrada07: false,
-                chkquirurgica01: false,
-                chkquirurgica02: false,
-                chkquirurgica03: false,
-                chkquirurgica04: false,
-                chkquirurgica05: false,
-                chkquirurgica06: false,
-                chkquirurgica07: false,
-                chksalida01: false,
-                chksalida02: false,
-                chksalida03: false,
-                chksalida04: false,
-                chksalida05: false,
-                user_id: "",
-                cargo: "",
-                observacion: "",
-                firma: ""
-            });
-              let url = "/modulos/cirugia/lista_verificacion/ListarValoracion";
-            let $id = await axios.post(url, ListaInsert).then(response => {
-                this.idPromesa = response.data.id;
-            });            
-            //     axios
-            //         .post(
-            //             "/modulos/cirugia/lista_verificacion/ListarValoracion",
-            //             ListaInsert
-            //         )
-            //         .then(response => {
-            //             return true;
-            //         })
-            //         .catch(e => {
-            //             this.errors.push(e);
-            //         });
-            // return true;
-            // .then(function(response) {
-            //     that.form.id_lista = response.data.id;
-            //     // alert(response.data.id);
-            //     //  loader.hide();
-            //     //alert(that.form.id_lista);
-            //    // that.guardarFirmaPorAtencion();
-            //     // that.form = {
-            //     //     id_lista: 0,
-            //     //     tipo_servicio: 4,
-            //     //     id_visita: 0,
-            //     //     id_tipo_documento: 13,
-            //     //     frm_paciente: "",
-            //     //     frm_cirujano: "",
-            //     //     frm_anestesiologo: "",
-            //     //     frm_quirofano: "",
-            //     //     frm_procedimiento: "",
-            //     //     imgFirma: null,
-
-            //     //     imgGrafica: null
-            //     // };
-            //     // that.$swal({
-            //     //     icon: "success",
-            //     //     title: "Proceso Realizado con Exito",
-            //     //     text: "."
-            //     // });
-            // });
-
-            //   alert( that.form.id_lista);
-            // guardarFirmaPorAtencion();
-
-            // aui
-        },
         llamarMetodoImprimir() {
             window.open(
                 "/modulos/cirugia/lista_verificacion/mostrarreporte/" +

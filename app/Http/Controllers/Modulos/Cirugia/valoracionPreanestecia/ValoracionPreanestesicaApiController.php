@@ -66,7 +66,7 @@ class ValoracionPreanestesicaApiController extends Controller
                     ->with('antecedente', 'examenFisico', 'paraclinico.tipoSangre')
                     ->first();
                 //return response()->json(['datosPaciente' => $datosPaciente, 'datosValoracionPreanestesica' => $datosValoracionPreanestesica, 'edadPaciente' => $edadPaciente,]);
-                 $pdf = PDF::loadView('reports.pdf.formulario-valoracion-preanestesica', [
+                $pdf = PDF::loadView('reports.pdf.formulario-valoracion-preanestesica', [
                     'datosPaciente' => $datosPaciente,
                     'edadPaciente' => $edadPaciente,
                     'datosValoracionPreanestesica' => $datosValoracionPreanestesica

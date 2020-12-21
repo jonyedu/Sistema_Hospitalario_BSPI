@@ -1950,6 +1950,3802 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {},
+  data: function data() {
+    var _form;
+
+    return {
+      //Variables para la firma
+      isFirstPaintable: "firmaAnestesiologo",
+      rutaSello: "",
+      ///img/selloFirma.png
+      //Arreglo para guardar los tipos de drogas que se vayan ingresando
+      drogas_administradas: [],
+      //Variables para los ComboBox
+      selectedTipoPosiciones: "",
+      tipoPosiciones: [],
+      selectedSala: "",
+      salas: [],
+      selectedMedico: "",
+      medicos: [],
+      form: (_form = {
+        respuestaAgente: false,
+        id_datos_agente: 0,
+        id_especializacion: 3,
+        id_tipo_posiciones: 0,
+        cirugia_id: 0,
+        registro_anestesia_id: 0
+      }, _defineProperty(_form, "id_tipo_posiciones", 0), _defineProperty(_form, "fchaDuracionAnestecia", "00:00"), _defineProperty(_form, "fchaDuracionOperacion", "00:00"), _defineProperty(_form, "general", 0), _defineProperty(_form, "sistem_abierto", 0), _defineProperty(_form, "sistem_cerrado", 0), _defineProperty(_form, "sistem_semi_cerr", 0), _defineProperty(_form, "cinc_aparatos_usados", 0), _defineProperty(_form, "vaiiven_aparatos_usados", 0), _defineProperty(_form, "mascara", 0), _defineProperty(_form, "oral_inte_traqueal", 0), _defineProperty(_form, "nasal_inte_traqueal", 0), _defineProperty(_form, "rapido_inte_traqueal", 0), _defineProperty(_form, "lenta_inte_traqueal", 0), _defineProperty(_form, "turbo_inte_traqueal", ""), _defineProperty(_form, "manguito_inflam_inte_traqueal", 0), _defineProperty(_form, "taponamiento_inte_traqueal", 0), _defineProperty(_form, "asist_topica_inte_traqueal", 0), _defineProperty(_form, "asist_tranboral_inte_traqueal", 0), _defineProperty(_form, "conductiva", 0), _defineProperty(_form, "asepsia_piel", 0), _defineProperty(_form, "con", ""), _defineProperty(_form, "habon", 0), _defineProperty(_form, "raquidea", 0), _defineProperty(_form, "epidural_caud", 0), _defineProperty(_form, "simple_altura_puncion", 0), _defineProperty(_form, "continua_altura_puncion", 0), _defineProperty(_form, "altura_puncion", ""), _defineProperty(_form, "puncion_lat", 0), _defineProperty(_form, "linea_media", 0), _defineProperty(_form, "aguja", 0), _defineProperty(_form, "nivel", ""), _defineProperty(_form, "hiperbara", 0), _defineProperty(_form, "hipotension", 0), _defineProperty(_form, "arritmias", 0), _defineProperty(_form, "depresion_respiratoria", 0), _defineProperty(_form, "perforacion_duramadre", 0), _defineProperty(_form, "dificultad_intubacion", 0), _defineProperty(_form, "nauses_vomitos", 0), _defineProperty(_form, "conductiva_insuficiente", 0), _defineProperty(_form, "laringo_espasmo", 0), _defineProperty(_form, "paro_cardiaco", 0), _defineProperty(_form, "ninguna", 0), _defineProperty(_form, "cambio_tecnica", 0), _defineProperty(_form, "otros_complicaciones", ""), _defineProperty(_form, "comentario", ""), _defineProperty(_form, "hemorragia", 0), _defineProperty(_form, "min1", 0), _defineProperty(_form, "min5", 0), _defineProperty(_form, "min10", 0), _defineProperty(_form, "p_muerto", 0), _defineProperty(_form, "id_sala", 0), _defineProperty(_form, "id_medico", 0), _defineProperty(_form, "hora", "00:00"), _defineProperty(_form, "infusiones", [{
+        descripcion: "SOLUCIONES SALINAS",
+        name: "SOLUCIONES_SALINAS",
+        abreviatura: "SS",
+        valor: 0
+      }, {
+        descripcion: "DEXTROSAS",
+        name: "DEXTROSAS",
+        abreviatura: "D",
+        valor: 0
+      }, {
+        descripcion: "SANGRE",
+        name: "SANGRE",
+        abreviatura: "S",
+        valor: 0
+      }, {
+        descripcion: "RINGER",
+        name: "RINGER",
+        abreviatura: "R",
+        valor: 0
+      }, {
+        descripcion: "EXPANSIONES",
+        name: "EXPANSIONES",
+        abreviatura: "E",
+        valor: 0
+      }, {
+        descripcion: "TOTAL",
+        name: "TOTAL",
+        abreviatura: "T",
+        valor: 0
+      }]), _defineProperty(_form, "total", 0), _defineProperty(_form, "imgFirma", null), _defineProperty(_form, "imgGrafica", null), _form)
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    setSelectedTipoPosiciones: function setSelectedTipoPosiciones(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/cirugia/anestesia/cargar_tipo_posiciones_combo_box";
+
+      if (value != null) {
+        this.form.id_tipo_posiciones = value.id_tipo_posiciones;
+      }
+
+      axios.get(url).then(function (response) {
+        var tipoPosiciones = [];
+        response.data.tipoPosiciones.forEach(function (tiposPosiciones) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(tiposPosiciones.descripcion);
+          objeto.id_tipo_posiciones = tiposPosiciones.id;
+          tipoPosiciones.push(objeto);
+        });
+        that.tipoPosiciones = tipoPosiciones;
+        loader.hide();
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedTipoPosiciones",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    setSelectedSala: function setSelectedSala(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/parametrizacion/sala/cargar_sala_combo_box";
+
+      if (value != null) {
+        this.form.id_sala = value.id_sala;
+      }
+
+      axios.get(url).then(function (response) {
+        var salas = [];
+        response.data.salas.forEach(function (sala) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(sala.descripcion);
+          objeto.id_sala = sala.codigo;
+          salas.push(objeto);
+        });
+        that.salas = salas;
+        loader.hide();
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedSala",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    setSelectedMedico: function setSelectedMedico(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/admision/medico/cargar_medico_por_especializacion/" + that.form.id_especializacion;
+
+      if (value != null) {
+        this.form.id_medico = value.id_medico;
+        loader.hide(); //this.consultarSello();
+      }
+
+      axios.get(url).then(function (response) {
+        var medicos = [];
+        response.data.medicos.forEach(function (medico) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto.id_medico = medico.id;
+          medicos.push(objeto);
+        });
+        that.medicos = medicos;
+        loader.hide();
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedMedico",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    }
+  },
+  computed: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {},
+  data: function data() {
+    return {
+      selectedServicioMedico: "",
+      serviciosMedicos: [],
+      selectedDiagnosticoPre: "",
+      diagnosticosPre: [],
+      selectedDiagnostico: "",
+      diagnosticos: [],
+      selectedCirujano: "",
+      cirujanos: [],
+      selectedAnestesiologo: "",
+      anestesiologos: [],
+      selectedAyudante1: "",
+      ayudantes1: [],
+      selectedAyudante2: "",
+      ayudantes2: [],
+      selectedInstrumentista: "",
+      instrumentistas: [],
+      selectedTarifaria: "",
+      tarifarias: [],
+      form: {
+        idCirugiaProgramada: "0001",
+        idCirugiaProgramadaTemporal: "",
+        registro_anestesia_id: 0,
+
+        /* Datos del paciente */
+        paciente: "",
+        historia_clinica: "",
+        fecha: "00/00/0000",
+        edad: "",
+        sexo: "",
+        estatura: "",
+        peso: "",
+        ocupacion_actual: "",
+        id_servicio_medico: 0,
+        servicio: "",
+        //borrar esta vaiables
+        sala: "",
+        cama: "",
+        diagnostico_preoperatorio: "",
+        id_diagnostico_pre: 0,
+        id_diagnostico: 0,
+        operacion_propuesta: "",
+        id_cirujano: 0,
+        id_ayudante1: 0,
+        id_tarifaria: 0,
+        id_anestesiologo: 0,
+        id_ayudante2: 0,
+        id_instrumentista: 0,
+
+        /* Datos extras */
+        id_especializacion: 0
+      }
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    setSelectedServicioMedico: function setSelectedServicioMedico(value) {
+      if (this.form.id_servicio_medico > 0) {
+        var that = this;
+        var loader = that.$loading.show();
+        var url = "/modulos/parametrizacion/servicio_medico/cargar_servicio_medico_por_medico/" + this.form.id_servicio_medico;
+
+        if (value != null) {
+          this.form.id_servicio_medico = value.id_servicio_medico;
+          loader.hide();
+        }
+
+        axios.get(url).then(function (response) {
+          var serviciosMedicos = [];
+          response.data.serviciosMedicos.forEach(function (servicioMedico) {
+            var objeto = {};
+            objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(servicioMedico.descripcion);
+            objeto.id_servicio_medico = servicioMedico.id;
+            serviciosMedicos.push(objeto);
+          });
+          that.serviciosMedicos = serviciosMedicos;
+          loader.hide();
+        })["catch"](function (error) {
+          //Errores
+
+          /* that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
+          }); */
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar setSelectedServicioMedico",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
+      }
+    },
+    setSelectedDiagnosticoPre: function setSelectedDiagnosticoPre(value) {
+      var that = this;
+
+      if (this.selectedDiagnosticoPre.id_diagnostico_pre != null) {
+        this.form.id_diagnostico_pre = this.selectedDiagnosticoPre.id_diagnostico_pre;
+      }
+
+      if (this.diagnosticosPre.length == 0) {
+        if (this.selectedDiagnosticoPre != "") {
+          var loader = that.$loading.show();
+          var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_combo_box/" + this.selectedDiagnosticoPre;
+          axios.get(url).then(function (response) {
+            var diagnosticosPre = [];
+            response.data.diagnosticos.forEach(function (diagnosticoPres) {
+              var objeto = {}; //Pre
+
+              objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(diagnosticoPres.descripcion);
+              objeto.id_diagnostico_pre = diagnosticoPres.id;
+              diagnosticosPre.push(objeto);
+            });
+            that.diagnosticosPre = diagnosticosPre;
+            loader.hide();
+          })["catch"](function (error) {
+            that.flashMessage.show({
+              status: "error",
+              title: "Error al procesar setSelectedDiagnosticoPre",
+              message: "Por favor comuníquese con el administrador. " + error,
+              clickable: true,
+              time: 0,
+              icon: "/iconsflashMessage/error.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
+              }
+            });
+            loader.hide();
+          });
+        }
+      } else {
+        this.diagnosticosPre = [];
+      }
+    },
+    setSelectedDiagnostico: function setSelectedDiagnostico(value) {
+      var that = this;
+
+      if (this.selectedDiagnostico.id_diagnostico != null) {
+        this.form.id_diagnostico = this.selectedDiagnostico.id_diagnostico;
+      }
+
+      if (this.diagnosticos.length == 0) {
+        if (this.selectedDiagnostico != "") {
+          var loader = that.$loading.show();
+          var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_combo_box/" + this.selectedDiagnostico;
+          axios.get(url).then(function (response) {
+            var diagnosticosPre = [];
+            var diagnosticos = [];
+            response.data.diagnosticos.forEach(function (diagnostico) {
+              var objeto = {}; //Post
+
+              objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(diagnostico.descripcion);
+              objeto.id_diagnostico = diagnostico.id;
+              diagnosticos.push(objeto);
+            });
+            that.diagnosticos = diagnosticos;
+            loader.hide();
+          })["catch"](function (error) {
+            that.flashMessage.show({
+              status: "error",
+              title: "Error al procesar setSelectedDiagnostico",
+              message: "Por favor comuníquese con el administrador. " + error,
+              clickable: true,
+              time: 0,
+              icon: "/iconsflashMessage/error.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
+              }
+            });
+            loader.hide();
+          });
+        }
+      } else {
+        this.diagnosticos = [];
+      }
+    },
+    setSelectedCirujano: function setSelectedCirujano(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/admision/medico/cargar_cirujano";
+
+      if (value != null) {
+        this.form.id_cirujano = value.id_cirujano;
+        this.form.id_servicio_medico = value.id_servicio_medico;
+        loader.hide();
+      }
+
+      axios.get(url).then(function (response) {
+        var cirujanos = [];
+        response.data.medicos.forEach(function (medico) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto.id_cirujano = medico.id;
+          objeto.id_servicio_medico = medico.tipo_medico_servicio;
+          cirujanos.push(objeto);
+        });
+        that.cirujanos = cirujanos;
+        that.setSelectedServicioMedico();
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedCirujano",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    setSelectedAnestesiologo: function setSelectedAnestesiologo(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      this.form.id_especializacion = 3;
+      var url = "/modulos/admision/medico/cargar_medico_por_especializacion/" + that.form.id_especializacion;
+
+      if (value != null) {
+        this.form.id_anestesiologo = value.id_anestesiologo;
+        loader.hide();
+      }
+
+      axios.get(url).then(function (response) {
+        var anestesiologos = [];
+        response.data.medicos.forEach(function (medico) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto.id_anestesiologo = medico.id;
+          anestesiologos.push(objeto);
+        });
+        that.anestesiologos = anestesiologos;
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedAnestesiologo",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    setSelectedAyudante: function setSelectedAyudante(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/admision/medico/cargar_medico_all";
+
+      if (value != null) {
+        if (value.id_ayudante1 != null) {
+          this.form.id_ayudante1 = value.id_ayudante1;
+        }
+
+        if (value.id_ayudante2 != null) {
+          this.form.id_ayudante2 = value.id_ayudante2;
+        }
+
+        if (value.id_instrumentista != null) {
+          this.form.id_instrumentista = value.id_instrumentista;
+        }
+
+        loader.hide();
+      }
+
+      axios.get(url).then(function (response) {
+        var ayudante1 = [];
+        var ayudante2 = [];
+        var instrumentistas = [];
+        response.data.medicos.forEach(function (medico) {
+          //Ayudante 1
+          var objeto1 = {};
+          objeto1.display1 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto1.id_ayudante1 = medico.id;
+          ayudante1.push(objeto1); //Ayudante 2
+
+          var objeto2 = {};
+          objeto2.display2 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto2.id_ayudante2 = medico.id;
+          ayudante2.push(objeto2); //Instrumentista
+
+          var objeto3 = {};
+          objeto3.display3 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto3.id_instrumentista = medico.id;
+          instrumentistas.push(objeto3);
+        });
+        that.ayudantes1 = ayudante1;
+        that.ayudantes2 = ayudante2;
+        that.instrumentistas = instrumentistas;
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores
+
+        /* that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedAyudante",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    setSelectedTarifaria: function setSelectedTarifaria(value) {
+      var that = this;
+
+      if (this.selectedTarifaria.id_tarifaria != null) {
+        this.form.id_tarifaria = this.selectedTarifaria.id_tarifaria;
+      }
+
+      if (this.tarifarias.length == 0) {
+        if (this.selectedTarifaria != "") {
+          var loader = that.$loading.show();
+          var url = "/modulos/parametrizacion/tarifario/consultar_tarifario/" + this.selectedTarifaria;
+          axios.get(url).then(function (response) {
+            var tarifariosMedicinas = [];
+            response.data.tarifariosMedicinas.forEach(function (tarifarioMedicina) {
+              var objeto = {};
+              objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(tarifarioMedicina.descripcion);
+              objeto.id_tarifaria = tarifarioMedicina.codigo;
+              tarifariosMedicinas.push(objeto);
+            });
+            that.tarifarias = tarifariosMedicinas;
+            loader.hide();
+          })["catch"](function (error) {
+            that.flashMessage.show({
+              status: "error",
+              title: "Error al procesar setSelectedDiagnostico",
+              message: "Por favor comuníquese con el administrador. " + error,
+              clickable: true,
+              time: 0,
+              icon: "/iconsflashMessage/error.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
+              }
+            });
+            loader.hide();
+          });
+        }
+      } else {
+        this.tarifarias = [];
+      }
+    },
+    cargarDiagnosticoPorCodigo: function cargarDiagnosticoPorCodigo(value) {
+      if (value.id_diagnostico != "") {
+        var that = this;
+        var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_por_codigo/" + value.id_diagnostico;
+        var loader = that.$loading.show();
+        axios.get(url).then(function (response) {
+          //Obtiene los datos de Motivo Antecedentes
+          if (response.data.diagnostico != null && response.data.diagnostico != undefined) {
+            //Pre
+            that.selectedDiagnosticoPre = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
+            that.form.id_diagnostico_pre = response.data.diagnostico.codigo; //Post
+
+            that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
+            that.form.id_diagnostico = response.data.diagnostico.codigo;
+            that.form.idCirugiaProgramadaTemporal = value.SecCirPro;
+            that.form.idCirugiaProgramada = value.SecCirPro;
+            that.form.paciente = value.nombrePaciente;
+            that.form.historia_clinica = value.historiaClinica;
+            that.form.fecha = value.fechaProgramada;
+            that.form.edad = value.edad;
+            that.form.sexo = value.sexo;
+            that.form.sala = value.sala;
+            that.form.cama = value.cama;
+            that.form.cirujano = value.cirujano;
+            that.form.anestesiologo = value.anestesiologo;
+            that.form.quirofano = value.quirofano;
+            that.form.operacion_propuesta = value.procedimiento;
+            that.$modal.hide("ListaCirugiaProgramadaPaciente");
+          }
+
+          loader.hide();
+        })["catch"](function (error) {
+          //Errores
+          loader.hide();
+          that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+          });
+        });
+      }
+    },
+    guardarCabecera: function guardarCabecera(registro_anestesia_id) {
+      var that = this;
+      var url = "";
+      var mensaje = "";
+      url = "/modulos/cirugia/anestesia/guardar_datos_registro";
+      this.form.registro_anestesia_id = registro_anestesia_id;
+      var loader = that.$loading.show();
+      axios.post(url, this.form).then(function (response) {
+        /* that.flashMessage.show({
+            status: "success",
+            title: "Éxito al procesar",
+            message: "Datos guardados correctamente.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/success.svg",
+            customStyle: {
+                flashMessageStyle: {
+                    background: "linear-gradient(#e66465, #9198e5)"
+                }
+            }
+        }); */
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores de validación
+        loader.hide();
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarCabecera",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      });
+    }
+  },
+  computed: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {},
+  data: function data() {
+    return {
+      // Detectar cuando Inicia/Finaliza el Proceso
+      iniciado: false,
+      //Datos para el conteo del la hora
+      hour: new Date().getHours(),
+      minutes: new Date().getMinutes(),
+      seconds: new Date().getSeconds(),
+      time: new Date().getSeconds(),
+      //Para eliminar la grafica por hora
+      iniciado_eliminar: false,
+      //Variables para el componente de ConfirmarCandelar
+      resConfirmarCancelar: false,
+      icon: "",
+      titulo: "",
+      mensaje: "",
+      //Objeto para capturar los datos del agente/posicion que se vaya a modificar o eliminar en la grafica
+      datos_eliminar_agente: {
+        respuesta_modificar: false,
+        respuesta_eliminar: false,
+        index_all: {
+          index: "",
+          index_fila: "",
+          index_columna: "",
+          index_minutos_columna: "",
+          index_agente: ""
+        },
+        columnas: {
+          agente: {
+            src: "",
+            description: "",
+            cod: "",
+            value: "",
+            valueNew: ""
+          },
+          t_fin: "",
+          t_init: ""
+        },
+        posicion: {
+          description: "",
+          cod: "",
+          codRe: "",
+          src: "",
+          nombre_sistema: ""
+        },
+        dato: {
+          es_agente: "",
+          es_posicion: ""
+        },
+        adicional: {
+          system_name: "",
+          tipo: ""
+        }
+      }
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    //Metodo para iniciar el proceso
+    start_time: function () {
+      var _start_time = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event) {
+        var _this = this;
+
+        var url, $id;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!this.iniciado) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 2:
+                this.iniciado = true;
+                this.agregarHorasInicial();
+                this.consultarSello(); //Guardar datos en la tabla tb_registro_anestesia
+
+                url = "/modulos/cirugia/anestesia/registro/post";
+                _context.next = 8;
+                return axios.post(url, this.form).then(function (response) {
+                  _this.form.registro_anestesia_id = response.data.id;
+                });
+
+              case 8:
+                $id = _context.sent;
+                this.$emit("guardarCabecera", this.form.registro_anestesia_id); //Guardar datos en la tabla tb_tipo_agente_anestesia
+                // Poner el dato al inicio de la rejilla cuando se haya iniciado
+
+                this.agregaDatoEnRejilla(true, false, 250, "img/icons/induccion.png", {
+                  system_name: "INDUCCION",
+                  tipo: this.system_agente
+                });
+                this.flashMessage.show({
+                  status: "success",
+                  title: "Éxito al procesar",
+                  message: "Agente agregado correctamente.",
+                  clickable: true,
+                  time: 5000,
+                  icon: "/iconsflashMessage/success.svg",
+                  customStyle: {
+                    flashMessageStyle: {
+                      background: "linear-gradient(#e66465, #9198e5)"
+                    }
+                  }
+                });
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function start_time(_x) {
+        return _start_time.apply(this, arguments);
+      }
+
+      return start_time;
+    }(),
+    //Metodos para el componente ConfirmarCandelar
+    mostrarModalConfirmarCandelar: function mostrarModalConfirmarCandelar() {
+      this.icon = "/iconsflashMessage/warning.svg";
+      this.titulo = "¿Desea cerrar el proceso?";
+      this.mensaje = "Al dar en Aceptar, el proceso dará por finalizado.";
+      this.$modal.show("ConfirmarCandelar");
+    },
+    respuestaConfirmarCancelar: function respuestaConfirmarCancelar(value) {
+      this.resConfirmarCancelar = value;
+      this.$modal.hide("ConfirmarCandelar");
+      this.end_time();
+    },
+    //Metodo para cerrar el modal y procesar el modificado o eliminado del agentes
+    handleSeleccionarClick: function handleSeleccionarClick(value) {
+      if (value.respuesta) {
+        var valor = parseInt(value.columnas.agente.valueNew);
+        var minutes = value.columnas.t_init;
+        var is_tpo_init = value.columnas.t_init;
+        var is_tpo_fin = value.columnas.t_fin;
+        var adicional = value.adicional;
+        var ruta_icono = value.posicion.src == "" ? value.columnas.agente.src : value.posicion.src;
+        this.form.id_datos_agente = value.posicion.codRe == "" ? value.columnas.agente.cod : value.posicion.codRe;
+        var indice_fila = this.obtenerIndice(valor);
+
+        if (adicional.tipo == "agente") {
+          var _iterator = _createForOfIteratorHelper(this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin),
+              _step;
+
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var column_quince = _step.value;
+
+              // Recorre cada fila
+              // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
+              if (column_quince.columnas) {
+                // figuras en rejillas
+                var _iterator2 = _createForOfIteratorHelper(column_quince.columnas),
+                    _step2;
+
+                try {
+                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                    var col_cince_min = _step2.value;
+
+                    if (col_cince_min.t_init <= minutes && col_cince_min.t_fin > minutes) {
+                      if (minutes >= col_cince_min.t_init && col_cince_min.t_fin > minutes) {
+                        // Agregar dato de envío
+                        this.enviarDatosAgente1({
+                          tpo_ini: is_tpo_init,
+                          tpo_fin: is_tpo_fin,
+                          hora: this.hour,
+                          min: this.minutes,
+                          segundos: this.seconds,
+                          valor: valor,
+                          name: adicional.system_name,
+                          indice_hora: this.indice_hora
+                        }, adicional.tipo, value, col_cince_min, column_quince);
+                      }
+                    }
+                  }
+                } catch (err) {
+                  _iterator2.e(err);
+                } finally {
+                  _iterator2.f();
+                }
+              }
+            }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
+          }
+
+          this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.splice(value.index_all.indexLista, 1);
+        } else if (adicional.tipo == "respiracion") {
+          this.enviarDatosAgente1({
+            tpo_ini: is_tpo_init,
+            tpo_fin: is_tpo_fin,
+            hora: this.hour,
+            min: this.minutes,
+            segundos: this.seconds,
+            valor: valor,
+            name: adicional.system_name,
+            indice_hora: this.indice_hora
+          }, adicional.tipo, value, this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna]);
+          this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.splice(value.index_all.indexLista, 1);
+        } else if (adicional.tipo == "posicion") {
+          this.enviarDatosAgente1({
+            tpo_ini: is_tpo_init,
+            tpo_fin: is_tpo_fin,
+            hora: this.hour,
+            min: this.minutes,
+            segundos: this.seconds,
+            valor: this.form.id_datos_agente,
+            name: adicional.system_name,
+            indice_hora: this.indice_hora
+          }, adicional.tipo, value, {}, this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna]);
+        }
+        /* Esta linea eliminará el agente de la grafica */
+
+
+        this.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar",
+          message: "Agente Modificado Correctamente",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      } else if (value.respuestaEliminar) {
+        var adicional = value.adicional;
+
+        if (adicional.tipo == "agente") {
+          this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.splice(value.index_all.indexLista, 1);
+        } else if (adicional.tipo == "respiracion") {
+          this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.splice(value.index_all.indexLista, 1);
+        } else if (adicional.tipo == "posicion") {
+          this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].posicion = {
+            descripcion: "",
+            idRe: "",
+            img_url: "",
+            name_system: ""
+          };
+        }
+        /* Esta linea eliminará el agente de la grafica */
+
+
+        this.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar",
+          message: "Agente Eliminados Correctamente",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      }
+
+      this.$modal.hide("EliminarAgente");
+    }
+  },
+  computed: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
+      prefijo: "",
+      //cirugia_id: 0,
+      titulo_seleccionado: "Registro de anestesia",
+      respuestaFinProceso: 0,
+      respuestaImprimir: 0,
+      form: {
+        idCirugiaProgramada: "0001",
+        idCirugiaProgramadaTemporal: "",
+        registro_anestesia_id: 0,
+
+        /* Datos del paciente */
+        paciente: "",
+        historia_clinica: "",
+        fecha: "00/00/0000",
+        edad: "",
+        sexo: "",
+        estatura: "",
+        peso: "",
+        ocupacion_actual: "",
+        id_servicio_medico: 0,
+        servicio: "",
+        //borrar esta vaiables
+        sala: "",
+        cama: "",
+        diagnostico_preoperatorio: "",
+        id_diagnostico_pre: 0,
+        id_diagnostico: 0,
+        operacion_propuesta: "",
+        id_cirujano: 0,
+        id_ayudante1: 0,
+        id_tarifaria: 0,
+        id_anestesiologo: 0,
+        id_ayudante2: 0,
+        id_instrumentista: 0,
+
+        /* Datos extras */
+        id_especializacion: 0
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.flashMessage.setStrategy("multiple");
+    /*  var user = this.$attrs;
+    console.log(user); */
+
+    /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
+    let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
+        .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Ingreso"
+    );*/
+
+    this.prefijo = _variables__WEBPACK_IMPORTED_MODULE_0__["prefix"];
+  },
+  beforeDestroy: function beforeDestroy() {
+    /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
+    let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
+        .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
+    this.$funcionesGlobales.registrarLogForm(
+        nombreModulo,
+        nombreFormulario,
+        "Salida"
+    ); */
+  },
+  methods: {
+    /* Metodos para Llamar al Modal y la Tabla */
+    mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
+      this.$modal.show("ListaCirugiaProgramadaPaciente");
+    },
+    handleSeleccionarClick: function handleSeleccionarClick(value) {
+      if (value != "") {
+        var that = this;
+        var url = "/modulos/cirugia/anestesia/validar_secCirPro/" + value.SecCirPro; //var loader = that.$loading.show();
+
+        axios.get(url).then(function (response) {
+          //Obtiene los datos de Motivo Antecedentes
+          if (response.data.secCirPro != null && response.data.secCirPro != undefined) {
+            that.$modal.hide("ListaCirugiaProgramadaPaciente");
+            that.flashMessage.show({
+              status: "warning",
+              title: "Advertencia al Seleccionar Paciente",
+              message: "El paciente ya cuenta con un registro anestesico.",
+              clickable: true,
+              time: 10000,
+              icon: "/iconsflashMessage/warning.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
+              }
+            }); //loader.hide();
+          } else {
+              /* that.setSelectedCirujano();
+              that.setSelectedAnestesiologo();
+              that.setSelectedAyudante();
+              that.setSelectedDiagnostico();
+              that.setSelectedTarifaria();
+              that.cargarDiagnosticoPorCodigo(value); */
+            }
+        })["catch"](function (error) {
+          //Errores
+          //loader.hide();
+          that.$swal({
+            icon: "error",
+            title: "Existe un error",
+            text: error
+          });
+        });
+      }
+    },
+
+    /* Fin para llamar al Modal y la Tabla */
+
+    /* Metodos para los form-wizard */
+    onValidateTab: function onValidateTab(validationResult, activeTabIndex) {//Se debera realizar las validaciones respectivas para cada tab
+    },
+    validateFirstStep: function validateFirstStep() {
+      //alert(this.$refs.formRegistroAnestesico.slotProps.activeTabIndex + 1);
+      var opc = this.$refs.formRegistroAnestesico.slotProps.activeTabIndex;
+      var poseeErrores = null;
+      return new Promise(function (resolve, reject) {
+        switch (opc) {
+          case 0:
+            break;
+
+          case 1:
+            break;
+
+          case 2:
+            //poseeErrores = this.$refs.examenFisico.validarForm();
+            //resolve(poseeErrores);
+            break;
+
+          case 3: //poseeErrores = this.$refs.paraclinico.validarForm();
+          //resolve(poseeErrores);
+
+          case 4:
+            break;
+
+          default:
+        }
+      });
+    },
+    onComplete: function onComplete() {
+      this.respuestaImprimir = 1;
+      this.$refs.formRegistroAnestesico.reset();
+    },
+    onChangeTab: function onChangeTab(prevIndex, nextIndex) {
+      //Se debera realizar las validaciones respectivas para cada tab
+      this.setFormTitle(nextIndex);
+      /* if (typeof this.onChangeTab() === "function") {
+          alert("entra");
+          //Es seguro ejecutar la función
+          this.guardarModificar(prevIndex);
+      } */
+
+      this.guardarModificar(prevIndex);
+    },
+    setFormTitle: function setFormTitle(index) {
+      switch (index) {
+        case 0:
+          //this.titulo_seleccionado = "Revisión por Sistemas";
+          //this.$refs.revisionSistema.cargarRevisionSistema();
+          break;
+
+        case 1:
+          //this.titulo_seleccionado = "Antecedentes";
+          //this.$refs.antecedente.cargarAntecedente();
+          break;
+
+        case 2:
+          //this.titulo_seleccionado = "Examen Físico";
+          //this.$refs.examenFisico.cargarExamenFisico();
+          break;
+
+        case 3:
+          //this.titulo_seleccionado = "Paraclinicos";
+          //this.$refs.paraclinico.cargarParaclinico();
+          break;
+
+        case 4:
+          break;
+
+        default:
+          this.titulo_seleccionado = "";
+      }
+    },
+    guardarModificar: function guardarModificar(index) {
+      switch (index) {
+        case 0:
+          //this.$refs.revisionSistema.guardarModificar();
+          break;
+
+        case 1:
+          //this.$refs.antecedente.guardarModificar();
+          break;
+
+        case 2:
+          //this.$refs.examenFisico.guardarModificar();
+          break;
+
+        case 3:
+          //this.$refs.paraclinico.guardarModificar();
+          break;
+
+        case 4:
+          break;
+
+        default: //this.titulo_seleccionado = "";
+
+      }
+    },
+
+    /* Fin Metodos para los form-wizard */
+    llamarMetodoImprimir: function llamarMetodoImprimir() {
+      if (this.respuestaImprimir) {
+        window.open("/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" + this.form.idCirugiaProgramadaTemporal);
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=script&lang=js& ***!
@@ -8367,15 +12163,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8712,7 +12510,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       rutaSello: "",
       idPromesa: [],
       listas: {
-        SecCirPro: "",
+        SecCirPro: "0001",
         frm_id_user: "",
         chkentrada01: false,
         chkentrada02: false,
@@ -8784,17 +12582,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
       that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
       that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
-      that.listas.observacion = that.$refs.listaSalida.listas.observacion; // console.log(that.listas);
-      // if (that.validarImgFirma == 0) {
-      //     that.$swal({
-      //         icon: "error",
-      //         title: "Favor Guardar la Firma",
-      //         text: "."
-      //     });
-      //     return;
-      // }
-      // var loader = that.$loading.show();
-
+      that.listas.observacion = that.$refs.listaSalida.listas.observacion;
       var ListaInsert = this.listas; //console.log(this.listas);
 
       this.listas = {
@@ -8825,7 +12613,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         firma: ""
       };
       axios.post("/modulos/cirugia/lista_verificacion/ListarValoracion", ListaInsert).then(function (response) {
-        that.$refs.formValoracionPreanestecia[3].activeTabIndex;
+        that.$refs.formListaVerificacion[3].activeTabIndex;
       })["catch"](function (e) {// this.errors.push(e);
       }); // resolve(este);
     },
@@ -8893,31 +12681,113 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         that.isHidden = "none";
       }); //  llamarMetodoImprimir();
     },
-    onChangeTab: function onChangeTab(prevIndex, nextIndex) {// if (nextIndex == 3) {
-      //     this.guardarLista();
-      //     // nextIndex = 0
-      //     //this.$refs.formValoracionPreanestecia.changeTab(0,1)
-      // }
-      //Se debera realizar las validaciones respectivas para cada tab
-      //  this.setFormTitle(nextIndex);
-
-      /* if (typeof this.onChangeTab() === "function") {
-          alert("entra");
-          //Es seguro ejecutar la función
-          this.guardarModificar(prevIndex);
-      } */
-      //  this.guardarModificar(prevIndex);
-      // alert(nextIndex);
-      //   this.listas.chksalida01 = $this.$refs.chkentrada01.value();
-      //      alert(this.listas.chksalida01);
+    onChangeTab: function onChangeTab(prevIndex, nextIndex) {
+      this.guardarModificar(prevIndex);
     },
-    onValidateTab: function onValidateTab(validationResult, activeTabIndex) {//Se debera realizar las validaciones respectivas para cada tab
+    onValidateTab: function onValidateTab(validationResult, activeTabIndex) {},
+    guardarModificar: function guardarModificar(index) {
+      switch (index) {
+        case 0:
+          break;
+
+        case 1:
+          break;
+
+        case 2:
+          this.guardarLista();
+          break;
+
+        case 3:
+          break;
+
+        case 4:
+          break;
+
+        default: //this.titulo_seleccionado = "";
+
+      }
+    },
+    validateFirstStep: function validateFirstStep() {
+      var _this = this;
+
+      //alert(this.$refs.formValoracionPreanestecia.slotProps.activeTabIndex + 1);
+      var opc = this.$refs.formListaVerificacion.slotProps.activeTabIndex;
+      var poseeErrores = null;
+      return new Promise(function (resolve, reject) {
+        switch (opc) {
+          case 0:
+            break;
+
+          case 1:
+            break;
+
+          case 2:
+            poseeErrores = _this.$refs.listaSalida.validarForm();
+            resolve(poseeErrores);
+            break;
+
+          case 3:
+            break;
+
+          case 4:
+            break;
+
+          default:
+        }
+      });
+    },
+    guardarLista: function guardarLista() {
+      var _this2 = this;
+
+      //validamos la lista segun la referencia listaPausa listaSalida
+      var that = this;
+      that.listas.chkentrada01 = that.$refs.listaEntrada.listas.chkentrada01;
+      that.listas.chkentrada02 = that.$refs.listaEntrada.listas.chkentrada02;
+      that.listas.chkentrada03 = that.$refs.listaEntrada.listas.chkentrada03;
+      that.listas.chkentrada04 = that.$refs.listaEntrada.listas.chkentrada04;
+      that.listas.chkentrada05 = that.$refs.listaEntrada.listas.chkentrada05;
+      that.listas.chkentrada06 = that.$refs.listaEntrada.listas.chkentrada06;
+      that.listas.chkentrada07 = that.$refs.listaEntrada.listas.chkentrada07;
+      that.listas.chkquirurgica01 = that.$refs.listaPausa.listas.chkquirurgica01;
+      that.listas.chkquirurgica02 = that.$refs.listaPausa.listas.chkquirurgica02;
+      that.listas.chkquirurgica03 = that.$refs.listaPausa.listas.chkquirurgica03;
+      that.listas.chkquirurgica04 = that.$refs.listaPausa.listas.chkquirurgica04;
+      that.listas.chkquirurgica05 = that.$refs.listaPausa.listas.chkquirurgica05;
+      that.listas.chkquirurgica06 = that.$refs.listaPausa.listas.chkquirurgica06;
+      that.listas.chkquirurgica07 = that.$refs.listaPausa.listas.chkquirurgica07;
+      that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
+      that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
+      that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
+      that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
+      that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
+      that.listas.observacion = that.$refs.listaSalida.listas.observacion;
+      var loader = that.$loading.show();
+      var ListaInsert = this.listas; //console.log(this.listas);
+
+      var url = "/modulos/cirugia/lista_verificacion/ListarValoracion";
+      axios.post(url, ListaInsert).then(function (response) {
+        _this2.idPromesa = response.data.id;
+        loader.hide();
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarLista",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
     },
     onComplete: function onComplete() {
-      this.guardarLista(); //  this.$refs.paraclinico.guardarModificar();
-      //this.$refs.paraclinico.guardarFirmaPorAtencion();
-      //await this.$refs.paraclinico.cargarParaclinico();
-      //await this.cambiarEstado();
+      //this.guardarFirmaPorAtencion();
+      this.$refs.formListaVerificacion.reset();
     },
     guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
       var that = this;
@@ -8998,93 +12868,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           loader.hide();
         });
       }
-    },
-    guardarLista: function guardarLista() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var that, ListaInsert, url, $id;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                //validamos la lista segun la referencia listaPausa listaSalida
-                that = _this;
-                that.listas.chkentrada01 = that.$refs.listaEntrada.listas.chkentrada01;
-                that.listas.chkentrada02 = that.$refs.listaEntrada.listas.chkentrada02;
-                that.listas.chkentrada03 = that.$refs.listaEntrada.listas.chkentrada03;
-                that.listas.chkentrada04 = that.$refs.listaEntrada.listas.chkentrada04;
-                that.listas.chkentrada05 = that.$refs.listaEntrada.listas.chkentrada05;
-                that.listas.chkentrada06 = that.$refs.listaEntrada.listas.chkentrada06;
-                that.listas.chkentrada07 = that.$refs.listaEntrada.listas.chkentrada07;
-                that.listas.chkquirurgica01 = that.$refs.listaPausa.listas.chkquirurgica01;
-                that.listas.chkquirurgica02 = that.$refs.listaPausa.listas.chkquirurgica02;
-                that.listas.chkquirurgica03 = that.$refs.listaPausa.listas.chkquirurgica03;
-                that.listas.chkquirurgica04 = that.$refs.listaPausa.listas.chkquirurgica04;
-                that.listas.chkquirurgica05 = that.$refs.listaPausa.listas.chkquirurgica05;
-                that.listas.chkquirurgica06 = that.$refs.listaPausa.listas.chkquirurgica06;
-                that.listas.chkquirurgica07 = that.$refs.listaPausa.listas.chkquirurgica07;
-                that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
-                that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
-                that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
-                that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
-                that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
-                that.listas.observacion = that.$refs.listaSalida.listas.observacion; // console.log(that.listas);
-                // if (that.validarImgFirma == 0) {
-                //     that.$swal({
-                //         icon: "error",
-                //         title: "Favor Guardar la Firma",
-                //         text: "."
-                //     });
-                //     return;
-                // }
-                // var loader = that.$loading.show();
-
-                ListaInsert = _this.listas; //console.log(this.listas);
-
-                _this.listas = {
-                  SecCirPro: "",
-                  id_lista: 0,
-                  chkentrada01: false,
-                  chkentrada02: false,
-                  chkentrada03: false,
-                  chkentrada04: false,
-                  chkentrada05: false,
-                  chkentrada06: false,
-                  chkentrada07: false,
-                  chkquirurgica01: false,
-                  chkquirurgica02: false,
-                  chkquirurgica03: false,
-                  chkquirurgica04: false,
-                  chkquirurgica05: false,
-                  chkquirurgica06: false,
-                  chkquirurgica07: false,
-                  chksalida01: false,
-                  chksalida02: false,
-                  chksalida03: false,
-                  chksalida04: false,
-                  chksalida05: false,
-                  user_id: "",
-                  cargo: "",
-                  observacion: "",
-                  firma: ""
-                };
-                url = "/modulos/cirugia/lista_verificacion/ListarValoracion";
-                _context.next = 26;
-                return axios.post(url, ListaInsert).then(function (response) {
-                  _this.idPromesa = response.data.id;
-                });
-
-              case 26:
-                $id = _context.sent;
-
-              case 27:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
       window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.SecCirPro);
@@ -9731,7 +13514,27 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    /* Metodos para Llamar al Modal y la Tabla */
+    validarForm: function validarForm() {
+      //Se comprueba que un checkbox tenga data
+      if (this.listas.observacion == "") {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia al finalizar con el proceso",
+          message: "Usted debe ingresar una observación.",
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      return true;
+    }
   }
 });
 
@@ -9746,6 +13549,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10298,10 +14107,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
-var _methods;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10610,7 +14426,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       form: {
         /* Datos del paciente */
-        frm_idCirugiaProgramada: "",
+        frm_idCirugiaProgramada: "2890",
         //2890
         frm_paciente: "",
         frm_cirujano: "",
@@ -10641,7 +14457,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         "Salida"
     ); */
   },
-  methods: (_methods = {
+  methods: {
     /* Metodos para Llamar al Modal y la Tabla */
     mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
       this.$modal.show("ListaCirugiaProgramadaPaciente");
@@ -10661,126 +14477,164 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
 
     /* Fin para llamar al Modal y la Tabla */
-
-    /* Metodos para los form-wizard */
-    onChangeTab: function onChangeTab(prevIndex, nextIndex) {//Se debera realizar las validaciones respectivas para cada tab
-      // this.setFormTitle(nextIndex);
-
-      /* if (typeof this.onChangeTab() === "function") {
-          alert("entra");
-          //Es seguro ejecutar la función
-          this.guardarModificar(prevIndex);
-      } */
-    },
-    onValidateTab: function onValidateTab(validationResult, activeTabIndex) {//Se debera realizar las validaciones respectivas para cada tab
-    },
-    validateFirstStep: function validateFirstStep() {// return new Promise((resolve, reject) => {
-      //     let poseeErrores = this.$refs.examenFisico.validarForm();
-      //     resolve(poseeErrores);
-      // });
-    },
-    onComplete: function onComplete() {
-      this.$refs.paraclinico.guardarModificar(); //await this.$refs.paraclinico.cargarParaclinico();
-      //await this.cambiarEstado();
-    },
     cambiarEstado: function cambiarEstado() {
       if (this.respuestaFinProceso) {
         //this.form.frm_idCirugiaProgramada = "";
         this.respuestaImprimir = 1;
         this.$refs.formValoracionPreanestecia.reset();
       }
-    }
-  }, _defineProperty(_methods, "onChangeTab", function onChangeTab(prevIndex, nextIndex) {
-    //Se debera realizar las validaciones respectivas para cada tab
-    this.setFormTitle(nextIndex);
-    /* if (typeof this.onChangeTab() === "function") {
-        alert("entra");
-        //Es seguro ejecutar la función
-        this.guardarModificar(prevIndex);
-    } */
+    },
 
-    this.guardarModificar(prevIndex);
-  }), _defineProperty(_methods, "setFormTitle", function setFormTitle(index) {
-    switch (index) {
-      case 0:
-        this.titulo_seleccionado = "Revisión por Sistemas";
-        this.$refs.revisionSistema.cargarRevisionSistema();
-        break;
+    /* Metodos para los form-wizard */
+    onValidateTab: function onValidateTab(validationResult, activeTabIndex) {//Se debera realizar las validaciones respectivas para cada tab
+    },
+    validateFirstStep: function validateFirstStep() {
+      var _this = this;
 
-      case 1:
-        this.titulo_seleccionado = "Antecedentes";
-        this.$refs.antecedente.cargarAntecedente();
-        break;
+      //alert(this.$refs.formValoracionPreanestecia.slotProps.activeTabIndex + 1);
+      var opc = this.$refs.formValoracionPreanestecia.slotProps.activeTabIndex;
+      var poseeErrores = null;
+      return new Promise(function (resolve, reject) {
+        switch (opc) {
+          case 0:
+            break;
 
-      case 2:
-        this.titulo_seleccionado = "Examen Físico";
-        this.$refs.examenFisico.cargarExamenFisico();
-        break;
+          case 1:
+            break;
 
-      case 3:
-        this.titulo_seleccionado = "Paraclinicos";
-        this.$refs.paraclinico.cargarParaclinico();
-        break;
+          case 2:
+            poseeErrores = _this.$refs.examenFisico.validarForm();
+            resolve(poseeErrores);
+            break;
 
-      default:
-        this.titulo_seleccionado = "";
-    }
-  }), _defineProperty(_methods, "guardarModificar", function guardarModificar(index) {
-    switch (index) {
-      case 0:
-        this.$refs.revisionSistema.guardarModificar();
-        break;
+          case 3:
+            poseeErrores = _this.$refs.paraclinico.validarForm();
+            resolve(poseeErrores);
 
-      case 1:
-        this.$refs.antecedente.guardarModificar();
-        break;
+          case 4:
+            break;
 
-      case 2:
-        this.$refs.examenFisico.guardarModificar();
-        break;
-
-      case 3:
-        break;
-
-      default: //this.titulo_seleccionado = "";
-
-    }
-  }), _defineProperty(_methods, "consultarSello", function consultarSello() {
-    var that = this;
-
-    if (this.$props.user.id > 0) {
-      var loader = that.$loading.show();
-      var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
-      axios.get(url).then(function (response) {
-        if (response.data.sello != null) {
-          if (response.data.sello.seguridad_medico != null) {
-            that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO; // alert( response.data.sello.medico_sellos);
-          }
+          default:
         }
-
-        loader.hide();
-      })["catch"](function (error) {
-        that.flashMessage.show({
-          status: "error",
-          title: "Error al procesar consultarSello",
-          message: "Por favor comuníquese con el administrador. " + error,
-          clickable: true,
-          time: 0,
-          icon: "/iconsflashMessage/error.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-        loader.hide();
       });
+    },
+    onComplete: function onComplete() {
+      this.respuestaImprimir = 1;
+      this.$refs.formValoracionPreanestecia.reset();
+    },
+    onChangeTab: function onChangeTab(prevIndex, nextIndex) {
+      //Se debera realizar las validaciones respectivas para cada tab
+      this.setFormTitle(nextIndex);
+      /* if (typeof this.onChangeTab() === "function") {
+          alert("entra");
+          //Es seguro ejecutar la función
+          this.guardarModificar(prevIndex);
+      } */
+
+      this.guardarModificar(prevIndex);
+    },
+    setFormTitle: function setFormTitle(index) {
+      switch (index) {
+        case 0:
+          this.titulo_seleccionado = "Revisión por Sistemas";
+          this.$refs.revisionSistema.cargarRevisionSistema();
+          break;
+
+        case 1:
+          this.titulo_seleccionado = "Antecedentes";
+          this.$refs.antecedente.cargarAntecedente();
+          break;
+
+        case 2:
+          this.titulo_seleccionado = "Examen Físico";
+          this.$refs.examenFisico.cargarExamenFisico();
+          break;
+
+        case 3:
+          this.titulo_seleccionado = "Paraclinicos";
+          this.$refs.paraclinico.cargarParaclinico();
+          break;
+
+        case 4:
+          break;
+
+        default:
+          this.titulo_seleccionado = "";
+      }
+    },
+    guardarModificar: function guardarModificar(index) {
+      switch (index) {
+        case 0:
+          this.$refs.revisionSistema.guardarModificar();
+          break;
+
+        case 1:
+          this.$refs.antecedente.guardarModificar();
+          break;
+
+        case 2:
+          this.$refs.examenFisico.guardarModificar();
+          break;
+
+        case 3:
+          this.$refs.paraclinico.guardarModificar();
+          break;
+
+        case 4:
+          break;
+
+        default: //this.titulo_seleccionado = "";
+
+      }
+    },
+
+    /* consultarSello() {
+        let that = this;
+        if (this.$props.user.id > 0) {
+            var loader = that.$loading.show();
+            let url =
+                "/modulos/cirugia/anestesia/cargar_sello/" +
+                this.$props.user.id;
+             axios
+                .get(url)
+                .then(function(response) {
+                    if (response.data.sello != null) {
+                        if (response.data.sello.seguridad_medico != null) {
+                            that.rutaSello =
+                                "data:image/jpeg;base64," +
+                                response.data.sello.seguridad_medico.medico
+                                    .medico_sellos.IMAGEN_SELLO;
+                        }
+                    }
+                    loader.hide();
+                })
+                .catch(error => {
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar consultarSello",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background:
+                                    "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        }
+    }, */
+    llamarMetodoImprimir: function llamarMetodoImprimir() {
+      if (this.respuestaFinProceso || this.respuestaImprimir) {
+        window.open("/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" + this.form.frm_idCirugiaProgramada);
+      }
     }
-  }), _defineProperty(_methods, "llamarMetodoImprimir", function llamarMetodoImprimir() {
-    if (this.respuestaFinProceso || this.respuestaImprimir) {
-      window.open("/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" + this.form.frm_idCirugiaProgramada);
-    }
-  }), _methods)
+  }
 });
 
 /***/ }),
@@ -14404,6 +18258,110 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -14527,6 +18485,27 @@ __webpack_require__.r(__webpack_exports__);
     ); */
   },
   methods: {
+    validarForm: function validarForm() {
+      //Se comprueba que un checkbox tenga data
+      if (this.frmimg.imgFirma == null) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia al finalizar con el proceso",
+          message: "Usted debe firmar porfavor.",
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      return true;
+    },
     consultarSello: function consultarSello() {
       var that = this;
 
@@ -14586,10 +18565,10 @@ __webpack_require__.r(__webpack_exports__);
         //Errores
 
         /*  that.$swal({
-             icon: "error",
-             title: "Existe un error",
-             text: error
-         }); */
+            icon: "error",
+            title: "Existe un error",
+            text: error
+        }); */
         loader.hide();
         that.flashMessage.show({
           status: "error",
@@ -14703,43 +18682,24 @@ __webpack_require__.r(__webpack_exports__);
     },
     //Metodo para guardar o modificar los datos de motivo antecedente
     guardarModificar: function guardarModificar() {
-      if (this.frmimg.imgFirma != null) {
-        if (this.$props.idSecCirPro != "" || this.$props.idSecCirPro) {
-          var idSecCirPro = this.$props.idSecCirPro;
-          var url = "/modulos/cirugia/valoracionPreanestecia/guardar_modificar_paraclinico";
-          var that = this;
+      if (this.$props.idSecCirPro != "" || this.$props.idSecCirPro) {
+        var idSecCirPro = this.$props.idSecCirPro;
+        var url = "/modulos/cirugia/valoracionPreanestecia/guardar_modificar_paraclinico";
+        var that = this;
 
-          if (this.validarGuardarModificar == 1) {
-            that.mensaje = "Datos modificados correctamente.";
-          } else {
-            that.mensaje = "Datos guardados correctamente.";
-          }
-
-          var loader = that.$loading.show();
-          this.form.frm_idCirugiaProgramada = idSecCirPro;
-          axios.post(url, this.form).then(function (response) {
-            loader.hide();
-            that.guardarFirmaPorAtencion();
-          })["catch"](function (error) {
-            that.flashMessage.show({
-              status: "error",
-              title: "Error al procesar guardarModificar",
-              message: "Por favor comuníquese con el administrador. " + error,
-              clickable: true,
-              time: 0,
-              icon: "/iconsflashMessage/error.svg",
-              customStyle: {
-                flashMessageStyle: {
-                  background: "linear-gradient(#e66465, #9198e5)"
-                }
-              }
-            });
-            loader.hide();
-          });
+        if (this.validarGuardarModificar == 1) {
+          that.mensaje = "Datos modificados correctamente.";
         } else {
-          var _that = this;
+          that.mensaje = "Datos guardados correctamente.";
+        }
 
-          _that.flashMessage.show({
+        var loader = that.$loading.show();
+        this.form.frm_idCirugiaProgramada = idSecCirPro;
+        axios.post(url, this.form).then(function (response) {
+          loader.hide();
+          that.guardarFirmaPorAtencion();
+        })["catch"](function (error) {
+          that.flashMessage.show({
             status: "error",
             title: "Error al procesar guardarModificar",
             message: "Por favor comuníquese con el administrador. " + error,
@@ -14752,15 +18712,18 @@ __webpack_require__.r(__webpack_exports__);
               }
             }
           });
-        }
+          loader.hide();
+        });
       } else {
-        this.flashMessage.show({
-          status: "warning",
-          title: "Advertencia al finalizar con el proceso",
-          message: "Se necesita una firma por favor.",
+        var _that = this;
+
+        _that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarModificar",
+          message: "Por favor comuníquese con el administrador. " + error,
           clickable: true,
           time: 0,
-          icon: "/iconsflashMessage/warning.svg",
+          icon: "/iconsflashMessage/error.svg",
           customStyle: {
             flashMessageStyle: {
               background: "linear-gradient(#e66465, #9198e5)"
@@ -14799,9 +18762,9 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         });
-        that.validarFinProceso = 1;
+        /* that.validarFinProceso = 1;
         that.$emit("validarFinProceso", that.validarFinProceso);
-        that.$emit("FinProceso");
+        that.$emit("FinProceso"); */
       })["catch"](function (error) {
         that.resConfirmarCancelar = false;
         that.flashMessage.show({
@@ -17320,6 +21283,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -17941,11 +21929,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     saveCancas: function () {
       var _saveCancas = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var idFlashMessage;
+        var loader, idFlashMessage;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                loader = this.$loading.show();
                 idFlashMessage = this.flashMessage.show({
                   status: "info",
                   title: "Generando Firma",
@@ -17961,17 +21950,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }); //var loader = this.$loading.show();
 
-                _context2.next = 3;
+                _context2.next = 4;
                 return this.print();
 
-              case 3:
+              case 4:
                 this.flashMessage.deleteMessage(idFlashMessage);
                 this.$refs.paintable.saveCurrentCanvasToStorage();
                 this.isActive = !this.isActive;
                 this.respuestaImgFirma = 1;
-                this.$emit("RespuestaImgFirma", this.respuestaImgFirma); //loader.hide();
+                this.$emit("RespuestaImgFirma", this.respuestaImgFirma);
+                loader.hide(); //loader.hide();
 
-              case 8:
+              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -59779,6 +63769,6944 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue?vue&type=template&id=bc9ceef6&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue?vue&type=template&id=bc9ceef6& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+          _c("div", { staticClass: "row border-t" }, [
+            _c(
+              "div",
+              {
+                staticClass: "col-lg-9 col-md-12 border-t mt-3",
+                staticStyle: { "border-top": "1px solid #000" }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-12 border-b border-r text-center" },
+                    [
+                      _vm._v(
+                        "\n                            DROGAS ADMINISTRADAS\n                        "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("div", { staticClass: "row border-b" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    N°\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-2" }, [_vm._v("Tipo")]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-8 border-r" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[0],
+                              expression: "drogas_administradas[0]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[0] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                0,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    1\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[1],
+                              expression: "drogas_administradas[1]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[1] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                1,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    2\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[2],
+                              expression: "drogas_administradas[2]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[2] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                2,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    3\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[3],
+                              expression: "drogas_administradas[3]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[3] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                3,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    4\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[4],
+                              expression: "drogas_administradas[4]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[4] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                4,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("div", { staticClass: "row border-b" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    5\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[5],
+                              expression: "drogas_administradas[5]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[5] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                5,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    6\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[6],
+                              expression: "drogas_administradas[6]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[6] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                6,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    7\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[7],
+                              expression: "drogas_administradas[7]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[7] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                7,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    8\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[8],
+                              expression: "drogas_administradas[8]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[8] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                8,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    9\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[9],
+                              expression: "drogas_administradas[9]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[9] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                9,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("div", { staticClass: "row border-b" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    10\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[10],
+                              expression: "drogas_administradas[10]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[10] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                10,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    11\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[11],
+                              expression: "drogas_administradas[11]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[11] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                11,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    12\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[12],
+                              expression: "drogas_administradas[12]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[12] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                12,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    13\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[13],
+                              expression: "drogas_administradas[13]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[13] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                13,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 border-r pl-0 text-center" },
+                        [
+                          _vm._v(
+                            "\n                                    14\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10 border-r p-0" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.drogas_administradas[14],
+                              expression: "drogas_administradas[14]"
+                            }
+                          ],
+                          staticClass: "input-line col-md-12",
+                          attrs: { rows: "1", type: "text" },
+                          domProps: { value: _vm.drogas_administradas[14] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.drogas_administradas,
+                                14,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "col-md-12 col-lg-3 border-t mt-3",
+                staticStyle: { "border-top": "1px solid #000" }
+              },
+              [
+                _c("div", { staticClass: "row border-b flex flex-center-x" }, [
+                  _vm._v(
+                    "\n                        TIEMPOS\n                    "
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-4 col-ms-8" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.fchaDuracionAnestecia,
+                          expression: "form.fchaDuracionAnestecia"
+                        }
+                      ],
+                      attrs: { type: "time", name: "hs_min" },
+                      domProps: { value: _vm.form.fchaDuracionAnestecia },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "fchaDuracionAnestecia",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8 border-r" }, [
+                    _vm._v("HS Min")
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "row border-b" }, [
+                  _c("div", { staticClass: "col-md-4 col-ms-8" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.fchaDuracionOperacion,
+                          expression: "form.fchaDuracionOperacion"
+                        }
+                      ],
+                      attrs: { type: "time", name: "h_min" },
+                      domProps: { value: _vm.form.fchaDuracionOperacion },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "fchaDuracionOperacion",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8 border-r" }, [
+                    _vm._v("H. Min")
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-12 col-lg-7 border-t mt-3" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "row border-b" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "row border-b border-r" }, [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.general,
+                            expression: "form.general"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "general",
+                          id: "general"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.general)
+                            ? _vm._i(_vm.form.general, null) > -1
+                            : _vm.form.general
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.general,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "general",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "general",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "general", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-r" }, [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.sistem_abierto,
+                            expression: "form.sistem_abierto"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "sistema-abierto",
+                          id: "sistema-abierto"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.sistem_abierto)
+                            ? _vm._i(_vm.form.sistem_abierto, null) > -1
+                            : _vm.form.sistem_abierto
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.sistem_abierto,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "sistem_abierto",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "sistem_abierto",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "sistem_abierto", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-r" }, [
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.sistem_cerrado,
+                            expression: "form.sistem_cerrado"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "sistema-cerrado",
+                          id: "sistema-cerrado"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.sistem_cerrado)
+                            ? _vm._i(_vm.form.sistem_cerrado, null) > -1
+                            : _vm.form.sistem_cerrado
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.sistem_cerrado,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "sistem_cerrado",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "sistem_cerrado",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "sistem_cerrado", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-r" }, [
+                    _vm._m(6),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.sistem_semi_cerr,
+                            expression: "form.sistem_semi_cerr"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "sistem-semi-cerr",
+                          id: "sistem-semi-cerr"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.sistem_semi_cerr)
+                            ? _vm._i(_vm.form.sistem_semi_cerr, null) > -1
+                            : _vm.form.sistem_semi_cerr
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.sistem_semi_cerr,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "sistem_semi_cerr",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "sistem_semi_cerr",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "sistem_semi_cerr", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-r" }, [
+                    _vm._m(7),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-12s p-0" }, [
+                      _vm._m(8),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.cinc_aparatos_usados,
+                            expression: "form.cinc_aparatos_usados"
+                          }
+                        ],
+                        attrs: { type: "checkbox", name: "cinc", id: "cinc" },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.cinc_aparatos_usados)
+                            ? _vm._i(_vm.form.cinc_aparatos_usados, null) > -1
+                            : _vm.form.cinc_aparatos_usados
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.cinc_aparatos_usados,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "cinc_aparatos_usados",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "cinc_aparatos_usados",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "cinc_aparatos_usados", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "upper ml-2",
+                          attrs: { for: "vaiiven" }
+                        },
+                        [_vm._v("vaiiven")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.vaiiven_aparatos_usados,
+                            expression:
+                              "\n                                            form.vaiiven_aparatos_usados\n                                        "
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "vaiiven",
+                          id: "vaiiven"
+                        },
+                        domProps: {
+                          checked: Array.isArray(
+                            _vm.form.vaiiven_aparatos_usados
+                          )
+                            ? _vm._i(_vm.form.vaiiven_aparatos_usados, null) >
+                              -1
+                            : _vm.form.vaiiven_aparatos_usados
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.vaiiven_aparatos_usados,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "vaiiven_aparatos_usados",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "vaiiven_aparatos_usados",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "vaiiven_aparatos_usados", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-b border-r" }, [
+                    _vm._m(9),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.mascara,
+                            expression: "form.mascara"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "mascara",
+                          id: "mascara"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.mascara)
+                            ? _vm._i(_vm.form.mascara, null) > -1
+                            : _vm.form.mascara
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.mascara,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "mascara",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "mascara",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "mascara", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(10),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-r" }, [
+                    _c("div", { staticClass: "col-md-12 p-0" }, [
+                      _vm._m(11),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.oral_inte_traqueal,
+                            expression: "form.oral_inte_traqueal"
+                          }
+                        ],
+                        attrs: { type: "checkbox", name: "oral", id: "oral" },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.oral_inte_traqueal)
+                            ? _vm._i(_vm.form.oral_inte_traqueal, null) > -1
+                            : _vm.form.oral_inte_traqueal
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.oral_inte_traqueal,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "oral_inte_traqueal",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "oral_inte_traqueal",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "oral_inte_traqueal", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        { staticClass: "upper ml-2", attrs: { for: "nasal" } },
+                        [_vm._v("nasal")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.nasal_inte_traqueal,
+                            expression: "form.nasal_inte_traqueal"
+                          }
+                        ],
+                        attrs: { type: "checkbox", name: "nasal", id: "nasal" },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.nasal_inte_traqueal)
+                            ? _vm._i(_vm.form.nasal_inte_traqueal, null) > -1
+                            : _vm.form.nasal_inte_traqueal
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.nasal_inte_traqueal,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "nasal_inte_traqueal",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "nasal_inte_traqueal",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "nasal_inte_traqueal", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-12 p-0" }, [
+                      _vm._m(12),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.rapido_inte_traqueal,
+                            expression: "form.rapido_inte_traqueal"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "rapido",
+                          id: "rapido"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.rapido_inte_traqueal)
+                            ? _vm._i(_vm.form.rapido_inte_traqueal, null) > -1
+                            : _vm.form.rapido_inte_traqueal
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.rapido_inte_traqueal,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "rapido_inte_traqueal",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "rapido_inte_traqueal",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "rapido_inte_traqueal", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        { staticClass: "upper ml-2", attrs: { for: "lenta" } },
+                        [_vm._v("lenta")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.lenta_inte_traqueal,
+                            expression: "form.lenta_inte_traqueal"
+                          }
+                        ],
+                        attrs: { type: "checkbox", name: "lenta", id: "lenta" },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.lenta_inte_traqueal)
+                            ? _vm._i(_vm.form.lenta_inte_traqueal, null) > -1
+                            : _vm.form.lenta_inte_traqueal
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.lenta_inte_traqueal,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "lenta_inte_traqueal",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "lenta_inte_traqueal",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "lenta_inte_traqueal", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-b border-r" }, [
+                    _vm._m(13),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.turbo_inte_traqueal,
+                            expression: "form.turbo_inte_traqueal"
+                          }
+                        ],
+                        staticClass: "input-line",
+                        staticStyle: { width: "100%" },
+                        attrs: { type: "text", name: "turbo", id: "turbo" },
+                        domProps: { value: _vm.form.turbo_inte_traqueal },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "turbo_inte_traqueal",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-r" }, [
+                    _vm._m(14),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.manguito_inflam_inte_traqueal,
+                            expression:
+                              "\n                                            form.manguito_inflam_inte_traqueal\n                                        "
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "manguito-inflam",
+                          id: "manguito-inflam"
+                        },
+                        domProps: {
+                          checked: Array.isArray(
+                            _vm.form.manguito_inflam_inte_traqueal
+                          )
+                            ? _vm._i(
+                                _vm.form.manguito_inflam_inte_traqueal,
+                                null
+                              ) > -1
+                            : _vm.form.manguito_inflam_inte_traqueal
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.manguito_inflam_inte_traqueal,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "manguito_inflam_inte_traqueal",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "manguito_inflam_inte_traqueal",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(
+                                _vm.form,
+                                "manguito_inflam_inte_traqueal",
+                                $$c
+                              )
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-r" }, [
+                    _vm._m(15),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.taponamiento_inte_traqueal,
+                            expression:
+                              "\n                                            form.taponamiento_inte_traqueal\n                                        "
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "Taponamiento",
+                          id: "Taponamiento"
+                        },
+                        domProps: {
+                          checked: Array.isArray(
+                            _vm.form.taponamiento_inte_traqueal
+                          )
+                            ? _vm._i(
+                                _vm.form.taponamiento_inte_traqueal,
+                                null
+                              ) > -1
+                            : _vm.form.taponamiento_inte_traqueal
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.taponamiento_inte_traqueal,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "taponamiento_inte_traqueal",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "taponamiento_inte_traqueal",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(
+                                _vm.form,
+                                "taponamiento_inte_traqueal",
+                                $$c
+                              )
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-r" }, [
+                    _vm._m(16),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.asist_topica_inte_traqueal,
+                            expression:
+                              "\n                                            form.asist_topica_inte_traqueal\n                                        "
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "asist-topica",
+                          id: "asist-topica"
+                        },
+                        domProps: {
+                          checked: Array.isArray(
+                            _vm.form.asist_topica_inte_traqueal
+                          )
+                            ? _vm._i(
+                                _vm.form.asist_topica_inte_traqueal,
+                                null
+                              ) > -1
+                            : _vm.form.asist_topica_inte_traqueal
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.asist_topica_inte_traqueal,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "asist_topica_inte_traqueal",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "asist_topica_inte_traqueal",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(
+                                _vm.form,
+                                "asist_topica_inte_traqueal",
+                                $$c
+                              )
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-r" }, [
+                    _vm._m(17),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.asist_tranboral_inte_traqueal,
+                            expression:
+                              "\n                                            form.asist_tranboral_inte_traqueal\n                                        "
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "asist-tramboral",
+                          id: "asist-semtramborali"
+                        },
+                        domProps: {
+                          checked: Array.isArray(
+                            _vm.form.asist_tranboral_inte_traqueal
+                          )
+                            ? _vm._i(
+                                _vm.form.asist_tranboral_inte_traqueal,
+                                null
+                              ) > -1
+                            : _vm.form.asist_tranboral_inte_traqueal
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.asist_tranboral_inte_traqueal,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "asist_tranboral_inte_traqueal",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "asist_tranboral_inte_traqueal",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(
+                                _vm.form,
+                                "asist_tranboral_inte_traqueal",
+                                $$c
+                              )
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "row border-b" }, [
+                    _vm._m(18),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.conductiva,
+                            expression: "form.conductiva"
+                          }
+                        ],
+                        attrs: { type: "checkbox", name: "habon", id: "habon" },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.conductiva)
+                            ? _vm._i(_vm.form.conductiva, null) > -1
+                            : _vm.form.conductiva
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.conductiva,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "conductiva",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "conductiva",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "conductiva", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-b" }, [
+                    _vm._m(19),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.asepsia_piel,
+                            expression: "form.asepsia_piel"
+                          }
+                        ],
+                        attrs: { type: "checkbox", name: "habon", id: "habon" },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.asepsia_piel)
+                            ? _vm._i(_vm.form.asepsia_piel, null) > -1
+                            : _vm.form.asepsia_piel
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.asepsia_piel,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "asepsia_piel",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "asepsia_piel",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "asepsia_piel", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-b border-r" }, [
+                    _vm._m(20),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-3 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.con,
+                            expression: "form.con"
+                          }
+                        ],
+                        staticClass: "input-line",
+                        staticStyle: { width: "100%" },
+                        attrs: { type: "text", name: "con", id: "con" },
+                        domProps: { value: _vm.form.con },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "con", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-b" }, [
+                    _vm._m(21),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.habon,
+                            expression: "form.habon"
+                          }
+                        ],
+                        attrs: { type: "checkbox", name: "habon", id: "habon" },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.habon)
+                            ? _vm._i(_vm.form.habon, null) > -1
+                            : _vm.form.habon
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.habon,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(_vm.form, "habon", $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "habon",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "habon", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-b" }, [
+                    _vm._m(22),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.raquidea,
+                            expression: "form.raquidea"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "raquidea",
+                          id: "raquidea"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.raquidea)
+                            ? _vm._i(_vm.form.raquidea, null) > -1
+                            : _vm.form.raquidea
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.raquidea,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "raquidea",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "raquidea",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "raquidea", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-b" }, [
+                    _vm._m(23),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.epidural_caud,
+                            expression: "form.epidural_caud"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "epidural-caud",
+                          id: "epidural-caud"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.epidural_caud)
+                            ? _vm._i(_vm.form.epidural_caud, null) > -1
+                            : _vm.form.epidural_caud
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.epidural_caud,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "epidural_caud",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "epidural_caud",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "epidural_caud", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _vm._m(24),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.simple_altura_puncion,
+                            expression: "form.simple_altura_puncion"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "simple",
+                          id: "simple"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.simple_altura_puncion)
+                            ? _vm._i(_vm.form.simple_altura_puncion, null) > -1
+                            : _vm.form.simple_altura_puncion
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.simple_altura_puncion,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "simple_altura_puncion",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "simple_altura_puncion",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "simple_altura_puncion", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _vm._m(25),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.continua_altura_puncion,
+                            expression:
+                              "\n                                            form.continua_altura_puncion\n                                        "
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "continua",
+                          id: "continua"
+                        },
+                        domProps: {
+                          checked: Array.isArray(
+                            _vm.form.continua_altura_puncion
+                          )
+                            ? _vm._i(_vm.form.continua_altura_puncion, null) >
+                              -1
+                            : _vm.form.continua_altura_puncion
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.continua_altura_puncion,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "continua_altura_puncion",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "continua_altura_puncion",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "continua_altura_puncion", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-b flex text-center" }, [
+                    _vm._m(26),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-md-3 p-0",
+                        staticStyle: { margin: "auto" }
+                      },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.altura_puncion,
+                              expression: "form.altura_puncion"
+                            }
+                          ],
+                          staticClass: "input-line",
+                          staticStyle: { width: "100%" },
+                          attrs: {
+                            type: "text",
+                            name: "altura_puncion",
+                            id: "altura_puncion"
+                          },
+                          domProps: { value: _vm.form.altura_puncion },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "altura_puncion",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _vm._m(27),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.puncion_lat,
+                            expression: "form.puncion_lat"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "puncion-lat",
+                          id: "puncion-lat"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.puncion_lat)
+                            ? _vm._i(_vm.form.puncion_lat, null) > -1
+                            : _vm.form.puncion_lat
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.puncion_lat,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "puncion_lat",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "puncion_lat",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "puncion_lat", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-b" }, [
+                    _vm._m(28),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.linea_media,
+                            expression: "form.linea_media"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "linea-media",
+                          id: "linea-media"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.linea_media)
+                            ? _vm._i(_vm.form.linea_media, null) > -1
+                            : _vm.form.linea_media
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.linea_media,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "linea_media",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "linea_media",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "linea_media", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-b border-r" }, [
+                    _vm._m(29),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-3 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.aguja,
+                            expression: "form.aguja"
+                          }
+                        ],
+                        staticClass: "input-line",
+                        staticStyle: { width: "100%" },
+                        attrs: { type: "number", name: "aguja", id: "aguja" },
+                        domProps: { value: _vm.form.aguja },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "aguja", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-b border-r" }, [
+                    _vm._m(30),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-3 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.nivel,
+                            expression: "form.nivel"
+                          }
+                        ],
+                        staticClass: "input-line",
+                        staticStyle: { width: "100%" },
+                        attrs: { type: "text", name: "nivel", id: "nivel" },
+                        domProps: { value: _vm.form.nivel },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "nivel", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-b" }, [
+                    _vm._m(31),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-1 p-0" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.hiperbara,
+                            expression: "form.hiperbara"
+                          }
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          name: "hiperbara",
+                          id: "hiperbara"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.hiperbara)
+                            ? _vm._i(_vm.form.hiperbara, null) > -1
+                            : _vm.form.hiperbara
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.hiperbara,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "hiperbara",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "hiperbara",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "hiperbara", $$c)
+                            }
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-b" }, [
+                    _vm._m(32),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-lg-8 col-md-8 col-sm-8" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c(
+                            "v-select",
+                            {
+                              attrs: {
+                                value: _vm.form.id_tipo_posiciones,
+                                options: _vm.tipoPosiciones,
+                                label: "display"
+                              },
+                              on: { input: _vm.setSelectedTipoPosiciones },
+                              model: {
+                                value: _vm.selectedTipoPosiciones,
+                                callback: function($$v) {
+                                  _vm.selectedTipoPosiciones = $$v
+                                },
+                                expression: "selectedTipoPosiciones"
+                              }
+                            },
+                            [
+                              _c("template", { slot: "no-options" }, [
+                                _vm._v("No existen datos")
+                              ])
+                            ],
+                            2
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-md-5 col-lg-5 border-t border-t mt-3" },
+              [
+                _vm._m(33),
+                _vm._v(" "),
+                _vm._l(_vm.form.infusiones, function(infusion, index) {
+                  return _c(
+                    "div",
+                    { key: index, staticClass: "row border-b border-r" },
+                    [
+                      _c("span", { staticClass: "col-md-1 border-r" }, [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(infusion.abreviatura) +
+                            "\n                        "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "col-md-6 p-0 m-0 upper" }, [
+                        _c("span", { staticClass: "space-left" }, [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(infusion.descripcion) +
+                              "\n                            "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-3 p-0" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: infusion.valor,
+                              expression: "infusion.valor"
+                            }
+                          ],
+                          staticClass: "input-line",
+                          staticStyle: { width: "100%" },
+                          attrs: { type: "number" },
+                          domProps: { value: infusion.valor },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(infusion, "valor", $event.target.value)
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        { staticClass: "col-md-1 p-0 m-0", attrs: { for: "" } },
+                        [_vm._v("cc")]
+                      )
+                    ]
+                  )
+                }),
+                _vm._v(" "),
+                _vm._m(34),
+                _vm._v(" "),
+                _c("div", { staticClass: "row border-b border-r" }, [
+                  _c("div", { staticClass: "col-md-1" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-7 p-0" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.hemorragia,
+                          expression: "form.hemorragia"
+                        }
+                      ],
+                      staticClass: "input-line",
+                      staticStyle: { width: "100%" },
+                      attrs: {
+                        type: "number",
+                        name: "hemorragia",
+                        id: "hemorragia"
+                      },
+                      domProps: { value: _vm.form.hemorragia },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "hemorragia", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "col-md-3 p-0 m-0", attrs: { for: "" } },
+                    [_vm._v("cc APROX")]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(35),
+                _vm._v(" "),
+                _c("div", { staticClass: "row border-b border-r" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-3 p-0 m-0 upper",
+                      attrs: { for: "1-min" }
+                    },
+                    [_vm._v("1 min")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-3 p-0 m-0 upper",
+                      attrs: { for: "5-min" }
+                    },
+                    [_vm._v("5 min")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-3 p-0 m-0 upper",
+                      attrs: { for: "10-min" }
+                    },
+                    [_vm._v("10 min")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-3 p-0 m-0 upper",
+                      attrs: { for: "p_muerto" }
+                    },
+                    [_vm._v("p. muerto")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-3 p-0" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.min1,
+                          expression: "form.min1"
+                        }
+                      ],
+                      staticClass: "input-line",
+                      staticStyle: { width: "100%" },
+                      attrs: { type: "number", name: "1-min", id: "1-min" },
+                      domProps: { value: _vm.form.min1 },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "min1", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-3 p-0" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.min5,
+                          expression: "form.min5"
+                        }
+                      ],
+                      staticClass: "input-line",
+                      staticStyle: { width: "100%" },
+                      attrs: { type: "number", name: "5-min", id: "5-min" },
+                      domProps: { value: _vm.form.min5 },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "min5", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-3 p-0" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.min10,
+                          expression: "form.min10"
+                        }
+                      ],
+                      staticClass: "input-line",
+                      staticStyle: { width: "100%" },
+                      attrs: { type: "number", name: "10-min", id: "10-min" },
+                      domProps: { value: _vm.form.min10 },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "min10", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-3 p-0" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.p_muerto,
+                          expression: "form.p_muerto"
+                        }
+                      ],
+                      staticClass: "input-line",
+                      staticStyle: { width: "100%" },
+                      attrs: {
+                        type: "number",
+                        name: "p_muerto",
+                        id: "p_muerto"
+                      },
+                      domProps: { value: _vm.form.p_muerto },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "p_muerto", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(36),
+                _vm._v(" "),
+                _c("div", { staticClass: "row border-b border-r" }, [
+                  _c("div", { staticClass: "col-md-12 p-0" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.tecnicas_especiales,
+                          expression: "form.tecnicas_especiales"
+                        }
+                      ],
+                      staticClass: "input-line",
+                      staticStyle: { width: "100%" },
+                      attrs: {
+                        type: "text",
+                        name: "tecnicas_especiales",
+                        id: "tecnicas_especiales"
+                      },
+                      domProps: { value: _vm.form.tecnicas_especiales },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "tecnicas_especiales",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _vm._m(37),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-lg-8 col-md-8 col-sm-8" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c(
+                          "v-select",
+                          {
+                            attrs: {
+                              value: _vm.form.id_sala,
+                              options: _vm.salas,
+                              label: "display"
+                            },
+                            on: { input: _vm.setSelectedSala },
+                            model: {
+                              value: _vm.selectedSala,
+                              callback: function($$v) {
+                                _vm.selectedSala = $$v
+                              },
+                              expression: "selectedSala"
+                            }
+                          },
+                          [
+                            _c("template", { slot: "no-options" }, [
+                              _vm._v("No existen datos")
+                            ])
+                          ],
+                          2
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-4",
+                      attrs: { for: "conducido_por" }
+                    },
+                    [_vm._v("POR:\n                        ")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-lg-8 col-md-8 col-sm-8" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c(
+                          "v-select",
+                          {
+                            attrs: {
+                              value: _vm.form.id_medico,
+                              options: _vm.medicos,
+                              label: "display"
+                            },
+                            on: { input: _vm.setSelectedMedico },
+                            model: {
+                              value: _vm.selectedMedico,
+                              callback: function($$v) {
+                                _vm.selectedMedico = $$v
+                              },
+                              expression: "selectedMedico"
+                            }
+                          },
+                          [
+                            _c("template", { slot: "no-options" }, [
+                              _vm._v("No existen datos")
+                            ])
+                          ],
+                          2
+                        )
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-4",
+                      attrs: { for: "conducido_hora" }
+                    },
+                    [_vm._v("HORA:\n                        ")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.hora,
+                        expression: "form.hora"
+                      }
+                    ],
+                    staticClass: "input-line col-md-8",
+                    attrs: {
+                      type: "time",
+                      name: "conducido_hora",
+                      id: "conducido_hora"
+                    },
+                    domProps: { value: _vm.form.hora },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "hora", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12 col-md-5 b-0 mt-3" }, [
+              _vm._m(38),
+              _vm._v(" "),
+              _c("div", { staticClass: "row border-b pt-2 pb-2" }, [
+                _vm._m(39),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1 p-0" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.hipotension,
+                        expression: "form.hipotension"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      name: "hipotension",
+                      id: "hipotension"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.hipotension)
+                        ? _vm._i(_vm.form.hipotension, null) > -1
+                        : _vm.form.hipotension
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.hipotension,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.form,
+                                "hipotension",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "hipotension",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "hipotension", $$c)
+                        }
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(40),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1 p-0" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.arritmias,
+                        expression: "form.arritmias"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      name: "arritmias",
+                      id: "arritmias"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.arritmias)
+                        ? _vm._i(_vm.form.arritmias, null) > -1
+                        : _vm.form.arritmias
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.arritmias,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(_vm.form, "arritmias", $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "arritmias",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "arritmias", $$c)
+                        }
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row border-b pt-2 pb-2" }, [
+                _vm._m(41),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1 p-0" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.depresion_respiratoria,
+                        expression: "form.depresion_respiratoria"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      name: "depresion-respiratoria",
+                      id: "depresion-respiratoria"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.depresion_respiratoria)
+                        ? _vm._i(_vm.form.depresion_respiratoria, null) > -1
+                        : _vm.form.depresion_respiratoria
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.depresion_respiratoria,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.form,
+                                "depresion_respiratoria",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "depresion_respiratoria",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "depresion_respiratoria", $$c)
+                        }
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-5 p-0 upper m-0",
+                    attrs: { for: "perforacion-duramadre" }
+                  },
+                  [_vm._v("perforacion duramadre")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1 p-0" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.perforacion_duramadre,
+                        expression: "form.perforacion_duramadre"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      name: "perforacion-duramadre",
+                      id: "perforacion-duramadre"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.perforacion_duramadre)
+                        ? _vm._i(_vm.form.perforacion_duramadre, null) > -1
+                        : _vm.form.perforacion_duramadre
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.perforacion_duramadre,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.form,
+                                "perforacion_duramadre",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "perforacion_duramadre",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "perforacion_duramadre", $$c)
+                        }
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row border-b pt-2 pb-2" }, [
+                _vm._m(42),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1 p-0" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.dificultad_intubacion,
+                        expression: "form.dificultad_intubacion"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      name: "dificultad-intubacion",
+                      id: "dificultad-intubacion"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.dificultad_intubacion)
+                        ? _vm._i(_vm.form.dificultad_intubacion, null) > -1
+                        : _vm.form.dificultad_intubacion
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.dificultad_intubacion,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.form,
+                                "dificultad_intubacion",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "dificultad_intubacion",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "dificultad_intubacion", $$c)
+                        }
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-5 p-0 upper m-0",
+                    attrs: { for: "nauseas-vomitos" }
+                  },
+                  [_vm._v("nauseas-vomitos")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1 p-0" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.nauses_vomitos,
+                        expression: "form.nauses_vomitos"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      name: "nauseas-vomitos",
+                      id: "nauseas-vomitos"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.nauses_vomitos)
+                        ? _vm._i(_vm.form.nauses_vomitos, null) > -1
+                        : _vm.form.nauses_vomitos
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.nauses_vomitos,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.form,
+                                "nauses_vomitos",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "nauses_vomitos",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "nauses_vomitos", $$c)
+                        }
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row border-b pt-2 pb-2" }, [
+                _vm._m(43),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1 p-0" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.conductiva_insuficiente,
+                        expression: "form.conductiva_insuficiente"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      name: "conductiva-insuficiente",
+                      id: "conductiva-insuficiente"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.conductiva_insuficiente)
+                        ? _vm._i(_vm.form.conductiva_insuficiente, null) > -1
+                        : _vm.form.conductiva_insuficiente
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.conductiva_insuficiente,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.form,
+                                "conductiva_insuficiente",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "conductiva_insuficiente",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "conductiva_insuficiente", $$c)
+                        }
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-5 p-0 upper m-0",
+                    attrs: { for: "laringo-espasmo" }
+                  },
+                  [_vm._v("laringo espasmo")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1 p-0" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.laringo_espasmo,
+                        expression: "form.laringo_espasmo"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      name: "laringo-espasmo",
+                      id: "laringo-espasmo"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.laringo_espasmo)
+                        ? _vm._i(_vm.form.laringo_espasmo, null) > -1
+                        : _vm.form.laringo_espasmo
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.laringo_espasmo,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.form,
+                                "laringo_espasmo",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "laringo_espasmo",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "laringo_espasmo", $$c)
+                        }
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row border-b pt-2 pb-2" }, [
+                _vm._m(44),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1 p-0" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.paro_cardiaco,
+                        expression: "form.paro_cardiaco"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      name: "paro-cardiaco",
+                      id: "paro-cardiaco"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.paro_cardiaco)
+                        ? _vm._i(_vm.form.paro_cardiaco, null) > -1
+                        : _vm.form.paro_cardiaco
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.paro_cardiaco,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.form,
+                                "paro_cardiaco",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "paro_cardiaco",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "paro_cardiaco", $$c)
+                        }
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-5 p-0 upper m-0",
+                    attrs: { for: "ninguna" }
+                  },
+                  [_vm._v("ninguna")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1 p-0" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.ninguna,
+                        expression: "form.ninguna"
+                      }
+                    ],
+                    attrs: { type: "checkbox", name: "ninguna", id: "ninguna" },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.ninguna)
+                        ? _vm._i(_vm.form.ninguna, null) > -1
+                        : _vm.form.ninguna
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.ninguna,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(_vm.form, "ninguna", $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "ninguna",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "ninguna", $$c)
+                        }
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row border-b pt-2 pb-2" }, [
+                _vm._m(45),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-1 p-0" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.cambio_tecnica,
+                        expression: "form.cambio_tecnica"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      name: "cambio-tecnica",
+                      id: "cambio-tecnica"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.cambio_tecnica)
+                        ? _vm._i(_vm.form.cambio_tecnica, null) > -1
+                        : _vm.form.cambio_tecnica
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.cambio_tecnica,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.form,
+                                "cambio_tecnica",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "cambio_tecnica",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "cambio_tecnica", $$c)
+                        }
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row border-b pt-2 pb-2" }, [
+                _c("div", { staticClass: "flex col-md-5 p-0 upper" }, [
+                  _c("span", { staticClass: "space-left mr-2" }, [
+                    _vm._v("otros")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.otros_complicaciones,
+                        expression: "form.otros_complicaciones"
+                      }
+                    ],
+                    staticClass: "border-none-b- w-100p",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.form.otros_complicaciones },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "otros_complicaciones",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("span", { staticClass: "col-md-12" }, [
+                  _vm._v("COMENTARIOS:")
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.comentario,
+                      expression: "form.comentario"
+                    }
+                  ],
+                  staticClass: "col-md-12",
+                  attrs: { name: "", id: "", rows: "3" },
+                  domProps: { value: _vm.form.comentario },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "comentario", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", {}, [
+                _c("div", { staticStyle: { height: "70px" } }),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex flex-y" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "col-md-5 text-center",
+                      staticStyle: { margin: "auto" }
+                    },
+                    [
+                      _c("vue-painttable", {
+                        ref: "paintFirma",
+                        attrs: {
+                          hidePaintable: true,
+                          isFirstPaintable: _vm.isFirstPaintable,
+                          disableNavigation: true,
+                          showUndoRedo: false,
+                          showLineWidth: false,
+                          rutaImagen: _vm.rutaSello,
+                          width: 800,
+                          height: 800
+                        },
+                        on: {
+                          getOutput: function($event) {
+                            _vm.form.imgFirma = $event
+                          },
+                          RespuestaImgFirma: function($event) {
+                            _vm.validarImgFirma = $event
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "col-md-12 text-center" }, [
+                    _vm._v("______________________________________________")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "col-md-12 text-center" }, [
+                    _vm._v("FIRMA DEL ANESTESIOLOGO:")
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 border-r" }, [
+        _vm._v(
+          "\n                            DURACIÓN ANESTESIA\n                        "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 border-r" }, [
+        _vm._v(
+          "\n                            DURACIÓN OPERACIÓN\n                        "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row border-b flex flex-center-x" }, [
+      _c("span", [_vm._v("TECNICAS")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-11 p-0 m-0", attrs: { for: "general" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("GENERAL")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-11 p-0 m-0 upper",
+        attrs: { for: "sistema-abierto" }
+      },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("sistema abierto")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-11 p-0 m-0 upper",
+        attrs: { for: "sistema-cerrado" }
+      },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("sistema cerrado")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-11 p-0 m-0 upper",
+        attrs: { for: "sistem-semi-cerr" }
+      },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("sistem semi-cerr")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-12 p-0 m-0 upper", attrs: { for: "" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("apartos usados")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "upper", attrs: { for: "cinc" } }, [
+      _c("span", { staticClass: "space-left" }, [_vm._v("cinc")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "mascara" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("mascara")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row flex border-r" }, [
+      _c("span", { staticClass: "col-md-12 p-0 m-0 upper text-center" }, [
+        _vm._v("inte. traqueal")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "upper", attrs: { for: "oral" } }, [
+      _c("span", { staticClass: "space-left" }, [_vm._v("oral")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "upper", attrs: { for: "rapido" } }, [
+      _c("span", { staticClass: "space-left" }, [_vm._v("rapido")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "turbo" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("TURBO No")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-11 p-0 m-0 upper",
+        attrs: { for: "manguito-inflam" }
+      },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("manguito inflam.")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-11 p-0 m-0 upper",
+        attrs: { for: "Taponamiento" }
+      },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("Taponamiento")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-11 p-0 m-0 upper",
+        attrs: { for: "asist-topica" }
+      },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("asist topica")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-11 p-0 m-0 upper",
+        attrs: { for: "asist-tramboral" }
+      },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("asist tramboral")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "habon" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("CONDUCTIVA")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "habon" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("ASEPSIA DE PIEL")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "con" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("CON:")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "habon" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("habon")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "raquidea" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("raquidea")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-11 p-0 m-0 upper",
+        attrs: { for: "epidural-caud" }
+      },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("epidural caud")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "simple" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("simple")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "continua" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("continua")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-12 p-0 m-0",
+        staticStyle: { "font-size": "0.9em" },
+        attrs: { for: "" }
+      },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("ALTURA PUNCION")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "puncion-lat" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("puncion lat")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "linea-media" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("linea media")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-6 p-0 m-0", attrs: { for: "aguja" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("AGUJA No")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "nivel" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("NIVEL")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "hiperbara" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("hiperbara")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-4 p-0 m-0", attrs: { for: "" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("POSICION PACIENTE")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row border-b flex flex-center-x" }, [
+      _c("span", [_vm._v("INFUSIONES")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row border-b flex flex-center-x" }, [
+      _c("span", [_vm._v("hemorragia")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row border-b flex flex-center-x" }, [
+      _c("span", [_vm._v("apagar")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row border-b flex flex-center-x" }, [
+      _c("span", [_vm._v("tecnicas especiales")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-4", attrs: { for: "conducido_a" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("CONDUCIDO A:")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row border-b flex flex-center-x" }, [
+      _c("span", [_vm._v("COMPLICACIONES OPERATRIAS")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-5 p-0 m-0", attrs: { for: "hipotension" } },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("HIPOTENSION")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-5 p-0 upper m-0", attrs: { for: "arritmias" } },
+      [_c("span", {}, [_vm._v("arritmias")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-5 p-0 upper m-0",
+        attrs: { for: "depresion-respiratoria" }
+      },
+      [
+        _c("span", { staticClass: "space-left" }, [
+          _vm._v("depresion respiratoria")
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-5 p-0 upper m-0",
+        attrs: { for: "dificultad-intubacion" }
+      },
+      [
+        _c("span", { staticClass: "space-left" }, [
+          _vm._v("dificultad intubacion")
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-5 p-0 upper m-0",
+        attrs: { for: "conductiva-insuficiente" }
+      },
+      [
+        _c("span", { staticClass: "space-left" }, [
+          _vm._v("conductiva insuficiente")
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-5 p-0 upper m-0",
+        attrs: { for: "paro-cardiaco" }
+      },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("paro cardiaco")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-5 p-0 upper m-0",
+        attrs: { for: "cambio-tecnica" }
+      },
+      [_c("span", { staticClass: "space-left" }, [_vm._v("cambio de tecnica")])]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue?vue&type=template&id=5a321f49&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue?vue&type=template&id=5a321f49& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+          _c(
+            "div",
+            { staticClass: "text-left col-lg-12 col-md-12 col-sm-12" },
+            [
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-lg-6 col-md-6 col-sm-6 text-left" },
+                  [
+                    _c("label", { staticClass: "col-form-label" }, [
+                      _vm._v("Paciente")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.paciente,
+                          expression: "form.paciente"
+                        }
+                      ],
+                      staticClass:
+                        "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                      attrs: {
+                        disabled: "",
+                        type: "text",
+                        placeholder: "N° Historia Clínica"
+                      },
+                      domProps: { value: _vm.form.paciente },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "paciente", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-3 col-md-3 col-sm-3 text-left" },
+                  [
+                    _c("label", { staticClass: "col-form-label" }, [
+                      _vm._v("N° Historia Clínica")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.historia_clinica,
+                          expression: "form.historia_clinica"
+                        }
+                      ],
+                      staticClass:
+                        "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                      attrs: {
+                        disabled: "",
+                        type: "text",
+                        placeholder: "N° Historia Clínica"
+                      },
+                      domProps: { value: _vm.form.historia_clinica },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "historia_clinica",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-3 col-md-3 col-sm-3 text-left" },
+                  [
+                    _c("label", { staticClass: "col-form-label" }, [
+                      _vm._v("Fecha")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.fecha,
+                          expression: "form.fecha"
+                        }
+                      ],
+                      staticClass:
+                        "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                      attrs: {
+                        disabled: "",
+                        type: "text",
+                        placeholder: "Fecha"
+                      },
+                      domProps: { value: _vm.form.fecha },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "fecha", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-1 col-md-1 col-sm-1 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Edad")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.edad,
+                          expression: "form.edad"
+                        }
+                      ],
+                      staticClass:
+                        "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                      attrs: {
+                        disabled: "",
+                        type: "text",
+                        placeholder: "Edad"
+                      },
+                      domProps: { value: _vm.form.edad },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "edad", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-1 col-md-1 col-sm-1 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Sexo")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.sexo,
+                          expression: "form.sexo"
+                        }
+                      ],
+                      staticClass:
+                        "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                      attrs: {
+                        disabled: "",
+                        type: "text",
+                        placeholder: "Sexo"
+                      },
+                      domProps: { value: _vm.form.sexo },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "sexo", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-1 col-md-1 col-sm-1 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Est.")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.estatura,
+                          expression: "form.estatura"
+                        }
+                      ],
+                      staticClass:
+                        "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                      attrs: { type: "text", placeholder: "Estatura" },
+                      domProps: { value: _vm.form.estatura },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "estatura", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-1 col-md-1 col-sm-1 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Peso")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.peso,
+                          expression: "form.peso"
+                        }
+                      ],
+                      staticClass:
+                        "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                      attrs: { type: "text", placeholder: "Peso" },
+                      domProps: { value: _vm.form.peso },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "peso", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-3 col-md-3 col-sm-3 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Ocupación Actual")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.ocupacion_actual,
+                          expression: "form.ocupacion_actual"
+                        }
+                      ],
+                      staticClass:
+                        "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                      attrs: { type: "text", placeholder: "Ocupación Actual" },
+                      domProps: { value: _vm.form.ocupacion_actual },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "ocupacion_actual",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-2 col-md-2 col-sm-2 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Servicio")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c(
+                              "v-select",
+                              {
+                                attrs: {
+                                  taggable: "",
+                                  "push-tags": "",
+                                  value: _vm.form.id_servicio_medico,
+                                  options: _vm.serviciosMedicos,
+                                  label: "display"
+                                },
+                                on: { input: _vm.setSelectedServicioMedico },
+                                model: {
+                                  value: _vm.selectedServicioMedico,
+                                  callback: function($$v) {
+                                    _vm.selectedServicioMedico = $$v
+                                  },
+                                  expression: "selectedServicioMedico"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "no-options" }, [
+                                  _vm._v("No existen datos")
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-2 col-md-2 col-sm-2 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Sala")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.sala,
+                          expression: "form.sala"
+                        }
+                      ],
+                      staticClass:
+                        "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                      attrs: { type: "text", placeholder: "Sala" },
+                      domProps: { value: _vm.form.sala },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "sala", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-1 col-md-1 col-sm-1 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Cama")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.cama,
+                          expression: "form.cama"
+                        }
+                      ],
+                      staticClass:
+                        "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                      attrs: { type: "text", placeholder: "Cama" },
+                      domProps: { value: _vm.form.cama },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "cama", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-sm-4 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Diagnóstico Preoperatorio")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c(
+                              "v-select",
+                              {
+                                attrs: {
+                                  taggable: "",
+                                  "push-tags": "",
+                                  value: _vm.form.id_diagnostico_pre,
+                                  options: _vm.diagnosticosPre,
+                                  label: "display"
+                                },
+                                on: { input: _vm.setSelectedDiagnosticoPre },
+                                model: {
+                                  value: _vm.selectedDiagnosticoPre,
+                                  callback: function($$v) {
+                                    _vm.selectedDiagnosticoPre = $$v
+                                  },
+                                  expression: "selectedDiagnosticoPre"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "no-options" }, [
+                                  _vm._v("No existen datos")
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-sm-4 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Diagnóstico Post-operatorio")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c(
+                              "v-select",
+                              {
+                                attrs: {
+                                  taggable: "",
+                                  "push-tags": "",
+                                  value: _vm.form.id_diagnostico,
+                                  options: _vm.diagnosticos,
+                                  label: "display"
+                                },
+                                on: { input: _vm.setSelectedDiagnostico },
+                                model: {
+                                  value: _vm.selectedDiagnostico,
+                                  callback: function($$v) {
+                                    _vm.selectedDiagnostico = $$v
+                                  },
+                                  expression: "selectedDiagnostico"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "no-options" }, [
+                                  _vm._v("No existen datos")
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-sm-4 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Operación Propuesta:")]
+                    ),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.operacion_propuesta,
+                          expression: "form.operacion_propuesta"
+                        }
+                      ],
+                      staticClass:
+                        "col-lg-12 col-md-12 col-sm-12 text-left form-control",
+                      attrs: {
+                        disabled: "",
+                        rows: "1",
+                        type: "text",
+                        placeholder: "Operación Propuesta"
+                      },
+                      domProps: { value: _vm.form.operacion_propuesta },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "operacion_propuesta",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-sm-4 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Cirujano")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c(
+                              "v-select",
+                              {
+                                attrs: {
+                                  placeholder: "Cirujano",
+                                  value: _vm.form.id_cirujano,
+                                  options: _vm.cirujanos,
+                                  label: "display"
+                                },
+                                on: { input: _vm.setSelectedCirujano },
+                                model: {
+                                  value: _vm.selectedCirujano,
+                                  callback: function($$v) {
+                                    _vm.selectedCirujano = $$v
+                                  },
+                                  expression: "selectedCirujano"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "no-options" }, [
+                                  _vm._v("No existen datos")
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-sm-4 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Ayudante")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c(
+                              "v-select",
+                              {
+                                attrs: {
+                                  placeholder: "Ayudante",
+                                  value: _vm.form.id_ayudante1,
+                                  options: _vm.ayudantes1,
+                                  label: "display1"
+                                },
+                                on: { input: _vm.setSelectedAyudante },
+                                model: {
+                                  value: _vm.selectedAyudante1,
+                                  callback: function($$v) {
+                                    _vm.selectedAyudante1 = $$v
+                                  },
+                                  expression: "selectedAyudante1"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "no-options" }, [
+                                  _vm._v("No existen datos")
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-sm-4 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Operación Realizada:")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c(
+                              "v-select",
+                              {
+                                attrs: {
+                                  taggable: "",
+                                  "push-tags": "",
+                                  placeholder: "Operación Realizada",
+                                  value: _vm.form.id_tarifaria,
+                                  options: _vm.tarifarias,
+                                  label: "display"
+                                },
+                                on: { input: _vm.setSelectedTarifaria },
+                                model: {
+                                  value: _vm.selectedTarifaria,
+                                  callback: function($$v) {
+                                    _vm.selectedTarifaria = $$v
+                                  },
+                                  expression: "selectedTarifaria"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "no-options" }, [
+                                  _vm._v("No existen datos")
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-sm-4 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Anestesiologo")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c(
+                              "v-select",
+                              {
+                                attrs: {
+                                  placeholder: "Anestesiologo",
+                                  value: _vm.form.id_anestesiologo,
+                                  options: _vm.anestesiologos,
+                                  label: "display"
+                                },
+                                on: { input: _vm.setSelectedAnestesiologo },
+                                model: {
+                                  value: _vm.selectedAnestesiologo,
+                                  callback: function($$v) {
+                                    _vm.selectedAnestesiologo = $$v
+                                  },
+                                  expression: "selectedAnestesiologo"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "no-options" }, [
+                                  _vm._v("No existen datos")
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-sm-4 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Ayudante")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c(
+                              "v-select",
+                              {
+                                attrs: {
+                                  placeholder: "Ayudante",
+                                  value: _vm.form.id_ayudante2,
+                                  options: _vm.ayudantes2,
+                                  label: "display2"
+                                },
+                                on: { input: _vm.setSelectedAyudante },
+                                model: {
+                                  value: _vm.selectedAyudante2,
+                                  callback: function($$v) {
+                                    _vm.selectedAyudante2 = $$v
+                                  },
+                                  expression: "selectedAyudante2"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "no-options" }, [
+                                  _vm._v("No existen datos")
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-sm-4 text-left" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "col-lg-12 col-md-12 col-sm-12 col-form-label"
+                      },
+                      [_vm._v("Instrumentista:")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c(
+                              "v-select",
+                              {
+                                attrs: {
+                                  placeholder: "Instrumentista",
+                                  value: _vm.form.id_instrumentista,
+                                  options: _vm.instrumentistas,
+                                  label: "display3"
+                                },
+                                on: { input: _vm.setSelectedAyudante },
+                                model: {
+                                  value: _vm.selectedInstrumentista,
+                                  callback: function($$v) {
+                                    _vm.selectedInstrumentista = $$v
+                                  },
+                                  expression: "selectedInstrumentista"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "no-options" }, [
+                                  _vm._v("No existen datos")
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ])
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue?vue&type=template&id=20031b53&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue?vue&type=template&id=20031b53& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c(
+          "div",
+          { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+          [
+            _c("div", { staticClass: "flex flex-center-x mt-2 mb-2" }, [
+              !_vm.iniciado
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-primary",
+                      on: { click: _vm.start_time }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Iniciar\n                    "
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.iniciado
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-danger",
+                      on: { click: _vm.end_time }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Finalizar\n                    "
+                      )
+                    ]
+                  )
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticStyle: { width: "90%", margin: "0 auto" } }, [
+              _c("div", { staticClass: "row flex-center-x" }, [
+                _c(
+                  "p",
+                  {
+                    staticClass:
+                      "badge badge-warning  col-lg-4 col-md-4 col-sm-4",
+                    staticStyle: { "font-size": "1.0em" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            Tiempo:\n                            "
+                    ),
+                    _c("span", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.hour,
+                            expression: "hour"
+                          }
+                        ],
+                        staticClass: "col-lg-2 col-md-2 col-sm-2",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.hour },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.hour = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(":")
+                    ]),
+                    _c("span", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.minutes,
+                            expression: "minutes"
+                          }
+                        ],
+                        staticClass: "col-lg-2 col-md-2 col-sm-2",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.minutes },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.minutes = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(":")
+                    ]),
+                    _c("span", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.seconds,
+                            expression: "seconds"
+                          }
+                        ],
+                        staticClass: "col-lg-2 col-md-2 col-sm-2",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.seconds },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.seconds = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.iniciado
+                  ? _c("span", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-outline-success",
+                          attrs: { type: "button" },
+                          on: { click: _vm.agregarObjetoPorHora }
+                        },
+                        [_c("i", { staticClass: "fas fa-plus-circle" })]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.iniciado_eliminar
+                  ? _c("span", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-outline-danger",
+                          attrs: { type: "button" },
+                          on: { click: _vm.eliminarObjetoPorHora }
+                        },
+                        [_c("i", { staticClass: "fas fa-window-close" })]
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _vm.iniciado
+                ? _c("div", { staticClass: "row mb-5" }, [
+                    _c("div", { staticClass: "col-md-3 border-t pt-2 pb-4" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-10 flex fle" }, [
+                          _c(
+                            "label",
+                            { staticClass: "mr-2", attrs: { for: "ta_max" } },
+                            [_vm._v("MAX")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.valoresFormulario.ta_max.valor,
+                                expression:
+                                  "\n                                            valoresFormulario.ta_max.valor\n                                        "
+                              }
+                            ],
+                            staticClass: "input-registro text-center",
+                            attrs: {
+                              type: "number",
+                              name: "ta_max",
+                              id: "ta_max"
+                            },
+                            domProps: {
+                              value: _vm.valoresFormulario.ta_max.valor
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.valoresFormulario.ta_max,
+                                  "valor",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-10 mt-2 flex flex-x" },
+                          [
+                            _c(
+                              "label",
+                              { staticClass: "mr-2", attrs: { for: "ta_min" } },
+                              [_vm._v("MIN")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.valoresFormulario.ta_min.valor,
+                                  expression:
+                                    "\n                                            valoresFormulario.ta_min.valor\n                                        "
+                                }
+                              ],
+                              staticClass: "input-registro text-center",
+                              attrs: {
+                                type: "number",
+                                name: "ta_value",
+                                id: "ta_min"
+                              },
+                              domProps: {
+                                value: _vm.valoresFormulario.ta_min.valor
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.valoresFormulario.ta_min,
+                                    "valor",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-md-2 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
+                      },
+                      [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "mr-2",
+                            attrs: { for: "valor_pulso" }
+                          },
+                          [_vm._v("PULSO")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.valoresFormulario.valor_pulso.valor,
+                              expression:
+                                "\n                                    valoresFormulario.valor_pulso.valor\n                                "
+                            }
+                          ],
+                          staticClass: "input-registro text-center",
+                          attrs: {
+                            type: "number",
+                            name: "valor_pulso",
+                            id: "valor_pulso"
+                          },
+                          domProps: {
+                            value: _vm.valoresFormulario.valor_pulso.valor
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.valoresFormulario.valor_pulso,
+                                "valor",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-4 border-t pt-2 pb-4" }, [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row flex flex-center-x" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-lg-4 col-md-5 flex flex-x flex-center-y"
+                          },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "mr-2",
+                                attrs: { for: "respiracion_esp" }
+                              },
+                              [_vm._v("ESP")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    _vm.valoresFormulario.respiracion
+                                      .descripcion,
+                                  expression:
+                                    "\n                                            valoresFormulario.respiracion\n                                                .descripcion\n                                        "
+                                }
+                              ],
+                              staticClass: "input-registro",
+                              attrs: {
+                                type: "radio",
+                                name: "respiracion_esp",
+                                id: "respiracion_esp",
+                                value: "ESP"
+                              },
+                              domProps: {
+                                checked: _vm._q(
+                                  _vm.valoresFormulario.respiracion.descripcion,
+                                  "ESP"
+                                )
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.$set(
+                                    _vm.valoresFormulario.respiracion,
+                                    "descripcion",
+                                    "ESP"
+                                  )
+                                }
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                          },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "mr-2",
+                                attrs: { for: "respiracion_asis" }
+                              },
+                              [_vm._v("ASIS")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    _vm.valoresFormulario.respiracion
+                                      .descripcion,
+                                  expression:
+                                    "\n                                            valoresFormulario.respiracion\n                                                .descripcion\n                                        "
+                                }
+                              ],
+                              staticClass: "input-registro",
+                              attrs: {
+                                type: "radio",
+                                name: "respiracion_asis",
+                                id: "respiracion_asis",
+                                value: "ASIS"
+                              },
+                              domProps: {
+                                checked: _vm._q(
+                                  _vm.valoresFormulario.respiracion.descripcion,
+                                  "ASIS"
+                                )
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.$set(
+                                    _vm.valoresFormulario.respiracion,
+                                    "descripcion",
+                                    "ASIS"
+                                  )
+                                }
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                          },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "mr-2",
+                                attrs: { for: "respiracion_cont" }
+                              },
+                              [_vm._v("CONT")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    _vm.valoresFormulario.respiracion
+                                      .descripcion,
+                                  expression:
+                                    "\n                                            valoresFormulario.respiracion\n                                                .descripcion\n                                        "
+                                }
+                              ],
+                              staticClass: "input-registro",
+                              attrs: {
+                                type: "radio",
+                                name: "respiracion_cont",
+                                id: "respiracion_cont",
+                                value: "CONT"
+                              },
+                              domProps: {
+                                checked: _vm._q(
+                                  _vm.valoresFormulario.respiracion.descripcion,
+                                  "CONT"
+                                )
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.$set(
+                                    _vm.valoresFormulario.respiracion,
+                                    "descripcion",
+                                    "CONT"
+                                  )
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                          },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "mr-2",
+                                attrs: { for: "temperatura" }
+                              },
+                              [_vm._v("TEMPERATURA")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.chk.temperatura,
+                                  expression: "chk.temperatura"
+                                }
+                              ],
+                              attrs: {
+                                type: "checkbox",
+                                name: "temperatura",
+                                id: "temperatura"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.chk.temperatura)
+                                  ? _vm._i(_vm.chk.temperatura, null) > -1
+                                  : _vm.chk.temperatura
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.chk.temperatura,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.chk,
+                                          "temperatura",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.chk,
+                                          "temperatura",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(_vm.chk, "temperatura", $$c)
+                                  }
+                                }
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.valoresFormulario.temperatura.valor,
+                              expression:
+                                "\n                                    valoresFormulario.temperatura.valor\n                                "
+                            }
+                          ],
+                          staticClass: "input-registro text-center",
+                          attrs: {
+                            type: "number",
+                            name: "valor_temperatura",
+                            id: "valor_temperatura"
+                          },
+                          domProps: {
+                            value: _vm.valoresFormulario.temperatura.valor
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.valoresFormulario.temperatura,
+                                "valor",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                          },
+                          [
+                            _c(
+                              "label",
+                              { staticClass: "mr-2", attrs: { for: "feto" } },
+                              [_vm._v("FETO")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.chk.feto,
+                                  expression: "chk.feto"
+                                }
+                              ],
+                              attrs: {
+                                type: "checkbox",
+                                name: "feto",
+                                id: "feto"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.chk.feto)
+                                  ? _vm._i(_vm.chk.feto, null) > -1
+                                  : _vm.chk.feto
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.chk.feto,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.chk,
+                                          "feto",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.chk,
+                                          "feto",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(_vm.chk, "feto", $$c)
+                                  }
+                                }
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.valoresFormulario.feto.valor,
+                              expression: "valoresFormulario.feto.valor"
+                            }
+                          ],
+                          staticClass: "input-registro text-center",
+                          attrs: {
+                            type: "number",
+                            name: "valor_feto",
+                            id: "valor_feto"
+                          },
+                          domProps: { value: _vm.valoresFormulario.feto.valor },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.valoresFormulario.feto,
+                                "valor",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                          },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "mr-2",
+                                attrs: { for: "pares_venosa" }
+                              },
+                              [_vm._v("PRES VENOSA")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.chk.pares_venosa,
+                                  expression: "chk.pares_venosa"
+                                }
+                              ],
+                              attrs: {
+                                type: "checkbox",
+                                name: "pares_venosa",
+                                id: "pares_venosa"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.chk.pares_venosa)
+                                  ? _vm._i(_vm.chk.pares_venosa, null) > -1
+                                  : _vm.chk.pares_venosa
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.chk.pares_venosa,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.chk,
+                                          "pares_venosa",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.chk,
+                                          "pares_venosa",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(_vm.chk, "pares_venosa", $$c)
+                                  }
+                                }
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.valoresFormulario.pares_venosa.valor,
+                              expression:
+                                "\n                                    valoresFormulario.pares_venosa.valor\n                                "
+                            }
+                          ],
+                          staticClass: "input-registro text-center",
+                          attrs: {
+                            type: "number",
+                            name: "valor_pres_venosa",
+                            id: "valor_pres_venosa"
+                          },
+                          domProps: {
+                            value: _vm.valoresFormulario.pares_venosa.valor
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.valoresFormulario.pares_venosa,
+                                "valor",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                          },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "mr-2",
+                                attrs: { for: "torniquete" }
+                              },
+                              [_vm._v("TORNIQUETE")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.chk.torniquete,
+                                  expression: "chk.torniquete"
+                                }
+                              ],
+                              attrs: {
+                                type: "checkbox",
+                                name: "torniquete",
+                                id: "torniquete"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.chk.torniquete)
+                                  ? _vm._i(_vm.chk.torniquete, null) > -1
+                                  : _vm.chk.torniquete
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.chk.torniquete,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.chk,
+                                          "torniquete",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.chk,
+                                          "torniquete",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(_vm.chk, "torniquete", $$c)
+                                  }
+                                }
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.valoresFormulario.torniquete.valor,
+                              expression: "valoresFormulario.torniquete.valor"
+                            }
+                          ],
+                          staticClass: "input-registro text-center",
+                          attrs: {
+                            type: "number",
+                            name: "valor_torniquete",
+                            id: "valor_torniquete"
+                          },
+                          domProps: {
+                            value: _vm.valoresFormulario.torniquete.valor
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.valoresFormulario.torniquete,
+                                "valor",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-3 border-t pt-2 pb-4" }, [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "row flex flex-center-x" },
+                        _vm._l(_vm.posiciones, function(posicion, index) {
+                          return _c(
+                            "div",
+                            {
+                              key: index,
+                              staticClass:
+                                "col-lg-5 col-md-12 p-0 grid grid-2-c"
+                            },
+                            [
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "mr-2 grid-center",
+                                  attrs: {
+                                    for: "radio-posicion-" + posicion.id
+                                  }
+                                },
+                                [_vm._v(_vm._s(posicion.descripcion))]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "flex flex-center-x flex-center-y"
+                                },
+                                [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value:
+                                          _vm.valoresFormulario.posicion.id,
+                                        expression:
+                                          "\n                                                valoresFormulario.posicion\n                                                    .id\n                                            "
+                                      }
+                                    ],
+                                    attrs: {
+                                      type: "radio",
+                                      id: "radio-posicion-" + posicion.id,
+                                      checked: ""
+                                    },
+                                    domProps: {
+                                      value: posicion.id,
+                                      checked: _vm._q(
+                                        _vm.valoresFormulario.posicion.id,
+                                        posicion.id
+                                      )
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        return _vm.$set(
+                                          _vm.valoresFormulario.posicion,
+                                          "id",
+                                          posicion.id
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "flex felx-center mt-2 mb-2",
+                        staticStyle: { margin: "0 auto" }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            on: { click: _vm.obtenerDatosFormulario }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                Agregar\n                            "
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.iniciado
+                ? _c("div", [
+                    _c("div", { ref: "printMe" }, [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "border-t row" }, [
+                        _c("div", { staticClass: "col-12" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-lg-3 col-md-4 col-4" },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "border-b row ml-2",
+                                    staticStyle: { background: "transparent" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                                AGENTE/HORA\n                                            "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.agentes_text, function(text, index) {
+                                  return _c(
+                                    "div",
+                                    {
+                                      key: index,
+                                      staticClass: "row he25 border-b border-r"
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value:
+                                              _vm.agentes_text[index]
+                                                .descripcion,
+                                            expression:
+                                              "\n                                                        agentes_text[index]\n                                                            .descripcion\n                                                    "
+                                          }
+                                        ],
+                                        staticStyle: { width: "100%" },
+                                        attrs: { type: "text" },
+                                        domProps: {
+                                          value:
+                                            _vm.agentes_text[index].descripcion
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.agentes_text[index],
+                                              "descripcion",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "row" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "col-8",
+                                      attrs: { id: "tabla-datos-grafica" }
+                                    },
+                                    _vm._l(_vm.tabla_datos_grafica, function(
+                                      item,
+                                      index
+                                    ) {
+                                      return _c(
+                                        "div",
+                                        {
+                                          key: index,
+                                          staticClass: "row mt-2 mb-2"
+                                        },
+                                        [
+                                          _c("div", { staticClass: "col-9" }, [
+                                            _vm._v(
+                                              "\n                                                            " +
+                                                _vm._s(item.descripcion) +
+                                                "\n                                                        "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("div", { staticClass: "col-3" }, [
+                                            item.img_url
+                                              ? _c("img", {
+                                                  attrs: {
+                                                    width: "15",
+                                                    src: "/" + item.img_url,
+                                                    alt: "no carga"
+                                                  }
+                                                })
+                                              : _vm._e()
+                                          ])
+                                        ]
+                                      )
+                                    }),
+                                    0
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-2 p-0" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticStyle: { "margin-top": "5.4rem" }
+                                      },
+                                      _vm._l(_vm.datos_grados, function(
+                                        item,
+                                        index
+                                      ) {
+                                        return _c(
+                                          "p",
+                                          {
+                                            key: index,
+                                            staticStyle: {
+                                              "margin-bottom": "2.1rem"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                                            " +
+                                                _vm._s(item) +
+                                                "°\n                                                        "
+                                            )
+                                          ]
+                                        )
+                                      }),
+                                      0
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "col-2 p-0" },
+                                    _vm._l(_vm.valoresAnestecia_v, function(
+                                      item,
+                                      index
+                                    ) {
+                                      return _c(
+                                        "div",
+                                        {
+                                          key: index,
+                                          staticStyle: { height: "1.80em" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                        " +
+                                              _vm._s(item.inicio) +
+                                              "\n                                                    "
+                                          )
+                                        ]
+                                      )
+                                    }),
+                                    0
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _vm._m(4)
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "col-lg-9 col-md-8 col-8 overflow-x-hidden p-0"
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "row no-wrap-flex ml-0",
+                                    staticStyle: { height: "100% !important" }
+                                  },
+                                  _vm._l(_vm.lista_horas_avanzadas_v, function(
+                                    item,
+                                    index
+                                  ) {
+                                    return _c(
+                                      "div",
+                                      {
+                                        key: index,
+                                        staticStyle: { "min-width": "270px" }
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass: "border-b",
+                                            style: {
+                                              minWidth: "240px",
+                                              height: item.height
+                                                ? item.height
+                                                : "20px"
+                                            }
+                                          },
+                                          _vm._l(item.datos, function(
+                                            dato,
+                                            index_fila
+                                          ) {
+                                            return _c(
+                                              "div",
+                                              {
+                                                key: index_fila,
+                                                style: dato.styles
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    class: dato._class,
+                                                    style: dato.style
+                                                  },
+                                                  [
+                                                    dato.es_tiempo
+                                                      ? _vm._l(
+                                                          dato.columnasQuinceMin,
+                                                          function(
+                                                            columna,
+                                                            index_columna
+                                                          ) {
+                                                            return _c(
+                                                              "div",
+                                                              {
+                                                                key: index_columna,
+                                                                class:
+                                                                  columna._class,
+                                                                staticStyle: {
+                                                                  height:
+                                                                    "25px",
+                                                                  width: "100%"
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "p-0 flex space-btw relative"
+                                                                  },
+                                                                  [
+                                                                    columna.tiempo_inicio
+                                                                      ? _c(
+                                                                          "span",
+                                                                          [
+                                                                            _vm._v(
+                                                                              "\n                                                                                " +
+                                                                                _vm._s(
+                                                                                  columna.tiempo_inicio
+                                                                                )
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      : _vm._e(),
+                                                                    _vm._v(" "),
+                                                                    !columna.tiempo_inicio
+                                                                      ? _c(
+                                                                          "span",
+                                                                          [
+                                                                            _c(
+                                                                              "img",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "time-triangle-abs",
+                                                                                attrs: {
+                                                                                  src:
+                                                                                    "/img/icons/time_00.png",
+                                                                                  alt:
+                                                                                    ""
+                                                                                }
+                                                                              }
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "p",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "blue ml-4"
+                                                                              },
+                                                                              [
+                                                                                _vm._v(
+                                                                                  "\n                                                                                    " +
+                                                                                    _vm._s(
+                                                                                      _vm
+                                                                                        .horasInicial[
+                                                                                        index_columna +
+                                                                                          index
+                                                                                      ]
+                                                                                    ) +
+                                                                                    "\n                                                                                "
+                                                                                )
+                                                                              ]
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      : _vm._e()
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            )
+                                                          }
+                                                        )
+                                                      : _vm._e(),
+                                                    _vm._v(" "),
+                                                    dato.es_dato
+                                                      ? _vm._l(
+                                                          dato.columnasQuinceMin,
+                                                          function(
+                                                            columna,
+                                                            index_columna
+                                                          ) {
+                                                            return _c(
+                                                              "div",
+                                                              {
+                                                                key: index_columna,
+                                                                class:
+                                                                  columna._class,
+                                                                staticStyle: {
+                                                                  height: "25px"
+                                                                }
+                                                              },
+                                                              [
+                                                                dato.es_dato
+                                                                  ? _c("div", [
+                                                                      _c(
+                                                                        "input",
+                                                                        {
+                                                                          directives: [
+                                                                            {
+                                                                              name:
+                                                                                "model",
+                                                                              rawName:
+                                                                                "v-model",
+                                                                              value:
+                                                                                _vm
+                                                                                  .agentes_text[
+                                                                                  index_fila -
+                                                                                    1
+                                                                                ]
+                                                                                  .valores[
+                                                                                  index_columna +
+                                                                                    index *
+                                                                                      4
+                                                                                ],
+                                                                              expression:
+                                                                                "\n                                                                                    agentes_text[\n                                                                                        index_fila -\n                                                                                            1\n                                                                                    ]\n                                                                                        .valores[\n                                                                                        index_columna +\n                                                                                            index *\n                                                                                                4\n                                                                                    ]\n                                                                                "
+                                                                            }
+                                                                          ],
+                                                                          staticStyle: {
+                                                                            width:
+                                                                              "100%"
+                                                                          },
+                                                                          attrs: {
+                                                                            type:
+                                                                              "text"
+                                                                          },
+                                                                          domProps: {
+                                                                            value:
+                                                                              _vm
+                                                                                .agentes_text[
+                                                                                index_fila -
+                                                                                  1
+                                                                              ]
+                                                                                .valores[
+                                                                                index_columna +
+                                                                                  index *
+                                                                                    4
+                                                                              ]
+                                                                          },
+                                                                          on: {
+                                                                            input: function(
+                                                                              $event
+                                                                            ) {
+                                                                              if (
+                                                                                $event
+                                                                                  .target
+                                                                                  .composing
+                                                                              ) {
+                                                                                return
+                                                                              }
+                                                                              _vm.$set(
+                                                                                _vm
+                                                                                  .agentes_text[
+                                                                                  index_fila -
+                                                                                    1
+                                                                                ]
+                                                                                  .valores,
+                                                                                index_columna +
+                                                                                  index *
+                                                                                    4,
+                                                                                $event
+                                                                                  .target
+                                                                                  .value
+                                                                              )
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    ])
+                                                                  : _vm._e()
+                                                              ]
+                                                            )
+                                                          }
+                                                        )
+                                                      : _vm._e(),
+                                                    _vm._v(" "),
+                                                    dato.es_agente
+                                                      ? _vm._l(
+                                                          dato.columnasQuinceMin,
+                                                          function(
+                                                            columna,
+                                                            index_columna
+                                                          ) {
+                                                            return _c(
+                                                              "div",
+                                                              {
+                                                                key: index_columna,
+                                                                class:
+                                                                  columna._class,
+                                                                staticStyle: {
+                                                                  height:
+                                                                    "1.82em",
+                                                                  "grid-template-columns":
+                                                                    "1fr 1fr 1fr"
+                                                                }
+                                                              },
+                                                              _vm._l(
+                                                                columna.columnas,
+                                                                function(
+                                                                  minutos_columna,
+                                                                  index_minutos_columna
+                                                                ) {
+                                                                  return _c(
+                                                                    "div",
+                                                                    {
+                                                                      key: index_minutos_columna,
+                                                                      staticClass:
+                                                                        "relative border-r"
+                                                                    },
+                                                                    [
+                                                                      minutos_columna.agentes
+                                                                        ? _vm._l(
+                                                                            minutos_columna.agentes,
+                                                                            function(
+                                                                              agente,
+                                                                              index_agente
+                                                                            ) {
+                                                                              return _c(
+                                                                                "a",
+                                                                                {
+                                                                                  key: index_agente,
+                                                                                  on: {
+                                                                                    click: function(
+                                                                                      $event
+                                                                                    ) {
+                                                                                      return _vm.eliminarAgente(
+                                                                                        index,
+                                                                                        index_fila,
+                                                                                        index_columna,
+                                                                                        index_minutos_columna,
+                                                                                        index_agente,
+                                                                                        minutos_columna,
+                                                                                        agente,
+                                                                                        dato
+                                                                                      )
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "img",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "figure-celds",
+                                                                                      staticStyle: {
+                                                                                        width:
+                                                                                          "20px"
+                                                                                      },
+                                                                                      attrs: {
+                                                                                        src:
+                                                                                          "/" +
+                                                                                          agente._src,
+                                                                                        alt:
+                                                                                          ""
+                                                                                      }
+                                                                                    }
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            }
+                                                                          )
+                                                                        : _vm._e()
+                                                                    ],
+                                                                    2
+                                                                  )
+                                                                }
+                                                              ),
+                                                              0
+                                                            )
+                                                          }
+                                                        )
+                                                      : _vm._e(),
+                                                    _vm._v(" "),
+                                                    dato.es_posicion
+                                                      ? _vm._l(
+                                                          dato.columnasQuinceMin,
+                                                          function(
+                                                            columna,
+                                                            index_columna
+                                                          ) {
+                                                            return _c(
+                                                              "div",
+                                                              {
+                                                                key: index_columna,
+                                                                class:
+                                                                  columna._class,
+                                                                staticStyle: {
+                                                                  height:
+                                                                    "50px",
+                                                                  "grid-template-columns":
+                                                                    "1fr 1fr 1fr"
+                                                                }
+                                                              },
+                                                              [
+                                                                columna.posicion
+                                                                  .id != 0
+                                                                  ? _c(
+                                                                      "a",
+                                                                      {
+                                                                        on: {
+                                                                          click: function(
+                                                                            $event
+                                                                          ) {
+                                                                            return _vm.eliminarPosicion(
+                                                                              index,
+                                                                              index_fila,
+                                                                              index_columna,
+                                                                              columna.posicion
+                                                                            )
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        columna
+                                                                          .posicion
+                                                                          .id !=
+                                                                        0
+                                                                          ? _c(
+                                                                              "img",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "ml-3",
+                                                                                staticStyle: {
+                                                                                  width:
+                                                                                    "70px"
+                                                                                },
+                                                                                attrs: {
+                                                                                  src:
+                                                                                    "/" +
+                                                                                    columna
+                                                                                      .posicion
+                                                                                      .img_url,
+                                                                                  alt:
+                                                                                    ""
+                                                                                }
+                                                                              }
+                                                                            )
+                                                                          : _vm._e()
+                                                                      ]
+                                                                    )
+                                                                  : _vm._e()
+                                                              ]
+                                                            )
+                                                          }
+                                                        )
+                                                      : _vm._e()
+                                                  ],
+                                                  2
+                                                )
+                                              ]
+                                            )
+                                          }),
+                                          0
+                                        )
+                                      ]
+                                    )
+                                  }),
+                                  0
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c(
+              "modal",
+              {
+                staticStyle: { "z-index": "1200" },
+                attrs: {
+                  width: "30%",
+                  height: "auto",
+                  scrollable: true,
+                  name: "ConfirmarCandelar"
+                }
+              },
+              [
+                _c("vue-confirmar-cancelar", {
+                  ref: "ConfirmarCandelar",
+                  attrs: {
+                    icon: _vm.icon,
+                    titulo: _vm.titulo,
+                    mensaje: _vm.mensaje
+                  },
+                  on: {
+                    respuestaConfirmarCancelar: _vm.respuestaConfirmarCancelar
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "modal",
+              {
+                staticStyle: { "z-index": "1200" },
+                attrs: {
+                  width: "20%",
+                  height: "auto",
+                  scrollable: true,
+                  name: "EliminarAgente"
+                }
+              },
+              [
+                _c("eliminar-agente", {
+                  ref: "EliminarAgente",
+                  attrs: { datos: _vm.datos_eliminar_agente },
+                  on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("p", { staticClass: "text-center" }, [_vm._v("TA")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("p", { staticClass: "text-center" }, [_vm._v("RESPIRACIÓN")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("p", { staticClass: "text-center grid-center" }, [
+        _vm._v(
+          "\n                                    POSICIÓN\n                                "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row border-t flex-center-x" }, [
+      _c("span", {}, [_vm._v("Registro anestésico")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "row border-r flex-x-end",
+        staticStyle: { padding: "15px 5px" }
+      },
+      [_c("span", [_vm._v("POSICION")])]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue?vue&type=template&id=3194526e&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue?vue&type=template&id=3194526e& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "content-wrapper" },
+    [
+      _c("div", { staticClass: "content-header" }, [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "row mb-2" }, [
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("ol", { staticClass: "breadcrumb float-sm-left" }, [
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        staticStyle: { "margin-top": "-9px" },
+                        attrs: { to: _vm.prefijo }
+                      },
+                      [_vm._v("Home")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c("li", [
+                  _c("p", { staticStyle: { "margin-left": "10px" } }, [
+                    _c("span", {
+                      domProps: { textContent: _vm._s(_vm.titulo_seleccionado) }
+                    })
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "col-lg-12 col-md-12 col-sm-12 text-right"
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "btn-group",
+                            attrs: { role: "group" }
+                          },
+                          [
+                            _c(
+                              "a",
+                              {
+                                staticStyle: { cursor: "pointer" },
+                                attrs: { title: "Buscar Paciente" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.mostrarModalListaCirugiaPaciente()
+                                  }
+                                }
+                              },
+                              [
+                                _c("img", {
+                                  attrs: {
+                                    width: "50px",
+                                    height: "50px",
+                                    src: "/icons/busqueda.png"
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm.respuestaImprimir
+                              ? [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-outline-success",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.llamarMetodoImprimir()
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "far fa-file-pdf"
+                                      })
+                                    ]
+                                  )
+                                ]
+                              : _vm._e()
+                          ],
+                          2
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._v("\n                 \n                "),
+            _vm._v(" "),
+            _vm.form.idCirugiaProgramada != ""
+              ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                    [
+                      _c(
+                        "form-wizard",
+                        {
+                          ref: "formRegistroAnestesico",
+                          attrs: {
+                            title: "",
+                            subtitle: "",
+                            nextButtonText: "Siguiente",
+                            backButtonText: "Anterior",
+                            finishButtonText: "Finalizar",
+                            stepSize: "xs",
+                            shape: "square",
+                            color: "#3498db"
+                          },
+                          on: {
+                            "on-change": _vm.onChangeTab,
+                            "on-validate": _vm.onValidateTab,
+                            "on-complete": _vm.onComplete
+                          }
+                        },
+                        [
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Datos del Paciente",
+                                icon: "ti-user"
+                              }
+                            },
+                            [_c("datos-paciente", { ref: "datosPaciente" })],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Registro Trans-Anestesico",
+                                icon: "ti-panel"
+                              }
+                            },
+                            [_c("trans-anestesico", { ref: "datosPaciente" })],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Administración Farmaco",
+                                icon: "fas fa-capsules"
+                              }
+                            },
+                            [
+                              _c("administracion-farmaco", {
+                                ref: "administracionFarmaco"
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ])
+              : _vm._e()
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          staticStyle: { "z-index": "1200" },
+          attrs: {
+            width: "65%",
+            height: "auto",
+            scrollable: true,
+            name: "ListaCirugiaProgramadaPaciente"
+          }
+        },
+        [
+          _c("lista-cirugia-programa-paciente", {
+            ref: "ListaCirugiaProgramadaPaciente",
+            on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("FlashMessage")
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("p", [_vm._v("/")])])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8&":
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue?vue&type=template&id=3cc310a8& ***!
@@ -67821,435 +78749,480 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
-    _c("div", { staticClass: "content-header" }, [
-      _c("div", { staticClass: "container-fluid" }, [
-        _c(
-          "div",
-          { staticClass: "row mb-2" },
-          [
-            _c("div", { staticClass: "col-sm-12" }, [
-              _c("ol", { staticClass: "breadcrumb float-sm-left" }, [
-                _c(
-                  "li",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link",
-                        staticStyle: { "margin-top": "-9px" },
-                        attrs: { to: _vm.prefijo }
-                      },
-                      [_vm._v("Home")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _vm._m(1)
-              ])
-            ]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-body" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "col-lg-12 col-md-12 col-sm-12 text-right"
-                      },
-                      [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("div", { staticClass: "float-right" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-outline-primary",
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.mostrarModalListaCirugiaPaciente()
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                                    Nuevo\n                                                "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-outline-primary",
-                                  style: {
-                                    display: _vm.isHidden
-                                  },
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.llamarMetodoImprimir()
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                                    Imprimir\n                                                "
-                                  )
-                                ]
-                              )
-                            ])
-                          ])
-                        ])
-                      ]
-                    )
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _vm.listas.SecCirPro != ""
-              ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
-                  _vm.form.SecCirPro != ""
-                    ? _c(
-                        "div",
-                        { staticClass: "col-lg-12 col-md-12 col-sm-12" },
-                        [
-                          _c(
-                            "div",
-                            { staticClass: "card card-default collapsed-card" },
-                            [
-                              _vm._m(2),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "card-body",
-                                  staticStyle: { display: "none" }
-                                },
-                                [
-                                  _c("div", { staticClass: "row" }, [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass:
-                                          "col-lg-12 col-md-12 col-sm-12"
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "text-left col-lg-12 col-md-12 col-sm-12"
-                                          },
-                                          [
-                                            _c("div", { staticClass: "row" }, [
-                                              _c("input", {
-                                                directives: [
-                                                  {
-                                                    name: "model",
-                                                    rawName: "v-model",
-                                                    value: _vm.listas.SecCirPro,
-                                                    expression:
-                                                      "\n                                                        listas.SecCirPro\n                                                    "
-                                                  }
-                                                ],
-                                                attrs: {
-                                                  type: "hidden",
-                                                  id: "SecCirPro",
-                                                  name: "SecCirPro"
-                                                },
-                                                domProps: {
-                                                  value: _vm.listas.SecCirPro
-                                                },
-                                                on: {
-                                                  input: function($event) {
-                                                    if (
-                                                      $event.target.composing
-                                                    ) {
-                                                      return
-                                                    }
-                                                    _vm.$set(
-                                                      _vm.listas,
-                                                      "SecCirPro",
-                                                      $event.target.value
-                                                    )
-                                                  }
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "col-sm-6 text-left"
-                                                },
-                                                [
-                                                  _c(
-                                                    "label",
-                                                    {
-                                                      staticClass:
-                                                        "col-form-label"
-                                                    },
-                                                    [_vm._v("Paciente:")]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("span", {
-                                                    staticClass: "text-left",
-                                                    domProps: {
-                                                      textContent: _vm._s(
-                                                        _vm.form.frm_paciente
-                                                      )
-                                                    }
-                                                  })
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "col-sm-6 text-left"
-                                                },
-                                                [
-                                                  _c(
-                                                    "label",
-                                                    {
-                                                      staticClass:
-                                                        "col-form-label"
-                                                    },
-                                                    [_vm._v("Cirujano:")]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("span", {
-                                                    staticClass: "text-left",
-                                                    domProps: {
-                                                      textContent: _vm._s(
-                                                        _vm.form.frm_cirujano
-                                                      )
-                                                    }
-                                                  })
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "col-sm-6 text-left"
-                                                },
-                                                [
-                                                  _c(
-                                                    "label",
-                                                    {
-                                                      staticClass:
-                                                        "col-form-label"
-                                                    },
-                                                    [_vm._v("Anestesiologo:")]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("span", {
-                                                    staticClass: "text-left",
-                                                    domProps: {
-                                                      textContent: _vm._s(
-                                                        _vm.form
-                                                          .frm_anestesiologo
-                                                      )
-                                                    }
-                                                  })
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "col-sm-6 text-left"
-                                                },
-                                                [
-                                                  _c(
-                                                    "label",
-                                                    {
-                                                      staticClass:
-                                                        "col-form-label"
-                                                    },
-                                                    [_vm._v("Quirófano:")]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("span", {
-                                                    staticClass: "text-left",
-                                                    domProps: {
-                                                      textContent: _vm._s(
-                                                        _vm.form.frm_quirofano
-                                                      )
-                                                    }
-                                                  })
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "col-sm-12 text-left"
-                                                },
-                                                [
-                                                  _c(
-                                                    "label",
-                                                    {
-                                                      staticClass:
-                                                        "col-form-label"
-                                                    },
-                                                    [_vm._v("Procedimiento:")]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("span", {
-                                                    staticClass: "text-left",
-                                                    domProps: {
-                                                      textContent: _vm._s(
-                                                        _vm.form
-                                                          .frm_procedimiento
-                                                      )
-                                                    }
-                                                  })
-                                                ]
-                                              )
-                                            ]),
-                                            _vm._v(" "),
-                                            _vm._m(3)
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ])
-                                ]
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
+  return _c(
+    "div",
+    { staticClass: "content-wrapper" },
+    [
+      _c("div", { staticClass: "content-header" }, [
+        _c("div", { staticClass: "container-fluid" }, [
+          _c(
+            "div",
+            { staticClass: "row mb-2" },
+            [
+              _c("div", { staticClass: "col-sm-12" }, [
+                _c("ol", { staticClass: "breadcrumb float-sm-left" }, [
                   _c(
-                    "div",
-                    { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                    "li",
                     [
                       _c(
-                        "form-wizard",
+                        "router-link",
                         {
-                          ref: "formValoracionPreanestecia",
-                          attrs: {
-                            title: "",
-                            subtitle: "",
-                            nextButtonText: "Siguiente",
-                            backButtonText: "Anterior",
-                            finishButtonText: "Finalizar",
-                            stepSize: "xs",
-                            shape: "",
-                            color: "#590303"
-                          },
-                          on: {
-                            "on-change": _vm.onChangeTab,
-                            "on-validate": _vm.onValidateTab,
-                            "on-complete": _vm.onComplete
-                          }
+                          staticClass: "nav-link",
+                          staticStyle: { "margin-top": "-9px" },
+                          attrs: { to: _vm.prefijo }
                         },
-                        [
-                          _c(
-                            "tab-content",
-                            {
-                              attrs: {
-                                title: "Entrada",
-                                icon: "fas fa-user-check"
-                              }
-                            },
-                            [_c("lista-entrada", { ref: "listaEntrada" })],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tab-content",
-                            {
-                              attrs: {
-                                title: "Pausa Quirúrgica",
-                                icon: "fas fa-procedures"
-                              }
-                            },
-                            [_c("lista-pausa", { ref: "listaPausa" })],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tab-content",
-                            {
-                              attrs: {
-                                title: "Salida",
-                                icon: "fas fa-user-nurse",
-                                "before-change": _vm.validateAsync
-                              }
-                            },
-                            [_c("lista-salida", { ref: "listaSalida" })],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tab-content",
-                            {
-                              attrs: {
-                                title: "Visualización",
-                                icon: "ti-folder"
-                              }
-                            },
-                            [_c("lista-visualizacion")],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "tab-content",
-                            { attrs: { title: "Firma", icon: "ti-folder" } },
-                            [_c("lista-firma")],
-                            1
-                          )
-                        ],
-                        1
+                        [_vm._v("Home")]
                       )
                     ],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _vm._m(1)
                 ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "modal",
-              {
-                attrs: {
-                  width: "65%",
-                  height: "auto",
-                  scrollable: true,
-                  name: "ListaCirugiaProgramadaPaciente"
-                }
-              },
-              [
-                _c("lista-cirugia-programa-paciente", {
-                  ref: "ListaCirugiaProgramadaPaciente",
-                  on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
-                })
-              ],
-              1
-            )
-          ],
-          1
-        )
-      ])
-    ])
-  ])
+              ]),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-lg-12 col-md-12 col-sm-12 text-right"
+                        },
+                        [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-12" }, [
+                              _c("div", { staticClass: "float-right" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-outline-primary",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.mostrarModalListaCirugiaPaciente()
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                                    Nuevo\n                                                "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-outline-primary",
+                                    style: {
+                                      display: _vm.isHidden
+                                    },
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.llamarMetodoImprimir()
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                                    Imprimir\n                                                "
+                                    )
+                                  ]
+                                )
+                              ])
+                            ])
+                          ])
+                        ]
+                      )
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm.listas.SecCirPro != ""
+                ? _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
+                    _vm.form.SecCirPro != ""
+                      ? _c(
+                          "div",
+                          { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "card card-default collapsed-card"
+                              },
+                              [
+                                _vm._m(2),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "card-body",
+                                    staticStyle: { display: "none" }
+                                  },
+                                  [
+                                    _c("div", { staticClass: "row" }, [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "col-lg-12 col-md-12 col-sm-12"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-left col-lg-12 col-md-12 col-sm-12"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value:
+                                                          _vm.listas.SecCirPro,
+                                                        expression:
+                                                          "\n                                                        listas.SecCirPro\n                                                    "
+                                                      }
+                                                    ],
+                                                    attrs: {
+                                                      type: "hidden",
+                                                      id: "SecCirPro",
+                                                      name: "SecCirPro"
+                                                    },
+                                                    domProps: {
+                                                      value:
+                                                        _vm.listas.SecCirPro
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.$set(
+                                                          _vm.listas,
+                                                          "SecCirPro",
+                                                          $event.target.value
+                                                        )
+                                                      }
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-sm-6 text-left"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "label",
+                                                        {
+                                                          staticClass:
+                                                            "col-form-label"
+                                                        },
+                                                        [_vm._v("Paciente:")]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("span", {
+                                                        staticClass:
+                                                          "text-left",
+                                                        domProps: {
+                                                          textContent: _vm._s(
+                                                            _vm.form
+                                                              .frm_paciente
+                                                          )
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-sm-6 text-left"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "label",
+                                                        {
+                                                          staticClass:
+                                                            "col-form-label"
+                                                        },
+                                                        [_vm._v("Cirujano:")]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("span", {
+                                                        staticClass:
+                                                          "text-left",
+                                                        domProps: {
+                                                          textContent: _vm._s(
+                                                            _vm.form
+                                                              .frm_cirujano
+                                                          )
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-sm-6 text-left"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "label",
+                                                        {
+                                                          staticClass:
+                                                            "col-form-label"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Anestesiologo:"
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("span", {
+                                                        staticClass:
+                                                          "text-left",
+                                                        domProps: {
+                                                          textContent: _vm._s(
+                                                            _vm.form
+                                                              .frm_anestesiologo
+                                                          )
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-sm-6 text-left"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "label",
+                                                        {
+                                                          staticClass:
+                                                            "col-form-label"
+                                                        },
+                                                        [_vm._v("Quirófano:")]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("span", {
+                                                        staticClass:
+                                                          "text-left",
+                                                        domProps: {
+                                                          textContent: _vm._s(
+                                                            _vm.form
+                                                              .frm_quirofano
+                                                          )
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-sm-12 text-left"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "label",
+                                                        {
+                                                          staticClass:
+                                                            "col-form-label"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Procedimiento:"
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("span", {
+                                                        staticClass:
+                                                          "text-left",
+                                                        domProps: {
+                                                          textContent: _vm._s(
+                                                            _vm.form
+                                                              .frm_procedimiento
+                                                          )
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm._m(3)
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  ]
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-12 col-md-12 col-sm-12" },
+                      [
+                        _c(
+                          "form-wizard",
+                          {
+                            ref: "formListaVerificacion",
+                            attrs: {
+                              title: "",
+                              subtitle: "",
+                              nextButtonText: "Siguiente",
+                              backButtonText: "Anterior",
+                              finishButtonText: "Finalizar",
+                              stepSize: "xs",
+                              shape: "",
+                              color: "#590303"
+                            },
+                            on: {
+                              "on-change": _vm.onChangeTab,
+                              "on-validate": _vm.onValidateTab,
+                              "on-complete": _vm.onComplete
+                            }
+                          },
+                          [
+                            _c(
+                              "tab-content",
+                              {
+                                attrs: {
+                                  title: "Entrada",
+                                  icon: "fas fa-user-check"
+                                }
+                              },
+                              [_c("lista-entrada", { ref: "listaEntrada" })],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "tab-content",
+                              {
+                                attrs: {
+                                  title: "Pausa Quirúrgica",
+                                  icon: "fas fa-procedures"
+                                }
+                              },
+                              [_c("lista-pausa", { ref: "listaPausa" })],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "tab-content",
+                              {
+                                attrs: {
+                                  title: "Salida",
+                                  icon: "fas fa-user-nurse",
+                                  "before-change": _vm.validateFirstStep
+                                }
+                              },
+                              [_c("lista-salida", { ref: "listaSalida" })],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "tab-content",
+                              {
+                                attrs: {
+                                  title: "Visualización",
+                                  icon: "fas fa-file-pdf"
+                                }
+                              },
+                              [
+                                _c("div", { staticClass: "row" }, [
+                                  _c("embed", {
+                                    attrs: {
+                                      src:
+                                        "/modulos/cirugia/lista_verificacion/mostrarreporte/" +
+                                        _vm.listas.SecCirPro,
+                                      type: "application/pdf",
+                                      width: "100%",
+                                      height: "980px"
+                                    }
+                                  })
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "tab-content",
+                              { attrs: { title: "Firma", icon: "ti-folder" } },
+                              [_c("lista-firma")],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "modal",
+                {
+                  attrs: {
+                    width: "65%",
+                    height: "auto",
+                    scrollable: true,
+                    name: "ListaCirugiaProgramadaPaciente"
+                  }
+                },
+                [
+                  _c("lista-cirugia-programa-paciente", {
+                    ref: "ListaCirugiaProgramadaPaciente",
+                    on: { handleSeleccionarClick: _vm.handleSeleccionarClick }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("FlashMessage")
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -69898,39 +80871,40 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "card-body" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("embed", {
+          attrs: {
+            src:
+              "/modulos/cirugia/lista_verificacion/mostrarreporte/" +
+              _vm.listas.SecCirPro,
+            type: "application/pdf",
+            width: "100%",
+            height: "980px"
+          }
+        })
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("h2", { staticClass: "card-title" }, [
-              _vm._v(
-                "\n                        Visualizacion Antes de Grabar\n                    "
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("embed", {
-            attrs: {
-              src:
-                "http://127.0.0.1:8000/modulos/cirugia/lista_verificacion/mostrarreporte/3729",
-              type: "application/pdf",
-              width: "100%",
-              height: "980px"
-            }
-          })
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("h2", { staticClass: "card-title" }, [
+          _vm._v(
+            "\n                    Visualizacion Antes de Grabar\n                "
+          )
         ])
       ])
     ])
@@ -70632,7 +81606,8 @@ var render = function() {
                             {
                               attrs: {
                                 title: "Paraclinicos",
-                                icon: "ti-support"
+                                icon: "ti-support",
+                                "before-change": _vm.validateFirstStep
                               }
                             },
                             [
@@ -70654,6 +81629,30 @@ var render = function() {
                               })
                             ],
                             1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Visualización",
+                                icon: "fas fa-file-pdf"
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "row" }, [
+                                _c("embed", {
+                                  attrs: {
+                                    src:
+                                      "/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" +
+                                      _vm.form.frm_idCirugiaProgramada,
+                                    type: "application/pdf",
+                                    width: "100%",
+                                    height: "980px"
+                                  }
+                                })
+                              ])
+                            ]
                           )
                         ],
                         1
@@ -76609,8 +87608,7 @@ var render = function() {
                                       name: "model",
                                       rawName: "v-model",
                                       value: _vm.chk.chk_mg,
-                                      expression:
-                                        "\n                                                             chk.chk_mg\n                                                         "
+                                      expression: "chk.chk_mg"
                                     }
                                   ],
                                   staticClass: "col-sm-1 custom-control-input",
@@ -76679,7 +87677,7 @@ var render = function() {
                                             rawName: "v-model",
                                             value: _vm.form.frm_mg_valor,
                                             expression:
-                                              "\n                                                                 form.frm_mg_valor\n                                                             "
+                                              "\n                                                                form.frm_mg_valor\n                                                            "
                                           }
                                         ],
                                         staticClass: "col-sm-10 form-control",
@@ -76965,7 +87963,8 @@ var render = function() {
                                         name: "model",
                                         rawName: "v-model",
                                         value: _vm.form.frm_clasificacion_asa,
-                                        expression: "form.frm_clasificacion_asa"
+                                        expression:
+                                          "\n                                                            form.frm_clasificacion_asa\n                                                        "
                                       }
                                     ],
                                     attrs: {
@@ -77011,7 +88010,8 @@ var render = function() {
                                         name: "model",
                                         rawName: "v-model",
                                         value: _vm.form.frm_clasificacion_asa,
-                                        expression: "form.frm_clasificacion_asa"
+                                        expression:
+                                          "\n                                                            form.frm_clasificacion_asa\n                                                        "
                                       }
                                     ],
                                     attrs: {
@@ -77057,7 +88057,8 @@ var render = function() {
                                         name: "model",
                                         rawName: "v-model",
                                         value: _vm.form.frm_clasificacion_asa,
-                                        expression: "form.frm_clasificacion_asa"
+                                        expression:
+                                          "\n                                                            form.frm_clasificacion_asa\n                                                        "
                                       }
                                     ],
                                     attrs: {
@@ -77103,7 +88104,8 @@ var render = function() {
                                         name: "model",
                                         rawName: "v-model",
                                         value: _vm.form.frm_clasificacion_asa,
-                                        expression: "form.frm_clasificacion_asa"
+                                        expression:
+                                          "\n                                                            form.frm_clasificacion_asa\n                                                        "
                                       }
                                     ],
                                     attrs: {
@@ -77149,7 +88151,8 @@ var render = function() {
                                         name: "model",
                                         rawName: "v-model",
                                         value: _vm.form.frm_clasificacion_asa,
-                                        expression: "form.frm_clasificacion_asa"
+                                        expression:
+                                          "\n                                                            form.frm_clasificacion_asa\n                                                        "
                                       }
                                     ],
                                     attrs: {
@@ -77195,7 +88198,8 @@ var render = function() {
                                         name: "model",
                                         rawName: "v-model",
                                         value: _vm.form.frm_clasificacion_asa,
-                                        expression: "form.frm_clasificacion_asa"
+                                        expression:
+                                          "\n                                                            form.frm_clasificacion_asa\n                                                        "
                                       }
                                     ],
                                     staticStyle: { "margin-left": "34px" },
@@ -77239,7 +88243,8 @@ var render = function() {
                                   name: "model",
                                   rawName: "v-model",
                                   value: _vm.form.frm_clasificacion_riesgo,
-                                  expression: "form.frm_clasificacion_riesgo"
+                                  expression:
+                                    "\n                                                        form.frm_clasificacion_riesgo\n                                                    "
                                 }
                               ],
                               attrs: {
@@ -77265,14 +88270,14 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c(
-                              "span",
+                              "label",
                               {
                                 staticStyle: { "font-weight": "normal" },
                                 attrs: { for: "categoria_1" }
                               },
                               [
                                 _vm._v(
-                                  "Riesgo mínimo\n                                                    independiente de la\n                                                    anestesia.\n                                                    Procedimiento\n                                                    minimamente invasivo\n                                                    con poca o mínima\n                                                    pérdida\n                                                    sanguínea."
+                                  "\n                                                    Riesgo mínimo\n                                                    independiente de la\n                                                    anestesia. Procedimiento\n                                                    minimamente invasivo con\n                                                    poca o mínima pérdida\n                                                    sanguínea.\n                                                "
                                 )
                               ]
                             )
@@ -77287,18 +88292,19 @@ var render = function() {
                                   name: "model",
                                   rawName: "v-model",
                                   value: _vm.form.frm_clasificacion_riesgo,
-                                  expression: "form.frm_clasificacion_riesgo"
+                                  expression:
+                                    "\n                                                        form.frm_clasificacion_riesgo\n                                                    "
                                 }
                               ],
                               attrs: {
                                 type: "radio",
-                                id: "categoria2",
-                                value: "u"
+                                id: "categoria_2",
+                                value: "categoria2"
                               },
                               domProps: {
                                 checked: _vm._q(
                                   _vm.form.frm_clasificacion_riesgo,
-                                  "u"
+                                  "categoria2"
                                 )
                               },
                               on: {
@@ -77306,21 +88312,21 @@ var render = function() {
                                   return _vm.$set(
                                     _vm.form,
                                     "frm_clasificacion_riesgo",
-                                    "u"
+                                    "categoria2"
                                   )
                                 }
                               }
                             }),
                             _vm._v(" "),
                             _c(
-                              "span",
+                              "label",
                               {
                                 staticStyle: { "font-weight": "normal" },
-                                attrs: { for: "categoria_2" }
+                                attrs: { for: "categoria_1" }
                               },
                               [
                                 _vm._v(
-                                  "Procedimiento con\n                                                    invasividad leve o\n                                                    moderada. Pérdida\n                                                    sanguínea menor a\n                                                    500 ml. Riesgo leve\n                                                    independiente de la\n                                                    anestesia."
+                                  "Procedimiento con\n                                                    invasividad leve o\n                                                    moderada. Pérdida\n                                                    sanguínea menor a 500\n                                                    ml. Riesgo leve\n                                                    independiente de la\n                                                    anestesia."
                                 )
                               ]
                             )
@@ -77335,7 +88341,8 @@ var render = function() {
                                   name: "model",
                                   rawName: "v-model",
                                   value: _vm.form.frm_clasificacion_riesgo,
-                                  expression: "form.frm_clasificacion_riesgo"
+                                  expression:
+                                    "\n                                                        form.frm_clasificacion_riesgo\n                                                    "
                                 }
                               ],
                               attrs: {
@@ -77361,14 +88368,14 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c(
-                              "span",
+                              "label",
                               {
                                 staticStyle: { "font-weight": "normal" },
                                 attrs: { for: "categoria_3" }
                               },
                               [
                                 _vm._v(
-                                  "Procedimiento\n                                                    moderado o\n                                                    significamente\n                                                    invasivo. Pérdida\n                                                    sanguínea potencial\n                                                    entre 500 y 1500 ml.\n                                                    Riesgo moderado\n                                                    independiente de la\n                                                    anestesia."
+                                  "Procedimiento moderado\n                                                    o significamente\n                                                    invasivo. Pérdida\n                                                    sanguínea potencial\n                                                    entre 500 y 1500 ml.\n                                                    Riesgo moderado\n                                                    independiente de la\n                                                    anestesia."
                                 )
                               ]
                             )
@@ -77383,7 +88390,8 @@ var render = function() {
                                   name: "model",
                                   rawName: "v-model",
                                   value: _vm.form.frm_clasificacion_riesgo,
-                                  expression: "form.frm_clasificacion_riesgo"
+                                  expression:
+                                    "\n                                                        form.frm_clasificacion_riesgo\n                                                    "
                                 }
                               ],
                               attrs: {
@@ -77409,14 +88417,14 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c(
-                              "span",
+                              "label",
                               {
                                 staticStyle: { "font-weight": "normal" },
                                 attrs: { for: "categoria_4" }
                               },
                               [
                                 _vm._v(
-                                  "Procedimiento\n                                                    altamente invasivo.\n                                                    Pérdida sanguínea\n                                                    mayor a 1500 ml.\n                                                    Riesgo alto\n                                                    independiente de la\n                                                    anestesia."
+                                  "Procedimiento altamente\n                                                    invasivo. Pérdida\n                                                    sanguínea mayor a 1500\n                                                    ml. Riesgo alto\n                                                    independiente de la\n                                                    anestesia."
                                 )
                               ]
                             )
@@ -77431,7 +88439,8 @@ var render = function() {
                                   name: "model",
                                   rawName: "v-model",
                                   value: _vm.form.frm_clasificacion_riesgo,
-                                  expression: "form.frm_clasificacion_riesgo"
+                                  expression:
+                                    "\n                                                        form.frm_clasificacion_riesgo\n                                                    "
                                 }
                               ],
                               attrs: {
@@ -77457,14 +88466,14 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c(
-                              "span",
+                              "label",
                               {
                                 staticStyle: { "font-weight": "normal" },
                                 attrs: { for: "categoria_5" }
                               },
                               [
                                 _vm._v(
-                                  "Procedimiento\n                                                    altamente invasivo.\n                                                    Pérdida sanguínea\n                                                    mayor a 1500 ml.\n                                                    Riesgo crítico para\n                                                    el paciente\n                                                    independiente de la\n                                                    anestesia."
+                                  "Procedimiento altamente\n                                                    invasivo. Pérdida\n                                                    sanguínea mayor a 1500\n                                                    ml. Riesgo crítico para\n                                                    el paciente\n                                                    independiente de la\n                                                    anestesia."
                                 )
                               ]
                             )
@@ -80990,70 +91999,124 @@ var render = function() {
           "data-accordion": "false"
         }
       },
-      _vm._l(_vm.menus, function(gestion, index) {
-        return _c(
-          "li",
-          { key: index, staticClass: "nav-item has-treeview" },
-          [
-            _c("a", { staticClass: "nav-link" }, [
-              _c("i", { class: gestion.imagen }),
+      [
+        _vm._l(_vm.menus, function(gestion, index) {
+          return _c(
+            "li",
+            { key: index, staticClass: "nav-item has-treeview" },
+            [
+              _c("a", { staticClass: "nav-link" }, [
+                _c("i", { class: gestion.imagen }),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(
+                        _vm.$funcionesGlobales.toCapitalFirstAllWords(
+                          gestion.descripcion
+                        )
+                      ) +
+                      "\n                    "
+                  ),
+                  _c("i", { staticClass: "fas fa-angle-left right" })
+                ])
+              ]),
               _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(
-                      _vm.$funcionesGlobales.toCapitalFirstAllWords(
-                        gestion.descripcion
-                      )
-                    ) +
-                    "\n                    "
-                ),
-                _c("i", { staticClass: "fas fa-angle-left right" })
-              ])
-            ]),
-            _vm._v(" "),
-            _vm._l(gestion.sub_modulo, function(subMenu, index) {
-              return _c("ul", { key: index, staticClass: "nav nav-treeview" }, [
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
+              _vm._l(gestion.sub_modulo, function(subMenu, index) {
+                return _c(
+                  "ul",
+                  { key: index, staticClass: "nav nav-treeview" },
                   [
                     _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link ml-3",
-                        attrs: { to: _vm.prefijo + subMenu.route }
-                      },
+                      "li",
+                      { staticClass: "nav-item" },
                       [
-                        _c("i", { class: subMenu.imagen }),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(
-                                _vm.$funcionesGlobales.toCapitalFirstAllWords(
-                                  subMenu.descripcion
-                                )
-                              ) +
-                              "\n                        "
-                          )
-                        ])
-                      ]
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link ml-3",
+                            attrs: { to: _vm.prefijo + subMenu.route }
+                          },
+                          [
+                            _c("i", { class: subMenu.imagen }),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(
+                                    _vm.$funcionesGlobales.toCapitalFirstAllWords(
+                                      subMenu.descripcion
+                                    )
+                                  ) +
+                                  "\n                        "
+                              )
+                            ])
+                          ]
+                        )
+                      ],
+                      1
                     )
-                  ],
-                  1
+                  ]
                 )
-              ])
-            })
-          ],
-          2
-        )
-      }),
-      0
+              })
+            ],
+            2
+          )
+        }),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item has-treeview" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("ul", { staticClass: "nav nav-treeview" }, [
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link ml-3",
+                    attrs: {
+                      to:
+                        _vm.prefijo +
+                        "/modulos/cirugia/registro_anestesia/mostrar_registro_anestesia"
+                    }
+                  },
+                  [
+                    _c("i"),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                            Registro Anestesia\n                        "
+                      )
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
+          ])
+        ])
+      ],
+      2
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "nav-link" }, [
+      _c("i"),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("\n                    Pruebas\n                    "),
+        _c("i", { staticClass: "fas fa-angle-left right" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -99324,11 +110387,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_paintable__WEBPACK_IMPORTED_M
   }
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_smartweb_vue_flash_message__WEBPACK_IMPORTED_MODULE_16___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("v-select", vue_select__WEBPACK_IMPORTED_MODULE_9___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("v-select", vue_select__WEBPACK_IMPORTED_MODULE_9___default.a); //*********COMPONENTES GENERALES*********\\
+
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("menuComponente", __webpack_require__(/*! ./components/componentesGenerales/MenuComponent.vue */ "./resources/js/components/componentesGenerales/MenuComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vuetable-component", __webpack_require__(/*! ./components/componentesGenerales/VueTableComponent.vue */ "./resources/js/components/componentesGenerales/VueTableComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vue-painttable", __webpack_require__(/*! ./components/componentesGenerales/VuePaintableComponent.vue */ "./resources/js/components/componentesGenerales/VuePaintableComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vue-confirmar-cancelar", __webpack_require__(/*! ./components/componentesGenerales/VueConfirmarCancelarComponent.vue */ "./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vue-confirmar-cancelar", __webpack_require__(/*! ./components/componentesGenerales/VueConfirmarCancelarComponent.vue */ "./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue")["default"]); //*********FIN COMPONENTES GENERALES*********\\
+
 /* Vue.component(
     "prueba",
     require("./components/Prueba.vue").default
@@ -99336,20 +110401,28 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vue-confirmar-cancelar", _
 //Modulo de Parametrizacion
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-modulo", __webpack_require__(/*! ./components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue */ "./resources/js/components/Modulos/Parametrizacion/modulo/CrearModificarModulo.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-sub-modulo", __webpack_require__(/*! ./components/Modulos/Parametrizacion/sub_modulo/CrearModificarSubModulo.vue */ "./resources/js/components/Modulos/Parametrizacion/sub_modulo/CrearModificarSubModulo.vue")["default"]); //Modulo de Cirugía
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("crear-modificar-sub-modulo", __webpack_require__(/*! ./components/Modulos/Parametrizacion/sub_modulo/CrearModificarSubModulo.vue */ "./resources/js/components/Modulos/Parametrizacion/sub_modulo/CrearModificarSubModulo.vue")["default"]); //*********MODULO CIRUGÍA*********\\
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-cirugia-programa-paciente", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/ListaCirugiaProgramadaPaciente.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/ListaCirugiaProgramadaPaciente.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-cirugia-programa-paciente", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/ListaCirugiaProgramadaPaciente.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/ListaCirugiaProgramadaPaciente.vue")["default"]); //Registro de Tiempo
+//Valoracion Preanestesia
+
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("revision-sistema", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/RevisionSistema.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/RevisionSistema.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("antecedente", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Antecedente.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Antecedente.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("examen-fisico", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/ExamenFisico.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/ExamenFisico.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("paraclinico", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("paraclinico", __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue")["default"]); //Registro Anestesia
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("datos-paciente", __webpack_require__(/*! ./components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue */ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("trans-anestesico", __webpack_require__(/*! ./components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue */ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("administracion-farmaco", __webpack_require__(/*! ./components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue */ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("registro-anestesico", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("eliminar-agente", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("eliminar-agente", __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue */ "./resources/js/components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue")["default"]); //Listado Verificacion
+
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-entrada", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaEntrada.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaEntrada.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-pausa", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaPausa.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-salida", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaSalida.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-visualizacion", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/VisualizacionLista.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-firma", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("lista-firma", __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue")["default"]); //*********FIN MODULO CIRUGÍA*********\\
+
 /*
 Vue.component(
     "crear-modificar-tipo-agente",
@@ -99467,6 +110540,282 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_332fccf4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_332fccf4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue ***!
+  \****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AdministracionFarmacoComponet_vue_vue_type_template_id_bc9ceef6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdministracionFarmacoComponet.vue?vue&type=template&id=bc9ceef6& */ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue?vue&type=template&id=bc9ceef6&");
+/* harmony import */ var _AdministracionFarmacoComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdministracionFarmacoComponet.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdministracionFarmacoComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdministracionFarmacoComponet_vue_vue_type_template_id_bc9ceef6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AdministracionFarmacoComponet_vue_vue_type_template_id_bc9ceef6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdministracionFarmacoComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./AdministracionFarmacoComponet.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdministracionFarmacoComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue?vue&type=template&id=bc9ceef6&":
+/*!***********************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue?vue&type=template&id=bc9ceef6& ***!
+  \***********************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdministracionFarmacoComponet_vue_vue_type_template_id_bc9ceef6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./AdministracionFarmacoComponet.vue?vue&type=template&id=bc9ceef6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue?vue&type=template&id=bc9ceef6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdministracionFarmacoComponet_vue_vue_type_template_id_bc9ceef6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdministracionFarmacoComponet_vue_vue_type_template_id_bc9ceef6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DatosPacienteComponet_vue_vue_type_template_id_5a321f49___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DatosPacienteComponet.vue?vue&type=template&id=5a321f49& */ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue?vue&type=template&id=5a321f49&");
+/* harmony import */ var _DatosPacienteComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DatosPacienteComponet.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DatosPacienteComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DatosPacienteComponet_vue_vue_type_template_id_5a321f49___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DatosPacienteComponet_vue_vue_type_template_id_5a321f49___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DatosPacienteComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./DatosPacienteComponet.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DatosPacienteComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue?vue&type=template&id=5a321f49&":
+/*!***************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue?vue&type=template&id=5a321f49& ***!
+  \***************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DatosPacienteComponet_vue_vue_type_template_id_5a321f49___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./DatosPacienteComponet.vue?vue&type=template&id=5a321f49& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue?vue&type=template&id=5a321f49&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DatosPacienteComponet_vue_vue_type_template_id_5a321f49___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DatosPacienteComponet_vue_vue_type_template_id_5a321f49___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TransAnestesicoComponet_vue_vue_type_template_id_20031b53___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TransAnestesicoComponet.vue?vue&type=template&id=20031b53& */ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue?vue&type=template&id=20031b53&");
+/* harmony import */ var _TransAnestesicoComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TransAnestesicoComponet.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TransAnestesicoComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TransAnestesicoComponet_vue_vue_type_template_id_20031b53___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TransAnestesicoComponet_vue_vue_type_template_id_20031b53___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TransAnestesicoComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./TransAnestesicoComponet.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TransAnestesicoComponet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue?vue&type=template&id=20031b53&":
+/*!*****************************************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue?vue&type=template&id=20031b53& ***!
+  \*****************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TransAnestesicoComponet_vue_vue_type_template_id_20031b53___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./TransAnestesicoComponet.vue?vue&type=template&id=20031b53& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue?vue&type=template&id=20031b53&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TransAnestesicoComponet_vue_vue_type_template_id_20031b53___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TransAnestesicoComponet_vue_vue_type_template_id_20031b53___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_vue_vue_type_template_id_3194526e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=3194526e& */ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue?vue&type=template&id=3194526e&");
+/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _index_vue_vue_type_template_id_3194526e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _index_vue_vue_type_template_id_3194526e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue?vue&type=template&id=3194526e&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue?vue&type=template&id=3194526e& ***!
+  \************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_3194526e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=3194526e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue?vue&type=template&id=3194526e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_3194526e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_3194526e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -101478,10 +112827,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Modulos_Parametrizacion_sub_modulo_SubModulo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Modulos/Parametrizacion/sub_modulo/SubModulo */ "./resources/js/components/Modulos/Parametrizacion/sub_modulo/SubModulo.vue");
 /* harmony import */ var _components_Modulos_Cirugia_valoracionPreanestecia_IndexValoracionPreanestesica__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica */ "./resources/js/components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica.vue");
 /* harmony import */ var _components_Modulos_Cirugia_anestesia_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Modulos/Cirugia/anestesia/index */ "./resources/js/components/Modulos/Cirugia/anestesia/index.vue");
-/* harmony import */ var _components_Modulos_Cirugia_RegistroTiempo_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Modulos/Cirugia/RegistroTiempo/index */ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue");
-/* harmony import */ var _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_agente/TipoAgente */ "./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue");
-/* harmony import */ var _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue");
-/* harmony import */ var _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/ListasComponent */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue");
+/* harmony import */ var _components_Modulos_Cirugia_RegistroAnestesia_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Modulos/Cirugia/RegistroAnestesia/index */ "./resources/js/components/Modulos/Cirugia/RegistroAnestesia/index.vue");
+/* harmony import */ var _components_Modulos_Cirugia_RegistroTiempo_index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Modulos/Cirugia/RegistroTiempo/index */ "./resources/js/components/Modulos/Cirugia/RegistroTiempo/index.vue");
+/* harmony import */ var _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_agente/TipoAgente */ "./resources/js/components/Modulos/Cirugia/tipo_agente/TipoAgente.vue");
+/* harmony import */ var _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones */ "./resources/js/components/Modulos/Cirugia/tipo_posiciones/TipoPosiciones.vue");
+/* harmony import */ var _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Modulos/Cirugia/lista_verificacion/ListasComponent */ "./resources/js/components/Modulos/Cirugia/lista_verificacion/ListasComponent.vue");
 
 
  //Parametrizacion
@@ -101494,7 +112844,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- //import emplo from "./components/ejenplo";
+
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 var prefijo = _variables__WEBPACK_IMPORTED_MODULE_1__["prefix"];
@@ -101514,17 +112864,20 @@ var prefijo = _variables__WEBPACK_IMPORTED_MODULE_1__["prefix"];
     path: prefijo + "/modulos/cirugia/anestesia",
     component: _components_Modulos_Cirugia_anestesia_index__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
+    path: prefijo + "/modulos/cirugia/registro_anestesia/mostrar_registro_anestesia",
+    component: _components_Modulos_Cirugia_RegistroAnestesia_index__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
     path: prefijo + "/modulos/cirugia/registro_tiempo",
-    component: _components_Modulos_Cirugia_RegistroTiempo_index__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _components_Modulos_Cirugia_RegistroTiempo_index__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
     path: prefijo + "/modulos/cirugia/tipo_agente/mostrar_tipo_agente",
-    component: _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _components_Modulos_Cirugia_tipo_agente_TipoAgente__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
     path: prefijo + "/modulos/cirugia/tipo_posiciones/mostrar_tipo_posiciones",
-    component: _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _components_Modulos_Cirugia_tipo_posiciones_TipoPosiciones__WEBPACK_IMPORTED_MODULE_10__["default"]
   }, {
     path: prefijo + "/modulos/cirugia/lista_verificacion/mostrar_tipo_lista",
-    component: _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _components_Modulos_Cirugia_lista_verificacion_ListasComponent__WEBPACK_IMPORTED_MODULE_11__["default"]
   }],
   mode: "history" //Evita que aparezca # en la ruta
 

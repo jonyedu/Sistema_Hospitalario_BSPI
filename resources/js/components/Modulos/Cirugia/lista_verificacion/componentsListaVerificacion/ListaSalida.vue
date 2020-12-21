@@ -123,7 +123,7 @@ export default {
              listas: {
                 SecCirPro: "",
                 frm_id_user:"",
-              
+
                 chksalida01: false,
                 chksalida02: false,
                 chksalida03: false,
@@ -137,7 +137,26 @@ export default {
         };
     },
     methods: {
-        /* Metodos para Llamar al Modal y la Tabla */
+        validarForm(){
+            //Se comprueba que un checkbox tenga data
+            if (this.listas.observacion == "") {
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia al finalizar con el proceso",
+                    message: "Usted debe ingresar una observación.",
+                    clickable: true,
+                    time: 0,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background: "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
+            return true;
+        },
     }
 };
 </script>

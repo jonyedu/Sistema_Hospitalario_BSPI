@@ -43,6 +43,31 @@
                     </li>
                 </ul>
             </li>
+            <li
+                class="nav-item has-treeview"
+            >
+                <a class="nav-link">
+                    <i></i>
+                    <p>
+                        Pruebas
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul
+                    class="nav nav-treeview"
+                >
+                    <li class="nav-item">
+                        <router-link
+                            :to="prefijo + '/modulos/cirugia/registro_anestesia/mostrar_registro_anestesia'"
+                            class="nav-link ml-3"
+                            ><i> </i>
+                            <p>
+                                Registro Anestesia
+                            </p>
+                        </router-link>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </template>

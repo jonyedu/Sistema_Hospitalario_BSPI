@@ -50,25 +50,24 @@ Vue.use(FlashMessage);
 
 Vue.component("v-select", vSelect);
 
+//*********COMPONENTES GENERALES*********\\
 Vue.component(
     "menuComponente",
     require("./components/componentesGenerales/MenuComponent.vue").default
 );
-
 Vue.component(
     "vuetable-component",
     require("./components/componentesGenerales/VueTableComponent.vue").default
 );
-
 Vue.component(
     "vue-painttable",
     require("./components/componentesGenerales/VuePaintableComponent.vue").default
 );
-
 Vue.component(
     "vue-confirmar-cancelar",
     require("./components/componentesGenerales/VueConfirmarCancelarComponent.vue").default
 );
+//*********FIN COMPONENTES GENERALES*********\\
 
 /* Vue.component(
     "prueba",
@@ -85,42 +84,55 @@ Vue.component(
     require("./components/Modulos/Parametrizacion/sub_modulo/CrearModificarSubModulo.vue").default
 );
 
-//Modulo de Cirugía
+//*********MODULO CIRUGÍA*********\\
+
 Vue.component(
     "lista-cirugia-programa-paciente",
     require("./components/Modulos/Cirugia/valoracionPreanestecia/ListaCirugiaProgramadaPaciente.vue").default
 );
+//Registro de Tiempo
 
+//Valoracion Preanestesia
 Vue.component(
     "revision-sistema",
     require("./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/RevisionSistema.vue").default
 );
-
 Vue.component(
     "antecedente",
     require("./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Antecedente.vue").default
 );
-
 Vue.component(
     "examen-fisico",
     require("./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/ExamenFisico.vue").default
 );
-
 Vue.component(
     "paraclinico",
     require("./components/Modulos/Cirugia/valoracionPreanestecia/componentsValoracionPreanestecia/Paraclinico.vue").default
 );
 
+//Registro Anestesia
+Vue.component(
+    "datos-paciente",
+    require("./components/Modulos/Cirugia/RegistroAnestesia/components/DatosPacienteComponet.vue").default
+);
+Vue.component(
+    "trans-anestesico",
+    require("./components/Modulos/Cirugia/RegistroAnestesia/components/TransAnestesicoComponet.vue").default
+);
+Vue.component(
+    "administracion-farmaco",
+    require("./components/Modulos/Cirugia/RegistroAnestesia/components/AdministracionFarmacoComponet.vue").default
+);
 Vue.component(
     "registro-anestesico",
     require("./components/Modulos/Cirugia/anestesia/components/registro-anestesico.vue").default
 );
-
 Vue.component(
     "eliminar-agente",
     require("./components/Modulos/Cirugia/anestesia/components/EliminarAgenteComponet.vue").default
 );
 
+//Listado Verificacion
 Vue.component(
     "lista-entrada",
     require("./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaEntrada.vue").default
@@ -141,6 +153,8 @@ Vue.component(
     "lista-firma",
     require("./components/Modulos/Cirugia/lista_verificacion/componentsListaVerificacion/ListaFirma.vue").default
 );
+
+//*********FIN MODULO CIRUGÍA*********\\
 
 
 /*
