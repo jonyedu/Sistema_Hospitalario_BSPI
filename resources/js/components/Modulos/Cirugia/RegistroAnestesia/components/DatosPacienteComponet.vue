@@ -11,7 +11,7 @@
                                     disabled
                                     type="text"
                                     class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
-                                    placeholder="N° Historia Clínica"
+                                    placeholder="Nombre del Paciente"
                                     v-model="form.paciente"
                                 />
                             </div>
@@ -116,7 +116,7 @@
                                             @input="setSelectedServicioMedico"
                                         >
                                             <template slot="no-options"
-                                                >No existen datos</template
+                                                >Seleccione un Cirujano(a)</template
                                             >
                                         </v-select>
                                     </div>
@@ -351,6 +351,10 @@
 <script>
 export default {
     props: {
+        datosPaciente:{
+            type: Object,
+            required: true
+        }
     },
     data: function() {
         return {
@@ -413,8 +417,18 @@ export default {
 
         };
     },
-    mounted: function() {},
+    mounted: function() {
+        this.cargarComboBox();
+    },
     methods: {
+        cargarComboBox(){
+            this.setSelectedCirujano();
+            this.setSelectedAnestesiologo();
+            this.setSelectedAyudante();
+            this.setSelectedDiagnostico();
+            this.setSelectedTarifaria();
+            this.cargarDiagnosticoPorCodigo(this.$props.datosPaciente);
+        },
         setSelectedServicioMedico(value) {
             if (this.form.id_servicio_medico > 0) {
                 let that = this;
@@ -444,12 +458,6 @@ export default {
                         loader.hide();
                     })
                     .catch(error => {
-                        //Errores
-                        /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
                         that.flashMessage.show({
                             status: "error",
                             title:
@@ -469,6 +477,59 @@ export default {
                         });
                         loader.hide();
                     });
+            }
+        },
+        setSelectedDiagnostico(value) {
+            let that = this;
+            if (this.selectedDiagnostico.id_diagnostico != null) {
+                this.form.id_diagnostico = this.selectedDiagnostico.id_diagnostico;
+            }
+            if (this.diagnosticos.length == 0) {
+                if (this.selectedDiagnostico != "") {
+                    var loader = that.$loading.show();
+                    let url =
+                        "/modulos/parametrizacion/diagnostico/cargar_diagnostico_combo_box/" +
+                        this.selectedDiagnostico;
+                    axios
+                        .get(url)
+                        .then(function(response) {
+                            let diagnosticosPre = [];
+                            let diagnosticos = [];
+                            response.data.diagnosticos.forEach(diagnostico => {
+                                let objeto = {};
+                                //Post
+                                objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
+                                    diagnostico.descripcion
+                                );
+                                objeto.id_diagnostico = diagnostico.id;
+                                diagnosticos.push(objeto);
+                            });
+                            that.diagnosticos = diagnosticos;
+                            loader.hide();
+                        })
+                        .catch(error => {
+                            that.flashMessage.show({
+                                status: "error",
+                                title:
+                                    "Error al procesar setSelectedDiagnostico",
+                                message:
+                                    "Por favor comuníquese con el administrador. " +
+                                    error,
+                                clickable: true,
+                                time: 0,
+                                icon: "/iconsflashMessage/error.svg",
+                                customStyle: {
+                                    flashMessageStyle: {
+                                        background:
+                                            "linear-gradient(#e66465, #9198e5)"
+                                    }
+                                }
+                            });
+                            loader.hide();
+                        });
+                }
+            } else {
+                this.diagnosticos = [];
             }
         },
         setSelectedDiagnosticoPre(value) {
@@ -526,7 +587,7 @@ export default {
                 this.diagnosticosPre = [];
             }
         },
-        setSelectedDiagnostico(value) {
+        setSelectedDiagnosticoPre(value) {
             let that = this;
             if (this.selectedDiagnostico.id_diagnostico != null) {
                 this.form.id_diagnostico = this.selectedDiagnostico.id_diagnostico;
@@ -602,16 +663,9 @@ export default {
                         cirujanos.push(objeto);
                     });
                     that.cirujanos = cirujanos;
-                    that.setSelectedServicioMedico();
                     loader.hide();
                 })
                 .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar setSelectedCirujano",
@@ -657,12 +711,6 @@ export default {
                     loader.hide();
                 })
                 .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar setSelectedAnestesiologo",
@@ -732,12 +780,6 @@ export default {
                     loader.hide();
                 })
                 .catch(error => {
-                    //Errores
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar setSelectedAyudante",
@@ -767,7 +809,6 @@ export default {
                     let url =
                         "/modulos/parametrizacion/tarifario/consultar_tarifario/" +
                         this.selectedTarifaria;
-
                     axios
                         .get(url)
                         .then(function(response) {
@@ -853,7 +894,6 @@ export default {
                             that.form.anestesiologo = value.anestesiologo;
                             that.form.quirofano = value.quirofano;
                             that.form.operacion_propuesta = value.procedimiento;
-                            that.$modal.hide("ListaCirugiaProgramadaPaciente");
                         }
                         loader.hide();
                     })
@@ -867,6 +907,28 @@ export default {
                         });
                     });
             }
+        },
+        validarForm(){
+            //Se comprueba que un checkbox tenga data
+            if(this.form.id_cirujano <= 0){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "Se necesita seleccionar un ",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
+            return true;
         },
         guardarCabecera(registro_anestesia_id) {
             let that = this;

@@ -93,7 +93,7 @@
                                 :finishButtonText="'Finalizar'"
                                 :stepSize="'xs'"
                                 shape="square"
-                                color="#3498db"
+                                color="#590303"
                                 @on-change="onChangeTab"
                                 @on-validate="onValidateTab"
                                 @on-complete="onComplete"
@@ -103,6 +103,7 @@
                                     icon="ti-user"
                                 >
                                     <datos-paciente
+                                        :datos-paciente="datos_paciente"
                                         ref="datosPaciente"
                                     ></datos-paciente>
                                 </tab-content>
@@ -111,6 +112,7 @@
                                     icon="ti-panel"
                                 >
                                     <trans-anestesico
+                                        :id-sec-cir-pro="form.idCirugiaProgramada"
                                         ref="datosPaciente"
                                     ></trans-anestesico>
                                 </tab-content>
@@ -121,6 +123,27 @@
                                     <administracion-farmaco
                                         ref="administracionFarmaco"
                                     ></administracion-farmaco>
+                                </tab-content>
+                                <tab-content
+                                    title="Visualización"
+                                    icon="fas fa-file-pdf"
+                                >
+                                    <div class="row">
+                                        <embed
+                                            :src="
+                                                '/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/' +
+                                                    form.idCirugiaProgramada
+                                            "
+                                            type="application/pdf"
+                                            width="100%"
+                                            height="980px"
+                                        />
+                                    </div>
+                                </tab-content>
+                                <tab-content
+                                    title="Firma"
+                                    icon="fas fa-capsules"
+                                >
                                 </tab-content>
                             </form-wizard>
                         </div>
@@ -154,13 +177,14 @@ export default {
     },
     data: function() {
         return {
+            datos_paciente: {},
             prefijo: "",
             //cirugia_id: 0,
             titulo_seleccionado: "Registro de anestesia",
             respuestaFinProceso: 0,
             respuestaImprimir: 0,
             form: {
-                idCirugiaProgramada: "0001",
+                idCirugiaProgramada: "",
                 idCirugiaProgramadaTemporal: "",
                 registro_anestesia_id: 0,
                 /* Datos del paciente */
@@ -226,7 +250,7 @@ export default {
                 let url =
                     "/modulos/cirugia/anestesia/validar_secCirPro/" +
                     value.SecCirPro;
-                //var loader = that.$loading.show();
+                var loader = that.$loading.show();
                 axios
                     .get(url)
                     .then(function(response) {
@@ -251,23 +275,32 @@ export default {
                                     }
                                 }
                             });
-                            //loader.hide();
+                            loader.hide();
                         } else {
-                            /* that.setSelectedCirujano();
-                            that.setSelectedAnestesiologo();
-                            that.setSelectedAyudante();
-                            that.setSelectedDiagnostico();
-                            that.setSelectedTarifaria();
-                            that.cargarDiagnosticoPorCodigo(value); */
+                            that.datos_paciente = value;
+                            that.form.idCirugiaProgramada = value.SecCirPro;
+                            that.$modal.hide("ListaCirugiaProgramadaPaciente");
+                            loader.hide();
                         }
                     })
                     .catch(error => {
-                        //Errores
-                        //loader.hide();
-                        that.$swal({
-                            icon: "error",
-                            title: "Existe un error",
-                            text: error
+                        loader.hide();
+                        that.flashMessage.show({
+                            status: "error",
+                            title:
+                                "Error al procesar handleSeleccionarClick",
+                            message:
+                                "Por favor comuníquese con el administrador. " +
+                                error,
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/error.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
                         });
                     });
             }
