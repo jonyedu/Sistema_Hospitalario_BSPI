@@ -12530,7 +12530,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -12547,7 +12546,7 @@ __webpack_require__.r(__webpack_exports__);
       rutaSello: "",
       idPromesa: [],
       listas: {
-        SecCirPro: "0001",
+        SecCirPro: "",
         frm_id_user: "",
         chkentrada01: false,
         chkentrada02: false,
@@ -12596,85 +12595,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     /* Metodos para Llamar al Modal y la Tabla */
-
-    /* validateAsync: function() {
-        let that = this;
-          that.listas.chkentrada01 =
-            that.$refs.listaEntrada.listas.chkentrada01;
-        that.listas.chkentrada02 =
-            that.$refs.listaEntrada.listas.chkentrada02;
-        that.listas.chkentrada03 =
-            that.$refs.listaEntrada.listas.chkentrada03;
-        that.listas.chkentrada04 =
-            that.$refs.listaEntrada.listas.chkentrada04;
-        that.listas.chkentrada05 =
-            that.$refs.listaEntrada.listas.chkentrada05;
-        that.listas.chkentrada06 =
-            that.$refs.listaEntrada.listas.chkentrada06;
-        that.listas.chkentrada07 =
-            that.$refs.listaEntrada.listas.chkentrada07;
-        that.listas.chkquirurgica01 =
-            that.$refs.listaPausa.listas.chkquirurgica01;
-        that.listas.chkquirurgica02 =
-            that.$refs.listaPausa.listas.chkquirurgica02;
-        that.listas.chkquirurgica03 =
-            that.$refs.listaPausa.listas.chkquirurgica03;
-        that.listas.chkquirurgica04 =
-            that.$refs.listaPausa.listas.chkquirurgica04;
-        that.listas.chkquirurgica05 =
-            that.$refs.listaPausa.listas.chkquirurgica05;
-        that.listas.chkquirurgica06 =
-            that.$refs.listaPausa.listas.chkquirurgica06;
-        that.listas.chkquirurgica07 =
-            that.$refs.listaPausa.listas.chkquirurgica07;
-        that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
-        that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
-        that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
-        that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
-        that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
-        that.listas.observacion = that.$refs.listaSalida.listas.observacion;
-          const ListaInsert = this.listas;
-        //console.log(this.listas);
-        this.listas = {
-            SecCirPro: "",
-            id_lista: 0,
-            chkentrada01: false,
-            chkentrada02: false,
-            chkentrada03: false,
-            chkentrada04: false,
-            chkentrada05: false,
-            chkentrada06: false,
-            chkentrada07: false,
-            chkquirurgica01: false,
-            chkquirurgica02: false,
-            chkquirurgica03: false,
-            chkquirurgica04: false,
-            chkquirurgica05: false,
-            chkquirurgica06: false,
-            chkquirurgica07: false,
-            chksalida01: false,
-            chksalida02: false,
-            chksalida03: false,
-            chksalida04: false,
-            chksalida05: false,
-            user_id: "",
-            cargo: "",
-            observacion: "",
-            firma: ""
-        };
-          axios
-            .post(
-                "/modulos/cirugia/lista_verificacion/ListarValoracion",
-                ListaInsert
-            )
-            .then(response => {
-                that.$refs.formListaVerificacion[3].activeTabIndex;
-            })
-            .catch(e => {
-                // this.errors.push(e);
-            });
-          // resolve(este);
-    }, */
     mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
       this.$modal.show("ListaCirugiaProgramadaPaciente");
     },
@@ -12689,7 +12609,8 @@ __webpack_require__.r(__webpack_exports__);
       //     this.$refs.revisionSistema.cargarRevisionSistema();
       // }
 
-      this.cargarLista(value.SecCirPro); //this.consultarSello();
+      this.cargarLista(value.SecCirPro);
+      this.consultarSello();
     },
     cargarLista: function cargarLista(value) {
       var that = this;
@@ -12741,6 +12662,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     onChangeTab: function onChangeTab(prevIndex, nextIndex) {
       this.guardarModificar(prevIndex);
+      this.guardarModificar2(nextIndex);
     },
     onValidateTab: function onValidateTab(validationResult, activeTabIndex) {},
     guardarModificar: function guardarModificar(index) {
@@ -12752,10 +12674,36 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case 2:
-          this.guardarLista();
+          this.guardarLista(); //this.$refs.listvisualizacion.contentDocument.location.reload();
+
           break;
 
         case 3:
+          // this.$refs.listvisualizacion.contentDocument.location.reload();
+          break;
+
+        case 4:
+          break;
+
+        default: //this.titulo_seleccionado = "";
+
+      }
+    },
+    guardarModificar2: function guardarModificar2(index) {
+      switch (index) {
+        case 0:
+          break;
+
+        case 1:
+          break;
+
+        case 2:
+          //  this.$refs.listvisualizacion.contentDocument.location.reload();
+          // this.guardarLista();
+          break;
+
+        case 3:
+          //  this.$refs.listvisualizacion.contentDocument.location.reload();
           break;
 
         case 4:
@@ -12825,6 +12773,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.post(url, ListaInsert).then(function (response) {
         _this2.idPromesa = response.data.id;
         loader.hide();
+
+        _this2.$refs.listvisualizacion.contentDocument.location.reload();
       })["catch"](function (error) {
         that.flashMessage.show({
           status: "error",
@@ -79223,8 +79173,10 @@ var render = function() {
                               },
                               [
                                 _c("div", { staticClass: "row" }, [
-                                  _c("embed", {
+                                  _c("iframe", {
+                                    ref: "listvisualizacion",
                                     attrs: {
+                                      id: "listvisualizacion",
                                       src:
                                         "/modulos/cirugia/lista_verificacion/mostrarreporte/" +
                                         _vm.listas.SecCirPro,

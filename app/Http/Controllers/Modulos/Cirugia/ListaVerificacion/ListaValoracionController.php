@@ -181,14 +181,14 @@ class ListaValoracionController extends Controller
             //return  response()->json(['datosPaciente' => $modulo], 200);
 
 
-           /*  $pdf =  PDF::loadView('reports.pdf.formulario-lista-verificacion', [
+             $pdf =  PDF::loadView('reports.pdf.formulario-lista-verificacion', [
                 'datosPaciente' => $modulo])->setPaper('a4', 'landscape');
-            return $pdf->stream('Formulario'); */
+            return $pdf->stream('Formulario'); 
 
-            $pdf = PDF::loadView('reports.pdf.formulario-lista-verificacion', [
-                'datosPaciente' => $modulo
-            ]);
-            return $pdf->stream("Formulario");
+            // $pdf = PDF::loadView('reports.pdf.formulario-lista-verificacion', [
+            //     'datosPaciente' => $modulo
+            // ]);
+          //  return $pdf->stream("Formulario");
             //  return  response()->json(['datosPaciente' => $modulo], 200);
 
 
