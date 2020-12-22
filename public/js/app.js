@@ -13763,7 +13763,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -13780,7 +13779,7 @@ __webpack_require__.r(__webpack_exports__);
       rutaSello: "",
       idPromesa: [],
       listas: {
-        SecCirPro: "0001",
+        SecCirPro: "",
         frm_id_user: "",
         chkentrada01: false,
         chkentrada02: false,
@@ -13829,85 +13828,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     /* Metodos para Llamar al Modal y la Tabla */
-
-    /* validateAsync: function() {
-        let that = this;
-         that.listas.chkentrada01 =
-            that.$refs.listaEntrada.listas.chkentrada01;
-        that.listas.chkentrada02 =
-            that.$refs.listaEntrada.listas.chkentrada02;
-        that.listas.chkentrada03 =
-            that.$refs.listaEntrada.listas.chkentrada03;
-        that.listas.chkentrada04 =
-            that.$refs.listaEntrada.listas.chkentrada04;
-        that.listas.chkentrada05 =
-            that.$refs.listaEntrada.listas.chkentrada05;
-        that.listas.chkentrada06 =
-            that.$refs.listaEntrada.listas.chkentrada06;
-        that.listas.chkentrada07 =
-            that.$refs.listaEntrada.listas.chkentrada07;
-        that.listas.chkquirurgica01 =
-            that.$refs.listaPausa.listas.chkquirurgica01;
-        that.listas.chkquirurgica02 =
-            that.$refs.listaPausa.listas.chkquirurgica02;
-        that.listas.chkquirurgica03 =
-            that.$refs.listaPausa.listas.chkquirurgica03;
-        that.listas.chkquirurgica04 =
-            that.$refs.listaPausa.listas.chkquirurgica04;
-        that.listas.chkquirurgica05 =
-            that.$refs.listaPausa.listas.chkquirurgica05;
-        that.listas.chkquirurgica06 =
-            that.$refs.listaPausa.listas.chkquirurgica06;
-        that.listas.chkquirurgica07 =
-            that.$refs.listaPausa.listas.chkquirurgica07;
-        that.listas.chksalida01 = that.$refs.listaSalida.listas.chksalida01;
-        that.listas.chksalida02 = that.$refs.listaSalida.listas.chksalida02;
-        that.listas.chksalida03 = that.$refs.listaSalida.listas.chksalida03;
-        that.listas.chksalida04 = that.$refs.listaSalida.listas.chksalida04;
-        that.listas.chksalida05 = that.$refs.listaSalida.listas.chksalida05;
-        that.listas.observacion = that.$refs.listaSalida.listas.observacion;
-         const ListaInsert = this.listas;
-        //console.log(this.listas);
-        this.listas = {
-            SecCirPro: "",
-            id_lista: 0,
-            chkentrada01: false,
-            chkentrada02: false,
-            chkentrada03: false,
-            chkentrada04: false,
-            chkentrada05: false,
-            chkentrada06: false,
-            chkentrada07: false,
-            chkquirurgica01: false,
-            chkquirurgica02: false,
-            chkquirurgica03: false,
-            chkquirurgica04: false,
-            chkquirurgica05: false,
-            chkquirurgica06: false,
-            chkquirurgica07: false,
-            chksalida01: false,
-            chksalida02: false,
-            chksalida03: false,
-            chksalida04: false,
-            chksalida05: false,
-            user_id: "",
-            cargo: "",
-            observacion: "",
-            firma: ""
-        };
-         axios
-            .post(
-                "/modulos/cirugia/lista_verificacion/ListarValoracion",
-                ListaInsert
-            )
-            .then(response => {
-                that.$refs.formListaVerificacion[3].activeTabIndex;
-            })
-            .catch(e => {
-                // this.errors.push(e);
-            });
-         // resolve(este);
-    }, */
     mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
       this.$modal.show("ListaCirugiaProgramadaPaciente");
     },
@@ -13922,7 +13842,8 @@ __webpack_require__.r(__webpack_exports__);
       //     this.$refs.revisionSistema.cargarRevisionSistema();
       // }
 
-      this.cargarLista(value.SecCirPro); //this.consultarSello();
+      this.cargarLista(value.SecCirPro);
+      this.consultarSello();
     },
     cargarLista: function cargarLista(value) {
       var that = this;
@@ -13974,6 +13895,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     onChangeTab: function onChangeTab(prevIndex, nextIndex) {
       this.guardarModificar(prevIndex);
+      this.guardarModificar2(nextIndex);
     },
     onValidateTab: function onValidateTab(validationResult, activeTabIndex) {},
     guardarModificar: function guardarModificar(index) {
@@ -13985,10 +13907,36 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case 2:
-          this.guardarLista();
+          this.guardarLista(); //this.$refs.listvisualizacion.contentDocument.location.reload();
+
           break;
 
         case 3:
+          // this.$refs.listvisualizacion.contentDocument.location.reload();
+          break;
+
+        case 4:
+          break;
+
+        default: //this.titulo_seleccionado = "";
+
+      }
+    },
+    guardarModificar2: function guardarModificar2(index) {
+      switch (index) {
+        case 0:
+          break;
+
+        case 1:
+          break;
+
+        case 2:
+          //  this.$refs.listvisualizacion.contentDocument.location.reload();
+          // this.guardarLista();
+          break;
+
+        case 3:
+          //  this.$refs.listvisualizacion.contentDocument.location.reload();
           break;
 
         case 4:
@@ -14058,6 +14006,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.post(url, ListaInsert).then(function (response) {
         _this2.idPromesa = response.data.id;
         loader.hide();
+
+        _this2.$refs.listvisualizacion.contentDocument.location.reload();
       })["catch"](function (error) {
         that.flashMessage.show({
           status: "error",
@@ -15884,7 +15834,7 @@ __webpack_require__.r(__webpack_exports__);
             let url =
                 "/modulos/cirugia/anestesia/cargar_sello/" +
                 this.$props.user.id;
-             axios
+              axios
                 .get(url)
                 .then(function(response) {
                     if (response.data.sello != null) {
@@ -17092,7 +17042,7 @@ __webpack_require__.r(__webpack_exports__);
                     text: "La descripción no debe estar vacia"
                 });
                 return false;
-             }
+              }
         }
         return true;
     }, */
@@ -22647,7 +22597,7 @@ __webpack_require__.r(__webpack_exports__);
                     if(response.data.modulo[0] != null){
                         that.cargarSubModulos(response.data.modulo[0].codigo);
                     }
-                 }
+                  }
             })
             .catch(error => {
                 //Errores
@@ -23915,7 +23865,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, "\ntable {\n    border-collapse: collapse;\n}\n.flex {\n    display: flex;\n}\n.flex-y {\n    flex-direction: column;\n}\n.flex-x {\n    flex-direction: row;\n}\n.border-t {\n    border: 1px solid #000;\n}\n.border-l {\n    border-left: 1px solid #000;\n}\n.border-r {\n    border-right: 1px solid #000;\n}\n.flex-center-x {\n    justify-content: center;\n}\n.flex-center-y {\n    align-items: center;\n}\n.border-top {\n    border-top: 1px solid #000 !important;\n}\n.border-b {\n    border-bottom: 1px solid #000;\n}\n.upper {\n    text-transform: uppercase;\n}\n.input-line {\n    border: none;\n    border-bottom: 1px solid #000;\n    outline: none;\n}\n.input-no-line {\n    border: none;\n    outline: none;\n}\n.space-left {\n    box-sizing: border-box;\n    padding-left: 5px;\n}\n.m-w {\n    max-width: 35px;\n}\n.no-line {\n    border: none;\n    outline: none;\n}\n.w-100p {\n    width: 100%;\n}\n.border-none-b- {\n    border: none;\n    outline: none;\n    border-bottom: 1px solid #000;\n}\n.grid {\n    display: grid;\n}\n.grid-2-c {\n    grid-template-columns: 1fr 1fr;\n}\n.grid-center {\n    align-self: center;\n    justify-self: center;\n}\n.flex-x-end {\n    justify-content: flex-end;\n}\n.he25 {\n    height: 25px;\n}\n.overflow-x-hidden {\n    overflow-x: scroll;\n}\n.wrap-flex {\n    flex-wrap: wrap;\n}\n.no-wrap-flex {\n    flex-wrap: nowrap !important;\n}\n.line-second {\n    width: 20px;\n    height: 20px;\n    display: flex;\n}\n.space-btw {\n    justify-content: space-between;\n}\n.width-100-p {\n    width: 100%;\n}\n.time-triangle-abs {\n    width: 15px;\n    position: absolute;\n    bottom: 0;\n    /* left: -18px; */\n    z-index: 1000;\n}\n.grid {\n    display: grid;\n}\n.grid-4-c {\n    /* grid-template-columns: repeat(4 , 1fr); */\n}\n.relative {\n    position: relative;\n}\n.figure-celds {\n    position: absolute;\n}\n.figure-celds:nth-child(1) {\n    left: 0;\n}\n.figure-celds:nth-child(2) {\n    left: 15px;\n}\n.figure-celds:nth-child(3) {\n    left: 30px;\n}\n.figure-celds:nth-child(4) {\n    left: 45px;\n}\n.figure-celds:nth-child(5) {\n    left: 60px;\n}\n.figure-celds:nth-child(6) {\n    left: 75px;\n}\n.input-registro {\n    border-bottom: 1px solid;\n    width: 100%;\n}\np.blue {\n    background: #5178d0;\n    border-radius: 0.8em;\n    -moz-border-radius: 0.8em;\n    -webkit-border-radius: 0.8em;\n    color: #ffffff;\n    display: inline-block;\n    font-weight: bold;\n    line-height: 1.6em;\n    margin-right: 15px;\n    text-align: center;\n    width: 1.6em;\n}\n", ""]);
+exports.push([module.i, "\ntable {\r\n    border-collapse: collapse;\n}\n.flex {\r\n    display: flex;\n}\n.flex-y {\r\n    flex-direction: column;\n}\n.flex-x {\r\n    flex-direction: row;\n}\n.border-t {\r\n    border: 1px solid #000;\n}\n.border-l {\r\n    border-left: 1px solid #000;\n}\n.border-r {\r\n    border-right: 1px solid #000;\n}\n.flex-center-x {\r\n    justify-content: center;\n}\n.flex-center-y {\r\n    align-items: center;\n}\n.border-top {\r\n    border-top: 1px solid #000 !important;\n}\n.border-b {\r\n    border-bottom: 1px solid #000;\n}\n.upper {\r\n    text-transform: uppercase;\n}\n.input-line {\r\n    border: none;\r\n    border-bottom: 1px solid #000;\r\n    outline: none;\n}\n.input-no-line {\r\n    border: none;\r\n    outline: none;\n}\n.space-left {\r\n    box-sizing: border-box;\r\n    padding-left: 5px;\n}\n.m-w {\r\n    max-width: 35px;\n}\n.no-line {\r\n    border: none;\r\n    outline: none;\n}\n.w-100p {\r\n    width: 100%;\n}\n.border-none-b- {\r\n    border: none;\r\n    outline: none;\r\n    border-bottom: 1px solid #000;\n}\n.grid {\r\n    display: grid;\n}\n.grid-2-c {\r\n    grid-template-columns: 1fr 1fr;\n}\n.grid-center {\r\n    align-self: center;\r\n    justify-self: center;\n}\n.flex-x-end {\r\n    justify-content: flex-end;\n}\n.he25 {\r\n    height: 25px;\n}\n.overflow-x-hidden {\r\n    overflow-x: scroll;\n}\n.wrap-flex {\r\n    flex-wrap: wrap;\n}\n.no-wrap-flex {\r\n    flex-wrap: nowrap !important;\n}\n.line-second {\r\n    width: 20px;\r\n    height: 20px;\r\n    display: flex;\n}\n.space-btw {\r\n    justify-content: space-between;\n}\n.width-100-p {\r\n    width: 100%;\n}\n.time-triangle-abs {\r\n    width: 15px;\r\n    position: absolute;\r\n    bottom: 0;\r\n    /* left: -18px; */\r\n    z-index: 1000;\n}\n.grid {\r\n    display: grid;\n}\n.grid-4-c {\r\n    /* grid-template-columns: repeat(4 , 1fr); */\n}\n.relative {\r\n    position: relative;\n}\n.figure-celds {\r\n    position: absolute;\n}\n.figure-celds:nth-child(1) {\r\n    left: 0;\n}\n.figure-celds:nth-child(2) {\r\n    left: 15px;\n}\n.figure-celds:nth-child(3) {\r\n    left: 30px;\n}\n.figure-celds:nth-child(4) {\r\n    left: 45px;\n}\n.figure-celds:nth-child(5) {\r\n    left: 60px;\n}\n.figure-celds:nth-child(6) {\r\n    left: 75px;\n}\n.input-registro {\r\n    border-bottom: 1px solid;\r\n    width: 100%;\n}\np.blue {\r\n    background: #5178d0;\r\n    border-radius: 0.8em;\r\n    -moz-border-radius: 0.8em;\r\n    -webkit-border-radius: 0.8em;\r\n    color: #ffffff;\r\n    display: inline-block;\r\n    font-weight: bold;\r\n    line-height: 1.6em;\r\n    margin-right: 15px;\r\n    text-align: center;\r\n    width: 1.6em;\n}\r\n", ""]);
 
 // exports
 
@@ -23934,7 +23884,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nbody {\n    font-family: Helvetica, Arial, sans-serif;\n    position: initial !important;\n}\n/* .control {\n    margin: 20px;\n} */\n.paint {\n    border: 2px solid #000;\n    border-radius: 5px;\n    margin: 40px auto;\n    box-sizing: border-box;\n    display: block;\n    width: auto;\n    height: auto;\n    position: relative !important;\n    overflow: hidden;\n}\n.custom-navigation .controls {\n    margin: 10px 0 0 0;\n    border: 1px solid #ddd;\n    padding: 20px;\n    border-radius: 5px;\n}\n", ""]);
+exports.push([module.i, "\nbody {\r\n    font-family: Helvetica, Arial, sans-serif;\r\n    position: initial !important;\n}\r\n/* .control {\r\n    margin: 20px;\r\n} */\n.paint {\r\n    border: 2px solid #000;\r\n    border-radius: 5px;\r\n    margin: 40px auto;\r\n    box-sizing: border-box;\r\n    display: block;\r\n    width: auto;\r\n    height: auto;\r\n    position: relative !important;\r\n    overflow: hidden;\n}\n.custom-navigation .controls {\r\n    margin: 10px 0 0 0;\r\n    border: 1px solid #ddd;\r\n    padding: 20px;\r\n    border-radius: 5px;\n}\r\n", ""]);
 
 // exports
 
@@ -80496,8 +80446,10 @@ var render = function() {
                               },
                               [
                                 _c("div", { staticClass: "row" }, [
-                                  _c("embed", {
+                                  _c("iframe", {
+                                    ref: "listvisualizacion",
                                     attrs: {
+                                      id: "listvisualizacion",
                                       src:
                                         "/modulos/cirugia/lista_verificacion/mostrarreporte/" +
                                         _vm.listas.SecCirPro,
@@ -114296,7 +114248,7 @@ var prefix = "/LeonBecerra";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jonat\OneDrive\TrabajoBSPI\Proyecto\Sistema_Hospitalario_BSPI\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Sistema_Hospitalario_BSPI\Sistema_Hospitalario_BSPI\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ })

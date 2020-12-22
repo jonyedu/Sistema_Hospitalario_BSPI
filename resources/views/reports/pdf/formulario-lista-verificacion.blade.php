@@ -124,7 +124,7 @@
                     @endif
                  </th>
                  <th colspan="2" style="width: 40%; border-style: none">
-
+                    Fecha: {{ $datosPaciente->created_at }}
                  </th>
                  <th rowspan="3" style="width: 20%; border-style: none">
                      <img src="{{ public_path('img/oms.png') }}" width="120px" height="100px" />
@@ -149,7 +149,7 @@
                     @endif
                  <td>
                  <td>
-                     Fecha: {{ $datosPaciente->created_at }}
+                   
                  </td>
              <tr>
                 <td colspan="6">
