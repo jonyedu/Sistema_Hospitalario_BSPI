@@ -318,7 +318,7 @@ export default {
             },
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "2890", //2890
+                frm_idCirugiaProgramada: "", //2890
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
