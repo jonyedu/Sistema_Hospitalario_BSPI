@@ -3465,6 +3465,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var _methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3816,7 +3820,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {},
+  props: {
+    datosPaciente: {
+      type: Object,
+      required: true
+    }
+  },
   data: function data() {
     return {
       selectedServicioMedico: "",
@@ -3872,8 +3881,18 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  mounted: function mounted() {},
-  methods: {
+  mounted: function mounted() {
+    this.cargarComboBox();
+  },
+  methods: (_methods = {
+    cargarComboBox: function cargarComboBox() {
+      this.setSelectedCirujano();
+      this.setSelectedAnestesiologo();
+      this.setSelectedAyudante();
+      this.setSelectedDiagnostico();
+      this.setSelectedTarifaria();
+      this.cargarDiagnosticoPorCodigo(this.$props.datosPaciente);
+    },
     setSelectedServicioMedico: function setSelectedServicioMedico(value) {
       if (this.form.id_servicio_medico > 0) {
         var that = this;
@@ -3896,13 +3915,6 @@ __webpack_require__.r(__webpack_exports__);
           that.serviciosMedicos = serviciosMedicos;
           loader.hide();
         })["catch"](function (error) {
-          //Errores
-
-          /* that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
-          }); */
           that.flashMessage.show({
             status: "error",
             title: "Error al procesar setSelectedServicioMedico",
@@ -3918,49 +3930,6 @@ __webpack_require__.r(__webpack_exports__);
           });
           loader.hide();
         });
-      }
-    },
-    setSelectedDiagnosticoPre: function setSelectedDiagnosticoPre(value) {
-      var that = this;
-
-      if (this.selectedDiagnosticoPre.id_diagnostico_pre != null) {
-        this.form.id_diagnostico_pre = this.selectedDiagnosticoPre.id_diagnostico_pre;
-      }
-
-      if (this.diagnosticosPre.length == 0) {
-        if (this.selectedDiagnosticoPre != "") {
-          var loader = that.$loading.show();
-          var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_combo_box/" + this.selectedDiagnosticoPre;
-          axios.get(url).then(function (response) {
-            var diagnosticosPre = [];
-            response.data.diagnosticos.forEach(function (diagnosticoPres) {
-              var objeto = {}; //Pre
-
-              objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(diagnosticoPres.descripcion);
-              objeto.id_diagnostico_pre = diagnosticoPres.id;
-              diagnosticosPre.push(objeto);
-            });
-            that.diagnosticosPre = diagnosticosPre;
-            loader.hide();
-          })["catch"](function (error) {
-            that.flashMessage.show({
-              status: "error",
-              title: "Error al procesar setSelectedDiagnosticoPre",
-              message: "Por favor comuníquese con el administrador. " + error,
-              clickable: true,
-              time: 0,
-              icon: "/iconsflashMessage/error.svg",
-              customStyle: {
-                flashMessageStyle: {
-                  background: "linear-gradient(#e66465, #9198e5)"
-                }
-              }
-            });
-            loader.hide();
-          });
-        }
-      } else {
-        this.diagnosticosPre = [];
       }
     },
     setSelectedDiagnostico: function setSelectedDiagnostico(value) {
@@ -4007,193 +3976,32 @@ __webpack_require__.r(__webpack_exports__);
         this.diagnosticos = [];
       }
     },
-    setSelectedCirujano: function setSelectedCirujano(value) {
-      var that = this;
-      var loader = that.$loading.show();
-      var url = "/modulos/admision/medico/cargar_cirujano";
-
-      if (value != null) {
-        this.form.id_cirujano = value.id_cirujano;
-        this.form.id_servicio_medico = value.id_servicio_medico;
-        loader.hide();
-      }
-
-      axios.get(url).then(function (response) {
-        var cirujanos = [];
-        response.data.medicos.forEach(function (medico) {
-          var objeto = {};
-          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
-          objeto.id_cirujano = medico.id;
-          objeto.id_servicio_medico = medico.tipo_medico_servicio;
-          cirujanos.push(objeto);
-        });
-        that.cirujanos = cirujanos;
-        that.setSelectedServicioMedico();
-        loader.hide();
-      })["catch"](function (error) {
-        //Errores
-
-        /* that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
-        }); */
-        that.flashMessage.show({
-          status: "error",
-          title: "Error al procesar setSelectedCirujano",
-          message: "Por favor comuníquese con el administrador. " + error,
-          clickable: true,
-          time: 0,
-          icon: "/iconsflashMessage/error.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-        loader.hide();
-      });
-    },
-    setSelectedAnestesiologo: function setSelectedAnestesiologo(value) {
-      var that = this;
-      var loader = that.$loading.show();
-      this.form.id_especializacion = 3;
-      var url = "/modulos/admision/medico/cargar_medico_por_especializacion/" + that.form.id_especializacion;
-
-      if (value != null) {
-        this.form.id_anestesiologo = value.id_anestesiologo;
-        loader.hide();
-      }
-
-      axios.get(url).then(function (response) {
-        var anestesiologos = [];
-        response.data.medicos.forEach(function (medico) {
-          var objeto = {};
-          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
-          objeto.id_anestesiologo = medico.id;
-          anestesiologos.push(objeto);
-        });
-        that.anestesiologos = anestesiologos;
-        loader.hide();
-      })["catch"](function (error) {
-        //Errores
-
-        /* that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
-        }); */
-        that.flashMessage.show({
-          status: "error",
-          title: "Error al procesar setSelectedAnestesiologo",
-          message: "Por favor comuníquese con el administrador. " + error,
-          clickable: true,
-          time: 0,
-          icon: "/iconsflashMessage/error.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-        loader.hide();
-      });
-    },
-    setSelectedAyudante: function setSelectedAyudante(value) {
-      var that = this;
-      var loader = that.$loading.show();
-      var url = "/modulos/admision/medico/cargar_medico_all";
-
-      if (value != null) {
-        if (value.id_ayudante1 != null) {
-          this.form.id_ayudante1 = value.id_ayudante1;
-        }
-
-        if (value.id_ayudante2 != null) {
-          this.form.id_ayudante2 = value.id_ayudante2;
-        }
-
-        if (value.id_instrumentista != null) {
-          this.form.id_instrumentista = value.id_instrumentista;
-        }
-
-        loader.hide();
-      }
-
-      axios.get(url).then(function (response) {
-        var ayudante1 = [];
-        var ayudante2 = [];
-        var instrumentistas = [];
-        response.data.medicos.forEach(function (medico) {
-          //Ayudante 1
-          var objeto1 = {};
-          objeto1.display1 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
-          objeto1.id_ayudante1 = medico.id;
-          ayudante1.push(objeto1); //Ayudante 2
-
-          var objeto2 = {};
-          objeto2.display2 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
-          objeto2.id_ayudante2 = medico.id;
-          ayudante2.push(objeto2); //Instrumentista
-
-          var objeto3 = {};
-          objeto3.display3 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
-          objeto3.id_instrumentista = medico.id;
-          instrumentistas.push(objeto3);
-        });
-        that.ayudantes1 = ayudante1;
-        that.ayudantes2 = ayudante2;
-        that.instrumentistas = instrumentistas;
-        loader.hide();
-      })["catch"](function (error) {
-        //Errores
-
-        /* that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
-        }); */
-        that.flashMessage.show({
-          status: "error",
-          title: "Error al procesar setSelectedAyudante",
-          message: "Por favor comuníquese con el administrador. " + error,
-          clickable: true,
-          time: 0,
-          icon: "/iconsflashMessage/error.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-        loader.hide();
-      });
-    },
-    setSelectedTarifaria: function setSelectedTarifaria(value) {
+    setSelectedDiagnosticoPre: function setSelectedDiagnosticoPre(value) {
       var that = this;
 
-      if (this.selectedTarifaria.id_tarifaria != null) {
-        this.form.id_tarifaria = this.selectedTarifaria.id_tarifaria;
+      if (this.selectedDiagnosticoPre.id_diagnostico_pre != null) {
+        this.form.id_diagnostico_pre = this.selectedDiagnosticoPre.id_diagnostico_pre;
       }
 
-      if (this.tarifarias.length == 0) {
-        if (this.selectedTarifaria != "") {
+      if (this.diagnosticosPre.length == 0) {
+        if (this.selectedDiagnosticoPre != "") {
           var loader = that.$loading.show();
-          var url = "/modulos/parametrizacion/tarifario/consultar_tarifario/" + this.selectedTarifaria;
+          var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_combo_box/" + this.selectedDiagnosticoPre;
           axios.get(url).then(function (response) {
-            var tarifariosMedicinas = [];
-            response.data.tarifariosMedicinas.forEach(function (tarifarioMedicina) {
-              var objeto = {};
-              objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(tarifarioMedicina.descripcion);
-              objeto.id_tarifaria = tarifarioMedicina.codigo;
-              tarifariosMedicinas.push(objeto);
+            var diagnosticosPre = [];
+            response.data.diagnosticos.forEach(function (diagnosticoPres) {
+              var objeto = {}; //Pre
+
+              objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(diagnosticoPres.descripcion);
+              objeto.id_diagnostico_pre = diagnosticoPres.id;
+              diagnosticosPre.push(objeto);
             });
-            that.tarifarias = tarifariosMedicinas;
+            that.diagnosticosPre = diagnosticosPre;
             loader.hide();
           })["catch"](function (error) {
             that.flashMessage.show({
               status: "error",
-              title: "Error al procesar setSelectedDiagnostico",
+              title: "Error al procesar setSelectedDiagnosticoPre",
               message: "Por favor comuníquese con el administrador. " + error,
               clickable: true,
               time: 0,
@@ -4208,92 +4016,330 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       } else {
-        this.tarifarias = [];
+        this.diagnosticosPre = [];
       }
-    },
-    cargarDiagnosticoPorCodigo: function cargarDiagnosticoPorCodigo(value) {
-      if (value.id_diagnostico != "") {
-        var that = this;
-        var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_por_codigo/" + value.id_diagnostico;
+    }
+  }, _defineProperty(_methods, "setSelectedDiagnosticoPre", function setSelectedDiagnosticoPre(value) {
+    var that = this;
+
+    if (this.selectedDiagnostico.id_diagnostico != null) {
+      this.form.id_diagnostico = this.selectedDiagnostico.id_diagnostico;
+    }
+
+    if (this.diagnosticos.length == 0) {
+      if (this.selectedDiagnostico != "") {
         var loader = that.$loading.show();
+        var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_combo_box/" + this.selectedDiagnostico;
         axios.get(url).then(function (response) {
-          //Obtiene los datos de Motivo Antecedentes
-          if (response.data.diagnostico != null && response.data.diagnostico != undefined) {
-            //Pre
-            that.selectedDiagnosticoPre = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
-            that.form.id_diagnostico_pre = response.data.diagnostico.codigo; //Post
+          var diagnosticosPre = [];
+          var diagnosticos = [];
+          response.data.diagnosticos.forEach(function (diagnostico) {
+            var objeto = {}; //Post
 
-            that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
-            that.form.id_diagnostico = response.data.diagnostico.codigo;
-            that.form.idCirugiaProgramadaTemporal = value.SecCirPro;
-            that.form.idCirugiaProgramada = value.SecCirPro;
-            that.form.paciente = value.nombrePaciente;
-            that.form.historia_clinica = value.historiaClinica;
-            that.form.fecha = value.fechaProgramada;
-            that.form.edad = value.edad;
-            that.form.sexo = value.sexo;
-            that.form.sala = value.sala;
-            that.form.cama = value.cama;
-            that.form.cirujano = value.cirujano;
-            that.form.anestesiologo = value.anestesiologo;
-            that.form.quirofano = value.quirofano;
-            that.form.operacion_propuesta = value.procedimiento;
-            that.$modal.hide("ListaCirugiaProgramadaPaciente");
-          }
-
+            objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(diagnostico.descripcion);
+            objeto.id_diagnostico = diagnostico.id;
+            diagnosticos.push(objeto);
+          });
+          that.diagnosticos = diagnosticos;
           loader.hide();
         })["catch"](function (error) {
-          //Errores
-          loader.hide();
-          that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar setSelectedDiagnostico",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
           });
+          loader.hide();
         });
       }
-    },
-    guardarCabecera: function guardarCabecera(registro_anestesia_id) {
-      var that = this;
-      var url = "";
-      var mensaje = "";
-      url = "/modulos/cirugia/anestesia/guardar_datos_registro";
-      this.form.registro_anestesia_id = registro_anestesia_id;
-      var loader = that.$loading.show();
-      axios.post(url, this.form).then(function (response) {
-        /* that.flashMessage.show({
-            status: "success",
-            title: "Éxito al procesar",
-            message: "Datos guardados correctamente.",
+    } else {
+      this.diagnosticos = [];
+    }
+  }), _defineProperty(_methods, "setSelectedCirujano", function setSelectedCirujano(value) {
+    var that = this;
+    var loader = that.$loading.show();
+    var url = "/modulos/admision/medico/cargar_cirujano";
+
+    if (value != null) {
+      this.form.id_cirujano = value.id_cirujano;
+      this.form.id_servicio_medico = value.id_servicio_medico;
+      loader.hide();
+    }
+
+    axios.get(url).then(function (response) {
+      var cirujanos = [];
+      response.data.medicos.forEach(function (medico) {
+        var objeto = {};
+        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+        objeto.id_cirujano = medico.id;
+        objeto.id_servicio_medico = medico.tipo_medico_servicio;
+        cirujanos.push(objeto);
+      });
+      that.cirujanos = cirujanos;
+      loader.hide();
+    })["catch"](function (error) {
+      that.flashMessage.show({
+        status: "error",
+        title: "Error al procesar setSelectedCirujano",
+        message: "Por favor comuníquese con el administrador. " + error,
+        clickable: true,
+        time: 0,
+        icon: "/iconsflashMessage/error.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
+      loader.hide();
+    });
+  }), _defineProperty(_methods, "setSelectedAnestesiologo", function setSelectedAnestesiologo(value) {
+    var that = this;
+    var loader = that.$loading.show();
+    this.form.id_especializacion = 3;
+    var url = "/modulos/admision/medico/cargar_medico_por_especializacion/" + that.form.id_especializacion;
+
+    if (value != null) {
+      this.form.id_anestesiologo = value.id_anestesiologo;
+      loader.hide();
+    }
+
+    axios.get(url).then(function (response) {
+      var anestesiologos = [];
+      response.data.medicos.forEach(function (medico) {
+        var objeto = {};
+        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+        objeto.id_anestesiologo = medico.id;
+        anestesiologos.push(objeto);
+      });
+      that.anestesiologos = anestesiologos;
+      loader.hide();
+    })["catch"](function (error) {
+      that.flashMessage.show({
+        status: "error",
+        title: "Error al procesar setSelectedAnestesiologo",
+        message: "Por favor comuníquese con el administrador. " + error,
+        clickable: true,
+        time: 0,
+        icon: "/iconsflashMessage/error.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
+      loader.hide();
+    });
+  }), _defineProperty(_methods, "setSelectedAyudante", function setSelectedAyudante(value) {
+    var that = this;
+    var loader = that.$loading.show();
+    var url = "/modulos/admision/medico/cargar_medico_all";
+
+    if (value != null) {
+      if (value.id_ayudante1 != null) {
+        this.form.id_ayudante1 = value.id_ayudante1;
+      }
+
+      if (value.id_ayudante2 != null) {
+        this.form.id_ayudante2 = value.id_ayudante2;
+      }
+
+      if (value.id_instrumentista != null) {
+        this.form.id_instrumentista = value.id_instrumentista;
+      }
+
+      loader.hide();
+    }
+
+    axios.get(url).then(function (response) {
+      var ayudante1 = [];
+      var ayudante2 = [];
+      var instrumentistas = [];
+      response.data.medicos.forEach(function (medico) {
+        //Ayudante 1
+        var objeto1 = {};
+        objeto1.display1 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+        objeto1.id_ayudante1 = medico.id;
+        ayudante1.push(objeto1); //Ayudante 2
+
+        var objeto2 = {};
+        objeto2.display2 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+        objeto2.id_ayudante2 = medico.id;
+        ayudante2.push(objeto2); //Instrumentista
+
+        var objeto3 = {};
+        objeto3.display3 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+        objeto3.id_instrumentista = medico.id;
+        instrumentistas.push(objeto3);
+      });
+      that.ayudantes1 = ayudante1;
+      that.ayudantes2 = ayudante2;
+      that.instrumentistas = instrumentistas;
+      loader.hide();
+    })["catch"](function (error) {
+      that.flashMessage.show({
+        status: "error",
+        title: "Error al procesar setSelectedAyudante",
+        message: "Por favor comuníquese con el administrador. " + error,
+        clickable: true,
+        time: 0,
+        icon: "/iconsflashMessage/error.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
+      loader.hide();
+    });
+  }), _defineProperty(_methods, "setSelectedTarifaria", function setSelectedTarifaria(value) {
+    var that = this;
+
+    if (this.selectedTarifaria.id_tarifaria != null) {
+      this.form.id_tarifaria = this.selectedTarifaria.id_tarifaria;
+    }
+
+    if (this.tarifarias.length == 0) {
+      if (this.selectedTarifaria != "") {
+        var loader = that.$loading.show();
+        var url = "/modulos/parametrizacion/tarifario/consultar_tarifario/" + this.selectedTarifaria;
+        axios.get(url).then(function (response) {
+          var tarifariosMedicinas = [];
+          response.data.tarifariosMedicinas.forEach(function (tarifarioMedicina) {
+            var objeto = {};
+            objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(tarifarioMedicina.descripcion);
+            objeto.id_tarifaria = tarifarioMedicina.codigo;
+            tarifariosMedicinas.push(objeto);
+          });
+          that.tarifarias = tarifariosMedicinas;
+          loader.hide();
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar setSelectedDiagnostico",
+            message: "Por favor comuníquese con el administrador. " + error,
             clickable: true,
-            time: 5000,
-            icon: "/iconsflashMessage/success.svg",
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
             customStyle: {
-                flashMessageStyle: {
-                    background: "linear-gradient(#e66465, #9198e5)"
-                }
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
             }
-        }); */
+          });
+          loader.hide();
+        });
+      }
+    } else {
+      this.tarifarias = [];
+    }
+  }), _defineProperty(_methods, "cargarDiagnosticoPorCodigo", function cargarDiagnosticoPorCodigo(value) {
+    if (value.id_diagnostico != "") {
+      var that = this;
+      var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_por_codigo/" + value.id_diagnostico;
+      var loader = that.$loading.show();
+      axios.get(url).then(function (response) {
+        //Obtiene los datos de Motivo Antecedentes
+        if (response.data.diagnostico != null && response.data.diagnostico != undefined) {
+          //Pre
+          that.selectedDiagnosticoPre = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
+          that.form.id_diagnostico_pre = response.data.diagnostico.codigo; //Post
+
+          that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
+          that.form.id_diagnostico = response.data.diagnostico.codigo;
+          that.form.idCirugiaProgramadaTemporal = value.SecCirPro;
+          that.form.idCirugiaProgramada = value.SecCirPro;
+          that.form.paciente = value.nombrePaciente;
+          that.form.historia_clinica = value.historiaClinica;
+          that.form.fecha = value.fechaProgramada;
+          that.form.edad = value.edad;
+          that.form.sexo = value.sexo;
+          that.form.sala = value.sala;
+          that.form.cama = value.cama;
+          that.form.cirujano = value.cirujano;
+          that.form.anestesiologo = value.anestesiologo;
+          that.form.quirofano = value.quirofano;
+          that.form.operacion_propuesta = value.procedimiento;
+        }
+
         loader.hide();
       })["catch"](function (error) {
-        //Errores de validación
+        //Errores
         loader.hide();
-        that.flashMessage.show({
-          status: "error",
-          title: "Error al procesar guardarCabecera",
-          message: "Por favor comuníquese con el administrador. " + error,
-          clickable: true,
-          time: 0,
-          icon: "/iconsflashMessage/error.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
+        that.$swal({
+          icon: "error",
+          title: "Existe un error",
+          text: error
         });
       });
     }
-  },
+  }), _defineProperty(_methods, "validarForm", function validarForm() {
+    //Se comprueba que un checkbox tenga data
+    if (this.form.id_cirujano <= 0) {
+      this.flashMessage.show({
+        status: "warning",
+        title: "Advertencia",
+        message: "Se necesita seleccionar un ",
+        clickable: true,
+        time: 5000,
+        icon: "/iconsflashMessage/warning.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
+      return false;
+    }
+
+    return true;
+  }), _defineProperty(_methods, "guardarCabecera", function guardarCabecera(registro_anestesia_id) {
+    var that = this;
+    var url = "";
+    var mensaje = "";
+    url = "/modulos/cirugia/anestesia/guardar_datos_registro";
+    this.form.registro_anestesia_id = registro_anestesia_id;
+    var loader = that.$loading.show();
+    axios.post(url, this.form).then(function (response) {
+      /* that.flashMessage.show({
+          status: "success",
+          title: "Éxito al procesar",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+              flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+              }
+          }
+      }); */
+      loader.hide();
+    })["catch"](function (error) {
+      //Errores de validación
+      loader.hide();
+      that.flashMessage.show({
+        status: "error",
+        title: "Error al procesar guardarCabecera",
+        message: "Por favor comuníquese con el administrador. " + error,
+        clickable: true,
+        time: 0,
+        icon: "/iconsflashMessage/error.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
+    });
+  }), _methods),
   computed: {}
 });
 
@@ -4312,15 +4358,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 //
 //
@@ -5077,7 +5123,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {},
+  props: {
+    idSecCirPro: {
+      type: String,
+      required: true
+    }
+  },
   data: function data() {
     return {
       // Detectar cuando Inicia/Finaliza el Proceso
@@ -5131,15 +5182,435 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           system_name: "",
           tipo: ""
         }
-      }
+      },
+      // Formulario de recolección de datos
+      valoresFormulario: {
+        ta_max: {
+          habilitado: true,
+          ruta_img: "img/icons/max.png",
+          descripcion: "MAX",
+          valor: 0
+        },
+        ta_min: {
+          habilitado: true,
+          ruta_img: "img/icons/min.png",
+          descripcion: "MIN",
+          valor: 0
+        },
+        valor_pulso: {
+          habilitado: true,
+          descripcion: "PULSO",
+          ruta_img: "img/icons/pulso.png",
+          valor: 0
+        },
+        respiracion: {
+          habilitado: true,
+          descripcion: "",
+          ruta_img: "",
+          valor: 0
+        },
+        temperatura: {
+          habilitado: false,
+          ruta_img: "img/icons/temperatura.png",
+          descripcion: "TEMPERATURA",
+          valor: 0
+        },
+        feto: {
+          habilitado: true,
+          ruta_img: "img/icons/feto.png",
+          descripcion: "FETO",
+          valor: 0
+        },
+        pares_venosa: {
+          ruta_img: "img/icons/pares_venosa.png",
+          habilitado: true,
+          descripcion: "PARES VENOSA",
+          valor: 0
+        },
+        torniquete: {
+          ruta_img: "img/icons/torniquete.png",
+          habilitado: true,
+          descripcion: "TORNIQUETE",
+          valor: 0
+        },
+        posicion: {
+          //idRe: 0,
+          id: 0,
+          descripcion: ""
+        }
+      },
+      //Variables para validar si/no graficar
+      chk: {
+        temperatura: 0,
+        feto: 0,
+        pares_venosa: 0,
+        torniquete: 0
+      },
+      form: {
+        cirugia_id: 0
+      },
+      // Posociones
+      posiciones: [],
+      // Control de la rejilla, cada objeto tiene X filas, cada fila tiene un arreglo de 4 objetos
+      //(representan la hora separada en partes por 15 minutos de la hora)[adicional,
+      //cada objeto de 15 min tiene los datos de la posición de paciente], cada objeto de 15
+      //minutos tiene su arreglo que representa sus 15 minutos separados en 5 minutos,
+      //cada objeto de 5  minutos tiene los valores de los agentes
+      lista_horas_avanzadas_v: [],
+      // Datos que van a aparecer en AGENTE/ HORA {id, descripcion, name_system, img_url}
+      tabla_datos_grafica: [],
+      // Datos de grados, estáticos
+      datos_grados: [40, 38, 36, 34, 32, 30, 28, 26],
+      // Texto adicional ubicados en las primeras columnas de las rejillas
+      agentes_text: [{
+        descripcion: "Oxigeno L/min",
+        valores: []
+      }, {
+        descripcion: "Sevoflorane vol %",
+        valores: []
+      }, {
+        descripcion: "Remifentanil 5mg/500 ML",
+        valores: []
+      }, {
+        descripcion: "Spo2 %",
+        valores: []
+      }],
+      //Arreglo de Objetos que servirá para guardar los valores de cada celda en la grafica
+      valoresAnestecia_v: [{
+        inicio: 220,
+        fin: 500
+      }, {
+        inicio: 210,
+        fin: 220
+      }, {
+        inicio: 200,
+        fin: 210
+      }, {
+        inicio: 190,
+        fin: 200
+      }, {
+        inicio: 180,
+        fin: 190
+      }, {
+        inicio: 170,
+        fin: 190
+      }, {
+        inicio: 160,
+        fin: 170
+      }, {
+        inicio: 150,
+        fin: 160
+      }, {
+        inicio: 140,
+        fin: 150
+      }, {
+        inicio: 130,
+        fin: 140
+      }, {
+        inicio: 120,
+        fin: 130
+      }, {
+        inicio: 110,
+        fin: 120
+      }, {
+        inicio: 100,
+        fin: 110
+      }, {
+        inicio: 90,
+        fin: 100
+      }, {
+        inicio: 80,
+        fin: 90
+      }, {
+        inicio: 70,
+        fin: 80
+      }, {
+        inicio: 60,
+        fin: 80
+      }, {
+        inicio: 50,
+        fin: 70
+      }, {
+        inicio: 40,
+        fin: 60
+      }, {
+        inicio: 30,
+        fin: 40
+      }, {
+        inicio: 20,
+        fin: 30
+      }, {
+        inicio: 10,
+        fin: 20
+      }, {
+        inicio: 0,
+        fin: 10
+      }],
+      //Variable para guardar las horas
+      horasInicial: [],
+      //Variables para saber el tipo de datos
+      system_posicion: "posicion",
+      system_agente: "agente",
+      system_respiracion: "respiracion",
+      // índice que indica donde empieza el registro de los agentes ya que hay filas
+      //extras antes de cada ítem del agente
+      index_points: 5,
+      // Contador de horas
+      indice_hora: 0,
+      indice_minuto: 0
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.flashMessage.setStrategy("multiple"); //Es para asignar 0 al tiempo
+
+    var segundo = this.$funcionesGlobales.addCeroToTime(this.seconds);
+    var minuto = this.$funcionesGlobales.addCeroToTime(this.minutes);
+    var hora = this.$funcionesGlobales.addCeroToTime(this.hour); //Asigna los valores con el 0 incluido
+
+    this.seconds = segundo;
+    this.minutes = minuto;
+    this.hour = hora;
+    this.form.cirugia_id = this.$props.idSecCirPro;
+    /**
+     * Se empiezan a llenar los datos de la rejilla
+     */
+
+    this.llenarDatos();
+    /**
+     * Obtiene los datos [posiciones], [agentes]
+     */
+
+    this.obtenerDatos();
+    /**
+     * Control de tiempo
+     */
+
+    this.setSelectedTipoPosiciones();
+    this.setSelectedSala();
+    this.setSelectedMedico();
+  },
   methods: {
-    //Metodo para iniciar el proceso
+    //Metodo para llenar los datos a la Grafica
+    llenarDatos: function llenarDatos() {
+      var hora = this.agregarNuevaHora("auto");
+      hora.datos.push(this.agregarFilaEnHora(true));
+      hora.datos.push(this.agregarFilaEnHora(false, true));
+      hora.datos.push(this.agregarFilaEnHora(false, true));
+      hora.datos.push(this.agregarFilaEnHora(false, true));
+      hora.datos.push(this.agregarFilaEnHora(false, true)); // Filas
+
+      var _iterator = _createForOfIteratorHelper(this.valoresAnestecia_v),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var items = _step.value;
+          hora.datos.push(this.agregarFilaEnHora(false, false, true));
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      hora.datos.push(this.agregarFilaEnHora(false, false, false, true));
+      hora.datos.push(this.agregarFilaEnHora(false, false, true));
+
+      var _iterator2 = _createForOfIteratorHelper(hora.datos),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var dato = _step2.value;
+          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(0, 14, dato.es_agente));
+          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(15, 29, dato.es_agente));
+          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(30, 44, dato.es_agente));
+          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(45, 60, dato.es_agente));
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+
+      this.lista_horas_avanzadas_v.push(hora);
+    },
+
+    /**
+     * Método para obtener datos principales desde el server
+     */
+    obtenerDatos: function obtenerDatos() {
+      this.obtenerDatosAgentes();
+      this.obtenerDatosPosiciones();
+    },
+
+    /**
+     * Obtener agentes
+     */
+    obtenerDatosAgentes: function obtenerDatosAgentes() {
+      var _this = this;
+
+      var url = "/modulos/cirugia/anestesia/agentes";
+      axios.get(url + "/agente").then(function (response) {
+        _this.tabla_datos_grafica = response.data;
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar obtenerDatosAgentes",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+
+    /**
+     * Obtener posiciones
+     */
+    obtenerDatosPosiciones: function obtenerDatosPosiciones() {
+      var _this2 = this;
+
+      var url = "/modulos/cirugia/anestesia/agentes";
+      axios.get(url + "/posicion").then(function (response) {
+        _this2.posiciones = response.data;
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar obtenerDatosPosiciones",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    //Metodos para cargar los comboBox
+    setSelectedTipoPosiciones: function setSelectedTipoPosiciones(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/cirugia/anestesia/cargar_tipo_posiciones_combo_box";
+
+      if (value != null) {
+        this.form.id_tipo_posiciones = value.id_tipo_posiciones;
+      }
+
+      axios.get(url).then(function (response) {
+        var tipoPosiciones = [];
+        response.data.tipoPosiciones.forEach(function (tiposPosiciones) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(tiposPosiciones.descripcion);
+          objeto.id_tipo_posiciones = tiposPosiciones.id;
+          tipoPosiciones.push(objeto);
+        });
+        that.tipoPosiciones = tipoPosiciones;
+        loader.hide();
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedTipoPosiciones",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    setSelectedSala: function setSelectedSala(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/parametrizacion/sala/cargar_sala_combo_box";
+
+      if (value != null) {
+        this.form.id_sala = value.id_sala;
+      }
+
+      axios.get(url).then(function (response) {
+        var salas = [];
+        response.data.salas.forEach(function (sala) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(sala.descripcion);
+          objeto.id_sala = sala.codigo;
+          salas.push(objeto);
+        });
+        that.salas = salas;
+        loader.hide();
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedSala",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    setSelectedMedico: function setSelectedMedico(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/admision/medico/cargar_medico_por_especializacion/" + that.form.id_especializacion;
+
+      if (value != null) {
+        this.form.id_medico = value.id_medico;
+        loader.hide(); //this.consultarSello();
+      }
+
+      axios.get(url).then(function (response) {
+        var medicos = [];
+        response.data.medicos.forEach(function (medico) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto.id_medico = medico.id;
+          medicos.push(objeto);
+        });
+        that.medicos = medicos;
+        loader.hide();
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedMedico",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    //Metodo para iniciar el proceso de la grafica
     start_time: function () {
       var _start_time = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event) {
-        var _this = this;
+        var _this3 = this;
 
         var url, $id;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -5155,16 +5626,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 this.iniciado = true;
-                this.agregarHorasInicial();
-                this.consultarSello(); //Guardar datos en la tabla tb_registro_anestesia
+                this.agregarHorasInicial(); //Guardar datos en la tabla tb_registro_anestesia
 
                 url = "/modulos/cirugia/anestesia/registro/post";
-                _context.next = 8;
+                _context.next = 7;
                 return axios.post(url, this.form).then(function (response) {
-                  _this.form.registro_anestesia_id = response.data.id;
+                  _this3.form.registro_anestesia_id = response.data.id;
                 });
 
-              case 8:
+              case 7:
                 $id = _context.sent;
                 this.$emit("guardarCabecera", this.form.registro_anestesia_id); //Guardar datos en la tabla tb_tipo_agente_anestesia
                 // Poner el dato al inicio de la rejilla cuando se haya iniciado
@@ -5187,7 +5657,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 12:
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -5201,6 +5671,265 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return start_time;
     }(),
+    //Metodo para finalizar el proceso de la grafica
+    end_time: function end_time() {
+      if (this.validarImgFirma) {
+        if (!this.iniciado) return;
+        this.mostrarModalConfirmarCandelar();
+
+        if (this.resConfirmarCancelar) {
+          this.agregaDatoEnRejilla(true, false, 0, "img/icons/fin_anestecia.png", {
+            system_name: "FIN-ANESTECIA",
+            tipo: this.system_agente
+          });
+          var idFlashMessage1 = this.flashMessage.show({
+            status: "info",
+            title: "Generando Gráfica",
+            message: "Se está generando la gráfica, por favor espere.",
+            clickable: false,
+            time: 0,
+            icon: "/iconsflashMessage/time.gif",
+            blockClass: "custom_msg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          this.getImgGrafica(idFlashMessage1);
+          this.guardarDrograAdministrada();
+        }
+      } else {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia al procesar firma",
+          message: "Se necesita una firma por favor.",
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      }
+    },
+
+    /**
+     * Método para pintar el dato en una rejilla y enviar ese dato al servidor
+     * @param is_tpo_init
+     * @param is_tpo_fin
+     * @param valor
+     * @param ruta_icono
+     * @param adicional
+     * @param fila_indice
+     * @param es_posicion
+     * @param posicion
+     */
+    agregaDatoEnRejilla: function agregaDatoEnRejilla(is_tpo_init, is_tpo_fin, valor, ruta_icono) {
+      var adicional = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {
+        system_name: ""
+      };
+      var fila_indice = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+      var es_posicion = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
+      var posicion = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : {};
+      // if(posicion)debugger
+      var indice_fila = fila_indice != 0 ? fila_indice : this.obtenerIndice(valor); // Verifica el índice según la hora
+
+      var _iterator3 = _createForOfIteratorHelper(this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin),
+          _step3;
+
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var column_quince = _step3.value;
+
+          // Recorre cada fila
+          // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
+          if (column_quince.columnas) {
+            // Recorre datos
+            if (es_posicion) {
+              // posiciones
+              if (column_quince.tiempo_inicio <= this.minutes && column_quince.tiempo_fin > this.minutes) {
+                if (column_quince.posicion.id == 0) {
+                  // Agregar dato de envío
+                  this.enviarDatosAgente({
+                    tpo_ini: is_tpo_init,
+                    tpo_fin: is_tpo_fin,
+                    hora: this.hour,
+                    min: this.minutes,
+                    segundos: this.seconds,
+                    valor: valor,
+                    name: adicional.system_name,
+                    indice_hora: this.indice_hora
+                  }, adicional.tipo, es_posicion, {}, adicional.system_name, valor, ruta_icono, posicion, column_quince);
+                  return;
+                } //Pinta en la grafica los valores
+                //Si funciona, llevar este codigo a donde guarda en base
+
+                /* Object.assign(posicion,{nue:0});
+                column_quince.posicion = posicion;
+                return; */
+
+              }
+            } else {
+              // figuras en rejillas
+              var _iterator4 = _createForOfIteratorHelper(column_quince.columnas),
+                  _step4;
+
+              try {
+                for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+                  var col_cince_min = _step4.value;
+
+                  if (col_cince_min.t_init <= this.minutes && col_cince_min.t_fin > this.minutes) {
+                    if (this.minutes >= col_cince_min.t_init && col_cince_min.t_fin > this.minutes) {
+                      if (col_cince_min.agentes.length == 0) {
+                        // Agregar dato de envío
+                        this.enviarDatosAgente({
+                          tpo_ini: is_tpo_init,
+                          tpo_fin: is_tpo_fin,
+                          hora: this.hour,
+                          min: this.minutes,
+                          segundos: this.seconds,
+                          valor: valor,
+                          name: adicional.system_name,
+                          indice_hora: this.indice_hora
+                        }, adicional.tipo, es_posicion, col_cince_min, adicional.system_name, valor, ruta_icono);
+                      }
+                    }
+
+                    return;
+                  }
+                }
+              } catch (err) {
+                _iterator4.e(err);
+              } finally {
+                _iterator4.f();
+              }
+            }
+          }
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
+    },
+
+    /**
+     * Método para enviar datos de la rejilla (agentes), cada que se registen (pasando 5 min)
+     */
+    enviarDatosAgente1: function enviarDatosAgente1() {
+      var _this4 = this;
+
+      var datos = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var tipo = arguments.length > 1 ? arguments[1] : undefined;
+      var agente = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      var col_cince_min = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+      var column_quince = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : [];
+      var that = this;
+      this.form.cirugia_id = this.$props.idSecCirPro;
+      var url = "/modulos/cirugia/anestesia/agentes/guardado";
+      axios.post(url, {
+        id_datos_agente: this.form.id_datos_agente,
+        registro_anestesia_id: this.form.registro_anestesia_id,
+        datos: datos,
+        tipo: tipo,
+        SecCirPro: this.form.cirugia_id
+      }).then(function (response) {
+        _this4.datos_server = response.data; //alert("es_posicion:" + es_posicion);
+
+        if (agente.dato.es_agente) {
+          console.log(agente);
+          col_cince_min.agentes.push({
+            descripcion: agente.columnas.agente.description,
+            valor: agente.columnas.agente.valueNew,
+            _src: agente.columnas.agente.src,
+            id: response.data.datos
+          });
+          console.log(col_cince_min.agentes);
+        } else {
+          /* Object.assign(agente.posicion, {
+              idRe: response.data.datos
+          }); */
+          column_quince.posicion.descripcion = agente.posicion.description;
+          column_quince.posicion.id = agente.posicion.cod;
+          column_quince.posicion.img_url = agente.posicion.src;
+          column_quince.posicion.idRe = agente.posicion.codRe;
+        }
+
+        _this4.form.id_datos_agente = 0;
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar enviarDatosAgente1",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      });
+    },
+    enviarDatosAgente: function enviarDatosAgente() {
+      var _this5 = this;
+
+      var datos = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var tipo = arguments.length > 1 ? arguments[1] : undefined;
+      var es_posicion = arguments.length > 2 ? arguments[2] : undefined;
+      var col_cince_min = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+      var descripcion = arguments.length > 4 ? arguments[4] : undefined;
+      var valor = arguments.length > 5 ? arguments[5] : undefined;
+      var src = arguments.length > 6 ? arguments[6] : undefined;
+      var posicion = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : {};
+      var column_quince = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : [];
+      var that = this;
+      this.form.cirugia_id = this.$props.idSecCirPro;
+      var url = "/modulos/cirugia/anestesia/agentes/guardado";
+      axios.post(url, {
+        id_datos_agente: this.form.id_datos_agente,
+        registro_anestesia_id: this.form.registro_anestesia_id,
+        datos: datos,
+        tipo: tipo,
+        SecCirPro: this.form.cirugia_id
+      }).then(function (response) {
+        _this5.datos_server = response.data; //alert("es_posicion:" + es_posicion);
+
+        if (es_posicion == false) {
+          col_cince_min.agentes.push({
+            descripcion: descripcion,
+            valor: valor,
+            _src: src,
+            id: response.data.datos
+          });
+        } else {
+          Object.assign(posicion, {
+            idRe: response.data.datos
+          });
+          column_quince.posicion = posicion;
+        }
+
+        _this5.form.id_datos_agente = 0;
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar enviarDatosAgente",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      });
+    },
     //Metodos para el componente ConfirmarCandelar
     mostrarModalConfirmarCandelar: function mostrarModalConfirmarCandelar() {
       this.icon = "/iconsflashMessage/warning.svg";
@@ -5226,23 +5955,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var indice_fila = this.obtenerIndice(valor);
 
         if (adicional.tipo == "agente") {
-          var _iterator = _createForOfIteratorHelper(this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin),
-              _step;
+          var _iterator5 = _createForOfIteratorHelper(this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin),
+              _step5;
 
           try {
-            for (_iterator.s(); !(_step = _iterator.n()).done;) {
-              var column_quince = _step.value;
+            for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+              var column_quince = _step5.value;
 
               // Recorre cada fila
               // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
               if (column_quince.columnas) {
                 // figuras en rejillas
-                var _iterator2 = _createForOfIteratorHelper(column_quince.columnas),
-                    _step2;
+                var _iterator6 = _createForOfIteratorHelper(column_quince.columnas),
+                    _step6;
 
                 try {
-                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                    var col_cince_min = _step2.value;
+                  for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+                    var col_cince_min = _step6.value;
 
                     if (col_cince_min.t_init <= minutes && col_cince_min.t_fin > minutes) {
                       if (minutes >= col_cince_min.t_init && col_cince_min.t_fin > minutes) {
@@ -5261,16 +5990,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }
                   }
                 } catch (err) {
-                  _iterator2.e(err);
+                  _iterator6.e(err);
                 } finally {
-                  _iterator2.f();
+                  _iterator6.f();
                 }
               }
             }
           } catch (err) {
-            _iterator.e(err);
+            _iterator5.e(err);
           } finally {
-            _iterator.f();
+            _iterator5.f();
           }
 
           this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.splice(value.index_all.indexLista, 1);
@@ -5348,6 +6077,480 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       this.$modal.hide("EliminarAgente");
+    },
+    //Metodo para agregar una nueva hora en la grafica
+    agregarObjetoPorHora: function agregarObjetoPorHora() {
+      // Validar que se haya guardado todos los valores
+      //var valor;
+      //this.lista_horas_avanzadas_v[this.indice_hora].datos[value.index_fila].columnasQuinceMin[value.index_columna].columnas[value.index_minutos_columna].agentes
+      var acumulador = 0;
+
+      for (var i = 0; i < this.lista_horas_avanzadas_v.length; i++) {
+        if (this.lista_horas_avanzadas_v[i] != "") {
+          if (i == this.indice_hora) {
+            for (var j = 0; j < this.lista_horas_avanzadas_v[i].datos.length; j++) {
+              if (this.lista_horas_avanzadas_v[i].datos[j] != "") {
+                for (var k = 0; k < this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin.length; k++) {
+                  if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k] != "") {
+                    for (var l = 0; l < this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas.length; l++) {
+                      if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas != "") {
+                        if (this.lista_horas_avanzadas_v[i].datos[j].columnasQuinceMin[k].columnas[l].agentes.length > 0) {
+                          acumulador += 1;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      if (acumulador >= 4) {
+        acumulador = 0;
+        this.indice_hora += 1;
+        this.iniciado_eliminar = true; // Si la hora se ha completado, se agrega otro objeto de horas al
+        //arreglo de datos
+
+        this.agregarHora();
+      }
+    },
+    //Metodo para eliminar una hora en la grafica
+    eliminarObjetoPorHora: function eliminarObjetoPorHora() {
+      if (this.lista_horas_avanzadas_v.length > 1) {
+        this.lista_horas_avanzadas_v.splice(this.indice_hora, 1);
+        this.indice_hora -= 1;
+      }
+
+      if (this.lista_horas_avanzadas_v.length == 1) {
+        this.iniciado_eliminar = false;
+      }
+    },
+    //Metodo pora graficar los agentes. Se se crea mas agente, aquí en donde se debe codificar
+    obtenerDatosFormulario: function obtenerDatosFormulario() {
+      var _this6 = this;
+
+      if (!this.iniciado) return;
+
+      if (this.validarCampoAgente()) {
+        return;
+      }
+
+      this.agregarDatos(this.valoresFormulario.ta_max);
+      this.agregarDatos(this.valoresFormulario.ta_min);
+      this.agregarDatos(this.valoresFormulario.valor_pulso); // debugger
+
+      this.agregarDatoRespiracion(); //this.agregarDatos(this.valoresFormulario.respiracion);
+
+      if (this.chk.temperatura) {
+        this.agregarDatos(this.valoresFormulario.temperatura);
+      }
+
+      if (this.chk.feto) {
+        this.agregarDatos(this.valoresFormulario.feto);
+      }
+
+      if (this.chk.pares_venosa) {
+        this.agregarDatos(this.valoresFormulario.pares_venosa);
+      }
+
+      if (this.chk.torniquete) {
+        this.agregarDatos(this.valoresFormulario.torniquete);
+      } //Aqui va el metodo de guardar los text
+      //this.guardarModificarAgenteText();
+      // Agregar posición en la rejilla
+
+
+      var post_text = this.posiciones.find(function (e) {
+        return e.id == _this6.valoresFormulario.posicion.id;
+      });
+      this.agregaDatoEnRejilla(false, false, 0, "", {
+        system_name: post_text ? post_text.name_system : "",
+        tipo: this.system_posicion
+      }, this.lista_horas_avanzadas_v[this.indice_hora].datos.length - 2 - this.index_points, true, this.posiciones.find(function (pos) {
+        return pos.id == _this6.valoresFormulario.posicion.id;
+      }));
+      this.flashMessage.show({
+        status: "success",
+        title: "Éxito al procesar",
+        message: "Agente agregado correctamente.",
+        clickable: true,
+        time: 5000,
+        icon: "/iconsflashMessage/success.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
+    },
+    validarCampoAgente: function validarCampoAgente() {
+      var validarCampo = false;
+
+      if (this.valoresFormulario.ta_max.valor == undefined || this.valoresFormulario.ta_max.valor == 0) {
+        validarCampo = true;
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia Campos Vacios",
+          message: "El campo TA MAX, necesita una valor.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return validarCampo;
+      }
+
+      if (this.valoresFormulario.ta_min.valor == undefined || this.valoresFormulario.ta_min.valor == 0) {
+        validarCampo = true;
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia Campos Vacios",
+          message: "El campo TA MIN, necesita una valor.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return validarCampo;
+      }
+
+      if (this.valoresFormulario.valor_pulso.valor == undefined || this.valoresFormulario.valor_pulso.valor == 0) {
+        validarCampo = true;
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia Campos Vacios",
+          message: "El campo PULSO, necesita una valor.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return validarCampo;
+      }
+
+      if (this.valoresFormulario.respiracion.descripcion == undefined) {
+        validarCampo = true;
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia Campos Vacios",
+          message: "El campo RESPIRACIÓN, necesita ser marcado.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return validarCampo;
+      }
+
+      if (this.chk.temperatura) {
+        if (this.valoresFormulario.temperatura.valor == undefined || this.valoresFormulario.temperatura.valor == 0) {
+          validarCampo = true;
+          this.flashMessage.show({
+            status: "warning",
+            title: "Advertencia Campos Vacios",
+            message: "El campo TEMPERATURA, necesita un valor.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/warning.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          return validarCampo;
+        }
+      }
+
+      if (this.chk.feto) {
+        if (this.valoresFormulario.feto.valor == undefined || this.valoresFormulario.feto.valor == 0) {
+          validarCampo = true;
+          this.flashMessage.show({
+            status: "warning",
+            title: "Advertencia Campos Vacios",
+            message: "El campo FETO, necesita un valor.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/warning.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          return validarCampo;
+        }
+      }
+
+      if (this.chk.pares_venosa) {
+        if (this.valoresFormulario.pares_venosa.valor == undefined || this.valoresFormulario.pares_venosa.valor == 0) {
+          validarCampo = true;
+          this.flashMessage.show({
+            status: "warning",
+            title: "Advertencia Campos Vacios",
+            message: "El campo PARES VENOSA, necesita un valor.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/warning.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          return validarCampo;
+        }
+      }
+
+      if (this.chk.torniquete) {
+        if (this.valoresFormulario.torniquete.valor == undefined || this.valoresFormulario.torniquete.valor == 0) {
+          validarCampo = true;
+          this.flashMessage.show({
+            status: "warning",
+            title: "Advertencia Campos Vacios",
+            message: "El campo TORNIQUETE, necesita un valor.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/warning.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          return validarCampo;
+        }
+      }
+
+      if (this.valoresFormulario.posicion.descripcion == undefined) {
+        validarCampo = true;
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia Campos Vacios",
+          message: "El campo POSICIÓN, necesita ser seleccionado.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return validarCampo;
+      }
+    },
+    //Metodo para agregar el valor de hora a un arreglo
+    agregarHorasInicial: function agregarHorasInicial() {
+      this.horasInicial.push(this.hour);
+    },
+
+    /**
+     * Método para obtener el índice en la posición Y, según el valor que se le envíe, usa los valores estáticos 'valoresAnestecia_v'
+     * @return int
+     */
+    obtenerIndice: function obtenerIndice(valor) {
+      return this.valoresAnestecia_v.findIndex(function (ob_limite) {
+        return ob_limite.inicio <= valor && ob_limite.fin > valor;
+      });
+    },
+
+    /**
+     *
+     * @param {*} height
+     */
+    agregarNuevaHora: function agregarNuevaHora() {
+      var height = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "50px";
+      return {
+        height: height,
+        datos: []
+      };
+    },
+
+    /**
+     *
+     * @param {*} es_tiempo
+     * @param {*} es_dato
+     * @param {*} es_agente
+     */
+    agregarFilaEnHora: function agregarFilaEnHora() {
+      var es_tiempo = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var es_dato = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      var es_agente = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+      var es_posicion = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+      return {
+        columnasQuinceMin: [],
+        styles: {
+          width: "100%"
+        },
+        _class: "flex row ml-0 width-100-p",
+        es_tiempo: es_tiempo,
+        es_agente: es_agente,
+        es_dato: es_dato,
+        es_posicion: es_posicion
+      };
+    },
+
+    /**
+     *
+     * @param {*} inicio
+     * @param {*} fin
+     * @param {*} es_agente
+     * @param {*} styles
+     */
+    agregarDatoEnColumna: function agregarDatoEnColumna(inicio, fin) {
+      var es_agente = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+      var styles = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {
+        display: "flex"
+      };
+      var add_class = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : "";
+      // Agregar nuevas columnas
+      var columnas = [];
+      var tiempo_acum = 5;
+
+      if (es_agente) {
+        tiempo_acum = inicio;
+        columnas.push(this.columnaCincoMin(tiempo_acum, tiempo_acum + 5, false, true));
+        tiempo_acum += 5;
+        columnas.push(this.columnaCincoMin(tiempo_acum, tiempo_acum + 5, false, true));
+        tiempo_acum += 5;
+        columnas.push(this.columnaCincoMin(tiempo_acum, tiempo_acum + 5, false, true));
+      }
+
+      return {
+        tiempo_inicio: inicio,
+        tiempo_fin: fin,
+        styles: styles,
+        _class: "col-3 p-0 grid grid-4-c border-t" + add_class,
+        dato_text: "",
+        columnas: columnas,
+        posicion: {
+          img_url: "",
+          descripcion: "",
+          id: 0
+        }
+      };
+    },
+    // Datos de ingreso
+    columnaCincoMin: function columnaCincoMin(t_ini, t_fin, mostrar_t_ini, mostrar_t_fin) {
+      return {
+        mostrar_t_ini: mostrar_t_ini,
+        mostrar_t_fin: mostrar_t_fin,
+        t_init: t_ini,
+        t_fin: t_fin,
+        columnas: [{
+          html: ""
+        }],
+        agentes: []
+      };
+    },
+    agregarHora: function agregarHora() {
+      var hora = this.agregarNuevaHora("auto");
+      hora.datos.push(this.agregarFilaEnHora(true));
+      hora.datos.push(this.agregarFilaEnHora(false, true));
+      hora.datos.push(this.agregarFilaEnHora(false, true));
+      hora.datos.push(this.agregarFilaEnHora(false, true));
+      hora.datos.push(this.agregarFilaEnHora(false, true)); // Filas
+
+      var _iterator7 = _createForOfIteratorHelper(this.valoresAnestecia_v),
+          _step7;
+
+      try {
+        for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+          var items = _step7.value;
+          hora.datos.push(this.agregarFilaEnHora(false, false, true));
+        }
+      } catch (err) {
+        _iterator7.e(err);
+      } finally {
+        _iterator7.f();
+      }
+
+      hora.datos.push(this.agregarFilaEnHora(false, false, false, true));
+      hora.datos.push(this.agregarFilaEnHora(false, false, true));
+
+      var _iterator8 = _createForOfIteratorHelper(hora.datos),
+          _step8;
+
+      try {
+        for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
+          var dato = _step8.value;
+          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(0, 14, dato.es_agente));
+          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(15, 29, dato.es_agente));
+          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(30, 44, dato.es_agente));
+          dato.columnasQuinceMin.push(this.agregarDatoEnColumna(45, 60, dato.es_agente));
+        }
+      } catch (err) {
+        _iterator8.e(err);
+      } finally {
+        _iterator8.f();
+      }
+
+      this.lista_horas_avanzadas_v.push(hora);
+    },
+
+    /**
+     * Ex;: 0 , 15, true, false, false,
+     * @param {*} tiempo_inicio
+     * @param {*} tiempo_fin
+     * @param {*} es_tiempo
+     * @param {*} es_agente
+     * @param {*} es_dato
+     */
+    agregarNuevaColumna: function agregarNuevaColumna(tiempo_inicio, tiempo_fin) {
+      var es_tiempo = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+      var es_agente = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+      var es_dato = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+      return {
+        tiempo_inicio: tiempo_inicio,
+        tiempo_fin: tiempo_fin,
+        styles: {
+          display: "flex",
+          maxHeight: "100%"
+        },
+        //
+        es_tiempo: es_tiempo,
+        es_agente: es_agente,
+        es_dato: es_dato,
+        dato_text: "",
+        columnas: []
+      };
+    },
+    agregarDatoRespiracion: function agregarDatoRespiracion() {
+      this.valoresFormulario.respiracion.img_url = this.valoresFormulario.respiracion.descripcion == "ESP" ? "img/icons/esp.png" : this.valoresFormulario.respiracion.descripcion == "ASIS" ? "img/icons/asis.png" : this.valoresFormulario.respiracion.descripcion == "CONT" ? "img/icons/cont.png" : ""; // Agregar posicón en la rejilla
+
+      this.agregaDatoEnRejilla(false, false, 0, this.valoresFormulario.respiracion.img_url, {
+        system_name: this.valoresFormulario.respiracion.descripcion,
+        tipo: this.system_respiracion
+      }, this.lista_horas_avanzadas_v[this.indice_hora].datos.length - 1 - this.index_points, false, {}, true);
+    },
+
+    /**
+     * Agrega datos a la rejilla
+     */
+    agregarDatos: function agregarDatos(campo) {
+      this.agregaDatoEnRejilla(false, false, campo.valor, campo.ruta_img, {
+        system_name: campo.descripcion,
+        tipo: this.system_agente
+      });
     }
   },
   computed: {}
@@ -5511,6 +6714,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -5520,13 +6746,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      datos_paciente: {},
       prefijo: "",
       //cirugia_id: 0,
       titulo_seleccionado: "Registro de anestesia",
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       form: {
-        idCirugiaProgramada: "0001",
+        idCirugiaProgramada: "",
         idCirugiaProgramadaTemporal: "",
         registro_anestesia_id: 0,
 
@@ -5594,8 +6821,8 @@ __webpack_require__.r(__webpack_exports__);
     handleSeleccionarClick: function handleSeleccionarClick(value) {
       if (value != "") {
         var that = this;
-        var url = "/modulos/cirugia/anestesia/validar_secCirPro/" + value.SecCirPro; //var loader = that.$loading.show();
-
+        var url = "/modulos/cirugia/anestesia/validar_secCirPro/" + value.SecCirPro;
+        var loader = that.$loading.show();
         axios.get(url).then(function (response) {
           //Obtiene los datos de Motivo Antecedentes
           if (response.data.secCirPro != null && response.data.secCirPro != undefined) {
@@ -5612,22 +6839,28 @@ __webpack_require__.r(__webpack_exports__);
                   background: "linear-gradient(#e66465, #9198e5)"
                 }
               }
-            }); //loader.hide();
+            });
+            loader.hide();
           } else {
-              /* that.setSelectedCirujano();
-              that.setSelectedAnestesiologo();
-              that.setSelectedAyudante();
-              that.setSelectedDiagnostico();
-              that.setSelectedTarifaria();
-              that.cargarDiagnosticoPorCodigo(value); */
-            }
+            that.datos_paciente = value;
+            that.form.idCirugiaProgramada = value.SecCirPro;
+            that.$modal.hide("ListaCirugiaProgramadaPaciente");
+            loader.hide();
+          }
         })["catch"](function (error) {
-          //Errores
-          //loader.hide();
-          that.$swal({
-            icon: "error",
-            title: "Existe un error",
-            text: error
+          loader.hide();
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar handleSeleccionarClick",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
           });
         });
       }
@@ -67807,7 +69040,7 @@ var render = function() {
                       attrs: {
                         disabled: "",
                         type: "text",
-                        placeholder: "N° Historia Clínica"
+                        placeholder: "Nombre del Paciente"
                       },
                       domProps: { value: _vm.form.paciente },
                       on: {
@@ -68144,7 +69377,7 @@ var render = function() {
                               },
                               [
                                 _c("template", { slot: "no-options" }, [
-                                  _vm._v("No existen datos")
+                                  _vm._v("Seleccione un Cirujano(a)")
                                 ])
                               ],
                               2
@@ -70615,7 +71848,7 @@ var render = function() {
                             finishButtonText: "Finalizar",
                             stepSize: "xs",
                             shape: "square",
-                            color: "#3498db"
+                            color: "#590303"
                           },
                           on: {
                             "on-change": _vm.onChangeTab,
@@ -70632,7 +71865,12 @@ var render = function() {
                                 icon: "ti-user"
                               }
                             },
-                            [_c("datos-paciente", { ref: "datosPaciente" })],
+                            [
+                              _c("datos-paciente", {
+                                ref: "datosPaciente",
+                                attrs: { "datos-paciente": _vm.datos_paciente }
+                              })
+                            ],
                             1
                           ),
                           _vm._v(" "),
@@ -70644,7 +71882,14 @@ var render = function() {
                                 icon: "ti-panel"
                               }
                             },
-                            [_c("trans-anestesico", { ref: "datosPaciente" })],
+                            [
+                              _c("trans-anestesico", {
+                                ref: "datosPaciente",
+                                attrs: {
+                                  "id-sec-cir-pro": _vm.form.idCirugiaProgramada
+                                }
+                              })
+                            ],
                             1
                           ),
                           _vm._v(" "),
@@ -70662,7 +71907,35 @@ var render = function() {
                               })
                             ],
                             1
-                          )
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Visualización",
+                                icon: "fas fa-file-pdf"
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "row" }, [
+                                _c("embed", {
+                                  attrs: {
+                                    src:
+                                      "/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" +
+                                      _vm.form.idCirugiaProgramada,
+                                    type: "application/pdf",
+                                    width: "100%",
+                                    height: "980px"
+                                  }
+                                })
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("tab-content", {
+                            attrs: { title: "Firma", icon: "fas fa-capsules" }
+                          })
                         ],
                         1
                       )
@@ -92131,9 +93404,41 @@ var render = function() {
           )
         }),
         _vm._v(" "),
-        false
-          ? undefined
-          : _vm._e()
+        true
+          ? _c("li", { staticClass: "nav-item has-treeview" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("ul", { staticClass: "nav nav-treeview" }, [
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link ml-3",
+                        attrs: {
+                          to:
+                            _vm.prefijo +
+                            "/modulos/cirugia/registro_anestesia/mostrar_registro_anestesia"
+                        }
+                      },
+                      [
+                        _c("i"),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "\n                            Registro Anestesia\n                        "
+                          )
+                        ])
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          : undefined
       ],
       2
     )
