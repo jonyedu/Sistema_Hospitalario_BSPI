@@ -48,7 +48,7 @@
                 class="nav-item has-treeview"
             >
                 <a class="nav-link">
-                    <i></i>
+                    <i class="fas fa-balance-scale"></i>
                     <p>
                         Pruebas
                         <i class="fas fa-angle-left right"></i>
@@ -61,7 +61,7 @@
                         <router-link
                             :to="prefijo + '/modulos/cirugia/registro_anestesia/mostrar_registro_anestesia'"
                             class="nav-link ml-3"
-                            ><i> </i>
+                            ><i class="fas fa-briefcase"></i>
                             <p>
                                 Registro Anestesia
                             </p>

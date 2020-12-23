@@ -132,6 +132,7 @@
                                     class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                     placeholder="Sala"
                                     v-model="form.sala"
+                                    disabled
                                 />
                             </div>
                             <div class="col-lg-1 col-md-1 col-sm-1 text-left">
@@ -144,6 +145,7 @@
                                     class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                     placeholder="Cama"
                                     v-model="form.cama"
+                                    disabled
                                 />
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 text-left">
@@ -909,13 +911,119 @@ export default {
             }
         },
         validarForm(){
-            //Se comprueba que un checkbox tenga data
+            if(this.form.estatura == ""){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "Se necesita una Estatura.",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
+            if(this.form.peso == ""){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "Se necesita un Peso.",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
             if(this.form.id_cirujano <= 0){
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
                     message:
-                        "Se necesita seleccionar un ",
+                        "Se necesita seleccionar un Cirujano",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
+            if(this.form.id_ayudante1 <= 0){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "Se necesita seleccionar un Ayudante ",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
+            if(this.form.id_tarifaria <= 0){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "Se necesita seleccionar la Operación Realizada",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
+            if(this.form.id_anestesiologo <= 0){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "Se necesita seleccionar un Anestesiologo ",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }if(this.form.id_instrumentista <= 0){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "Se necesita seleccionar un Instrumentista ",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",

@@ -379,7 +379,6 @@ export default {
             //Se debera realizar las validaciones respectivas para cada tab
         },
         validateFirstStep() {
-            //alert(this.$refs.formValoracionPreanestecia.slotProps.activeTabIndex + 1);
             var opc = this.$refs.formValoracionPreanestecia.slotProps.activeTabIndex;
             let poseeErrores = null;
             return new Promise((resolve, reject) => {

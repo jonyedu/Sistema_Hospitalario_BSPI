@@ -121,9 +121,9 @@ class RegistroAnestesiaController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $cirugia_id = $request->input('SecCirPro');
+        //$cirugia_id = $request->input('SecCirPro');
+        $cirugia_id = $request->input('idCirugiaProgramada');
         $registro_anestesia_id = $request->input('registro_anestesia_id');
-
         $idRegistroAnestesico = RegistroAnestesia::where('SecCirPro', $cirugia_id)
             ->where('id', $registro_anestesia_id)
             ->with(['datoAgente' => function ($i) {
@@ -247,15 +247,15 @@ class RegistroAnestesiaController extends Controller
                 // CARGA DATOS DE EL REGISTRO DE ANESTESIA 01/12
 
 
-                 $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
-                 $datosPaciente = [];
-                 $datosMedico = [];
-                 $datosprocedimiento= [];
-                 $id_registro_anestesia = 34;
+                $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
+                $datosPaciente = [];
+                $datosMedico = [];
+                $datosprocedimiento = [];
+                $id_registro_anestesia = 34;
 
                 $datosValoracionPreanestesica = RegistroAnestesia::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
-                    ->with('drogaAdministradaRpt', 'graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt', 'tipoPosicion','consultaSala','consultaMedico')
+                    ->with('drogaAdministradaRpt', 'graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt', 'tipoPosicion', 'consultaSala', 'consultaMedico')
                     ->first();
 
 

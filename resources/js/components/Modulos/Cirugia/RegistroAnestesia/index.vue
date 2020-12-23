@@ -101,6 +101,7 @@
                                 <tab-content
                                     title="Datos del Paciente"
                                     icon="ti-user"
+                                    :before-change="validateFirstStep"
                                 >
                                     <datos-paciente
                                         :datos-paciente="datos_paciente"
@@ -112,8 +113,10 @@
                                     icon="ti-panel"
                                 >
                                     <trans-anestesico
-                                        :id-sec-cir-pro="form.idCirugiaProgramada"
-                                        ref="datosPaciente"
+                                        :id-sec-cir-pro="
+                                            form.idCirugiaProgramada
+                                        "
+                                        ref="transAnestesico"
                                     ></trans-anestesico>
                                 </tab-content>
                                 <tab-content
@@ -281,14 +284,14 @@ export default {
                             that.form.idCirugiaProgramada = value.SecCirPro;
                             that.$modal.hide("ListaCirugiaProgramadaPaciente");
                             loader.hide();
+                            that.obtenerIdRegistroAnestesio();
                         }
                     })
                     .catch(error => {
                         loader.hide();
                         that.flashMessage.show({
                             status: "error",
-                            title:
-                                "Error al procesar handleSeleccionarClick",
+                            title: "Error al procesar handleSeleccionarClick",
                             message:
                                 "Por favor comuníquese con el administrador. " +
                                 error,
@@ -306,18 +309,49 @@ export default {
             }
         },
         /* Fin para llamar al Modal y la Tabla */
-
+        obtenerIdRegistroAnestesio() {
+            let that = this;
+            let url = "/modulos/cirugia/anestesia/registro/post";
+            var loader = that.$loading.show();
+            axios
+                .post(url, this.form)
+                .then(response => {
+                    that.form.registro_anestesia_id = response.data.id;
+                    loader.hide();
+                })
+                .catch(error => {
+                    //Errores de validación
+                    loader.hide();
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar obtenerIdRegistroAnestesio",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                });
+        },
         /* Metodos para los form-wizard */
         onValidateTab(validationResult, activeTabIndex) {
             //Se debera realizar las validaciones respectivas para cada tab
         },
         validateFirstStep() {
-            //alert(this.$refs.formRegistroAnestesico.slotProps.activeTabIndex + 1);
-            var opc = this.$refs.formRegistroAnestesico.slotProps.activeTabIndex;
+            var opc = this.$refs.formRegistroAnestesico.slotProps
+                .activeTabIndex;
             let poseeErrores = null;
             return new Promise((resolve, reject) => {
                 switch (opc) {
                     case 0:
+                        poseeErrores = this.$refs.datosPaciente.validarForm();
+                        resolve(poseeErrores);
                         break;
                     case 1:
                         break;
@@ -326,8 +360,8 @@ export default {
                         //resolve(poseeErrores);
                         break;
                     case 3:
-                        //poseeErrores = this.$refs.paraclinico.validarForm();
-                        //resolve(poseeErrores);
+                    //poseeErrores = this.$refs.paraclinico.validarForm();
+                    //resolve(poseeErrores);
                     case 4:
                         break;
                     default:
@@ -375,7 +409,7 @@ export default {
         guardarModificar(index) {
             switch (index) {
                 case 0:
-                    //this.$refs.revisionSistema.guardarModificar();
+                    this.$refs.datosPaciente.guardarModificar();
                     break;
                 case 1:
                     //this.$refs.antecedente.guardarModificar();
