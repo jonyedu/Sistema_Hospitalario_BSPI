@@ -1225,6 +1225,39 @@ export default {
                 }
             });
         },
+        /* start_time: async function(event) {
+            if (this.iniciado) return;
+            this.iniciado = true;
+            this.agregarHorasInicial();
+            //Guardar datos en la tabla tb_registro_anestesia
+            let url = "/modulos/cirugia/anestesia/registro/post";
+            let $id = await axios.post(url, this.form).then(response => {
+                this.form.registro_anestesia_id = response.data.id;
+            });
+            this.$emit("guardarCabecera", this.form.registro_anestesia_id);
+            //Guardar datos en la tabla tb_tipo_agente_anestesia
+            // Poner el dato al inicio de la rejilla cuando se haya iniciado
+            this.agregaDatoEnRejilla(
+                true,
+                false,
+                250,
+                "img/icons/induccion.png",
+                { system_name: "INDUCCION", tipo: this.system_agente }
+            );
+            this.flashMessage.show({
+                status: "success",
+                title: "Éxito al procesar",
+                message: "Agente agregado correctamente.",
+                clickable: true,
+                time: 5000,
+                icon: "/iconsflashMessage/success.svg",
+                customStyle: {
+                    flashMessageStyle: {
+                        background: "linear-gradient(#e66465, #9198e5)"
+                    }
+                }
+            });
+        }, */
         //Metodo para finalizar el proceso de la grafica
         end_time: function() {
             if (this.validarImgFirma) {

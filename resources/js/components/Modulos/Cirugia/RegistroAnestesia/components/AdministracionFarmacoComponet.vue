@@ -1042,13 +1042,6 @@
                             <label class="col-md-4" for="conducido_por"
                                 >POR:
                             </label>
-                            <!-- <input
-                                type="text"
-                                class="input-line col-md-4"
-                                name="conducido_por"
-                                id="conducido_por"
-                                v-model="form.por"
-                            /> -->
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="form-group">
                                     <v-select

@@ -3273,13 +3273,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
   data: function data() {
@@ -3469,6 +3462,8 @@ var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -4281,12 +4276,113 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }
   }), _defineProperty(_methods, "validarForm", function validarForm() {
-    //Se comprueba que un checkbox tenga data
+    if (this.form.estatura == "") {
+      this.flashMessage.show({
+        status: "warning",
+        title: "Advertencia",
+        message: "Se necesita una Estatura.",
+        clickable: true,
+        time: 5000,
+        icon: "/iconsflashMessage/warning.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
+      return false;
+    }
+
+    if (this.form.peso == "") {
+      this.flashMessage.show({
+        status: "warning",
+        title: "Advertencia",
+        message: "Se necesita un Peso.",
+        clickable: true,
+        time: 5000,
+        icon: "/iconsflashMessage/warning.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
+      return false;
+    }
+
     if (this.form.id_cirujano <= 0) {
       this.flashMessage.show({
         status: "warning",
         title: "Advertencia",
-        message: "Se necesita seleccionar un ",
+        message: "Se necesita seleccionar un Cirujano",
+        clickable: true,
+        time: 5000,
+        icon: "/iconsflashMessage/warning.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
+      return false;
+    }
+
+    if (this.form.id_ayudante1 <= 0) {
+      this.flashMessage.show({
+        status: "warning",
+        title: "Advertencia",
+        message: "Se necesita seleccionar un Ayudante ",
+        clickable: true,
+        time: 5000,
+        icon: "/iconsflashMessage/warning.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
+      return false;
+    }
+
+    if (this.form.id_tarifaria <= 0) {
+      this.flashMessage.show({
+        status: "warning",
+        title: "Advertencia",
+        message: "Se necesita seleccionar la Operación Realizada",
+        clickable: true,
+        time: 5000,
+        icon: "/iconsflashMessage/warning.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
+      return false;
+    }
+
+    if (this.form.id_anestesiologo <= 0) {
+      this.flashMessage.show({
+        status: "warning",
+        title: "Advertencia",
+        message: "Se necesita seleccionar un Anestesiologo ",
+        clickable: true,
+        time: 5000,
+        icon: "/iconsflashMessage/warning.svg",
+        customStyle: {
+          flashMessageStyle: {
+            background: "linear-gradient(#e66465, #9198e5)"
+          }
+        }
+      });
+      return false;
+    }
+
+    if (this.form.id_instrumentista <= 0) {
+      this.flashMessage.show({
+        status: "warning",
+        title: "Advertencia",
+        message: "Se necesita seleccionar un Instrumentista ",
         clickable: true,
         time: 5000,
         icon: "/iconsflashMessage/warning.svg",
@@ -5671,6 +5767,40 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       return start_time;
     }(),
+
+    /* start_time: async function(event) {
+        if (this.iniciado) return;
+        this.iniciado = true;
+        this.agregarHorasInicial();
+        //Guardar datos en la tabla tb_registro_anestesia
+        let url = "/modulos/cirugia/anestesia/registro/post";
+        let $id = await axios.post(url, this.form).then(response => {
+            this.form.registro_anestesia_id = response.data.id;
+        });
+        this.$emit("guardarCabecera", this.form.registro_anestesia_id);
+        //Guardar datos en la tabla tb_tipo_agente_anestesia
+        // Poner el dato al inicio de la rejilla cuando se haya iniciado
+        this.agregaDatoEnRejilla(
+            true,
+            false,
+            250,
+            "img/icons/induccion.png",
+            { system_name: "INDUCCION", tipo: this.system_agente }
+        );
+        this.flashMessage.show({
+            status: "success",
+            title: "Éxito al procesar",
+            message: "Agente agregado correctamente.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/success.svg",
+            customStyle: {
+                flashMessageStyle: {
+                    background: "linear-gradient(#e66465, #9198e5)"
+                }
+            }
+        });
+    }, */
     //Metodo para finalizar el proceso de la grafica
     end_time: function end_time() {
       if (this.validarImgFirma) {
@@ -6737,6 +6867,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -6846,6 +6979,7 @@ __webpack_require__.r(__webpack_exports__);
             that.form.idCirugiaProgramada = value.SecCirPro;
             that.$modal.hide("ListaCirugiaProgramadaPaciente");
             loader.hide();
+            that.obtenerIdRegistroAnestesio();
           }
         })["catch"](function (error) {
           loader.hide();
@@ -6867,17 +7001,45 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     /* Fin para llamar al Modal y la Tabla */
+    obtenerIdRegistroAnestesio: function obtenerIdRegistroAnestesio() {
+      var that = this;
+      var url = "/modulos/cirugia/anestesia/registro/post";
+      var loader = that.$loading.show();
+      axios.post(url, this.form).then(function (response) {
+        that.form.registro_anestesia_id = response.data.id;
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores de validación
+        loader.hide();
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar obtenerIdRegistroAnestesio",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      });
+    },
 
     /* Metodos para los form-wizard */
     onValidateTab: function onValidateTab(validationResult, activeTabIndex) {//Se debera realizar las validaciones respectivas para cada tab
     },
     validateFirstStep: function validateFirstStep() {
-      //alert(this.$refs.formRegistroAnestesico.slotProps.activeTabIndex + 1);
+      var _this = this;
+
       var opc = this.$refs.formRegistroAnestesico.slotProps.activeTabIndex;
       var poseeErrores = null;
       return new Promise(function (resolve, reject) {
         switch (opc) {
           case 0:
+            poseeErrores = _this.$refs.datosPaciente.validarForm();
+            resolve(poseeErrores);
             break;
 
           case 1:
@@ -6945,7 +7107,7 @@ __webpack_require__.r(__webpack_exports__);
     guardarModificar: function guardarModificar(index) {
       switch (index) {
         case 0:
-          //this.$refs.revisionSistema.guardarModificar();
+          this.$refs.datosPaciente.guardarModificar();
           break;
 
         case 1:
@@ -15730,7 +15892,6 @@ __webpack_require__.r(__webpack_exports__);
     validateFirstStep: function validateFirstStep() {
       var _this = this;
 
-      //alert(this.$refs.formValoracionPreanestecia.slotProps.activeTabIndex + 1);
       var opc = this.$refs.formValoracionPreanestecia.slotProps.activeTabIndex;
       var poseeErrores = null;
       return new Promise(function (resolve, reject) {
@@ -22729,7 +22890,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     validarConfirmarCandelar: function validarConfirmarCandelar(value) {
       if (value) {
-        if (this.observacion == "") {
+        if (this.observacion == "" && this.$props.campoObservacion) {
           this.flashMessage.show({
             status: "warning",
             title: "Advertencia",
@@ -69414,7 +69575,11 @@ var render = function() {
                       ],
                       staticClass:
                         "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                      attrs: { type: "text", placeholder: "Sala" },
+                      attrs: {
+                        type: "text",
+                        placeholder: "Sala",
+                        disabled: ""
+                      },
                       domProps: { value: _vm.form.sala },
                       on: {
                         input: function($event) {
@@ -69452,7 +69617,11 @@ var render = function() {
                       ],
                       staticClass:
                         "col-lg-12 col-md-12 col-sm-12 text-left form-control",
-                      attrs: { type: "text", placeholder: "Cama" },
+                      attrs: {
+                        type: "text",
+                        placeholder: "Cama",
+                        disabled: ""
+                      },
                       domProps: { value: _vm.form.cama },
                       on: {
                         input: function($event) {
@@ -71862,7 +72031,8 @@ var render = function() {
                             {
                               attrs: {
                                 title: "Datos del Paciente",
-                                icon: "ti-user"
+                                icon: "ti-user",
+                                "before-change": _vm.validateFirstStep
                               }
                             },
                             [
@@ -71884,7 +72054,7 @@ var render = function() {
                             },
                             [
                               _c("trans-anestesico", {
-                                ref: "datosPaciente",
+                                ref: "transAnestesico",
                                 attrs: {
                                   "id-sec-cir-pro": _vm.form.idCirugiaProgramada
                                 }
@@ -93424,7 +93594,7 @@ var render = function() {
                         }
                       },
                       [
-                        _c("i"),
+                        _c("i", { staticClass: "fas fa-briefcase" }),
                         _vm._v(" "),
                         _c("p", [
                           _vm._v(
@@ -93450,7 +93620,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("a", { staticClass: "nav-link" }, [
-      _c("i"),
+      _c("i", { staticClass: "fas fa-balance-scale" }),
       _vm._v(" "),
       _c("p", [
         _vm._v("\n                    Pruebas\n                    "),

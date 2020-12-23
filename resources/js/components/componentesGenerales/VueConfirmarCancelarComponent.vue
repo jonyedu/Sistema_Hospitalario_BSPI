@@ -83,7 +83,7 @@ export default {
     methods: {
         validarConfirmarCandelar(value) {
             if (value) {
-                if (this.observacion == "") {
+                if (this.observacion == "" && this.$props.campoObservacion) {
                     this.flashMessage.show({
                         status: "warning",
                         title: "Advertencia",
