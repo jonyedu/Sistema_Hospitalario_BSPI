@@ -34,6 +34,7 @@ class DatosAgentesController extends Controller
 
         $datos->registro_anestesia_id = $request->input('registro_anestesia_id');
         $datos->id_datos_agente = $request->input('id_datos_agente');
+        //echo $datos->name;
         switch ($request->input('tipo')) {
             case 'respiracion':
                 $respiracion = AgenteAnestesia::where('name_system', $datos->name)->first();
