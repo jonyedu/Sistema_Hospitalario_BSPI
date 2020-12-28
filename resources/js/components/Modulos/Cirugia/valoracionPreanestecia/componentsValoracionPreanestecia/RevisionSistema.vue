@@ -110,6 +110,19 @@
                                                             for="defaultInline4"
                                                             >Otros</label
                                                         >
+                                                        <div
+                                                            class="col-10"
+                                                            v-if="
+                                                                form.frm_otrosCardiovascular
+                                                            "
+                                                        >
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                placeholder="Cuál?"
+                                                                v-model="form.frm_otrosCardiovascularValor"
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <!-- Enf. Valvular -->
@@ -288,6 +301,19 @@
                                                             for="defaultInline11"
                                                             >Otros</label
                                                         >
+                                                        <div
+                                                            class="col-10"
+                                                            v-if="
+                                                                form.frm_otrosRespiratorio
+                                                            "
+                                                        >
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                placeholder="Cuál?"
+                                                                v-model="form.frm_otrosRespiratorioValor"
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -419,6 +445,19 @@
                                                             for="defaultInline16"
                                                             >Otros</label
                                                         >
+                                                        <div
+                                                            class="col-10"
+                                                            v-if="
+                                                                form.frm_otrosNeurologico
+                                                            "
+                                                        >
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                placeholder="Cuál?"
+                                                                v-model="form.frm_otrosNeurologicoValor"
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -477,7 +516,7 @@
                                                             class="custom-control-label"
                                                             for="defaultInline18"
                                                             >Infección
-                                                            Unitaria</label
+                                                            Urinaria</label
                                                         >
                                                     </div>
                                                 </div>
@@ -527,6 +566,19 @@
                                                             for="defaultInline20"
                                                             >Otros</label
                                                         >
+                                                        <div
+                                                            class="col-10"
+                                                            v-if="
+                                                                form.frm_otrosNefrologicos
+                                                            "
+                                                        >
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                placeholder="Cuál?"
+                                                                v-model="form.frm_otrosNefrologicosValor"
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -560,7 +612,7 @@
                                                         <label
                                                             class="custom-control-label"
                                                             for="defaultInline21"
-                                                            >Ulcera</label
+                                                            >Úlcera</label
                                                         >
                                                     </div>
                                                 </div>
@@ -584,7 +636,7 @@
                                                         <label
                                                             class="custom-control-label"
                                                             for="defaultInline22"
-                                                            >Estomago
+                                                            >Estómago
                                                             Lleno</label
                                                         >
                                                     </div>
@@ -611,18 +663,31 @@
                                                         >
                                                             Otros
                                                         </label>
+                                                        <div
+                                                            class="col-10"
+                                                            v-if="
+                                                                form.frm_otrosGastrointestinal
+                                                            "
+                                                        >
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                placeholder="Cuál?"
+                                                                v-model="form.frm_otrosGastrointestinalValor"
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Sistema Endocrima -->
+                                    <!-- Sistema Endocrino -->
                                     <div
                                         class="card"
                                         style="background-color: #C8C8C5;"
                                     >
                                         <div class="card-body mt-2 ml-2">
-                                            <label>Sistema Endocrima</label>
+                                            <label>Sistema Endocrino</label>
                                             <div class="row">
                                                 <!-- Diabetes -->
                                                 <div class="col-sm-3">
@@ -672,7 +737,7 @@
                                                         >
                                                     </div>
                                                 </div>
-                                                <!-- Obecidad -->
+                                                <!-- Obesidad -->
                                                 <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
@@ -692,7 +757,7 @@
                                                             class="custom-control-label"
                                                             for="defaultInline26"
                                                         >
-                                                            Obecidad
+                                                            Obesidad
                                                         </label>
                                                     </div>
                                                 </div>
@@ -718,6 +783,19 @@
                                                         >
                                                             Otros
                                                         </label>
+                                                        <div
+                                                            class="col-10"
+                                                            v-if="
+                                                                form.frm_otrosSistemaEndocrima
+                                                            "
+                                                        >
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                placeholder="Cuál?"
+                                                                v-model="form.frm_otrosSistemaEndocrimaValor"
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -806,6 +884,7 @@ export default {
                 frm_enfCoronaria: 0,
                 frm_arritmias: 0,
                 frm_otrosCardiovascular: 0,
+                frm_otrosCardiovascularValor: "",
                 frm_enfValvular: 0,
                 frm_varices: 0,
                 frm_claudicacion: 0,
@@ -815,6 +894,7 @@ export default {
                 frm_asma: 0,
                 frm_tbc: 0,
                 frm_otrosRespiratorio: 0,
+                frm_otrosRespiratorioValor: "",
 
                 /* Neurologico */
                 frm_convulsiones: 0,
@@ -823,23 +903,27 @@ export default {
                 frm_convulsion: 0,
                 frm_enfMental: 0,
                 frm_otrosNeurologico: 0,
+                frm_otrosNeurologicoValor: "",
 
                 /* Nefrologicos */
                 frm_ira: 0,
                 frm_infeccionUnitaria: 0,
                 frm_irc: 0,
                 frm_otrosNefrologicos: 0,
+                frm_otrosNefrologicosValor: "",
 
                 /* Gastrointestinal */
                 frm_ulcera: 0,
                 frm_estomagoLleno: 0,
                 frm_otrosGastrointestinal: 0,
+                frm_otrosGastrointestinalValor: "",
 
                 /* Sistema Endocrima */
                 frm_diabetes: 0,
                 frm_hipertiroidismo: 0,
                 frm_obecidad: 0,
-                frm_otrosSistemaEndocrima: 0
+                frm_otrosSistemaEndocrima: 0,
+                frm_otrosSistemaEndocrimaValor: "",
             }
         };
     },

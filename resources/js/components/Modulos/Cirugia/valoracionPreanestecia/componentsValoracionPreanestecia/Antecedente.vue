@@ -204,7 +204,7 @@
                                                         <label
                                                             class="custom-control-label"
                                                             for="defaultInline32"
-                                                            >Cocaina</label
+                                                            >Cocaína</label
                                                         >
                                                     </div>
                                                 </div>
@@ -520,7 +520,7 @@
                                                         <label
                                                             class="custom-control-label"
                                                             for="defaultInline39"
-                                                            >Inetrópicos</label
+                                                            >Inotrópicos</label
                                                         >
                                                     </div>
                                                 </div>
@@ -728,7 +728,7 @@
                                                             "
                                                         />
                                                         <label
-                                                            class="custom-control-label"
+                                                            class="custom-control-label col-sm-8"
                                                             for="defaultInline48"
                                                             >Anticolinesterásico</label
                                                         >

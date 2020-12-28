@@ -77,6 +77,7 @@
                                 </h3>
                                 <div class="card-tools">
                                     <button
+                                        id="my-card"
                                         type="button"
                                         @click="guardarRegistroTiempo"
                                         class="btn btn-tool"
@@ -84,59 +85,24 @@
                                     >
                                         <i class="fas fa-plus"></i>
                                     </button>
-                                    <button
+                                    <!-- <button
+                                        type="button"
+                                        class="btn btn-tool"
+                                        data-card-widget="maximize"
+                                    >
+                                        <i class="fas fa-expand"></i>
+                                    </button> -->
+                                    <!-- <button
                                         type="button"
                                         class="btn btn-tool"
                                         data-card-widget="remove"
                                     >
                                         <i class="fas fa-times"></i>
-                                    </button>
+                                    </button> -->
                                 </div>
                             </div>
-                            <!-- /.card-header -->
                             <div class="card-body" style="display: none;">
                                 <div class="row">
-                                    <!-- DATOS DEL PACIENTE -->
-                                    <!-- <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div
-                                            class="text-left col-lg-12 col-md-12 col-sm-12"
-                                        >
-                                            <div class="row">
-
-                                                <div
-                                                    class="col-lg-11 col-md-11 col-sm-11"
-                                                >
-                                                    <div class="form-group">
-                                                        <v-select
-                                                            :disabled="
-                                                                disabledDetalleTiempo
-                                                            "
-                                                            placeholder="Seleccione el tiempo"
-                                                            v-model="
-                                                                form.selected_detalle_tiempo
-                                                            "
-                                                            :value="
-                                                                form.id_detalle_tiempo
-                                                            "
-                                                            :options="
-                                                                form.detalles_tiempos
-                                                            "
-                                                            label="display"
-                                                            @input="
-                                                                setSelectedDetalleTiempo
-                                                            "
-                                                        >
-                                                            <template
-                                                                slot="no-options"
-                                                                >No existen
-                                                                datos</template
-                                                            >
-                                                        </v-select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="row mt-2">
                                             <div
@@ -252,7 +218,8 @@ export default {
         };
     },
     mounted: function() {
-        this.flashMessage.setStrategy("multiple");
+        //this.flashMessage.setStrategy("multiple");
+        this.lmpFormRegistroTiempo();
         this.prefijo = prefix;
     },
     beforeDestroy: function() {
@@ -268,10 +235,18 @@ export default {
     methods: {
         /* Metodos para Llamar al Modal y la Tabla */
         mostrarModalListaCirugiaPaciente() {
+            this.lmpFormRegistroTiempo();
             this.$modal.show("ListaCirugiaProgramadaPaciente");
         },
         handleSeleccionarClick(value) {
-            if (value != "") {
+            $('#my-card').CardWidget('collapse')
+            this.form.nombre = value.nombrePaciente;
+            this.form.id_cirugia_programada = value.SecCirPro;
+            this.setSelectedDetalleTiempo();
+            this.cargarRegistroTiempoPorSecCirPro();
+            this.$modal.hide("ListaCirugiaProgramadaPaciente");
+            /* if (value != "") {
+                var cont = 0;
                 let that = this;
                 let url =
                     "/modulos/cirugia/registro_tiempo/validar_secCirPro/" +
@@ -280,34 +255,39 @@ export default {
                 axios
                     .get(url)
                     .then(function(response) {
-                        //Obtiene los datos de Motivo Antecedentes
                         if (
                             response.data.secCirPro != null &&
                             response.data.secCirPro != undefined
                         ) {
-                            that.$modal.hide("ListaCirugiaProgramadaPaciente");
-                            that.flashMessage.show({
-                                status: "warning",
-                                title: "Advertencia al Seleccionar Paciente",
-                                message:
-                                    "El paciente ya cuenta con un registro anestesico.",
-                                clickable: true,
-                                time: 10000,
-                                icon: "/iconsflashMessage/warning.svg",
-                                customStyle: {
-                                    flashMessageStyle: {
-                                        background:
-                                            "linear-gradient(#e66465, #9198e5)"
-                                    }
+                            response.data.secCirPro.forEach(tiempo => {
+                                if(response.data.secCirPro.estado = 'P'){
+                                    cont +=1;
                                 }
                             });
-                            //loader.hide();
-                        } else {
-                            that.form.nombre = value.nombrePaciente;
-                            that.form.id_cirugia_programada = value.SecCirPro;
-                            that.setSelectedDetalleTiempo();
-                            that.cargarRegistroTiempoPorSecCirPro();
-                            that.$modal.hide("ListaCirugiaProgramadaPaciente");
+                            if (cont == 4){
+                                that.$modal.hide("ListaCirugiaProgramadaPaciente");
+                                that.flashMessage.show({
+                                    status: "warning",
+                                    title: "Advertencia al Seleccionar Paciente",
+                                    message:
+                                        "El paciente ya cuenta con un registro anestesico.",
+                                    clickable: true,
+                                    time: 10000,
+                                    icon: "/iconsflashMessage/warning.svg",
+                                    customStyle: {
+                                        flashMessageStyle: {
+                                            background:
+                                                "linear-gradient(#e66465, #9198e5)"
+                                        }
+                                    }
+                                });
+                            } else {
+                                that.form.nombre = value.nombrePaciente;
+                                that.form.id_cirugia_programada = value.SecCirPro;
+                                that.setSelectedDetalleTiempo();
+                                that.cargarRegistroTiempoPorSecCirPro();
+                                that.$modal.hide("ListaCirugiaProgramadaPaciente");
+                            }
                         }
                     })
                     .catch(error => {
@@ -330,7 +310,7 @@ export default {
                         });
                         loader.hide();
                     });
-            }
+            } */
         },
         cargarRegistroTiempoPorSecCirPro() {
             if (this.form.id_cirugia_programada > 0) {
@@ -581,13 +561,13 @@ export default {
                         if (
                             this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente"
                         ) {
-                            return 'No puede finalizar Uso De Quirófano, cuando Cirugía sigue Iniciado o Pendiente.';
+                            return 'No puede finalizar Uso De Quirófano, cuando Ingreso de Anestesiólogo sigue Iniciado o Pendiente.';
                         }
                     }
-                    //Valida cuando Uso De Quirófano se desea Finalizar, pero Preparación De Anestesiólogo sigue en Iniciado
+                    //Valida cuando Uso De Quirófano se desea Finalizar, pero Ingreso De Anestesiólogo sigue en Iniciado
                     if (this.registros_tiempos[0].estado == "Iniciado") {
                         if (this.registros_tiempos[1].estado == "Iniciado") {
-                            return 'No puede finalizar Uso De Quirófano, cuando Preparación De Anestesiólogo sigue Iniciado.';
+                            return 'No puede finalizar Uso De Quirófano, cuando Ingreso De Anestesiólogo sigue Iniciado.';
                         }
                     }
                 }
@@ -599,10 +579,10 @@ export default {
                             return 'No puede Iniciar Ingreso de Anestesiólogo, cuando Uso De Quirófano sigue Pendiente.';
                         }
                     }
-                    //Valida cuando Ingreso de Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado o Pendiente
+                    //Valida cuando Ingreso de Anestesiólogo se desea Finalizar, pero Inducción sigue en Iniciado o Pendiente
                     if (this.registros_tiempos[1].estado == "Iniciado") {
                         if (this.registros_tiempos[2].estado == "Iniciado" || this.registros_tiempos[2].estado == "Pendiente") {
-                            return 'No puede finalizar Ingreso de Anestesiólogo, cuando Uso De Quirófano sigue Iniciado o Pendiente.';
+                            return 'No puede finalizar Ingreso de Anestesiólogo, cuando Inducción sigue Iniciado o Pendiente.';
                         }
                     }
                     //Valida cuando se quiere dar click en Ingreso de Anestesiólogo estando Finalizado, pero Uso de Quirófano sigue en iniciado
@@ -612,12 +592,12 @@ export default {
                         }
                     }
                 }
-                /* Valida cuando se seleccione Induccion */
+                /* Valida cuando se seleccione Inducción */
                 if (this.form.id_detalle_tiempo == 3) {
-                    //Valida cuando Inducción se desea Iniciar, pero Preparación De Anestesiólogo sigue en pendiente
+                    //Valida cuando Inducción se desea Iniciar, pero Ingreso De Anestesiólogo sigue en pendiente
                     if (this.registros_tiempos[2].estado == "Pendiente") {
                         if (this.registros_tiempos[1].estado == "Pendiente") {
-                            return 'No puede Iniciar Inducción, cuando Preparación De Anestesiólogo sigue Pendiente.';
+                            return 'No puede Iniciar Inducción, cuando Ingreso De Anestesiólogo sigue Pendiente.';
                         }
                     }
                     //Valida cuando Inducción se desea Finalizar, pero Cirugía sigue en Iniciado o Pendiente
@@ -626,10 +606,10 @@ export default {
                             return 'No puede Finalizar Inducción, cuando Cirugía sigue Iniciado o Pendiente.';
                         }
                     }
-                    //Valida cuando se quiere dar click en Inducción estando Finalizado, pero Preparación De Anestesiólogo sigue en iniciado
+                    //Valida cuando se quiere dar click en Inducción estando Finalizado, pero Ingreso De Anestesiólogo sigue en iniciado
                     if (this.registros_tiempos[2].estado == "Finalizado") {
                         if (this.registros_tiempos[1].estado == "Iniciado" ) {
-                            return 'No puede dar click nuevamente en Inducción, cuando Preparación De Anestesiólogo sigue Iniciado.';
+                            return 'No puede dar click nuevamente en Inducción, cuando Ingreso De Anestesiólogo sigue Iniciado.';
                         }
                     }
                     //Valida cuando se quiere dar click en Inducción estando Finalizado, pero Uso de Quirófano sigue en iniciado
@@ -641,22 +621,22 @@ export default {
                 }
                 /* Valida cuando se seleccione Cirugía */
                 if (this.form.id_detalle_tiempo == 4) {
-                    //Valida cuando Cirugía se desea Iniciar, pero Induccion sigue en pendiente
+                    //Valida cuando Cirugía se desea Iniciar, pero Inducción sigue en pendiente
                     if (this.registros_tiempos[3].estado == "Pendiente") {
                         if (this.registros_tiempos[2].estado == "Pendiente" ) {
-                            return 'No puede Iniciar Cirugía, cuando Induccion sigue Pendiente.';
+                            return 'No puede Iniciar Cirugía, cuando Inducción sigue Pendiente.';
                         }
                     }
-                    //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Induccion sigue en iniciado
+                    //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Inducción sigue en iniciado
                     if (this.registros_tiempos[3].estado == "Finalizado") {
                         if (this.registros_tiempos[2].estado == "Iniciado"  || this.registros_tiempos[2].estado == "Finalizado" ) {
-                            return 'No puede dar click nuevamente en Cirugia, cuando Induccion sigue Iniciado o Finalizado.';
+                            return 'No puede dar click nuevamente en Cirugia, cuando Inducción sigue Iniciado o Finalizado.';
                         }
                     }
-                    //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Induccion sigue en iniciado
+                    //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Inducción sigue en iniciado
                     if (this.registros_tiempos[3].estado == "Finalizado") {
                         if (this.registros_tiempos[2].estado == "Iniciado" ) {
-                            return 'No puede dar click nuevamente en Cirugia, cuando Induccion sigue Iniciado.';
+                            return 'No puede dar click nuevamente en Cirugia, cuando Inducción sigue Iniciado.';
                         }
                     }
 
@@ -698,6 +678,18 @@ export default {
             this.form.id_registro_tiempo = value.id_registro_tiempo;
             this.guardarRegistroTiempo();
         },
+        lmpFormRegistroTiempo(){
+            this.iniciado = false;
+            this.form = {
+                id_cirugia_programada: 0,
+                id_detalle_tiempo: 0,
+                id_registro_tiempo: 0,
+                selected_detalle_tiempo: "",
+                detalles_tiempos: [],
+                nombre: "",
+                observacion: ""
+            }
+        }
     }
 };
 </script>

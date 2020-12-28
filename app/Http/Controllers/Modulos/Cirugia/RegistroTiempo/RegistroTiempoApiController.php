@@ -17,7 +17,7 @@ class RegistroTiempoApiController extends Controller
     {
         try {
             $secCirPro = RegistroTiempo::where('SecCirPro', $secCirPro)
-                ->first();
+                ->get();
             //$grafica = GraficaPorCirugia::where('SecCirPro', 1)->first();
             return  response()->json(['secCirPro' => $secCirPro], 200);
         } catch (Exception $e) {

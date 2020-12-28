@@ -67,6 +67,10 @@ Vue.component(
     "vue-confirmar-cancelar",
     require("./components/componentesGenerales/VueConfirmarCancelarComponent.vue").default
 );
+Vue.component(
+    "vue-firma",
+    require("./components/componentesGenerales/VueFirmaComponent.vue").default
+);
 //*********FIN COMPONENTES GENERALES*********\\
 
 /* Vue.component(

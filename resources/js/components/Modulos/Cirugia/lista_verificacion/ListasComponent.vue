@@ -91,13 +91,13 @@
                                         >
                                             <i class="fas fa-plus"></i>
                                         </button>
-                                        <button
+                                        <!-- <button
                                             type="button"
                                             class="btn btn-tool"
                                             data-card-widget="remove"
                                         >
                                             <i class="fas fa-times"></i>
-                                        </button>
+                                        </button> -->
                                     </div>
                                 </div>
                                 <div class="card-body" style="display: none;">
@@ -151,7 +151,7 @@
                                                     >
                                                         <label
                                                             class="col-form-label"
-                                                            >Anestesiologo:</label
+                                                            >Anestesiólogo:</label
                                                         >
                                                         <span
                                                             class="text-left"
@@ -189,17 +189,6 @@
                                                         ></span>
                                                     </div>
                                                 </div>
-
-                                                <button
-                                                    type="button"
-                                                    class="close"
-                                                    data-dismiss="alert"
-                                                    aria-label="Close"
-                                                >
-                                                    <span aria-hidden="true"
-                                                        >&times;</span
-                                                    >
-                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -227,31 +216,12 @@
                                 >
                                     <lista-entrada ref="listaEntrada">
                                     </lista-entrada>
-
-                                    <!-- <revision-sistema
-                                        :id-sec-cir-pro="
-                                            form.frm_idCirugiaProgramada
-                                        "
-                                        @ValidarCargarDatos="
-                                            respuestaCargarDatos = $event
-                                        "
-                                        @RespuestaImprimir="
-                                            respuestaImprimir = $event
-                                        "
-                                        ref="revisionSistema"
-                                    ></revision-sistema> -->
                                 </tab-content>
 
                                 <tab-content
                                     title="Pausa Quirúrgica"
                                     icon="fas fa-procedures"
                                 >
-                                    <!-- <examen-fisico
-                                        :id-sec-cir-pro="
-                                            form.frm_idCirugiaProgramada
-                                        "
-                                        ref="examenFisico"
-                                    ></examen-fisico> -->
                                     <lista-pausa ref="listaPausa">
                                     </lista-pausa>
                                 </tab-content>
@@ -262,33 +232,15 @@
                                 >
                                     <lista-salida ref="listaSalida">
                                     </lista-salida>
-                                    <!-- <paraclinico
-                                        :id-sec-cir-pro="
-                                            form.frm_idCirugiaProgramada
-                                        "
-                                        @validarFinProceso="
-                                            respuestaFinProceso = $event
-                                        "
-                                        @FinProceso="cambiarEstado"
-                                        ref="paraclinico"
-                                    ></paraclinico> -->
                                 </tab-content>
-                                <!-- <tab-content
-                                    title="Visualización"
-                                    icon="ti-folder"
-                                >
-                                    <lista-visualizacion></lista-visualizacion>
-                                </tab-content> -->
                                 <tab-content
                                     title="Visualización"
                                     icon="fas fa-file-pdf"
-                                  
                                 >
                                     <div class="row">
-                                        <iframe   ref="listvisualizacion"  id="listvisualizacion" :src="'/modulos/cirugia/lista_verificacion/mostrarreporte/' +
-                                                    listas.SecCirPro" 
-                                                    type="application/pdf" width="100%" height="980px"></iframe >
-                                        <!-- <embed
+                                        <iframe
+                                            ref="listvisualizacion"
+                                            id="listvisualizacion"
                                             :src="
                                                 '/modulos/cirugia/lista_verificacion/mostrarreporte/' +
                                                     listas.SecCirPro
@@ -296,11 +248,24 @@
                                             type="application/pdf"
                                             width="100%"
                                             height="980px"
-                                        /> -->
+                                        ></iframe>
                                     </div>
                                 </tab-content>
+                                <tab-content
+                                    title="Firma Digital"
+                                    icon="fa fa-edit"
+                                >
+                                    <vue-firma
+                                        :user="user"
+                                        :tipo-servicio="4"
+                                        :id-atencion="form.id_lista"
+                                        :id-visita="0"
+                                        :id-tipo-documento="13"
+                                        ref="firmaDigitalListas">
+                                    </vue-firma>
+                                </tab-content>
 
-                                <tab-content title="Firma" icon="ti-folder">
+                                <!-- <tab-content title="Firma" icon="ti-folder">
                                     <div class="">
                                         <div
                                             class=""
@@ -339,8 +304,7 @@
                                             >
                                         </div>
                                     </div>
-                                   
-                                </tab-content>
+                                </tab-content> -->
                             </form-wizard>
                         </div>
                     </div>
@@ -383,7 +347,7 @@ export default {
             idPromesa: [],
 
             listas: {
-                SecCirPro: "",
+                SecCirPro: "0001",
                 frm_id_user: "",
                 chkentrada01: false,
                 chkentrada02: false,
@@ -430,11 +394,13 @@ export default {
             }
         };
     },
-    mounted() {
+    mounted() {},
+    destroyed: function () {
+        localStorage.removeItem('tasks');
     },
     methods: {
         /* Metodos para Llamar al Modal y la Tabla */
-        
+
         mostrarModalListaCirugiaPaciente() {
             this.$modal.show("ListaCirugiaProgramadaPaciente");
         },
@@ -451,7 +417,7 @@ export default {
             // }
 
             this.cargarLista(value.SecCirPro);
-            this.consultarSello();
+            //this.consultarSello();
         },
         cargarLista: function(value) {
             let that = this;
@@ -511,12 +477,12 @@ export default {
             //  llamarMetodoImprimir();
         },
         onChangeTab(prevIndex, nextIndex) {
+            /* if (typeof this.onChangeTab() === "function") {
+                this.guardarModificar(prevIndex);
+            } */
             this.guardarModificar(prevIndex);
-            this.guardarModificar2(nextIndex);
         },
-        onValidateTab(validationResult, activeTabIndex) {
-
-        },
+        onValidateTab(validationResult, activeTabIndex) {},
         guardarModificar(index) {
             switch (index) {
                 case 0:
@@ -524,32 +490,11 @@ export default {
                 case 1:
                     break;
                 case 2:
-                  
                     this.guardarLista();
                     //this.$refs.listvisualizacion.contentDocument.location.reload();
-                  
                     break;
                 case 3:
-                    // this.$refs.listvisualizacion.contentDocument.location.reload();
-                    break;
-                case 4:
-                    break;
-                default:
-                //this.titulo_seleccionado = "";
-            }
-        },
-         guardarModificar2(index) {
-            switch (index) {
-                case 0:
-                    break;
-                case 1:
-                    break;
-                case 2:
-                   //  this.$refs.listvisualizacion.contentDocument.location.reload();
-                    // this.guardarLista();
-                    break;
-                case 3:
-                   //  this.$refs.listvisualizacion.contentDocument.location.reload();
+                    this.$refs.firmaDigitalListas.consultarSello();
                     break;
                 case 4:
                     break;
@@ -567,11 +512,10 @@ export default {
                     case 1:
                         break;
                     case 2:
-                       poseeErrores = this.$refs.listaSalida.validarForm();
+                        poseeErrores = this.$refs.listaSalida.validarForm();
                         resolve(poseeErrores);
                         break;
                     case 3:
-                       
                         break;
                     case 4:
                         break;
@@ -629,7 +573,7 @@ export default {
                 .then(response => {
                     this.idPromesa = response.data.id;
                     loader.hide();
-                       this.$refs.listvisualizacion.contentDocument.location.reload();
+                    this.$refs.listvisualizacion.contentDocument.location.reload();
                 })
                 .catch(error => {
                     that.flashMessage.show({
@@ -653,101 +597,6 @@ export default {
         onComplete() {
             //this.guardarFirmaPorAtencion();
             this.$refs.formListaVerificacion.reset();
-        },
-        guardarFirmaPorAtencion() {
-            let that = this;
-            let url = "";
-            let mensaje = "";
-            let formNew = {
-                tipo_servicio: 4,
-                id_atencion: that.form.id_lista,
-                // that.form.id_lista,
-                id_visita: 0,
-                id_tipo_documento: 13,
-                imgFirma: that.form.imgFirma
-            };
-            url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
-
-            var loader = that.$loading.show();
-            axios
-                .post(url, formNew)
-                .then(function(response) {
-                    loader.hide();
-                    that.flashMessage.show({
-                        status: "success",
-                        title: "Éxito al procesar Firma por Atención",
-                        message: "Datos guardados correctamente.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/success.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                })
-                .catch(error => {
-                    that.resConfirmarCancelar = false;
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar guardarFirmaPorAtencion",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        },
-        consultarSello() {
-            let that = this;
-            if (this.$props.user.id > 0) {
-                var loader = that.$loading.show();
-                let url =
-                    "/modulos/cirugia/anestesia/cargar_sello/" +
-                    this.$props.user.id;
-
-                axios
-                    .get(url)
-                    .then(function(response) {
-                        if (response.data.sello != null) {
-                            if (response.data.sello.seguridad_medico != null) {
-                                that.rutaSello =
-                                    "data:image/jpeg;base64," +
-                                    response.data.sello.seguridad_medico.medico
-                                        .medico_sellos.IMAGEN_SELLO;
-                            }
-                        }
-                        loader.hide();
-                    })
-                    .catch(error => {
-                        that.flashMessage.show({
-                            status: "error",
-                            title: "Error al procesar consultarSello",
-                            message:
-                                "Por favor comuníquese con el administrador. " +
-                                error,
-                            clickable: true,
-                            time: 0,
-                            icon: "/iconsflashMessage/error.svg",
-                            customStyle: {
-                                flashMessageStyle: {
-                                    background:
-                                        "linear-gradient(#e66465, #9198e5)"
-                                }
-                            }
-                        });
-                        loader.hide();
-                    });
-            }
         },
 
         llamarMetodoImprimir() {

@@ -42,7 +42,7 @@
                             v-model="listas.chksalida02"
                         />
                         <label for="chksalida02" class="custom-control-label">
-                            QUE LOS RECUENTOS DE INSTRUMENTOS, GASAS AGUJAS SON
+                            QUE LOS RECUENTOS DE INSTRUMENTOS, GASAS Y AGUJAS SON
                             CORRECTOS</label
                         >
                     </div>
@@ -86,7 +86,7 @@
                         />
                         <label for="chksalida05" class="custom-control-label"
                             >EL CIRUJANO, EL ANESTESISTA Y EL ENFERMERO REVISAN
-                            LOS PRINCIPALES ASPECTOS DE LA RECUPERACION Y EL
+                            LOS PRINCIPALES ASPECTOS DE LA RECUPERACIÓN Y EL
                             TRATAMIENTO DEL PACIENTE</label
                         >
                     </div>
@@ -96,11 +96,11 @@
 
         <div class="card-body">
             <div class="form-group">
-                <label>Observacion</label>
+                <label>Observaciones</label>
                 <textarea
                     class="form-control"
                     rows="3"
-                    placeholder="Enter ..."
+                    placeholder="Observaciones"
                     name="observacion"
                     id="observacion"
                     v-model="listas.observacion"

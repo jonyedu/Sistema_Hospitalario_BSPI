@@ -128,7 +128,7 @@
                                                 <div class="col-sm-6 text-left">
                                                     <label
                                                         class="col-form-label"
-                                                        >Anestesiologo:</label
+                                                        >Anestesiólogo:</label
                                                     >
                                                     <span
                                                         class="text-left"
@@ -164,17 +164,6 @@
                                                     ></span>
                                                 </div>
                                             </div>
-
-                                            <button
-                                                type="button"
-                                                class="close"
-                                                data-dismiss="alert"
-                                                aria-label="Close"
-                                            >
-                                                <span aria-hidden="true"
-                                                    >&times;</span
-                                                >
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -191,7 +180,7 @@
                                 :finishButtonText="'Finalizar'"
                                 :stepSize="'xs'"
                                 shape="square"
-                                color="#3498db"
+                                color="#590303"
                                 @on-change="onChangeTab"
                                 @on-validate="onValidateTab"
                                 @on-complete="onComplete"
@@ -210,6 +199,7 @@
                                         @RespuestaImprimir="
                                             respuestaImprimir = $event
                                         "
+                                        @IdRevisionSistema="form.id_revision_sistema = $event"
                                         ref="revisionSistema"
                                     ></revision-sistema>
                                 </tab-content>
@@ -237,7 +227,7 @@
                                     ></examen-fisico>
                                 </tab-content>
                                 <tab-content
-                                    title="Paraclinicos"
+                                    title="Paraclínicos"
                                     icon="ti-support"
                                     :before-change="validateFirstStep"
                                 >
@@ -245,7 +235,6 @@
                                         :id-revision-sistema="
                                             form.frm_id_revision_sistema
                                         "
-                                        :user="user"
                                         :id-sec-cir-pro="
                                             form.frm_idCirugiaProgramada
                                         "
@@ -261,7 +250,7 @@
                                     icon="fas fa-file-pdf"
                                 >
                                     <div class="row">
-                                        <embed
+                                        <!-- <embed
                                             :src="
                                                 '/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/' +
                                                     form.frm_idCirugiaProgramada
@@ -269,8 +258,31 @@
                                             type="application/pdf"
                                             width="100%"
                                             height="980px"
-                                        />
+                                        /> -->
+                                        <iframe
+                                            ref="pdfValoracionPreanestesia"
+                                            :src="
+                                                '/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/' +
+                                                    form.frm_idCirugiaProgramada
+                                            "
+                                            type="application/pdf"
+                                            width="100%"
+                                            height="980px"
+                                        ></iframe>
                                     </div>
+                                </tab-content>
+                                <tab-content
+                                    title="Firma Digital"
+                                    icon="fa fa-edit"
+                                >
+                                    <vue-firma
+                                        :user="user"
+                                        :tipo-servicio="4"
+                                        :id-atencion="form.id_revision_sistema"
+                                        :id-visita="0"
+                                        :id-tipo-documento="13"
+                                        ref="firmaDigitalValoPrea">
+                                    </vue-firma>
                                 </tab-content>
                             </form-wizard>
                         </div>
@@ -318,12 +330,13 @@ export default {
             },
             form: {
                 /* Datos del paciente */
-                frm_idCirugiaProgramada: "", //2890
+                frm_idCirugiaProgramada: "2890", //2890
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
                 frm_quirofano: "",
-                frm_procedimiento: ""
+                frm_procedimiento: "",
+                id_revision_sistema: 0
             }
         };
     },
@@ -379,7 +392,8 @@ export default {
             //Se debera realizar las validaciones respectivas para cada tab
         },
         validateFirstStep() {
-            var opc = this.$refs.formValoracionPreanestecia.slotProps.activeTabIndex;
+            var opc = this.$refs.formValoracionPreanestecia.slotProps
+                .activeTabIndex;
             let poseeErrores = null;
             return new Promise((resolve, reject) => {
                 switch (opc) {
@@ -405,13 +419,11 @@ export default {
             this.$refs.formValoracionPreanestecia.reset();
         },
         onChangeTab(prevIndex, nextIndex) {
-            //Se debera realizar las validaciones respectivas para cada tab
-            this.setFormTitle(nextIndex);
             /* if (typeof this.onChangeTab() === "function") {
-                alert("entra");
-                //Es seguro ejecutar la función
+                this.setFormTitle(nextIndex);
                 this.guardarModificar(prevIndex);
             } */
+            this.setFormTitle(nextIndex);
             this.guardarModificar(prevIndex);
         },
         setFormTitle(index) {
@@ -433,6 +445,10 @@ export default {
                     this.$refs.paraclinico.cargarParaclinico();
                     break;
                 case 4:
+                    this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
+                    break;
+                case 5:
+                    this.$refs.firmaDigitalValoPrea.consultarSello();
                     break;
                 default:
                     this.titulo_seleccionado = "";
@@ -458,49 +474,6 @@ export default {
                 //this.titulo_seleccionado = "";
             }
         },
-        /* consultarSello() {
-            let that = this;
-            if (this.$props.user.id > 0) {
-                var loader = that.$loading.show();
-                let url =
-                    "/modulos/cirugia/anestesia/cargar_sello/" +
-                    this.$props.user.id;
-
-                axios
-                    .get(url)
-                    .then(function(response) {
-                        if (response.data.sello != null) {
-                            if (response.data.sello.seguridad_medico != null) {
-                                that.rutaSello =
-                                    "data:image/jpeg;base64," +
-                                    response.data.sello.seguridad_medico.medico
-                                        .medico_sellos.IMAGEN_SELLO;
-                            }
-                        }
-                        loader.hide();
-                    })
-                    .catch(error => {
-                        that.flashMessage.show({
-                            status: "error",
-                            title: "Error al procesar consultarSello",
-                            message:
-                                "Por favor comuníquese con el administrador. " +
-                                error,
-                            clickable: true,
-                            time: 0,
-                            icon: "/iconsflashMessage/error.svg",
-                            customStyle: {
-                                flashMessageStyle: {
-                                    background:
-                                        "linear-gradient(#e66465, #9198e5)"
-                                }
-                            }
-                        });
-                        loader.hide();
-                    });
-            }
-        }, */
-
         llamarMetodoImprimir() {
             if (this.respuestaFinProceso || this.respuestaImprimir) {
                 window.open(

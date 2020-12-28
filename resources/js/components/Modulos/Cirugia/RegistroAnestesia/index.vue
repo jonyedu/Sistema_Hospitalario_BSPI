@@ -109,21 +109,27 @@
                                     ></datos-paciente>
                                 </tab-content>
                                 <tab-content
-                                    title="Registro Trans-Anestesico"
+                                    title="Registro Trans-Anestésico"
                                     icon="ti-panel"
+                                    :before-change="validateFirstStep"
                                 >
                                     <trans-anestesico
                                         :id-sec-cir-pro="
                                             form.idCirugiaProgramada
                                         "
                                         ref="transAnestesico"
+                                        :id-registro-anestesia="form.registro_anestesia_id"
                                     ></trans-anestesico>
                                 </tab-content>
                                 <tab-content
-                                    title="Administración Farmaco"
+                                    title="Administración Fármaco"
                                     icon="fas fa-capsules"
                                 >
                                     <administracion-farmaco
+                                        :id-sec-cir-pro="
+                                            form.idCirugiaProgramada
+                                        "
+                                        :id-registro-anestesia="form.registro_anestesia_id"
                                         ref="administracionFarmaco"
                                     ></administracion-farmaco>
                                 </tab-content>
@@ -132,21 +138,39 @@
                                     icon="fas fa-file-pdf"
                                 >
                                     <div class="row">
-                                        <embed
+                                        <!-- <embed
                                             :src="
-                                                '/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/' +
+                                                '/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/' +
                                                     form.idCirugiaProgramada
                                             "
                                             type="application/pdf"
                                             width="100%"
                                             height="980px"
-                                        />
+                                        /> -->
+                                        <iframe
+                                            ref="pdfRegistroAnestesia"
+                                            :src="
+                                                '/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/' +
+                                                    form.idCirugiaProgramada
+                                            "
+                                            type="application/pdf"
+                                            width="100%"
+                                            height="980px"
+                                        ></iframe>
                                     </div>
                                 </tab-content>
                                 <tab-content
-                                    title="Firma"
-                                    icon="fas fa-capsules"
+                                    title="Firma Digital"
+                                    icon="fa fa-edit"
                                 >
+                                    <vue-firma
+                                        :user="user"
+                                        :tipo-servicio="4"
+                                        :id-atencion="form.registro_anestesia_id"
+                                        :id-visita="0"
+                                        :id-tipo-documento="13"
+                                        ref="firmaDigitalRegisAnes">
+                                    </vue-firma>
                                 </tab-content>
                             </form-wizard>
                         </div>
@@ -187,7 +211,7 @@ export default {
             respuestaFinProceso: 0,
             respuestaImprimir: 0,
             form: {
-                idCirugiaProgramada: "",
+                idCirugiaProgramada: "0001",
                 idCirugiaProgramadaTemporal: "",
                 registro_anestesia_id: 0,
                 /* Datos del paciente */
@@ -220,6 +244,7 @@ export default {
     },
     mounted: function() {
         this.flashMessage.setStrategy("multiple");
+        this.obtenerIdRegistroAnestesio();
         /*  var user = this.$attrs;
         console.log(user); */
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
@@ -284,7 +309,6 @@ export default {
                             that.form.idCirugiaProgramada = value.SecCirPro;
                             that.$modal.hide("ListaCirugiaProgramadaPaciente");
                             loader.hide();
-                            that.obtenerIdRegistroAnestesio();
                         }
                     })
                     .catch(error => {
@@ -309,36 +333,6 @@ export default {
             }
         },
         /* Fin para llamar al Modal y la Tabla */
-        obtenerIdRegistroAnestesio() {
-            let that = this;
-            let url = "/modulos/cirugia/anestesia/registro/post";
-            var loader = that.$loading.show();
-            axios
-                .post(url, this.form)
-                .then(response => {
-                    that.form.registro_anestesia_id = response.data.id;
-                    loader.hide();
-                })
-                .catch(error => {
-                    //Errores de validación
-                    loader.hide();
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar obtenerIdRegistroAnestesio",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                });
-        },
         /* Metodos para los form-wizard */
         onValidateTab(validationResult, activeTabIndex) {
             //Se debera realizar las validaciones respectivas para cada tab
@@ -354,6 +348,8 @@ export default {
                         resolve(poseeErrores);
                         break;
                     case 1:
+                        poseeErrores = this.$refs.transAnestesico.validarForm();
+                        resolve(poseeErrores);
                         break;
                     case 2:
                         //poseeErrores = this.$refs.examenFisico.validarForm();
@@ -373,13 +369,11 @@ export default {
             this.$refs.formRegistroAnestesico.reset();
         },
         onChangeTab(prevIndex, nextIndex) {
-            //Se debera realizar las validaciones respectivas para cada tab
-            this.setFormTitle(nextIndex);
             /* if (typeof this.onChangeTab() === "function") {
-                alert("entra");
-                //Es seguro ejecutar la función
+                this.setFormTitle(nextIndex);
                 this.guardarModificar(prevIndex);
             } */
+            this.setFormTitle(nextIndex);
             this.guardarModificar(prevIndex);
         },
         setFormTitle(index) {
@@ -397,10 +391,10 @@ export default {
                     //this.$refs.examenFisico.cargarExamenFisico();
                     break;
                 case 3:
-                    //this.titulo_seleccionado = "Paraclinicos";
-                    //this.$refs.paraclinico.cargarParaclinico();
+                    this.$refs.pdfRegistroAnestesia.contentDocument.location.reload();
                     break;
                 case 4:
+                    this.$refs.firmaDigitalRegisAnes.consultarSello();
                     break;
                 default:
                     this.titulo_seleccionado = "";
@@ -409,22 +403,54 @@ export default {
         guardarModificar(index) {
             switch (index) {
                 case 0:
-                    this.$refs.datosPaciente.guardarModificar();
+                    this.$refs.datosPaciente.guardarModificarDatosPaciente();
                     break;
                 case 1:
-                    //this.$refs.antecedente.guardarModificar();
                     break;
                 case 2:
-                    //this.$refs.examenFisico.guardarModificar();
+                    this.$refs.administracionFarmaco.guardarAdministracionFarmaco();
                     break;
                 case 3:
-                    //this.$refs.paraclinico.guardarModificar();
                     break;
                 case 4:
                     break;
                 default:
-                //this.titulo_seleccionado = "";
             }
+        },
+        obtenerIdRegistroAnestesio() {
+            if(this.form.registro_anestesia_id <= 0){
+                let that = this;
+                let url = "/modulos/cirugia/anestesia/registro/post";
+                var loader = that.$loading.show();
+                axios
+                    .post(url, this.form)
+                    .then(response => {
+                        that.form.registro_anestesia_id = response.data.id;
+                        loader.hide();
+                    })
+                    .catch(error => {
+                        //Errores de validación
+                        loader.hide();
+                        that.flashMessage.show({
+                            status: "error",
+                            title: "Error al procesar obtenerIdRegistroAnestesio",
+                            message:
+                                "Por favor comuníquese con el administrador. " +
+                                error,
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/error.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background: "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
+                    });
+            }else{
+                this.guardarModificarDatosPaciente();
+            }
+
         },
         /* Fin Metodos para los form-wizard */
         llamarMetodoImprimir() {

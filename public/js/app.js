@@ -3255,26 +3255,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {},
+  props: {
+    idSecCirPro: {
+      type: String,
+      required: true
+    },
+    idRegistroAnestesia: {
+      type: Number,
+      required: true
+    }
+  },
   data: function data() {
     var _form;
 
@@ -3320,8 +3311,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         abreviatura: "R",
         valor: 0
       }, {
-        descripcion: "EXPANSIONES",
-        name: "EXPANSIONES",
+        descripcion: "EXPANSORES",
+        name: "EXPANSORES",
         abreviatura: "E",
         valor: 0
       }, {
@@ -3442,6 +3433,133 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
         loader.hide();
       });
+    },
+    guardarAdministracionFarmaco: function guardarAdministracionFarmaco() {
+      this.guardarDrograAdministrada();
+      this.modifcarRegistroAnestesia();
+      this.guardarRegistroInfusiones();
+    },
+    guardarDrograAdministrada: function guardarDrograAdministrada() {
+      var that = this;
+      var url = "";
+      var mensaje = "";
+      var formNew = {
+        frm_registro_anestesia_id: that.form.registro_anestesia_id,
+        frm_descripciones: that.drogas_administradas
+      };
+      url = "/modulos/cirugia/anestesia/guardar_droga_administrada";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        /* that.flashMessage.show({
+            status: "success",
+            title: "Éxito al procesar Drogra Administrada",
+            message: "Datos guardados correctamente.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/success.svg",
+            customStyle: {
+                flashMessageStyle: {
+                    background: "linear-gradient(#e66465, #9198e5)"
+                }
+            }
+        }); */
+        loader.hide();
+      })["catch"](function (error) {
+        loader.hide();
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarDrograAdministrada",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      });
+    },
+    modifcarRegistroAnestesia: function modifcarRegistroAnestesia() {
+      var that = this;
+      var url = "";
+      var mensaje = "";
+      url = "/modulos/cirugia/anestesia/modifcar_registro_anestesia";
+      var loader = that.$loading.show();
+      axios.post(url, that.form).then(function (response) {
+        loader.hide();
+        /* that.flashMessage.show({
+            status: "success",
+            title: "Éxito al procesar Registro Anestesia",
+            message: "Datos guardados correctamente.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/success.svg",
+            customStyle: {
+                flashMessageStyle: {
+                    background: "linear-gradient(#e66465, #9198e5)"
+                }
+            }
+        }); */
+      })["catch"](function (error) {
+        loader.hide();
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar modifcarRegistroAnestesia",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      });
+    },
+    guardarRegistroInfusiones: function guardarRegistroInfusiones() {
+      var that = this;
+      var url = "";
+      var mensaje = "";
+      var formNew = {
+        registro_anestesia_id: that.form.registro_anestesia_id,
+        infusiones: that.form.infusiones
+      };
+      url = "/modulos/cirugia/anestesia/guardar_registro_infusiones";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        that.flashMessage.show({
+          status: "success",
+          title: "Éxito al Guardar los Administración Fármaco",
+          message: "Datos guardados correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarRegistroInfusiones",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
     }
   },
   computed: {}
@@ -3458,10 +3576,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var _methods;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+//
+//
 //
 //
 //
@@ -3849,7 +3965,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         /* Datos del paciente */
         paciente: "",
         historia_clinica: "",
-        fecha: "00/00/0000",
+        fecha: "00-00-0000",
         edad: "",
         sexo: "",
         estatura: "",
@@ -3879,7 +3995,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.cargarComboBox();
   },
-  methods: (_methods = {
+  methods: {
     cargarComboBox: function cargarComboBox() {
       this.setSelectedCirujano();
       this.setSelectedAnestesiologo();
@@ -3895,7 +4011,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var url = "/modulos/parametrizacion/servicio_medico/cargar_servicio_medico_por_medico/" + this.form.id_servicio_medico;
 
         if (value != null) {
-          this.form.id_servicio_medico = value.id_servicio_medico;
+          this.form.id_servicio_medico = +value.id_servicio_medico;
           loader.hide();
         }
 
@@ -4013,429 +4129,453 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else {
         this.diagnosticosPre = [];
       }
-    }
-  }, _defineProperty(_methods, "setSelectedDiagnosticoPre", function setSelectedDiagnosticoPre(value) {
-    var that = this;
-
-    if (this.selectedDiagnostico.id_diagnostico != null) {
-      this.form.id_diagnostico = this.selectedDiagnostico.id_diagnostico;
-    }
-
-    if (this.diagnosticos.length == 0) {
-      if (this.selectedDiagnostico != "") {
-        var loader = that.$loading.show();
-        var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_combo_box/" + this.selectedDiagnostico;
-        axios.get(url).then(function (response) {
-          var diagnosticosPre = [];
-          var diagnosticos = [];
-          response.data.diagnosticos.forEach(function (diagnostico) {
-            var objeto = {}; //Post
-
-            objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(diagnostico.descripcion);
-            objeto.id_diagnostico = diagnostico.id;
-            diagnosticos.push(objeto);
-          });
-          that.diagnosticos = diagnosticos;
-          loader.hide();
-        })["catch"](function (error) {
-          that.flashMessage.show({
-            status: "error",
-            title: "Error al procesar setSelectedDiagnostico",
-            message: "Por favor comuníquese con el administrador. " + error,
-            clickable: true,
-            time: 0,
-            icon: "/iconsflashMessage/error.svg",
-            customStyle: {
-              flashMessageStyle: {
-                background: "linear-gradient(#e66465, #9198e5)"
-              }
-            }
-          });
-          loader.hide();
-        });
-      }
-    } else {
-      this.diagnosticos = [];
-    }
-  }), _defineProperty(_methods, "setSelectedCirujano", function setSelectedCirujano(value) {
-    var that = this;
-    var loader = that.$loading.show();
-    var url = "/modulos/admision/medico/cargar_cirujano";
-
-    if (value != null) {
-      this.form.id_cirujano = value.id_cirujano;
-      this.form.id_servicio_medico = value.id_servicio_medico;
-      loader.hide();
-    }
-
-    axios.get(url).then(function (response) {
-      var cirujanos = [];
-      response.data.medicos.forEach(function (medico) {
-        var objeto = {};
-        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
-        objeto.id_cirujano = medico.id;
-        objeto.id_servicio_medico = medico.tipo_medico_servicio;
-        cirujanos.push(objeto);
-      });
-      that.cirujanos = cirujanos;
-      loader.hide();
-    })["catch"](function (error) {
-      that.flashMessage.show({
-        status: "error",
-        title: "Error al procesar setSelectedCirujano",
-        message: "Por favor comuníquese con el administrador. " + error,
-        clickable: true,
-        time: 0,
-        icon: "/iconsflashMessage/error.svg",
-        customStyle: {
-          flashMessageStyle: {
-            background: "linear-gradient(#e66465, #9198e5)"
-          }
-        }
-      });
-      loader.hide();
-    });
-  }), _defineProperty(_methods, "setSelectedAnestesiologo", function setSelectedAnestesiologo(value) {
-    var that = this;
-    var loader = that.$loading.show();
-    this.form.id_especializacion = 3;
-    var url = "/modulos/admision/medico/cargar_medico_por_especializacion/" + that.form.id_especializacion;
-
-    if (value != null) {
-      this.form.id_anestesiologo = value.id_anestesiologo;
-      loader.hide();
-    }
-
-    axios.get(url).then(function (response) {
-      var anestesiologos = [];
-      response.data.medicos.forEach(function (medico) {
-        var objeto = {};
-        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
-        objeto.id_anestesiologo = medico.id;
-        anestesiologos.push(objeto);
-      });
-      that.anestesiologos = anestesiologos;
-      loader.hide();
-    })["catch"](function (error) {
-      that.flashMessage.show({
-        status: "error",
-        title: "Error al procesar setSelectedAnestesiologo",
-        message: "Por favor comuníquese con el administrador. " + error,
-        clickable: true,
-        time: 0,
-        icon: "/iconsflashMessage/error.svg",
-        customStyle: {
-          flashMessageStyle: {
-            background: "linear-gradient(#e66465, #9198e5)"
-          }
-        }
-      });
-      loader.hide();
-    });
-  }), _defineProperty(_methods, "setSelectedAyudante", function setSelectedAyudante(value) {
-    var that = this;
-    var loader = that.$loading.show();
-    var url = "/modulos/admision/medico/cargar_medico_all";
-
-    if (value != null) {
-      if (value.id_ayudante1 != null) {
-        this.form.id_ayudante1 = value.id_ayudante1;
-      }
-
-      if (value.id_ayudante2 != null) {
-        this.form.id_ayudante2 = value.id_ayudante2;
-      }
-
-      if (value.id_instrumentista != null) {
-        this.form.id_instrumentista = value.id_instrumentista;
-      }
-
-      loader.hide();
-    }
-
-    axios.get(url).then(function (response) {
-      var ayudante1 = [];
-      var ayudante2 = [];
-      var instrumentistas = [];
-      response.data.medicos.forEach(function (medico) {
-        //Ayudante 1
-        var objeto1 = {};
-        objeto1.display1 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
-        objeto1.id_ayudante1 = medico.id;
-        ayudante1.push(objeto1); //Ayudante 2
-
-        var objeto2 = {};
-        objeto2.display2 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
-        objeto2.id_ayudante2 = medico.id;
-        ayudante2.push(objeto2); //Instrumentista
-
-        var objeto3 = {};
-        objeto3.display3 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
-        objeto3.id_instrumentista = medico.id;
-        instrumentistas.push(objeto3);
-      });
-      that.ayudantes1 = ayudante1;
-      that.ayudantes2 = ayudante2;
-      that.instrumentistas = instrumentistas;
-      loader.hide();
-    })["catch"](function (error) {
-      that.flashMessage.show({
-        status: "error",
-        title: "Error al procesar setSelectedAyudante",
-        message: "Por favor comuníquese con el administrador. " + error,
-        clickable: true,
-        time: 0,
-        icon: "/iconsflashMessage/error.svg",
-        customStyle: {
-          flashMessageStyle: {
-            background: "linear-gradient(#e66465, #9198e5)"
-          }
-        }
-      });
-      loader.hide();
-    });
-  }), _defineProperty(_methods, "setSelectedTarifaria", function setSelectedTarifaria(value) {
-    var that = this;
-
-    if (this.selectedTarifaria.id_tarifaria != null) {
-      this.form.id_tarifaria = this.selectedTarifaria.id_tarifaria;
-    }
-
-    if (this.tarifarias.length == 0) {
-      if (this.selectedTarifaria != "") {
-        var loader = that.$loading.show();
-        var url = "/modulos/parametrizacion/tarifario/consultar_tarifario/" + this.selectedTarifaria;
-        axios.get(url).then(function (response) {
-          var tarifariosMedicinas = [];
-          response.data.tarifariosMedicinas.forEach(function (tarifarioMedicina) {
-            var objeto = {};
-            objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(tarifarioMedicina.descripcion);
-            objeto.id_tarifaria = tarifarioMedicina.codigo;
-            tarifariosMedicinas.push(objeto);
-          });
-          that.tarifarias = tarifariosMedicinas;
-          loader.hide();
-        })["catch"](function (error) {
-          that.flashMessage.show({
-            status: "error",
-            title: "Error al procesar setSelectedDiagnostico",
-            message: "Por favor comuníquese con el administrador. " + error,
-            clickable: true,
-            time: 0,
-            icon: "/iconsflashMessage/error.svg",
-            customStyle: {
-              flashMessageStyle: {
-                background: "linear-gradient(#e66465, #9198e5)"
-              }
-            }
-          });
-          loader.hide();
-        });
-      }
-    } else {
-      this.tarifarias = [];
-    }
-  }), _defineProperty(_methods, "cargarDiagnosticoPorCodigo", function cargarDiagnosticoPorCodigo(value) {
-    if (value.id_diagnostico != "") {
+    },
+    setSelectedCirujano: function setSelectedCirujano(value) {
       var that = this;
-      var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_por_codigo/" + value.id_diagnostico;
       var loader = that.$loading.show();
+      var url = "/modulos/admision/medico/cargar_cirujano";
+
+      if (value != null) {
+        this.form.id_cirujano = value.id_cirujano;
+        this.form.id_servicio_medico = value.id_servicio_medico;
+        loader.hide();
+      }
+
       axios.get(url).then(function (response) {
-        //Obtiene los datos de Motivo Antecedentes
-        if (response.data.diagnostico != null && response.data.diagnostico != undefined) {
-          //Pre
-          that.selectedDiagnosticoPre = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
-          that.form.id_diagnostico_pre = response.data.diagnostico.codigo; //Post
+        var cirujanos = [];
+        response.data.medicos.forEach(function (medico) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto.id_cirujano = medico.id;
+          objeto.id_servicio_medico = +medico.tipo_medico_servicio;
+          cirujanos.push(objeto);
+        });
+        that.cirujanos = cirujanos;
+        loader.hide();
+        that.setSelectedServicioMedico();
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedCirujano",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    setSelectedAnestesiologo: function setSelectedAnestesiologo(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      this.form.id_especializacion = 3;
+      var url = "/modulos/admision/medico/cargar_medico_por_especializacion/" + that.form.id_especializacion;
 
-          that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
-          that.form.id_diagnostico = response.data.diagnostico.codigo;
-          that.form.idCirugiaProgramadaTemporal = value.SecCirPro;
-          that.form.idCirugiaProgramada = value.SecCirPro;
-          that.form.paciente = value.nombrePaciente;
-          that.form.historia_clinica = value.historiaClinica;
-          that.form.fecha = value.fechaProgramada;
-          that.form.edad = value.edad;
-          that.form.sexo = value.sexo;
-          that.form.sala = value.sala;
-          that.form.cama = value.cama;
-          that.form.cirujano = value.cirujano;
-          that.form.anestesiologo = value.anestesiologo;
-          that.form.quirofano = value.quirofano;
-          that.form.operacion_propuesta = value.procedimiento;
-        }
+      if (value != null) {
+        this.form.id_anestesiologo = value.id_anestesiologo;
+        loader.hide();
+      }
 
+      axios.get(url).then(function (response) {
+        var anestesiologos = [];
+        response.data.medicos.forEach(function (medico) {
+          var objeto = {};
+          objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto.id_anestesiologo = medico.id;
+          anestesiologos.push(objeto);
+        });
+        that.anestesiologos = anestesiologos;
         loader.hide();
       })["catch"](function (error) {
-        //Errores
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedAnestesiologo",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
         loader.hide();
-        that.$swal({
-          icon: "error",
-          title: "Existe un error",
-          text: error
+      });
+    },
+    setSelectedAyudante: function setSelectedAyudante(value) {
+      var that = this;
+      var loader = that.$loading.show();
+      var url = "/modulos/admision/medico/cargar_medico_all";
+
+      if (value != null) {
+        if (value.id_ayudante1 != null) {
+          this.form.id_ayudante1 = value.id_ayudante1;
+        }
+
+        if (value.id_ayudante2 != null) {
+          this.form.id_ayudante2 = value.id_ayudante2;
+        }
+
+        if (value.id_instrumentista != null) {
+          this.form.id_instrumentista = value.id_instrumentista;
+        }
+
+        loader.hide();
+      }
+
+      axios.get(url).then(function (response) {
+        var ayudante1 = [];
+        var ayudante2 = [];
+        var instrumentistas = [];
+        response.data.medicos.forEach(function (medico) {
+          //Ayudante 1
+          var objeto1 = {};
+          objeto1.display1 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto1.id_ayudante1 = medico.id;
+          ayudante1.push(objeto1); //Ayudante 2
+
+          var objeto2 = {};
+          objeto2.display2 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto2.id_ayudante2 = medico.id;
+          ayudante2.push(objeto2); //Instrumentista
+
+          var objeto3 = {};
+          objeto3.display3 = that.$funcionesGlobales.toCapitalFirstAllWords(medico.FULLNAME);
+          objeto3.id_instrumentista = medico.id;
+          instrumentistas.push(objeto3);
+        });
+        that.ayudantes1 = ayudante1;
+        that.ayudantes2 = ayudante2;
+        that.instrumentistas = instrumentistas;
+        loader.hide();
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar setSelectedAyudante",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    setSelectedTarifaria: function setSelectedTarifaria(value) {
+      var that = this;
+
+      if (this.selectedTarifaria.id_tarifaria != null) {
+        this.form.id_tarifaria = this.selectedTarifaria.id_tarifaria;
+      }
+
+      if (this.tarifarias.length == 0) {
+        if (this.selectedTarifaria != "") {
+          var loader = that.$loading.show();
+          var url = "/modulos/parametrizacion/tarifario/consultar_tarifario/" + this.selectedTarifaria;
+          axios.get(url).then(function (response) {
+            var tarifariosMedicinas = [];
+            response.data.tarifariosMedicinas.forEach(function (tarifarioMedicina) {
+              var objeto = {};
+              objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(tarifarioMedicina.descripcion);
+              objeto.id_tarifaria = tarifarioMedicina.codigo;
+              tarifariosMedicinas.push(objeto);
+            });
+            that.tarifarias = tarifariosMedicinas;
+            loader.hide();
+          })["catch"](function (error) {
+            that.flashMessage.show({
+              status: "error",
+              title: "Error al procesar setSelectedDiagnostico",
+              message: "Por favor comuníquese con el administrador. " + error,
+              clickable: true,
+              time: 0,
+              icon: "/iconsflashMessage/error.svg",
+              customStyle: {
+                flashMessageStyle: {
+                  background: "linear-gradient(#e66465, #9198e5)"
+                }
+              }
+            });
+            loader.hide();
+          });
+        }
+      } else {
+        this.tarifarias = [];
+      }
+    },
+    cargarDiagnosticoPorCodigo: function cargarDiagnosticoPorCodigo(value) {
+      if (value.id_diagnostico != "") {
+        var that = this;
+        var url = "/modulos/parametrizacion/diagnostico/cargar_diagnostico_por_codigo/" + value.id_diagnostico;
+        var loader = that.$loading.show();
+        axios.get(url).then(function (response) {
+          //Obtiene los datos de Motivo Antecedentes
+          if (response.data.diagnostico != null && response.data.diagnostico != undefined) {
+            //Pre
+            that.selectedDiagnosticoPre = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
+            that.form.id_diagnostico_pre = response.data.diagnostico.codigo; //Post
+
+            that.selectedDiagnostico = that.$funcionesGlobales.toCapitalFirstAllWords(response.data.diagnostico.descripcion);
+            that.form.id_diagnostico = response.data.diagnostico.codigo;
+            that.form.idCirugiaProgramadaTemporal = value.SecCirPro;
+            that.form.idCirugiaProgramada = value.SecCirPro;
+            that.form.paciente = value.nombrePaciente;
+            that.form.historia_clinica = value.historiaClinica;
+            that.form.fecha = value.fechaProgramada;
+            that.form.edad = value.edad;
+            that.form.sexo = value.sexo;
+            that.form.sala = value.sala;
+            that.form.cama = value.cama;
+            that.form.cirujano = value.cirujano;
+            that.form.anestesiologo = value.anestesiologo;
+            that.form.quirofano = value.quirofano;
+            that.form.operacion_propuesta = value.procedimiento;
+          }
+
+          loader.hide();
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar cargarDiagnosticoPorCodigo",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
+      }
+    },
+    validarForm: function validarForm() {
+      return true;
+
+      if (this.form.id_diagnostico_pre <= 0) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia",
+          message: "Se necesita seleccionar un Diagnóstico Preoperatorio.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      if (this.form.id_diagnostico <= 0) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia",
+          message: "Se necesita seleccionar un Diagnóstico Post-Operatorio",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      if (this.form.estatura == "") {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia",
+          message: "Se necesita una Estatura.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      if (this.form.peso == "") {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia",
+          message: "Se necesita un Peso.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      if (this.form.id_cirujano <= 0) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia",
+          message: "Se necesita seleccionar un Cirujano(a).",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      if (this.form.id_ayudante1 <= 0) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia",
+          message: "Se necesita seleccionar un Ayudante.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      if (this.form.id_tarifaria <= 0) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia",
+          message: "Se necesita seleccionar la Operación Realizada.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      if (this.form.id_anestesiologo <= 0) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia",
+          message: "Se necesita seleccionar un Anestesiologo.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      if (this.form.id_instrumentista <= 0) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia",
+          message: "Se necesita seleccionar un Instrumentista.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      if (this.selectedServicioMedico == "") {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia",
+          message: "Se necesita seleccionar el Servicio.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      return true;
+    },
+    guardarModificarDatosPaciente: function guardarModificarDatosPaciente() {
+      var that = this;
+      var url = "";
+      var mensaje = "";
+      url = "/modulos/cirugia/anestesia/guardar_datos_registro";
+      var loader = that.$loading.show();
+      axios.post(url, this.form).then(function (response) {
+        /* that.flashMessage.show({
+            status: "success",
+            title: "Éxito al procesar",
+            message: "Datos guardados correctamente.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/success.svg",
+            customStyle: {
+                flashMessageStyle: {
+                    background: "linear-gradient(#e66465, #9198e5)"
+                }
+            }
+        }); */
+        loader.hide();
+      })["catch"](function (error) {
+        //Errores de validación
+        loader.hide();
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarModificarDatosPaciente",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
         });
       });
     }
-  }), _defineProperty(_methods, "validarForm", function validarForm() {
-    if (this.form.estatura == "") {
-      this.flashMessage.show({
-        status: "warning",
-        title: "Advertencia",
-        message: "Se necesita una Estatura.",
-        clickable: true,
-        time: 5000,
-        icon: "/iconsflashMessage/warning.svg",
-        customStyle: {
-          flashMessageStyle: {
-            background: "linear-gradient(#e66465, #9198e5)"
-          }
-        }
-      });
-      return false;
-    }
-
-    if (this.form.peso == "") {
-      this.flashMessage.show({
-        status: "warning",
-        title: "Advertencia",
-        message: "Se necesita un Peso.",
-        clickable: true,
-        time: 5000,
-        icon: "/iconsflashMessage/warning.svg",
-        customStyle: {
-          flashMessageStyle: {
-            background: "linear-gradient(#e66465, #9198e5)"
-          }
-        }
-      });
-      return false;
-    }
-
-    if (this.form.id_cirujano <= 0) {
-      this.flashMessage.show({
-        status: "warning",
-        title: "Advertencia",
-        message: "Se necesita seleccionar un Cirujano",
-        clickable: true,
-        time: 5000,
-        icon: "/iconsflashMessage/warning.svg",
-        customStyle: {
-          flashMessageStyle: {
-            background: "linear-gradient(#e66465, #9198e5)"
-          }
-        }
-      });
-      return false;
-    }
-
-    if (this.form.id_ayudante1 <= 0) {
-      this.flashMessage.show({
-        status: "warning",
-        title: "Advertencia",
-        message: "Se necesita seleccionar un Ayudante ",
-        clickable: true,
-        time: 5000,
-        icon: "/iconsflashMessage/warning.svg",
-        customStyle: {
-          flashMessageStyle: {
-            background: "linear-gradient(#e66465, #9198e5)"
-          }
-        }
-      });
-      return false;
-    }
-
-    if (this.form.id_tarifaria <= 0) {
-      this.flashMessage.show({
-        status: "warning",
-        title: "Advertencia",
-        message: "Se necesita seleccionar la Operación Realizada",
-        clickable: true,
-        time: 5000,
-        icon: "/iconsflashMessage/warning.svg",
-        customStyle: {
-          flashMessageStyle: {
-            background: "linear-gradient(#e66465, #9198e5)"
-          }
-        }
-      });
-      return false;
-    }
-
-    if (this.form.id_anestesiologo <= 0) {
-      this.flashMessage.show({
-        status: "warning",
-        title: "Advertencia",
-        message: "Se necesita seleccionar un Anestesiologo ",
-        clickable: true,
-        time: 5000,
-        icon: "/iconsflashMessage/warning.svg",
-        customStyle: {
-          flashMessageStyle: {
-            background: "linear-gradient(#e66465, #9198e5)"
-          }
-        }
-      });
-      return false;
-    }
-
-    if (this.form.id_instrumentista <= 0) {
-      this.flashMessage.show({
-        status: "warning",
-        title: "Advertencia",
-        message: "Se necesita seleccionar un Instrumentista ",
-        clickable: true,
-        time: 5000,
-        icon: "/iconsflashMessage/warning.svg",
-        customStyle: {
-          flashMessageStyle: {
-            background: "linear-gradient(#e66465, #9198e5)"
-          }
-        }
-      });
-      return false;
-    }
-
-    return true;
-  }), _defineProperty(_methods, "guardarCabecera", function guardarCabecera(registro_anestesia_id) {
-    var that = this;
-    var url = "";
-    var mensaje = "";
-    url = "/modulos/cirugia/anestesia/guardar_datos_registro";
-    this.form.registro_anestesia_id = registro_anestesia_id;
-    var loader = that.$loading.show();
-    axios.post(url, this.form).then(function (response) {
-      /* that.flashMessage.show({
-          status: "success",
-          title: "Éxito al procesar",
-          message: "Datos guardados correctamente.",
-          clickable: true,
-          time: 5000,
-          icon: "/iconsflashMessage/success.svg",
-          customStyle: {
-              flashMessageStyle: {
-                  background: "linear-gradient(#e66465, #9198e5)"
-              }
-          }
-      }); */
-      loader.hide();
-    })["catch"](function (error) {
-      //Errores de validación
-      loader.hide();
-      that.flashMessage.show({
-        status: "error",
-        title: "Error al procesar guardarCabecera",
-        message: "Por favor comuníquese con el administrador. " + error,
-        clickable: true,
-        time: 0,
-        icon: "/iconsflashMessage/error.svg",
-        customStyle: {
-          flashMessageStyle: {
-            background: "linear-gradient(#e66465, #9198e5)"
-          }
-        }
-      });
-    });
-  }), _methods),
+  },
   computed: {}
 });
 
@@ -5218,15 +5358,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
       type: String,
       required: true
+    },
+    idRegistroAnestesia: {
+      type: Number,
+      required: true
     }
   },
   data: function data() {
     return {
+      iniciadoGrafica: false,
+      isHidden: "block",
       // Detectar cuando Inicia/Finaliza el Proceso
       iniciado: false,
       //Datos para el conteo del la hora
@@ -5320,7 +5467,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         pares_venosa: {
           ruta_img: "img/icons/pares_venosa.png",
           habilitado: true,
-          descripcion: "PARES VENOSA",
+          descripcion: "PRES VENOSA",
           valor: 0
         },
         torniquete: {
@@ -5343,7 +5490,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         torniquete: 0
       },
       form: {
-        cirugia_id: 0
+        cirugia_id: 0,
+        registro_anestesia_id: 0,
+        id_datos_agente: 0,
+        imgGrafica: ""
       },
       // Posociones
       posiciones: [],
@@ -5467,6 +5617,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     this.minutes = minuto;
     this.hour = hora;
     this.form.cirugia_id = this.$props.idSecCirPro;
+    this.form.registro_anestesia_id = this.$props.idRegistroAnestesia;
     /**
      * Se empiezan a llenar los datos de la rejilla
      */
@@ -5706,9 +5857,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     //Metodo para iniciar el proceso de la grafica
     start_time: function () {
       var _start_time = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(event) {
-        var _this3 = this;
-
-        var url, $id;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -5722,21 +5870,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
               case 2:
                 this.iniciado = true;
-                this.agregarHorasInicial(); //Guardar datos en la tabla tb_registro_anestesia
-
-                url = "/modulos/cirugia/anestesia/registro/post";
-                _context.next = 7;
-                return axios.post(url, this.form).then(function (response) {
-                  _this3.form.registro_anestesia_id = response.data.id;
-                });
-
-              case 7:
-                $id = _context.sent;
-                this.$emit("guardarCabecera", this.form.registro_anestesia_id); //Guardar datos en la tabla tb_tipo_agente_anestesia
-                // Poner el dato al inicio de la rejilla cuando se haya iniciado
+                this.iniciadoGrafica = true;
+                this.agregarHorasInicial(); // Poner el dato al inicio de la rejilla cuando se haya iniciado
 
                 this.agregaDatoEnRejilla(true, false, 250, "img/icons/induccion.png", {
-                  system_name: "INDUCCION",
+                  system_name: "INDUCCIÓN",
                   tipo: this.system_agente
                 });
                 this.flashMessage.show({
@@ -5753,7 +5891,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                   }
                 });
 
-              case 11:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -5767,82 +5905,32 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       return start_time;
     }(),
-
-    /* start_time: async function(event) {
-        if (this.iniciado) return;
-        this.iniciado = true;
-        this.agregarHorasInicial();
-        //Guardar datos en la tabla tb_registro_anestesia
-        let url = "/modulos/cirugia/anestesia/registro/post";
-        let $id = await axios.post(url, this.form).then(response => {
-            this.form.registro_anestesia_id = response.data.id;
-        });
-        this.$emit("guardarCabecera", this.form.registro_anestesia_id);
-        //Guardar datos en la tabla tb_tipo_agente_anestesia
-        // Poner el dato al inicio de la rejilla cuando se haya iniciado
-        this.agregaDatoEnRejilla(
-            true,
-            false,
-            250,
-            "img/icons/induccion.png",
-            { system_name: "INDUCCION", tipo: this.system_agente }
-        );
-        this.flashMessage.show({
-            status: "success",
-            title: "Éxito al procesar",
-            message: "Agente agregado correctamente.",
-            clickable: true,
-            time: 5000,
-            icon: "/iconsflashMessage/success.svg",
-            customStyle: {
-                flashMessageStyle: {
-                    background: "linear-gradient(#e66465, #9198e5)"
-                }
-            }
-        });
-    }, */
     //Metodo para finalizar el proceso de la grafica
     end_time: function end_time() {
-      if (this.validarImgFirma) {
-        if (!this.iniciado) return;
-        this.mostrarModalConfirmarCandelar();
+      if (!this.iniciado) return;
+      this.mostrarModalConfirmarCandelar();
 
-        if (this.resConfirmarCancelar) {
-          this.agregaDatoEnRejilla(true, false, 0, "img/icons/fin_anestecia.png", {
-            system_name: "FIN-ANESTECIA",
-            tipo: this.system_agente
-          });
-          var idFlashMessage1 = this.flashMessage.show({
-            status: "info",
-            title: "Generando Gráfica",
-            message: "Se está generando la gráfica, por favor espere.",
-            clickable: false,
-            time: 0,
-            icon: "/iconsflashMessage/time.gif",
-            blockClass: "custom_msg",
-            customStyle: {
-              flashMessageStyle: {
-                background: "linear-gradient(#e66465, #9198e5)"
-              }
-            }
-          });
-          this.getImgGrafica(idFlashMessage1);
-          this.guardarDrograAdministrada();
-        }
-      } else {
-        this.flashMessage.show({
-          status: "warning",
-          title: "Advertencia al procesar firma",
-          message: "Se necesita una firma por favor.",
-          clickable: true,
+      if (this.resConfirmarCancelar) {
+        this.agregaDatoEnRejilla(true, false, 0, "img/icons/fin_anestecia.png", {
+          system_name: "FIN-ANESTESIA",
+          tipo: this.system_agente
+        });
+        var idFlashMessage1 = this.flashMessage.show({
+          status: "info",
+          title: "Generando Gráfica",
+          message: "Se está generando la gráfica, por favor espere.",
+          clickable: false,
           time: 0,
-          icon: "/iconsflashMessage/warning.svg",
+          icon: "/iconsflashMessage/time.gif",
+          blockClass: "custom_msg",
           customStyle: {
             flashMessageStyle: {
               background: "linear-gradient(#e66465, #9198e5)"
             }
           }
         });
+        this.getImgGrafica(idFlashMessage1);
+        this.guardarModificarAgenteText();
       }
     },
 
@@ -5950,7 +6038,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
      * Método para enviar datos de la rejilla (agentes), cada que se registen (pasando 5 min)
      */
     enviarDatosAgente1: function enviarDatosAgente1() {
-      var _this4 = this;
+      var _this3 = this;
 
       var datos = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var tipo = arguments.length > 1 ? arguments[1] : undefined;
@@ -5967,28 +6055,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         tipo: tipo,
         SecCirPro: this.form.cirugia_id
       }).then(function (response) {
-        _this4.datos_server = response.data; //alert("es_posicion:" + es_posicion);
+        _this3.datos_server = response.data; //alert("es_posicion:" + es_posicion);
 
         if (agente.dato.es_agente) {
-          console.log(agente);
           col_cince_min.agentes.push({
             descripcion: agente.columnas.agente.description,
             valor: agente.columnas.agente.valueNew,
             _src: agente.columnas.agente.src,
             id: response.data.datos
           });
-          console.log(col_cince_min.agentes);
         } else {
-          /* Object.assign(agente.posicion, {
-              idRe: response.data.datos
-          }); */
           column_quince.posicion.descripcion = agente.posicion.description;
           column_quince.posicion.id = agente.posicion.cod;
           column_quince.posicion.img_url = agente.posicion.src;
           column_quince.posicion.idRe = agente.posicion.codRe;
         }
 
-        _this4.form.id_datos_agente = 0;
+        _this3.form.id_datos_agente = 0;
       })["catch"](function (error) {
         that.flashMessage.show({
           status: "error",
@@ -6006,7 +6089,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
     },
     enviarDatosAgente: function enviarDatosAgente() {
-      var _this5 = this;
+      var _this4 = this;
 
       var datos = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var tipo = arguments.length > 1 ? arguments[1] : undefined;
@@ -6027,7 +6110,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         tipo: tipo,
         SecCirPro: this.form.cirugia_id
       }).then(function (response) {
-        _this5.datos_server = response.data; //alert("es_posicion:" + es_posicion);
+        _this4.datos_server = response.data; //alert("es_posicion:" + es_posicion);
 
         if (es_posicion == false) {
           col_cince_min.agentes.push({
@@ -6043,7 +6126,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           column_quince.posicion = posicion;
         }
 
-        _this5.form.id_datos_agente = 0;
+        _this4.form.id_datos_agente = 0;
       })["catch"](function (error) {
         that.flashMessage.show({
           status: "error",
@@ -6060,6 +6143,118 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         });
       });
     },
+    getImgGrafica: function getImgGrafica(idFlashMessage1) {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var loader, la, optiones;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                loader = _this5.$loading.show();
+                la = _this5.$refs.printMe;
+                optiones = {
+                  type: "dataURL"
+                };
+                _context2.next = 5;
+                return _this5.$html2canvas(la, optiones);
+
+              case 5:
+                _this5.form.imgGrafica = _context2.sent;
+
+                _this5.flashMessage.deleteMessage(idFlashMessage1);
+
+                loader.hide();
+
+                _this5.guardarImgGrafica();
+
+              case 9:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    guardarImgGrafica: function guardarImgGrafica() {
+      var that = this;
+      var url = "";
+      var mensaje = "";
+      var formNew = {
+        cirugia_id: that.form.cirugia_id,
+        registro_anestesia_id: that.form.registro_anestesia_id,
+        imgGrafica: that.form.imgGrafica
+      };
+      url = "/modulos/cirugia/anestesia/guardar_img_grafica";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        that.flashMessage.show({
+          status: "success",
+          title: "Exito en Graficar",
+          message: "Grafico generado correctamente.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        that.resConfirmarCancelar = false;
+        that.iniciado = false;
+        that.isHidden = "none";
+        loader.hide();
+      })["catch"](function (error) {
+        that.resConfirmarCancelar = false;
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarImgGrafica",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    guardarModificarAgenteText: function guardarModificarAgenteText() {
+      var that = this;
+      var url = "";
+      var formNew = {
+        datos: that.agentes_text,
+        registro_anestesia_id: that.form.registro_anestesia_id,
+        hora: that.hour,
+        minuto: that.minutes,
+        indice_minuto: that.indice_minuto
+      };
+      url = "/modulos/cirugia/anestesia/guardar_modificar_agente_text";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        loader.hide();
+      })["catch"](function (error) {
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarModificarAgenteText",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
     //Metodos para el componente ConfirmarCandelar
     mostrarModalConfirmarCandelar: function mostrarModalConfirmarCandelar() {
       this.icon = "/iconsflashMessage/warning.svg";
@@ -6071,6 +6266,61 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.resConfirmarCancelar = value;
       this.$modal.hide("ConfirmarCandelar");
       this.end_time();
+    },
+    eliminarAgente: function eliminarAgente(index, index_fila, index_columna, index_minutos_columna, index_agente) {
+      var minutos_columna = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
+      var agente = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : {};
+      var dato = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : {};
+      this.lmpDatosEliminarAgente(); //Inicia la optimizacion
+
+      this.datos_eliminar_agente.index_all.index = index;
+      this.datos_eliminar_agente.index_all.index_fila = index_fila;
+      this.datos_eliminar_agente.index_all.index_columna = index_columna;
+      this.datos_eliminar_agente.index_all.index_minutos_columna = index_minutos_columna;
+      this.datos_eliminar_agente.index_all.index_agente = index_agente;
+      this.datos_eliminar_agente.columnas.t_init = minutos_columna['t_init'];
+      this.datos_eliminar_agente.columnas.t_fin = minutos_columna['t_fin']; //Agente
+
+      this.datos_eliminar_agente.columnas.agente.cod = agente.id;
+      this.datos_eliminar_agente.columnas.agente.description = agente.descripcion;
+      this.datos_eliminar_agente.columnas.agente.src = agente._src;
+      this.datos_eliminar_agente.columnas.agente.value = agente.valor; //Fin Agente
+
+      this.datos_eliminar_agente.dato.es_agente = dato.es_agente;
+      this.datos_eliminar_agente.dato.es_posicion = dato.es_posicion; //Fin la optimizacion
+
+      if (this.datos_eliminar_agente.dato.es_agente && this.datos_eliminar_agente.index_all.index_fila != 29) {
+        this.datos_eliminar_agente.adicional = {
+          system_name: this.datos_eliminar_agente.columnas.agente.description,
+          tipo: "agente"
+        };
+      } else if (this.datos_eliminar_agente.dato.es_agente && this.datos_eliminar_agente.index_all.index_fila == 29) {
+        this.datos_eliminar_agente.adicional = {
+          system_name: this.datos_eliminar_agente.columnas.agente.description,
+          tipo: "respiracion"
+        };
+      }
+
+      this.$modal.show("EliminarAgente");
+    },
+    eliminarPosicion: function eliminarPosicion(index, index_fila, index_columna) {
+      var posicion = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+      this.lmpDatosEliminarAgente();
+      this.datos_eliminar_agente.index_all.index = index;
+      this.datos_eliminar_agente.index_all.index_fila = index_fila;
+      this.datos_eliminar_agente.index_all.index_columna = index_columna; //Posicicion
+
+      this.datos_eliminar_agente.posicion.cod = posicion.id;
+      this.datos_eliminar_agente.posicion.codRe = posicion.idRe;
+      this.datos_eliminar_agente.posicion.description = posicion.descripcion;
+      this.datos_eliminar_agente.posicion.nombre_sistema = posicion.name_system;
+      this.datos_eliminar_agente.posicion.src = posicion.img_url; //Fin
+
+      this.datos_eliminar_agente.adicional = {
+        system_name: this.datos_eliminar_agente.posicion.description,
+        tipo: "posicion"
+      };
+      this.$modal.show("EliminarAgente");
     },
     //Metodo para cerrar el modal y procesar el modificado o eliminado del agentes
     handleSeleccionarClick: function handleSeleccionarClick(value) {
@@ -6208,6 +6458,29 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       this.$modal.hide("EliminarAgente");
     },
+    lmpDatosEliminarAgente: function lmpDatosEliminarAgente() {
+      this.datos_eliminar_agente.respuesta_modificar = false;
+      this.datos_eliminar_agente.respuesta_modificar = false;
+      this.datos_eliminar_agente.index_all.index = "";
+      this.datos_eliminar_agente.index_all.index_fila = "";
+      this.datos_eliminar_agente.index_all.index_columna = "";
+      this.datos_eliminar_agente.index_all.index_minutos_columna = "";
+      this.datos_eliminar_agente.index_all.index_agente = "";
+      this.datos_eliminar_agente.columnas.agente.src = "";
+      this.datos_eliminar_agente.columnas.agente.description = "";
+      this.datos_eliminar_agente.columnas.agente.cod = "";
+      this.datos_eliminar_agente.columnas.agente.value = "";
+      this.datos_eliminar_agente.columnas.agente.valueNew = "";
+      this.datos_eliminar_agente.columnas.t_fin = "";
+      this.datos_eliminar_agente.columnas.t_init = "";
+      this.datos_eliminar_agente.posicion.description = "";
+      this.datos_eliminar_agente.posicion.cod = "";
+      this.datos_eliminar_agente.posicion.codRe = "";
+      this.datos_eliminar_agente.posicion.src = "";
+      this.datos_eliminar_agente.posicion.nombre_sistema = "";
+      this.datos_eliminar_agente.dato.es_agente = "";
+      this.datos_eliminar_agente.dato.es_posicion = "";
+    },
     //Metodo para agregar una nueva hora en la grafica
     agregarObjetoPorHora: function agregarObjetoPorHora() {
       // Validar que se haya guardado todos los valores
@@ -6287,9 +6560,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       if (this.chk.torniquete) {
         this.agregarDatos(this.valoresFormulario.torniquete);
-      } //Aqui va el metodo de guardar los text
-      //this.guardarModificarAgenteText();
-      // Agregar posición en la rejilla
+      } // Agregar posición en la rejilla
 
 
       var post_text = this.posiciones.find(function (e) {
@@ -6323,7 +6594,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.flashMessage.show({
           status: "warning",
           title: "Advertencia Campos Vacios",
-          message: "El campo TA MAX, necesita una valor.",
+          message: "El campo T.A. MAX, necesita una valor.",
           clickable: true,
           time: 5000,
           icon: "/iconsflashMessage/warning.svg",
@@ -6341,7 +6612,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.flashMessage.show({
           status: "warning",
           title: "Advertencia Campos Vacios",
-          message: "El campo TA MIN, necesita una valor.",
+          message: "El campo T.A. MIN, necesita una valor.",
           clickable: true,
           time: 5000,
           icon: "/iconsflashMessage/warning.svg",
@@ -6436,7 +6707,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           this.flashMessage.show({
             status: "warning",
             title: "Advertencia Campos Vacios",
-            message: "El campo PARES VENOSA, necesita un valor.",
+            message: "El campo PRES VENOSA, necesita un valor.",
             clickable: true,
             time: 5000,
             icon: "/iconsflashMessage/warning.svg",
@@ -6681,6 +6952,44 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         system_name: campo.descripcion,
         tipo: this.system_agente
       });
+    },
+    validarForm: function validarForm() {
+      //return true;
+      if (this.iniciadoGrafica == false) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia",
+          message: "Usted aun no ha Iniciado el proceso de Registro Trans-Anestésico. Por favor de en iniciar para continuar.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      if (this.iniciado) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia",
+          message: "Usted aun no ha terminado el proceso de Registro Trans-Anestésico. Por favor de en finalizar para continuar.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      return true;
     }
   },
   computed: {}
@@ -6870,6 +7179,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -6886,7 +7219,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       form: {
-        idCirugiaProgramada: "",
+        idCirugiaProgramada: "0001",
         idCirugiaProgramadaTemporal: "",
         registro_anestesia_id: 0,
 
@@ -6922,6 +7255,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.flashMessage.setStrategy("multiple");
+    this.obtenerIdRegistroAnestesio();
     /*  var user = this.$attrs;
     console.log(user); */
 
@@ -6979,7 +7313,6 @@ __webpack_require__.r(__webpack_exports__);
             that.form.idCirugiaProgramada = value.SecCirPro;
             that.$modal.hide("ListaCirugiaProgramadaPaciente");
             loader.hide();
-            that.obtenerIdRegistroAnestesio();
           }
         })["catch"](function (error) {
           loader.hide();
@@ -7001,31 +7334,6 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     /* Fin para llamar al Modal y la Tabla */
-    obtenerIdRegistroAnestesio: function obtenerIdRegistroAnestesio() {
-      var that = this;
-      var url = "/modulos/cirugia/anestesia/registro/post";
-      var loader = that.$loading.show();
-      axios.post(url, this.form).then(function (response) {
-        that.form.registro_anestesia_id = response.data.id;
-        loader.hide();
-      })["catch"](function (error) {
-        //Errores de validación
-        loader.hide();
-        that.flashMessage.show({
-          status: "error",
-          title: "Error al procesar obtenerIdRegistroAnestesio",
-          message: "Por favor comuníquese con el administrador. " + error,
-          clickable: true,
-          time: 0,
-          icon: "/iconsflashMessage/error.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-      });
-    },
 
     /* Metodos para los form-wizard */
     onValidateTab: function onValidateTab(validationResult, activeTabIndex) {//Se debera realizar las validaciones respectivas para cada tab
@@ -7043,6 +7351,8 @@ __webpack_require__.r(__webpack_exports__);
             break;
 
           case 1:
+            poseeErrores = _this.$refs.transAnestesico.validarForm();
+            resolve(poseeErrores);
             break;
 
           case 2:
@@ -7065,14 +7375,11 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.formRegistroAnestesico.reset();
     },
     onChangeTab: function onChangeTab(prevIndex, nextIndex) {
-      //Se debera realizar las validaciones respectivas para cada tab
-      this.setFormTitle(nextIndex);
       /* if (typeof this.onChangeTab() === "function") {
-          alert("entra");
-          //Es seguro ejecutar la función
+          this.setFormTitle(nextIndex);
           this.guardarModificar(prevIndex);
       } */
-
+      this.setFormTitle(nextIndex);
       this.guardarModificar(prevIndex);
     },
     setFormTitle: function setFormTitle(index) {
@@ -7093,11 +7400,11 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case 3:
-          //this.titulo_seleccionado = "Paraclinicos";
-          //this.$refs.paraclinico.cargarParaclinico();
+          this.$refs.pdfRegistroAnestesia.contentDocument.location.reload();
           break;
 
         case 4:
+          this.$refs.firmaDigitalRegisAnes.consultarSello();
           break;
 
         default:
@@ -7107,26 +7414,52 @@ __webpack_require__.r(__webpack_exports__);
     guardarModificar: function guardarModificar(index) {
       switch (index) {
         case 0:
-          this.$refs.datosPaciente.guardarModificar();
+          this.$refs.datosPaciente.guardarModificarDatosPaciente();
           break;
 
         case 1:
-          //this.$refs.antecedente.guardarModificar();
           break;
 
         case 2:
-          //this.$refs.examenFisico.guardarModificar();
+          this.$refs.administracionFarmaco.guardarAdministracionFarmaco();
           break;
 
         case 3:
-          //this.$refs.paraclinico.guardarModificar();
           break;
 
         case 4:
           break;
 
-        default: //this.titulo_seleccionado = "";
-
+        default:
+      }
+    },
+    obtenerIdRegistroAnestesio: function obtenerIdRegistroAnestesio() {
+      if (this.form.registro_anestesia_id <= 0) {
+        var that = this;
+        var url = "/modulos/cirugia/anestesia/registro/post";
+        var loader = that.$loading.show();
+        axios.post(url, this.form).then(function (response) {
+          that.form.registro_anestesia_id = response.data.id;
+          loader.hide();
+        })["catch"](function (error) {
+          //Errores de validación
+          loader.hide();
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar obtenerIdRegistroAnestesio",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+        });
+      } else {
+        this.guardarModificarDatosPaciente();
       }
     },
 
@@ -7151,40 +7484,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../variables */ "./resources/js/variables.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7394,7 +7693,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.flashMessage.setStrategy("multiple");
+    //this.flashMessage.setStrategy("multiple");
+    this.lmpFormRegistroTiempo();
     this.prefijo = _variables__WEBPACK_IMPORTED_MODULE_0__["prefix"];
   },
   beforeDestroy: function beforeDestroy() {
@@ -7410,54 +7710,82 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     /* Metodos para Llamar al Modal y la Tabla */
     mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
+      this.lmpFormRegistroTiempo();
       this.$modal.show("ListaCirugiaProgramadaPaciente");
     },
     handleSeleccionarClick: function handleSeleccionarClick(value) {
-      if (value != "") {
-        var that = this;
-        var url = "/modulos/cirugia/registro_tiempo/validar_secCirPro/" + value.SecCirPro; //var loader = that.$loading.show();
-
-        axios.get(url).then(function (response) {
-          //Obtiene los datos de Motivo Antecedentes
-          if (response.data.secCirPro != null && response.data.secCirPro != undefined) {
-            that.$modal.hide("ListaCirugiaProgramadaPaciente");
-            that.flashMessage.show({
-              status: "warning",
-              title: "Advertencia al Seleccionar Paciente",
-              message: "El paciente ya cuenta con un registro anestesico.",
-              clickable: true,
-              time: 10000,
-              icon: "/iconsflashMessage/warning.svg",
-              customStyle: {
-                flashMessageStyle: {
-                  background: "linear-gradient(#e66465, #9198e5)"
-                }
-              }
-            }); //loader.hide();
-          } else {
-            that.form.nombre = value.nombrePaciente;
-            that.form.id_cirugia_programada = value.SecCirPro;
-            that.setSelectedDetalleTiempo();
-            that.cargarRegistroTiempoPorSecCirPro();
-            that.$modal.hide("ListaCirugiaProgramadaPaciente");
-          }
-        })["catch"](function (error) {
-          that.flashMessage.show({
-            status: "error",
-            title: "Error al procesar handleSeleccionarClick",
-            message: "Por favor comuníquese con el administrador. " + error,
-            clickable: true,
-            time: 0,
-            icon: "/iconsflashMessage/error.svg",
-            customStyle: {
-              flashMessageStyle: {
-                background: "linear-gradient(#e66465, #9198e5)"
-              }
-            }
-          });
-          loader.hide();
-        });
-      }
+      $('#my-card').CardWidget('collapse');
+      this.form.nombre = value.nombrePaciente;
+      this.form.id_cirugia_programada = value.SecCirPro;
+      this.setSelectedDetalleTiempo();
+      this.cargarRegistroTiempoPorSecCirPro();
+      this.$modal.hide("ListaCirugiaProgramadaPaciente");
+      /* if (value != "") {
+          var cont = 0;
+          let that = this;
+          let url =
+              "/modulos/cirugia/registro_tiempo/validar_secCirPro/" +
+              value.SecCirPro;
+          //var loader = that.$loading.show();
+          axios
+              .get(url)
+              .then(function(response) {
+                  if (
+                      response.data.secCirPro != null &&
+                      response.data.secCirPro != undefined
+                  ) {
+                      response.data.secCirPro.forEach(tiempo => {
+                          if(response.data.secCirPro.estado = 'P'){
+                              cont +=1;
+                          }
+                      });
+                      if (cont == 4){
+                          that.$modal.hide("ListaCirugiaProgramadaPaciente");
+                          that.flashMessage.show({
+                              status: "warning",
+                              title: "Advertencia al Seleccionar Paciente",
+                              message:
+                                  "El paciente ya cuenta con un registro anestesico.",
+                              clickable: true,
+                              time: 10000,
+                              icon: "/iconsflashMessage/warning.svg",
+                              customStyle: {
+                                  flashMessageStyle: {
+                                      background:
+                                          "linear-gradient(#e66465, #9198e5)"
+                                  }
+                              }
+                          });
+                      } else {
+                          that.form.nombre = value.nombrePaciente;
+                          that.form.id_cirugia_programada = value.SecCirPro;
+                          that.setSelectedDetalleTiempo();
+                          that.cargarRegistroTiempoPorSecCirPro();
+                          that.$modal.hide("ListaCirugiaProgramadaPaciente");
+                      }
+                  }
+              })
+              .catch(error => {
+                  that.flashMessage.show({
+                      status: "error",
+                      title:
+                          "Error al procesar handleSeleccionarClick",
+                      message:
+                          "Por favor comuníquese con el administrador. " +
+                          error,
+                      clickable: true,
+                      time: 0,
+                      icon: "/iconsflashMessage/error.svg",
+                      customStyle: {
+                          flashMessageStyle: {
+                              background:
+                                  "linear-gradient(#e66465, #9198e5)"
+                          }
+                      }
+                  });
+                  loader.hide();
+              });
+      } */
     },
     cargarRegistroTiempoPorSecCirPro: function cargarRegistroTiempoPorSecCirPro() {
       if (this.form.id_cirugia_programada > 0) {
@@ -7666,14 +7994,14 @@ __webpack_require__.r(__webpack_exports__);
           //Valida cuando Uso De Quirófano se desea Finalizar, pero Cirugía sigue Iniciado
           if (this.registros_tiempos[0].estado == "Iniciado") {
             if (this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente") {
-              return 'No puede finalizar Uso De Quirófano, cuando Cirugía sigue Iniciado o Pendiente.';
+              return 'No puede finalizar Uso De Quirófano, cuando Ingreso de Anestesiólogo sigue Iniciado o Pendiente.';
             }
-          } //Valida cuando Uso De Quirófano se desea Finalizar, pero Preparación De Anestesiólogo sigue en Iniciado
+          } //Valida cuando Uso De Quirófano se desea Finalizar, pero Ingreso De Anestesiólogo sigue en Iniciado
 
 
           if (this.registros_tiempos[0].estado == "Iniciado") {
             if (this.registros_tiempos[1].estado == "Iniciado") {
-              return 'No puede finalizar Uso De Quirófano, cuando Preparación De Anestesiólogo sigue Iniciado.';
+              return 'No puede finalizar Uso De Quirófano, cuando Ingreso De Anestesiólogo sigue Iniciado.';
             }
           }
         }
@@ -7686,12 +8014,12 @@ __webpack_require__.r(__webpack_exports__);
             if (this.registros_tiempos[0].estado == "Pendiente") {
               return 'No puede Iniciar Ingreso de Anestesiólogo, cuando Uso De Quirófano sigue Pendiente.';
             }
-          } //Valida cuando Ingreso de Anestesiólogo se desea Finalizar, pero Induccion sigue en Iniciado o Pendiente
+          } //Valida cuando Ingreso de Anestesiólogo se desea Finalizar, pero Inducción sigue en Iniciado o Pendiente
 
 
           if (this.registros_tiempos[1].estado == "Iniciado") {
             if (this.registros_tiempos[2].estado == "Iniciado" || this.registros_tiempos[2].estado == "Pendiente") {
-              return 'No puede finalizar Ingreso de Anestesiólogo, cuando Uso De Quirófano sigue Iniciado o Pendiente.';
+              return 'No puede finalizar Ingreso de Anestesiólogo, cuando Inducción sigue Iniciado o Pendiente.';
             }
           } //Valida cuando se quiere dar click en Ingreso de Anestesiólogo estando Finalizado, pero Uso de Quirófano sigue en iniciado
 
@@ -7702,14 +8030,14 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-        /* Valida cuando se seleccione Induccion */
+        /* Valida cuando se seleccione Inducción */
 
 
         if (this.form.id_detalle_tiempo == 3) {
-          //Valida cuando Inducción se desea Iniciar, pero Preparación De Anestesiólogo sigue en pendiente
+          //Valida cuando Inducción se desea Iniciar, pero Ingreso De Anestesiólogo sigue en pendiente
           if (this.registros_tiempos[2].estado == "Pendiente") {
             if (this.registros_tiempos[1].estado == "Pendiente") {
-              return 'No puede Iniciar Inducción, cuando Preparación De Anestesiólogo sigue Pendiente.';
+              return 'No puede Iniciar Inducción, cuando Ingreso De Anestesiólogo sigue Pendiente.';
             }
           } //Valida cuando Inducción se desea Finalizar, pero Cirugía sigue en Iniciado o Pendiente
 
@@ -7718,12 +8046,12 @@ __webpack_require__.r(__webpack_exports__);
             if (this.registros_tiempos[3].estado == "Iniciado" || this.registros_tiempos[3].estado == "Pendiente") {
               return 'No puede Finalizar Inducción, cuando Cirugía sigue Iniciado o Pendiente.';
             }
-          } //Valida cuando se quiere dar click en Inducción estando Finalizado, pero Preparación De Anestesiólogo sigue en iniciado
+          } //Valida cuando se quiere dar click en Inducción estando Finalizado, pero Ingreso De Anestesiólogo sigue en iniciado
 
 
           if (this.registros_tiempos[2].estado == "Finalizado") {
             if (this.registros_tiempos[1].estado == "Iniciado") {
-              return 'No puede dar click nuevamente en Inducción, cuando Preparación De Anestesiólogo sigue Iniciado.';
+              return 'No puede dar click nuevamente en Inducción, cuando Ingreso De Anestesiólogo sigue Iniciado.';
             }
           } //Valida cuando se quiere dar click en Inducción estando Finalizado, pero Uso de Quirófano sigue en iniciado
 
@@ -7738,24 +8066,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
         if (this.form.id_detalle_tiempo == 4) {
-          //Valida cuando Cirugía se desea Iniciar, pero Induccion sigue en pendiente
+          //Valida cuando Cirugía se desea Iniciar, pero Inducción sigue en pendiente
           if (this.registros_tiempos[3].estado == "Pendiente") {
             if (this.registros_tiempos[2].estado == "Pendiente") {
-              return 'No puede Iniciar Cirugía, cuando Induccion sigue Pendiente.';
+              return 'No puede Iniciar Cirugía, cuando Inducción sigue Pendiente.';
             }
-          } //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Induccion sigue en iniciado
+          } //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Inducción sigue en iniciado
 
 
           if (this.registros_tiempos[3].estado == "Finalizado") {
             if (this.registros_tiempos[2].estado == "Iniciado" || this.registros_tiempos[2].estado == "Finalizado") {
-              return 'No puede dar click nuevamente en Cirugia, cuando Induccion sigue Iniciado o Finalizado.';
+              return 'No puede dar click nuevamente en Cirugia, cuando Inducción sigue Iniciado o Finalizado.';
             }
-          } //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Induccion sigue en iniciado
+          } //Valida cuando se quiere dar click en Cirugia estando Finalizado, pero Inducción sigue en iniciado
 
 
           if (this.registros_tiempos[3].estado == "Finalizado") {
             if (this.registros_tiempos[2].estado == "Iniciado") {
-              return 'No puede dar click nuevamente en Cirugia, cuando Induccion sigue Iniciado.';
+              return 'No puede dar click nuevamente en Cirugia, cuando Inducción sigue Iniciado.';
             }
           }
         }
@@ -7777,6 +8105,18 @@ __webpack_require__.r(__webpack_exports__);
       this.form.id_detalle_tiempo = value.id_detalle_tiempo;
       this.form.id_registro_tiempo = value.id_registro_tiempo;
       this.guardarRegistroTiempo();
+    },
+    lmpFormRegistroTiempo: function lmpFormRegistroTiempo() {
+      this.iniciado = false;
+      this.form = {
+        id_cirugia_programada: 0,
+        id_detalle_tiempo: 0,
+        id_registro_tiempo: 0,
+        selected_detalle_tiempo: "",
+        detalles_tiempos: [],
+        nombre: "",
+        observacion: ""
+      };
     }
   }
 });
@@ -13889,42 +14229,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -13941,7 +14245,7 @@ __webpack_require__.r(__webpack_exports__);
       rutaSello: "",
       idPromesa: [],
       listas: {
-        SecCirPro: "",
+        SecCirPro: "0001",
         frm_id_user: "",
         chkentrada01: false,
         chkentrada02: false,
@@ -13988,6 +14292,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {},
+  destroyed: function destroyed() {
+    localStorage.removeItem('tasks');
+  },
   methods: {
     /* Metodos para Llamar al Modal y la Tabla */
     mostrarModalListaCirugiaPaciente: function mostrarModalListaCirugiaPaciente() {
@@ -14004,8 +14311,7 @@ __webpack_require__.r(__webpack_exports__);
       //     this.$refs.revisionSistema.cargarRevisionSistema();
       // }
 
-      this.cargarLista(value.SecCirPro);
-      this.consultarSello();
+      this.cargarLista(value.SecCirPro); //this.consultarSello();
     },
     cargarLista: function cargarLista(value) {
       var that = this;
@@ -14056,8 +14362,10 @@ __webpack_require__.r(__webpack_exports__);
       }); //  llamarMetodoImprimir();
     },
     onChangeTab: function onChangeTab(prevIndex, nextIndex) {
+      /* if (typeof this.onChangeTab() === "function") {
+          this.guardarModificar(prevIndex);
+      } */
       this.guardarModificar(prevIndex);
-      this.guardarModificar2(nextIndex);
     },
     onValidateTab: function onValidateTab(validationResult, activeTabIndex) {},
     guardarModificar: function guardarModificar(index) {
@@ -14074,31 +14382,7 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case 3:
-          // this.$refs.listvisualizacion.contentDocument.location.reload();
-          break;
-
-        case 4:
-          break;
-
-        default: //this.titulo_seleccionado = "";
-
-      }
-    },
-    guardarModificar2: function guardarModificar2(index) {
-      switch (index) {
-        case 0:
-          break;
-
-        case 1:
-          break;
-
-        case 2:
-          //  this.$refs.listvisualizacion.contentDocument.location.reload();
-          // this.guardarLista();
-          break;
-
-        case 3:
-          //  this.$refs.listvisualizacion.contentDocument.location.reload();
+          this.$refs.firmaDigitalListas.consultarSello();
           break;
 
         case 4:
@@ -14190,85 +14474,6 @@ __webpack_require__.r(__webpack_exports__);
     onComplete: function onComplete() {
       //this.guardarFirmaPorAtencion();
       this.$refs.formListaVerificacion.reset();
-    },
-    guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
-      var that = this;
-      var url = "";
-      var mensaje = "";
-      var formNew = {
-        tipo_servicio: 4,
-        id_atencion: that.form.id_lista,
-        // that.form.id_lista,
-        id_visita: 0,
-        id_tipo_documento: 13,
-        imgFirma: that.form.imgFirma
-      };
-      url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
-      var loader = that.$loading.show();
-      axios.post(url, formNew).then(function (response) {
-        loader.hide();
-        that.flashMessage.show({
-          status: "success",
-          title: "Éxito al procesar Firma por Atención",
-          message: "Datos guardados correctamente.",
-          clickable: true,
-          time: 5000,
-          icon: "/iconsflashMessage/success.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-      })["catch"](function (error) {
-        that.resConfirmarCancelar = false;
-        that.flashMessage.show({
-          status: "error",
-          title: "Error al procesar guardarFirmaPorAtencion",
-          message: "Por favor comuníquese con el administrador. " + error,
-          clickable: true,
-          time: 0,
-          icon: "/iconsflashMessage/error.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-        loader.hide();
-      });
-    },
-    consultarSello: function consultarSello() {
-      var that = this;
-
-      if (this.$props.user.id > 0) {
-        var loader = that.$loading.show();
-        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
-        axios.get(url).then(function (response) {
-          if (response.data.sello != null) {
-            if (response.data.sello.seguridad_medico != null) {
-              that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
-            }
-          }
-
-          loader.hide();
-        })["catch"](function (error) {
-          that.flashMessage.show({
-            status: "error",
-            title: "Error al procesar consultarSello",
-            message: "Por favor comuníquese con el administrador. " + error,
-            clickable: true,
-            time: 0,
-            icon: "/iconsflashMessage/error.svg",
-            customStyle: {
-              flashMessageStyle: {
-                background: "linear-gradient(#e66465, #9198e5)"
-              }
-            }
-          });
-          loader.hide();
-        });
-      }
     },
     llamarMetodoImprimir: function llamarMetodoImprimir() {
       window.open("/modulos/cirugia/lista_verificacion/mostrarreporte/" + this.listas.SecCirPro);
@@ -15806,6 +16011,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -15827,13 +16044,14 @@ __webpack_require__.r(__webpack_exports__);
       },
       form: {
         /* Datos del paciente */
-        frm_idCirugiaProgramada: "",
+        frm_idCirugiaProgramada: "2890",
         //2890
         frm_paciente: "",
         frm_cirujano: "",
         frm_anestesiologo: "",
         frm_quirofano: "",
-        frm_procedimiento: ""
+        frm_procedimiento: "",
+        id_revision_sistema: 0
       }
     };
   },
@@ -15923,14 +16141,11 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.formValoracionPreanestecia.reset();
     },
     onChangeTab: function onChangeTab(prevIndex, nextIndex) {
-      //Se debera realizar las validaciones respectivas para cada tab
-      this.setFormTitle(nextIndex);
       /* if (typeof this.onChangeTab() === "function") {
-          alert("entra");
-          //Es seguro ejecutar la función
+          this.setFormTitle(nextIndex);
           this.guardarModificar(prevIndex);
       } */
-
+      this.setFormTitle(nextIndex);
       this.guardarModificar(prevIndex);
     },
     setFormTitle: function setFormTitle(index) {
@@ -15956,6 +16171,11 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case 4:
+          this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
+          break;
+
+        case 5:
+          this.$refs.firmaDigitalValoPrea.consultarSello();
           break;
 
         default:
@@ -15987,48 +16207,6 @@ __webpack_require__.r(__webpack_exports__);
 
       }
     },
-
-    /* consultarSello() {
-        let that = this;
-        if (this.$props.user.id > 0) {
-            var loader = that.$loading.show();
-            let url =
-                "/modulos/cirugia/anestesia/cargar_sello/" +
-                this.$props.user.id;
-              axios
-                .get(url)
-                .then(function(response) {
-                    if (response.data.sello != null) {
-                        if (response.data.sello.seguridad_medico != null) {
-                            that.rutaSello =
-                                "data:image/jpeg;base64," +
-                                response.data.sello.seguridad_medico.medico
-                                    .medico_sellos.IMAGEN_SELLO;
-                        }
-                    }
-                    loader.hide();
-                })
-                .catch(error => {
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar consultarSello",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background:
-                                    "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        }
-    }, */
     llamarMetodoImprimir: function llamarMetodoImprimir() {
       if (this.respuestaFinProceso || this.respuestaImprimir) {
         window.open("/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" + this.form.frm_idCirugiaProgramada);
@@ -18329,8 +18507,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -18435,12 +18611,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: (_methods = {
     validarForm: function validarForm() {
-      //Se comprueba que un checkbox tenga data
-      if (this.form.frm_puntuacionNeurologico < 0 || this.form.frm_puntuacionNeurologico > 15) {
+      if (this.form.frm_cmBocaAperturaOral < 1 || this.form.frm_cmBocaAperturaOral > 4) {
         this.flashMessage.show({
           status: "warning",
           title: "Advertencia",
-          message: "El campo puntuación debe sumar ser mayor 0 o menor a 15 ",
+          message: "El campo cm debe ser mayor o igual a 1, o menor o igual a 4.",
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      if (this.form.frm_puntuacionNeurologico < 3 || this.form.frm_puntuacionNeurologico > 15) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia",
+          message: "El campo puntuación debe sumar ser mayor o igual a 3, o menor o igual a 15.",
           clickable: true,
           time: 5000,
           icon: "/iconsflashMessage/warning.svg",
@@ -18479,7 +18671,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           that.form.frm_dmt = response.data.examenFisico.dmt;
           that.form.frm_cmCuelloCorto = response.data.examenFisico.cmCuelloCorto;
           that.form.frm_movilidad_cuello = response.data.examenFisico.movilidad_cuello;
-          /* Escala de Malla MPATI */
+          /* Escala de MallaMPATI */
 
           that.chk.chk_clase1 = +response.data.examenFisico.clase1;
           that.form.frm_clase1 = +response.data.examenFisico.clase1;
@@ -18611,7 +18803,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     /* Fin Cuello Corto */
 
-    /* Escala de Malla MPATI */
+    /* Escala de MallaMPATI */
     validarChkClase1: function validarChkClase1() {
       if (this.chk.chk_clase1) {
         this.form.frm_clase1 = 0;
@@ -19701,75 +19893,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
       type: String,
       required: true
-    },
-    user: {
-      type: Object
     },
     idRevisionSistema: {
       type: Number,
@@ -19781,13 +19909,6 @@ __webpack_require__.r(__webpack_exports__);
       tipoSangre: [],
       selectedTipoSangre: "",
       validarFinProceso: 0,
-      validarImgFirma: 0,
-      isFirstPaintable: "firmaAnestesiologo",
-      rutaSello: "",
-      frmimg: {
-        imgFirma: null,
-        imgGrafica: null
-      },
       chk: {
         /* Paraclinicos */
         chk_hb: false,
@@ -19860,7 +19981,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.setSelectedTipoSangre();
-    this.consultarSello();
     /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
     let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
         .admistracion_de_citas.citas.motivo_antecedentes.nombre_formulario;
@@ -19887,60 +20007,24 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     validarForm: function validarForm() {
       //Se comprueba que un checkbox tenga data
-      if (this.frmimg.imgFirma == null) {
-        this.flashMessage.show({
-          status: "warning",
-          title: "Advertencia al finalizar con el proceso",
-          message: "Usted debe firmar porfavor.",
-          clickable: true,
-          time: 0,
-          icon: "/iconsflashMessage/warning.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-        return false;
-      }
 
-      return true;
-    },
-    consultarSello: function consultarSello() {
-      var that = this;
-
-      if (this.$props.user.id > 0) {
-        var loader = that.$loading.show();
-        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
-        axios.get(url).then(function (response) {
-          if (response.data.sello != null) {
-            if (response.data.sello.seguridad_medico != null) {
-              if (response.data.sello.seguridad_medico.medico != null) {
-                if (response.data.sello.seguridad_medico.medico.medico_sellos != null) {
-                  that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
-                }
+      /* if (this.frmimg.imgFirma == null) {
+          this.flashMessage.show({
+              status: "warning",
+              title: "Advertencia al finalizar con el proceso",
+              message: "Usted debe firmar porfavor.",
+              clickable: true,
+              time: 0,
+              icon: "/iconsflashMessage/warning.svg",
+              customStyle: {
+                  flashMessageStyle: {
+                      background: "linear-gradient(#e66465, #9198e5)"
+                  }
               }
-            }
-          }
-
-          loader.hide();
-        })["catch"](function (error) {
-          that.flashMessage.show({
-            status: "error",
-            title: "Error al procesar consultarSello",
-            message: "Por favor comuníquese con el administrador. " + error,
-            clickable: true,
-            time: 0,
-            icon: "/iconsflashMessage/error.svg",
-            customStyle: {
-              flashMessageStyle: {
-                background: "linear-gradient(#e66465, #9198e5)"
-              }
-            }
           });
-          loader.hide();
-        });
-      }
+          return false;
+      } */
+      return true;
     },
     setSelectedTipoSangre: function setSelectedTipoSangre(value) {
       var that = this;
@@ -20131,57 +20215,6 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }
-    },
-    guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
-      var that = this;
-      var url = "";
-      var mensaje = ""; // alert(that.form.imgFirma);
-
-      var formNew = {
-        tipo_servicio: 4,
-        id_atencion: that.$props.idRevisionSistema,
-        //id de revision de sistema
-        id_visita: 0,
-        id_tipo_documento: 13,
-        imgFirma: that.frmimg.imgFirma
-      };
-      url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
-      var loader = that.$loading.show();
-      axios.post(url, formNew).then(function (response) {
-        loader.hide();
-        that.flashMessage.show({
-          status: "success",
-          title: "Proceso realizado exitosamente",
-          message: that.mensaje,
-          clickable: true,
-          time: 5000,
-          icon: "/iconsflashMessage/success.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-        /* that.validarFinProceso = 1;
-        that.$emit("validarFinProceso", that.validarFinProceso);
-        that.$emit("FinProceso"); */
-      })["catch"](function (error) {
-        that.resConfirmarCancelar = false;
-        that.flashMessage.show({
-          status: "error",
-          title: "Error al procesar guardarFirmaPorAtencion",
-          message: "Por favor comuníquese con el administrador. " + error,
-          clickable: true,
-          time: 0,
-          icon: "/iconsflashMessage/error.svg",
-          customStyle: {
-            flashMessageStyle: {
-              background: "linear-gradient(#e66465, #9198e5)"
-            }
-          }
-        });
-        loader.hide();
-      });
     },
 
     /* Paraclinicos */
@@ -21038,6 +21071,84 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -21110,6 +21221,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         frm_enfCoronaria: 0,
         frm_arritmias: 0,
         frm_otrosCardiovascular: 0,
+        frm_otrosCardiovascularValor: "",
         frm_enfValvular: 0,
         frm_varices: 0,
         frm_claudicacion: 0,
@@ -21119,6 +21231,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         frm_asma: 0,
         frm_tbc: 0,
         frm_otrosRespiratorio: 0,
+        frm_otrosRespiratorioValor: "",
 
         /* Neurologico */
         frm_convulsiones: 0,
@@ -21127,23 +21240,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         frm_convulsion: 0,
         frm_enfMental: 0,
         frm_otrosNeurologico: 0,
+        frm_otrosNeurologicoValor: "",
 
         /* Nefrologicos */
         frm_ira: 0,
         frm_infeccionUnitaria: 0,
         frm_irc: 0,
         frm_otrosNefrologicos: 0,
+        frm_otrosNefrologicosValor: "",
 
         /* Gastrointestinal */
         frm_ulcera: 0,
         frm_estomagoLleno: 0,
         frm_otrosGastrointestinal: 0,
+        frm_otrosGastrointestinalValor: "",
 
         /* Sistema Endocrima */
         frm_diabetes: 0,
         frm_hipertiroidismo: 0,
         frm_obecidad: 0,
-        frm_otrosSistemaEndocrima: 0
+        frm_otrosSistemaEndocrima: 0,
+        frm_otrosSistemaEndocrimaValor: ""
       }
     };
   },
@@ -22920,6 +23037,195 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/componentesGenerales/VueFirmaComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/componentesGenerales/VueFirmaComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      type: Object
+    },
+    tipoServicio: {
+      type: Number
+    },
+    idAtencion: {
+      type: Number
+    },
+    idVisita: {
+      type: Number
+    },
+    idTipoDocumento: {
+      type: Number
+    }
+  },
+  data: function data() {
+    return {
+      validarImgFirma: 0,
+      isFirstPaintable: "firmaAnestesiologo",
+      rutaSello: "",
+      form: {
+        imgFirma: ""
+      }
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    consultarSello: function consultarSello() {
+      var that = this;
+
+      if (this.$props.user.id > 0) {
+        var loader = that.$loading.show();
+        var url = "/modulos/cirugia/anestesia/cargar_sello/" + this.$props.user.id;
+        axios.get(url).then(function (response) {
+          if (response.data.sello != null) {
+            if (response.data.sello.seguridad_medico != null) {
+              if (response.data.sello.seguridad_medico.medico != null) {
+                if (response.data.sello.seguridad_medico.medico.medico_sellos != null) {
+                  that.rutaSello = "data:image/jpeg;base64," + response.data.sello.seguridad_medico.medico.medico_sellos.IMAGEN_SELLO;
+                }
+              }
+            }
+          }
+
+          loader.hide();
+        })["catch"](function (error) {
+          that.flashMessage.show({
+            status: "error",
+            title: "Error al procesar consultarSello",
+            message: "Por favor comuníquese con el administrador. " + error,
+            clickable: true,
+            time: 0,
+            icon: "/iconsflashMessage/error.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          loader.hide();
+        });
+      }
+    },
+    guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
+      var that = this;
+      var url = "";
+      var mensaje = "";
+      var formNew = {
+        tipo_servicio: that.$props.tipoServicio,
+        id_atencion: that.$props.idAtencion,
+        //id de revision de sistema
+        id_visita: that.$props.idVisita,
+        id_tipo_documento: that.$props.idTipoDocumento,
+        imgFirma: that.frmimg.imgFirma
+      };
+      url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
+      var loader = that.$loading.show();
+      axios.post(url, formNew).then(function (response) {
+        loader.hide();
+        that.flashMessage.show({
+          status: "success",
+          title: "Proceso realizado exitosamente",
+          message: that.mensaje,
+          clickable: true,
+          time: 5000,
+          icon: "/iconsflashMessage/success.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+      })["catch"](function (error) {
+        that.resConfirmarCancelar = false;
+        that.flashMessage.show({
+          status: "error",
+          title: "Error al procesar guardarFirmaPorAtencion",
+          message: "Por favor comuníquese con el administrador. " + error,
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/error.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        loader.hide();
+      });
+    },
+    validarForm: function validarForm() {
+      if (this.form.imgFirma == null) {
+        this.flashMessage.show({
+          status: "warning",
+          title: "Advertencia al finalizar con el proceso",
+          message: "Usted debe firmar porfavor.",
+          clickable: true,
+          time: 0,
+          icon: "/iconsflashMessage/warning.svg",
+          customStyle: {
+            flashMessageStyle: {
+              background: "linear-gradient(#e66465, #9198e5)"
+            }
+          }
+        });
+        return false;
+      }
+
+      return true;
+    }
+  }
 });
 
 /***/ }),
@@ -65863,7 +66169,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8 border-r" }, [
-                    _vm._v("HS Min")
+                    _vm._v("H. Min")
                   ])
                 ]),
                 _vm._v(" "),
@@ -68085,7 +68391,7 @@ var render = function() {
                     staticClass: "col-md-5 p-0 upper m-0",
                     attrs: { for: "perforacion-duramadre" }
                   },
-                  [_vm._v("perforacion duramadre")]
+                  [_vm._v("perforación duramadre")]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-1 p-0" }, [
@@ -68200,7 +68506,7 @@ var render = function() {
                     staticClass: "col-md-5 p-0 upper m-0",
                     attrs: { for: "nauseas-vomitos" }
                   },
-                  [_vm._v("nauseas-vomitos")]
+                  [_vm._v("náuseas-vómitos")]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-1 p-0" }, [
@@ -68592,52 +68898,6 @@ var render = function() {
                     }
                   }
                 })
-              ]),
-              _vm._v(" "),
-              _c("div", {}, [
-                _c("div", { staticStyle: { height: "70px" } }),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex flex-y" }, [
-                  _c(
-                    "span",
-                    {
-                      staticClass: "col-md-5 text-center",
-                      staticStyle: { margin: "auto" }
-                    },
-                    [
-                      _c("vue-painttable", {
-                        ref: "paintFirma",
-                        attrs: {
-                          hidePaintable: true,
-                          isFirstPaintable: _vm.isFirstPaintable,
-                          disableNavigation: true,
-                          showUndoRedo: false,
-                          showLineWidth: false,
-                          rutaImagen: _vm.rutaSello,
-                          width: 800,
-                          height: 800
-                        },
-                        on: {
-                          getOutput: function($event) {
-                            _vm.form.imgFirma = $event
-                          },
-                          RespuestaImgFirma: function($event) {
-                            _vm.validarImgFirma = $event
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "col-md-12 text-center" }, [
-                    _vm._v("______________________________________________")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "col-md-12 text-center" }, [
-                    _vm._v("FIRMA DEL ANESTESIOLOGO:")
-                  ])
-                ])
               ])
             ])
           ])
@@ -68676,7 +68936,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row border-b flex flex-center-x" }, [
-      _c("span", [_vm._v("TECNICAS")])
+      _c("span", [_vm._v("TÉCNICAS")])
     ])
   },
   function() {
@@ -68753,7 +69013,7 @@ var staticRenderFns = [
     return _c(
       "label",
       { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "mascara" } },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("mascara")])]
+      [_c("span", { staticClass: "space-left" }, [_vm._v("máscara")])]
     )
   },
   function() {
@@ -68779,7 +69039,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { staticClass: "upper", attrs: { for: "rapido" } }, [
-      _c("span", { staticClass: "space-left" }, [_vm._v("rapido")])
+      _c("span", { staticClass: "space-left" }, [_vm._v("rápido")])
     ])
   },
   function() {
@@ -68789,7 +69049,7 @@ var staticRenderFns = [
     return _c(
       "label",
       { staticClass: "col-md-6 p-0 m-0 upper", attrs: { for: "turbo" } },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("TURBO No")])]
+      [_c("span", { staticClass: "space-left" }, [_vm._v("TURBO N°")])]
     )
   },
   function() {
@@ -68828,7 +69088,7 @@ var staticRenderFns = [
         staticClass: "col-md-11 p-0 m-0 upper",
         attrs: { for: "asist-topica" }
       },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("asist topica")])]
+      [_c("span", { staticClass: "space-left" }, [_vm._v("asist tópica")])]
     )
   },
   function() {
@@ -68841,7 +69101,7 @@ var staticRenderFns = [
         staticClass: "col-md-11 p-0 m-0 upper",
         attrs: { for: "asist-tramboral" }
       },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("asist tramboral")])]
+      [_c("span", { staticClass: "space-left" }, [_vm._v("asist tranboral")])]
     )
   },
   function() {
@@ -68881,7 +69141,7 @@ var staticRenderFns = [
     return _c(
       "label",
       { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "habon" } },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("habon")])]
+      [_c("span", { staticClass: "space-left" }, [_vm._v("habón")])]
     )
   },
   function() {
@@ -68891,7 +69151,7 @@ var staticRenderFns = [
     return _c(
       "label",
       { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "raquidea" } },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("raquidea")])]
+      [_c("span", { staticClass: "space-left" }, [_vm._v("raquídea")])]
     )
   },
   function() {
@@ -68938,7 +69198,7 @@ var staticRenderFns = [
         staticStyle: { "font-size": "0.9em" },
         attrs: { for: "" }
       },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("ALTURA PUNCION")])]
+      [_c("span", { staticClass: "space-left" }, [_vm._v("ALTURA PUNCIÓN")])]
     )
   },
   function() {
@@ -68948,7 +69208,7 @@ var staticRenderFns = [
     return _c(
       "label",
       { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "puncion-lat" } },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("puncion lat")])]
+      [_c("span", { staticClass: "space-left" }, [_vm._v("punciÓn lat")])]
     )
   },
   function() {
@@ -68958,7 +69218,7 @@ var staticRenderFns = [
     return _c(
       "label",
       { staticClass: "col-md-11 p-0 m-0 upper", attrs: { for: "linea-media" } },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("linea media")])]
+      [_c("span", { staticClass: "space-left" }, [_vm._v("línea media")])]
     )
   },
   function() {
@@ -68998,7 +69258,7 @@ var staticRenderFns = [
     return _c(
       "label",
       { staticClass: "col-md-4 p-0 m-0", attrs: { for: "" } },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("POSICION PACIENTE")])]
+      [_c("span", { staticClass: "space-left" }, [_vm._v("POSICIÓN PACIENTE")])]
     )
   },
   function() {
@@ -69014,7 +69274,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row border-b flex flex-center-x" }, [
-      _c("span", [_vm._v("hemorragia")])
+      _c("span", [_vm._v("HEMORRAGIA")])
     ])
   },
   function() {
@@ -69022,7 +69282,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row border-b flex flex-center-x" }, [
-      _c("span", [_vm._v("apagar")])
+      _c("span", [_vm._v("APAGAR")])
     ])
   },
   function() {
@@ -69030,7 +69290,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row border-b flex flex-center-x" }, [
-      _c("span", [_vm._v("tecnicas especiales")])
+      _c("span", [_vm._v("TÉCNICAS ESPECIALES")])
     ])
   },
   function() {
@@ -69048,7 +69308,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row border-b flex flex-center-x" }, [
-      _c("span", [_vm._v("COMPLICACIONES OPERATRIAS")])
+      _c("span", [_vm._v("COMPLICACIONES OPERATORIAS")])
     ])
   },
   function() {
@@ -69058,7 +69318,7 @@ var staticRenderFns = [
     return _c(
       "label",
       { staticClass: "col-md-5 p-0 m-0", attrs: { for: "hipotension" } },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("HIPOTENSION")])]
+      [_c("span", { staticClass: "space-left" }, [_vm._v("HIPOTENSIÓN")])]
     )
   },
   function() {
@@ -69083,7 +69343,7 @@ var staticRenderFns = [
       },
       [
         _c("span", { staticClass: "space-left" }, [
-          _vm._v("depresion respiratoria")
+          _vm._v("depresión respiratoria")
         ])
       ]
     )
@@ -69100,7 +69360,7 @@ var staticRenderFns = [
       },
       [
         _c("span", { staticClass: "space-left" }, [
-          _vm._v("dificultad intubacion")
+          _vm._v("dificultad intubación")
         ])
       ]
     )
@@ -69132,7 +69392,7 @@ var staticRenderFns = [
         staticClass: "col-md-5 p-0 upper m-0",
         attrs: { for: "paro-cardiaco" }
       },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("paro cardiaco")])]
+      [_c("span", { staticClass: "space-left" }, [_vm._v("paro cardíaco")])]
     )
   },
   function() {
@@ -69145,7 +69405,7 @@ var staticRenderFns = [
         staticClass: "col-md-5 p-0 upper m-0",
         attrs: { for: "cambio-tecnica" }
       },
-      [_c("span", { staticClass: "space-left" }, [_vm._v("cambio de tecnica")])]
+      [_c("span", { staticClass: "space-left" }, [_vm._v("cambio de técnica")])]
     )
   }
 ]
@@ -69388,7 +69648,7 @@ var render = function() {
                         staticClass:
                           "col-lg-12 col-md-12 col-sm-12 col-form-label"
                       },
-                      [_vm._v("Est.")]
+                      [_vm._v("Est.(cm)")]
                     ),
                     _vm._v(" "),
                     _c("input", {
@@ -69426,7 +69686,7 @@ var render = function() {
                         staticClass:
                           "col-lg-12 col-md-12 col-sm-12 col-form-label"
                       },
-                      [_vm._v("Peso")]
+                      [_vm._v("Peso(Kg)")]
                     ),
                     _vm._v(" "),
                     _c("input", {
@@ -69662,6 +69922,8 @@ var render = function() {
                                 attrs: {
                                   taggable: "",
                                   "push-tags": "",
+                                  placeholder:
+                                    "Ingrese el diagnóstico a buscar",
                                   value: _vm.form.id_diagnostico_pre,
                                   options: _vm.diagnosticosPre,
                                   label: "display"
@@ -69717,6 +69979,8 @@ var render = function() {
                                 attrs: {
                                   taggable: "",
                                   "push-tags": "",
+                                  placeholder:
+                                    "Ingrese el diagnóstico a buscar",
                                   value: _vm.form.id_diagnostico,
                                   options: _vm.diagnosticos,
                                   label: "display"
@@ -69802,7 +70066,7 @@ var render = function() {
                         staticClass:
                           "col-lg-12 col-md-12 col-sm-12 col-form-label"
                       },
-                      [_vm._v("Cirujano")]
+                      [_vm._v("Cirujano(a)")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -69817,7 +70081,7 @@ var render = function() {
                               "v-select",
                               {
                                 attrs: {
-                                  placeholder: "Cirujano",
+                                  placeholder: "Seleccione un Cirujano(a)",
                                   value: _vm.form.id_cirujano,
                                   options: _vm.cirujanos,
                                   label: "display"
@@ -69871,7 +70135,7 @@ var render = function() {
                               "v-select",
                               {
                                 attrs: {
-                                  placeholder: "Ayudante",
+                                  placeholder: "Seleccione un Ayudante",
                                   value: _vm.form.id_ayudante1,
                                   options: _vm.ayudantes1,
                                   label: "display1"
@@ -69927,7 +70191,7 @@ var render = function() {
                                 attrs: {
                                   taggable: "",
                                   "push-tags": "",
-                                  placeholder: "Operación Realizada",
+                                  placeholder: "Ingrese la Operación Realizada",
                                   value: _vm.form.id_tarifaria,
                                   options: _vm.tarifarias,
                                   label: "display"
@@ -69966,7 +70230,7 @@ var render = function() {
                         staticClass:
                           "col-lg-12 col-md-12 col-sm-12 col-form-label"
                       },
-                      [_vm._v("Anestesiologo")]
+                      [_vm._v("Anestesiólogo(a)")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -69981,7 +70245,7 @@ var render = function() {
                               "v-select",
                               {
                                 attrs: {
-                                  placeholder: "Anestesiologo",
+                                  placeholder: "Seleccione un Anestesiológo(a)",
                                   value: _vm.form.id_anestesiologo,
                                   options: _vm.anestesiologos,
                                   label: "display"
@@ -70035,7 +70299,7 @@ var render = function() {
                               "v-select",
                               {
                                 attrs: {
-                                  placeholder: "Ayudante",
+                                  placeholder: "Seleccione un Ayudante",
                                   value: _vm.form.id_ayudante2,
                                   options: _vm.ayudantes2,
                                   label: "display2"
@@ -70089,7 +70353,7 @@ var render = function() {
                               "v-select",
                               {
                                 attrs: {
-                                  placeholder: "Instrumentista",
+                                  placeholder: "Seleccione un Instrumentista",
                                   value: _vm.form.id_instrumentista,
                                   options: _vm.instrumentistas,
                                   label: "display3"
@@ -70160,6 +70424,7 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-outline-primary",
+                      style: { display: _vm.isHidden },
                       on: { click: _vm.start_time }
                     },
                     [
@@ -70186,133 +70451,246 @@ var render = function() {
                 : _vm._e()
             ]),
             _vm._v(" "),
-            _c("div", { staticStyle: { width: "90%", margin: "0 auto" } }, [
-              _c("div", { staticClass: "row flex-center-x" }, [
-                _c(
-                  "p",
-                  {
-                    staticClass:
-                      "badge badge-warning  col-lg-4 col-md-4 col-sm-4",
-                    staticStyle: { "font-size": "1.0em" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                            Tiempo:\n                            "
-                    ),
-                    _c("span", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.hour,
-                            expression: "hour"
-                          }
-                        ],
-                        staticClass: "col-lg-2 col-md-2 col-sm-2",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.hour },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+            _c(
+              "div",
+              {
+                staticStyle: { width: "90%", margin: "0 auto" },
+                style: { display: _vm.isHidden }
+              },
+              [
+                _c("div", { staticClass: "row flex-center-x" }, [
+                  _c(
+                    "p",
+                    {
+                      staticClass:
+                        "badge badge-warning  col-lg-4 col-md-4 col-sm-4",
+                      staticStyle: { "font-size": "1.0em" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                            Tiempo:\n                            "
+                      ),
+                      _c("span", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.hour,
+                              expression: "hour"
                             }
-                            _vm.hour = $event.target.value
-                          }
-                        }
-                      }),
-                      _vm._v(":")
-                    ]),
-                    _c("span", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.minutes,
-                            expression: "minutes"
-                          }
-                        ],
-                        staticClass: "col-lg-2 col-md-2 col-sm-2",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.minutes },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                          ],
+                          staticClass: "col-lg-2 col-md-2 col-sm-2",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.hour },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.hour = $event.target.value
                             }
-                            _vm.minutes = $event.target.value
                           }
-                        }
-                      }),
-                      _vm._v(":")
-                    ]),
-                    _c("span", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.seconds,
-                            expression: "seconds"
-                          }
-                        ],
-                        staticClass: "col-lg-2 col-md-2 col-sm-2",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.seconds },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                        }),
+                        _vm._v(":")
+                      ]),
+                      _c("span", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.minutes,
+                              expression: "minutes"
                             }
-                            _vm.seconds = $event.target.value
+                          ],
+                          staticClass: "col-lg-2 col-md-2 col-sm-2",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.minutes },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.minutes = $event.target.value
+                            }
                           }
-                        }
-                      })
-                    ])
-                  ]
-                ),
+                        }),
+                        _vm._v(":")
+                      ]),
+                      _c("span", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.seconds,
+                              expression: "seconds"
+                            }
+                          ],
+                          staticClass: "col-lg-2 col-md-2 col-sm-2",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.seconds },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.seconds = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm.iniciado
+                    ? _c("span", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-success",
+                            attrs: { type: "button" },
+                            on: { click: _vm.agregarObjetoPorHora }
+                          },
+                          [_c("i", { staticClass: "fas fa-plus-circle" })]
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.iniciado_eliminar
+                    ? _c("span", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-danger",
+                            attrs: { type: "button" },
+                            on: { click: _vm.eliminarObjetoPorHora }
+                          },
+                          [_c("i", { staticClass: "fas fa-window-close" })]
+                        )
+                      ])
+                    : _vm._e()
+                ]),
                 _vm._v(" "),
                 _vm.iniciado
-                  ? _c("span", [
+                  ? _c("div", { staticClass: "row mb-5" }, [
                       _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-outline-success",
-                          attrs: { type: "button" },
-                          on: { click: _vm.agregarObjetoPorHora }
-                        },
-                        [_c("i", { staticClass: "fas fa-plus-circle" })]
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.iniciado_eliminar
-                  ? _c("span", [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-outline-danger",
-                          attrs: { type: "button" },
-                          on: { click: _vm.eliminarObjetoPorHora }
-                        },
-                        [_c("i", { staticClass: "fas fa-window-close" })]
-                      )
-                    ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _vm.iniciado
-                ? _c("div", { staticClass: "row mb-5" }, [
-                    _c("div", { staticClass: "col-md-3 border-t pt-2 pb-4" }, [
-                      _vm._m(0),
+                        "div",
+                        { staticClass: "col-md-3 border-t pt-2 pb-4" },
+                        [
+                          _vm._m(0),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-10 flex fle" }, [
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "mr-2",
+                                  attrs: { for: "ta_max" }
+                                },
+                                [_vm._v("MAX")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.valoresFormulario.ta_max.valor,
+                                    expression:
+                                      "\n                                            valoresFormulario.ta_max.valor\n                                        "
+                                  }
+                                ],
+                                staticClass: "input-registro text-center",
+                                attrs: {
+                                  type: "number",
+                                  name: "ta_max",
+                                  id: "ta_max"
+                                },
+                                domProps: {
+                                  value: _vm.valoresFormulario.ta_max.valor
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.valoresFormulario.ta_max,
+                                      "valor",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-md-10 mt-2 flex flex-x" },
+                              [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "mr-2",
+                                    attrs: { for: "ta_min" }
+                                  },
+                                  [_vm._v("MIN")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.valoresFormulario.ta_min.valor,
+                                      expression:
+                                        "\n                                            valoresFormulario.ta_min.valor\n                                        "
+                                    }
+                                  ],
+                                  staticClass: "input-registro text-center",
+                                  attrs: {
+                                    type: "number",
+                                    name: "ta_value",
+                                    id: "ta_min"
+                                  },
+                                  domProps: {
+                                    value: _vm.valoresFormulario.ta_min.valor
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.valoresFormulario.ta_min,
+                                        "valor",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]
+                            )
+                          ])
+                        ]
+                      ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-10 flex fle" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-md-2 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
+                        },
+                        [
                           _c(
                             "label",
-                            { staticClass: "mr-2", attrs: { for: "ta_max" } },
-                            [_vm._v("MAX")]
+                            {
+                              staticClass: "mr-2",
+                              attrs: { for: "valor_pulso" }
+                            },
+                            [_vm._v("PULSO")]
                           ),
                           _vm._v(" "),
                           _c("input", {
@@ -70320,19 +70698,19 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.valoresFormulario.ta_max.valor,
+                                value: _vm.valoresFormulario.valor_pulso.valor,
                                 expression:
-                                  "\n                                            valoresFormulario.ta_max.valor\n                                        "
+                                  "\n                                    valoresFormulario.valor_pulso.valor\n                                "
                               }
                             ],
                             staticClass: "input-registro text-center",
                             attrs: {
                               type: "number",
-                              name: "ta_max",
-                              id: "ta_max"
+                              name: "valor_pulso",
+                              id: "valor_pulso"
                             },
                             domProps: {
-                              value: _vm.valoresFormulario.ta_max.valor
+                              value: _vm.valoresFormulario.valor_pulso.valor
                             },
                             on: {
                               input: function($event) {
@@ -70340,848 +70718,664 @@ var render = function() {
                                   return
                                 }
                                 _vm.$set(
-                                  _vm.valoresFormulario.ta_max,
+                                  _vm.valoresFormulario.valor_pulso,
                                   "valor",
                                   $event.target.value
                                 )
                               }
                             }
                           })
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-md-10 mt-2 flex flex-x" },
-                          [
-                            _c(
-                              "label",
-                              { staticClass: "mr-2", attrs: { for: "ta_min" } },
-                              [_vm._v("MIN")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.valoresFormulario.ta_min.valor,
-                                  expression:
-                                    "\n                                            valoresFormulario.ta_min.valor\n                                        "
-                                }
-                              ],
-                              staticClass: "input-registro text-center",
-                              attrs: {
-                                type: "number",
-                                name: "ta_value",
-                                id: "ta_min"
-                              },
-                              domProps: {
-                                value: _vm.valoresFormulario.ta_min.valor
-                              },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.valoresFormulario.ta_min,
-                                    "valor",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            })
-                          ]
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "col-md-2 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
-                      },
-                      [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "mr-2",
-                            attrs: { for: "valor_pulso" }
-                          },
-                          [_vm._v("PULSO")]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.valoresFormulario.valor_pulso.valor,
-                              expression:
-                                "\n                                    valoresFormulario.valor_pulso.valor\n                                "
-                            }
-                          ],
-                          staticClass: "input-registro text-center",
-                          attrs: {
-                            type: "number",
-                            name: "valor_pulso",
-                            id: "valor_pulso"
-                          },
-                          domProps: {
-                            value: _vm.valoresFormulario.valor_pulso.valor
-                          },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.valoresFormulario.valor_pulso,
-                                "valor",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4 border-t pt-2 pb-4" }, [
-                      _vm._m(1),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row flex flex-center-x" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "col-lg-4 col-md-5 flex flex-x flex-center-y"
-                          },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "mr-2",
-                                attrs: { for: "respiracion_esp" }
-                              },
-                              [_vm._v("ESP")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value:
-                                    _vm.valoresFormulario.respiracion
-                                      .descripcion,
-                                  expression:
-                                    "\n                                            valoresFormulario.respiracion\n                                                .descripcion\n                                        "
-                                }
-                              ],
-                              staticClass: "input-registro",
-                              attrs: {
-                                type: "radio",
-                                name: "respiracion_esp",
-                                id: "respiracion_esp",
-                                value: "ESP"
-                              },
-                              domProps: {
-                                checked: _vm._q(
-                                  _vm.valoresFormulario.respiracion.descripcion,
-                                  "ESP"
-                                )
-                              },
-                              on: {
-                                change: function($event) {
-                                  return _vm.$set(
-                                    _vm.valoresFormulario.respiracion,
-                                    "descripcion",
-                                    "ESP"
-                                  )
-                                }
-                              }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
-                          },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "mr-2",
-                                attrs: { for: "respiracion_asis" }
-                              },
-                              [_vm._v("ASIS")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value:
-                                    _vm.valoresFormulario.respiracion
-                                      .descripcion,
-                                  expression:
-                                    "\n                                            valoresFormulario.respiracion\n                                                .descripcion\n                                        "
-                                }
-                              ],
-                              staticClass: "input-registro",
-                              attrs: {
-                                type: "radio",
-                                name: "respiracion_asis",
-                                id: "respiracion_asis",
-                                value: "ASIS"
-                              },
-                              domProps: {
-                                checked: _vm._q(
-                                  _vm.valoresFormulario.respiracion.descripcion,
-                                  "ASIS"
-                                )
-                              },
-                              on: {
-                                change: function($event) {
-                                  return _vm.$set(
-                                    _vm.valoresFormulario.respiracion,
-                                    "descripcion",
-                                    "ASIS"
-                                  )
-                                }
-                              }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
-                          },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "mr-2",
-                                attrs: { for: "respiracion_cont" }
-                              },
-                              [_vm._v("CONT")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value:
-                                    _vm.valoresFormulario.respiracion
-                                      .descripcion,
-                                  expression:
-                                    "\n                                            valoresFormulario.respiracion\n                                                .descripcion\n                                        "
-                                }
-                              ],
-                              staticClass: "input-registro",
-                              attrs: {
-                                type: "radio",
-                                name: "respiracion_cont",
-                                id: "respiracion_cont",
-                                value: "CONT"
-                              },
-                              domProps: {
-                                checked: _vm._q(
-                                  _vm.valoresFormulario.respiracion.descripcion,
-                                  "CONT"
-                                )
-                              },
-                              on: {
-                                change: function($event) {
-                                  return _vm.$set(
-                                    _vm.valoresFormulario.respiracion,
-                                    "descripcion",
-                                    "CONT"
-                                  )
-                                }
-                              }
-                            })
-                          ]
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
-                          },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "mr-2",
-                                attrs: { for: "temperatura" }
-                              },
-                              [_vm._v("TEMPERATURA")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.chk.temperatura,
-                                  expression: "chk.temperatura"
-                                }
-                              ],
-                              attrs: {
-                                type: "checkbox",
-                                name: "temperatura",
-                                id: "temperatura"
-                              },
-                              domProps: {
-                                checked: Array.isArray(_vm.chk.temperatura)
-                                  ? _vm._i(_vm.chk.temperatura, null) > -1
-                                  : _vm.chk.temperatura
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.chk.temperatura,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        _vm.$set(
-                                          _vm.chk,
-                                          "temperatura",
-                                          $$a.concat([$$v])
-                                        )
-                                    } else {
-                                      $$i > -1 &&
-                                        _vm.$set(
-                                          _vm.chk,
-                                          "temperatura",
-                                          $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1))
-                                        )
-                                    }
-                                  } else {
-                                    _vm.$set(_vm.chk, "temperatura", $$c)
-                                  }
-                                }
-                              }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.valoresFormulario.temperatura.valor,
-                              expression:
-                                "\n                                    valoresFormulario.temperatura.valor\n                                "
-                            }
-                          ],
-                          staticClass: "input-registro text-center",
-                          attrs: {
-                            type: "number",
-                            name: "valor_temperatura",
-                            id: "valor_temperatura"
-                          },
-                          domProps: {
-                            value: _vm.valoresFormulario.temperatura.valor
-                          },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.valoresFormulario.temperatura,
-                                "valor",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
-                          },
-                          [
-                            _c(
-                              "label",
-                              { staticClass: "mr-2", attrs: { for: "feto" } },
-                              [_vm._v("FETO")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.chk.feto,
-                                  expression: "chk.feto"
-                                }
-                              ],
-                              attrs: {
-                                type: "checkbox",
-                                name: "feto",
-                                id: "feto"
-                              },
-                              domProps: {
-                                checked: Array.isArray(_vm.chk.feto)
-                                  ? _vm._i(_vm.chk.feto, null) > -1
-                                  : _vm.chk.feto
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.chk.feto,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        _vm.$set(
-                                          _vm.chk,
-                                          "feto",
-                                          $$a.concat([$$v])
-                                        )
-                                    } else {
-                                      $$i > -1 &&
-                                        _vm.$set(
-                                          _vm.chk,
-                                          "feto",
-                                          $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1))
-                                        )
-                                    }
-                                  } else {
-                                    _vm.$set(_vm.chk, "feto", $$c)
-                                  }
-                                }
-                              }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.valoresFormulario.feto.valor,
-                              expression: "valoresFormulario.feto.valor"
-                            }
-                          ],
-                          staticClass: "input-registro text-center",
-                          attrs: {
-                            type: "number",
-                            name: "valor_feto",
-                            id: "valor_feto"
-                          },
-                          domProps: { value: _vm.valoresFormulario.feto.valor },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.valoresFormulario.feto,
-                                "valor",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
-                          },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "mr-2",
-                                attrs: { for: "pares_venosa" }
-                              },
-                              [_vm._v("PRES VENOSA")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.chk.pares_venosa,
-                                  expression: "chk.pares_venosa"
-                                }
-                              ],
-                              attrs: {
-                                type: "checkbox",
-                                name: "pares_venosa",
-                                id: "pares_venosa"
-                              },
-                              domProps: {
-                                checked: Array.isArray(_vm.chk.pares_venosa)
-                                  ? _vm._i(_vm.chk.pares_venosa, null) > -1
-                                  : _vm.chk.pares_venosa
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.chk.pares_venosa,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        _vm.$set(
-                                          _vm.chk,
-                                          "pares_venosa",
-                                          $$a.concat([$$v])
-                                        )
-                                    } else {
-                                      $$i > -1 &&
-                                        _vm.$set(
-                                          _vm.chk,
-                                          "pares_venosa",
-                                          $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1))
-                                        )
-                                    }
-                                  } else {
-                                    _vm.$set(_vm.chk, "pares_venosa", $$c)
-                                  }
-                                }
-                              }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.valoresFormulario.pares_venosa.valor,
-                              expression:
-                                "\n                                    valoresFormulario.pares_venosa.valor\n                                "
-                            }
-                          ],
-                          staticClass: "input-registro text-center",
-                          attrs: {
-                            type: "number",
-                            name: "valor_pres_venosa",
-                            id: "valor_pres_venosa"
-                          },
-                          domProps: {
-                            value: _vm.valoresFormulario.pares_venosa.valor
-                          },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.valoresFormulario.pares_venosa,
-                                "valor",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
-                          },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "mr-2",
-                                attrs: { for: "torniquete" }
-                              },
-                              [_vm._v("TORNIQUETE")]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.chk.torniquete,
-                                  expression: "chk.torniquete"
-                                }
-                              ],
-                              attrs: {
-                                type: "checkbox",
-                                name: "torniquete",
-                                id: "torniquete"
-                              },
-                              domProps: {
-                                checked: Array.isArray(_vm.chk.torniquete)
-                                  ? _vm._i(_vm.chk.torniquete, null) > -1
-                                  : _vm.chk.torniquete
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.chk.torniquete,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        _vm.$set(
-                                          _vm.chk,
-                                          "torniquete",
-                                          $$a.concat([$$v])
-                                        )
-                                    } else {
-                                      $$i > -1 &&
-                                        _vm.$set(
-                                          _vm.chk,
-                                          "torniquete",
-                                          $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1))
-                                        )
-                                    }
-                                  } else {
-                                    _vm.$set(_vm.chk, "torniquete", $$c)
-                                  }
-                                }
-                              }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.valoresFormulario.torniquete.valor,
-                              expression: "valoresFormulario.torniquete.valor"
-                            }
-                          ],
-                          staticClass: "input-registro text-center",
-                          attrs: {
-                            type: "number",
-                            name: "valor_torniquete",
-                            id: "valor_torniquete"
-                          },
-                          domProps: {
-                            value: _vm.valoresFormulario.torniquete.valor
-                          },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.valoresFormulario.torniquete,
-                                "valor",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-3 border-t pt-2 pb-4" }, [
-                      _vm._m(2),
+                        ]
+                      ),
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "row flex flex-center-x" },
-                        _vm._l(_vm.posiciones, function(posicion, index) {
-                          return _c(
+                        { staticClass: "col-md-4 border-t pt-2 pb-4" },
+                        [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row flex flex-center-x" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "col-lg-4 col-md-5 flex flex-x flex-center-y"
+                              },
+                              [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "mr-2",
+                                    attrs: { for: "respiracion_esp" }
+                                  },
+                                  [_vm._v("ESP")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value:
+                                        _vm.valoresFormulario.respiracion
+                                          .descripcion,
+                                      expression:
+                                        "\n                                            valoresFormulario.respiracion\n                                                .descripcion\n                                        "
+                                    }
+                                  ],
+                                  staticClass: "input-registro",
+                                  attrs: {
+                                    type: "radio",
+                                    name: "respiracion_esp",
+                                    id: "respiracion_esp",
+                                    value: "ESP"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(
+                                      _vm.valoresFormulario.respiracion
+                                        .descripcion,
+                                      "ESP"
+                                    )
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$set(
+                                        _vm.valoresFormulario.respiracion,
+                                        "descripcion",
+                                        "ESP"
+                                      )
+                                    }
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                              },
+                              [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "mr-2",
+                                    attrs: { for: "respiracion_asis" }
+                                  },
+                                  [_vm._v("ASIS")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value:
+                                        _vm.valoresFormulario.respiracion
+                                          .descripcion,
+                                      expression:
+                                        "\n                                            valoresFormulario.respiracion\n                                                .descripcion\n                                        "
+                                    }
+                                  ],
+                                  staticClass: "input-registro",
+                                  attrs: {
+                                    type: "radio",
+                                    name: "respiracion_asis",
+                                    id: "respiracion_asis",
+                                    value: "ASIS"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(
+                                      _vm.valoresFormulario.respiracion
+                                        .descripcion,
+                                      "ASIS"
+                                    )
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$set(
+                                        _vm.valoresFormulario.respiracion,
+                                        "descripcion",
+                                        "ASIS"
+                                      )
+                                    }
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                              },
+                              [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "mr-2",
+                                    attrs: { for: "respiracion_cont" }
+                                  },
+                                  [_vm._v("CONT")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value:
+                                        _vm.valoresFormulario.respiracion
+                                          .descripcion,
+                                      expression:
+                                        "\n                                            valoresFormulario.respiracion\n                                                .descripcion\n                                        "
+                                    }
+                                  ],
+                                  staticClass: "input-registro",
+                                  attrs: {
+                                    type: "radio",
+                                    name: "respiracion_cont",
+                                    id: "respiracion_cont",
+                                    value: "CONT"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(
+                                      _vm.valoresFormulario.respiracion
+                                        .descripcion,
+                                      "CONT"
+                                    )
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$set(
+                                        _vm.valoresFormulario.respiracion,
+                                        "descripcion",
+                                        "CONT"
+                                      )
+                                    }
+                                  }
+                                })
+                              ]
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
+                        },
+                        [
+                          _c(
                             "div",
                             {
-                              key: index,
                               staticClass:
-                                "col-lg-5 col-md-12 p-0 grid grid-2-c"
+                                "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
                             },
                             [
                               _c(
                                 "label",
                                 {
-                                  staticClass: "mr-2 grid-center",
-                                  attrs: {
-                                    for: "radio-posicion-" + posicion.id
-                                  }
+                                  staticClass: "mr-2",
+                                  attrs: { for: "temperatura" }
                                 },
-                                [_vm._v(_vm._s(posicion.descripcion))]
+                                [_vm._v("TEMPERATURA")]
                               ),
                               _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.chk.temperatura,
+                                    expression: "chk.temperatura"
+                                  }
+                                ],
+                                attrs: {
+                                  type: "checkbox",
+                                  name: "temperatura",
+                                  id: "temperatura"
+                                },
+                                domProps: {
+                                  checked: Array.isArray(_vm.chk.temperatura)
+                                    ? _vm._i(_vm.chk.temperatura, null) > -1
+                                    : _vm.chk.temperatura
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = _vm.chk.temperatura,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = null,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            _vm.chk,
+                                            "temperatura",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            _vm.chk,
+                                            "temperatura",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
+                                    } else {
+                                      _vm.$set(_vm.chk, "temperatura", $$c)
+                                    }
+                                  }
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.valoresFormulario.temperatura.valor,
+                                expression:
+                                  "\n                                    valoresFormulario.temperatura.valor\n                                "
+                              }
+                            ],
+                            staticClass: "input-registro text-center",
+                            attrs: {
+                              type: "number",
+                              name: "valor_temperatura",
+                              id: "valor_temperatura"
+                            },
+                            domProps: {
+                              value: _vm.valoresFormulario.temperatura.valor
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.valoresFormulario.temperatura,
+                                  "valor",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                            },
+                            [
                               _c(
-                                "span",
+                                "label",
+                                { staticClass: "mr-2", attrs: { for: "feto" } },
+                                [_vm._v("FETO")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.chk.feto,
+                                    expression: "chk.feto"
+                                  }
+                                ],
+                                attrs: {
+                                  type: "checkbox",
+                                  name: "feto",
+                                  id: "feto"
+                                },
+                                domProps: {
+                                  checked: Array.isArray(_vm.chk.feto)
+                                    ? _vm._i(_vm.chk.feto, null) > -1
+                                    : _vm.chk.feto
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = _vm.chk.feto,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = null,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            _vm.chk,
+                                            "feto",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            _vm.chk,
+                                            "feto",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
+                                    } else {
+                                      _vm.$set(_vm.chk, "feto", $$c)
+                                    }
+                                  }
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.valoresFormulario.feto.valor,
+                                expression: "valoresFormulario.feto.valor"
+                              }
+                            ],
+                            staticClass: "input-registro text-center",
+                            attrs: {
+                              type: "number",
+                              name: "valor_feto",
+                              id: "valor_feto"
+                            },
+                            domProps: {
+                              value: _vm.valoresFormulario.feto.valor
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.valoresFormulario.feto,
+                                  "valor",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                            },
+                            [
+                              _c(
+                                "label",
                                 {
+                                  staticClass: "mr-2",
+                                  attrs: { for: "pares_venosa" }
+                                },
+                                [_vm._v("PRES VENOSA")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.chk.pares_venosa,
+                                    expression: "chk.pares_venosa"
+                                  }
+                                ],
+                                attrs: {
+                                  type: "checkbox",
+                                  name: "pares_venosa",
+                                  id: "pares_venosa"
+                                },
+                                domProps: {
+                                  checked: Array.isArray(_vm.chk.pares_venosa)
+                                    ? _vm._i(_vm.chk.pares_venosa, null) > -1
+                                    : _vm.chk.pares_venosa
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = _vm.chk.pares_venosa,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = null,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            _vm.chk,
+                                            "pares_venosa",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            _vm.chk,
+                                            "pares_venosa",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
+                                    } else {
+                                      _vm.$set(_vm.chk, "pares_venosa", $$c)
+                                    }
+                                  }
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.valoresFormulario.pares_venosa.valor,
+                                expression:
+                                  "\n                                    valoresFormulario.pares_venosa.valor\n                                "
+                              }
+                            ],
+                            staticClass: "input-registro text-center",
+                            attrs: {
+                              type: "number",
+                              name: "valor_pres_venosa",
+                              id: "valor_pres_venosa"
+                            },
+                            domProps: {
+                              value: _vm.valoresFormulario.pares_venosa.valor
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.valoresFormulario.pares_venosa,
+                                  "valor",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-md-3 flex border-t flex-y flex-center-x flex-center-y pt-2 pb-4"
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "col-lg-4 col-md-5 flex flex-x flex-center-x flex-center-y"
+                            },
+                            [
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "mr-2",
+                                  attrs: { for: "torniquete" }
+                                },
+                                [_vm._v("TORNIQUETE")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.chk.torniquete,
+                                    expression: "chk.torniquete"
+                                  }
+                                ],
+                                attrs: {
+                                  type: "checkbox",
+                                  name: "torniquete",
+                                  id: "torniquete"
+                                },
+                                domProps: {
+                                  checked: Array.isArray(_vm.chk.torniquete)
+                                    ? _vm._i(_vm.chk.torniquete, null) > -1
+                                    : _vm.chk.torniquete
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = _vm.chk.torniquete,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = null,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            _vm.chk,
+                                            "torniquete",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            _vm.chk,
+                                            "torniquete",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
+                                    } else {
+                                      _vm.$set(_vm.chk, "torniquete", $$c)
+                                    }
+                                  }
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.valoresFormulario.torniquete.valor,
+                                expression: "valoresFormulario.torniquete.valor"
+                              }
+                            ],
+                            staticClass: "input-registro text-center",
+                            attrs: {
+                              type: "number",
+                              name: "valor_torniquete",
+                              id: "valor_torniquete"
+                            },
+                            domProps: {
+                              value: _vm.valoresFormulario.torniquete.valor
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.valoresFormulario.torniquete,
+                                  "valor",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-3 border-t pt-2 pb-4" },
+                        [
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "row flex flex-center-x" },
+                            _vm._l(_vm.posiciones, function(posicion, index) {
+                              return _c(
+                                "div",
+                                {
+                                  key: index,
                                   staticClass:
-                                    "flex flex-center-x flex-center-y"
+                                    "col-lg-5 col-md-12 p-0 grid grid-2-c"
                                 },
                                 [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value:
-                                          _vm.valoresFormulario.posicion.id,
-                                        expression:
-                                          "\n                                                valoresFormulario.posicion\n                                                    .id\n                                            "
-                                      }
-                                    ],
-                                    attrs: {
-                                      type: "radio",
-                                      id: "radio-posicion-" + posicion.id,
-                                      checked: ""
-                                    },
-                                    domProps: {
-                                      value: posicion.id,
-                                      checked: _vm._q(
-                                        _vm.valoresFormulario.posicion.id,
-                                        posicion.id
-                                      )
-                                    },
-                                    on: {
-                                      change: function($event) {
-                                        return _vm.$set(
-                                          _vm.valoresFormulario.posicion,
-                                          "id",
-                                          posicion.id
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              )
-                            ]
-                          )
-                        }),
-                        0
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "flex felx-center mt-2 mb-2",
-                        staticStyle: { margin: "0 auto" }
-                      },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary",
-                            on: { click: _vm.obtenerDatosFormulario }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                Agregar\n                            "
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.iniciado
-                ? _c("div", [
-                    _c("div", { ref: "printMe" }, [
-                      _vm._m(3),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "border-t row" }, [
-                        _c("div", { staticClass: "col-12" }, [
-                          _c("div", { staticClass: "row" }, [
-                            _c(
-                              "div",
-                              { staticClass: "col-lg-3 col-md-4 col-4" },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "border-b row ml-2",
-                                    staticStyle: { background: "transparent" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                                AGENTE/HORA\n                                            "
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _vm._l(_vm.agentes_text, function(text, index) {
-                                  return _c(
-                                    "div",
+                                  _c(
+                                    "label",
                                     {
-                                      key: index,
-                                      staticClass: "row he25 border-b border-r"
+                                      staticClass: "mr-2 grid-center",
+                                      attrs: {
+                                        for: "radio-posicion-" + posicion.id
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(posicion.descripcion))]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "flex flex-center-x flex-center-y"
                                     },
                                     [
                                       _c("input", {
@@ -71190,101 +71384,242 @@ var render = function() {
                                             name: "model",
                                             rawName: "v-model",
                                             value:
-                                              _vm.agentes_text[index]
-                                                .descripcion,
+                                              _vm.valoresFormulario.posicion.id,
                                             expression:
-                                              "\n                                                        agentes_text[index]\n                                                            .descripcion\n                                                    "
+                                              "\n                                                valoresFormulario.posicion\n                                                    .id\n                                            "
                                           }
                                         ],
-                                        staticStyle: { width: "100%" },
-                                        attrs: { type: "text" },
+                                        attrs: {
+                                          type: "radio",
+                                          id: "radio-posicion-" + posicion.id,
+                                          checked: ""
+                                        },
                                         domProps: {
-                                          value:
-                                            _vm.agentes_text[index].descripcion
+                                          value: posicion.id,
+                                          checked: _vm._q(
+                                            _vm.valoresFormulario.posicion.id,
+                                            posicion.id
+                                          )
                                         },
                                         on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.agentes_text[index],
-                                              "descripcion",
-                                              $event.target.value
+                                          change: function($event) {
+                                            return _vm.$set(
+                                              _vm.valoresFormulario.posicion,
+                                              "id",
+                                              posicion.id
                                             )
                                           }
                                         }
                                       })
                                     ]
                                   )
-                                }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "row" }, [
+                                ]
+                              )
+                            }),
+                            0
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "flex felx-center mt-2 mb-2",
+                          staticStyle: { margin: "0 auto" }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: { click: _vm.obtenerDatosFormulario }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                Agregar\n                            "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.iniciado
+                  ? _c("div", [
+                      _c("div", { ref: "printMe" }, [
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "border-t row" }, [
+                          _c("div", { staticClass: "col-12" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "div",
+                                { staticClass: "col-lg-3 col-md-4 col-4" },
+                                [
                                   _c(
                                     "div",
                                     {
-                                      staticClass: "col-8",
-                                      attrs: { id: "tabla-datos-grafica" }
+                                      staticClass: "border-b row ml-2",
+                                      staticStyle: { background: "transparent" }
                                     },
-                                    _vm._l(_vm.tabla_datos_grafica, function(
-                                      item,
-                                      index
-                                    ) {
-                                      return _c(
-                                        "div",
-                                        {
-                                          key: index,
-                                          staticClass: "row mt-2 mb-2"
-                                        },
-                                        [
-                                          _c("div", { staticClass: "col-9" }, [
-                                            _vm._v(
-                                              "\n                                                            " +
-                                                _vm._s(item.descripcion) +
-                                                "\n                                                        "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("div", { staticClass: "col-3" }, [
-                                            item.img_url
-                                              ? _c("img", {
-                                                  attrs: {
-                                                    width: "15",
-                                                    src: "/" + item.img_url,
-                                                    alt: "no carga"
-                                                  }
-                                                })
-                                              : _vm._e()
-                                          ])
-                                        ]
+                                    [
+                                      _vm._v(
+                                        "\n                                                AGENTE/HORA\n                                            "
                                       )
-                                    }),
-                                    0
+                                    ]
                                   ),
                                   _vm._v(" "),
-                                  _c("div", { staticClass: "col-2 p-0" }, [
+                                  _vm._l(_vm.agentes_text, function(
+                                    text,
+                                    index
+                                  ) {
+                                    return _c(
+                                      "div",
+                                      {
+                                        key: index,
+                                        staticClass:
+                                          "row he25 border-b border-r"
+                                      },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.agentes_text[index]
+                                                  .descripcion,
+                                              expression:
+                                                "\n                                                        agentes_text[index]\n                                                            .descripcion\n                                                    "
+                                            }
+                                          ],
+                                          staticStyle: { width: "100%" },
+                                          attrs: { type: "text" },
+                                          domProps: {
+                                            value:
+                                              _vm.agentes_text[index]
+                                                .descripcion
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.agentes_text[index],
+                                                "descripcion",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  }),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "row" }, [
                                     _c(
                                       "div",
                                       {
-                                        staticStyle: { "margin-top": "5.4rem" }
+                                        staticClass: "col-8",
+                                        attrs: { id: "tabla-datos-grafica" }
                                       },
-                                      _vm._l(_vm.datos_grados, function(
+                                      _vm._l(_vm.tabla_datos_grafica, function(
                                         item,
                                         index
                                       ) {
                                         return _c(
-                                          "p",
+                                          "div",
                                           {
                                             key: index,
-                                            staticStyle: {
-                                              "margin-bottom": "2.1rem"
-                                            }
+                                            staticClass: "row mt-2 mb-2"
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "col-9" },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                            " +
+                                                    _vm._s(item.descripcion) +
+                                                    "\n                                                        "
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "col-3" },
+                                              [
+                                                item.img_url
+                                                  ? _c("img", {
+                                                      attrs: {
+                                                        width: "15",
+                                                        src: "/" + item.img_url,
+                                                        alt: "no carga"
+                                                      }
+                                                    })
+                                                  : _vm._e()
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      }),
+                                      0
+                                    ),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "col-2 p-0" }, [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticStyle: {
+                                            "margin-top": "5.4rem"
+                                          }
+                                        },
+                                        _vm._l(_vm.datos_grados, function(
+                                          item,
+                                          index
+                                        ) {
+                                          return _c(
+                                            "p",
+                                            {
+                                              key: index,
+                                              staticStyle: {
+                                                "margin-bottom": "2.1rem"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                            " +
+                                                  _vm._s(item) +
+                                                  "°\n                                                        "
+                                              )
+                                            ]
+                                          )
+                                        }),
+                                        0
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col-2 p-0" },
+                                      _vm._l(_vm.valoresAnestecia_v, function(
+                                        item,
+                                        index
+                                      ) {
+                                        return _c(
+                                          "div",
+                                          {
+                                            key: index,
+                                            staticStyle: { height: "1.80em" }
                                           },
                                           [
                                             _vm._v(
-                                              "\n                                                            " +
-                                                _vm._s(item) +
-                                                "°\n                                                        "
+                                              "\n                                                        " +
+                                                _vm._s(item.inicio) +
+                                                "\n                                                    "
                                             )
                                           ]
                                         )
@@ -71293,476 +71628,461 @@ var render = function() {
                                     )
                                   ]),
                                   _vm._v(" "),
+                                  _vm._m(4)
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "col-lg-9 col-md-8 col-8 overflow-x-hidden p-0"
+                                },
+                                [
                                   _c(
                                     "div",
-                                    { staticClass: "col-2 p-0" },
-                                    _vm._l(_vm.valoresAnestecia_v, function(
-                                      item,
-                                      index
-                                    ) {
-                                      return _c(
-                                        "div",
-                                        {
-                                          key: index,
-                                          staticStyle: { height: "1.80em" }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                                        " +
-                                              _vm._s(item.inicio) +
-                                              "\n                                                    "
-                                          )
-                                        ]
-                                      )
-                                    }),
-                                    0
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _vm._m(4)
-                              ],
-                              2
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "col-lg-9 col-md-8 col-8 overflow-x-hidden p-0"
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "row no-wrap-flex ml-0",
-                                    staticStyle: { height: "100% !important" }
-                                  },
-                                  _vm._l(_vm.lista_horas_avanzadas_v, function(
-                                    item,
-                                    index
-                                  ) {
-                                    return _c(
-                                      "div",
-                                      {
-                                        key: index,
-                                        staticStyle: { "min-width": "270px" }
-                                      },
-                                      [
-                                        _c(
+                                    {
+                                      staticClass: "row no-wrap-flex ml-0",
+                                      staticStyle: { height: "100% !important" }
+                                    },
+                                    _vm._l(
+                                      _vm.lista_horas_avanzadas_v,
+                                      function(item, index) {
+                                        return _c(
                                           "div",
                                           {
-                                            staticClass: "border-b",
-                                            style: {
-                                              minWidth: "240px",
-                                              height: item.height
-                                                ? item.height
-                                                : "20px"
+                                            key: index,
+                                            staticStyle: {
+                                              "min-width": "270px"
                                             }
                                           },
-                                          _vm._l(item.datos, function(
-                                            dato,
-                                            index_fila
-                                          ) {
-                                            return _c(
+                                          [
+                                            _c(
                                               "div",
                                               {
-                                                key: index_fila,
-                                                style: dato.styles
+                                                staticClass: "border-b",
+                                                style: {
+                                                  minWidth: "240px",
+                                                  height: item.height
+                                                    ? item.height
+                                                    : "20px"
+                                                }
                                               },
-                                              [
-                                                _c(
+                                              _vm._l(item.datos, function(
+                                                dato,
+                                                index_fila
+                                              ) {
+                                                return _c(
                                                   "div",
                                                   {
-                                                    class: dato._class,
-                                                    style: dato.style
+                                                    key: index_fila,
+                                                    style: dato.styles
                                                   },
                                                   [
-                                                    dato.es_tiempo
-                                                      ? _vm._l(
-                                                          dato.columnasQuinceMin,
-                                                          function(
-                                                            columna,
-                                                            index_columna
-                                                          ) {
-                                                            return _c(
-                                                              "div",
-                                                              {
-                                                                key: index_columna,
-                                                                class:
-                                                                  columna._class,
-                                                                staticStyle: {
-                                                                  height:
-                                                                    "25px",
-                                                                  width: "100%"
-                                                                }
-                                                              },
-                                                              [
-                                                                _c(
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        class: dato._class,
+                                                        style: dato.style
+                                                      },
+                                                      [
+                                                        dato.es_tiempo
+                                                          ? _vm._l(
+                                                              dato.columnasQuinceMin,
+                                                              function(
+                                                                columna,
+                                                                index_columna
+                                                              ) {
+                                                                return _c(
                                                                   "div",
                                                                   {
-                                                                    staticClass:
-                                                                      "p-0 flex space-btw relative"
+                                                                    key: index_columna,
+                                                                    class:
+                                                                      columna._class,
+                                                                    staticStyle: {
+                                                                      height:
+                                                                        "25px",
+                                                                      width:
+                                                                        "100%"
+                                                                    }
                                                                   },
                                                                   [
-                                                                    columna.tiempo_inicio
-                                                                      ? _c(
-                                                                          "span",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "\n                                                                                " +
-                                                                                _vm._s(
-                                                                                  columna.tiempo_inicio
-                                                                                )
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      : _vm._e(),
-                                                                    _vm._v(" "),
-                                                                    !columna.tiempo_inicio
-                                                                      ? _c(
-                                                                          "span",
-                                                                          [
-                                                                            _c(
-                                                                              "img",
-                                                                              {
-                                                                                staticClass:
-                                                                                  "time-triangle-abs",
-                                                                                attrs: {
-                                                                                  src:
-                                                                                    "/img/icons/time_00.png",
-                                                                                  alt:
-                                                                                    ""
-                                                                                }
-                                                                              }
-                                                                            ),
-                                                                            _vm._v(
-                                                                              " "
-                                                                            ),
-                                                                            _c(
-                                                                              "p",
-                                                                              {
-                                                                                staticClass:
-                                                                                  "blue ml-4"
-                                                                              },
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        staticClass:
+                                                                          "p-0 flex space-btw relative"
+                                                                      },
+                                                                      [
+                                                                        columna.tiempo_inicio
+                                                                          ? _c(
+                                                                              "span",
                                                                               [
                                                                                 _vm._v(
-                                                                                  "\n                                                                                    " +
+                                                                                  "\n                                                                                " +
                                                                                     _vm._s(
-                                                                                      _vm
-                                                                                        .horasInicial[
-                                                                                        index_columna +
-                                                                                          index
-                                                                                      ]
-                                                                                    ) +
-                                                                                    "\n                                                                                "
+                                                                                      columna.tiempo_inicio
+                                                                                    )
                                                                                 )
                                                                               ]
+                                                                            )
+                                                                          : _vm._e(),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        !columna.tiempo_inicio
+                                                                          ? _c(
+                                                                              "span",
+                                                                              [
+                                                                                _c(
+                                                                                  "img",
+                                                                                  {
+                                                                                    staticClass:
+                                                                                      "time-triangle-abs",
+                                                                                    attrs: {
+                                                                                      src:
+                                                                                        "/img/icons/time_00.png",
+                                                                                      alt:
+                                                                                        ""
+                                                                                    }
+                                                                                  }
+                                                                                ),
+                                                                                _vm._v(
+                                                                                  " "
+                                                                                ),
+                                                                                _c(
+                                                                                  "p",
+                                                                                  {
+                                                                                    staticClass:
+                                                                                      "blue ml-4"
+                                                                                  },
+                                                                                  [
+                                                                                    _vm._v(
+                                                                                      "\n                                                                                    " +
+                                                                                        _vm._s(
+                                                                                          _vm
+                                                                                            .horasInicial[
+                                                                                            index_columna +
+                                                                                              index
+                                                                                          ]
+                                                                                        ) +
+                                                                                        "\n                                                                                "
+                                                                                    )
+                                                                                  ]
+                                                                                )
+                                                                              ]
+                                                                            )
+                                                                          : _vm._e()
+                                                                      ]
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              }
+                                                            )
+                                                          : _vm._e(),
+                                                        _vm._v(" "),
+                                                        dato.es_dato
+                                                          ? _vm._l(
+                                                              dato.columnasQuinceMin,
+                                                              function(
+                                                                columna,
+                                                                index_columna
+                                                              ) {
+                                                                return _c(
+                                                                  "div",
+                                                                  {
+                                                                    key: index_columna,
+                                                                    class:
+                                                                      columna._class,
+                                                                    staticStyle: {
+                                                                      height:
+                                                                        "25px"
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    dato.es_dato
+                                                                      ? _c(
+                                                                          "div",
+                                                                          [
+                                                                            _c(
+                                                                              "input",
+                                                                              {
+                                                                                directives: [
+                                                                                  {
+                                                                                    name:
+                                                                                      "model",
+                                                                                    rawName:
+                                                                                      "v-model",
+                                                                                    value:
+                                                                                      _vm
+                                                                                        .agentes_text[
+                                                                                        index_fila -
+                                                                                          1
+                                                                                      ]
+                                                                                        .valores[
+                                                                                        index_columna +
+                                                                                          index *
+                                                                                            4
+                                                                                      ],
+                                                                                    expression:
+                                                                                      "\n                                                                                    agentes_text[\n                                                                                        index_fila -\n                                                                                            1\n                                                                                    ]\n                                                                                        .valores[\n                                                                                        index_columna +\n                                                                                            index *\n                                                                                                4\n                                                                                    ]\n                                                                                "
+                                                                                  }
+                                                                                ],
+                                                                                staticStyle: {
+                                                                                  width:
+                                                                                    "100%"
+                                                                                },
+                                                                                attrs: {
+                                                                                  type:
+                                                                                    "text"
+                                                                                },
+                                                                                domProps: {
+                                                                                  value:
+                                                                                    _vm
+                                                                                      .agentes_text[
+                                                                                      index_fila -
+                                                                                        1
+                                                                                    ]
+                                                                                      .valores[
+                                                                                      index_columna +
+                                                                                        index *
+                                                                                          4
+                                                                                    ]
+                                                                                },
+                                                                                on: {
+                                                                                  input: function(
+                                                                                    $event
+                                                                                  ) {
+                                                                                    if (
+                                                                                      $event
+                                                                                        .target
+                                                                                        .composing
+                                                                                    ) {
+                                                                                      return
+                                                                                    }
+                                                                                    _vm.$set(
+                                                                                      _vm
+                                                                                        .agentes_text[
+                                                                                        index_fila -
+                                                                                          1
+                                                                                      ]
+                                                                                        .valores,
+                                                                                      index_columna +
+                                                                                        index *
+                                                                                          4,
+                                                                                      $event
+                                                                                        .target
+                                                                                        .value
+                                                                                    )
+                                                                                  }
+                                                                                }
+                                                                              }
                                                                             )
                                                                           ]
                                                                         )
                                                                       : _vm._e()
                                                                   ]
                                                                 )
-                                                              ]
+                                                              }
                                                             )
-                                                          }
-                                                        )
-                                                      : _vm._e(),
-                                                    _vm._v(" "),
-                                                    dato.es_dato
-                                                      ? _vm._l(
-                                                          dato.columnasQuinceMin,
-                                                          function(
-                                                            columna,
-                                                            index_columna
-                                                          ) {
-                                                            return _c(
-                                                              "div",
-                                                              {
-                                                                key: index_columna,
-                                                                class:
-                                                                  columna._class,
-                                                                staticStyle: {
-                                                                  height: "25px"
-                                                                }
-                                                              },
-                                                              [
-                                                                dato.es_dato
-                                                                  ? _c("div", [
-                                                                      _c(
-                                                                        "input",
+                                                          : _vm._e(),
+                                                        _vm._v(" "),
+                                                        dato.es_agente
+                                                          ? _vm._l(
+                                                              dato.columnasQuinceMin,
+                                                              function(
+                                                                columna,
+                                                                index_columna
+                                                              ) {
+                                                                return _c(
+                                                                  "div",
+                                                                  {
+                                                                    key: index_columna,
+                                                                    class:
+                                                                      columna._class,
+                                                                    staticStyle: {
+                                                                      height:
+                                                                        "1.82em",
+                                                                      "grid-template-columns":
+                                                                        "1fr 1fr 1fr"
+                                                                    }
+                                                                  },
+                                                                  _vm._l(
+                                                                    columna.columnas,
+                                                                    function(
+                                                                      minutos_columna,
+                                                                      index_minutos_columna
+                                                                    ) {
+                                                                      return _c(
+                                                                        "div",
                                                                         {
-                                                                          directives: [
-                                                                            {
-                                                                              name:
-                                                                                "model",
-                                                                              rawName:
-                                                                                "v-model",
-                                                                              value:
-                                                                                _vm
-                                                                                  .agentes_text[
-                                                                                  index_fila -
-                                                                                    1
-                                                                                ]
-                                                                                  .valores[
-                                                                                  index_columna +
-                                                                                    index *
-                                                                                      4
-                                                                                ],
-                                                                              expression:
-                                                                                "\n                                                                                    agentes_text[\n                                                                                        index_fila -\n                                                                                            1\n                                                                                    ]\n                                                                                        .valores[\n                                                                                        index_columna +\n                                                                                            index *\n                                                                                                4\n                                                                                    ]\n                                                                                "
-                                                                            }
-                                                                          ],
-                                                                          staticStyle: {
-                                                                            width:
-                                                                              "100%"
-                                                                          },
-                                                                          attrs: {
-                                                                            type:
-                                                                              "text"
-                                                                          },
-                                                                          domProps: {
-                                                                            value:
-                                                                              _vm
-                                                                                .agentes_text[
-                                                                                index_fila -
-                                                                                  1
-                                                                              ]
-                                                                                .valores[
-                                                                                index_columna +
-                                                                                  index *
-                                                                                    4
-                                                                              ]
-                                                                          },
-                                                                          on: {
-                                                                            input: function(
-                                                                              $event
-                                                                            ) {
-                                                                              if (
-                                                                                $event
-                                                                                  .target
-                                                                                  .composing
-                                                                              ) {
-                                                                                return
-                                                                              }
-                                                                              _vm.$set(
-                                                                                _vm
-                                                                                  .agentes_text[
-                                                                                  index_fila -
-                                                                                    1
-                                                                                ]
-                                                                                  .valores,
-                                                                                index_columna +
-                                                                                  index *
-                                                                                    4,
-                                                                                $event
-                                                                                  .target
-                                                                                  .value
-                                                                              )
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      )
-                                                                    ])
-                                                                  : _vm._e()
-                                                              ]
-                                                            )
-                                                          }
-                                                        )
-                                                      : _vm._e(),
-                                                    _vm._v(" "),
-                                                    dato.es_agente
-                                                      ? _vm._l(
-                                                          dato.columnasQuinceMin,
-                                                          function(
-                                                            columna,
-                                                            index_columna
-                                                          ) {
-                                                            return _c(
-                                                              "div",
-                                                              {
-                                                                key: index_columna,
-                                                                class:
-                                                                  columna._class,
-                                                                staticStyle: {
-                                                                  height:
-                                                                    "1.82em",
-                                                                  "grid-template-columns":
-                                                                    "1fr 1fr 1fr"
-                                                                }
-                                                              },
-                                                              _vm._l(
-                                                                columna.columnas,
-                                                                function(
-                                                                  minutos_columna,
-                                                                  index_minutos_columna
-                                                                ) {
-                                                                  return _c(
-                                                                    "div",
-                                                                    {
-                                                                      key: index_minutos_columna,
-                                                                      staticClass:
-                                                                        "relative border-r"
-                                                                    },
-                                                                    [
-                                                                      minutos_columna.agentes
-                                                                        ? _vm._l(
-                                                                            minutos_columna.agentes,
-                                                                            function(
-                                                                              agente,
-                                                                              index_agente
-                                                                            ) {
-                                                                              return _c(
-                                                                                "a",
-                                                                                {
-                                                                                  key: index_agente,
-                                                                                  on: {
-                                                                                    click: function(
-                                                                                      $event
-                                                                                    ) {
-                                                                                      return _vm.eliminarAgente(
-                                                                                        index,
-                                                                                        index_fila,
-                                                                                        index_columna,
-                                                                                        index_minutos_columna,
-                                                                                        index_agente,
-                                                                                        minutos_columna,
-                                                                                        agente,
-                                                                                        dato
+                                                                          key: index_minutos_columna,
+                                                                          staticClass:
+                                                                            "relative border-r"
+                                                                        },
+                                                                        [
+                                                                          minutos_columna.agentes
+                                                                            ? _vm._l(
+                                                                                minutos_columna.agentes,
+                                                                                function(
+                                                                                  agente,
+                                                                                  index_agente
+                                                                                ) {
+                                                                                  return _c(
+                                                                                    "a",
+                                                                                    {
+                                                                                      key: index_agente,
+                                                                                      on: {
+                                                                                        click: function(
+                                                                                          $event
+                                                                                        ) {
+                                                                                          return _vm.eliminarAgente(
+                                                                                            index,
+                                                                                            index_fila,
+                                                                                            index_columna,
+                                                                                            index_minutos_columna,
+                                                                                            index_agente,
+                                                                                            minutos_columna,
+                                                                                            agente,
+                                                                                            dato
+                                                                                          )
+                                                                                        }
+                                                                                      }
+                                                                                    },
+                                                                                    [
+                                                                                      _c(
+                                                                                        "img",
+                                                                                        {
+                                                                                          staticClass:
+                                                                                            "figure-celds",
+                                                                                          staticStyle: {
+                                                                                            width:
+                                                                                              "20px"
+                                                                                          },
+                                                                                          attrs: {
+                                                                                            src:
+                                                                                              "/" +
+                                                                                              agente._src,
+                                                                                            alt:
+                                                                                              ""
+                                                                                          }
+                                                                                        }
                                                                                       )
+                                                                                    ]
+                                                                                  )
+                                                                                }
+                                                                              )
+                                                                            : _vm._e()
+                                                                        ],
+                                                                        2
+                                                                      )
+                                                                    }
+                                                                  ),
+                                                                  0
+                                                                )
+                                                              }
+                                                            )
+                                                          : _vm._e(),
+                                                        _vm._v(" "),
+                                                        dato.es_posicion
+                                                          ? _vm._l(
+                                                              dato.columnasQuinceMin,
+                                                              function(
+                                                                columna,
+                                                                index_columna
+                                                              ) {
+                                                                return _c(
+                                                                  "div",
+                                                                  {
+                                                                    key: index_columna,
+                                                                    class:
+                                                                      columna._class,
+                                                                    staticStyle: {
+                                                                      height:
+                                                                        "50px",
+                                                                      "grid-template-columns":
+                                                                        "1fr 1fr 1fr"
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    columna
+                                                                      .posicion
+                                                                      .id != 0
+                                                                      ? _c(
+                                                                          "a",
+                                                                          {
+                                                                            on: {
+                                                                              click: function(
+                                                                                $event
+                                                                              ) {
+                                                                                return _vm.eliminarPosicion(
+                                                                                  index,
+                                                                                  index_fila,
+                                                                                  index_columna,
+                                                                                  columna.posicion
+                                                                                )
+                                                                              }
+                                                                            }
+                                                                          },
+                                                                          [
+                                                                            columna
+                                                                              .posicion
+                                                                              .id !=
+                                                                            0
+                                                                              ? _c(
+                                                                                  "img",
+                                                                                  {
+                                                                                    staticClass:
+                                                                                      "ml-3",
+                                                                                    staticStyle: {
+                                                                                      width:
+                                                                                        "70px"
+                                                                                    },
+                                                                                    attrs: {
+                                                                                      src:
+                                                                                        "/" +
+                                                                                        columna
+                                                                                          .posicion
+                                                                                          .img_url,
+                                                                                      alt:
+                                                                                        ""
                                                                                     }
                                                                                   }
-                                                                                },
-                                                                                [
-                                                                                  _c(
-                                                                                    "img",
-                                                                                    {
-                                                                                      staticClass:
-                                                                                        "figure-celds",
-                                                                                      staticStyle: {
-                                                                                        width:
-                                                                                          "20px"
-                                                                                      },
-                                                                                      attrs: {
-                                                                                        src:
-                                                                                          "/" +
-                                                                                          agente._src,
-                                                                                        alt:
-                                                                                          ""
-                                                                                      }
-                                                                                    }
-                                                                                  )
-                                                                                ]
-                                                                              )
-                                                                            }
-                                                                          )
-                                                                        : _vm._e()
-                                                                    ],
-                                                                    2
-                                                                  )
-                                                                }
-                                                              ),
-                                                              0
+                                                                                )
+                                                                              : _vm._e()
+                                                                          ]
+                                                                        )
+                                                                      : _vm._e()
+                                                                  ]
+                                                                )
+                                                              }
                                                             )
-                                                          }
-                                                        )
-                                                      : _vm._e(),
-                                                    _vm._v(" "),
-                                                    dato.es_posicion
-                                                      ? _vm._l(
-                                                          dato.columnasQuinceMin,
-                                                          function(
-                                                            columna,
-                                                            index_columna
-                                                          ) {
-                                                            return _c(
-                                                              "div",
-                                                              {
-                                                                key: index_columna,
-                                                                class:
-                                                                  columna._class,
-                                                                staticStyle: {
-                                                                  height:
-                                                                    "50px",
-                                                                  "grid-template-columns":
-                                                                    "1fr 1fr 1fr"
-                                                                }
-                                                              },
-                                                              [
-                                                                columna.posicion
-                                                                  .id != 0
-                                                                  ? _c(
-                                                                      "a",
-                                                                      {
-                                                                        on: {
-                                                                          click: function(
-                                                                            $event
-                                                                          ) {
-                                                                            return _vm.eliminarPosicion(
-                                                                              index,
-                                                                              index_fila,
-                                                                              index_columna,
-                                                                              columna.posicion
-                                                                            )
-                                                                          }
-                                                                        }
-                                                                      },
-                                                                      [
-                                                                        columna
-                                                                          .posicion
-                                                                          .id !=
-                                                                        0
-                                                                          ? _c(
-                                                                              "img",
-                                                                              {
-                                                                                staticClass:
-                                                                                  "ml-3",
-                                                                                staticStyle: {
-                                                                                  width:
-                                                                                    "70px"
-                                                                                },
-                                                                                attrs: {
-                                                                                  src:
-                                                                                    "/" +
-                                                                                    columna
-                                                                                      .posicion
-                                                                                      .img_url,
-                                                                                  alt:
-                                                                                    ""
-                                                                                }
-                                                                              }
-                                                                            )
-                                                                          : _vm._e()
-                                                                      ]
-                                                                    )
-                                                                  : _vm._e()
-                                                              ]
-                                                            )
-                                                          }
-                                                        )
-                                                      : _vm._e()
-                                                  ],
-                                                  2
+                                                          : _vm._e()
+                                                      ],
+                                                      2
+                                                    )
+                                                  ]
                                                 )
-                                              ]
+                                              }),
+                                              0
                                             )
-                                          }),
-                                          0
+                                          ]
                                         )
-                                      ]
-                                    )
-                                  }),
-                                  0
-                                )
-                              ]
-                            )
+                                      }
+                                    ),
+                                    0
+                                  )
+                                ]
+                              )
+                            ])
                           ])
                         ])
                       ])
                     ])
-                  ])
-                : _vm._e()
-            ]),
+                  : _vm._e()
+              ]
+            ),
             _vm._v(" "),
             _c(
               "modal",
@@ -71824,7 +72144,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
-      _c("p", { staticClass: "text-center" }, [_vm._v("TA")])
+      _c("p", { staticClass: "text-center" }, [_vm._v("T.A.")])
     ])
   },
   function() {
@@ -71852,7 +72172,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row border-t flex-center-x" }, [
-      _c("span", {}, [_vm._v("Registro anestésico")])
+      _c("span", {}, [_vm._v("Registro Trans-Anestésico")])
     ])
   },
   function() {
@@ -71865,7 +72185,7 @@ var staticRenderFns = [
         staticClass: "row border-r flex-x-end",
         staticStyle: { padding: "15px 5px" }
       },
-      [_c("span", [_vm._v("POSICION")])]
+      [_c("span", [_vm._v("POSICIÓN")])]
     )
   }
 ]
@@ -72048,15 +72368,19 @@ var render = function() {
                             "tab-content",
                             {
                               attrs: {
-                                title: "Registro Trans-Anestesico",
-                                icon: "ti-panel"
+                                title: "Registro Trans-Anestésico",
+                                icon: "ti-panel",
+                                "before-change": _vm.validateFirstStep
                               }
                             },
                             [
                               _c("trans-anestesico", {
                                 ref: "transAnestesico",
                                 attrs: {
-                                  "id-sec-cir-pro": _vm.form.idCirugiaProgramada
+                                  "id-sec-cir-pro":
+                                    _vm.form.idCirugiaProgramada,
+                                  "id-registro-anestesia":
+                                    _vm.form.registro_anestesia_id
                                 }
                               })
                             ],
@@ -72067,13 +72391,19 @@ var render = function() {
                             "tab-content",
                             {
                               attrs: {
-                                title: "Administración Farmaco",
+                                title: "Administración Fármaco",
                                 icon: "fas fa-capsules"
                               }
                             },
                             [
                               _c("administracion-farmaco", {
-                                ref: "administracionFarmaco"
+                                ref: "administracionFarmaco",
+                                attrs: {
+                                  "id-sec-cir-pro":
+                                    _vm.form.idCirugiaProgramada,
+                                  "id-registro-anestesia":
+                                    _vm.form.registro_anestesia_id
+                                }
                               })
                             ],
                             1
@@ -72089,10 +72419,11 @@ var render = function() {
                             },
                             [
                               _c("div", { staticClass: "row" }, [
-                                _c("embed", {
+                                _c("iframe", {
+                                  ref: "pdfRegistroAnestesia",
                                   attrs: {
                                     src:
-                                      "/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" +
+                                      "/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" +
                                       _vm.form.idCirugiaProgramada,
                                     type: "application/pdf",
                                     width: "100%",
@@ -72103,9 +72434,28 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _c("tab-content", {
-                            attrs: { title: "Firma", icon: "fas fa-capsules" }
-                          })
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Firma Digital",
+                                icon: "fa fa-edit"
+                              }
+                            },
+                            [
+                              _c("vue-firma", {
+                                ref: "firmaDigitalRegisAnes",
+                                attrs: {
+                                  user: _vm.user,
+                                  "tipo-servicio": 4,
+                                  "id-atencion": _vm.form.registro_anestesia_id,
+                                  "id-visita": 0,
+                                  "id-tipo-documento": 13
+                                }
+                              })
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
@@ -72308,15 +72658,14 @@ var render = function() {
                               {
                                 staticClass: "btn btn-tool",
                                 attrs: {
+                                  id: "my-card",
                                   type: "button",
                                   "data-card-widget": "collapse"
                                 },
                                 on: { click: _vm.guardarRegistroTiempo }
                               },
                               [_c("i", { staticClass: "fas fa-plus" })]
-                            ),
-                            _vm._v(" "),
-                            _vm._m(1)
+                            )
                           ])
                         ]
                       ),
@@ -72431,19 +72780,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [_c("p", [_vm._v("/")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-tool",
-        attrs: { type: "button", "data-card-widget": "remove" }
-      },
-      [_c("i", { staticClass: "fas fa-times" })]
-    )
   }
 ]
 render._withStripped = true
@@ -80448,7 +80784,7 @@ var render = function() {
                                                         },
                                                         [
                                                           _vm._v(
-                                                            "Anestesiologo:"
+                                                            "Anestesiólogo:"
                                                           )
                                                         ]
                                                       ),
@@ -80528,9 +80864,7 @@ var render = function() {
                                                     ]
                                                   )
                                                 ]
-                                              ),
-                                              _vm._v(" "),
-                                              _vm._m(3)
+                                              )
                                             ]
                                           )
                                         ]
@@ -80634,67 +80968,25 @@ var render = function() {
                             _vm._v(" "),
                             _c(
                               "tab-content",
-                              { attrs: { title: "Firma", icon: "ti-folder" } },
+                              {
+                                attrs: {
+                                  title: "Firma Digital",
+                                  icon: "fa fa-edit"
+                                }
+                              },
                               [
-                                _c("div", {}, [
-                                  _c("div", {
-                                    staticStyle: { height: "70px" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "flex flex-y" }, [
-                                    _c(
-                                      "span",
-                                      {
-                                        staticClass: "col-md-5 text-center",
-                                        staticStyle: { margin: "auto" }
-                                      },
-                                      [
-                                        _c("vue-painttable", {
-                                          ref: "paintFirma",
-                                          attrs: {
-                                            hidePaintable: true,
-                                            isFirstPaintable:
-                                              _vm.isFirstPaintable,
-                                            disableNavigation: true,
-                                            showUndoRedo: false,
-                                            showLineWidth: false,
-                                            rutaImagen: _vm.rutaSello,
-                                            width: 800,
-                                            height: 800
-                                          },
-                                          on: {
-                                            getOutput: function($event) {
-                                              _vm.form.imgFirma = $event
-                                            },
-                                            RespuestaImgFirma: function(
-                                              $event
-                                            ) {
-                                              _vm.validarImgFirma = $event
-                                            }
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "span",
-                                      { staticClass: "col-md-12 text-center" },
-                                      [
-                                        _vm._v(
-                                          "______________________________________________"
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "span",
-                                      { staticClass: "col-md-12 text-center" },
-                                      [_vm._v("FIRMA DEL ANESTESIOLOGO:")]
-                                    )
-                                  ])
-                                ])
-                              ]
+                                _c("vue-firma", {
+                                  ref: "firmaDigitalListas",
+                                  attrs: {
+                                    user: _vm.user,
+                                    "tipo-servicio": 4,
+                                    "id-atencion": _vm.form.id_lista,
+                                    "id-visita": 0,
+                                    "id-tipo-documento": 13
+                                  }
+                                })
+                              ],
+                              1
                             )
                           ],
                           1
@@ -80779,35 +81071,9 @@ var staticRenderFns = [
               attrs: { type: "button", "data-card-widget": "collapse" }
             },
             [_c("i", { staticClass: "fas fa-plus" })]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-tool",
-              attrs: { type: "button", "data-card-widget": "remove" }
-            },
-            [_c("i", { staticClass: "fas fa-times" })]
           )
         ])
       ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "alert",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
   }
 ]
@@ -80963,7 +81229,7 @@ var render = function() {
                 staticClass: "custom-control-label",
                 attrs: { for: "chkentrada02" }
               },
-              [_vm._v("DEMARCACION DEL SITIO/NO PROCEDE")]
+              [_vm._v("DEMARCACIÓN DEL SITIO/NO PROCEDE")]
             )
           ]),
           _vm._v(" "),
@@ -81022,7 +81288,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "SE HA COMPLEMENTADO EL CONTROL DE LA SEGURIDAD DE\n                        LA ANESTESIA"
+                  "SE HA COMPLETADO EL CONTROL DE LA SEGURIDAD DE\n                        LA ANESTESIA"
                 )
               ]
             )
@@ -81083,7 +81349,7 @@ var render = function() {
                 staticClass: "custom-control-label",
                 attrs: { for: "chkentrada04" }
               },
-              [_vm._v("PULSIOXIMETRO COLOCADO Y EN FUNCIONAMIENTO")]
+              [_vm._v("PULSIOXÍMETRO COLOCADO Y EN FUNCIONAMIENTO")]
             )
           ]),
           _vm._v(" "),
@@ -81199,7 +81465,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "VIA AÉREA DIFICIL/RIESGO DE ASPIRACION\n                    "
+                  "VÍA AÉREA DIFÍCIL/RIESGO DE ASPIRACIÓN\n                    "
                 )
               ]
             ),
@@ -81302,7 +81568,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("li", [
         _vm._v(
-          "\n                            El Sitio Quirurgico\n                        "
+          "\n                            El Sitio Quirúrgico\n                        "
         )
       ]),
       _vm._v(" "),
@@ -81326,7 +81592,7 @@ var staticRenderFns = [
     return _c("ul", [
       _c("li", [
         _vm._v(
-          "\n                            SI HAY INSTRUMENTAL Y EQUIPOS/AYUDA DISPONIBLE\n                        "
+          "\n                            SI, Y HAY INSTRUMENTAL Y EQUIPOS/AYUDA DISPONIBLE\n                        "
         )
       ])
     ])
@@ -81338,7 +81604,7 @@ var staticRenderFns = [
     return _c("ul", [
       _c("li", [
         _vm._v(
-          "\n                            SI, Y SE HA PREVISTO LA DISPONIBILIDAD DE ACCESO\n                            INTRAVENOSO Y LIQUIDOS ADECUADOS\n                        "
+          "\n                            SI, Y SE HA PREVISTO LA DISPONIBILIDAD DE ACCESO\n                            INTRAVENOSO Y LÍQUIDOS ADECUADOS\n                        "
         )
       ])
     ])
@@ -81640,7 +81906,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "EL CIRUJANO REVISA: LOS PASOS CRITICOS O IMPREVISTO\n                        LA DURACION DE LA OPERACION Y LA PERDIDA DE SANGRE\n                        PERVISTA"
+                  "EL CIRUJANO REVISA: LOS PASOS CRÍTICOS O IMPREVISTOS.\n                        LA DURACIÓN DE LA OPERACIÓN Y LA PÉRDIDA DE SANGRE\n                        PREVISTA"
                 )
               ]
             )
@@ -81707,7 +81973,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "EL EQUIPO DE ANESTESIA REVISA: SI EL PACIENTE\n                        PRESENTA ALGUN PROBLEMA ESPECIFICO"
+                  "EL EQUIPO DE ANESTESIA REVISA: SI EL PACIENTE\n                        PRESENTA ALGÚN PROBLEMA ESPECÍFICO"
                 )
               ]
             )
@@ -81772,7 +82038,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "EL EQUIPO DE ENFERMERIA REVISA: SI SE HA CONFIRMADO\n                        LA ESTERILIDAD (CON RESULTADOS DE LOS INDICADORES; Y\n                        SI EXISTEN DUDAS O PROBLEMAS RELACIONADOS CON EL\n                        INSTRUMENTAL Y LOS EQUIPOS"
+                  "EL EQUIPO DE ENFERMERÍA REVISA: SI SE HA CONFIRMADO\n                        LA ESTERILIDAD (CON RESULTADOS DE LOS INDICADORES; Y\n                        SI EXISTEN DUDAS O PROBLEMAS RELACIONADOS CON EL\n                        INSTRUMENTAL Y LOS EQUIPOS"
                 )
               ]
             )
@@ -81837,7 +82103,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "SI SE HA ADMINISTRADO PROFILAXIS ANTIBIOTICA EN LOS\n                    "
+                  "¿SI HA ADMINISTRADO PROFILAXIS ANTIBIÓTICA EN LOS\n                    "
                 )
               ]
             )
@@ -81902,7 +82168,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "PUEDEN VISUALIZAR LAS IMAGENES\n                        DIAGNOSTICADAS"
+                  "¿PUEDEN VISUALIZARSE LAS IMÁGENES\n                        DIAGNÓSTICAS?"
                 )
               ]
             ),
@@ -81923,7 +82189,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-md-12" }, [
         _c("h2", { staticClass: "card-title" }, [
           _vm._v(
-            "\n                    ANTES DE A INCISIÓN CUTÁNEA (PAUSA QUIRURGICA)\n                "
+            "\n                    ANTES DE LA INCISIÓN CUTÁNEA (PAUSA QUIRÚRGICA)\n                "
           )
         ])
       ])
@@ -81942,7 +82208,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("li", [
         _vm._v(
-          "\n                            El Sitio Quirurgico\n                        "
+          "\n                            El Sitio Quirúrgico\n                        "
         )
       ]),
       _vm._v(" "),
@@ -82115,7 +82381,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "\n                        QUE LOS RECUENTOS DE INSTRUMENTOS, GASAS AGUJAS SON\n                        CORRECTOS"
+                  "\n                        QUE LOS RECUENTOS DE INSTRUMENTOS, GASAS Y AGUJAS SON\n                        CORRECTOS"
                 )
               ]
             )
@@ -82300,7 +82566,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "EL CIRUJANO, EL ANESTESISTA Y EL ENFERMERO REVISAN\n                        LOS PRINCIPALES ASPECTOS DE LA RECUPERACION Y EL\n                        TRATAMIENTO DEL PACIENTE"
+                  "EL CIRUJANO, EL ANESTESISTA Y EL ENFERMERO REVISAN\n                        LOS PRINCIPALES ASPECTOS DE LA RECUPERACIÓN Y EL\n                        TRATAMIENTO DEL PACIENTE"
                 )
               ]
             )
@@ -82311,7 +82577,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
       _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Observacion")]),
+        _c("label", [_vm._v("Observaciones")]),
         _vm._v(" "),
         _c("textarea", {
           directives: [
@@ -82325,7 +82591,7 @@ var render = function() {
           staticClass: "form-control",
           attrs: {
             rows: "3",
-            placeholder: "Enter ...",
+            placeholder: "Observaciones",
             name: "observacion",
             id: "observacion",
             required: ""
@@ -82949,7 +83215,7 @@ var render = function() {
                                           _c(
                                             "label",
                                             { staticClass: "col-form-label" },
-                                            [_vm._v("Anestesiologo:")]
+                                            [_vm._v("Anestesiólogo:")]
                                           ),
                                           _vm._v(" "),
                                           _c("span", {
@@ -83004,9 +83270,7 @@ var render = function() {
                                           })
                                         ]
                                       )
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm._m(3)
+                                    ])
                                   ]
                                 )
                               ]
@@ -83033,7 +83297,7 @@ var render = function() {
                             finishButtonText: "Finalizar",
                             stepSize: "xs",
                             shape: "square",
-                            color: "#3498db"
+                            color: "#590303"
                           },
                           on: {
                             "on-change": _vm.onChangeTab,
@@ -83063,6 +83327,9 @@ var render = function() {
                                   },
                                   RespuestaImprimir: function($event) {
                                     _vm.respuestaImprimir = $event
+                                  },
+                                  IdRevisionSistema: function($event) {
+                                    _vm.form.id_revision_sistema = $event
                                   }
                                 }
                               })
@@ -83115,7 +83382,7 @@ var render = function() {
                             "tab-content",
                             {
                               attrs: {
-                                title: "Paraclinicos",
+                                title: "Paraclínicos",
                                 icon: "ti-support",
                                 "before-change": _vm.validateFirstStep
                               }
@@ -83126,7 +83393,6 @@ var render = function() {
                                 attrs: {
                                   "id-revision-sistema":
                                     _vm.form.frm_id_revision_sistema,
-                                  user: _vm.user,
                                   "id-sec-cir-pro":
                                     _vm.form.frm_idCirugiaProgramada
                                 },
@@ -83151,7 +83417,8 @@ var render = function() {
                             },
                             [
                               _c("div", { staticClass: "row" }, [
-                                _c("embed", {
+                                _c("iframe", {
+                                  ref: "pdfValoracionPreanestesia",
                                   attrs: {
                                     src:
                                       "/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" +
@@ -83163,6 +83430,29 @@ var render = function() {
                                 })
                               ])
                             ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "tab-content",
+                            {
+                              attrs: {
+                                title: "Firma Digital",
+                                icon: "fa fa-edit"
+                              }
+                            },
+                            [
+                              _c("vue-firma", {
+                                ref: "firmaDigitalValoPrea",
+                                attrs: {
+                                  user: _vm.user,
+                                  "tipo-servicio": 4,
+                                  "id-atencion": _vm.form.id_revision_sistema,
+                                  "id-visita": 0,
+                                  "id-tipo-documento": 13
+                                }
+                              })
+                            ],
+                            1
                           )
                         ],
                         1
@@ -83258,23 +83548,6 @@ var staticRenderFns = [
           )
         ])
       ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "alert",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
   }
 ]
@@ -83926,7 +84199,7 @@ var render = function() {
                                     staticClass: "custom-control-label",
                                     attrs: { for: "defaultInline32" }
                                   },
-                                  [_vm._v("Cocaina")]
+                                  [_vm._v("Cocaína")]
                                 )
                               ]
                             )
@@ -84802,7 +85075,7 @@ var render = function() {
                                     staticClass: "custom-control-label",
                                     attrs: { for: "defaultInline39" }
                                   },
-                                  [_vm._v("Inetrópicos")]
+                                  [_vm._v("Inotrópicos")]
                                 )
                               ]
                             )
@@ -85526,7 +85799,8 @@ var render = function() {
                                 _c(
                                   "label",
                                   {
-                                    staticClass: "custom-control-label",
+                                    staticClass:
+                                      "custom-control-label col-sm-8",
                                     attrs: { for: "defaultInline48" }
                                   },
                                   [_vm._v("Anticolinesterásico")]
@@ -85826,7 +86100,7 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-4 col-form-label" },
-                                [_vm._v("PESO")]
+                                [_vm._v("PESO(Kg)")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-5 mr-2" }, [
@@ -85865,7 +86139,7 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-4 col-form-label" },
-                                [_vm._v("TALLA")]
+                                [_vm._v("TALLA(cm)")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-5 mr-2" }, [
@@ -86146,7 +86420,7 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-4 col-form-label" },
-                                [_vm._v("DMT")]
+                                [_vm._v("DMT(cm)")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-5 mr-2" }, [
@@ -86171,47 +86445,6 @@ var render = function() {
                                       _vm.$set(
                                         _vm.form,
                                         "frm_dmt",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-3" }, [
-                            _c("div", { staticClass: "form-group row" }, [
-                              _c(
-                                "label",
-                                { staticClass: "col-sm-4 col-form-label" },
-                                [_vm._v("cm")]
-                              ),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-sm-5 mr-2" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.frm_cmCuelloCorto,
-                                      expression:
-                                        "\n                                                                form.frm_cmCuelloCorto\n                                                            "
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { type: "number", placeholder: "" },
-                                  domProps: {
-                                    value: _vm.form.frm_cmCuelloCorto
-                                  },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.form,
-                                        "frm_cmCuelloCorto",
                                         $event.target.value
                                       )
                                     }
@@ -86453,7 +86686,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "Clase 1:Total\n                                                        visibilidad de las\n                                                        amígdalas, úvula y\n                                                        paladar blando."
+                                      "Clase 1: total\n                                                        visibilidad de las\n                                                        amígdalas, úvula y\n                                                        paladar blando."
                                     )
                                   ]
                                 )
@@ -86532,7 +86765,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "Clase 2: Vilibilidad\n                                                        del paladar duro y\n                                                        blando, porción superior\n                                                        de las amígdalas y\n                                                        úvula."
+                                      "Clase 2: visivilidad\n                                                        del paladar duro y\n                                                        blando, porción superior\n                                                        de las amígdalas y\n                                                        úvula."
                                     )
                                   ]
                                 )
@@ -86611,7 +86844,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "Clase 3: Son visibles\n                                                        el paladar duro y blando\n                                                        y la base de la\n                                                        úvula."
+                                      "Clase 3: son visibles\n                                                        el paladar duro y blando\n                                                        y la base de la\n                                                        úvula."
                                     )
                                   ]
                                 )
@@ -86690,7 +86923,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "Clase 4: Sólo visible\n                                                        el paladar duro."
+                                      "Clase 4: sólo es visible\n                                                        el paladar duro."
                                     )
                                   ]
                                 )
@@ -87466,11 +87699,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12" }, [
-      _c("label", [
-        _vm._v(
-          "Escala de Malla\n                                                    MPATI"
-        )
-      ])
+      _c("label", [_vm._v("Escala de MallaMPATI")])
     ])
   },
   function() {
@@ -87512,7 +87741,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("h5", [
         _vm._v(
-          "\n                                                    Estimulo verbal (al\n                                                    pedirselo): 3\n                                                "
+          "\n                                                    Estímulo verbal (al\n                                                    pedírselo): 3\n                                                "
         )
       ]),
       _vm._v(" "),
@@ -87556,19 +87785,19 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("h5", [
         _vm._v(
-          "\n                                                    Cumple Ordenes expresadas: 6\n                                                "
+          "\n                                                    Cumple Ordenes expresadas por voz: 6\n                                                "
         )
       ]),
       _vm._v(" "),
       _c("h5", [
         _vm._v(
-          "\n                                                    Localizada el Estimulo\n                                                    doloroso: 5\n                                                "
+          "\n                                                    Localizada el Estímulo\n                                                    doloroso: 5\n                                                "
         )
       ]),
       _vm._v(" "),
       _c("h5", [
         _vm._v(
-          "\n                                                    Retira ante el Estimulo\n                                                    doloroso: 4\n                                                "
+          "\n                                                    Retira ante el Estímulo\n                                                    doloroso: 4\n                                                "
         )
       ]),
       _vm._v(" "),
@@ -89062,7 +89291,7 @@ var render = function() {
                                       : "col-sm-12 custom-control-label",
                                     attrs: { for: "defaultInline70" }
                                   },
-                                  [_vm._v("T.P.T")]
+                                  [_vm._v("T.P.T.")]
                                 ),
                                 _vm._v(" "),
                                 _vm.form.frm_tpt
@@ -89231,6 +89460,7 @@ var render = function() {
                                       attrs: {
                                         value: _vm.form.frm_id_tipo_sangre,
                                         options: _vm.tipoSangre,
+                                        placeholder: "Grupo sanguíneo",
                                         label: "display"
                                       },
                                       on: { input: _vm.setSelectedTipoSangre },
@@ -89276,7 +89506,7 @@ var render = function() {
                               _c(
                                 "label",
                                 { staticClass: "col-sm-2 col-form-label" },
-                                [_vm._v("E.K.G")]
+                                [_vm._v("E.K.G.")]
                               ),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-9 mr-2" }, [
@@ -89759,13 +89989,13 @@ var render = function() {
                               ],
                               attrs: {
                                 type: "radio",
-                                id: "categoria_1",
-                                value: "categoria1"
+                                id: "CATEGORÍA_1",
+                                value: "CATEGORÍA1"
                               },
                               domProps: {
                                 checked: _vm._q(
                                   _vm.form.frm_clasificacion_riesgo,
-                                  "categoria1"
+                                  "CATEGORÍA1"
                                 )
                               },
                               on: {
@@ -89773,7 +90003,7 @@ var render = function() {
                                   return _vm.$set(
                                     _vm.form,
                                     "frm_clasificacion_riesgo",
-                                    "categoria1"
+                                    "CATEGORÍA1"
                                   )
                                 }
                               }
@@ -89783,11 +90013,11 @@ var render = function() {
                               "label",
                               {
                                 staticStyle: { "font-weight": "normal" },
-                                attrs: { for: "categoria_1" }
+                                attrs: { for: "CATEGORÍA_1" }
                               },
                               [
                                 _vm._v(
-                                  "\n                                                    Riesgo mínimo\n                                                    independiente de la\n                                                    anestesia. Procedimiento\n                                                    minimamente invasivo con\n                                                    poca o mínima pérdida\n                                                    sanguínea.\n                                                "
+                                  "\n                                                    Riesgo mínimo\n                                                    independiente de la\n                                                    anestesia. Procedimiento\n                                                    mínimamente invasivo con\n                                                    poca o mínima pérdida\n                                                    sanguínea.\n                                                "
                                 )
                               ]
                             )
@@ -89808,13 +90038,13 @@ var render = function() {
                               ],
                               attrs: {
                                 type: "radio",
-                                id: "categoria_2",
-                                value: "categoria2"
+                                id: "CATEGORÍA_2",
+                                value: "CATEGORÍA2"
                               },
                               domProps: {
                                 checked: _vm._q(
                                   _vm.form.frm_clasificacion_riesgo,
-                                  "categoria2"
+                                  "CATEGORÍA2"
                                 )
                               },
                               on: {
@@ -89822,7 +90052,7 @@ var render = function() {
                                   return _vm.$set(
                                     _vm.form,
                                     "frm_clasificacion_riesgo",
-                                    "categoria2"
+                                    "CATEGORÍA2"
                                   )
                                 }
                               }
@@ -89832,7 +90062,7 @@ var render = function() {
                               "label",
                               {
                                 staticStyle: { "font-weight": "normal" },
-                                attrs: { for: "categoria_1" }
+                                attrs: { for: "CATEGORÍA_2" }
                               },
                               [
                                 _vm._v(
@@ -89857,13 +90087,13 @@ var render = function() {
                               ],
                               attrs: {
                                 type: "radio",
-                                id: "categoria_3",
-                                value: "categoria3"
+                                id: "CATEGORÍA_3",
+                                value: "CATEGORÍA3"
                               },
                               domProps: {
                                 checked: _vm._q(
                                   _vm.form.frm_clasificacion_riesgo,
-                                  "categoria3"
+                                  "CATEGORÍA3"
                                 )
                               },
                               on: {
@@ -89871,7 +90101,7 @@ var render = function() {
                                   return _vm.$set(
                                     _vm.form,
                                     "frm_clasificacion_riesgo",
-                                    "categoria3"
+                                    "CATEGORÍA3"
                                   )
                                 }
                               }
@@ -89881,11 +90111,11 @@ var render = function() {
                               "label",
                               {
                                 staticStyle: { "font-weight": "normal" },
-                                attrs: { for: "categoria_3" }
+                                attrs: { for: "CATEGORÍA_3" }
                               },
                               [
                                 _vm._v(
-                                  "Procedimiento moderado\n                                                    o significamente\n                                                    invasivo. Pérdida\n                                                    sanguínea potencial\n                                                    entre 500 y 1500 ml.\n                                                    Riesgo moderado\n                                                    independiente de la\n                                                    anestesia."
+                                  "Procedimiento moderado\n                                                    o significativa\n                                                    invasivo. Pérdida\n                                                    sanguínea potencial\n                                                    entre 500 y 1500 ml.\n                                                    Riesgo moderado\n                                                    independiente de la\n                                                    anestesia."
                                 )
                               ]
                             )
@@ -89906,13 +90136,13 @@ var render = function() {
                               ],
                               attrs: {
                                 type: "radio",
-                                id: "categoria_4",
-                                value: "categoria4"
+                                id: "CATEGORÍA_4",
+                                value: "CATEGORÍA4"
                               },
                               domProps: {
                                 checked: _vm._q(
                                   _vm.form.frm_clasificacion_riesgo,
-                                  "categoria4"
+                                  "CATEGORÍA4"
                                 )
                               },
                               on: {
@@ -89920,7 +90150,7 @@ var render = function() {
                                   return _vm.$set(
                                     _vm.form,
                                     "frm_clasificacion_riesgo",
-                                    "categoria4"
+                                    "CATEGORÍA4"
                                   )
                                 }
                               }
@@ -89930,7 +90160,7 @@ var render = function() {
                               "label",
                               {
                                 staticStyle: { "font-weight": "normal" },
-                                attrs: { for: "categoria_4" }
+                                attrs: { for: "CATEGORÍA_4" }
                               },
                               [
                                 _vm._v(
@@ -89955,13 +90185,13 @@ var render = function() {
                               ],
                               attrs: {
                                 type: "radio",
-                                id: "categoria_5",
-                                value: "categoria5"
+                                id: "CATEGORÍA_5",
+                                value: "CATEGORÍA5"
                               },
                               domProps: {
                                 checked: _vm._q(
                                   _vm.form.frm_clasificacion_riesgo,
-                                  "categoria5"
+                                  "CATEGORÍA5"
                                 )
                               },
                               on: {
@@ -89969,7 +90199,7 @@ var render = function() {
                                   return _vm.$set(
                                     _vm.form,
                                     "frm_clasificacion_riesgo",
-                                    "categoria5"
+                                    "CATEGORÍA5"
                                   )
                                 }
                               }
@@ -89979,7 +90209,7 @@ var render = function() {
                               "label",
                               {
                                 staticStyle: { "font-weight": "normal" },
-                                attrs: { for: "categoria_5" }
+                                attrs: { for: "CATEGORÍA_5" }
                               },
                               [
                                 _vm._v(
@@ -90041,66 +90271,6 @@ var render = function() {
                                 }
                               })
                             ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-12 mt-2" }, [
-                            _c("div", {}, [
-                              _c("div", { staticStyle: { height: "70px" } }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "flex flex-y" }, [
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass: "col-md-5 text-center",
-                                    staticStyle: { margin: "auto" }
-                                  },
-                                  [
-                                    _c("vue-painttable", {
-                                      ref: "paintFirma",
-                                      attrs: {
-                                        hidePaintable: true,
-                                        isFirstPaintable: _vm.isFirstPaintable,
-                                        disableNavigation: true,
-                                        showUndoRedo: false,
-                                        showLineWidth: false,
-                                        rutaImagen: _vm.rutaSello,
-                                        width: 800,
-                                        height: 800
-                                      },
-                                      on: {
-                                        getOutput: function($event) {
-                                          _vm.frmimg.imgFirma = $event
-                                        },
-                                        RespuestaImgFirma: function($event) {
-                                          _vm.validarImgFirma = $event
-                                        }
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  { staticClass: "col-md-12 text-center" },
-                                  [
-                                    _vm._v(
-                                      "______________________________________________"
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  { staticClass: "col-md-12 text-center" },
-                                  [
-                                    _vm._v(
-                                      "FIRMA DEL\n                                                            ANESTESIOLOGO:"
-                                    )
-                                  ]
-                                )
-                              ])
-                            ])
                           ])
                         ])
                       ])
@@ -90145,7 +90315,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12" }, [
-      _c("label", [_vm._v("CATEGORIA 1")])
+      _c("label", [_vm._v("CATEGORÍA 1")])
     ])
   },
   function() {
@@ -90153,7 +90323,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12" }, [
-      _c("label", [_vm._v("CATEGORIA 2")])
+      _c("label", [_vm._v("CATEGORÍA 2")])
     ])
   },
   function() {
@@ -90161,7 +90331,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12" }, [
-      _c("label", [_vm._v("CATEGORIA 3")])
+      _c("label", [_vm._v("CATEGORÍA 3")])
     ])
   },
   function() {
@@ -90169,7 +90339,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12" }, [
-      _c("label", [_vm._v("CATEGORIA 4")])
+      _c("label", [_vm._v("CATEGORÍA 4")])
     ])
   },
   function() {
@@ -90177,7 +90347,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12" }, [
-      _c("label", [_vm._v("CATEGORIA 5")])
+      _c("label", [_vm._v("CATEGORÍA 5")])
     ])
   }
 ]
@@ -90554,7 +90724,47 @@ var render = function() {
                                     attrs: { for: "defaultInline4" }
                                   },
                                   [_vm._v("Otros")]
-                                )
+                                ),
+                                _vm._v(" "),
+                                _vm.form.frm_otrosCardiovascular
+                                  ? _c("div", { staticClass: "col-10" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value:
+                                              _vm.form
+                                                .frm_otrosCardiovascularValor,
+                                            expression:
+                                              "form.frm_otrosCardiovascularValor"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          type: "text",
+                                          placeholder: "Cuál?"
+                                        },
+                                        domProps: {
+                                          value:
+                                            _vm.form
+                                              .frm_otrosCardiovascularValor
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "frm_otrosCardiovascularValor",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e()
                               ]
                             )
                           ]),
@@ -91132,7 +91342,46 @@ var render = function() {
                                     attrs: { for: "defaultInline11" }
                                   },
                                   [_vm._v("Otros")]
-                                )
+                                ),
+                                _vm._v(" "),
+                                _vm.form.frm_otrosRespiratorio
+                                  ? _c("div", { staticClass: "col-10" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value:
+                                              _vm.form
+                                                .frm_otrosRespiratorioValor,
+                                            expression:
+                                              "form.frm_otrosRespiratorioValor"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          type: "text",
+                                          placeholder: "Cuál?"
+                                        },
+                                        domProps: {
+                                          value:
+                                            _vm.form.frm_otrosRespiratorioValor
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "frm_otrosRespiratorioValor",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e()
                               ]
                             )
                           ])
@@ -91554,7 +91803,46 @@ var render = function() {
                                     attrs: { for: "defaultInline16" }
                                   },
                                   [_vm._v("Otros")]
-                                )
+                                ),
+                                _vm._v(" "),
+                                _vm.form.frm_otrosNeurologico
+                                  ? _c("div", { staticClass: "col-10" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value:
+                                              _vm.form
+                                                .frm_otrosNeurologicoValor,
+                                            expression:
+                                              "form.frm_otrosNeurologicoValor"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          type: "text",
+                                          placeholder: "Cuál?"
+                                        },
+                                        domProps: {
+                                          value:
+                                            _vm.form.frm_otrosNeurologicoValor
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "frm_otrosNeurologicoValor",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e()
                               ]
                             )
                           ])
@@ -91732,7 +92020,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "Infección\n                                                        Unitaria"
+                                      "Infección\n                                                        Urinaria"
                                     )
                                   ]
                                 )
@@ -91900,7 +92188,46 @@ var render = function() {
                                     attrs: { for: "defaultInline20" }
                                   },
                                   [_vm._v("Otros")]
-                                )
+                                ),
+                                _vm._v(" "),
+                                _vm.form.frm_otrosNefrologicos
+                                  ? _c("div", { staticClass: "col-10" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value:
+                                              _vm.form
+                                                .frm_otrosNefrologicosValor,
+                                            expression:
+                                              "form.frm_otrosNefrologicosValor"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          type: "text",
+                                          placeholder: "Cuál?"
+                                        },
+                                        domProps: {
+                                          value:
+                                            _vm.form.frm_otrosNefrologicosValor
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "frm_otrosNefrologicosValor",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e()
                               ]
                             )
                           ])
@@ -91990,7 +92317,7 @@ var render = function() {
                                     staticClass: "custom-control-label",
                                     attrs: { for: "defaultInline21" }
                                   },
-                                  [_vm._v("Ulcera")]
+                                  [_vm._v("Úlcera")]
                                 )
                               ]
                             )
@@ -92078,7 +92405,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "Estomago\n                                                        Lleno"
+                                      "Estómago\n                                                        Lleno"
                                     )
                                   ]
                                 )
@@ -92170,7 +92497,47 @@ var render = function() {
                                       "\n                                                        Otros\n                                                    "
                                     )
                                   ]
-                                )
+                                ),
+                                _vm._v(" "),
+                                _vm.form.frm_otrosGastrointestinal
+                                  ? _c("div", { staticClass: "col-10" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value:
+                                              _vm.form
+                                                .frm_otrosGastrointestinalValor,
+                                            expression:
+                                              "form.frm_otrosGastrointestinalValor"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          type: "text",
+                                          placeholder: "Cuál?"
+                                        },
+                                        domProps: {
+                                          value:
+                                            _vm.form
+                                              .frm_otrosGastrointestinalValor
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "frm_otrosGastrointestinalValor",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e()
                               ]
                             )
                           ])
@@ -92187,7 +92554,7 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "card-body mt-2 ml-2" }, [
-                        _c("label", [_vm._v("Sistema Endocrima")]),
+                        _c("label", [_vm._v("Sistema Endocrino")]),
                         _vm._v(" "),
                         _c("div", { staticClass: "row" }, [
                           _c("div", { staticClass: "col-sm-3" }, [
@@ -92423,7 +92790,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                                                        Obecidad\n                                                    "
+                                      "\n                                                        Obesidad\n                                                    "
                                     )
                                   ]
                                 )
@@ -92515,7 +92882,47 @@ var render = function() {
                                       "\n                                                        Otros\n                                                    "
                                     )
                                   ]
-                                )
+                                ),
+                                _vm._v(" "),
+                                _vm.form.frm_otrosSistemaEndocrima
+                                  ? _c("div", { staticClass: "col-10" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value:
+                                              _vm.form
+                                                .frm_otrosSistemaEndocrimaValor,
+                                            expression:
+                                              "form.frm_otrosSistemaEndocrimaValor"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          type: "text",
+                                          placeholder: "Cuál?"
+                                        },
+                                        domProps: {
+                                          value:
+                                            _vm.form
+                                              .frm_otrosSistemaEndocrimaValor
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "frm_otrosSistemaEndocrimaValor",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e()
                               ]
                             )
                           ])
@@ -93758,6 +94165,82 @@ var render = function() {
               )
             ]
           )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/componentesGenerales/VueFirmaComponent.vue?vue&type=template&id=3cf079c7&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/componentesGenerales/VueFirmaComponent.vue?vue&type=template&id=3cf079c7& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "col-sm-12 mt-2" }, [
+          _c("div", {}, [
+            _c("div", { staticStyle: { height: "70px" } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex flex-y" }, [
+              _c(
+                "span",
+                {
+                  staticClass: "col-md-5 text-center",
+                  staticStyle: { margin: "auto" }
+                },
+                [
+                  _c("vue-painttable", {
+                    ref: "paintFirma",
+                    attrs: {
+                      hidePaintable: true,
+                      isFirstPaintable: _vm.isFirstPaintable,
+                      disableNavigation: true,
+                      showUndoRedo: false,
+                      showLineWidth: false,
+                      rutaImagen: _vm.rutaSello,
+                      width: 800,
+                      height: 800
+                    },
+                    on: {
+                      getOutput: function($event) {
+                        _vm.frmimg.imgFirma = $event
+                      },
+                      RespuestaImgFirma: function($event) {
+                        _vm.validarImgFirma = $event
+                      }
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "col-md-12 text-center" }, [
+                _vm._v("______________________________________________")
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "col-md-12 text-center" }, [
+                _vm._v("FIRMA DEL ANESTESIÓLOGO:")
+              ])
+            ])
+          ])
         ])
       ])
     ])
@@ -111904,7 +112387,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("v-select", vue_select__WEB
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("menuComponente", __webpack_require__(/*! ./components/componentesGenerales/MenuComponent.vue */ "./resources/js/components/componentesGenerales/MenuComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vuetable-component", __webpack_require__(/*! ./components/componentesGenerales/VueTableComponent.vue */ "./resources/js/components/componentesGenerales/VueTableComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vue-painttable", __webpack_require__(/*! ./components/componentesGenerales/VuePaintableComponent.vue */ "./resources/js/components/componentesGenerales/VuePaintableComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vue-confirmar-cancelar", __webpack_require__(/*! ./components/componentesGenerales/VueConfirmarCancelarComponent.vue */ "./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue")["default"]); //*********FIN COMPONENTES GENERALES*********\\
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vue-confirmar-cancelar", __webpack_require__(/*! ./components/componentesGenerales/VueConfirmarCancelarComponent.vue */ "./resources/js/components/componentesGenerales/VueConfirmarCancelarComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("vue-firma", __webpack_require__(/*! ./components/componentesGenerales/VueFirmaComponent.vue */ "./resources/js/components/componentesGenerales/VueFirmaComponent.vue")["default"]); //*********FIN COMPONENTES GENERALES*********\\
 
 /* Vue.component(
     "prueba",
@@ -114002,6 +114486,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VueConfirmarCancelarComponent_vue_vue_type_template_id_7428a28e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VueConfirmarCancelarComponent_vue_vue_type_template_id_7428a28e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/componentesGenerales/VueFirmaComponent.vue":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/componentesGenerales/VueFirmaComponent.vue ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VueFirmaComponent_vue_vue_type_template_id_3cf079c7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VueFirmaComponent.vue?vue&type=template&id=3cf079c7& */ "./resources/js/components/componentesGenerales/VueFirmaComponent.vue?vue&type=template&id=3cf079c7&");
+/* harmony import */ var _VueFirmaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VueFirmaComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/componentesGenerales/VueFirmaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _VueFirmaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _VueFirmaComponent_vue_vue_type_template_id_3cf079c7___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _VueFirmaComponent_vue_vue_type_template_id_3cf079c7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/componentesGenerales/VueFirmaComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/componentesGenerales/VueFirmaComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/componentesGenerales/VueFirmaComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VueFirmaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./VueFirmaComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/componentesGenerales/VueFirmaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VueFirmaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/componentesGenerales/VueFirmaComponent.vue?vue&type=template&id=3cf079c7&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/componentesGenerales/VueFirmaComponent.vue?vue&type=template&id=3cf079c7& ***!
+  \***********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VueFirmaComponent_vue_vue_type_template_id_3cf079c7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./VueFirmaComponent.vue?vue&type=template&id=3cf079c7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/componentesGenerales/VueFirmaComponent.vue?vue&type=template&id=3cf079c7&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VueFirmaComponent_vue_vue_type_template_id_3cf079c7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VueFirmaComponent_vue_vue_type_template_id_3cf079c7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

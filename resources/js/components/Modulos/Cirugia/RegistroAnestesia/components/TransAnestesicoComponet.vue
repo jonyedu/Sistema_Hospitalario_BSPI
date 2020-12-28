@@ -8,6 +8,7 @@
                             class="btn btn-outline-primary"
                             v-if="!iniciado"
                             v-on:click="start_time"
+                            :style="{display: isHidden}"
                         >
                             Iniciar
                         </button>
@@ -19,7 +20,7 @@
                             Finalizar
                         </button>
                     </div>
-                    <div class="" style="width: 90%; margin: 0 auto">
+                    <div class="" :style="{display: isHidden}" style="width: 90%; margin: 0 auto">
                         <div class="row flex-center-x">
                             <p
                                 class="badge badge-warning  col-lg-4 col-md-4 col-sm-4"
@@ -70,7 +71,7 @@
                             <!-- MAX y MIN -->
                             <div class="col-md-3 border-t pt-2 pb-4">
                                 <div class="text-center">
-                                    <p class="text-center">TA</p>
+                                    <p class="text-center">T.A.</p>
                                 </div>
                                 <div class="row">
                                     <!-- MAX -->
@@ -351,7 +352,7 @@
                         <div v-if="iniciado">
                             <div ref="printMe">
                                 <div class="row border-t flex-center-x">
-                                    <span class="">Registro anestésico</span>
+                                    <span class="">Registro Trans-Anestésico</span>
                                 </div>
                                 <div class="border-t row">
                                     <div class="col-12">
@@ -442,12 +443,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- POSICION -->
+                                                <!-- POSICIÓN -->
                                                 <div
                                                     class="row border-r flex-x-end"
                                                     style="padding: 15px 5px"
                                                 >
-                                                    <span>POSICION</span>
+                                                    <span>POSICIÓN</span>
                                                 </div>
                                             </div>
                                             <!-- DATOS  -->
@@ -759,9 +760,15 @@ export default {
             type: String,
             required: true
         },
+        idRegistroAnestesia: {
+            type: Number,
+            required: true
+        }
     },
     data: function() {
         return {
+            iniciadoGrafica: false,
+            isHidden: "block",
             // Detectar cuando Inicia/Finaliza el Proceso
             iniciado: false,
             //Datos para el conteo del la hora
@@ -855,7 +862,7 @@ export default {
                 pares_venosa: {
                     ruta_img: "img/icons/pares_venosa.png",
                     habilitado: true,
-                    descripcion: "PARES VENOSA",
+                    descripcion: "PRES VENOSA",
                     valor: 0
                 },
                 torniquete: {
@@ -879,6 +886,9 @@ export default {
             },
             form:{
                 cirugia_id: 0,
+                registro_anestesia_id: 0,
+                id_datos_agente:0,
+                imgGrafica: "",
             },
             // Posociones
             posiciones: [],
@@ -951,6 +961,7 @@ export default {
         this.minutes = minuto;
         this.hour = hora;
         this.form.cirugia_id = this.$props.idSecCirPro;
+        this.form.registro_anestesia_id = this.$props.idRegistroAnestesia
         /**
          * Se empiezan a llenar los datos de la rejilla
          */
@@ -1195,21 +1206,15 @@ export default {
         start_time: async function(event) {
             if (this.iniciado) return;
             this.iniciado = true;
+            this.iniciadoGrafica = true;
             this.agregarHorasInicial();
-            //Guardar datos en la tabla tb_registro_anestesia
-            let url = "/modulos/cirugia/anestesia/registro/post";
-            let $id = await axios.post(url, this.form).then(response => {
-                this.form.registro_anestesia_id = response.data.id;
-            });
-            this.$emit("guardarCabecera", this.form.registro_anestesia_id);
-            //Guardar datos en la tabla tb_tipo_agente_anestesia
             // Poner el dato al inicio de la rejilla cuando se haya iniciado
             this.agregaDatoEnRejilla(
                 true,
                 false,
                 250,
                 "img/icons/induccion.png",
-                { system_name: "INDUCCION", tipo: this.system_agente }
+                { system_name: "INDUCCIÓN", tipo: this.system_agente }
             );
             this.flashMessage.show({
                 status: "success",
@@ -1225,87 +1230,38 @@ export default {
                 }
             });
         },
-        /* start_time: async function(event) {
-            if (this.iniciado) return;
-            this.iniciado = true;
-            this.agregarHorasInicial();
-            //Guardar datos en la tabla tb_registro_anestesia
-            let url = "/modulos/cirugia/anestesia/registro/post";
-            let $id = await axios.post(url, this.form).then(response => {
-                this.form.registro_anestesia_id = response.data.id;
-            });
-            this.$emit("guardarCabecera", this.form.registro_anestesia_id);
-            //Guardar datos en la tabla tb_tipo_agente_anestesia
-            // Poner el dato al inicio de la rejilla cuando se haya iniciado
-            this.agregaDatoEnRejilla(
-                true,
-                false,
-                250,
-                "img/icons/induccion.png",
-                { system_name: "INDUCCION", tipo: this.system_agente }
-            );
-            this.flashMessage.show({
-                status: "success",
-                title: "Éxito al procesar",
-                message: "Agente agregado correctamente.",
-                clickable: true,
-                time: 5000,
-                icon: "/iconsflashMessage/success.svg",
-                customStyle: {
-                    flashMessageStyle: {
-                        background: "linear-gradient(#e66465, #9198e5)"
-                    }
-                }
-            });
-        }, */
         //Metodo para finalizar el proceso de la grafica
         end_time: function() {
-            if (this.validarImgFirma) {
-                if (!this.iniciado) return;
-                this.mostrarModalConfirmarCandelar();
-                if (this.resConfirmarCancelar) {
-                    this.agregaDatoEnRejilla(
-                        true,
-                        false,
-                        0,
-                        "img/icons/fin_anestecia.png",
-                        {
-                            system_name: "FIN-ANESTECIA",
-                            tipo: this.system_agente
-                        }
-                    );
-                    var idFlashMessage1 = this.flashMessage.show({
-                        status: "info",
-                        title: "Generando Gráfica",
-                        message:
-                            "Se está generando la gráfica, por favor espere.",
-                        clickable: false,
-                        time: 0,
-                        icon: "/iconsflashMessage/time.gif",
-                        blockClass: "custom_msg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    this.getImgGrafica(idFlashMessage1);
-                    this.guardarDrograAdministrada();
-                }
-            } else {
-                this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia al procesar firma",
-                    message: "Se necesita una firma por favor.",
-                    clickable: true,
+            if (!this.iniciado) return;
+            this.mostrarModalConfirmarCandelar();
+            if (this.resConfirmarCancelar) {
+                this.agregaDatoEnRejilla(
+                    true,
+                    false,
+                    0,
+                    "img/icons/fin_anestecia.png",
+                    {
+                        system_name: "FIN-ANESTESIA",
+                        tipo: this.system_agente
+                    }
+                );
+                var idFlashMessage1 = this.flashMessage.show({
+                    status: "info",
+                    title: "Generando Gráfica",
+                    message:
+                        "Se está generando la gráfica, por favor espere.",
+                    clickable: false,
                     time: 0,
-                    icon: "/iconsflashMessage/warning.svg",
+                    icon: "/iconsflashMessage/time.gif",
+                    blockClass: "custom_msg",
                     customStyle: {
                         flashMessageStyle: {
                             background: "linear-gradient(#e66465, #9198e5)"
                         }
                     }
                 });
+                this.getImgGrafica(idFlashMessage1);
+                this.guardarModificarAgenteText();
             }
         },
         /**
@@ -1439,18 +1395,13 @@ export default {
                     this.datos_server = response.data;
                     //alert("es_posicion:" + es_posicion);
                     if (agente.dato.es_agente) {
-                        console.log(agente);
                         col_cince_min.agentes.push({
                             descripcion: agente.columnas.agente.description,
                             valor: agente.columnas.agente.valueNew ,
                             _src: agente.columnas.agente.src,
                             id: response.data.datos
                         });
-                        console.log(col_cince_min.agentes);
                     } else {
-                        /* Object.assign(agente.posicion, {
-                            idRe: response.data.datos
-                        }); */
                         column_quince.posicion.descripcion = agente.posicion.description;
                         column_quince.posicion.id = agente.posicion.cod;
                         column_quince.posicion.img_url = agente.posicion.src;
@@ -1534,6 +1485,105 @@ export default {
                     });
                 });
         },
+        async getImgGrafica(idFlashMessage1) {
+            var loader = this.$loading.show();
+            const la = this.$refs.printMe;
+            const optiones = {
+                type: "dataURL"
+            };
+            this.form.imgGrafica = await this.$html2canvas(la, optiones);
+            this.flashMessage.deleteMessage(idFlashMessage1);
+            loader.hide();
+            this.guardarImgGrafica();
+        },
+        guardarImgGrafica() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            let formNew = {
+                cirugia_id: that.form.cirugia_id,
+                registro_anestesia_id: that.form.registro_anestesia_id,
+                imgGrafica: that.form.imgGrafica
+            };
+            url = "/modulos/cirugia/anestesia/guardar_img_grafica";
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Exito en Graficar",
+                        message: "Grafico generado correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    that.resConfirmarCancelar = false;
+                    that.iniciado = false;
+                    that.isHidden = "none";
+                    loader.hide();
+                })
+                .catch(error => {
+                    that.resConfirmarCancelar = false;
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarImgGrafica",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        guardarModificarAgenteText() {
+            let that = this;
+            let url = "";
+            let formNew = {
+                datos: that.agentes_text,
+                registro_anestesia_id: that.form.registro_anestesia_id,
+                hora: that.hour,
+                minuto: that.minutes,
+                indice_minuto: that.indice_minuto
+            };
+            url = "/modulos/cirugia/anestesia/guardar_modificar_agente_text";
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    loader.hide();
+                })
+                .catch(error => {
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarModificarAgenteText",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
         //Metodos para el componente ConfirmarCandelar
         mostrarModalConfirmarCandelar() {
             this.icon = "/iconsflashMessage/warning.svg";
@@ -1545,6 +1595,72 @@ export default {
             this.resConfirmarCancelar = value;
             this.$modal.hide("ConfirmarCandelar");
             this.end_time();
+        },
+        eliminarAgente(
+            index,
+            index_fila,
+            index_columna,
+            index_minutos_columna,
+            index_agente,
+            minutos_columna = {},
+            agente = {},
+            dato = {}
+        ) {
+            this.lmpDatosEliminarAgente();
+            //Inicia la optimizacion
+            this.datos_eliminar_agente.index_all.index = index;
+            this.datos_eliminar_agente.index_all.index_fila = index_fila;
+            this.datos_eliminar_agente.index_all.index_columna = index_columna;
+            this.datos_eliminar_agente.index_all.index_minutos_columna = index_minutos_columna;
+            this.datos_eliminar_agente.index_all.index_agente = index_agente;
+            this.datos_eliminar_agente.columnas.t_init = minutos_columna['t_init'];
+            this.datos_eliminar_agente.columnas.t_fin = minutos_columna['t_fin'];
+            //Agente
+            this.datos_eliminar_agente.columnas.agente.cod = agente.id;
+            this.datos_eliminar_agente.columnas.agente.description = agente.descripcion;
+            this.datos_eliminar_agente.columnas.agente.src = agente._src;
+            this.datos_eliminar_agente.columnas.agente.value = agente.valor;
+            //Fin Agente
+            this.datos_eliminar_agente.dato.es_agente = dato.es_agente;
+            this.datos_eliminar_agente.dato.es_posicion = dato.es_posicion;
+            //Fin la optimizacion
+
+            if (this.datos_eliminar_agente.dato.es_agente && this.datos_eliminar_agente.index_all.index_fila != 29) {
+                this.datos_eliminar_agente.adicional = {
+                    system_name: this.datos_eliminar_agente.columnas.agente.description,
+                    tipo: "agente"
+                };
+            } else if (this.datos_eliminar_agente.dato.es_agente && this.datos_eliminar_agente.index_all.index_fila == 29) {
+                this.datos_eliminar_agente.adicional = {
+                    system_name: this.datos_eliminar_agente.columnas.agente.description ,
+                    tipo: "respiracion"
+                };
+            }
+            this.$modal.show("EliminarAgente");
+        },
+        eliminarPosicion(
+            index,
+            index_fila,
+            index_columna,
+            posicion = {}
+        ) {
+            this.lmpDatosEliminarAgente();
+            this.datos_eliminar_agente.index_all.index = index;
+            this.datos_eliminar_agente.index_all.index_fila = index_fila;
+            this.datos_eliminar_agente.index_all.index_columna = index_columna;
+            //Posicicion
+            this.datos_eliminar_agente.posicion.cod = posicion.id;
+            this.datos_eliminar_agente.posicion.codRe = posicion.idRe;
+            this.datos_eliminar_agente.posicion.description = posicion.descripcion;
+            this.datos_eliminar_agente.posicion.nombre_sistema = posicion.name_system;
+            this.datos_eliminar_agente.posicion.src = posicion.img_url;
+            //Fin
+
+            this.datos_eliminar_agente.adicional = {
+                system_name: this.datos_eliminar_agente.posicion.description,
+                tipo: "posicion"
+            };
+            this.$modal.show("EliminarAgente");
         },
         //Metodo para cerrar el modal y procesar el modificado o eliminado del agentes
         handleSeleccionarClick(value) {
@@ -1676,6 +1792,29 @@ export default {
             }
             this.$modal.hide("EliminarAgente");
         },
+        lmpDatosEliminarAgente(){
+            this.datos_eliminar_agente.respuesta_modificar = false;
+            this.datos_eliminar_agente.respuesta_modificar = false;
+            this.datos_eliminar_agente.index_all.index = "";
+            this.datos_eliminar_agente.index_all.index_fila = "";
+            this.datos_eliminar_agente.index_all.index_columna = "";
+            this.datos_eliminar_agente.index_all.index_minutos_columna = "";
+            this.datos_eliminar_agente.index_all.index_agente = "";
+            this.datos_eliminar_agente.columnas.agente.src = "";
+            this.datos_eliminar_agente.columnas.agente.description = "";
+            this.datos_eliminar_agente.columnas.agente.cod ="";
+            this.datos_eliminar_agente.columnas.agente.value ="";
+            this.datos_eliminar_agente.columnas.agente.valueNew = "";
+            this.datos_eliminar_agente.columnas.t_fin = "";
+            this.datos_eliminar_agente.columnas.t_init = "";
+            this.datos_eliminar_agente.posicion.description = "";
+            this.datos_eliminar_agente.posicion.cod = "";
+            this.datos_eliminar_agente.posicion.codRe = "";
+            this.datos_eliminar_agente.posicion.src = "";
+            this.datos_eliminar_agente.posicion.nombre_sistema = "";
+            this.datos_eliminar_agente.dato.es_agente = "";
+            this.datos_eliminar_agente.dato.es_posicion = ""
+        },
         //Metodo para agregar una nueva hora en la grafica
         agregarObjetoPorHora() {
             // Validar que se haya guardado todos los valores
@@ -1781,8 +1920,6 @@ export default {
             if (this.chk.torniquete) {
                 this.agregarDatos(this.valoresFormulario.torniquete);
             }
-            //Aqui va el metodo de guardar los text
-            //this.guardarModificarAgenteText();
             // Agregar posición en la rejilla
             let post_text = this.posiciones.find(
                 e => e.id == this.valoresFormulario.posicion.id
@@ -1828,7 +1965,7 @@ export default {
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia Campos Vacios",
-                    message: "El campo TA MAX, necesita una valor.",
+                    message: "El campo T.A. MAX, necesita una valor.",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -1848,7 +1985,7 @@ export default {
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia Campos Vacios",
-                    message: "El campo TA MIN, necesita una valor.",
+                    message: "El campo T.A. MIN, necesita una valor.",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -1950,7 +2087,7 @@ export default {
                     this.flashMessage.show({
                         status: "warning",
                         title: "Advertencia Campos Vacios",
-                        message: "El campo PARES VENOSA, necesita un valor.",
+                        message: "El campo PRES VENOSA, necesita un valor.",
                         clickable: true,
                         time: 5000,
                         icon: "/iconsflashMessage/warning.svg",
@@ -2218,9 +2355,47 @@ export default {
                 { system_name: campo.descripcion, tipo: this.system_agente }
             );
         },
-
+        validarForm(){
+            //return true;
+            if(this.iniciadoGrafica == false){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "Usted aun no ha Iniciado el proceso de Registro Trans-Anestésico. Por favor de en iniciar para continuar.",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
+            if(this.iniciado){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "Usted aun no ha terminado el proceso de Registro Trans-Anestésico. Por favor de en finalizar para continuar.",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
+            return true;
+        },
     },
-
     computed: {}
 };
 </script>

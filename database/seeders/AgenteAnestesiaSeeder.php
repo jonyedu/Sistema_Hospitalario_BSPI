@@ -15,8 +15,8 @@ class AgenteAnestesiaSeeder extends Seeder
     public function run()
     {
         AgenteAnestesia::create([
-            'descripcion' => 'T.A',
-            'name_system' => 'T.A',
+            'descripcion' => 'T.A.',
+            'name_system' => 'T.A.',
             'img_url' => '',
             'tipo_id' => '1',
             'usu_created_update' => '1',
@@ -51,8 +51,8 @@ class AgenteAnestesiaSeeder extends Seeder
             'status' => '1'
         ]);
         AgenteAnestesia::create([
-            'descripcion' => 'INDUCCION',
-            'name_system' => 'INDUCCION',
+            'descripcion' => 'INDUCCIÓN',
+            'name_system' => 'INDUCCIÓN',
             'img_url' => 'img/icons/induccion.png',
             'tipo_id' => '1',
             'usu_created_update' => '1',
@@ -60,8 +60,8 @@ class AgenteAnestesiaSeeder extends Seeder
             'status' => '1'
         ]);
         AgenteAnestesia::create([
-            'descripcion' => 'FIN-ANESTECIA',
-            'name_system' => 'FIN-ANESTECIA',
+            'descripcion' => 'FIN-ANESTESIA',
+            'name_system' => 'FIN-ANESTESIA',
             'img_url' => 'img/icons/fin_anestecia.png',
             'tipo_id' => '1',
             'usu_created_update' => '1',
@@ -123,8 +123,8 @@ class AgenteAnestesiaSeeder extends Seeder
             'status' => '1'
         ]);
         AgenteAnestesia::create([
-            'descripcion' => 'PARES VENOSA',
-            'name_system' => 'PARES VENOSA',
+            'descripcion' => 'PRES VENOSA',
+            'name_system' => 'PRES VENOSA',
             'img_url' => 'img/icons/pares_venosa.png',
             'tipo_id' => '1',
             'usu_created_update' => '1',

@@ -20,6 +20,7 @@ class TarifarioApiController extends Controller
             $tarifariosMedicinas = TarifarioMedicina::select('codigo', 'descripcion')->where('descripcion', 'like', "%$descripcion%")
                 //  ->with('pacienteLista','pacienteHospitalizacion')
                 ->union($TarifarioCirugua)
+                ->orderBy('descripcion', 'asc')
                 ->get();
             return  response()->json(['tarifariosMedicinas' => $tarifariosMedicinas], 200);
         } catch (Exception $e) {
