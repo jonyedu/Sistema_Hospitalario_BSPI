@@ -256,42 +256,86 @@ class RegistroAnestesiaController extends Controller
                     ->where('status', '1')
                     ->with('drogaAdministradaRpt', 'graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt', 'tipoPosicion', 'consultaSala', 'consultaMedico')
                     ->first();
+                if ($datosValoracionPreanestesica != null) {
+                    return response()->json(['mensaje' => $datosValoracionPreanestesica->input()], 500);
+                    $id_registro_anestesia = $datosValoracionPreanestesica->id;
+                    $datosprocedimiento = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
+                        ->first();
+                    if ($id_registro_anestesia != null) {
+                        $TarifarioProcedimiento = TarifarioProcedimiento::select('codigo', 'descripcion')->where('codigo', $datosprocedimiento->id_operacion_realizada);
+                        $TarifarioCirugua = TarifarioCirugia::select('codigo', 'descripcion')->where('codigo', $datosprocedimiento->id_operacion_realizada)
+                            ->union($TarifarioProcedimiento);
+                        $TarifarioMedicina = TarifarioMedicina::select('codigo', 'descripcion')->where('codigo', $datosprocedimiento->id_operacion_realizada)
+                            //  ->with('pacienteLista','pacienteHospitalizacion')
+                            ->union($TarifarioCirugua)
+                            ->first();
+                        if ($TarifarioMedicina != null) {
+                            $datosPaciente = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
+                                ->with('graficoFirmaMedico', 'cirujano', 'Ayudante', 'Ayudante2', 'Instrumentrista', 'DiagnosticoPost', 'DiagnosticoPre', 'Anestesiologo')
+                                ->first();
+                            if ($datosPaciente != null) {
+                                // $datosMedico = RegistroAnestesia::where('registro_anestesia_id', $id_registro_anestesia)
+                                // ->with('graficoFirmaMedico','cirujano','Ayudante','Ayudante2','Instrumentrista','DiagnosticoPost','DiagnosticoPre','Anestesiologo')
+                                // ->first();
 
-                $id_registro_anestesia = $datosValoracionPreanestesica->id;
-                $datosprocedimiento = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
-                    ->first();
 
+                                $pdf = PDF::loadView(
+                                    'reports.pdf.formulario-registro-anestesia',
+                                    [
+                                        'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
+                                        'datosPaciente' => $datosPaciente,
+                                        'Tarifario' => $TarifarioMedicina
+                                    ]
+                                );
+                                return $pdf->stream($nombreArchivo);
 
-                $TarifarioProcedimiento = TarifarioProcedimiento::select('codigo', 'descripcion')->where('codigo', $datosprocedimiento->id_operacion_realizada);
-                $TarifarioCirugua = TarifarioCirugia::select('codigo', 'descripcion')->where('codigo', $datosprocedimiento->id_operacion_realizada)
-                    ->union($TarifarioProcedimiento);
-                $TarifarioMedicina = TarifarioMedicina::select('codigo', 'descripcion')->where('codigo', $datosprocedimiento->id_operacion_realizada)
-                    //  ->with('pacienteLista','pacienteHospitalizacion')
-                    ->union($TarifarioCirugua)
-                    ->first();
-
-                $datosPaciente = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
-                    ->with('graficoFirmaMedico', 'cirujano', 'Ayudante', 'Ayudante2', 'Instrumentrista', 'DiagnosticoPost', 'DiagnosticoPre', 'Anestesiologo')
-                    ->first();
-
-                // $datosMedico = RegistroAnestesia::where('registro_anestesia_id', $id_registro_anestesia)
-                // ->with('graficoFirmaMedico','cirujano','Ayudante','Ayudante2','Instrumentrista','DiagnosticoPost','DiagnosticoPre','Anestesiologo')
-                // ->first();
-
-
-                $pdf = PDF::loadView(
-                    'reports.pdf.formulario-registro-anestesia',
-                    [
-                        'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
-                        'datosPaciente' => $datosPaciente,
-                        'Tarifario' => $TarifarioMedicina
-                    ]
-                );
-                return $pdf->stream($nombreArchivo);
-
-                // return  response()->json(['datosValoracionPreanestesica' => $datosValoracionPreanestesica,
-                // 'datosPaciente' => $datosPaciente,
-                // 'Tarifario' => $TarifarioMedicina], 200);
+                                // return  response()->json(['datosValoracionPreanestesica' => $datosValoracionPreanestesica,
+                                // 'datosPaciente' => $datosPaciente,
+                                // 'Tarifario' => $TarifarioMedicina], 200);/*  */
+                            } else {
+                                $pdf = PDF::loadView(
+                                    'reports.pdf.formulario-registro-anestesia',
+                                    [
+                                        'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
+                                        'datosPaciente' => $datosPaciente,
+                                        'Tarifario' => $TarifarioMedicina
+                                    ]
+                                );
+                                return $pdf->stream($nombreArchivo);
+                            }
+                        } else {
+                            $pdf = PDF::loadView(
+                                'reports.pdf.formulario-registro-anestesia',
+                                [
+                                    'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
+                                    'datosPaciente' => $datosPaciente,
+                                    'Tarifario' => $TarifarioMedicina
+                                ]
+                            );
+                            return $pdf->stream($nombreArchivo);
+                        }
+                    } else {
+                        $pdf = PDF::loadView(
+                            'reports.pdf.formulario-registro-anestesia',
+                            [
+                                'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
+                                'datosPaciente' => $datosPaciente,
+                                'Tarifario' => $TarifarioMedicina
+                            ]
+                        );
+                        return $pdf->stream($nombreArchivo);
+                    }
+                } else {
+                    $pdf = PDF::loadView(
+                        'reports.pdf.formulario-registro-anestesia',
+                        [
+                            'datosValoracionPreanestesica' => $datosValoracionPreanestesica,
+                            'datosPaciente' => $datosPaciente,
+                            'Tarifario' => $TarifarioMedicina
+                        ]
+                    );
+                    return $pdf->stream($nombreArchivo);
+                }
             } catch (Exception $e) {
                 return response()->json(['mensaje' => $e->getMessage()], 500);
             }

@@ -53,14 +53,6 @@ class ValoracionPreanestesicaApiController extends Controller
                 if($datosPaciente != null){
                     $edadPaciente = $this->calculaEdad($datosPaciente->pacienteLista->fecha_nacimiento);
                 }
-
-                /* $datosPaciente = DB::connection('admin_db_sql')
-                    ->select("exec SpAdm_CirugiasProgramdasConsultar '" . $idSecCirPro . "','','DP' ");
-                if (sizeof($datosPaciente) > 0) {
-                    foreach ($datosPaciente as $paciente) {
-                        $edadPaciente = $this->calculaEdad($paciente->Fecha_nacimiento);
-                    }
-                } */
                 $datosValoracionPreanestesica = RevisionSistema::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
                     ->with('antecedente', 'examenFisico', 'paraclinico.tipoSangre')

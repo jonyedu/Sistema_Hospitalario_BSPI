@@ -1366,7 +1366,6 @@ export default {
                     .post(url, this.form)
                     .then(function(response) {
                         loader.hide();
-                        that.guardarFirmaPorAtencion();
                     })
                     .catch(error => {
                         that.flashMessage.show({

@@ -44,7 +44,7 @@
                 </ul>
             </li>
             <li
-                v-if="true"
+                v-if="false"
                 class="nav-item has-treeview"
             >
                 <a class="nav-link">

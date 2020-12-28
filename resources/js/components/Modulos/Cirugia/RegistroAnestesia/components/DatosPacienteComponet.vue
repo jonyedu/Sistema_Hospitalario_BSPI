@@ -871,7 +871,7 @@ export default {
             }
         },
         validarForm(){
-            return true;
+            //return true;
             if(this.form.id_diagnostico_pre <=0 ){
                 this.flashMessage.show({
                     status: "warning",

@@ -329,8 +329,7 @@ export default {
                 imgGrafica: null
             },
             form: {
-                /* Datos del paciente */
-                frm_idCirugiaProgramada: "2890", //2890
+                frm_idCirugiaProgramada: "", //2890
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
@@ -445,7 +444,7 @@ export default {
                     this.$refs.paraclinico.cargarParaclinico();
                     break;
                 case 4:
-                    this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
+                    //this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
                     break;
                 case 5:
                     this.$refs.firmaDigitalValoPrea.consultarSello();
@@ -469,6 +468,7 @@ export default {
                     this.$refs.paraclinico.guardarModificar();
                     break;
                 case 4:
+                    this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
                     break;
                 default:
                 //this.titulo_seleccionado = "";

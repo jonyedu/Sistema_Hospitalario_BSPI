@@ -4362,8 +4362,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     validarForm: function validarForm() {
-      return true;
-
+      //return true;
       if (this.form.id_diagnostico_pre <= 0) {
         this.flashMessage.show({
           status: "warning",
@@ -7194,15 +7193,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -7219,7 +7209,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       form: {
-        idCirugiaProgramada: "0001",
+        idCirugiaProgramada: "",
         idCirugiaProgramadaTemporal: "",
         registro_anestesia_id: 0,
 
@@ -7255,7 +7245,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.flashMessage.setStrategy("multiple");
-    this.obtenerIdRegistroAnestesio();
     /*  var user = this.$attrs;
     console.log(user); */
 
@@ -7312,6 +7301,7 @@ __webpack_require__.r(__webpack_exports__);
             that.datos_paciente = value;
             that.form.idCirugiaProgramada = value.SecCirPro;
             that.$modal.hide("ListaCirugiaProgramadaPaciente");
+            that.obtenerIdRegistroAnestesio();
             loader.hide();
           }
         })["catch"](function (error) {
@@ -7435,6 +7425,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     obtenerIdRegistroAnestesio: function obtenerIdRegistroAnestesio() {
       if (this.form.registro_anestesia_id <= 0) {
+        console.log("entra");
         var that = this;
         var url = "/modulos/cirugia/anestesia/registro/post";
         var loader = that.$loading.show();
@@ -14245,7 +14236,7 @@ __webpack_require__.r(__webpack_exports__);
       rutaSello: "",
       idPromesa: [],
       listas: {
-        SecCirPro: "0001",
+        SecCirPro: "",
         frm_id_user: "",
         chkentrada01: false,
         chkentrada02: false,
@@ -16043,8 +16034,7 @@ __webpack_require__.r(__webpack_exports__);
         imgGrafica: null
       },
       form: {
-        /* Datos del paciente */
-        frm_idCirugiaProgramada: "2890",
+        frm_idCirugiaProgramada: "",
         //2890
         frm_paciente: "",
         frm_cirujano: "",
@@ -16171,7 +16161,7 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case 4:
-          this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
+          //this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
           break;
 
         case 5:
@@ -16201,6 +16191,7 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case 4:
+          this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
           break;
 
         default: //this.titulo_seleccionado = "";
@@ -20181,7 +20172,6 @@ __webpack_require__.r(__webpack_exports__);
         this.form.frm_idCirugiaProgramada = idSecCirPro;
         axios.post(url, this.form).then(function (response) {
           loader.hide();
-          that.guardarFirmaPorAtencion();
         })["catch"](function (error) {
           that.flashMessage.show({
             status: "error",
@@ -93981,41 +93971,9 @@ var render = function() {
           )
         }),
         _vm._v(" "),
-        true
-          ? _c("li", { staticClass: "nav-item has-treeview" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("ul", { staticClass: "nav nav-treeview" }, [
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link ml-3",
-                        attrs: {
-                          to:
-                            _vm.prefijo +
-                            "/modulos/cirugia/registro_anestesia/mostrar_registro_anestesia"
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "fas fa-briefcase" }),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\n                            Registro Anestesia\n                        "
-                          )
-                        ])
-                      ]
-                    )
-                  ],
-                  1
-                )
-              ])
-            ])
-          : undefined
+        false
+          ? undefined
+          : _vm._e()
       ],
       2
     )

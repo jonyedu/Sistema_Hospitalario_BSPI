@@ -138,15 +138,6 @@
                                     icon="fas fa-file-pdf"
                                 >
                                     <div class="row">
-                                        <!-- <embed
-                                            :src="
-                                                '/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/' +
-                                                    form.idCirugiaProgramada
-                                            "
-                                            type="application/pdf"
-                                            width="100%"
-                                            height="980px"
-                                        /> -->
                                         <iframe
                                             ref="pdfRegistroAnestesia"
                                             :src="
@@ -211,7 +202,7 @@ export default {
             respuestaFinProceso: 0,
             respuestaImprimir: 0,
             form: {
-                idCirugiaProgramada: "0001",
+                idCirugiaProgramada: "",
                 idCirugiaProgramadaTemporal: "",
                 registro_anestesia_id: 0,
                 /* Datos del paciente */
@@ -244,7 +235,6 @@ export default {
     },
     mounted: function() {
         this.flashMessage.setStrategy("multiple");
-        this.obtenerIdRegistroAnestesio();
         /*  var user = this.$attrs;
         console.log(user); */
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
@@ -308,6 +298,7 @@ export default {
                             that.datos_paciente = value;
                             that.form.idCirugiaProgramada = value.SecCirPro;
                             that.$modal.hide("ListaCirugiaProgramadaPaciente");
+                            that.obtenerIdRegistroAnestesio();
                             loader.hide();
                         }
                     })
@@ -419,6 +410,7 @@ export default {
         },
         obtenerIdRegistroAnestesio() {
             if(this.form.registro_anestesia_id <= 0){
+                console.log("entra");
                 let that = this;
                 let url = "/modulos/cirugia/anestesia/registro/post";
                 var loader = that.$loading.show();

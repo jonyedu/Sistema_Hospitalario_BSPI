@@ -12,7 +12,7 @@ class DatosRegistroController extends Controller
 {
     public function guardarDatosRegistro(Request $request)
     {
-        return  response()->json(['msj' => $request->input()], 200);
+        //return  response()->json(['msj' => $request->input()], 200);
         try {
             $user = Auth::user();
             DatosRegistro::UpdateOrCreate(

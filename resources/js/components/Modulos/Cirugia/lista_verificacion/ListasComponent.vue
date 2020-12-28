@@ -347,7 +347,7 @@ export default {
             idPromesa: [],
 
             listas: {
-                SecCirPro: "0001",
+                SecCirPro: "",
                 frm_id_user: "",
                 chkentrada01: false,
                 chkentrada02: false,
