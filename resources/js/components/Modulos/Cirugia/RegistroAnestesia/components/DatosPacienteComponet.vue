@@ -66,7 +66,7 @@
                             <div class="col-lg-1 col-md-1 col-sm-1 text-left">
                                 <label
                                     class="col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    >Est.</label
+                                    >Est.(cm)</label
                                 >
                                 <input
                                     type="text"
@@ -78,7 +78,7 @@
                             <div class="col-lg-1 col-md-1 col-sm-1 text-left">
                                 <label
                                     class="col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    >Peso</label
+                                    >Peso(Kg)</label
                                 >
                                 <input
                                     type="text"
@@ -158,6 +158,7 @@
                                         <v-select
                                             taggable
                                             push-tags
+                                            placeholder="Ingrese el diagnóstico a buscar"
                                             v-model="selectedDiagnosticoPre"
                                             :value="form.id_diagnostico_pre"
                                             :options="diagnosticosPre"
@@ -181,6 +182,7 @@
                                         <v-select
                                             taggable
                                             push-tags
+                                            placeholder="Ingrese el diagnóstico a buscar"
                                             v-model="selectedDiagnostico"
                                             :value="form.id_diagnostico"
                                             :options="diagnosticos"
@@ -211,12 +213,12 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                 <label
                                     class="col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    >Cirujano</label
+                                    >Cirujano(a)</label
                                 >
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <v-select
-                                            placeholder="Cirujano"
+                                            placeholder="Seleccione un Cirujano(a)"
                                             v-model="selectedCirujano"
                                             :value="form.id_cirujano"
                                             :options="cirujanos"
@@ -238,7 +240,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <v-select
-                                            placeholder="Ayudante"
+                                            placeholder="Seleccione un Ayudante"
                                             v-model="selectedAyudante1"
                                             :value="form.id_ayudante1"
                                             :options="ayudantes1"
@@ -262,7 +264,7 @@
                                         <v-select
                                             taggable
                                             push-tags
-                                            placeholder="Operación Realizada"
+                                            placeholder="Ingrese la Operación Realizada"
                                             v-model="selectedTarifaria"
                                             :value="form.id_tarifaria"
                                             :options="tarifarias"
@@ -279,12 +281,12 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                 <label
                                     class="col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    >Anestesiologo</label
+                                    >Anestesiólogo(a)</label
                                 >
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <v-select
-                                            placeholder="Anestesiologo"
+                                            placeholder="Seleccione un Anestesiológo(a)"
                                             v-model="selectedAnestesiologo"
                                             :value="form.id_anestesiologo"
                                             :options="anestesiologos"
@@ -306,7 +308,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <v-select
-                                            placeholder="Ayudante"
+                                            placeholder="Seleccione un Ayudante"
                                             v-model="selectedAyudante2"
                                             :value="form.id_ayudante2"
                                             :options="ayudantes2"
@@ -328,7 +330,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <v-select
-                                            placeholder="Instrumentista"
+                                            placeholder="Seleccione un Instrumentista"
                                             v-model="selectedInstrumentista"
                                             :value="form.id_instrumentista"
                                             :options="instrumentistas"
@@ -393,7 +395,7 @@ export default {
                 /* Datos del paciente */
                 paciente: "",
                 historia_clinica: "",
-                fecha: "00/00/0000",
+                fecha: "00-00-0000",
                 edad: "",
                 sexo: "",
                 estatura: "",
@@ -416,7 +418,6 @@ export default {
                 /* Datos extras */
                 id_especializacion: 0
             }
-
         };
     },
     mounted: function() {
@@ -439,7 +440,7 @@ export default {
                     "/modulos/parametrizacion/servicio_medico/cargar_servicio_medico_por_medico/" +
                     this.form.id_servicio_medico;
                 if (value != null) {
-                    this.form.id_servicio_medico = value.id_servicio_medico;
+                    this.form.id_servicio_medico = +value.id_servicio_medico;
                     loader.hide();
                 }
                 axios
@@ -589,59 +590,6 @@ export default {
                 this.diagnosticosPre = [];
             }
         },
-        setSelectedDiagnosticoPre(value) {
-            let that = this;
-            if (this.selectedDiagnostico.id_diagnostico != null) {
-                this.form.id_diagnostico = this.selectedDiagnostico.id_diagnostico;
-            }
-            if (this.diagnosticos.length == 0) {
-                if (this.selectedDiagnostico != "") {
-                    var loader = that.$loading.show();
-                    let url =
-                        "/modulos/parametrizacion/diagnostico/cargar_diagnostico_combo_box/" +
-                        this.selectedDiagnostico;
-                    axios
-                        .get(url)
-                        .then(function(response) {
-                            let diagnosticosPre = [];
-                            let diagnosticos = [];
-                            response.data.diagnosticos.forEach(diagnostico => {
-                                let objeto = {};
-                                //Post
-                                objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
-                                    diagnostico.descripcion
-                                );
-                                objeto.id_diagnostico = diagnostico.id;
-                                diagnosticos.push(objeto);
-                            });
-                            that.diagnosticos = diagnosticos;
-                            loader.hide();
-                        })
-                        .catch(error => {
-                            that.flashMessage.show({
-                                status: "error",
-                                title:
-                                    "Error al procesar setSelectedDiagnostico",
-                                message:
-                                    "Por favor comuníquese con el administrador. " +
-                                    error,
-                                clickable: true,
-                                time: 0,
-                                icon: "/iconsflashMessage/error.svg",
-                                customStyle: {
-                                    flashMessageStyle: {
-                                        background:
-                                            "linear-gradient(#e66465, #9198e5)"
-                                    }
-                                }
-                            });
-                            loader.hide();
-                        });
-                }
-            } else {
-                this.diagnosticos = [];
-            }
-        },
         setSelectedCirujano(value) {
             let that = this;
             var loader = that.$loading.show();
@@ -661,11 +609,12 @@ export default {
                             medico.FULLNAME
                         );
                         objeto.id_cirujano = medico.id;
-                        objeto.id_servicio_medico = medico.tipo_medico_servicio;
+                        objeto.id_servicio_medico = +medico.tipo_medico_servicio;
                         cirujanos.push(objeto);
                     });
                     that.cirujanos = cirujanos;
                     loader.hide();
+                    that.setSelectedServicioMedico();
                 })
                 .catch(error => {
                     that.flashMessage.show({
@@ -900,17 +849,65 @@ export default {
                         loader.hide();
                     })
                     .catch(error => {
-                        //Errores
-                        loader.hide();
-                        that.$swal({
-                            icon: "error",
-                            title: "Existe un error",
-                            text: error
+                        that.flashMessage.show({
+                                status: "error",
+                                title:
+                                    "Error al procesar cargarDiagnosticoPorCodigo",
+                                message:
+                                    "Por favor comuníquese con el administrador. " +
+                                    error,
+                                clickable: true,
+                                time: 0,
+                                icon: "/iconsflashMessage/error.svg",
+                                customStyle: {
+                                    flashMessageStyle: {
+                                        background:
+                                            "linear-gradient(#e66465, #9198e5)"
+                                    }
+                                }
+                            });
+                            loader.hide();
                         });
-                    });
             }
         },
         validarForm(){
+            return true;
+            if(this.form.id_diagnostico_pre <=0 ){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "Se necesita seleccionar un Diagnóstico Preoperatorio.",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
+            if(this.form.id_diagnostico <=0 ){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "Se necesita seleccionar un Diagnóstico Post-Operatorio",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
             if(this.form.estatura == ""){
                 this.flashMessage.show({
                     status: "warning",
@@ -952,7 +949,7 @@ export default {
                     status: "warning",
                     title: "Advertencia",
                     message:
-                        "Se necesita seleccionar un Cirujano",
+                        "Se necesita seleccionar un Cirujano(a).",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -970,7 +967,7 @@ export default {
                     status: "warning",
                     title: "Advertencia",
                     message:
-                        "Se necesita seleccionar un Ayudante ",
+                        "Se necesita seleccionar un Ayudante.",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -988,7 +985,7 @@ export default {
                     status: "warning",
                     title: "Advertencia",
                     message:
-                        "Se necesita seleccionar la Operación Realizada",
+                        "Se necesita seleccionar la Operación Realizada.",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -1006,7 +1003,7 @@ export default {
                     status: "warning",
                     title: "Advertencia",
                     message:
-                        "Se necesita seleccionar un Anestesiologo ",
+                        "Se necesita seleccionar un Anestesiologo.",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -1018,12 +1015,31 @@ export default {
                     }
                 });
                 return false;
-            }if(this.form.id_instrumentista <= 0){
+            }
+            if(this.form.id_instrumentista <= 0){
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
                     message:
-                        "Se necesita seleccionar un Instrumentista ",
+                        "Se necesita seleccionar un Instrumentista.",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
+            if(this.selectedServicioMedico == ""){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "Se necesita seleccionar el Servicio.",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -1038,12 +1054,11 @@ export default {
             }
             return true;
         },
-        guardarCabecera(registro_anestesia_id) {
+        guardarModificarDatosPaciente() {
             let that = this;
             let url = "";
             let mensaje = "";
             url = "/modulos/cirugia/anestesia/guardar_datos_registro";
-            this.form.registro_anestesia_id = registro_anestesia_id;
             var loader = that.$loading.show();
             axios
                 .post(url, this.form)
@@ -1068,7 +1083,7 @@ export default {
                     loader.hide();
                     that.flashMessage.show({
                         status: "error",
-                        title: "Error al procesar guardarCabecera",
+                        title: "Error al procesar guardarModificarDatosPaciente",
                         message:
                             "Por favor comuníquese con el administrador. " +
                             error,

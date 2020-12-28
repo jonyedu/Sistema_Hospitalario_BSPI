@@ -11,17 +11,17 @@
                         </h2>
                     </div>
             </div>
-             
+
             <hr>
             <br>
             <div class="row">
                 <div class="col-md-6">
-                    
+
                     <div class="custom-control custom-checkbox">
                         <input
                             class="custom-control-input"
                             type="checkbox"
-                           
+
                             name="chkentrada01"
                             id="chkentrada01"
                             @change= "enviarvalor()"
@@ -35,7 +35,7 @@
                                 Su Identidad
                             </li>
                             <li>
-                                El Sitio Quirurgico
+                                El Sitio Quirúrgico
                             </li>
                             <li>
                                 El Procedimiento
@@ -54,7 +54,7 @@
                             v-model="listas.chkentrada02"
                         />
                         <label for="chkentrada02" class="custom-control-label"
-                            >DEMARCACION DEL SITIO/NO PROCEDE</label
+                            >DEMARCACIÓN DEL SITIO/NO PROCEDE</label
                         >
                     </div>
 
@@ -67,7 +67,7 @@
                             v-model="listas.chkentrada03"
                         />
                         <label for="chkentrada03" class="custom-control-label"
-                            >SE HA COMPLEMENTADO EL CONTROL DE LA SEGURIDAD DE
+                            >SE HA COMPLETADO EL CONTROL DE LA SEGURIDAD DE
                             LA ANESTESIA</label
                         >
                     </div>
@@ -82,7 +82,7 @@
                             v-model="listas.chkentrada04"
                         />
                         <label for="chkentrada04" class="custom-control-label"
-                            >PULSIOXIMETRO COLOCADO Y EN FUNCIONAMIENTO</label
+                            >PULSIOXÍMETRO COLOCADO Y EN FUNCIONAMIENTO</label
                         >
                     </div>
 
@@ -108,11 +108,11 @@
                             v-model="listas.chkentrada06"
                         />
                         <label for="chkentrada06" class="custom-control-label"
-                            >VIA AÉREA DIFICIL/RIESGO DE ASPIRACION
+                            >VÍA AÉREA DIFÍCIL/RIESGO DE ASPIRACIÓN
                         </label>
                         <ul>
                             <li>
-                                SI HAY INSTRUMENTAL Y EQUIPOS/AYUDA DISPONIBLE
+                                SI, Y HAY INSTRUMENTAL Y EQUIPOS/AYUDA DISPONIBLE
                             </li>
                         </ul>
                     </div>
@@ -132,7 +132,7 @@
                         <ul>
                             <li>
                                 SI, Y SE HA PREVISTO LA DISPONIBILIDAD DE ACCESO
-                                INTRAVENOSO Y LIQUIDOS ADECUADOS
+                                INTRAVENOSO Y LÍQUIDOS ADECUADOS
                             </li>
                         </ul>
                     </div>
@@ -158,11 +158,11 @@ export default {
         user: {
             type: Object
         },
-         
+
     },
     data() {
         return {
-          
+
               listas: {
                 SecCirPro: "",
                 frm_id_user:"",
@@ -173,7 +173,7 @@ export default {
                 chkentrada05: false,
                 chkentrada06: false,
                 chkentrada07: false,
-              
+
                 user_id: "",
                 cargo: "",
                 observacion: "",
@@ -182,8 +182,8 @@ export default {
         };
     },
     mounted() {
-        
-        
+
+
     },
     methods: {
         enviarvalor(){
@@ -194,6 +194,6 @@ export default {
         },
         /* Metodos para Llamar al Modal y la Tabla */
     },
-     
+
 };
 </script>

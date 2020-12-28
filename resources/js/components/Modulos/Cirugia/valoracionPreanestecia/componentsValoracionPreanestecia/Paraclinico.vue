@@ -502,7 +502,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- T.P.T -->
+                                                <!-- T.P.T. -->
                                                 <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
@@ -526,7 +526,7 @@
                                                                     : 'col-sm-12 custom-control-label'
                                                             "
                                                             for="defaultInline70"
-                                                            >T.P.T</label
+                                                            >T.P.T.</label
                                                         >
                                                         <div
                                                             class=""
@@ -596,6 +596,7 @@
                                                             :options="
                                                                 tipoSangre
                                                             "
+                                                            placeholder="Grupo sanguíneo"
                                                             label="display"
                                                             @input="
                                                                 setSelectedTipoSangre
@@ -614,19 +615,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Caja de Texto E.K.G -->
+                                    <!-- Caja de Texto E.K.G. -->
                                     <div
                                         class="card"
                                         style="background-color: #C8C8C5;"
                                     >
                                         <div class="card-body mt-2 ml-2">
                                             <div class="row">
-                                                <!-- E.K.G -->
+                                                <!-- E.K.G. -->
                                                 <div class="col-sm-12 mt-2">
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-sm-2 col-form-label"
-                                                            >E.K.G</label
+                                                            >E.K.G.</label
                                                         >
                                                         <div
                                                             class="col-sm-9 mr-2"
@@ -844,49 +845,49 @@
                                                         Jonhs Hopkins</label
                                                     >
                                                 </div>
-                                                <!-- CATEGORIA 1 -->
+                                                <!-- CATEGORÍA 1 -->
                                                 <div class="col-sm-12">
-                                                    <label>CATEGORIA 1</label>
+                                                    <label>CATEGORÍA 1</label>
                                                 </div>
                                                 <!-- Riesgo mínimo independiente -->
                                                 <div class="col-sm-12">
                                                     <input
                                                         type="radio"
-                                                        id="categoria_1"
-                                                        value="categoria1"
+                                                        id="CATEGORÍA_1"
+                                                        value="CATEGORÍA1"
                                                         v-model="
                                                             form.frm_clasificacion_riesgo
                                                         "
                                                     />
                                                     <label
                                                         style="font-weight: normal;"
-                                                        for="categoria_1"
+                                                        for="CATEGORÍA_1"
                                                     >
                                                         Riesgo mínimo
                                                         independiente de la
                                                         anestesia. Procedimiento
-                                                        minimamente invasivo con
+                                                        mínimamente invasivo con
                                                         poca o mínima pérdida
                                                         sanguínea.
                                                     </label>
                                                 </div>
-                                                <!-- CATEGORIA 2 -->
+                                                <!-- CATEGORÍA 2 -->
                                                 <div class="col-sm-12">
-                                                    <label>CATEGORIA 2</label>
+                                                    <label>CATEGORÍA 2</label>
                                                 </div>
                                                 <!-- Procedimiento con invasividad leve o moderada -->
                                                 <div class="col-sm-12">
                                                     <input
                                                         type="radio"
-                                                        id="categoria_2"
-                                                        value="categoria2"
+                                                        id="CATEGORÍA_2"
+                                                        value="CATEGORÍA2"
                                                         v-model="
                                                             form.frm_clasificacion_riesgo
                                                         "
                                                     />
                                                     <label
                                                         style="font-weight: normal;"
-                                                        for="categoria_1"
+                                                        for="CATEGORÍA_2"
                                                         >Procedimiento con
                                                         invasividad leve o
                                                         moderada. Pérdida
@@ -896,25 +897,25 @@
                                                         anestesia.</label
                                                     >
                                                 </div>
-                                                <!-- CATEGORIA 3 -->
+                                                <!-- CATEGORÍA 3 -->
                                                 <div class="col-sm-12">
-                                                    <label>CATEGORIA 3</label>
+                                                    <label>CATEGORÍA 3</label>
                                                 </div>
-                                                <!-- Procedimiento moderado o significamente invasivo. -->
+                                                <!-- Procedimiento moderado o significativa invasivo. -->
                                                 <div class="col-sm-12">
                                                     <input
                                                         type="radio"
-                                                        id="categoria_3"
-                                                        value="categoria3"
+                                                        id="CATEGORÍA_3"
+                                                        value="CATEGORÍA3"
                                                         v-model="
                                                             form.frm_clasificacion_riesgo
                                                         "
                                                     />
                                                     <label
                                                         style="font-weight: normal;"
-                                                        for="categoria_3"
+                                                        for="CATEGORÍA_3"
                                                         >Procedimiento moderado
-                                                        o significamente
+                                                        o significativa
                                                         invasivo. Pérdida
                                                         sanguínea potencial
                                                         entre 500 y 1500 ml.
@@ -923,23 +924,23 @@
                                                         anestesia.</label
                                                     >
                                                 </div>
-                                                <!-- ECATEGORIA 4-->
+                                                <!-- ECATEGORÍA 4-->
                                                 <div class="col-sm-12">
-                                                    <label>CATEGORIA 4</label>
+                                                    <label>CATEGORÍA 4</label>
                                                 </div>
                                                 <!-- Procedimiento altamente invasivo. -->
                                                 <div class="col-sm-12">
                                                     <input
                                                         type="radio"
-                                                        id="categoria_4"
-                                                        value="categoria4"
+                                                        id="CATEGORÍA_4"
+                                                        value="CATEGORÍA4"
                                                         v-model="
                                                             form.frm_clasificacion_riesgo
                                                         "
                                                     />
                                                     <label
                                                         style="font-weight: normal;"
-                                                        for="categoria_4"
+                                                        for="CATEGORÍA_4"
                                                         >Procedimiento altamente
                                                         invasivo. Pérdida
                                                         sanguínea mayor a 1500
@@ -948,23 +949,23 @@
                                                         anestesia.</label
                                                     >
                                                 </div>
-                                                <!-- CATEGORIA 5 -->
+                                                <!-- CATEGORÍA 5 -->
                                                 <div class="col-sm-12">
-                                                    <label>CATEGORIA 5</label>
+                                                    <label>CATEGORÍA 5</label>
                                                 </div>
                                                 <!-- Procedimiento altamente invasivo. -->
                                                 <div class="col-sm-12">
                                                     <input
                                                         type="radio"
-                                                        id="categoria_5"
-                                                        value="categoria5"
+                                                        id="CATEGORÍA_5"
+                                                        value="CATEGORÍA5"
                                                         v-model="
                                                             form.frm_clasificacion_riesgo
                                                         "
                                                     />
                                                     <label
                                                         style="font-weight: normal;"
-                                                        for="categoria_5"
+                                                        for="CATEGORÍA_5"
                                                         >Procedimiento altamente
                                                         invasivo. Pérdida
                                                         sanguínea mayor a 1500
@@ -1004,68 +1005,6 @@
                                                         ></textarea>
                                                     </div>
                                                 </div>
-
-                                                <!-- aqui  -->
-                                                <div class="col-sm-12 mt-2">
-                                                    <!-- FIRMA DEL MEDICO -->
-                                                    <div class="">
-                                                        <div
-                                                            class=""
-                                                            style="height: 70px"
-                                                        ></div>
-                                                        <div
-                                                            class="flex flex-y"
-                                                        >
-                                                            <span
-                                                                class="col-md-5 text-center"
-                                                                style="margin: auto"
-                                                            >
-                                                                <vue-painttable
-                                                                    @getOutput="
-                                                                        frmimg.imgFirma = $event
-                                                                    "
-                                                                    @RespuestaImgFirma="
-                                                                        validarImgFirma = $event
-                                                                    "
-                                                                    :hidePaintable="
-                                                                        true
-                                                                    "
-                                                                    :isFirstPaintable="
-                                                                        isFirstPaintable
-                                                                    "
-                                                                    :disableNavigation="
-                                                                        true
-                                                                    "
-                                                                    :showUndoRedo="
-                                                                        false
-                                                                    "
-                                                                    :showLineWidth="
-                                                                        false
-                                                                    "
-                                                                    :rutaImagen="
-                                                                        rutaSello
-                                                                    "
-                                                                    :width="800"
-                                                                    :height="
-                                                                        800
-                                                                    "
-                                                                    ref="paintFirma"
-                                                                ></vue-painttable>
-                                                            </span>
-                                                            <span
-                                                                class="col-md-12 text-center"
-                                                                >______________________________________________</span
-                                                            >
-                                                            <span
-                                                                class="col-md-12 text-center"
-                                                                >FIRMA DEL
-                                                                ANESTESIOLOGO:</span
-                                                            >
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- FIN DE FIRMA DEL MEDICO -->
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1086,9 +1025,6 @@ export default {
             type: String,
             required: true
         },
-        user: {
-            type: Object
-        },
         idRevisionSistema: {
             type: Number,
             required: false
@@ -1099,13 +1035,6 @@ export default {
             tipoSangre: [],
             selectedTipoSangre: "",
             validarFinProceso: 0,
-            validarImgFirma: 0,
-            isFirstPaintable: "firmaAnestesiologo",
-            rutaSello: "",
-            frmimg: {
-                imgFirma: null,
-                imgGrafica: null
-            },
             chk: {
                 /* Paraclinicos */
                 chk_hb: false,
@@ -1177,7 +1106,6 @@ export default {
     },
     mounted: function() {
         this.setSelectedTipoSangre();
-        this.consultarSello();
 
         /* let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
         let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
@@ -1205,7 +1133,7 @@ export default {
     methods: {
         validarForm(){
             //Se comprueba que un checkbox tenga data
-            if (this.frmimg.imgFirma == null) {
+            /* if (this.frmimg.imgFirma == null) {
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia al finalizar con el proceso",
@@ -1220,60 +1148,8 @@ export default {
                     }
                 });
                 return false;
-            }
+            } */
             return true;
-        },
-        consultarSello() {
-            let that = this;
-            if (this.$props.user.id > 0) {
-                var loader = that.$loading.show();
-                let url =
-                    "/modulos/cirugia/anestesia/cargar_sello/" +
-                    this.$props.user.id;
-                axios
-                    .get(url)
-                    .then(function(response) {
-                        if (response.data.sello != null) {
-                            if (response.data.sello.seguridad_medico != null) {
-                                if (
-                                    response.data.sello.seguridad_medico
-                                        .medico != null
-                                ) {
-                                    if (
-                                        response.data.sello.seguridad_medico
-                                            .medico.medico_sellos != null
-                                    ) {
-                                        that.rutaSello =
-                                            "data:image/jpeg;base64," +
-                                            response.data.sello.seguridad_medico
-                                                .medico.medico_sellos
-                                                .IMAGEN_SELLO;
-                                    }
-                                }
-                            }
-                        }
-                        loader.hide();
-                    })
-                    .catch(error => {
-                        that.flashMessage.show({
-                            status: "error",
-                            title: "Error al procesar consultarSello",
-                            message:
-                                "Por favor comuníquese con el administrador. " +
-                                error,
-                            clickable: true,
-                            time: 0,
-                            icon: "/iconsflashMessage/error.svg",
-                            customStyle: {
-                                flashMessageStyle: {
-                                    background:
-                                        "linear-gradient(#e66465, #9198e5)"
-                                }
-                            }
-                        });
-                        loader.hide();
-                    });
-            }
         },
         setSelectedTipoSangre(value) {
             let that = this;
@@ -1529,63 +1405,6 @@ export default {
                 });
             }
         },
-
-        guardarFirmaPorAtencion() {
-            let that = this;
-            let url = "";
-            let mensaje = "";
-            // alert(that.form.imgFirma);
-            let formNew = {
-                tipo_servicio: 4,
-                id_atencion: that.$props.idRevisionSistema, //id de revision de sistema
-                id_visita: 0,
-                id_tipo_documento: 13,
-                imgFirma: that.frmimg.imgFirma
-            };
-            url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
-            var loader = that.$loading.show();
-            axios
-                .post(url, formNew)
-                .then(function(response) {
-                    loader.hide();
-                    that.flashMessage.show({
-                        status: "success",
-                        title: "Proceso realizado exitosamente",
-                        message: that.mensaje,
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/success.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    /* that.validarFinProceso = 1;
-                    that.$emit("validarFinProceso", that.validarFinProceso);
-                    that.$emit("FinProceso"); */
-                })
-                .catch(error => {
-                    that.resConfirmarCancelar = false;
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar guardarFirmaPorAtencion",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
-                            }
-                        }
-                    });
-                    loader.hide();
-                });
-        },
-
         /* Paraclinicos */
         validarChkHb() {
             if (this.chk.chk_hb) {

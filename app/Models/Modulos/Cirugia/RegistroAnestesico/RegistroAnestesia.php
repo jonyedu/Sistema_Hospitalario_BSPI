@@ -85,12 +85,10 @@ class RegistroAnestesia extends Model
     {
         return $this->hasOne('App\Models\Modulos\Admision\Medico\Medico', 'id', 'por');
     }
-   
     public function consultaSala()
     {
         return $this->hasOne('App\Models\Modulos\Parametrizacion\Sala\Sala', 'codigo', 'conducido_a');
     }
-
     public function drogaAdministrada()
     {
         return $this->hasOne('App\Models\Modulos\Cirugia\RegistroAnestesico\DrogasAdministradas', 'id', 'registro_anestesia_id');
@@ -103,14 +101,14 @@ class RegistroAnestesia extends Model
     {
         return $this->hasMany('App\Models\Modulos\Cirugia\RegistroAnestesico\DrogasAdministradas', 'registro_anestesia_id', 'id');
     }
-
     public function registroInfusion()
     {
         return $this->hasOne('App\Models\Modulos\Cirugia\RegistroAnestesico\RegistroInfusiones', 'id', 'registro_anestesia_id');
     }
-     public function regitroInfunsionRpt(){
+    public function regitroInfunsionRpt()
+    {
         return $this->hasMany('App\Models\Modulos\Cirugia\RegistroAnestesico\RegistroInfusiones', 'registro_anestesia_id', 'id');
-     }
+    }
 
     public function datoAgente()
     {
@@ -135,5 +133,4 @@ class RegistroAnestesia extends Model
     {
         return $this->hasOne('App\Models\Modulos\Cirugia\RegistroAnestesico\AgenteAnestesia', 'id', 'id_tipo_posiciones');
     }
-  
 }

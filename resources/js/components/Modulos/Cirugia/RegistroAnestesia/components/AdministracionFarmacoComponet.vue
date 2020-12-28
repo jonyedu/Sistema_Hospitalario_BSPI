@@ -270,7 +270,7 @@
                                     v-model="form.fchaDuracionAnestecia"
                                 />
                             </div>
-                            <div class="col-md-8 border-r">HS Min</div>
+                            <div class="col-md-8 border-r">H. Min</div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 border-r">
@@ -288,10 +288,10 @@
                             <div class="col-md-8 border-r">H. Min</div>
                         </div>
                     </div>
-                    <!-- TECNICAS -->
+                    <!-- TÉCNICAS -->
                     <div class="col-md-12 col-lg-7 border-t mt-3">
                         <div class="row border-b flex flex-center-x">
-                            <span>TECNICAS</span>
+                            <span>TÉCNICAS</span>
                         </div>
 
                         <!-- columna 1 -->
@@ -411,7 +411,7 @@
                                         class="col-md-11 p-0 m-0 upper"
                                         for="mascara"
                                         ><span class="space-left"
-                                            >mascara</span
+                                            >máscara</span
                                         ></label
                                     >
                                     <div class="col-md-1 p-0">
@@ -458,7 +458,7 @@
                                     <div class="col-md-12 p-0">
                                         <label for="rapido" class="upper"
                                             ><span class="space-left"
-                                                >rapido</span
+                                                >rápido</span
                                             ></label
                                         >
                                         <input
@@ -478,13 +478,13 @@
                                         />
                                     </div>
                                 </div>
-                                <!-- TURBO No -->
+                                <!-- TURBO N° -->
                                 <div class="row border-b border-r">
                                     <label
                                         class="col-md-6 p-0 m-0 upper"
                                         for="turbo"
                                         ><span class="space-left"
-                                            >TURBO No</span
+                                            >TURBO N°</span
                                         ></label
                                     >
                                     <div class="col-md-6 p-0">
@@ -544,7 +544,7 @@
                                         class="col-md-11 p-0 m-0 upper"
                                         for="asist-topica"
                                         ><span class="space-left"
-                                            >asist topica</span
+                                            >asist tópica</span
                                         ></label
                                     >
                                     <div class="col-md-1 p-0">
@@ -564,7 +564,7 @@
                                         class="col-md-11 p-0 m-0 upper"
                                         for="asist-tramboral"
                                         ><span class="space-left"
-                                            >asist tramboral</span
+                                            >asist tranboral</span
                                         ></label
                                     >
                                     <div class="col-md-1 p-0">
@@ -642,7 +642,7 @@
                                         class="col-md-11 p-0 m-0 upper"
                                         for="habon"
                                         ><span class="space-left"
-                                            >habon</span
+                                            >habón</span
                                         ></label
                                     >
                                     <div class="col-md-1 p-0">
@@ -660,7 +660,7 @@
                                         class="col-md-11 p-0 m-0 upper"
                                         for="raquidea"
                                         ><span class="space-left"
-                                            >raquidea</span
+                                            >raquídea</span
                                         ></label
                                     >
                                     <div class="col-md-1 p-0">
@@ -735,7 +735,7 @@
                                         for=""
                                         style="font-size: 0.9em"
                                         ><span class="space-left"
-                                            >ALTURA PUNCION</span
+                                            >ALTURA PUNCIÓN</span
                                         ></label
                                     >
                                     <div
@@ -758,7 +758,7 @@
                                         class="col-md-11 p-0 m-0 upper"
                                         for="puncion-lat"
                                         ><span class="space-left"
-                                            >puncion lat</span
+                                            >punciÓn lat</span
                                         ></label
                                     >
                                     <div class="col-md-1 p-0">
@@ -776,7 +776,7 @@
                                         class="col-md-11 p-0 m-0 upper"
                                         for="linea-media"
                                         ><span class="space-left"
-                                            >linea media</span
+                                            >línea media</span
                                         ></label
                                     >
                                     <div class="col-md-1 p-0">
@@ -847,7 +847,7 @@
                                 <div class="row border-b">
                                     <label class="col-md-4 p-0 m-0" for=""
                                         ><span class="space-left"
-                                            >POSICION PACIENTE</span
+                                            >POSICIÓN PACIENTE</span
                                         ></label
                                     >
                                     <div class="col-lg-8 col-md-8 col-sm-8">
@@ -901,27 +901,9 @@
                             </div>
                             <label class="col-md-1 p-0 m-0" for="">cc</label>
                         </div>
-                        <!-- TOTAL -->
-                        <!-- <div class="row border-b border-r">
-                            <span class="col-md-1 border-r">T</span>
-                            <label
-                                class="col-md-6 p-0 m-0 upper"
-                                for="expansiones"
-                                ><span class="space-left">total</span></label
-                            >
-                            <div class="col-md-3 p-0">
-                                <span id="total">{{ total_infusiones }}</span>
-                                <input
-                                    class="input-line"
-                                    type="number"
-                                    style="width: 100%"
-                                />
-                            </div>
-                            <label class="col-md-1 p-0 m-0" for="">cc</label>
-                        </div> -->
-                        <!-- HEMORRAGEA -->
+                        <!-- HEMORRAGIA -->
                         <div class="row border-b flex flex-center-x">
-                            <span>hemorragia</span>
+                            <span>HEMORRAGIA</span>
                         </div>
                         <!-- cc APROX -->
                         <div class="row border-b border-r">
@@ -942,7 +924,7 @@
                         </div>
                         <!-- apagar -->
                         <div class="row border-b flex flex-center-x">
-                            <span>apagar</span>
+                            <span>APAGAR</span>
                         </div>
                         <!-- Los minutos All -->
                         <div class="row border-b border-r">
@@ -999,9 +981,9 @@
                                 />
                             </div>
                         </div>
-                        <!-- tecnicas especiales -->
+                        <!-- técnicas especiales -->
                         <div class="row border-b flex flex-center-x">
-                            <span>tecnicas especiales</span>
+                            <span>TÉCNICAS ESPECIALES</span>
                         </div>
                         <div class="row border-b border-r">
                             <div class="col-md-12 p-0">
@@ -1070,17 +1052,17 @@
                         </div>
                     </div>
 
-                    <!-- COMPLICACIONES OPERATRIAS -->
+                    <!-- COMPLICACIONES OPERATORIAS -->
                     <div class="col-lg-12 col-md-5 b-0 mt-3">
                         <div class="row border-b flex flex-center-x">
-                            <span>COMPLICACIONES OPERATRIAS</span>
+                            <span>COMPLICACIONES OPERATORIAS</span>
                         </div>
-                        <!-- HIPOTENSION y ARRITMIAS -->
+                        <!-- HIPOTENSIÓN y ARRITMIAS -->
                         <div class="row border-b pt-2 pb-2">
-                            <!-- HIPOTENSION -->
+                            <!-- HIPOTENSIÓN -->
                             <label class="col-md-5 p-0 m-0" for="hipotension"
                                 ><span class="space-left"
-                                    >HIPOTENSION</span
+                                    >HIPOTENSIÓN</span
                                 ></label
                             >
                             <div class="col-md-1 p-0">
@@ -1106,14 +1088,14 @@
                                 />
                             </div>
                         </div>
-                        <!-- depresion respiratoria y perforacion duramadre -->
+                        <!-- depresion respiratoria y perforación duramadre -->
                         <div class="row border-b pt-2 pb-2">
                             <!-- depresion respiratoria -->
                             <label
                                 class="col-md-5 p-0 upper m-0"
                                 for="depresion-respiratoria"
                                 ><span class="space-left"
-                                    >depresion respiratoria</span
+                                    >depresión respiratoria</span
                                 ></label
                             >
                             <div class="col-md-1 p-0">
@@ -1124,11 +1106,11 @@
                                     v-model="form.depresion_respiratoria"
                                 />
                             </div>
-                            <!-- perforacion duramadre -->
+                            <!-- perforación duramadre -->
                             <label
                                 class="col-md-5 p-0 upper m-0"
                                 for="perforacion-duramadre"
-                                >perforacion duramadre</label
+                                >perforación duramadre</label
                             >
                             <div class="col-md-1 p-0">
                                 <input
@@ -1139,13 +1121,13 @@
                                 />
                             </div>
                         </div>
-                        <!-- dificultad intubacion y nauseas-vomitos -->
+                        <!-- dificultad intubación y nauseas-vomitos -->
                         <div class="row border-b pt-2 pb-2">
                             <label
                                 class="col-md-5 p-0 upper m-0"
                                 for="dificultad-intubacion"
                                 ><span class="space-left"
-                                    >dificultad intubacion</span
+                                    >dificultad intubación</span
                                 ></label
                             >
                             <div class="col-md-1 p-0">
@@ -1159,7 +1141,7 @@
                             <label
                                 class="col-md-5 p-0 upper m-0"
                                 for="nauseas-vomitos"
-                                >nauseas-vomitos</label
+                                >náuseas-vómitos</label
                             >
                             <div class="col-md-1 p-0">
                                 <input
@@ -1207,7 +1189,7 @@
                                 class="col-md-5 p-0 upper m-0"
                                 for="paro-cardiaco"
                                 ><span class="space-left"
-                                    >paro cardiaco</span
+                                    >paro cardíaco</span
                                 ></label
                             >
                             <div class="col-md-1 p-0">
@@ -1236,7 +1218,7 @@
                                 class="col-md-5 p-0 upper m-0"
                                 for="cambio-tecnica"
                                 ><span class="space-left"
-                                    >cambio de tecnica</span
+                                    >cambio de técnica</span
                                 ></label
                             >
                             <div class="col-md-1 p-0">
@@ -1271,7 +1253,7 @@
                             ></textarea>
                         </div>
                         <!-- FIRMA DEL ANESTESIOLOGO: -->
-                        <div class="">
+                        <!-- <div class="">
                             <div class="" style="height: 70px"></div>
                             <div class="flex flex-y">
                                 <span
@@ -1301,7 +1283,7 @@
                                     >FIRMA DEL ANESTESIOLOGO:</span
                                 >
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 </div>
@@ -1313,6 +1295,14 @@
 <script>
 export default {
     props: {
+        idSecCirPro: {
+            type: String,
+            required: true
+        },
+        idRegistroAnestesia: {
+            type: Number,
+            required: true
+        }
     },
     data: function() {
         return {
@@ -1430,8 +1420,8 @@ export default {
                         valor: 0
                     },
                     {
-                        descripcion: "EXPANSIONES",
-                        name: "EXPANSIONES",
+                        descripcion: "EXPANSORES",
+                        name: "EXPANSORES",
                         abreviatura: "E",
                         valor: 0
                     },
@@ -1567,6 +1557,148 @@ export default {
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar setSelectedMedico",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                });
+        },
+        guardarAdministracionFarmaco(){
+            this.guardarDrograAdministrada();
+            this.modifcarRegistroAnestesia();
+            this.guardarRegistroInfusiones();
+        },
+        guardarDrograAdministrada() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            let formNew = {
+                frm_registro_anestesia_id: that.form.registro_anestesia_id,
+                frm_descripciones: that.drogas_administradas
+            };
+            url = "/modulos/cirugia/anestesia/guardar_droga_administrada";
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    /* that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar Drogra Administrada",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    }); */
+                    loader.hide();
+                })
+                .catch(error => {
+                    loader.hide();
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarDrograAdministrada",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                });
+        },
+        modifcarRegistroAnestesia() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            url = "/modulos/cirugia/anestesia/modifcar_registro_anestesia";
+            var loader = that.$loading.show();
+            axios
+                .post(url, that.form)
+                .then(function(response) {
+                    loader.hide();
+                    /* that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al procesar Registro Anestesia",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    }); */
+                })
+                .catch(error => {
+                    loader.hide();
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar modifcarRegistroAnestesia",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                });
+        },
+        guardarRegistroInfusiones() {
+            let that = this;
+            let url = "";
+            let mensaje = "";
+            let formNew = {
+                registro_anestesia_id: that.form.registro_anestesia_id,
+                infusiones: that.form.infusiones
+            };
+            url = "/modulos/cirugia/anestesia/guardar_registro_infusiones";
+            var loader = that.$loading.show();
+            axios
+                .post(url, formNew)
+                .then(function(response) {
+                    that.flashMessage.show({
+                        status: "success",
+                        title: "Éxito al Guardar los Administración Fármaco",
+                        message: "Datos guardados correctamente.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/success.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    loader.hide();
+                })
+                .catch(error => {
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar guardarRegistroInfusiones",
                         message:
                             "Por favor comuníquese con el administrador. " +
                             error,

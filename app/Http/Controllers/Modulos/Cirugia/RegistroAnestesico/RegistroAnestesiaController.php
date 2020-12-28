@@ -133,7 +133,7 @@ class RegistroAnestesiaController extends Controller
         if ($idRegistroAnestesico == null) {
             $registroAnestesico = RegistroAnestesia::create(
                 [
-                    'SecCirPro' => $request->input('cirugia_id'),
+                    'SecCirPro' => $request->input('idCirugiaProgramada'),
                     'usu_created_update' => $user->id,
                     'pcip' => $_SERVER["REMOTE_ADDR"],
                     'status' => '1'
@@ -142,7 +142,7 @@ class RegistroAnestesiaController extends Controller
         } else {
             $registroAnestesico = RegistroAnestesia::create(
                 [
-                    'SecCirPro' => $request->input('cirugia_id'),
+                    'SecCirPro' => $request->input('idCirugiaProgramada'),
                     'usu_created_update' => $user->id,
                     'pcip' => $_SERVER["REMOTE_ADDR"],
                     'status' => '1'
@@ -244,20 +244,18 @@ class RegistroAnestesiaController extends Controller
         if ($idSecCirPro !== '' && isset($idSecCirPro)) {
             try {
 
-                // CARGA DATOS DE EL REGISTRO DE ANESTESIA 01/12
-
-
                 $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
                 $datosPaciente = [];
                 $datosMedico = [];
                 $datosprocedimiento = [];
-                $id_registro_anestesia = 34;
+                $id_registro_anestesia = 0; //34
+                $datosValoracionPreanestesica = "";
+                $TarifarioMedicina = "";
 
                 $datosValoracionPreanestesica = RegistroAnestesia::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
                     ->with('drogaAdministradaRpt', 'graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt', 'tipoPosicion', 'consultaSala', 'consultaMedico')
                     ->first();
-
 
                 $id_registro_anestesia = $datosValoracionPreanestesica->id;
                 $datosprocedimiento = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)

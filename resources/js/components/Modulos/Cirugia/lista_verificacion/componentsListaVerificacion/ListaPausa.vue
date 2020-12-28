@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="card-title">
-                        ANTES DE A INCISIÓN CUTÁNEA (PAUSA QUIRURGICA)
+                        ANTES DE LA INCISIÓN CUTÁNEA (PAUSA QUIRÚRGICA)
                     </h2>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                                 La Identidad del Paciente
                             </li>
                             <li>
-                                El Sitio Quirurgico
+                                El Sitio Quirúrgico
                             </li>
                             <li>
                                 El Procedimiento
@@ -72,9 +72,9 @@
                         <label
                             for="chkquirurgica03"
                             class="custom-control-label"
-                            >EL CIRUJANO REVISA: LOS PASOS CRITICOS O IMPREVISTO
-                            LA DURACION DE LA OPERACION Y LA PERDIDA DE SANGRE
-                            PERVISTA</label
+                            >EL CIRUJANO REVISA: LOS PASOS CRÍTICOS O IMPREVISTOS.
+                            LA DURACIÓN DE LA OPERACIÓN Y LA PÉRDIDA DE SANGRE
+                            PREVISTA</label
                         >
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                             for="chkquirurgica04"
                             class="custom-control-label"
                             >EL EQUIPO DE ANESTESIA REVISA: SI EL PACIENTE
-                            PRESENTA ALGUN PROBLEMA ESPECIFICO</label
+                            PRESENTA ALGÚN PROBLEMA ESPECÍFICO</label
                         >
                     </div>
 
@@ -106,7 +106,7 @@
                         <label
                             for="chkquirurgica05"
                             class="custom-control-label"
-                            >EL EQUIPO DE ENFERMERIA REVISA: SI SE HA CONFIRMADO
+                            >EL EQUIPO DE ENFERMERÍA REVISA: SI SE HA CONFIRMADO
                             LA ESTERILIDAD (CON RESULTADOS DE LOS INDICADORES; Y
                             SI EXISTEN DUDAS O PROBLEMAS RELACIONADOS CON EL
                             INSTRUMENTAL Y LOS EQUIPOS</label
@@ -124,7 +124,7 @@
                         <label
                             for="chkquirurgica06"
                             class="custom-control-label"
-                            >SI SE HA ADMINISTRADO PROFILAXIS ANTIBIOTICA EN LOS
+                            >¿SI HA ADMINISTRADO PROFILAXIS ANTIBIÓTICA EN LOS
                         </label>
                     </div>
                     <div class="custom-control custom-checkbox">
@@ -139,8 +139,8 @@
                         <label
                             for="chkquirurgica07"
                             class="custom-control-label"
-                            >PUEDEN VISUALIZAR LAS IMAGENES
-                            DIAGNOSTICADAS</label
+                            >¿PUEDEN VISUALIZARSE LAS IMÁGENES
+                            DIAGNÓSTICAS?</label
                         >
                         <ul>
                             <li>
@@ -165,7 +165,7 @@ export default {
             listas: {
                 SecCirPro: "",
                 frm_id_user:"",
-                
+
                 chkquirurgica01: false,
                 chkquirurgica02: false,
                 chkquirurgica03: false,
@@ -173,7 +173,7 @@ export default {
                 chkquirurgica05: false,
                 chkquirurgica06: false,
                 chkquirurgica07: false,
-                
+
                 user_id: "",
                 cargo: "",
                 observacion: "",

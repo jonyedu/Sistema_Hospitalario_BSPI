@@ -81,8 +81,6 @@ class DatosRegistro extends Model
     }
     public function Anestesiologo()
     {
-
-        
         return $this->hasOne('App\Models\Modulos\Admision\Medico\Medico', 'id', 'id_anestesiologo');
     }
 

@@ -1,7 +1,6 @@
 <template>
     <div class="col-md-12">
         <div class="card card-warning">
-
             <div class="card-body">
                 <form role="form">
                     <div class="row">
@@ -58,7 +57,7 @@
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-sm-4 col-form-label"
-                                                            >PESO</label
+                                                            >PESO(Kg)</label
                                                         >
                                                         <div class="col-sm-5 mr-2">
                                                             <input
@@ -77,7 +76,7 @@
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-sm-4 col-form-label"
-                                                            >TALLA</label
+                                                            >TALLA(cm)</label
                                                         >
                                                         <div class="col-sm-5 mr-2">
                                                             <input
@@ -174,7 +173,7 @@
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-sm-4 col-form-label"
-                                                            >DMT</label
+                                                            >DMT(cm)</label
                                                         >
                                                         <div class="col-sm-5 mr-2">
                                                             <input
@@ -189,7 +188,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- cm Cuello Corto-->
-                                                <div class="col-sm-3">
+                                                <!-- <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
                                                             class="col-sm-4 col-form-label"
@@ -206,7 +205,7 @@
                                                             />
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <!-- Movilidad del Cuello -->
                                                 <div class="col-sm-12">
                                                     <label
@@ -256,18 +255,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Escala de Malla MPATI -->
+                                    <!-- Escala de MallaMPATI -->
                                     <div
                                         class="card"
                                         style="background-color: #C8C8C5;"
                                     >
                                         <div class="card-body mt-2 ml-2">
                                             <div class="row">
-                                                <!-- Escala de Malla MPATI -->
+                                                <!-- Escala de MallaMPATI -->
                                                 <div class="col-sm-12">
                                                     <label
-                                                        >Escala de Malla
-                                                        MPATI</label
+                                                        >Escala de MallaMPATI</label
                                                     >
                                                 </div>
                                                 <!-- Clase 1 -->
@@ -288,7 +286,7 @@
                                                         <label
                                                             class="custom-control-label"
                                                             for="defaultInline51"
-                                                            >Clase 1:Total
+                                                            >Clase 1: total
                                                             visibilidad de las
                                                             amígdalas, úvula y
                                                             paladar blando.</label
@@ -313,7 +311,7 @@
                                                         <label
                                                             class="custom-control-label"
                                                             for="defaultInline52"
-                                                            >Clase 2: Vilibilidad
+                                                            >Clase 2: visivilidad
                                                             del paladar duro y
                                                             blando, porción superior
                                                             de las amígdalas y
@@ -339,7 +337,7 @@
                                                         <label
                                                             class="custom-control-label"
                                                             for="defaultInline53"
-                                                            >Clase 3: Son visibles
+                                                            >Clase 3: son visibles
                                                             el paladar duro y blando
                                                             y la base de la
                                                             úvula.</label
@@ -364,7 +362,7 @@
                                                         <label
                                                             class="custom-control-label"
                                                             for="defaultInline54"
-                                                            >Clase 4: Sólo visible
+                                                            >Clase 4: sólo es visible
                                                             el paladar duro.</label
                                                         >
                                                     </div>
@@ -706,8 +704,8 @@
                                                     <label>Apertura Ocular</label>
                                                     <h5>Espontánea: 4</h5>
                                                     <h5>
-                                                        Estimulo verbal (al
-                                                        pedirselo): 3
+                                                        Estímulo verbal (al
+                                                        pedírselo): 3
                                                     </h5>
                                                     <h5>Al dolor: 2</h5>
                                                     <h5>No responde: 1</h5>
@@ -729,14 +727,14 @@
                                                 <div class="col-sm-4">
                                                     <label>Respuesta Motora</label>
                                                     <h5>
-                                                        Cumple Ordenes expresadas: 6
+                                                        Cumple Ordenes expresadas por voz: 6
                                                     </h5>
                                                     <h5>
-                                                        Localizada el Estimulo
+                                                        Localizada el Estímulo
                                                         doloroso: 5
                                                     </h5>
                                                     <h5>
-                                                        Retira ante el Estimulo
+                                                        Retira ante el Estímulo
                                                         doloroso: 4
                                                     </h5>
                                                     <h5>
@@ -888,13 +886,30 @@ export default {
     },
     methods: {
         validarForm(){
-            //Se comprueba que un checkbox tenga data
-            if(this.form.frm_puntuacionNeurologico <0 || this.form.frm_puntuacionNeurologico > 15){
+            if(this.form.frm_cmBocaAperturaOral <1 || this.form.frm_cmBocaAperturaOral > 4){
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
                     message:
-                        "El campo puntuación debe sumar ser mayor 0 o menor a 15 ",
+                        "El campo cm debe ser mayor o igual a 1, o menor o igual a 4.",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background:
+                                "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
+                return false;
+            }
+            if(this.form.frm_puntuacionNeurologico <3 || this.form.frm_puntuacionNeurologico > 15){
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message:
+                        "El campo puntuación debe sumar ser mayor o igual a 3, o menor o igual a 15.",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -944,7 +959,7 @@ export default {
 
                         that.form.frm_movilidad_cuello = response.data.examenFisico.movilidad_cuello;
 
-                        /* Escala de Malla MPATI */
+                        /* Escala de MallaMPATI */
                         that.chk.chk_clase1 = +response.data.examenFisico.clase1;
                         that.form.frm_clase1 = +response.data.examenFisico.clase1;
 
@@ -1089,7 +1104,7 @@ export default {
         },
         /* Fin Cuello Corto */
 
-        /* Escala de Malla MPATI */
+        /* Escala de MallaMPATI */
         validarChkClase1() {
             if (this.chk.chk_clase1) {
                 this.form.frm_clase1 = 0;
@@ -1139,7 +1154,7 @@ export default {
                 this.form.frm_ingurgitacionYugular = 1;
             }
         },
-        /* Fin Escala de Malla MPATI */
+        /* Fin Escala de MallaMPATI */
 
         /* Dentadura */
         validarChkEdentulo() {
