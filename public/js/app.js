@@ -12941,7 +12941,7 @@ __webpack_require__.r(__webpack_exports__);
       respuestaFinProceso: 0,
       respuestaImprimir: 0,
       form: {
-        idCirugiaProgramada: "0001",
+        idCirugiaProgramada: "",
         idCirugiaProgramadaTemporal: "",
         registro_anestesia_id: 0,
 
@@ -15827,7 +15827,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       form: {
         /* Datos del paciente */
-        frm_idCirugiaProgramada: "2890",
+        frm_idCirugiaProgramada: "",
         //2890
         frm_paciente: "",
         frm_cirujano: "",
