@@ -260,7 +260,7 @@
                                         :tipo-servicio="4"
                                         :id-atencion="form.id_lista"
                                         :id-visita="0"
-                                        :id-tipo-documento="13"
+                                        :id-tipo-documento="14"
                                         ref="firmaDigitalListas">
                                     </vue-firma>
                                 </tab-content>
