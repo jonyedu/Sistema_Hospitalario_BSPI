@@ -154,6 +154,7 @@
                                 <tab-content
                                     title="Firma Digital"
                                     icon="fa fa-edit"
+                                    :before-change="validateFirstStep"
                                 >
                                     <vue-firma
                                         :user="user"
@@ -348,11 +349,13 @@ export default {
                         //resolve(poseeErrores);
                         break;
                     case 3:
-                    //poseeErrores = this.$refs.paraclinico.validarForm();
-                    //resolve(poseeErrores);
+
                     case 4:
                         poseeErrores = this.$refs.firmaDigitalRegisAnes.validarForm();
                         resolve(poseeErrores);
+                    //poseeErrores = this.$refs.paraclinico.validarForm();
+                    //resolve(poseeErrores);
+
                         break;
                     default:
                 }

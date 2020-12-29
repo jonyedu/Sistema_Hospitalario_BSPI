@@ -7194,6 +7194,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -7351,12 +7352,12 @@ __webpack_require__.r(__webpack_exports__);
             //resolve(poseeErrores);
             break;
 
-          case 3: //poseeErrores = this.$refs.paraclinico.validarForm();
-          //resolve(poseeErrores);
-
+          case 3:
           case 4:
             poseeErrores = _this.$refs.firmaDigitalRegisAnes.validarForm();
-            resolve(poseeErrores);
+            resolve(poseeErrores); //poseeErrores = this.$refs.paraclinico.validarForm();
+            //resolve(poseeErrores);
+
             break;
 
           default:
@@ -16009,14 +16010,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -16125,6 +16118,11 @@ __webpack_require__.r(__webpack_exports__);
           case 4:
             break;
 
+          case 5:
+            poseeErrores = _this.$refs.firmaDigitalValoPrea.validarForm();
+            resolve(poseeErrores);
+            break;
+
           default:
         }
       });
@@ -16164,7 +16162,7 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case 4:
-          //this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
+          this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
           break;
 
         case 5:
@@ -16194,7 +16192,8 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case 4:
-          this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
+          //alert("entra");
+          //this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
           break;
 
         default: //this.titulo_seleccionado = "";
@@ -17229,6 +17228,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     idSecCirPro: {
@@ -17290,6 +17301,7 @@ __webpack_require__.r(__webpack_exports__);
 
         /* Toxicoalérgicos */
         frm_alergia: false,
+        frm_alergiaValor: "",
 
         /* Tóxicos */
         frm_tabaco: false,
@@ -23016,6 +23028,23 @@ __webpack_require__.r(__webpack_exports__);
           });
           return;
         }
+
+        if (this.observacion.length <= 30 && this.$props.campoObservacion) {
+          this.flashMessage.show({
+            status: "warning",
+            title: "Advertencia",
+            message: "La observación debe tener un máximo de 30 caracteres.",
+            clickable: true,
+            time: 5000,
+            icon: "/iconsflashMessage/warning.svg",
+            customStyle: {
+              flashMessageStyle: {
+                background: "linear-gradient(#e66465, #9198e5)"
+              }
+            }
+          });
+          return;
+        }
       }
 
       this.$emit("respuestaConfirmarCancelar", value);
@@ -23198,7 +23227,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     validarForm: function validarForm() {
-      if (this.form.imgFirma == null) {
+      if (this.frmimg.imgFirma == "") {
         this.flashMessage.show({
           status: "warning",
           title: "Advertencia al finalizar con el proceso",
@@ -72435,7 +72464,8 @@ var render = function() {
                             {
                               attrs: {
                                 title: "Firma Digital",
-                                icon: "fa fa-edit"
+                                icon: "fa fa-edit",
+                                "before-change": _vm.validateFirstStep
                               }
                             },
                             [
@@ -83433,7 +83463,8 @@ var render = function() {
                             {
                               attrs: {
                                 title: "Firma Digital",
-                                icon: "fa fa-edit"
+                                icon: "fa fa-edit",
+                                "before-change": _vm.validateFirstStep
                               }
                             },
                             [
@@ -84040,7 +84071,42 @@ var render = function() {
                                     attrs: { for: "defaultInline30" }
                                   },
                                   [_vm._v("Alergias")]
-                                )
+                                ),
+                                _vm._v(" "),
+                                _vm.form.frm_alergia
+                                  ? _c("div", { staticClass: "col-10" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.frm_alergiaValor,
+                                            expression: "form.frm_alergiaValor"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          type: "text",
+                                          placeholder: "Cuál?"
+                                        },
+                                        domProps: {
+                                          value: _vm.form.frm_alergiaValor
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "frm_alergiaValor",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e()
                               ]
                             )
                           ]),

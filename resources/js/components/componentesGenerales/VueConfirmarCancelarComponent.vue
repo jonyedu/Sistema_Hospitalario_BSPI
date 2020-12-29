@@ -99,6 +99,22 @@ export default {
                     });
                     return;
                 }
+                if (this.observacion.length <= 30 && this.$props.campoObservacion) {
+                    this.flashMessage.show({
+                        status: "warning",
+                        title: "Advertencia",
+                        message: "La observación debe tener un máximo de 30 caracteres.",
+                        clickable: true,
+                        time: 5000,
+                        icon: "/iconsflashMessage/warning.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                    return;
+                }
             }
             this.$emit("respuestaConfirmarCancelar", value);
             this.$emit("Observacion", this.observacion);

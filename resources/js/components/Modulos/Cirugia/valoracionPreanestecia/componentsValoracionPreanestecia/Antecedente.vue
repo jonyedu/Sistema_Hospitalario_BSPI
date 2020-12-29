@@ -155,6 +155,18 @@
                                                             for="defaultInline30"
                                                             >Alergias</label
                                                         >
+                                                        <div
+                                                            class="col-10"
+                                                            v-if="
+                                                                form.frm_alergia                                                            "
+                                                        >
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                placeholder="Cuál?"
+                                                                v-model="form.frm_alergiaValor"
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <br /><br />
@@ -847,6 +859,7 @@ export default {
 
                 /* Toxicoalérgicos */
                 frm_alergia: false,
+                frm_alergiaValor: "",
 
                 /* Tóxicos */
                 frm_tabaco: false,

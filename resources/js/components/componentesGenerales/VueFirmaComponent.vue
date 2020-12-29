@@ -175,7 +175,7 @@ export default {
                 });
         },
         validarForm() {
-            if (this.form.imgFirma == null) {
+            if (this.frmimg.imgFirma == "") {
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia al finalizar con el proceso",

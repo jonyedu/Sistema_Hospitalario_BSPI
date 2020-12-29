@@ -250,15 +250,6 @@
                                     icon="fas fa-file-pdf"
                                 >
                                     <div class="row">
-                                        <!-- <embed
-                                            :src="
-                                                '/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/' +
-                                                    form.frm_idCirugiaProgramada
-                                            "
-                                            type="application/pdf"
-                                            width="100%"
-                                            height="980px"
-                                        /> -->
                                         <iframe
                                             ref="pdfValoracionPreanestesia"
                                             :src="
@@ -274,6 +265,7 @@
                                 <tab-content
                                     title="Firma Digital"
                                     icon="fa fa-edit"
+                                    :before-change="validateFirstStep"
                                 >
                                     <vue-firma
                                         :user="user"
@@ -409,6 +401,10 @@ export default {
                         resolve(poseeErrores);
                     case 4:
                         break;
+                    case 5:
+                        poseeErrores = this.$refs.firmaDigitalValoPrea.validarForm();
+                        resolve(poseeErrores);
+                        break;
                     default:
                 }
             });
@@ -444,7 +440,7 @@ export default {
                     this.$refs.paraclinico.cargarParaclinico();
                     break;
                 case 4:
-                    //this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
+                    this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
                     break;
                 case 5:
                     this.$refs.firmaDigitalValoPrea.consultarSello();
@@ -468,7 +464,8 @@ export default {
                     this.$refs.paraclinico.guardarModificar();
                     break;
                 case 4:
-                    this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
+                    //alert("entra");
+                    //this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
                     break;
                 default:
                 //this.titulo_seleccionado = "";
