@@ -64,7 +64,7 @@ export default {
             validarImgFirma: 0,
             isFirstPaintable: "firmaAnestesiologo",
             rutaSello: "",
-            form: {
+            frmimg: {
                 imgFirma: ""
             }
         };
@@ -127,7 +127,6 @@ export default {
         guardarFirmaPorAtencion() {
             let that = this;
             let url = "";
-            let mensaje = "";
             let formNew = {
                 tipo_servicio: that.$props.tipoServicio,
                 id_atencion: that.$props.idAtencion, //id de revision de sistema
@@ -144,7 +143,7 @@ export default {
                     that.flashMessage.show({
                         status: "success",
                         title: "Proceso realizado exitosamente",
-                        message: that.mensaje,
+                        message: "Usted a completado con exito el proceso de registro anestesia.",
                         clickable: true,
                         time: 5000,
                         icon: "/iconsflashMessage/success.svg",

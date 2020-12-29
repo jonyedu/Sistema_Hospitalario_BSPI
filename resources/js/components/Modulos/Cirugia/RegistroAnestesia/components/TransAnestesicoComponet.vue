@@ -960,8 +960,6 @@ export default {
         this.seconds = segundo;
         this.minutes = minuto;
         this.hour = hora;
-        this.form.cirugia_id = this.$props.idSecCirPro;
-        this.form.registro_anestesia_id = this.$props.idRegistroAnestesia
         /**
          * Se empiezan a llenar los datos de la rejilla
          */
@@ -1245,6 +1243,8 @@ export default {
                         tipo: this.system_agente
                     }
                 );
+                this.form.cirugia_id = this.$props.idSecCirPro;
+                this.form.registro_anestesia_id = this.$props.idRegistroAnestesia
                 var idFlashMessage1 = this.flashMessage.show({
                     status: "info",
                     title: "Generando Gráfica",

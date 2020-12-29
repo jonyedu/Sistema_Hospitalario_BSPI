@@ -358,6 +358,9 @@ export default {
         datosPaciente:{
             type: Object,
             required: true
+        },
+        idRegistroAnestesia: {
+            type: Number
         }
     },
     data: function() {
@@ -435,13 +438,11 @@ export default {
         setSelectedServicioMedico(value) {
             if (this.form.id_servicio_medico > 0) {
                 let that = this;
-                var loader = that.$loading.show();
                 let url =
                     "/modulos/parametrizacion/servicio_medico/cargar_servicio_medico_por_medico/" +
                     this.form.id_servicio_medico;
                 if (value != null) {
                     this.form.id_servicio_medico = +value.id_servicio_medico;
-                    loader.hide();
                 }
                 axios
                     .get(url)
@@ -458,7 +459,6 @@ export default {
                             }
                         );
                         that.serviciosMedicos = serviciosMedicos;
-                        loader.hide();
                     })
                     .catch(error => {
                         that.flashMessage.show({
@@ -478,7 +478,6 @@ export default {
                                 }
                             }
                         });
-                        loader.hide();
                     });
             }
         },
@@ -1055,6 +1054,7 @@ export default {
             return true;
         },
         guardarModificarDatosPaciente() {
+            this.form.registro_anestesia_id = this.$props.idRegistroAnestesia;
             let that = this;
             let url = "";
             let mensaje = "";

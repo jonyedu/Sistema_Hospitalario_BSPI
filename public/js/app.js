@@ -3935,6 +3935,9 @@ __webpack_require__.r(__webpack_exports__);
     datosPaciente: {
       type: Object,
       required: true
+    },
+    idRegistroAnestesia: {
+      type: Number
     }
   },
   data: function data() {
@@ -4007,12 +4010,10 @@ __webpack_require__.r(__webpack_exports__);
     setSelectedServicioMedico: function setSelectedServicioMedico(value) {
       if (this.form.id_servicio_medico > 0) {
         var that = this;
-        var loader = that.$loading.show();
         var url = "/modulos/parametrizacion/servicio_medico/cargar_servicio_medico_por_medico/" + this.form.id_servicio_medico;
 
         if (value != null) {
           this.form.id_servicio_medico = +value.id_servicio_medico;
-          loader.hide();
         }
 
         axios.get(url).then(function (response) {
@@ -4024,7 +4025,6 @@ __webpack_require__.r(__webpack_exports__);
             serviciosMedicos.push(objeto);
           });
           that.serviciosMedicos = serviciosMedicos;
-          loader.hide();
         })["catch"](function (error) {
           that.flashMessage.show({
             status: "error",
@@ -4039,7 +4039,6 @@ __webpack_require__.r(__webpack_exports__);
               }
             }
           });
-          loader.hide();
         });
       }
     },
@@ -4536,6 +4535,7 @@ __webpack_require__.r(__webpack_exports__);
       return true;
     },
     guardarModificarDatosPaciente: function guardarModificarDatosPaciente() {
+      this.form.registro_anestesia_id = this.$props.idRegistroAnestesia;
       var that = this;
       var url = "";
       var mensaje = "";
@@ -5615,8 +5615,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     this.seconds = segundo;
     this.minutes = minuto;
     this.hour = hora;
-    this.form.cirugia_id = this.$props.idSecCirPro;
-    this.form.registro_anestesia_id = this.$props.idRegistroAnestesia;
     /**
      * Se empiezan a llenar los datos de la rejilla
      */
@@ -5914,6 +5912,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           system_name: "FIN-ANESTESIA",
           tipo: this.system_agente
         });
+        this.form.cirugia_id = this.$props.idSecCirPro;
+        this.form.registro_anestesia_id = this.$props.idRegistroAnestesia;
         var idFlashMessage1 = this.flashMessage.show({
           status: "info",
           title: "Generando Gráfica",
@@ -7193,6 +7193,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -7354,6 +7355,8 @@ __webpack_require__.r(__webpack_exports__);
           //resolve(poseeErrores);
 
           case 4:
+            poseeErrores = _this.$refs.firmaDigitalRegisAnes.validarForm();
+            resolve(poseeErrores);
             break;
 
           default:
@@ -7362,6 +7365,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     onComplete: function onComplete() {
       this.respuestaImprimir = 1;
+      this.$refs.firmaDigitalRegisAnes.guardarFirmaPorAtencion();
       this.$refs.formRegistroAnestesico.reset();
     },
     onChangeTab: function onChangeTab(prevIndex, nextIndex) {
@@ -7425,7 +7429,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     obtenerIdRegistroAnestesio: function obtenerIdRegistroAnestesio() {
       if (this.form.registro_anestesia_id <= 0) {
-        console.log("entra");
         var that = this;
         var url = "/modulos/cirugia/anestesia/registro/post";
         var loader = that.$loading.show();
@@ -7457,7 +7460,7 @@ __webpack_require__.r(__webpack_exports__);
     /* Fin Metodos para los form-wizard */
     llamarMetodoImprimir: function llamarMetodoImprimir() {
       if (this.respuestaImprimir) {
-        window.open("/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" + this.form.idCirugiaProgramadaTemporal);
+        window.open("/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" + this.form.idCirugiaProgramada);
       }
     }
   }
@@ -23105,7 +23108,7 @@ __webpack_require__.r(__webpack_exports__);
       validarImgFirma: 0,
       isFirstPaintable: "firmaAnestesiologo",
       rutaSello: "",
-      form: {
+      frmimg: {
         imgFirma: ""
       }
     };
@@ -23151,7 +23154,6 @@ __webpack_require__.r(__webpack_exports__);
     guardarFirmaPorAtencion: function guardarFirmaPorAtencion() {
       var that = this;
       var url = "";
-      var mensaje = "";
       var formNew = {
         tipo_servicio: that.$props.tipoServicio,
         id_atencion: that.$props.idAtencion,
@@ -23167,7 +23169,7 @@ __webpack_require__.r(__webpack_exports__);
         that.flashMessage.show({
           status: "success",
           title: "Proceso realizado exitosamente",
-          message: that.mensaje,
+          message: "Usted a completado con exito el proceso de registro anestesia.",
           clickable: true,
           time: 5000,
           icon: "/iconsflashMessage/success.svg",
@@ -72348,7 +72350,11 @@ var render = function() {
                             [
                               _c("datos-paciente", {
                                 ref: "datosPaciente",
-                                attrs: { "datos-paciente": _vm.datos_paciente }
+                                attrs: {
+                                  "datos-paciente": _vm.datos_paciente,
+                                  "id-registro-anestesia":
+                                    _vm.form.registro_anestesia_id
+                                }
                               })
                             ],
                             1
@@ -72440,7 +72446,7 @@ var render = function() {
                                   "tipo-servicio": 4,
                                   "id-atencion": _vm.form.registro_anestesia_id,
                                   "id-visita": 0,
-                                  "id-tipo-documento": 13
+                                  "id-tipo-documento": 12
                                 }
                               })
                             ],
@@ -80972,7 +80978,7 @@ var render = function() {
                                     "tipo-servicio": 4,
                                     "id-atencion": _vm.form.id_lista,
                                     "id-visita": 0,
-                                    "id-tipo-documento": 13
+                                    "id-tipo-documento": 14
                                   }
                                 })
                               ],

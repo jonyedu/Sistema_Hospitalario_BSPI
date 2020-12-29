@@ -105,6 +105,7 @@
                                 >
                                     <datos-paciente
                                         :datos-paciente="datos_paciente"
+                                        :id-registro-anestesia="form.registro_anestesia_id"
                                         ref="datosPaciente"
                                     ></datos-paciente>
                                 </tab-content>
@@ -159,7 +160,7 @@
                                         :tipo-servicio="4"
                                         :id-atencion="form.registro_anestesia_id"
                                         :id-visita="0"
-                                        :id-tipo-documento="13"
+                                        :id-tipo-documento="12"
                                         ref="firmaDigitalRegisAnes">
                                     </vue-firma>
                                 </tab-content>
@@ -350,6 +351,8 @@ export default {
                     //poseeErrores = this.$refs.paraclinico.validarForm();
                     //resolve(poseeErrores);
                     case 4:
+                        poseeErrores = this.$refs.firmaDigitalRegisAnes.validarForm();
+                        resolve(poseeErrores);
                         break;
                     default:
                 }
@@ -357,6 +360,7 @@ export default {
         },
         onComplete() {
             this.respuestaImprimir = 1;
+            this.$refs.firmaDigitalRegisAnes.guardarFirmaPorAtencion();
             this.$refs.formRegistroAnestesico.reset();
         },
         onChangeTab(prevIndex, nextIndex) {
@@ -410,7 +414,6 @@ export default {
         },
         obtenerIdRegistroAnestesio() {
             if(this.form.registro_anestesia_id <= 0){
-                console.log("entra");
                 let that = this;
                 let url = "/modulos/cirugia/anestesia/registro/post";
                 var loader = that.$loading.show();
@@ -449,7 +452,7 @@ export default {
             if (this.respuestaImprimir) {
                 window.open(
                     "/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" +
-                        this.form.idCirugiaProgramadaTemporal
+                        this.form.idCirugiaProgramada
                 );
             }
         }

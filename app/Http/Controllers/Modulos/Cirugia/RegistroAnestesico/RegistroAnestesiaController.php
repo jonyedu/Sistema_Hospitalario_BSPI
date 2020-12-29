@@ -257,7 +257,7 @@ class RegistroAnestesiaController extends Controller
                     ->with('drogaAdministradaRpt', 'graficoCirugia', 'regitroInfunsionRpt.infusionNameRpt', 'tipoPosicion', 'consultaSala', 'consultaMedico')
                     ->first();
                 if ($datosValoracionPreanestesica != null) {
-                    return response()->json(['mensaje' => $datosValoracionPreanestesica->input()], 500);
+                    //return response()->json(['mensaje' => $datosValoracionPreanestesica], 500);
                     $id_registro_anestesia = $datosValoracionPreanestesica->id;
                     $datosprocedimiento = DatosRegistro::where('registro_anestesia_id', $id_registro_anestesia)
                         ->first();
