@@ -17,8 +17,11 @@ class TipoSangre extends Model
      */
     protected $connection = 'control_hospitalario_db_sql';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'codigo',
-        'descripcion'
+        'descripcion',
+        'status'
     ];
 }

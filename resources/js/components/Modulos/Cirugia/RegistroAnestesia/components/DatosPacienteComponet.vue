@@ -5,7 +5,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="text-left col-lg-12 col-md-12 col-sm-12">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 text-left">
+                            <div class="col-lg-5 col-md-5 col-sm-5 text-left">
                                 <label class="col-form-label">Paciente</label>
                                 <input
                                     disabled
@@ -13,28 +13,6 @@
                                     class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                     placeholder="Nombre del Paciente"
                                     v-model="form.paciente"
-                                />
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3 text-left">
-                                <label class="col-form-label"
-                                    >N° Historia Clínica</label
-                                >
-                                <input
-                                    disabled
-                                    type="text"
-                                    class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
-                                    placeholder="N° Historia Clínica"
-                                    v-model="form.historia_clinica"
-                                />
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3 text-left">
-                                <label class="col-form-label">Fecha</label>
-                                <input
-                                    disabled
-                                    type="text"
-                                    class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
-                                    placeholder="Fecha"
-                                    v-model="form.fecha"
                                 />
                             </div>
                             <div class="col-lg-1 col-md-1 col-sm-1 text-left">
@@ -63,39 +41,82 @@
                                     v-model="form.sexo"
                                 />
                             </div>
-                            <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-left">
+                                <label class="col-form-label"
+                                    >N° Historia Clínica</label
+                                >
+                                <input
+                                    disabled
+                                    type="text"
+                                    class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                    placeholder="N° Historia Clínica"
+                                    v-model="form.historia_clinica"
+                                />
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 text-left">
+                                <label class="col-form-label">Fecha</label>
+                                <input
+                                    disabled
+                                    type="text"
+                                    class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                    placeholder="Fecha"
+                                    v-model="form.fecha"
+                                />
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-2 text-left">
                                 <label
                                     class="col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    >Est.(cm)</label
+                                    >Estatura(cm)</label
                                 >
                                 <input
                                     type="text"
-                                    class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                    :class="
+                                        error.estatura === ''
+                                            ? 'form-control'
+                                            : 'form-control is-invalid'
+                                    "
+                                    class="col-lg-12 col-md-12 col-sm-12 form-control"
                                     placeholder="Estatura"
                                     v-model="form.estatura"
                                 />
+                                <small
+                                    v-if="error.estatura !== ''"
+                                    class="text-danger"
+                                    >{{ error.estatura }}</small
+                                >
                             </div>
-                            <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                            <div class="col-lg-2 col-md-2 col-sm-2 text-left">
                                 <label
                                     class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                     >Peso(Kg)</label
                                 >
                                 <input
                                     type="text"
+                                    :class="
+                                        error.peso === ''
+                                            ? 'form-control'
+                                            : 'form-control is-invalid'
+                                    "
                                     class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
                                     placeholder="Peso"
                                     v-model="form.peso"
                                 />
+                                <small
+                                    v-if="error.peso !== ''"
+                                    class="text-danger"
+                                    >{{ error.peso }}</small
+                                >
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3 text-left">
+                            <div class="col-lg-2 col-md-2 col-sm-2 text-left">
                                 <label
                                     class="col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    >Ocupación Actual</label
+                                    >Ocup. Actual</label
                                 >
                                 <input
                                     type="text"
                                     class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
-                                    placeholder="Ocupación Actual"
+                                    placeholder="Ocupación Act."
                                     v-model="form.ocupacion_actual"
                                 />
                             </div>
@@ -107,8 +128,14 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <v-select
+                                            placeholder="Seleccione un Servicio"
                                             taggable
                                             push-tags
+                                            :class="
+                                                error.servicio_medico === ''
+                                                    ? ''
+                                                    : 'style-chooser'
+                                            "
                                             v-model="selectedServicioMedico"
                                             :value="form.id_servicio_medico"
                                             :options="serviciosMedicos"
@@ -119,7 +146,14 @@
                                                 >Seleccione un Cirujano(a)</template
                                             >
                                         </v-select>
+                                        <small
+                                            v-if="error.servicio_medico !== ''"
+                                            class="text-danger"
+                                            >{{ error.servicio_medico }}</small
+                                        >
                                     </div>
+
+
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 text-left">
@@ -135,7 +169,7 @@
                                     disabled
                                 />
                             </div>
-                            <div class="col-lg-1 col-md-1 col-sm-1 text-left">
+                            <div class="col-lg-2 col-md-2 col-sm-2 text-left">
                                 <label
                                     class="col-lg-12 col-md-12 col-sm-12 col-form-label"
                                     >Cama</label
@@ -156,6 +190,11 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <v-select
+                                            :class="
+                                                error.diagnostico_pre === ''
+                                                    ? ''
+                                                    : 'style-chooser'
+                                            "
                                             taggable
                                             push-tags
                                             placeholder="Ingrese el diagnóstico a buscar"
@@ -169,6 +208,11 @@
                                                 >No existen datos</template
                                             >
                                         </v-select>
+                                        <small
+                                            v-if="error.diagnostico_pre !== ''"
+                                            class="text-danger"
+                                            >{{ error.diagnostico_pre }}</small
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -182,6 +226,11 @@
                                         <v-select
                                             taggable
                                             push-tags
+                                            :class="
+                                                error.diagnostico === ''
+                                                    ? ''
+                                                    : 'style-chooser'
+                                            "
                                             placeholder="Ingrese el diagnóstico a buscar"
                                             v-model="selectedDiagnostico"
                                             :value="form.id_diagnostico"
@@ -193,6 +242,11 @@
                                                 >No existen datos</template
                                             >
                                         </v-select>
+                                        <small
+                                            v-if="error.diagnostico !== ''"
+                                            class="text-danger"
+                                            >{{ error.diagnostico }}</small
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +259,7 @@
                                     disabled
                                     rows="1"
                                     type="text"
-                                    class="col-lg-12 col-md-12 col-sm-12 text-left form-control"
+                                    class="col-lg-12 col-md-12 col-sm-12 form-control"
                                     placeholder="Operación Propuesta"
                                     v-model="form.operacion_propuesta"
                                 />
@@ -221,6 +275,11 @@
                                             placeholder="Seleccione un Cirujano(a)"
                                             v-model="selectedCirujano"
                                             :value="form.id_cirujano"
+                                            :class="
+                                                error.cirujano === ''
+                                                    ? ''
+                                                    : 'style-chooser'
+                                            "
                                             :options="cirujanos"
                                             label="display"
                                             @input="setSelectedCirujano"
@@ -229,6 +288,11 @@
                                                 >No existen datos</template
                                             >
                                         </v-select>
+                                        <small
+                                            v-if="error.cirujano !== ''"
+                                            class="text-danger"
+                                            >{{ error.cirujano }}</small
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -244,6 +308,11 @@
                                             v-model="selectedAyudante1"
                                             :value="form.id_ayudante1"
                                             :options="ayudantes1"
+                                            :class="
+                                                error.ayudante1 === ''
+                                                    ? ''
+                                                    : 'style-chooser'
+                                            "
                                             label="display1"
                                             @input="setSelectedAyudante"
                                         >
@@ -251,6 +320,11 @@
                                                 >No existen datos</template
                                             >
                                         </v-select>
+                                        <small
+                                            v-if="error.ayudante1 !== ''"
+                                            class="text-danger"
+                                            >{{ error.ayudante1 }}</small
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -267,6 +341,11 @@
                                             placeholder="Ingrese la Operación Realizada"
                                             v-model="selectedTarifaria"
                                             :value="form.id_tarifaria"
+                                            :class="
+                                                error.tarifaria === ''
+                                                    ? ''
+                                                    : 'style-chooser'
+                                            "
                                             :options="tarifarias"
                                             label="display"
                                             @input="setSelectedTarifaria"
@@ -275,6 +354,11 @@
                                                 >No existen datos</template
                                             >
                                         </v-select>
+                                        <small
+                                            v-if="error.tarifaria !== ''"
+                                            class="text-danger"
+                                            >{{ error.tarifaria }}</small
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -292,11 +376,21 @@
                                             :options="anestesiologos"
                                             label="display"
                                             @input="setSelectedAnestesiologo"
+                                            :class="
+                                                error.anestesiologo === ''
+                                                    ? ''
+                                                    : 'style-chooser'
+                                            "
                                         >
                                             <template slot="no-options"
                                                 >No existen datos</template
                                             >
                                         </v-select>
+                                        <small
+                                            v-if="error.anestesiologo !== ''"
+                                            class="text-danger"
+                                            >{{ error.anestesiologo }}</small
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -325,7 +419,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                 <label
                                     class="col-lg-12 col-md-12 col-sm-12 col-form-label"
-                                    >Instrumentista:</label
+                                    >Instrumentista</label
                                 >
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
@@ -336,11 +430,21 @@
                                             :options="instrumentistas"
                                             label="display3"
                                             @input="setSelectedAyudante"
+                                            :class="
+                                                error.instrumentista === ''
+                                                    ? ''
+                                                    : 'style-chooser'
+                                            "
                                         >
                                             <template slot="no-options"
                                                 >No existen datos</template
                                             >
                                         </v-select>
+                                        <small
+                                            v-if="error.instrumentista !== ''"
+                                            class="text-danger"
+                                            >{{ error.instrumentista }}</small
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -351,7 +455,19 @@
         </div>
     </div>
 </template>
+<style>
+  .style-chooser .vs__dropdown-toggle,
+  .style-chooser .vs__dropdown-menu {
+    border-color: #dc3545;
+    padding-right: 2.25rem;
+    background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+  }
 
+
+</style>
 <script>
 export default {
     props: {
@@ -391,6 +507,20 @@ export default {
 
             selectedTarifaria: "",
             tarifarias: [],
+
+            error:{
+                estatura: "",
+                peso: "",
+                servicio_medico: "",
+                diagnostico_pre: "",
+                diagnostico: "",
+                cirujano: "",
+                ayudante1: "",
+                tarifaria: "",
+                anestesiologo: "",
+                instrumentista: "",
+            },
+
             form: {
                 idCirugiaProgramada: "0001",
                 idCirugiaProgramadaTemporal: "",
@@ -871,8 +1001,21 @@ export default {
         },
         validarForm(){
             //return true;
+            this.error={
+                estatura: "",
+                peso: "",
+                servicio_medico: "",
+                diagnostico_pre: "",
+                diagnostico: "",
+                cirujano: "",
+                ayudante1: "",
+                tarifaria: "",
+                anestesiologo: "",
+                instrumentista: "",
+            };
+            var validar = true;
             if(this.form.id_diagnostico_pre <=0 ){
-                this.flashMessage.show({
+                /* this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
                     message:
@@ -886,11 +1029,12 @@ export default {
                                 "linear-gradient(#e66465, #9198e5)"
                         }
                     }
-                });
-                return false;
+                }); */
+                this.error.diagnostico_pre = "El campo diagnóstico preoperatorio es requerido";
+                validar = false;
             }
             if(this.form.id_diagnostico <=0 ){
-                this.flashMessage.show({
+                /* this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
                     message:
@@ -904,11 +1048,12 @@ export default {
                                 "linear-gradient(#e66465, #9198e5)"
                         }
                     }
-                });
-                return false;
+                }); */
+                this.error.diagnostico = "El campo diagnóstico post-operatorio es requerido";
+                validar = false;
             }
             if(this.form.estatura == ""){
-                this.flashMessage.show({
+                /* this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
                     message:
@@ -922,11 +1067,12 @@ export default {
                                 "linear-gradient(#e66465, #9198e5)"
                         }
                     }
-                });
-                return false;
+                }); */
+                this.error.estatura = "El campo estatura es requerido";
+                validar = false;
             }
             if(this.form.peso == ""){
-                this.flashMessage.show({
+                /* this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
                     message:
@@ -940,11 +1086,12 @@ export default {
                                 "linear-gradient(#e66465, #9198e5)"
                         }
                     }
-                });
-                return false;
+                }); */
+                this.error.peso = "El campo peso es requerido";
+                validar = false;
             }
             if(this.form.id_cirujano <= 0){
-                this.flashMessage.show({
+                /* this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
                     message:
@@ -958,11 +1105,12 @@ export default {
                                 "linear-gradient(#e66465, #9198e5)"
                         }
                     }
-                });
-                return false;
+                }); */
+                this.error.cirujano = "El campo cirujano es requerido";
+                validar = false;
             }
             if(this.form.id_ayudante1 <= 0){
-                this.flashMessage.show({
+                /* this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
                     message:
@@ -976,11 +1124,12 @@ export default {
                                 "linear-gradient(#e66465, #9198e5)"
                         }
                     }
-                });
-                return false;
+                }); */
+                this.error.ayudante1 = "El campo ayudante es requerido";
+                validar = false;
             }
             if(this.form.id_tarifaria <= 0){
-                this.flashMessage.show({
+                /* this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
                     message:
@@ -994,11 +1143,12 @@ export default {
                                 "linear-gradient(#e66465, #9198e5)"
                         }
                     }
-                });
-                return false;
+                }); */
+                this.error.tarifaria = "El campo tarifaria es requerido";
+                validar = false;
             }
             if(this.form.id_anestesiologo <= 0){
-                this.flashMessage.show({
+                /* this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
                     message:
@@ -1012,11 +1162,12 @@ export default {
                                 "linear-gradient(#e66465, #9198e5)"
                         }
                     }
-                });
-                return false;
+                }); */
+                this.error.anestesiologo = "El campo anestesiologo es requerido";
+                validar = false;
             }
             if(this.form.id_instrumentista <= 0){
-                this.flashMessage.show({
+                /* this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
                     message:
@@ -1030,11 +1181,12 @@ export default {
                                 "linear-gradient(#e66465, #9198e5)"
                         }
                     }
-                });
-                return false;
+                }); */
+                this.error.instrumentista = "El campo intrumestista es requerido";
+                validar = false;
             }
             if(this.selectedServicioMedico == ""){
-                this.flashMessage.show({
+                /* this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
                     message:
@@ -1048,10 +1200,11 @@ export default {
                                 "linear-gradient(#e66465, #9198e5)"
                         }
                     }
-                });
-                return false;
+                }); */
+                this.error.servicio_medico = "El campo servicio medico es requerido";
+                validar = false;
             }
-            return true;
+            return validar;
         },
         guardarModificarDatosPaciente() {
             this.form.registro_anestesia_id = this.$props.idRegistroAnestesia;

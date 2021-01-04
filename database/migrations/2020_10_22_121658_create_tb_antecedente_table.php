@@ -23,6 +23,7 @@ class CreateTbAntecedenteTable extends Migration
                 $table->unsignedInteger('traumatico')->default(0);
                 $table->string('descripcionTraumatico')->nullable();
                 $table->unsignedInteger('alergia')->default(0);
+                $table->string('alergiaValor')->nullable();
                 $table->unsignedInteger('tabaco')->default(0);
                 $table->unsignedInteger('cocaina')->default(0);
                 $table->unsignedInteger('marihuana')->default(0);

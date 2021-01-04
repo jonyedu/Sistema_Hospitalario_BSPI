@@ -1588,7 +1588,7 @@ export default {
         mostrarModalConfirmarCandelar() {
             this.icon = "/iconsflashMessage/warning.svg";
             this.titulo = "¿Desea cerrar el proceso?";
-            this.mensaje = "Al dar en Aceptar, el proceso dará por finalizado.";
+            this.mensaje = "Al dar en Aceptar, el proceso trans-anestésico dará por finalizado.";
             this.$modal.show("ConfirmarCandelar");
         },
         respuestaConfirmarCancelar(value) {

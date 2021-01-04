@@ -8,10 +8,7 @@
                             <button
                                 type="button"
                                 class="btn btn-outline-success"
-                                @click="
-                                    isActive = !isActive
-
-                                "
+                                @click="isActive = !isActive"
                             >
                                 <!-- Firma -->
                                 <i class="fas fa-file-signature"></i>
@@ -77,7 +74,7 @@
                                 <button
                                     type="button"
                                     class="btn btn-outline-success"
-                                    @click="saveCancas()"
+                                    @click="mostrarModalConfirmarCandelar()"
                                 >
                                     <!-- Guardar -->
                                     <i class="fas fa-save"></i>
@@ -234,6 +231,21 @@
                 </paintable>
             </div>
         </div>
+        <modal
+            :width="'30%'"
+            height="auto"
+            :scrollable="true"
+            name="ConfirmarCandelar"
+            style="z-index: 1200;"
+        >
+            <vue-confirmar-cancelar
+                :icon="icon"
+                :titulo="titulo"
+                :mensaje="mensaje"
+                ref="ConfirmarCandelar"
+                @respuestaConfirmarCancelar="respuestaConfirmarCancelar"
+            ></vue-confirmar-cancelar>
+        </modal>
     </div>
 </template>
 
@@ -336,14 +348,13 @@ export default {
             this.isActive = isActive;
         },
         async print() {
-
             const el = this.$refs.printMe;
             const options = {
                 type: "dataURL"
             };
             this.output = await this.$html2canvas(el, options);
             this.$emit("getOutput", this.output);
-            this.flashMessage.show({
+            /* this.flashMessage.show({
                 status: "success",
                 title: "Exito en Firma",
                 message: "Firma generado correctamente.",
@@ -355,33 +366,45 @@ export default {
                         background: "linear-gradient(#e66465, #9198e5)"
                     }
                 }
-            });
+            }); */
+        },
+        //Metodos para el componente ConfirmarCandelar
+        mostrarModalConfirmarCandelar() {
+            this.icon = "/iconsflashMessage/warning.svg";
+            this.titulo = "¿Desea finalizar el proceso?";
+            this.mensaje = "Al finalizar con el proceso, no podrá volver realizar ninguna modificación. \n ¿Está seguro(a)?";
+            this.$modal.show("ConfirmarCandelar");
+        },
+        async respuestaConfirmarCancelar(value) {
+            this.resConfirmarCancelar = await value;
+            this.$modal.hide("ConfirmarCandelar");
+            this.saveCancas();
         },
         saveCancas: async function() {
-            var loader = this.$loading.show();
-            var idFlashMessage = this.flashMessage.show({
-                status: "info",
-                title: "Generando Firma",
-                message: "Se está generando la firma, por favor espere.",
-                clickable: false,
-                time: 0,
-                icon: "/iconsflashMessage/time.gif",
-                blockClass: 'custom_msg',
-                customStyle: {
-                    flashMessageStyle: {
-                        background: "linear-gradient(#e66465, #9198e5)"
+            if (this.resConfirmarCancelar) {
+                var loader = this.$loading.show();
+                var idFlashMessage = this.flashMessage.show({
+                    status: "info",
+                    title: "Generando Firma",
+                    message: "Se está generando la firma, por favor espere.",
+                    clickable: false,
+                    time: 0,
+                    icon: "/iconsflashMessage/time.gif",
+                    blockClass: "custom_msg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background: "linear-gradient(#e66465, #9198e5)"
+                        }
                     }
-                }
-            });
-            //var loader = this.$loading.show();
-            await this.print();
-            this.flashMessage.deleteMessage(idFlashMessage);
-            this.$refs.paintable.saveCurrentCanvasToStorage();
-            this.isActive = !this.isActive;
-            this.respuestaImgFirma = 1;
-            this.$emit("RespuestaImgFirma", this.respuestaImgFirma);
-            loader.hide();
-            //loader.hide();
+                });
+                await this.print();
+                this.flashMessage.deleteMessage(idFlashMessage);
+                this.$refs.paintable.saveCurrentCanvasToStorage();
+                this.isActive = !this.isActive;
+                this.respuestaImgFirma = 1;
+                this.$emit("RespuestaImgFirma", this.respuestaImgFirma);
+                loader.hide();
+            }
         },
         deleteCanvas: function() {
             this.$refs.paintable.clearCanvas();
@@ -392,6 +415,12 @@ export default {
     },
     data: function() {
         return {
+            //Variables para el componente de ConfirmarCandelar
+            resConfirmarCancelar: false,
+            icon: "",
+            titulo: "",
+            mensaje: "",
+            //fin
             idFlashMessage: 0,
             isActive: false,
             useEraser: false,
@@ -415,7 +444,7 @@ export default {
                     body: "color"
                 }
             };
-        },
+        }
         /* cambiarEstadoHidePaintable: function(params){
             if(this.isActive == false){
                 console.log("entra");

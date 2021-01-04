@@ -16,6 +16,18 @@ use Barryvdh\DomPDF\Facade as PDF;
 
 class ValoracionPreanestesicaApiController extends Controller
 {
+    public function validarSecCirPro($secCirPro)
+    {
+        try {
+            $secCirPro = RevisionSistema::where('SecCirPro', $secCirPro)
+                ->first();
+            //$grafica = GraficaPorCirugia::where('SecCirPro', 1)->first();
+            return  response()->json(['secCirPro' => $secCirPro], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+
     public function cargarListaCirugiaProgramadaPaciente(ConsultarListaCirugiaRequest $request)
     {
         try {

@@ -23,7 +23,8 @@
                         align="center"
                         v-text="mensaje"
                     ></p>
-                    <div v-if="campoObservacion"
+                    <div
+                        v-if="campoObservacion"
                         class="col-lg-12 col-md-12 col-sm-12 text-center mt-4 mb-5"
                     >
                         <div class="form-group row">
@@ -75,45 +76,51 @@ export default {
             type: String,
             required: true
         },
-        campoObservacion:{
-            type:Boolean,
+        campoObservacion: {
+            type: Boolean,
             default: false
         }
     },
     methods: {
         validarConfirmarCandelar(value) {
             if (value) {
-                if (this.observacion == "" && this.$props.campoObservacion) {
-                    this.flashMessage.show({
-                        status: "warning",
-                        title: "Advertencia",
-                        message: "Necesita una observación, para poder suspender la cirugía.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/warning.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
+                if (this.$props.campoObservacion) {
+                    if (this.observacion == "") {
+                        this.flashMessage.show({
+                            status: "warning",
+                            title: "Advertencia",
+                            message:
+                                "Necesita una observación, para poder suspender la cirugía.",
+                            clickable: true,
+                            time: 5000,
+                            icon: "/iconsflashMessage/warning.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
                             }
-                        }
-                    });
-                    return;
-                }
-                if (this.observacion.length <= 30 && this.$props.campoObservacion) {
-                    this.flashMessage.show({
-                        status: "warning",
-                        title: "Advertencia",
-                        message: "La observación debe tener un máximo de 30 caracteres.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/warning.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
+                        });
+                        return;
+                    }
+                    if (this.observacion.length <= 30) {
+                        this.flashMessage.show({
+                            status: "warning",
+                            title: "Advertencia",
+                            message:
+                                "La observación debe tener un máximo de 30 caracteres.",
+                            clickable: true,
+                            time: 5000,
+                            icon: "/iconsflashMessage/warning.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
                             }
-                        }
-                    });
-                    return;
+                        });
+                        return;
+                    }
                 }
             }
             this.$emit("respuestaConfirmarCancelar", value);

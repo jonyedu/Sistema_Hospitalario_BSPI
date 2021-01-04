@@ -43,6 +43,7 @@ class AntecedenteApiController extends Controller
                     'traumatico' => $request->input('frm_traumatico'),
                     'descripcionTraumatico' => $request->input('frm_descripcionTraumatico'),
                     'alergia' => $request->input('frm_alergia'),
+                    'alergiaValor' => $request->input('frm_alergiaValor'),
                     'tabaco' => $request->input('frm_tabaco'),
                     'cocaina' => $request->input('frm_cocaina'),
                     'marihuana' => $request->input('frm_marihuana'),

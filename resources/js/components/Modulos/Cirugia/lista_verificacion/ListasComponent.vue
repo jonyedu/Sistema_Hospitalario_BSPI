@@ -33,7 +33,7 @@
                                     >
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="float-right">
+                                                <div class="btn-group" role="group">
                                                     <button
                                                         type="button"
                                                         class="btn btn-outline-primary"
@@ -234,7 +234,7 @@
                                     </lista-salida>
                                 </tab-content>
                                 <tab-content
-                                    title="Visualización"
+                                    title="Pre-Visualización"
                                     icon="fas fa-file-pdf"
                                 >
                                     <div class="row">
@@ -254,6 +254,7 @@
                                 <tab-content
                                     title="Firma Digital"
                                     icon="fa fa-edit"
+                                    :before-change="validateFirstStep"
                                 >
                                     <vue-firma
                                         :user="user"
@@ -261,50 +262,10 @@
                                         :id-atencion="form.id_lista"
                                         :id-visita="0"
                                         :id-tipo-documento="14"
+                                        @FinProceso="onComplete"
                                         ref="firmaDigitalListas">
                                     </vue-firma>
                                 </tab-content>
-
-                                <!-- <tab-content title="Firma" icon="ti-folder">
-                                    <div class="">
-                                        <div
-                                            class=""
-                                            style="height: 70px"
-                                        ></div>
-                                        <div class="flex flex-y">
-                                            <span
-                                                class="col-md-5 text-center"
-                                                style="margin: auto"
-                                            >
-                                                <vue-painttable
-                                                    @getOutput="
-                                                        form.imgFirma = $event
-                                                    "
-                                                    @RespuestaImgFirma="
-                                                        validarImgFirma = $event
-                                                    "
-                                                    :hidePaintable="true"
-                                                    :isFirstPaintable="
-                                                        isFirstPaintable
-                                                    "
-                                                    :disableNavigation="true"
-                                                    :showUndoRedo="false"
-                                                    :showLineWidth="false"
-                                                    :rutaImagen="rutaSello"
-                                                    :width="800"
-                                                    :height="800"
-                                                    ref="paintFirma"
-                                                ></vue-painttable>
-                                            </span>
-                                            <span class="col-md-12 text-center"
-                                                >______________________________________________</span
-                                            >
-                                            <span class="col-md-12 text-center"
-                                                >FIRMA DEL ANESTESIOLOGO:</span
-                                            >
-                                        </div>
-                                    </div>
-                                </tab-content> -->
                             </form-wizard>
                         </div>
                     </div>
@@ -348,6 +309,7 @@ export default {
 
             listas: {
                 SecCirPro: "",
+                SecCirProTemp: "",
                 frm_id_user: "",
                 chkentrada01: false,
                 chkentrada02: false,
@@ -430,9 +392,9 @@ export default {
                     if (response.data.contador > 0) {
                         that.flashMessage.show({
                             status: "success",
-                            title: "Éxito al procesar IdRegistroAnestesia",
+                            title: "Proceso realizado exitosamente",
                             message:
-                                "El proceso ya se encuentra realizado, Seleccione Imprimir para visualizar el reporte",
+                                "El paciente ya cuenta con un registro listado verificación. Por favor seleccione imprimir para visualizar el reporte.",
                             clickable: true,
                             time: 5000,
                             icon: "/iconsflashMessage/success.svg",
@@ -443,11 +405,13 @@ export default {
                                 }
                             }
                         });
+                        that.listas.SecCirProTemp = that.listas.SecCirPro;
+                        that.listas.SecCirPro = "";
 
                         that.isHidden = "block";
                         that.idHiddenNuevo = "none";
                     } else {
-                        that.flashMessage.show({
+                        /* that.flashMessage.show({
                             status: "success",
                             title: "Lista de Verifacion",
                             message: "Paciente Nuevo",
@@ -460,7 +424,7 @@ export default {
                                         "linear-gradient(#e66465, #9198e5)"
                                 }
                             }
-                        });
+                        }); */
                         that.isHidden = "none";
                         that.idHiddenNuevo = "block";
                     }
@@ -474,7 +438,6 @@ export default {
                     });
                     that.isHidden = "none";
                 });
-            //  llamarMetodoImprimir();
         },
         onChangeTab(prevIndex, nextIndex) {
             /* if (typeof this.onChangeTab() === "function") {
@@ -518,6 +481,8 @@ export default {
                     case 3:
                         break;
                     case 4:
+                        poseeErrores = this.$refs.firmaDigitalListas.validarForm();
+                        resolve(poseeErrores);
                         break;
                     default:
                 }
@@ -595,14 +560,16 @@ export default {
                 });
         },
         onComplete() {
-            //this.guardarFirmaPorAtencion();
             this.$refs.formListaVerificacion.reset();
+            this.listas.SecCirProTemp = this.listas.SecCirPro;
+            this.listas.SecCirPro = '';
+            this.isHidden = "block";
         },
 
         llamarMetodoImprimir() {
             window.open(
                 "/modulos/cirugia/lista_verificacion/mostrarreporte/" +
-                    this.listas.SecCirPro
+                    this.listas.SecCirProTemp
             );
         }
     }

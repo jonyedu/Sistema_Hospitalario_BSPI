@@ -14,7 +14,7 @@ class TipoSangreApiController extends Controller
     public function cargarTipoSangreComboBox()
     {
         try {
-            $tipoSangre = TipoSangre::get();
+            $tipoSangre = TipoSangre::where('status', 1)->get();
             return  response()->json(['tipoSangre' => $tipoSangre], 200);
         } catch (Exception $e) {
             return response()->json(['mensaje' => $e->getMessage()], 500);

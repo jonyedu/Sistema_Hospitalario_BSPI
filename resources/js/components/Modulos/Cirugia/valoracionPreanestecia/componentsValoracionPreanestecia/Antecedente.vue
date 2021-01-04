@@ -445,7 +445,7 @@
                                                     <label>Drogas</label>
                                                 </div>
                                                 <!-- Esteroides -->
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -469,7 +469,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- AINES -->
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -491,7 +491,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- IECA -->
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -513,7 +513,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- Inetrópicos -->
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -537,7 +537,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- AntiH2 -->
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -561,7 +561,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- ASA -->
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -581,7 +581,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- Antibióticos -->
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -605,7 +605,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- Betabloqueadores -->
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -629,7 +629,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- Diuréticos -->
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -653,7 +653,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- Anticoagulantes -->
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -677,7 +677,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- Calcioantagonistas -->
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -701,7 +701,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- ACOS -->
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -723,7 +723,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- Anticolinesterásico -->
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div
                                                         class="custom-control custom-checkbox custom-control-inline"
                                                     >
@@ -740,14 +740,14 @@
                                                             "
                                                         />
                                                         <label
-                                                            class="custom-control-label col-sm-8"
+                                                            class="custom-control-label"
                                                             for="defaultInline48"
                                                             >Anticolinesterásico</label
                                                         >
                                                     </div>
                                                 </div>
                                                 <!-- Otras Drogas -->
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-9">
                                                     <div class="form-group row">
                                                         <div class="col-sm-2">
                                                             <div
@@ -772,7 +772,7 @@
                                                                 >
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-8">
+                                                        <div class="col-sm-10">
                                                             <input
                                                                 v-if="
                                                                     form.frm_otrasDroga
@@ -955,7 +955,7 @@ export default {
             let that = this;
             let url =
                 "/modulos/cirugia/valoracionPreanestecia/cargar_antecedente_campo/" +that.$props.idSecCirPro;
-            var loader = that.$loading.show();
+            //var loader = that.$loading.show();
             axios
                 .get(url)
                 .then(function(response) {
@@ -1053,11 +1053,11 @@ export default {
 
                         that.form.frm_cual_otrasDroga = response.data.antecedente.cual_otrasDroga;
                     }
-                    loader.hide()
+                    //loader.hide()
                 })
                 .catch(error => {
                     //Errores
-                    loader.hide();
+                    //loader.hide();
                     /* that.$swal({
                         icon: "error",
                         title: "Existe un error",
@@ -1092,12 +1092,12 @@ export default {
                 } else {
                     that.mensaje = "Datos guardados correctamente.";
                 }
-                var loader = that.$loading.show();
+                //var loader = that.$loading.show();
                 this.form.frm_idCirugiaProgramada= idSecCirPro;
                 axios
                     .post(url, this.form)
                     .then(function(response) {
-                        loader.hide();
+                        //loader.hide();
                         /* that.$swal({
                             icon: "success",
                             title: "Proceso realizado exitosamente",
@@ -1121,7 +1121,7 @@ export default {
                                 }
                             }
                         });
-                        loader.hide();
+                        //loader.hide();
                     });
             } else {
                 /* let that = this;

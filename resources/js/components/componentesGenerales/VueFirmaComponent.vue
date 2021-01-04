@@ -12,9 +12,7 @@
                             >
                                 <vue-painttable
                                     @getOutput="frmimg.imgFirma = $event"
-                                    @RespuestaImgFirma="
-                                        validarImgFirma = $event
-                                    "
+                                    @RespuestaImgFirma="guardarFirmaPorAtencion"
                                     :hidePaintable="true"
                                     :isFirstPaintable="isFirstPaintable"
                                     :disableNavigation="true"
@@ -46,21 +44,22 @@ export default {
         user: {
             type: Object
         },
-        tipoServicio:{
+        tipoServicio: {
             type: Number
         },
-        idAtencion:{
+        idAtencion: {
             type: Number
         },
-        idVisita:{
+        idVisita: {
             type: Number
         },
-        idTipoDocumento:{
+        idTipoDocumento: {
             type: Number
-        },
+        }
     },
     data: function() {
         return {
+            finProceso: 0,
             validarImgFirma: 0,
             isFirstPaintable: "firmaAnestesiologo",
             rutaSello: "",
@@ -69,8 +68,7 @@ export default {
             }
         };
     },
-    mounted: function() {
-    },
+    mounted: function() {},
     methods: {
         consultarSello() {
             let that = this;
@@ -124,55 +122,60 @@ export default {
                     });
             }
         },
-        guardarFirmaPorAtencion() {
-            let that = this;
-            let url = "";
-            let formNew = {
-                tipo_servicio: that.$props.tipoServicio,
-                id_atencion: that.$props.idAtencion, //id de revision de sistema
-                id_visita: that.$props.idVisita,
-                id_tipo_documento: that.$props.idTipoDocumento,
-                imgFirma: that.frmimg.imgFirma
-            };
-            url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
-            var loader = that.$loading.show();
-            axios
-                .post(url, formNew)
-                .then(function(response) {
-                    loader.hide();
-                    that.flashMessage.show({
-                        status: "success",
-                        title: "Proceso realizado exitosamente",
-                        message: "Usted a completado con exito el proceso de registro anestesia.",
-                        clickable: true,
-                        time: 5000,
-                        icon: "/iconsflashMessage/success.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
+        guardarFirmaPorAtencion(value) {
+            if (value) {
+                let that = this;
+                let url = "";
+                let formNew = {
+                    tipo_servicio: that.$props.tipoServicio,
+                    id_atencion: that.$props.idAtencion, //id de revision de sistema
+                    id_visita: that.$props.idVisita,
+                    id_tipo_documento: that.$props.idTipoDocumento,
+                    imgFirma: that.frmimg.imgFirma
+                };
+                url = "/modulos/cirugia/anestesia/guardar_firma_atencion";
+                var loader = that.$loading.show();
+                axios
+                    .post(url, formNew)
+                    .then(function(response) {
+                        loader.hide();
+                        that.flashMessage.show({
+                            status: "success",
+                            title: "Proceso realizado exitosamente",
+                            message:"Usted a completado con exito el proceso.",
+                            clickable: true,
+                            time: 5000,
+                            icon: "/iconsflashMessage/success.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
                             }
-                        }
-                    });
-                })
-                .catch(error => {
-                    that.resConfirmarCancelar = false;
-                    that.flashMessage.show({
-                        status: "error",
-                        title: "Error al procesar guardarFirmaPorAtencion",
-                        message:
-                            "Por favor comuníquese con el administrador. " +
-                            error,
-                        clickable: true,
-                        time: 0,
-                        icon: "/iconsflashMessage/error.svg",
-                        customStyle: {
-                            flashMessageStyle: {
-                                background: "linear-gradient(#e66465, #9198e5)"
+                        });
+                        that.finProceso = 1;
+                        that.$emit("FinProceso", that.finProceso);
+                    })
+                    .catch(error => {
+                        that.flashMessage.show({
+                            status: "error",
+                            title: "Error al procesar guardarFirmaPorAtencion",
+                            message:
+                                "Por favor comuníquese con el administrador. " +
+                                error,
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/error.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
                             }
-                        }
+                        });
+                        loader.hide();
                     });
-                    loader.hide();
-                });
+            }
         },
         validarForm() {
             if (this.frmimg.imgFirma == "") {
@@ -193,7 +196,6 @@ export default {
             }
             return true;
         }
-    },
-
+    }
 };
 </script>

@@ -19,33 +19,25 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
 
     /* SubModulo valoracionPreanestecia */
     Route::namespace('Modulos\Cirugia\valoracionPreanestecia')->prefix('valoracionPreanestecia')->group(function () {
-        //Modulo de Cirugia
+
+        Route::get('validar_secCirPro/{secCirPro}', 'ValoracionPreanestesicaApiController@validarSecCirPro');
         Route::post('cargar_lista_cirugia_programadaPaciente', 'ValoracionPreanestesicaApiController@cargarListaCirugiaProgramadaPaciente');
 
         /* Revision por Sistema */
-        //Cargar en los Campos
         Route::get('cargar_revision_sistema_campo/{idSecCirPro}', 'RevisionSistemaApiController@cargarRevisionSistemaCampo');
-        //Cargar Pdf Formulario
         Route::get('cargar_pdf_formulario_valoracion_preanestesica/{idSecCirPro}', 'ValoracionPreanestesicaApiController@cargarPdfFormularioValoracionPreanestesica');
-        //Guardar o Modificar
         Route::post('guardar_modificar_revision_sistema', 'RevisionSistemaApiController@guardarModificarRevisionSistema');
 
         /* Antecedente */
-        //Cargar en los Campos
         Route::get('cargar_antecedente_campo/{idSecCirPro}', 'AntecedenteApiController@cargarAntecedenteCampo');
-        //Guardar o Modificar
         Route::post('guardar_modificar_antecedente', 'AntecedenteApiController@guardarModificarAntecedente');
 
         /* Examen Fisico */
-        //Cargar en los Campos
         Route::get('cargar_examen_fisico_campo/{idSecCirPro}', 'ExamenFisicoApiController@cargarExamenFisicoCampo');
-        //Guardar o Modificar
         Route::post('guardar_modificar_examen_fisico', 'ExamenFisicoApiController@guardarModificarExamenFisico');
 
         /* Paraclinico */
-        //Cargar en los Campos
         Route::get('cargar_paraclinico_campo/{idSecCirPro}', 'ParaclinicoApiController@cargarParaclinicoCampo');
-        //Guardar o Modificar
         Route::post('guardar_modificar_paraclinico', 'ParaclinicoApiController@guardarModificarParaclinico');
     });
 

@@ -45,16 +45,6 @@
                                                     src="/icons/busqueda.png"
                                                 />
                                             </a>
-                                            <!-- <button
-                                                type="button"
-                                                class="btn btn-outline-primary"
-                                                @click="
-                                                    mostrarModalListaCirugiaPaciente()
-                                                "
-                                            >
-                                                Nuevo
-                                                <i> <img   src="/icons/buscar.png"> </i>
-                                            </button> -->
                                             <template v-if="respuestaImprimir">
                                                 <button
                                                     type="button"
@@ -135,7 +125,7 @@
                                     ></administracion-farmaco>
                                 </tab-content>
                                 <tab-content
-                                    title="Visualización"
+                                    title="Pre-Visualización"
                                     icon="fas fa-file-pdf"
                                 >
                                     <div class="row">
@@ -162,6 +152,7 @@
                                         :id-atencion="form.registro_anestesia_id"
                                         :id-visita="0"
                                         :id-tipo-documento="12"
+                                        @FinProceso="onComplete"
                                         ref="firmaDigitalRegisAnes">
                                     </vue-firma>
                                 </tab-content>
@@ -205,7 +196,7 @@ export default {
             respuestaImprimir: 0,
             form: {
                 idCirugiaProgramada: "",
-                idCirugiaProgramadaTemporal: "",
+                idCirugiaProgramadaTempo: "",
                 registro_anestesia_id: 0,
                 /* Datos del paciente */
                 paciente: "",
@@ -284,7 +275,7 @@ export default {
                                 status: "warning",
                                 title: "Advertencia al Seleccionar Paciente",
                                 message:
-                                    "El paciente ya cuenta con un registro anestesico.",
+                                    "El paciente ya cuenta con un registro anestesico. Por favor seleccione imprimir para visualizar el reporte.",
                                 clickable: true,
                                 time: 10000,
                                 icon: "/iconsflashMessage/warning.svg",
@@ -295,8 +286,11 @@ export default {
                                     }
                                 }
                             });
+                            that.respuestaImprimir = 1;
+                            that.form.idCirugiaProgramadaTemp = value.SecCirPro;
                             loader.hide();
                         } else {
+                            that.respuestaImprimir = 0;
                             that.datos_paciente = value;
                             that.form.idCirugiaProgramada = value.SecCirPro;
                             that.$modal.hide("ListaCirugiaProgramadaPaciente");
@@ -345,26 +339,23 @@ export default {
                         resolve(poseeErrores);
                         break;
                     case 2:
-                        //poseeErrores = this.$refs.examenFisico.validarForm();
-                        //resolve(poseeErrores);
                         break;
                     case 3:
 
                     case 4:
                         poseeErrores = this.$refs.firmaDigitalRegisAnes.validarForm();
                         resolve(poseeErrores);
-                    //poseeErrores = this.$refs.paraclinico.validarForm();
-                    //resolve(poseeErrores);
-
                         break;
                     default:
                 }
             });
         },
         onComplete() {
-            this.respuestaImprimir = 1;
-            this.$refs.firmaDigitalRegisAnes.guardarFirmaPorAtencion();
+            //this.$refs.firmaDigitalRegisAnes.guardarFirmaPorAtencion();
             this.$refs.formRegistroAnestesico.reset();
+            this.respuestaImprimir = 1;
+            this.form.idCirugiaProgramadaTemp = this.form.idCirugiaProgramada;
+            this.form.idCirugiaProgramada = "";
         },
         onChangeTab(prevIndex, nextIndex) {
             /* if (typeof this.onChangeTab() === "function") {
@@ -373,6 +364,7 @@ export default {
             } */
             this.setFormTitle(nextIndex);
             this.guardarModificar(prevIndex);
+
         },
         setFormTitle(index) {
             switch (index) {
@@ -395,13 +387,16 @@ export default {
                     this.$refs.firmaDigitalRegisAnes.consultarSello();
                     break;
                 default:
-                    this.titulo_seleccionado = "";
+                    //this.titulo_seleccionado = "";
             }
         },
         guardarModificar(index) {
             switch (index) {
                 case 0:
-                    this.$refs.datosPaciente.guardarModificarDatosPaciente();
+                    if( typeof this.$refs.datosPaciente == "object"){
+                        this.$refs.datosPaciente.guardarModificarDatosPaciente();
+                    }
+
                     break;
                 case 1:
                     break;
@@ -445,9 +440,9 @@ export default {
                             }
                         });
                     });
-            }else{
+            }/* else{
                 this.guardarModificarDatosPaciente();
-            }
+            } */
 
         },
         /* Fin Metodos para los form-wizard */
@@ -455,7 +450,7 @@ export default {
             if (this.respuestaImprimir) {
                 window.open(
                     "/modulos/cirugia/anestesia/cargar_pdf_formulario_registro_anestesia/" +
-                        this.form.idCirugiaProgramada
+                        this.form.idCirugiaProgramadaTemp
                 );
             }
         }

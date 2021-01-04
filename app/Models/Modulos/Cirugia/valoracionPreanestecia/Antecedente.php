@@ -15,6 +15,7 @@ class Antecedente extends Model
         'traumatico',
         'descripcionTraumatico',
         'alergia',
+        'alergiaValor',
         'tabaco',
         'cocaina',
         'marihuana',
