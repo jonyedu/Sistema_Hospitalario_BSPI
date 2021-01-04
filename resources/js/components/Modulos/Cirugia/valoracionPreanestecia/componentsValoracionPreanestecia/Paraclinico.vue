@@ -1153,7 +1153,7 @@ export default {
         },
         setSelectedTipoSangre(value) {
             let that = this;
-            var loader = that.$loading.show();
+            //var loader = that.$loading.show();
             let url =
                 "/modulos/parametrizacion/tipo_sangre/cargar_tipo_sangre_combo_box";
             if (value != null) {
@@ -1165,14 +1165,12 @@ export default {
                     let tipoSangre = [];
                     response.data.tipoSangre.forEach(tiposSangre => {
                         let objeto = {};
-                        objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
-                            tiposSangre.descripcion
-                        );
+                        objeto.display = tiposSangre.descripcion
                         objeto.id_tipo_sangre = tiposSangre.codigo;
                         tipoSangre.push(objeto);
                     });
                     that.tipoSangre = tipoSangre;
-                    loader.hide();
+                    //loader.hide();
                 })
                 .catch(error => {
                     //Errores
@@ -1181,7 +1179,7 @@ export default {
                         title: "Existe un error",
                         text: error
                     }); */
-                    loader.hide();
+                    //loader.hide();
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar setSelectedTipoSangre",
@@ -1205,7 +1203,7 @@ export default {
             let url =
                 "/modulos/cirugia/valoracionPreanestecia/cargar_paraclinico_campo/" +
                 that.$props.idSecCirPro;
-            var loader = that.$loading.show();
+            //var loader = that.$loading.show();
             axios
                 .get(url)
                 .then(function(response) {
@@ -1321,11 +1319,11 @@ export default {
                             response.data.paraclinico.observacion;
                     } else {
                     }
-                    loader.hide();
+                    //loader.hide();
                 })
                 .catch(error => {
                     //Errores
-                    loader.hide();
+                    //loader.hide();
                     /* that.$swal({
                         icon: "error",
                         title: "Existe un error",
@@ -1360,12 +1358,12 @@ export default {
                 } else {
                     that.mensaje = "Datos guardados correctamente.";
                 }
-                var loader = that.$loading.show();
+                //var loader = that.$loading.show();
                 this.form.frm_idCirugiaProgramada = idSecCirPro;
                 axios
                     .post(url, this.form)
                     .then(function(response) {
-                        loader.hide();
+                        //loader.hide();
                     })
                     .catch(error => {
                         that.flashMessage.show({
@@ -1384,7 +1382,7 @@ export default {
                                 }
                             }
                         });
-                        loader.hide();
+                        //loader.hide();
                     });
             } else {
                 let that = this;

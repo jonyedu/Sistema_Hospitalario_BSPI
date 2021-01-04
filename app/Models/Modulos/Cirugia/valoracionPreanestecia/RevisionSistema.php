@@ -71,4 +71,9 @@ class RevisionSistema extends Model
     {
         return $this->hasOne('App\Models\Modulos\Cirugia\valoracionPreanestecia\Paraclinico', 'SecCirPro', 'SecCirPro');
     }
+
+    public function firmasPorAtencion()
+    {
+        return $this->hasOne('App\Models\Modulos\Imagenes\FirmasPorAtencion', 'id_atencion', 'idRevisionSistema')->orderByDesc('fecha_ingreso');
+    }
 }

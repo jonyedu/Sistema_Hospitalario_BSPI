@@ -23,14 +23,11 @@ class CreateTbExamenFisicoTable extends Migration
                 $table->unsignedInteger('talla')->nullable();
                 $table->string('estado_general')->nullable();
                 $table->unsignedInteger('cuelloCorto')->default(0);
-                $table->unsignedInteger('dmt')->nullable();
+                //$table->unsignedInteger('dmt')->nullable();
+                $table->string('dmt')->nullable();
                 $table->unsignedInteger('cmCuelloCorto')->nullable();
                 $table->string('movilidad_cuello')->nullable();
-                $table->unsignedInteger('clase1')->default(0);
-                $table->unsignedInteger('clase2')->default(0);
-                $table->unsignedInteger('clase3')->default(0);
-                $table->unsignedInteger('clase4')->default(0);
-                $table->unsignedInteger('ingurgitacionYugular')->default(0);
+                $table->string('escala_malla')->nullable();
                 $table->unsignedInteger('cmBocaAperturaOral')->nullable();
                 $table->string('dentadura')->nullable();
                 $table->unsignedInteger('edentulo')->default(0);

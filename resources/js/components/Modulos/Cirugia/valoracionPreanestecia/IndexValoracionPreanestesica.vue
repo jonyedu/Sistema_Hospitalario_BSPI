@@ -199,7 +199,9 @@
                                         @RespuestaImprimir="
                                             respuestaImprimir = $event
                                         "
-                                        @IdRevisionSistema="form.id_revision_sistema = $event"
+                                        @IdRevisionSistema="
+                                            form.id_revision_sistema = $event
+                                        "
                                         ref="revisionSistema"
                                     ></revision-sistema>
                                 </tab-content>
@@ -241,24 +243,14 @@
                                         @validarFinProceso="
                                             respuestaFinProceso = $event
                                         "
-                                        @FinProceso="cambiarEstado"
                                         ref="paraclinico"
                                     ></paraclinico>
                                 </tab-content>
                                 <tab-content
-                                    title="Visualización"
+                                    title="Pre-Visualización"
                                     icon="fas fa-file-pdf"
                                 >
                                     <div class="row">
-                                        <!-- <embed
-                                            :src="
-                                                '/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/' +
-                                                    form.frm_idCirugiaProgramada
-                                            "
-                                            type="application/pdf"
-                                            width="100%"
-                                            height="980px"
-                                        /> -->
                                         <iframe
                                             ref="pdfValoracionPreanestesia"
                                             :src="
@@ -274,6 +266,7 @@
                                 <tab-content
                                     title="Firma Digital"
                                     icon="fa fa-edit"
+                                    :before-change="validateFirstStep"
                                 >
                                     <vue-firma
                                         :user="user"
@@ -281,7 +274,9 @@
                                         :id-atencion="form.id_revision_sistema"
                                         :id-visita="0"
                                         :id-tipo-documento="13"
-                                        ref="firmaDigitalValoPrea">
+                                        @FinProceso="onComplete"
+                                        ref="firmaDigitalValoPrea"
+                                    >
                                     </vue-firma>
                                 </tab-content>
                             </form-wizard>
@@ -330,6 +325,7 @@ export default {
             },
             form: {
                 frm_idCirugiaProgramada: "", //2890
+                frm_idCirugiaProgramadaTemp: "",
                 frm_paciente: "",
                 frm_cirujano: "",
                 frm_anestesiologo: "",
@@ -366,26 +362,77 @@ export default {
             this.$modal.show("ListaCirugiaProgramadaPaciente");
         },
         handleSeleccionarClick(value) {
-            this.form.frm_idCirugiaProgramada = value.SecCirPro;
-            this.form.frm_paciente = value.nombrePaciente;
-            this.form.frm_cirujano = value.cirujano;
-            this.form.frm_anestesiologo = value.anestesiologo;
-            this.form.frm_quirofano = value.quirofano;
-            this.form.frm_procedimiento = value.procedimiento;
-            this.$modal.hide("ListaCirugiaProgramadaPaciente");
-            //this.consultarSello();
-            /* if (this.$refs.revisionSistema != null) {
-                this.$refs.revisionSistema.cargarRevisionSistema();
-            } */
+            let that = this;
+            let url =
+                "/modulos/cirugia/valoracionPreanestecia/validar_secCirPro/" +
+                value.SecCirPro;
+            var loader = that.$loading.show();
+            axios
+                .get(url)
+                .then(function(response) {
+                    //Obtiene los datos de Motivo Antecedentes
+                    if (
+                        response.data.secCirPro != null &&
+                        response.data.secCirPro != undefined
+                    ) {
+                        that.$modal.hide("ListaCirugiaProgramadaPaciente");
+                        that.flashMessage.show({
+                            status: "warning",
+                            title: "Advertencia al Seleccionar Paciente",
+                            message:
+                                "El paciente ya cuenta con un registro valoración preanestesica. Por favor seleccione imprimir para visualizar el reporte.",
+                            clickable: true,
+                            time: 10000,
+                            icon: "/iconsflashMessage/warning.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
+                        that.respuestaImprimir = 1;
+                        that.form.frm_idCirugiaProgramadaTemp = value.SecCirPro;
+                        loader.hide();
+                    } else {
+                        that.form.frm_idCirugiaProgramada = value.SecCirPro;
+                        that.form.frm_paciente = value.nombrePaciente;
+                        that.form.frm_cirujano = value.cirujano;
+                        that.form.frm_anestesiologo = value.anestesiologo;
+                        that.form.frm_quirofano = value.quirofano;
+                        that.form.frm_procedimiento = value.procedimiento;
+                        that.$modal.hide("ListaCirugiaProgramadaPaciente");
+                        loader.hide();
+                    }
+                })
+                .catch(error => {
+                    loader.hide();
+                    that.flashMessage.show({
+                        status: "error",
+                        title: "Error al procesar handleSeleccionarClick",
+                        message:
+                            "Por favor comuníquese con el administrador. " +
+                            error,
+                        clickable: true,
+                        time: 0,
+                        icon: "/iconsflashMessage/error.svg",
+                        customStyle: {
+                            flashMessageStyle: {
+                                background: "linear-gradient(#e66465, #9198e5)"
+                            }
+                        }
+                    });
+                });
+
         },
         /* Fin para llamar al Modal y la Tabla */
-        cambiarEstado() {
+        /* cambiarEstado() {
             if (this.respuestaFinProceso) {
                 //this.form.frm_idCirugiaProgramada = "";
                 this.respuestaImprimir = 1;
                 this.$refs.formValoracionPreanestecia.reset();
             }
-        },
+        }, */
         /* Metodos para los form-wizard */
         onValidateTab(validationResult, activeTabIndex) {
             //Se debera realizar las validaciones respectivas para cada tab
@@ -409,13 +456,19 @@ export default {
                         resolve(poseeErrores);
                     case 4:
                         break;
+                    case 5:
+                        poseeErrores = this.$refs.firmaDigitalValoPrea.validarForm();
+                        resolve(poseeErrores);
+                        break;
                     default:
                 }
             });
         },
         onComplete() {
-            this.respuestaImprimir = 1;
             this.$refs.formValoracionPreanestecia.reset();
+            this.respuestaImprimir = 1;
+            this.form.frm_idCirugiaProgramadaTemp = this.form.frm_idCirugiaProgramada;
+            this.form.frm_idCirugiaProgramada = "";
         },
         onChangeTab(prevIndex, nextIndex) {
             /* if (typeof this.onChangeTab() === "function") {
@@ -444,7 +497,7 @@ export default {
                     this.$refs.paraclinico.cargarParaclinico();
                     break;
                 case 4:
-                    //this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
+                    this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
                     break;
                 case 5:
                     this.$refs.firmaDigitalValoPrea.consultarSello();
@@ -468,7 +521,8 @@ export default {
                     this.$refs.paraclinico.guardarModificar();
                     break;
                 case 4:
-                    this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
+                    //alert("entra");
+                    //this.$refs.pdfValoracionPreanestesia.contentDocument.location.reload();
                     break;
                 default:
                 //this.titulo_seleccionado = "";
@@ -478,7 +532,7 @@ export default {
             if (this.respuestaFinProceso || this.respuestaImprimir) {
                 window.open(
                     "/modulos/cirugia/valoracionPreanestecia/cargar_pdf_formulario_valoracion_preanestesica/" +
-                        this.form.frm_idCirugiaProgramada
+                        this.form.frm_idCirugiaProgramadaTemp
                 );
             }
         }

@@ -18,10 +18,10 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-4 col-form-label"
+                                                            class="col-sm-3 col-form-label"
                                                             >PA</label
                                                         >
-                                                        <div class="col-sm-5 mr-2">
+                                                        <div class="col-sm-5">
                                                             <input
                                                                 type="number"
                                                                 class="form-control"
@@ -37,10 +37,10 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-4 col-form-label"
+                                                            class="col-sm-3 col-form-label"
                                                             >FC</label
                                                         >
-                                                        <div class="col-sm-5 mr-2">
+                                                        <div class="col-sm-5">
                                                             <input
                                                                 type="number"
                                                                 class="form-control"
@@ -56,10 +56,10 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-4 col-form-label"
+                                                            class="col-sm-7 col-form-label"
                                                             >PESO(Kg)</label
                                                         >
-                                                        <div class="col-sm-5 mr-2">
+                                                        <div class="col-sm-5">
                                                             <input
                                                                 type="number"
                                                                 class="form-control"
@@ -75,10 +75,10 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group row">
                                                         <label
-                                                            class="col-sm-4 col-form-label"
+                                                            class="col-sm-7 col-form-label"
                                                             >TALLA(cm)</label
                                                         >
-                                                        <div class="col-sm-5 mr-2">
+                                                        <div class="col-sm-5">
                                                             <input
                                                                 type="number"
                                                                 class="form-control"
@@ -99,36 +99,36 @@
                                                 >
                                                     <!-- B Estado General-->
                                                     <span class="col-lg-4 col-md-4 col-sm-4">
-                                                        <label for="dentadura_b" class="mr-2"
+                                                        <label for="estadoGeneral_b" class="mr-2"
                                                             >B</label
                                                         >
                                                         <input
                                                             type="radio"
-                                                            id="dentadura_b"
+                                                            id="estadoGeneral_b"
                                                             value="b"
                                                             v-model="form.frm_estado_general"
                                                         />
                                                     </span>
                                                     <!-- R Estado General-->
                                                     <span class="col-lg-4 col-md-4 col-sm-4">
-                                                        <label for="dentadura_r" class="mr-2"
+                                                        <label for="estadoGeneral_r" class="mr-2"
                                                             >R</label
                                                         >
                                                         <input
                                                             type="radio"
-                                                            id="dentadura_r"
+                                                            id="estadoGeneral_r"
                                                             value="r"
                                                             v-model="form.frm_estado_general"
                                                         />
                                                     </span>
                                                     <!-- M Estado General-->
                                                     <span class="col-lg-4 col-md-4 col-sm-4">
-                                                        <label for="dentadura_m" class="mr-2"
+                                                        <label for="estadoGeneral_m" class="mr-2"
                                                             >M</label
                                                         >
                                                         <input
                                                             type="radio"
-                                                            id="dentadura_m"
+                                                            id="estadoGeneral_m"
                                                             value="m"
                                                             v-model="form.frm_estado_general"
                                                         />
@@ -169,13 +169,41 @@
                                                     </div>
                                                 </div>
                                                 <!-- DMT -->
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-9">
                                                     <div class="form-group row">
-                                                        <label
-                                                            class="col-sm-4 col-form-label"
-                                                            >DMT(cm)</label
-                                                        >
-                                                        <div class="col-sm-5 mr-2">
+                                                        <div class="">
+                                                            <div class="form-group row">
+                                                                <label>DMT(cm)</label
+                                                                >
+                                                                <span class="ml-3" >
+                                                                    <!-- 6.5 < -->
+                                                                    <span class="col-sm-12">
+                                                                        <label v-text="form.frm_menor" for="menor" class="mr-2"
+                                                                            ></label
+                                                                        >
+                                                                        <input
+                                                                            type="radio"
+                                                                            id="menor"
+                                                                            value="menor"
+                                                                            v-model="form.frm_dmt"
+                                                                        />
+                                                                    </span>
+                                                                    <!-- 6.5 >= -->
+                                                                    <span class="col-sm-12">
+                                                                        <label v-text="form.frm_mayor" for="mayor" class="mr-2"
+                                                                            ></label
+                                                                        >
+                                                                        <input
+                                                                            type="radio"
+                                                                            id="mayor"
+                                                                            value="mayor"
+                                                                            v-model="form.frm_dmt"
+                                                                        />
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-sm-5 mr-2">
                                                             <input
                                                                  type="number"
                                                                 class="form-control"
@@ -184,7 +212,7 @@
                                                                     form.frm_dmt
                                                                 "
                                                             />
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
                                                 <!-- cm Cuello Corto-->
@@ -270,127 +298,90 @@
                                                 </div>
                                                 <!-- Clase 1 -->
                                                 <div class="col-sm-12">
-                                                    <div
-                                                        class="custom-control custom-checkbox custom-control-inline"
+                                                    <input
+                                                        type="radio"
+                                                        id="escala_malla_1"
+                                                        value="escala1"
+                                                        v-model="
+                                                            form.frm_escala_malla
+                                                        "
+                                                    />
+                                                    <label
+                                                        for="escala_malla_1"
+                                                        >Clase 1: total
+                                                        visibilidad de las
+                                                        amígdalas, úvula y
+                                                        paladar blando.</label
                                                     >
-                                                        <input
-                                                            type="checkbox"
-                                                            class="custom-control-input"
-                                                            id="defaultInline51"
-                                                            value="1"
-                                                            @click="
-                                                                validarChkClase1()
-                                                            "
-                                                            v-model="chk.chk_clase1"
-                                                        />
-                                                        <label
-                                                            class="custom-control-label"
-                                                            for="defaultInline51"
-                                                            >Clase 1: total
-                                                            visibilidad de las
-                                                            amígdalas, úvula y
-                                                            paladar blando.</label
-                                                        >
-                                                    </div>
                                                 </div>
                                                 <!-- Clase 2 -->
                                                 <div class="col-sm-12">
-                                                    <div
-                                                        class="custom-control custom-checkbox custom-control-inline"
+                                                    <input
+                                                        type="radio"
+                                                        id="escala_malla_2"
+                                                        value="escala2"
+                                                        v-model="
+                                                            form.frm_escala_malla
+                                                        "
+                                                    />
+                                                    <label
+                                                        for="escala_malla_2"
+                                                        >Clase 2: visibilidad
+                                                        del paladar duro y
+                                                        blando, porción superior
+                                                        de las amígdalas y
+                                                        úvula.</label
                                                     >
-                                                        <input
-                                                            type="checkbox"
-                                                            class="custom-control-input"
-                                                            id="defaultInline52"
-                                                            value="1"
-                                                            @click="
-                                                                validarChkClase2()
-                                                            "
-                                                            v-model="chk.chk_clase2"
-                                                        />
-                                                        <label
-                                                            class="custom-control-label"
-                                                            for="defaultInline52"
-                                                            >Clase 2: visivilidad
-                                                            del paladar duro y
-                                                            blando, porción superior
-                                                            de las amígdalas y
-                                                            úvula.</label
-                                                        >
-                                                    </div>
                                                 </div>
                                                 <!-- Clase 3 -->
                                                 <div class="col-sm-12">
-                                                    <div
-                                                        class="custom-control custom-checkbox custom-control-inline"
+                                                    <input
+                                                        type="radio"
+                                                        id="escala_malla_3"
+                                                        value="escala3"
+                                                        v-model="
+                                                            form.frm_escala_malla
+                                                        "
+                                                    />
+                                                    <label
+                                                        for="escala_malla_3"
+                                                        >Clase 3: son visibles
+                                                        el paladar duro y blando
+                                                        y la base de la
+                                                        úvula.</label
                                                     >
-                                                        <input
-                                                            type="checkbox"
-                                                            class="custom-control-input"
-                                                            id="defaultInline53"
-                                                            value="1"
-                                                            @click="
-                                                                validarChkClase3()
-                                                            "
-                                                            v-model="chk.chk_clase3"
-                                                        />
-                                                        <label
-                                                            class="custom-control-label"
-                                                            for="defaultInline53"
-                                                            >Clase 3: son visibles
-                                                            el paladar duro y blando
-                                                            y la base de la
-                                                            úvula.</label
-                                                        >
-                                                    </div>
                                                 </div>
                                                 <!-- Clase 4 -->
                                                 <div class="col-sm-12">
-                                                    <div
-                                                        class="custom-control custom-checkbox custom-control-inline"
+                                                    <input
+                                                        type="radio"
+                                                        id="escala_malla_4"
+                                                        value="escala4"
+                                                        v-model="
+                                                            form.frm_escala_malla
+                                                        "
+                                                    />
+                                                    <label
+                                                        for="escala_malla_4"
+                                                        >Clase 4: sólo es visible
+                                                        el paladar duro.</label
                                                     >
-                                                        <input
-                                                            type="checkbox"
-                                                            class="custom-control-input"
-                                                            id="defaultInline54"
-                                                            value="1"
-                                                            @click="
-                                                                validarChkClase4()
-                                                            "
-                                                            v-model="chk.chk_clase4"
-                                                        />
-                                                        <label
-                                                            class="custom-control-label"
-                                                            for="defaultInline54"
-                                                            >Clase 4: sólo es visible
-                                                            el paladar duro.</label
-                                                        >
-                                                    </div>
                                                 </div>
                                                 <!-- Ingurgitación yugular -->
                                                 <div class="col-sm-12">
-                                                    <div
-                                                        class="custom-control custom-checkbox custom-control-inline"
+                                                    <input
+                                                        type="radio"
+                                                        id="escala_malla_5"
+                                                        value="escala5"
+                                                        v-model="
+                                                            form.frm_escala_malla
+                                                        "
+                                                    />
+                                                    <label
+                                                        for="escala_malla_5"
+                                                        >Ingurgitación
+                                                        yugular</label
                                                     >
-                                                        <input
-                                                            type="checkbox"
-                                                            class="custom-control-input"
-                                                            id="defaultInline55"
-                                                            value="1"
-                                                            @click="
-                                                                validarChkIngurgitaciónYugular()
-                                                            "
-                                                            v-model="
-                                                                chk.chk_ingurgitacionYugular
-                                                            "
-                                                        />
-                                                        <label
-                                                            class="custom-control-label"
-                                                            for="defaultInline55"
-                                                            >Ingurgitación
-                                                            yugular</label
-                                                        >
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -436,36 +427,36 @@
                                                 >
                                                     <!-- B Estado General-->
                                                     <span class="col-lg-4 col-md-4 col-sm-4">
-                                                        <label for="estado_general_b" class="mr-2"
+                                                        <label for="dentadura_b" class="mr-2"
                                                             >B</label
                                                         >
                                                         <input
                                                             type="radio"
-                                                            id="estado_general_b"
+                                                            id="dentadura_b"
                                                             value="b"
                                                             v-model="form.frm_dentadura"
                                                         />
                                                     </span>
                                                     <!-- R Estado General-->
                                                     <span class="col-lg-4 col-md-4 col-sm-4">
-                                                        <label for="estado_general_r" class="mr-2"
+                                                        <label for="dentadura_r" class="mr-2"
                                                             >R</label
                                                         >
                                                         <input
                                                             type="radio"
-                                                            id="estado_general_r"
+                                                            id="dentadura_r"
                                                             value="r"
                                                             v-model="form.frm_dentadura"
                                                         />
                                                     </span>
                                                     <!-- M Estado General-->
                                                     <span class="col-lg-4 col-md-4 col-sm-4">
-                                                        <label for="estado_general_m" class="mr-2"
+                                                        <label for="dentadura_m" class="mr-2"
                                                             >M</label
                                                         >
                                                         <input
                                                             type="radio"
-                                                            id="_m"
+                                                            id="dentadura_m"
                                                             value="m"
                                                             v-model="form.frm_dentadura"
                                                         />
@@ -702,52 +693,52 @@
                                                 <!-- Apertura Ocular -->
                                                 <div class="col-sm-4">
                                                     <label>Apertura Ocular</label>
-                                                    <h5>Espontánea: 4</h5>
-                                                    <h5>
+                                                    <h5 @click="sumarNeurologico(1, 4)" >Espontánea: 4</h5>
+                                                    <h5 @click="sumarNeurologico(1, 3)" >
                                                         Estímulo verbal (al
                                                         pedírselo): 3
                                                     </h5>
-                                                    <h5>Al dolor: 2</h5>
-                                                    <h5>No responde: 1</h5>
+                                                    <h5 @click="sumarNeurologico(1, 2)" >Al dolor: 2</h5>
+                                                    <h5 @click="sumarNeurologico(1, 1)">No responde: 1</h5>
                                                 </div>
                                                 <!-- Respuesta Verbal -->
                                                 <div class="col-sm-4">
                                                     <label>Respuesta Verbal</label>
-                                                    <h5>Orientado: 5</h5>
-                                                    <h5>Desorientado: 4</h5>
-                                                    <h5>
+                                                    <h5 @click="sumarNeurologico(2,5)">Orientado: 5</h5>
+                                                    <h5 @click="sumarNeurologico(2,4)">Desorientado: 4</h5>
+                                                    <h5 @click="sumarNeurologico(2,3)">
                                                         Palabras inapropiadas: 3
                                                     </h5>
-                                                    <h5>
+                                                    <h5 @click="sumarNeurologico(2,2)">
                                                         Sonidos incomprensibles: 2
                                                     </h5>
-                                                    <h5>No responde: 1</h5>
+                                                    <h5 @click="sumarNeurologico(2,1)">No responde: 1</h5>
                                                 </div>
                                                 <!-- Respuesta Motora -->
                                                 <div class="col-sm-4">
                                                     <label>Respuesta Motora</label>
-                                                    <h5>
+                                                    <h5 @click="sumarNeurologico(3,6)">
                                                         Cumple Ordenes expresadas por voz: 6
                                                     </h5>
-                                                    <h5>
+                                                    <h5 @click="sumarNeurologico(3,5)">
                                                         Localizada el Estímulo
                                                         doloroso: 5
                                                     </h5>
-                                                    <h5>
+                                                    <h5 @click="sumarNeurologico(3,4)">
                                                         Retira ante el Estímulo
                                                         doloroso: 4
                                                     </h5>
-                                                    <h5>
+                                                    <h5 @click="sumarNeurologico(3,3)">
                                                         Respuesta en flexíon
                                                         (postura de decorticación):
                                                         3
                                                     </h5>
-                                                    <h5>
+                                                    <h5 @click="sumarNeurologico(3,2)">
                                                         Respuesta en extensión
                                                         (postura de descerebración):
                                                         2
                                                     </h5>
-                                                    <h5>No responde: 1</h5>
+                                                    <h5 @click="sumarNeurologico(3,1)">No responde: 1</h5>
                                                 </div>
                                                 <!-- PUNTUACIÓN -->
                                                 <div class="col-sm-6">
@@ -758,6 +749,7 @@
                                                         >
                                                         <div class="col-sm-4 mr-2">
                                                             <input
+                                                                disabled
                                                                 type="number"
                                                                 class="form-control"
                                                                 placeholder=""
@@ -794,7 +786,15 @@ export default {
     },
     data: function() {
         return {
-             rutaSello: "",
+            booleanApertura: false,
+            booleanVerbal: false,
+            booleanMotora: false,
+
+            valueAnteriorApertura: 0,
+            valueAnteriorVerbal: 0,
+            valueAnteriorMotora: 0,
+
+            rutaSello: "",
             frmimg: {
                 imgFirma: null,
                 imgGrafica: null,
@@ -824,28 +824,26 @@ export default {
                 frm_talla: "",
 
                 /* Estado General */
-                frm_estado_general: "",
+                frm_estado_general: "b",
 
                 /* Cuello Corto */
                 frm_cuelloCorto: false,
-                frm_dmt: "",
+                frm_mayor: "6>=",
+                frm_menor: "6<",
+                frm_dmt: "menor",
                 frm_cmCuelloCorto: "",
 
                 /* Movilidad del Cuello */
-                frm_movilidad_cuello: "",
+                frm_movilidad_cuello: "b",
 
                 /* Escala de Malla */
-                frm_clase1: false,
-                frm_clase2: false,
-                frm_clase3: false,
-                frm_clase4: false,
-                frm_ingurgitacionYugular: false,
+                frm_escala_malla: "",
 
                 /* Boca Apertura Oral */
                 frm_cmBocaAperturaOral: "",
 
                 /* Dentadura */
-                frm_dentadura: "",
+                frm_dentadura: "b",
                 frm_edentulo: false,
                 frm_protesis: false,
 
@@ -885,6 +883,59 @@ export default {
         ); */
     },
     methods: {
+        sumarNeurologico(index, value){
+            if(this.booleanApertura == false && this.booleanVerbal == false && this.booleanMotora == false)
+            {
+                this.form.frm_puntuacionNeurologico = 0;
+            }
+            this.form.frm_puntuacionNeurologico = parseInt(this.form.frm_puntuacionNeurologico);
+            switch (index) {
+                case 1:
+                    if(this.booleanApertura){
+                        if(this.form.frm_puntuacionNeurologico > 0){
+                            this.valueApertura = 0;
+                            this.form.frm_puntuacionNeurologico = this.form.frm_puntuacionNeurologico - this.valueAnteriorApertura;
+                            this.valueAnteriorApertura = value;
+                        }
+                    }else{
+                        this.valueApertura = 0;
+                        this.booleanApertura = true;
+                        this.valueAnteriorApertura = value;
+                    }
+                    this.form.frm_puntuacionNeurologico = this.form.frm_puntuacionNeurologico + value;
+                    break;
+                case 2:
+                    if(this.booleanVerbal){
+                        if(this.form.frm_puntuacionNeurologico > 0){
+                            this.valueVerbal = 0;
+                            this.form.frm_puntuacionNeurologico = this.form.frm_puntuacionNeurologico - this.valueAnteriorVerbal;
+                            this.valueAnteriorVerbal = value;
+                        }
+                    }else{
+                        this.valueVerbal = 0;
+                        this.booleanVerbal = true;
+                        this.valueAnteriorVerbal = value;
+                    }
+                    this.form.frm_puntuacionNeurologico = this.form.frm_puntuacionNeurologico + value;
+                    break;
+                case 3:
+                    if(this.booleanMotora){
+                        if(+this.form.frm_puntuacionNeurologico > 0){
+                            this.valueMotora = 0;
+                            this.form.frm_puntuacionNeurologico = this.form.frm_puntuacionNeurologico - this.valueAnteriorMotora;
+                            this.valueAnteriorMotora = value;
+                        }
+                    }else{
+                        this.valueMotora = 0;
+                        this.booleanMotora = true;
+                        this.valueAnteriorMotora = value;
+                    }
+                    this.form.frm_puntuacionNeurologico = this.form.frm_puntuacionNeurologico + value;
+                    break;
+                default:
+                    break;
+            }
+        },
         validarForm(){
             if(this.form.frm_cmBocaAperturaOral <1 || this.form.frm_cmBocaAperturaOral > 4){
                 this.flashMessage.show({
@@ -929,7 +980,7 @@ export default {
             let that = this;
             let url =
                 "/modulos/cirugia/valoracionPreanestecia/cargar_examen_fisico_campo/" +that.$props.idSecCirPro;
-            var loader = that.$loading.show();
+            //var loader = that.$loading.show();
             axios
                 .get(url)
                 .then(function(response) {
@@ -960,7 +1011,8 @@ export default {
                         that.form.frm_movilidad_cuello = response.data.examenFisico.movilidad_cuello;
 
                         /* Escala de MallaMPATI */
-                        that.chk.chk_clase1 = +response.data.examenFisico.clase1;
+                        that.frm_escala_malla = response.data.examenFisico.escala_malla;
+                        /* that.chk.chk_clase1 = +response.data.examenFisico.clase1;
                         that.form.frm_clase1 = +response.data.examenFisico.clase1;
 
                         that.chk.chk_clase2 = +response.data.examenFisico.clase2;
@@ -970,7 +1022,7 @@ export default {
                         that.form.frm_clase3 = +response.data.examenFisico.clase3;
 
                         that.chk.chk_clase4 = +response.data.examenFisico.clase4 ;
-                        that.form.frm_clase4  = +response.data.examenFisico.clase4 ;
+                        that.form.frm_clase4  = +response.data.examenFisico.clase4 ; */
 
                         that.chk.chk_ingurgitacionYugular = +response.data.examenFisico.ingurgitacionYugular;
                         that.form.frm_ingurgitacionYugular = +response.data.examenFisico.ingurgitacionYugular;
@@ -997,14 +1049,14 @@ export default {
                         that.form.frm_extremidades = response.data.examenFisico.extremidades;
                         that.form.frm_otros = response.data.examenFisico.otros;
 
-                        that.form.frm_puntuacionNeurologico = response.data.examenFisico.puntuacionNeurologico;
+                        that.form.frm_puntuacionNeurologico = +response.data.examenFisico.puntuacionNeurologico;
 
                     }
-                    loader.hide()
+                    //loader.hide()
                 })
                 .catch(error => {
                     //Errores
-                    loader.hide();
+                    //loader.hide();
                     /* that.$swal({
                         icon: "error",
                         title: "Existe un error",
@@ -1039,12 +1091,12 @@ export default {
                 } else {
                     that.mensaje = "Datos guardados correctamente.";
                 }
-                var loader = that.$loading.show();
+                //var loader = that.$loading.show();
                 this.form.frm_idCirugiaProgramada= idSecCirPro;
                 axios
                     .post(url, this.form)
                     .then(function(response) {
-                        loader.hide();
+                        //loader.hide();
                         /* that.$swal({
                             icon: "success",
                             title: "Proceso realizado exitosamente",
@@ -1068,7 +1120,7 @@ export default {
                                 }
                             }
                         });
-                        loader.hide();
+                        //loader.hide();
                     });
             } else {
                 let that = this;

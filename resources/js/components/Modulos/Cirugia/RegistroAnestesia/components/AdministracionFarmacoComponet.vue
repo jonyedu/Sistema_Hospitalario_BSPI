@@ -1680,7 +1680,7 @@ export default {
             axios
                 .post(url, formNew)
                 .then(function(response) {
-                    that.flashMessage.show({
+                    /* that.flashMessage.show({
                         status: "success",
                         title: "Éxito al Guardar los Administración Fármaco",
                         message: "Datos guardados correctamente.",
@@ -1692,7 +1692,7 @@ export default {
                                 background: "linear-gradient(#e66465, #9198e5)"
                             }
                         }
-                    });
+                    }); */
                     loader.hide();
                 })
                 .catch(error => {

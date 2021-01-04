@@ -16,6 +16,18 @@ use Barryvdh\DomPDF\Facade as PDF;
 
 class ValoracionPreanestesicaApiController extends Controller
 {
+    public function validarSecCirPro($secCirPro)
+    {
+        try {
+            $secCirPro = RevisionSistema::where('SecCirPro', $secCirPro)
+                ->first();
+            //$grafica = GraficaPorCirugia::where('SecCirPro', 1)->first();
+            return  response()->json(['secCirPro' => $secCirPro], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+
     public function cargarListaCirugiaProgramadaPaciente(ConsultarListaCirugiaRequest $request)
     {
         try {
@@ -55,47 +67,10 @@ class ValoracionPreanestesicaApiController extends Controller
                 }
                 $datosValoracionPreanestesica = RevisionSistema::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
-                    ->with('antecedente', 'examenFisico', 'paraclinico.tipoSangre')
+                    ->with('antecedente', 'examenFisico', 'paraclinico.tipoSangre', 'firmasPorAtencion')
                     ->first();
                 //return response()->json(['datosPaciente' => $datosPaciente, 'datosValoracionPreanestesica' => $datosValoracionPreanestesica, 'edadPaciente' => $edadPaciente,]);
                 $pdf = PDF::loadView('reports.pdf.formulario-valoracion-preanestesica', [
-                    'datosPaciente' => $datosPaciente,
-                    'edadPaciente' => $edadPaciente,
-                    'datosValoracionPreanestesica' => $datosValoracionPreanestesica
-                ]);
-
-                return $pdf->stream($nombreArchivo);
-
-            } catch (Exception $e) {
-                return response()->json(['mensaje' => $e->getMessage()], 500);
-            }
-        } else {
-            return response()->json(['mensaje' => "No Existe Datos"], 500);
-        }
-    }
-    public function cargarPdfFormularioValoracionPreanestesica1($idSecCirPro)
-    {
-        if ($idSecCirPro !== '' && isset($idSecCirPro)) {
-            try {
-                //Variables
-                $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
-                $datosPaciente = [];
-                $edadPaciente = 0;
-
-                $datosPaciente = DB::connection('admin_db_sql')
-                    ->select("exec SpAdm_CirugiasProgramdasConsultar '" . $idSecCirPro . "','','DP' ");
-                if (sizeof($datosPaciente) > 0) {
-                    foreach ($datosPaciente as $paciente) {
-                        $edadPaciente = $this->calculaEdad($paciente->Fecha_nacimiento);
-                    }
-                }
-                //return response()->json(['datosPaciente' => $datosPaciente]);
-                $datosValoracionPreanestesica = RevisionSistema::where('SecCirPro', $idSecCirPro)
-                    ->where('status', '1')
-                    ->with('antecedente', 'examenFisico', 'paraclinico.tipoSangre')
-                    ->first();
-
-                 $pdf = PDF::loadView('reports.pdf.formulario-valoracion-preanestesica', [
                     'datosPaciente' => $datosPaciente,
                     'edadPaciente' => $edadPaciente,
                     'datosValoracionPreanestesica' => $datosValoracionPreanestesica

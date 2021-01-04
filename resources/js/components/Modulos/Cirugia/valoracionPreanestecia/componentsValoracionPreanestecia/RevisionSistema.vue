@@ -965,7 +965,7 @@ export default {
             let url =
                 "/modulos/cirugia/valoracionPreanestecia/cargar_revision_sistema_campo/" +
                 that.$props.idSecCirPro;
-            var loader = that.$loading.show();
+            //var loader = that.$loading.show();
             axios
                 .get(url)
                 .then(function(response) {
@@ -1113,10 +1113,10 @@ export default {
                     }
                     that.$emit("ValidarCargarDatos", that.validarCargarDatos);
                     that.$emit("RespuestaImprimir", that.respuestaImprimir);
-                    loader.hide();
+                    //loader.hide();
                 })
                 .catch(error => {
-                    loader.hide();
+                    //loader.hide();
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar cargarRevisionSistema",
@@ -1149,12 +1149,12 @@ export default {
                 } else {
                     that.mensaje = "Datos guardados correctamente.";
                 }
-                var loader = that.$loading.show();
+                //var loader = that.$loading.show();
                 this.form.frm_idCirugiaProgramada = idCirugiaProgramada;
                 axios
                     .post(url, this.form)
                     .then(function(response) {
-                        loader.hide();
+                        //loader.hide();
                         if(that.form.frm_id_revision_sistema <= 0){
                             that.form.frm_id_revision_sistema = response.data.value;
                             that.$emit("IdRevisionSistema", response.data.value);
@@ -1182,7 +1182,7 @@ export default {
                                 }
                             }
                         });
-                        loader.hide();
+                        //loader.hide();
                     });
             } else {
                 /* let that = this;
