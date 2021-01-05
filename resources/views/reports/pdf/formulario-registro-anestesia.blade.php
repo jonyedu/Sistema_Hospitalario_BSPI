@@ -1740,8 +1740,7 @@
                     @if ( isset($datosPaciente->graficoFirmaMedico))
                         <img src="data:image/jpeg;base64,'{{ $datosPaciente->graficoFirmaMedico->FIRMAS }}'" border="0" width="200px" height="80px">
                     @else
-                    no hay imagen ;(
-                    {{-- <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->graficoCirugia->GRAFICAS }}'" border="0" width="690px" height="360px"> --}}
+                        Sin Firma
                     @endif
 
                 </th>

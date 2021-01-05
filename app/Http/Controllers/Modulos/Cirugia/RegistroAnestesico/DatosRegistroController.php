@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Modulos\Cirugia\RegistroAnestesico;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Modulos\Cirugia\RegistroAnestesia\DatosRegistroRequest;
 use App\Models\Modulos\Cirugia\RegistroAnestesico\DatosRegistro;
 use Exception;
 use Illuminate\Http\Request;
@@ -10,9 +11,18 @@ use Illuminate\Support\Facades\Auth;
 
 class DatosRegistroController extends Controller
 {
+    public function validarCampos(DatosRegistroRequest $request)
+    {
+        try {
+
+            return  response()->json(['msj' => 'OK'], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
+
     public function guardarDatosRegistro(Request $request)
     {
-        //return  response()->json(['msj' => $request->input()], 200);
         try {
             $user = Auth::user();
             DatosRegistro::UpdateOrCreate(

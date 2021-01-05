@@ -11,12 +11,24 @@
             <input
                 style="margin:0px auto; display:block;"
                 type="date"
-                class="form-control col-lg-3 col-md-3 col-sm-3"
+                :class="
+                   errores.fecha === ''
+                       ? 'form-control col-lg-3 col-md-3 col-sm-3'
+                       : 'form-control col-lg-3 col-md-3 col-sm-3 is-invalid'
+                "
                 id="fecha_hasta"
                 placeholder="Seleccione la fecha de fin"
                 v-model="form.frm_fecha"
                 @change="cargarListaCirugiaProgramadaPaciente"
             />
+            <center>
+                <small
+                    v-if="errores.fecha !== ''"
+                    class="text-danger"
+                    >{{ errores.fecha[0] }}</small
+                >
+            </center>
+
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="card">
@@ -51,6 +63,9 @@ export default {
             listaCirugiaProgramadaPaciente: [],
             form: {
                 frm_fecha: ""
+            },
+            errores: {
+                fecha: "",
             },
             columns: [
                 {
@@ -107,7 +122,7 @@ export default {
     mounted: function() {
         this.form.frm_fecha = this.$funcionesGlobales.getDate();
         this.cargarListaCirugiaProgramadaPaciente();
-        this.flashMessage.setStrategy("multiple");
+        this.flashMessage.setStrategy("single");
         /* this.titulo_seleccionado = "Citas Agendadas";
     let nombreModulo = this.$nombresModulo.gestion_hospitalaria;
     let nombreFormulario = this.$nombresFormulario.gestion_hospitalaria
@@ -175,16 +190,14 @@ export default {
                 .catch(error => {
                     //Errores
                     loader.hide();
-                    if (error.response.status == 421) {
-                        /* that.$swal({
-                            icon: "warning",
-                            title: "Advertencia",
-                            text: error.response.data.msg
-                        }); */
-                        that.flashMessage.show({
+                    if (error.response.status == 422) {
+                        if (error.response.data.errors.frm_fecha != null) {
+                            that.errores.fecha = error.response.data.errors.frm_fecha;
+                        }
+                        /* that.flashMessage.show({
                                 status: "warning",
                                 title: "Error al procesar cargarListaCirugiaProgramadaPaciente",
-                                message: error.response.data.msg,
+                                message: error.response.data.errors.frm_fecha[0],
                                 clickable: true,
                                 time: 0,
                                 icon: "/iconsflashMessage/warning.svg",
@@ -193,14 +206,8 @@ export default {
                                         background: "linear-gradient(#e66465, #9198e5)"
                                     }
                                 }
-                            });
-                        //that.errores.fecha = rror.response.data.msg;
+                            }); */
                     } else {
-                        /* that.$swal({
-                            icon: "error",
-                            title: "Existe un error",
-                            text: error
-                        }); */
                         that.flashMessage.show({
                                 status: "error",
                                 title: "Error al procesar cargarListaCirugiaProgramadaPaciente",

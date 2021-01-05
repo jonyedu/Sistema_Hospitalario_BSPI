@@ -503,7 +503,6 @@ export default {
                     this.$refs.firmaDigitalValoPrea.consultarSello();
                     break;
                 default:
-                    this.titulo_seleccionado = "";
             }
         },
         guardarModificar(index) {
