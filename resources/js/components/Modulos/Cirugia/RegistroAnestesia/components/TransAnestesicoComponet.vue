@@ -26,62 +26,69 @@
                         style="width: 90%; margin: 0 auto"
                     >
                         <div class="row flex-center-x">
-                            <p
-                                class="badge badge-warning  col-lg-4 col-md-4 col-sm-12"
-                                style="font-size: 1.0em"
+                            <div
+                                class="col-lg-10 col-md-10 col-sm-10"
+                                style="position: fixed;
+                                z-index: 1200;
+                                text-align: center;
+                                word-wrap: break-word;"
                             >
-                                Tiempo:
-                                <span
-                                    ><input
-                                        class="col-lg-2 col-md-2 col-sm-2"
-                                        v-model="hour"
-                                        type="text"
-                                    />:</span
-                                ><span
-                                    ><input
-                                        class="col-lg-2 col-md-2 col-sm-2"
-                                        v-model="minutes"
-                                        type="text"
-                                    />:</span
-                                ><span
-                                    ><input
-                                        class="col-lg-2 col-md-2 col-sm-2"
-                                        v-model="seconds"
-                                        type="text"
-                                /></span>
-                            </p>
-                            <span
-                                v-if="iniciado"
-                            >
-                                <button
-                                    class="btn btn-primary"
-                                    v-on:click="obtenerDatosFormulario"
+                                <p
+                                    class="badge badge-warning  col-lg-4 col-md-4 col-sm-12"
+                                    style="font-size: 1.0em"
                                 >
-                                    <!-- Agregar -->
-                                    <i class="fas fa-plus-circle"></i>
-                                </button>
-                            </span>
-                            <span v-if="iniciado">
-                                <button
-                                    v-if="false"
-                                    type="button"
-                                    class="btn btn-outline-success"
-                                    @click="agregarObjetoPorHora"
-                                >
-                                    <i class="fas fa-plus-circle"></i>
-                                </button>
-                            </span>
-                            <span v-if="iniciado_eliminar">
-                                <button
-                                    v-if="false"
-                                    type="button"
-                                    class="btn btn-outline-danger"
-                                    @click="eliminarObjetoPorHora"
-                                >
-                                    <i class="fas fa-window-close"></i>
-                                </button>
-                            </span>
+                                    Tiempo:
+                                    <span
+                                        ><input
+                                            class="col-lg-2 col-md-2 col-sm-2"
+                                            v-model="hour"
+                                            type="text"
+                                        />:</span
+                                    ><span
+                                        ><input
+                                            class="col-lg-2 col-md-2 col-sm-2"
+                                            v-model="minutes"
+                                            type="text"
+                                        />:</span
+                                    ><span
+                                        ><input
+                                            class="col-lg-2 col-md-2 col-sm-2"
+                                            v-model="seconds"
+                                            type="text"
+                                    /></span>
+                                </p>
+                                <span v-if="iniciado">
+                                    <button
+                                        class="btn btn-primary"
+                                        v-on:click="obtenerDatosFormulario"
+                                    >
+                                        <!-- Agregar -->
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </span>
+                                <span v-if="iniciado">
+                                    <button
+                                        v-if="false"
+                                        type="button"
+                                        class="btn btn-outline-success"
+                                        @click="agregarObjetoPorHora"
+                                    >
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </span>
+                                <span v-if="iniciado_eliminar">
+                                    <button
+                                        v-if="false"
+                                        type="button"
+                                        class="btn btn-outline-danger"
+                                        @click="eliminarObjetoPorHora"
+                                    >
+                                        <i class="fas fa-window-close"></i>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
+                        <br><br>
                         <div class="row mb-5" v-if="iniciado">
                             <!-- MAX y MIN -->
                             <div class="col-md-3 border-t pt-2 pb-4">
