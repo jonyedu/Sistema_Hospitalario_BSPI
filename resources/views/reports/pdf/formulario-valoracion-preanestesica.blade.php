@@ -122,13 +122,23 @@
                 <th>N° HISTORIA CLINICA</th>
             </tr>
             @if($datosPaciente != null)
-            <tr>
-                <td>{{ $datosPaciente->pacienteLista->apellido_paterno }} </td>
-                <td>{{ $datosPaciente->pacienteLista->apellido_materno }} </td>
-                <td>{{ $datosPaciente->pacienteLista->primer_nombre }} </td>
-                <td>{{ $datosPaciente->pacienteLista->segundo_nombre }} </td>
-                <td>{{ $datosPaciente->pacienteLista->id }} </td>
-            </tr>
+                @if($datosPaciente->pacienteLista != null)
+                <tr>
+                    <td>{{ $datosPaciente->pacienteLista->apellido_paterno }} </td>
+                    <td>{{ $datosPaciente->pacienteLista->apellido_materno }} </td>
+                    <td>{{ $datosPaciente->pacienteLista->primer_nombre }} </td>
+                    <td>{{ $datosPaciente->pacienteLista->segundo_nombre }} </td>
+                    <td>{{ $datosPaciente->pacienteLista->id }} </td>
+                </tr>
+                @else
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                @endif
             @else
             <tr>
                 <td></td>
@@ -157,21 +167,28 @@
                 <td>{{stripos($datosPaciente->CirProSala, 'P')?$datosPaciente->CirProSala:""}}</td>
                 <td></td>
                 <td>{{$edadPaciente}} </td>
-                @if($datosPaciente->pacienteLista->genero == 'M')
-                <td>M</td>
-                <td>X</td>
-                <td>F</td>
-                <td style="color: white;">X</td>
-                @elseif($datosPaciente->pacienteLista->genero == 'F')
-                <td>M</td>
-                <td style="color: white;">X</td>
-                <td>F</td>
-                <td>X</td>
+                @if($datosPaciente->pacienteLista != null)
+                    @if($datosPaciente->pacienteLista->genero == 'M')
+                        <td>M</td>
+                        <td>X</td>
+                        <td>F</td>
+                        <td style="color: white;">X</td>
+                    @elseif($datosPaciente->pacienteLista->genero == 'F')
+                        <td>M</td>
+                        <td style="color: white;">X</td>
+                        <td>F</td>
+                        <td>X</td>
+                    @else
+                        <td>M</td>
+                        <td></td>
+                        <td>F</td>
+                        <td></td>
+                    @endif
                 @else
-                <td>M</td>
-                <td></td>
-                <td>F</td>
-                <td></td>
+                    <td>M</td>
+                    <td></td>
+                    <td>F</td>
+                    <td></td>
                 @endif
 
                 <td>{{date('Y-m-d H:i:s')}} </td>
