@@ -65,7 +65,6 @@ class ValoracionPreanestesicaApiController extends Controller
                     if($datosPaciente->pacienteLista != null){
                         $edadPaciente = $this->calculaEdad($datosPaciente->pacienteLista->fecha_nacimiento);
                     }
-
                 }
                 $datosValoracionPreanestesica = RevisionSistema::where('SecCirPro', $idSecCirPro)
                     ->where('status', '1')
