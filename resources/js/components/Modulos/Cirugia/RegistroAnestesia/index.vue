@@ -32,7 +32,7 @@
                                         class="col-lg-12 col-md-12 col-sm-12 text-right"
                                     >
                                         <div class="btn-group" role="group">
-                                            <a
+                                            <!-- <a
                                                 style="cursor:pointer;"
                                                 title="Buscar Paciente"
                                                 @click="
@@ -44,21 +44,69 @@
                                                     height="50px"
                                                     src="/icons/busqueda.png"
                                                 />
-                                            </a>
-                                            <template v-if="respuestaImprimir">
+                                            </a> -->
+                                            <button
+                                                type="button"
+                                                class="btn btn-outline-primary"
+                                                @click="
+                                                    mostrarModalListaCirugiaPaciente()
+                                                "
+                                            >
+                                                Nuevo
+                                            </button>
+                                            <button
+                                                v-if="respuestaImprimir"
+                                                type="button"
+                                                class="btn btn-outline-success"
+                                                @click="
+                                                    llamarMetodoImprimir()
+                                                "
+                                            >
+                                                Imprimir
+                                            </button>
+                                            <template v-if="starTransAnestesico">
                                                 <button
-                                                    type="button"
-                                                    class="btn btn-outline-success"
-                                                    @click="
-                                                        llamarMetodoImprimir()
-                                                    "
+                                                    class="btn btn-outline-primary"
+                                                    v-if="!iniciado"
+                                                    v-on:click="startTime()"
+                                                    :style="{display: isHidden}"
                                                 >
-                                                    <!-- Imprimir -->
-                                                    <i
-                                                        class="far fa-file-pdf"
-                                                    ></i>
+                                                    Iniciar
                                                 </button>
                                             </template>
+                                            <template>
+                                                <button
+                                                    class="btn btn-outline-danger"
+                                                    v-if="iniciado"
+                                                    v-on:click="endTime()"
+                                                >
+                                                    Finalizar
+                                            </button>
+                                            </template>
+
+                                            <button
+                                                v-if="iniciado"
+                                                type="button"
+                                                class="btn btn-outline-success"
+                                                @click="
+                                                    agregarHora()
+                                                "
+                                            >
+                                                Crear
+                                                <!-- <i class="fas fa-plus-circle"></i> -->
+                                            </button>
+                                            <button
+                                                v-if="iniciado_eliminar"
+                                                type="button"
+                                                class="btn btn-outline-light"
+                                                @click="
+                                                    eliminarHora()
+                                                "
+                                            >
+                                                Eliminar
+                                                <!-- <i class="fas fa-window-close"></i> -->
+                                            </button>
+
                                         </div>
                                     </div>
                                     <!-- Fin de Butones Nueva, Modificar, Guardar, Imprimir, H.C. Digital -->
@@ -94,8 +142,11 @@
                                     :before-change="validateFirstStep"
                                 >
                                     <datos-paciente
+                                        @ValidateFirstStep="validateFirstStep"
                                         :datos-paciente="datos_paciente"
-                                        :id-registro-anestesia="form.registro_anestesia_id"
+                                        :id-registro-anestesia="
+                                            form.registro_anestesia_id
+                                        "
                                         ref="datosPaciente"
                                     ></datos-paciente>
                                 </tab-content>
@@ -108,8 +159,15 @@
                                         :id-sec-cir-pro="
                                             form.idCirugiaProgramada
                                         "
+                                        @Iniciado="iniciado = $event"
+                                        @IniciadoEliminar="
+                                            iniciado_eliminar = $event
+                                        "
+                                        @IsHidden="isHidden = $event"
                                         ref="transAnestesico"
-                                        :id-registro-anestesia="form.registro_anestesia_id"
+                                        :id-registro-anestesia="
+                                            form.registro_anestesia_id
+                                        "
                                     ></trans-anestesico>
                                 </tab-content>
                                 <tab-content
@@ -120,7 +178,9 @@
                                         :id-sec-cir-pro="
                                             form.idCirugiaProgramada
                                         "
-                                        :id-registro-anestesia="form.registro_anestesia_id"
+                                        :id-registro-anestesia="
+                                            form.registro_anestesia_id
+                                        "
                                         ref="administracionFarmaco"
                                     ></administracion-farmaco>
                                 </tab-content>
@@ -149,11 +209,14 @@
                                     <vue-firma
                                         :user="user"
                                         :tipo-servicio="4"
-                                        :id-atencion="form.registro_anestesia_id"
+                                        :id-atencion="
+                                            form.registro_anestesia_id
+                                        "
                                         :id-visita="0"
                                         :id-tipo-documento="12"
                                         @FinProceso="onComplete"
-                                        ref="firmaDigitalRegisAnes">
+                                        ref="firmaDigitalRegisAnes"
+                                    >
                                     </vue-firma>
                                 </tab-content>
                             </form-wizard>
@@ -188,6 +251,11 @@ export default {
     },
     data: function() {
         return {
+            iniciado: false,
+            iniciado_eliminar: false,
+            starTransAnestesico: false,
+            isHidden: "block",
+
             datos_paciente: {},
             prefijo: "",
             //cirugia_id: 0,
@@ -197,32 +265,7 @@ export default {
             form: {
                 idCirugiaProgramada: "",
                 idCirugiaProgramadaTempo: "",
-                registro_anestesia_id: 0,
-                /* Datos del paciente */
-                paciente: "",
-                historia_clinica: "",
-                fecha: "00/00/0000",
-                edad: "",
-                sexo: "",
-                estatura: "",
-                peso: "",
-                ocupacion_actual: "",
-                id_servicio_medico: 0,
-                servicio: "", //borrar esta vaiables
-                sala: "",
-                cama: "",
-                diagnostico_preoperatorio: "",
-                id_diagnostico_pre: 0,
-                id_diagnostico: 0,
-                operacion_propuesta: "",
-                id_cirujano: 0,
-                id_ayudante1: 0,
-                id_tarifaria: 0,
-                id_anestesiologo: 0,
-                id_ayudante2: 0,
-                id_instrumentista: 0,
-                /* Datos extras */
-                id_especializacion: 0
+                registro_anestesia_id: 0
             }
         };
     },
@@ -251,6 +294,18 @@ export default {
         ); */
     },
     methods: {
+        endTime(){
+            this.$refs.transAnestesico.end_time();
+        },
+        startTime(){
+            this.$refs.transAnestesico.start_time();
+        },
+        agregarHora() {
+            this.$refs.transAnestesico.agregarObjetoPorHora();
+        },
+        eliminarHora() {
+            this.$refs.transAnestesico.eliminarObjetoPorHora();
+        },
         /* Metodos para Llamar al Modal y la Tabla */
         mostrarModalListaCirugiaPaciente() {
             this.$modal.show("ListaCirugiaProgramadaPaciente");
@@ -324,7 +379,7 @@ export default {
         onValidateTab(validationResult, activeTabIndex) {
             //Se debera realizar las validaciones respectivas para cada tab
         },
-        validateFirstStep() {
+        validateFirstStep(value) {
             var opc = this.$refs.formRegistroAnestesico.slotProps
                 .activeTabIndex;
             let poseeErrores = null;
@@ -364,7 +419,6 @@ export default {
             } */
             this.setFormTitle(nextIndex);
             this.guardarModificar(prevIndex);
-
         },
         setFormTitle(index) {
             switch (index) {
@@ -373,6 +427,7 @@ export default {
                     //this.$refs.revisionSistema.cargarRevisionSistema();
                     break;
                 case 1:
+                    this.starTransAnestesico = true;
                     //this.titulo_seleccionado = "Antecedentes";
                     //this.$refs.antecedente.cargarAntecedente();
                     break;
@@ -387,13 +442,13 @@ export default {
                     this.$refs.firmaDigitalRegisAnes.consultarSello();
                     break;
                 default:
-                    //this.titulo_seleccionado = "";
+                //this.titulo_seleccionado = "";
             }
         },
         guardarModificar(index) {
             switch (index) {
                 case 0:
-                    if( typeof this.$refs.datosPaciente == "object"){
+                    if (typeof this.$refs.datosPaciente == "object") {
                         this.$refs.datosPaciente.guardarModificarDatosPaciente();
                     }
 
@@ -411,7 +466,7 @@ export default {
             }
         },
         obtenerIdRegistroAnestesio() {
-            if(this.form.registro_anestesia_id <= 0){
+            if (this.form.registro_anestesia_id <= 0) {
                 let that = this;
                 let url = "/modulos/cirugia/anestesia/registro/post";
                 var loader = that.$loading.show();
@@ -426,7 +481,8 @@ export default {
                         loader.hide();
                         that.flashMessage.show({
                             status: "error",
-                            title: "Error al procesar obtenerIdRegistroAnestesio",
+                            title:
+                                "Error al procesar obtenerIdRegistroAnestesio",
                             message:
                                 "Por favor comuníquese con el administrador. " +
                                 error,
@@ -435,15 +491,15 @@ export default {
                             icon: "/iconsflashMessage/error.svg",
                             customStyle: {
                                 flashMessageStyle: {
-                                    background: "linear-gradient(#e66465, #9198e5)"
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
                                 }
                             }
                         });
                     });
-            }/* else{
+            } /* else{
                 this.guardarModificarDatosPaciente();
             } */
-
         },
         /* Fin Metodos para los form-wizard */
         llamarMetodoImprimir() {

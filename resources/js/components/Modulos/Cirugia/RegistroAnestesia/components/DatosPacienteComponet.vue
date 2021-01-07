@@ -70,7 +70,7 @@
                                     >Estatura(cm)</label
                                 >
                                 <input
-                                    type="text"
+                                    type="number"
                                     :class="
                                         error.estatura === ''
                                             ? 'form-control'
@@ -83,7 +83,7 @@
                                 <small
                                     v-if="error.estatura !== ''"
                                     class="text-danger"
-                                    >{{ error.estatura }}</small
+                                    >{{ error.estatura[0] }}</small
                                 >
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 text-left">
@@ -92,7 +92,7 @@
                                     >Peso(Kg)</label
                                 >
                                 <input
-                                    type="text"
+                                    type="number"
                                     :class="
                                         error.peso === ''
                                             ? 'form-control'
@@ -105,7 +105,7 @@
                                 <small
                                     v-if="error.peso !== ''"
                                     class="text-danger"
-                                    >{{ error.peso }}</small
+                                    >{{ error.peso[0] }}</small
                                 >
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 text-left">
@@ -143,17 +143,18 @@
                                             @input="setSelectedServicioMedico"
                                         >
                                             <template slot="no-options"
-                                                >Seleccione un Cirujano(a)</template
+                                                >Seleccione un
+                                                Cirujano(a)</template
                                             >
                                         </v-select>
                                         <small
                                             v-if="error.servicio_medico !== ''"
                                             class="text-danger"
-                                            >{{ error.servicio_medico }}</small
+                                            >{{
+                                                error.servicio_medico[0]
+                                            }}</small
                                         >
                                     </div>
-
-
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 text-left">
@@ -211,7 +212,9 @@
                                         <small
                                             v-if="error.diagnostico_pre !== ''"
                                             class="text-danger"
-                                            >{{ error.diagnostico_pre }}</small
+                                            >{{
+                                                error.diagnostico_pre[0]
+                                            }}</small
                                         >
                                     </div>
                                 </div>
@@ -245,7 +248,7 @@
                                         <small
                                             v-if="error.diagnostico !== ''"
                                             class="text-danger"
-                                            >{{ error.diagnostico }}</small
+                                            >{{ error.diagnostico[0] }}</small
                                         >
                                     </div>
                                 </div>
@@ -291,7 +294,7 @@
                                         <small
                                             v-if="error.cirujano !== ''"
                                             class="text-danger"
-                                            >{{ error.cirujano }}</small
+                                            >{{ error.cirujano[0] }}</small
                                         >
                                     </div>
                                 </div>
@@ -323,7 +326,7 @@
                                         <small
                                             v-if="error.ayudante1 !== ''"
                                             class="text-danger"
-                                            >{{ error.ayudante1 }}</small
+                                            >{{ error.ayudante1[0] }}</small
                                         >
                                     </div>
                                 </div>
@@ -357,7 +360,7 @@
                                         <small
                                             v-if="error.tarifaria !== ''"
                                             class="text-danger"
-                                            >{{ error.tarifaria }}</small
+                                            >{{ error.tarifaria[0] }}</small
                                         >
                                     </div>
                                 </div>
@@ -389,7 +392,7 @@
                                         <small
                                             v-if="error.anestesiologo !== ''"
                                             class="text-danger"
-                                            >{{ error.anestesiologo }}</small
+                                            >{{ error.anestesiologo[0] }}</small
                                         >
                                     </div>
                                 </div>
@@ -443,7 +446,9 @@
                                         <small
                                             v-if="error.instrumentista !== ''"
                                             class="text-danger"
-                                            >{{ error.instrumentista }}</small
+                                            >{{
+                                                error.instrumentista[0]
+                                            }}</small
                                         >
                                     </div>
                                 </div>
@@ -456,22 +461,20 @@
     </div>
 </template>
 <style>
-  .style-chooser .vs__dropdown-toggle,
-  .style-chooser .vs__dropdown-menu {
+.style-chooser .vs__dropdown-toggle,
+.style-chooser .vs__dropdown-menu {
     border-color: #dc3545;
     padding-right: 2.25rem;
-    background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
-    background-position: right calc(.375em + .1875rem) center;
-    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
-  }
-
-
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
 </style>
 <script>
 export default {
     props: {
-        datosPaciente:{
+        datosPaciente: {
             type: Object,
             required: true
         },
@@ -508,7 +511,7 @@ export default {
             selectedTarifaria: "",
             tarifarias: [],
 
-            error:{
+            error: {
                 estatura: "",
                 peso: "",
                 servicio_medico: "",
@@ -518,7 +521,7 @@ export default {
                 ayudante1: "",
                 tarifaria: "",
                 anestesiologo: "",
-                instrumentista: "",
+                instrumentista: ""
             },
 
             form: {
@@ -534,22 +537,22 @@ export default {
                 estatura: "",
                 peso: "",
                 ocupacion_actual: "",
-                id_servicio_medico: 0,
+                id_servicio_medico: "",
                 servicio: "", //borrar esta vaiables
                 sala: "",
                 cama: "",
                 diagnostico_preoperatorio: "",
-                id_diagnostico_pre: 0,
-                id_diagnostico: 0,
+                id_diagnostico_pre: "",
+                id_diagnostico: "",
                 operacion_propuesta: "",
-                id_cirujano: 0,
-                id_ayudante1: 0,
-                id_tarifaria: 0,
-                id_anestesiologo: 0,
-                id_ayudante2: 0,
-                id_instrumentista: 0,
+                id_cirujano: "",
+                id_ayudante1: "",
+                id_tarifaria: "",
+                id_anestesiologo: "",
+                id_ayudante2: "",
+                id_instrumentista: "",
                 /* Datos extras */
-                id_especializacion: 0
+                id_especializacion: ""
             }
         };
     },
@@ -557,7 +560,7 @@ export default {
         this.cargarComboBox();
     },
     methods: {
-        cargarComboBox(){
+        cargarComboBox() {
             this.setSelectedCirujano();
             this.setSelectedAnestesiologo();
             this.setSelectedAyudante();
@@ -573,6 +576,8 @@ export default {
                     this.form.id_servicio_medico;
                 if (value != null) {
                     this.form.id_servicio_medico = +value.id_servicio_medico;
+                }else{
+                    this.form.id_servicio_medico == "";
                 }
                 axios
                     .get(url)
@@ -586,6 +591,7 @@ export default {
                                 );
                                 objeto.id_servicio_medico = servicioMedico.id;
                                 serviciosMedicos.push(objeto);
+                                that.selectedServicioMedico = objeto;
                             }
                         );
                         that.serviciosMedicos = serviciosMedicos;
@@ -613,8 +619,10 @@ export default {
         },
         setSelectedDiagnostico(value) {
             let that = this;
-            if (this.selectedDiagnostico.id_diagnostico != null) {
+            if (this.selectedDiagnostico != null) {
                 this.form.id_diagnostico = this.selectedDiagnostico.id_diagnostico;
+            }else{
+                this.form.id_diagnostico = "";
             }
             if (this.diagnosticos.length == 0) {
                 if (this.selectedDiagnostico != "") {
@@ -666,8 +674,10 @@ export default {
         },
         setSelectedDiagnosticoPre(value) {
             let that = this;
-            if (this.selectedDiagnosticoPre.id_diagnostico_pre != null) {
+            if (this.selectedDiagnosticoPre != null) {
                 this.form.id_diagnostico_pre = this.selectedDiagnosticoPre.id_diagnostico_pre;
+            }else{
+                this.form.id_diagnostico_pre = "";
             }
             if (this.diagnosticosPre.length == 0) {
                 if (this.selectedDiagnosticoPre != "") {
@@ -686,8 +696,7 @@ export default {
                                     objeto.display = that.$funcionesGlobales.toCapitalFirstAllWords(
                                         diagnosticoPres.descripcion
                                     );
-                                    objeto.id_diagnostico_pre =
-                                        diagnosticoPres.id;
+                                    objeto.id_diagnostico_pre = diagnosticoPres.id;
                                     diagnosticosPre.push(objeto);
                                 }
                             );
@@ -727,6 +736,10 @@ export default {
                 this.form.id_cirujano = value.id_cirujano;
                 this.form.id_servicio_medico = value.id_servicio_medico;
                 loader.hide();
+            }else{
+                this.form.id_cirujano = "";
+                this.form.id_servicio_medico = "";
+                this.selectedServicioMedico = null;
             }
             axios
                 .get(url)
@@ -774,6 +787,8 @@ export default {
             if (value != null) {
                 this.form.id_anestesiologo = value.id_anestesiologo;
                 loader.hide();
+            }else{
+                this.form.id_anestesiologo = "";
             }
             axios
                 .get(url)
@@ -823,6 +838,32 @@ export default {
                 if (value.id_instrumentista != null) {
                     this.form.id_instrumentista = value.id_instrumentista;
                 }
+                loader.hide();
+            }else{
+                if(this.selectedAyudante1 == null){
+                    this.form.id_ayudante1 = "";
+                }
+                if(this.selectedAyudante2 == null){
+                    this.form.id_ayudante2 = "";
+                }
+                if(this.selectedInstrumentista == null){
+                    this.form.id_instrumentista = "";
+                }
+                /* if (value.id_ayudante1 != null) {
+                    this.form.id_ayudante1 = value.id_ayudante1;
+                }else{
+                    this.form.id_ayudante1 = "";
+                }
+                if (value.id_ayudante2 != null) {
+                    this.form.id_ayudante2 = value.id_ayudante2;
+                }else{
+                    this.form.id_ayudante2 = "";
+                }
+                if (value.id_instrumentista != null) {
+                    this.form.id_instrumentista = value.id_instrumentista;
+                }else{
+                    this.form.id_instrumentista = "";
+                } */
                 loader.hide();
             }
             axios
@@ -880,8 +921,10 @@ export default {
         },
         setSelectedTarifaria(value) {
             let that = this;
-            if (this.selectedTarifaria.id_tarifaria != null) {
+            if (this.selectedTarifaria != null) {
                 this.form.id_tarifaria = this.selectedTarifaria.id_tarifaria;
+            }else{
+               this.form.id_tarifaria = "";
             }
             if (this.tarifarias.length == 0) {
                 if (this.selectedTarifaria != "") {
@@ -979,9 +1022,152 @@ export default {
                     })
                     .catch(error => {
                         that.flashMessage.show({
+                            status: "error",
+                            title:
+                                "Error al procesar cargarDiagnosticoPorCodigo",
+                            message:
+                                "Por favor comuníquese con el administrador. " +
+                                error,
+                            clickable: true,
+                            time: 0,
+                            icon: "/iconsflashMessage/error.svg",
+                            customStyle: {
+                                flashMessageStyle: {
+                                    background:
+                                        "linear-gradient(#e66465, #9198e5)"
+                                }
+                            }
+                        });
+                        loader.hide();
+                    });
+            }
+        },
+        validarForm() {
+            var validar = false;
+            if (this.form.id_diagnostico_pre <= 0) {
+                validar = true;
+            }
+            if (this.form.id_diagnostico <= 0) {
+                validar = true;
+            }
+            if (this.form.estatura == "") {
+                validar = true;
+            }
+            if (this.form.peso == "") {
+                validar = true;
+            }
+            if (this.form.id_cirujano <= 0) {
+                validar = true;
+            }
+            if (this.form.id_ayudante1 <= 0) {
+                validar = true;
+            }
+            if (this.form.id_tarifaria <= 0) {
+                validar = true;
+            }
+            if (this.form.id_anestesiologo <= 0) {
+                validar = true;
+            }
+            if (this.form.id_instrumentista <= 0) {
+                validar = true;
+            }
+            if (this.selectedServicioMedico == "") {
+                validar = true;
+            }
+            this.error = {
+                estatura: "",
+                peso: "",
+                servicio_medico: "",
+                diagnostico_pre: "",
+                diagnostico: "",
+                cirujano: "",
+                ayudante1: "",
+                tarifaria: "",
+                anestesiologo: "",
+                instrumentista: ""
+                };
+
+            if (validar) {
+                validar = false;
+                let that = this;
+                let url = "/modulos/cirugia/anestesia/validar_campos";
+                var loader = that.$loading.show();
+                axios
+                    .post(url, this.form)
+                    .then(function(response) {
+                        loader.hide();
+                        //that.recargar_validar = true;
+                        //that.$emit("ValidateFirstStep", true);
+                    })
+                    .catch(error => {
+                        loader.hide();
+                        if (error.response.status == 422) {
+                            if (
+                                error.response.data.errors.id_diagnostico_pre !=
+                                null
+                            ) {
+                                that.error.diagnostico_pre =
+                                    error.response.data.errors.id_diagnostico_pre;
+                            }
+                            if (
+                                error.response.data.errors.id_diagnostico !=
+                                null
+                            ) {
+                                that.error.diagnostico =
+                                    error.response.data.errors.id_diagnostico;
+                            }
+                            if (error.response.data.errors.estatura != null) {
+                                that.error.estatura =
+                                    error.response.data.errors.estatura;
+                            }
+                            if (error.response.data.errors.peso != null) {
+                                that.error.peso =
+                                    error.response.data.errors.peso;
+                            }
+                            if (
+                                error.response.data.errors.id_cirujano != null
+                            ) {
+                                that.error.cirujano =
+                                    error.response.data.errors.id_cirujano;
+                            }
+                            if (
+                                error.response.data.errors.id_ayudante1 != null
+                            ) {
+                                that.error.ayudante1 =
+                                    error.response.data.errors.id_ayudante1;
+                            }
+                            if (
+                                error.response.data.errors.id_tarifaria != null
+                            ) {
+                                that.error.tarifaria =
+                                    error.response.data.errors.id_tarifaria;
+                            }
+                            if (
+                                error.response.data.errors.id_anestesiologo !=
+                                null
+                            ) {
+                                that.error.anestesiologo =
+                                    error.response.data.errors.id_anestesiologo;
+                            }
+                            if (
+                                error.response.data.errors.id_servicio_medico !=
+                                null
+                            ) {
+                                that.error.servicio_medico =
+                                    error.response.data.errors.id_servicio_medico;
+                            }
+                            if (
+                                error.response.data.errors.id_instrumentista !=
+                                null
+                            ) {
+                                that.error.instrumentista =
+                                    error.response.data.errors.id_instrumentista;
+                            }
+                        } else {
+                            that.flashMessage.show({
                                 status: "error",
                                 title:
-                                    "Error al procesar cargarDiagnosticoPorCodigo",
+                                    "Error al procesar guardarModificarDatosPaciente",
                                 message:
                                     "Por favor comuníquese con el administrador. " +
                                     error,
@@ -995,216 +1181,16 @@ export default {
                                     }
                                 }
                             });
-                            loader.hide();
-                        });
-            }
-        },
-        validarForm(){
-            //return true;
-            this.error={
-                estatura: "",
-                peso: "",
-                servicio_medico: "",
-                diagnostico_pre: "",
-                diagnostico: "",
-                cirujano: "",
-                ayudante1: "",
-                tarifaria: "",
-                anestesiologo: "",
-                instrumentista: "",
-            };
-            var validar = true;
-            if(this.form.id_diagnostico_pre <=0 ){
-                /* this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia",
-                    message:
-                        "Se necesita seleccionar un Diagnóstico Preoperatorio.",
-                    clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
                         }
-                    }
-                }); */
-                this.error.diagnostico_pre = "El campo diagnóstico preoperatorio es requerido";
-                validar = false;
+                    });
+            }else{
+                this.respuesta_validar == false;
+                return true;
             }
-            if(this.form.id_diagnostico <=0 ){
-                /* this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia",
-                    message:
-                        "Se necesita seleccionar un Diagnóstico Post-Operatorio",
-                    clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                }); */
-                this.error.diagnostico = "El campo diagnóstico post-operatorio es requerido";
-                validar = false;
-            }
-            if(this.form.estatura == ""){
-                /* this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia",
-                    message:
-                        "Se necesita una Estatura.",
-                    clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                }); */
-                this.error.estatura = "El campo estatura es requerido";
-                validar = false;
-            }
-            if(this.form.peso == ""){
-                /* this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia",
-                    message:
-                        "Se necesita un Peso.",
-                    clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                }); */
-                this.error.peso = "El campo peso es requerido";
-                validar = false;
-            }
-            if(this.form.id_cirujano <= 0){
-                /* this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia",
-                    message:
-                        "Se necesita seleccionar un Cirujano(a).",
-                    clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                }); */
-                this.error.cirujano = "El campo cirujano es requerido";
-                validar = false;
-            }
-            if(this.form.id_ayudante1 <= 0){
-                /* this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia",
-                    message:
-                        "Se necesita seleccionar un Ayudante.",
-                    clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                }); */
-                this.error.ayudante1 = "El campo ayudante es requerido";
-                validar = false;
-            }
-            if(this.form.id_tarifaria <= 0){
-                /* this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia",
-                    message:
-                        "Se necesita seleccionar la Operación Realizada.",
-                    clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                }); */
-                this.error.tarifaria = "El campo tarifaria es requerido";
-                validar = false;
-            }
-            if(this.form.id_anestesiologo <= 0){
-                /* this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia",
-                    message:
-                        "Se necesita seleccionar un Anestesiologo.",
-                    clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                }); */
-                this.error.anestesiologo = "El campo anestesiologo es requerido";
-                validar = false;
-            }
-            if(this.form.id_instrumentista <= 0){
-                /* this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia",
-                    message:
-                        "Se necesita seleccionar un Instrumentista.",
-                    clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                }); */
-                this.error.instrumentista = "El campo intrumestista es requerido";
-                validar = false;
-            }
-            if(this.selectedServicioMedico == ""){
-                /* this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia",
-                    message:
-                        "Se necesita seleccionar el Servicio.",
-                    clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                }); */
-                this.error.servicio_medico = "El campo servicio medico es requerido";
-                validar = false;
-            }
-            return validar;
+
+
+
+
         },
         guardarModificarDatosPaciente() {
             this.form.registro_anestesia_id = this.$props.idRegistroAnestesia;
@@ -1236,7 +1222,8 @@ export default {
                     loader.hide();
                     that.flashMessage.show({
                         status: "error",
-                        title: "Error al procesar guardarModificarDatosPaciente",
+                        title:
+                            "Error al procesar guardarModificarDatosPaciente",
                         message:
                             "Por favor comuníquese con el administrador. " +
                             error,
@@ -1250,7 +1237,7 @@ export default {
                         }
                     });
                 });
-        },
+        }
     },
 
     computed: {}

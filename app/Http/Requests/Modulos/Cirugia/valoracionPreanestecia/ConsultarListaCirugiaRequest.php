@@ -26,17 +26,21 @@ class ConsultarListaCirugiaRequest extends FormRequest
     public function rules()
     {
         return [
-            'frm_fecha' => ["required"]
+            'frm_fecha' => ["required"],
         ];
     }
 
-    protected function failedValidation(Validator $validation)
+    /* protected function failedValidation(Validator $validation)
     {
         throw new HttpResponseException(
             response()->json([
                 'msg' => 'Debe seleccionar una fecha a buscar.'
             ],421)
         );
-
-    }
+    } */
+    /* public function messages(){
+        return[
+            'frm_fecha.required' => "Debe seleccionar una fecha a buscar."
+        ];
+    } */
 }

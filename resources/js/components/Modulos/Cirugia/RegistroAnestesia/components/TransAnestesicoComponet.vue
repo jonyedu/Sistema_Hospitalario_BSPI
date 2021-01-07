@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="flex flex-center-x mt-2 mb-2">
-                        <button
+                        <!-- <button
                             class="btn btn-outline-primary"
                             v-if="!iniciado"
                             v-on:click="start_time"
@@ -18,55 +18,77 @@
                             v-on:click="end_time"
                         >
                             Finalizar
-                        </button>
+                        </button> -->
                     </div>
-                    <div class="" :style="{display: isHidden}" style="width: 90%; margin: 0 auto">
+                    <div
+                        class=""
+                        :style="{ display: isHidden }"
+                        style="width: 90%; margin: 0 auto"
+                    >
                         <div class="row flex-center-x">
-                            <p
-                                class="badge badge-warning  col-lg-4 col-md-4 col-sm-4"
-                                style="font-size: 1.0em"
+                            <div
+                                class="col-lg-10 col-md-10 col-sm-10"
+                                style="position: fixed;
+                                z-index: 1200;
+                                text-align: center;
+                                word-wrap: break-word;"
                             >
-                                Tiempo:
-                                <span
-                                    ><input
-                                        class="col-lg-2 col-md-2 col-sm-2"
-                                        v-model="hour"
-                                        type="text"
-                                    />:</span
-                                ><span
-                                    ><input
-                                        class="col-lg-2 col-md-2 col-sm-2"
-                                        v-model="minutes"
-                                        type="text"
-                                    />:</span
-                                ><span
-                                    ><input
-                                        class="col-lg-2 col-md-2 col-sm-2"
-                                        v-model="seconds"
-                                        type="text"
-                                /></span>
-                            </p>
-                            <span v-if="iniciado">
-                                <button
-                                    type="button"
-                                    class="btn btn-outline-success"
-                                    @click="agregarObjetoPorHora"
+                                <p
+                                    class="badge badge-warning  col-lg-4 col-md-4 col-sm-12"
+                                    style="font-size: 1.0em"
                                 >
-                                    <!-- Nuevo -->
-                                    <i class="fas fa-plus-circle"></i>
-                                </button>
-                            </span>
-                            <span v-if="iniciado_eliminar">
-                                <button
-                                    type="button"
-                                    class="btn btn-outline-danger"
-                                    @click="eliminarObjetoPorHora"
-                                >
-                                    <!-- Eliminar -->
-                                    <i class="fas fa-window-close"></i>
-                                </button>
-                            </span>
+                                    Tiempo:
+                                    <span
+                                        ><input
+                                            class="col-lg-2 col-md-2 col-sm-2"
+                                            v-model="hour"
+                                            type="text"
+                                        />:</span
+                                    ><span
+                                        ><input
+                                            class="col-lg-2 col-md-2 col-sm-2"
+                                            v-model="minutes"
+                                            type="text"
+                                        />:</span
+                                    ><span
+                                        ><input
+                                            class="col-lg-2 col-md-2 col-sm-2"
+                                            v-model="seconds"
+                                            type="text"
+                                    /></span>
+                                </p>
+                                <span v-if="iniciado">
+                                    <button
+                                        class="btn btn-primary"
+                                        v-on:click="obtenerDatosFormulario"
+                                    >
+                                        <!-- Agregar -->
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </span>
+                                <span v-if="iniciado">
+                                    <button
+                                        v-if="false"
+                                        type="button"
+                                        class="btn btn-outline-success"
+                                        @click="agregarObjetoPorHora"
+                                    >
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </span>
+                                <span v-if="iniciado_eliminar">
+                                    <button
+                                        v-if="false"
+                                        type="button"
+                                        class="btn btn-outline-danger"
+                                        @click="eliminarObjetoPorHora"
+                                    >
+                                        <i class="fas fa-window-close"></i>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
+                        <br><br>
                         <div class="row mb-5" v-if="iniciado">
                             <!-- MAX y MIN -->
                             <div class="col-md-3 border-t pt-2 pb-4">
@@ -337,7 +359,7 @@
                                 </div>
                             </div>
                             <!-- Boton Agregar -->
-                            <div
+                            <!-- <div
                                 class="flex felx-center mt-2 mb-2"
                                 style="margin: 0 auto"
                             >
@@ -347,12 +369,14 @@
                                 >
                                     Agregar
                                 </button>
-                            </div>
+                            </div> -->
                         </div>
                         <div v-if="iniciado">
                             <div ref="printMe">
                                 <div class="row border-t flex-center-x">
-                                    <span class="">Registro Trans-Anestésico</span>
+                                    <span class=""
+                                        >Registro Trans-Anestésico</span
+                                    >
                                 </div>
                                 <div class="border-t row">
                                     <div class="col-12">
@@ -787,39 +811,39 @@ export default {
             datos_eliminar_agente: {
                 respuesta_modificar: false,
                 respuesta_eliminar: false,
-                index_all:{
+                index_all: {
                     index: "",
                     index_fila: "",
                     index_columna: "",
                     index_minutos_columna: "",
-                    index_agente: "",
+                    index_agente: ""
                 },
-                columnas:{
-                    agente:{
+                columnas: {
+                    agente: {
                         src: "",
                         description: "",
-                        cod:"",
-                        value:"",
-                        valueNew: "",
+                        cod: "",
+                        value: "",
+                        valueNew: ""
                     },
                     t_fin: "",
-                    t_init: "",
+                    t_init: ""
                 },
-                posicion:{
+                posicion: {
                     description: "",
                     cod: "",
                     codRe: "",
                     src: "",
-                    nombre_sistema: "",
+                    nombre_sistema: ""
                 },
-                dato:{
+                dato: {
                     es_agente: "",
                     es_posicion: ""
                 },
                 adicional: {
                     system_name: "",
-                    tipo: "",
-                },
+                    tipo: ""
+                }
             },
             // Formulario de recolección de datos
             valoresFormulario: {
@@ -884,11 +908,11 @@ export default {
                 pares_venosa: 0,
                 torniquete: 0
             },
-            form:{
+            form: {
                 cirugia_id: 0,
                 registro_anestesia_id: 0,
-                id_datos_agente:0,
-                imgGrafica: "",
+                id_datos_agente: 0,
+                imgGrafica: ""
             },
             // Posociones
             posiciones: [],
@@ -902,7 +926,7 @@ export default {
             tabla_datos_grafica: [],
             // Datos de grados, estáticos
             datos_grados: [40, 38, 36, 34, 32, 30, 28, 26],
-             // Texto adicional ubicados en las primeras columnas de las rejillas
+            // Texto adicional ubicados en las primeras columnas de las rejillas
             agentes_text: [
                 { descripcion: "Oxigeno L/min", valores: [] },
                 { descripcion: "Sevoflorane vol %", valores: [] },
@@ -946,8 +970,7 @@ export default {
             index_points: 5,
             // Contador de horas
             indice_hora: 0,
-            indice_minuto: 0,
-
+            indice_minuto: 0
         };
     },
     mounted: function() {
@@ -1204,6 +1227,7 @@ export default {
         start_time: async function(event) {
             if (this.iniciado) return;
             this.iniciado = true;
+            this.$emit("Iniciado", true);
             this.iniciadoGrafica = true;
             this.agregarHorasInicial();
             // Poner el dato al inicio de la rejilla cuando se haya iniciado
@@ -1244,12 +1268,11 @@ export default {
                     }
                 );
                 this.form.cirugia_id = this.$props.idSecCirPro;
-                this.form.registro_anestesia_id = this.$props.idRegistroAnestesia
+                this.form.registro_anestesia_id = this.$props.idRegistroAnestesia;
                 var idFlashMessage1 = this.flashMessage.show({
                     status: "info",
                     title: "Generando Gráfica",
-                    message:
-                        "Se está generando la gráfica, por favor espere.",
+                    message: "Se está generando la gráfica, por favor espere.",
                     clickable: false,
                     time: 0,
                     icon: "/iconsflashMessage/time.gif",
@@ -1289,7 +1312,9 @@ export default {
             var indice_fila =
                 fila_indice != 0 ? fila_indice : this.obtenerIndice(valor);
             // Verifica el índice según la hora
-            for (const column_quince of this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin) {
+            for (const column_quince of this.lista_horas_avanzadas_v[
+                this.indice_hora
+            ].datos[indice_fila + this.index_points].columnasQuinceMin) {
                 // Recorre cada fila
                 // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
                 if (column_quince.columnas) {
@@ -1397,12 +1422,13 @@ export default {
                     if (agente.dato.es_agente) {
                         col_cince_min.agentes.push({
                             descripcion: agente.columnas.agente.description,
-                            valor: agente.columnas.agente.valueNew ,
+                            valor: agente.columnas.agente.valueNew,
                             _src: agente.columnas.agente.src,
                             id: response.data.datos
                         });
                     } else {
-                        column_quince.posicion.descripcion = agente.posicion.description;
+                        column_quince.posicion.descripcion =
+                            agente.posicion.description;
                         column_quince.posicion.id = agente.posicion.cod;
                         column_quince.posicion.img_url = agente.posicion.src;
                         column_quince.posicion.idRe = agente.posicion.codRe;
@@ -1525,7 +1551,9 @@ export default {
                     });
                     that.resConfirmarCancelar = false;
                     that.iniciado = false;
+                    that.$emit("Iniciado", false);
                     that.isHidden = "none";
+                    that.$emit("IsHidden", that.isHidden);
                     loader.hide();
                 })
                 .catch(error => {
@@ -1588,7 +1616,8 @@ export default {
         mostrarModalConfirmarCandelar() {
             this.icon = "/iconsflashMessage/warning.svg";
             this.titulo = "¿Desea cerrar el proceso?";
-            this.mensaje = "Al dar en Aceptar, el proceso trans-anestésico dará por finalizado.";
+            this.mensaje =
+                "Al dar en Aceptar, el proceso trans-anestésico dará por finalizado.";
             this.$modal.show("ConfirmarCandelar");
         },
         respuestaConfirmarCancelar(value) {
@@ -1613,11 +1642,14 @@ export default {
             this.datos_eliminar_agente.index_all.index_columna = index_columna;
             this.datos_eliminar_agente.index_all.index_minutos_columna = index_minutos_columna;
             this.datos_eliminar_agente.index_all.index_agente = index_agente;
-            this.datos_eliminar_agente.columnas.t_init = minutos_columna['t_init'];
-            this.datos_eliminar_agente.columnas.t_fin = minutos_columna['t_fin'];
+            this.datos_eliminar_agente.columnas.t_init =
+                minutos_columna["t_init"];
+            this.datos_eliminar_agente.columnas.t_fin =
+                minutos_columna["t_fin"];
             //Agente
             this.datos_eliminar_agente.columnas.agente.cod = agente.id;
-            this.datos_eliminar_agente.columnas.agente.description = agente.descripcion;
+            this.datos_eliminar_agente.columnas.agente.description =
+                agente.descripcion;
             this.datos_eliminar_agente.columnas.agente.src = agente._src;
             this.datos_eliminar_agente.columnas.agente.value = agente.valor;
             //Fin Agente
@@ -1625,25 +1657,28 @@ export default {
             this.datos_eliminar_agente.dato.es_posicion = dato.es_posicion;
             //Fin la optimizacion
 
-            if (this.datos_eliminar_agente.dato.es_agente && this.datos_eliminar_agente.index_all.index_fila != 29) {
+            if (
+                this.datos_eliminar_agente.dato.es_agente &&
+                this.datos_eliminar_agente.index_all.index_fila != 29
+            ) {
                 this.datos_eliminar_agente.adicional = {
-                    system_name: this.datos_eliminar_agente.columnas.agente.description,
+                    system_name: this.datos_eliminar_agente.columnas.agente
+                        .description,
                     tipo: "agente"
                 };
-            } else if (this.datos_eliminar_agente.dato.es_agente && this.datos_eliminar_agente.index_all.index_fila == 29) {
+            } else if (
+                this.datos_eliminar_agente.dato.es_agente &&
+                this.datos_eliminar_agente.index_all.index_fila == 29
+            ) {
                 this.datos_eliminar_agente.adicional = {
-                    system_name: this.datos_eliminar_agente.columnas.agente.description ,
+                    system_name: this.datos_eliminar_agente.columnas.agente
+                        .description,
                     tipo: "respiracion"
                 };
             }
             this.$modal.show("EliminarAgente");
         },
-        eliminarPosicion(
-            index,
-            index_fila,
-            index_columna,
-            posicion = {}
-        ) {
+        eliminarPosicion(index, index_fila, index_columna, posicion = {}) {
             this.lmpDatosEliminarAgente();
             this.datos_eliminar_agente.index_all.index = index;
             this.datos_eliminar_agente.index_all.index_fila = index_fila;
@@ -1651,8 +1686,10 @@ export default {
             //Posicicion
             this.datos_eliminar_agente.posicion.cod = posicion.id;
             this.datos_eliminar_agente.posicion.codRe = posicion.idRe;
-            this.datos_eliminar_agente.posicion.description = posicion.descripcion;
-            this.datos_eliminar_agente.posicion.nombre_sistema = posicion.name_system;
+            this.datos_eliminar_agente.posicion.description =
+                posicion.descripcion;
+            this.datos_eliminar_agente.posicion.nombre_sistema =
+                posicion.name_system;
             this.datos_eliminar_agente.posicion.src = posicion.img_url;
             //Fin
 
@@ -1670,11 +1707,20 @@ export default {
                 var is_tpo_init = value.columnas.t_init;
                 var is_tpo_fin = value.columnas.t_fin;
                 var adicional = value.adicional;
-                var ruta_icono = value.posicion.src == "" ? value.columnas.agente.src:value.posicion.src;
-                this.form.id_datos_agente = value.posicion.codRe == "" ? value.columnas.agente.cod: value.posicion.codRe;
+                var ruta_icono =
+                    value.posicion.src == ""
+                        ? value.columnas.agente.src
+                        : value.posicion.src;
+                this.form.id_datos_agente =
+                    value.posicion.codRe == ""
+                        ? value.columnas.agente.cod
+                        : value.posicion.codRe;
                 var indice_fila = this.obtenerIndice(valor);
                 if (adicional.tipo == "agente") {
-                    for (const column_quince of this.lista_horas_avanzadas_v[this.indice_hora].datos[indice_fila + this.index_points].columnasQuinceMin) {
+                    for (const column_quince of this.lista_horas_avanzadas_v[
+                        this.indice_hora
+                    ].datos[indice_fila + this.index_points]
+                        .columnasQuinceMin) {
                         // Recorre cada fila
                         // Si tiene columnas ( cada 5 min del cuarto de hora por separación)
                         if (column_quince.columnas) {
@@ -1710,7 +1756,11 @@ export default {
                             }
                         }
                     }
-                    this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.splice(value.index_all.indexLista, 1);
+                    this.lista_horas_avanzadas_v[value.index_all.index].datos[
+                        value.index_all.index_fila
+                    ].columnasQuinceMin[value.index_all.index_columna].columnas[
+                        value.index_all.index_minutos_columna
+                    ].agentes.splice(value.index_all.indexLista, 1);
                 } else if (adicional.tipo == "respiracion") {
                     this.enviarDatosAgente1(
                         {
@@ -1725,9 +1775,16 @@ export default {
                         },
                         adicional.tipo,
                         value,
-                        this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna]
+                        this.lista_horas_avanzadas_v[value.index_all.index]
+                            .datos[value.index_all.index_fila]
+                            .columnasQuinceMin[value.index_all.index_columna]
+                            .columnas[value.index_all.index_minutos_columna]
                     );
-                    this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.splice(value.index_all.indexLista, 1);
+                    this.lista_horas_avanzadas_v[value.index_all.index].datos[
+                        value.index_all.index_fila
+                    ].columnasQuinceMin[value.index_all.index_columna].columnas[
+                        value.index_all.index_minutos_columna
+                    ].agentes.splice(value.index_all.indexLista, 1);
                 } else if (adicional.tipo == "posicion") {
                     this.enviarDatosAgente1(
                         {
@@ -1743,8 +1800,9 @@ export default {
                         adicional.tipo,
                         value,
                         {},
-                        this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna]
-
+                        this.lista_horas_avanzadas_v[value.index_all.index]
+                            .datos[value.index_all.index_fila]
+                            .columnasQuinceMin[value.index_all.index_columna]
                     );
                 }
                 /* Esta linea eliminará el agente de la grafica */
@@ -1764,11 +1822,23 @@ export default {
             } else if (value.respuestaEliminar) {
                 var adicional = value.adicional;
                 if (adicional.tipo == "agente") {
-                    this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.splice(value.index_all.indexLista, 1);
+                    this.lista_horas_avanzadas_v[value.index_all.index].datos[
+                        value.index_all.index_fila
+                    ].columnasQuinceMin[value.index_all.index_columna].columnas[
+                        value.index_all.index_minutos_columna
+                    ].agentes.splice(value.index_all.indexLista, 1);
                 } else if (adicional.tipo == "respiracion") {
-                    this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].columnas[value.index_all.index_minutos_columna].agentes.splice(value.index_all.indexLista, 1);
+                    this.lista_horas_avanzadas_v[value.index_all.index].datos[
+                        value.index_all.index_fila
+                    ].columnasQuinceMin[value.index_all.index_columna].columnas[
+                        value.index_all.index_minutos_columna
+                    ].agentes.splice(value.index_all.indexLista, 1);
                 } else if (adicional.tipo == "posicion") {
-                    this.lista_horas_avanzadas_v[value.index_all.index].datos[value.index_all.index_fila].columnasQuinceMin[value.index_all.index_columna].posicion = {
+                    this.lista_horas_avanzadas_v[value.index_all.index].datos[
+                        value.index_all.index_fila
+                    ].columnasQuinceMin[
+                        value.index_all.index_columna
+                    ].posicion = {
                         descripcion: "",
                         idRe: "",
                         img_url: "",
@@ -1792,7 +1862,7 @@ export default {
             }
             this.$modal.hide("EliminarAgente");
         },
-        lmpDatosEliminarAgente(){
+        lmpDatosEliminarAgente() {
             this.datos_eliminar_agente.respuesta_modificar = false;
             this.datos_eliminar_agente.respuesta_modificar = false;
             this.datos_eliminar_agente.index_all.index = "";
@@ -1802,8 +1872,8 @@ export default {
             this.datos_eliminar_agente.index_all.index_agente = "";
             this.datos_eliminar_agente.columnas.agente.src = "";
             this.datos_eliminar_agente.columnas.agente.description = "";
-            this.datos_eliminar_agente.columnas.agente.cod ="";
-            this.datos_eliminar_agente.columnas.agente.value ="";
+            this.datos_eliminar_agente.columnas.agente.cod = "";
+            this.datos_eliminar_agente.columnas.agente.value = "";
             this.datos_eliminar_agente.columnas.agente.valueNew = "";
             this.datos_eliminar_agente.columnas.t_fin = "";
             this.datos_eliminar_agente.columnas.t_init = "";
@@ -1813,7 +1883,7 @@ export default {
             this.datos_eliminar_agente.posicion.src = "";
             this.datos_eliminar_agente.posicion.nombre_sistema = "";
             this.datos_eliminar_agente.dato.es_agente = "";
-            this.datos_eliminar_agente.dato.es_posicion = ""
+            this.datos_eliminar_agente.dato.es_posicion = "";
         },
         //Metodo para agregar una nueva hora en la grafica
         agregarObjetoPorHora() {
@@ -1884,6 +1954,21 @@ export default {
                 // Si la hora se ha completado, se agrega otro objeto de horas al
                 //arreglo de datos
                 this.agregarHora();
+                this.$emit("IniciadoEliminar", true);
+            } else {
+                this.flashMessage.show({
+                    status: "warning",
+                    title: "Advertencia",
+                    message: "Debe agregar los agentes en la hora.",
+                    clickable: true,
+                    time: 5000,
+                    icon: "/iconsflashMessage/warning.svg",
+                    customStyle: {
+                        flashMessageStyle: {
+                            background: "linear-gradient(#e66465, #9198e5)"
+                        }
+                    }
+                });
             }
         },
         //Metodo para eliminar una hora en la grafica
@@ -1894,6 +1979,7 @@ export default {
             }
             if (this.lista_horas_avanzadas_v.length == 1) {
                 this.iniciado_eliminar = false;
+                this.$emit("IniciadoEliminar", false);
             }
         },
         //Metodo pora graficar los agentes. Se se crea mas agente, aquí en donde se debe codificar
@@ -2355,9 +2441,9 @@ export default {
                 { system_name: campo.descripcion, tipo: this.system_agente }
             );
         },
-        validarForm(){
+        validarForm() {
             //return true;
-            if(this.iniciadoGrafica == false){
+            if (this.iniciadoGrafica == false) {
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
@@ -2368,14 +2454,13 @@ export default {
                     icon: "/iconsflashMessage/warning.svg",
                     customStyle: {
                         flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
+                            background: "linear-gradient(#e66465, #9198e5)"
                         }
                     }
                 });
                 return false;
             }
-            if(this.iniciado){
+            if (this.iniciado) {
                 this.flashMessage.show({
                     status: "warning",
                     title: "Advertencia",
@@ -2386,15 +2471,14 @@ export default {
                     icon: "/iconsflashMessage/warning.svg",
                     customStyle: {
                         flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
+                            background: "linear-gradient(#e66465, #9198e5)"
                         }
                     }
                 });
                 return false;
             }
             return true;
-        },
+        }
     },
     computed: {}
 };

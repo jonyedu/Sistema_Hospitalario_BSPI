@@ -1442,8 +1442,15 @@ export default {
 
         };
     },
-    mounted: function() {},
+    mounted: function() {
+        this.cargarComboBox()
+    },
     methods: {
+        cargarComboBox(){
+            this.setSelectedTipoPosiciones();
+            this.setSelectedSala();
+            this.setSelectedMedico();
+        },
         setSelectedTipoPosiciones(value) {
             let that = this;
             var loader = that.$loading.show();

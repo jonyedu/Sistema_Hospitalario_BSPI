@@ -2856,10 +2856,10 @@
                         @if ($datosValoracionPreanestesica->firmasPorAtencion != null)
                             <img src="data:image/jpeg;base64,'{{ $datosValoracionPreanestesica->firmasPorAtencion->FIRMAS }}'" border="0" width="300px" height="100px">
                         @else
-                            <img alt="No hay imagen" src="{{ public_path('img/logoreport1.png') }}" border="0" width="690px" height="250px">
+                            Sin Firma
                         @endif
                     @else
-                        <img alt="No hay imagen" src="{{ public_path('img/logoreport1.png') }}" border="0" width="690px" height="250px">
+                        Sin Firma
                     @endif
                 </th>
             </tr>
