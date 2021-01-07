@@ -88,7 +88,7 @@
                                 </span>
                             </div>
                         </div>
-                        <br><br>
+                        <br /><br />
                         <div class="row mb-5" v-if="iniciado">
                             <!-- MAX y MIN -->
                             <div class="col-md-3 border-t pt-2 pb-4">
