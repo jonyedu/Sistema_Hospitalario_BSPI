@@ -84,13 +84,13 @@
                                     >
                                         <i class="fas fa-plus"></i>
                                     </button>
-                                    <button
+                                    <!-- <button
                                         type="button"
                                         class="btn btn-tool"
                                         data-card-widget="remove"
                                     >
                                         <i class="fas fa-times"></i>
-                                    </button>
+                                    </button> -->
                                 </div>
                             </div>
                             <div class="card-body" style="display: none;">

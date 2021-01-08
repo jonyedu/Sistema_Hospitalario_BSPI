@@ -410,6 +410,11 @@
                                                             <input
                                                                 type="number"
                                                                 class="form-control"
+                                                                :class="
+                                                                    error.cmBocaAperturaOral === ''
+                                                                        ? 'form-control'
+                                                                        : 'form-control is-invalid'
+                                                                "
                                                                 placeholder=""
                                                                 v-model="
                                                                     form.frm_cmBocaAperturaOral
@@ -417,6 +422,13 @@
                                                             />
                                                         </div>
                                                     </div>
+                                                    <small
+                                                        v-if="error.cmBocaAperturaOral !== ''"
+                                                        class="text-danger"
+                                                        >{{
+                                                            error.cmBocaAperturaOral[0]
+                                                        }}</small
+                                                    >
                                                 </div>
                                                 <!-- Dentadura -->
                                                 <div class="col-sm-12">
@@ -751,13 +763,24 @@
                                                             <input
                                                                 disabled
                                                                 type="number"
-                                                                class="form-control"
+                                                                :class="
+                                                                    error.puntuacionNeurologico === ''
+                                                                        ? 'form-control'
+                                                                        : 'form-control is-invalid'
+                                                                "
                                                                 placeholder=""
                                                                 v-model="
                                                                     form.frm_puntuacionNeurologico
                                                                 "
                                                             />
                                                         </div>
+                                                        <small
+                                                            v-if="error.puntuacionNeurologico !== ''"
+                                                            class="text-danger"
+                                                            >{{
+                                                                error.puntuacionNeurologico[0]
+                                                            }}</small
+                                                        >
                                                     </div>
                                                 </div>
                                             </div>
@@ -814,6 +837,10 @@ export default {
                 chk_edentulo: false,
                 chk_protesis: false,
             },
+            error:{
+                cmBocaAperturaOral: "",
+                puntuacionNeurologico: "",
+            },
             form: {
                 frm_idCirugiaProgramada: "",
 
@@ -837,10 +864,10 @@ export default {
                 frm_movilidad_cuello: "b",
 
                 /* Escala de Malla */
-                frm_escala_malla: "",
+                frm_escala_malla: "escala1",
 
                 /* Boca Apertura Oral */
-                frm_cmBocaAperturaOral: "",
+                frm_cmBocaAperturaOral: 0,
 
                 /* Dentadura */
                 frm_dentadura: "b",
@@ -937,12 +964,14 @@ export default {
             }
         },
         validarForm(){
-            if(this.form.frm_cmBocaAperturaOral <1 || this.form.frm_cmBocaAperturaOral > 4){
-                this.flashMessage.show({
+            var validar = false;
+            if(this.form.frm_cmBocaAperturaOral <0 || this.form.frm_cmBocaAperturaOral > 5){
+                validar = true;
+                /* this.flashMessage.show({
                     status: "warning",
-                    title: "Advertencia",
+                    title: "Advertencia con campos vacios.",
                     message:
-                        "El campo cm debe ser mayor o igual a 1, o menor o igual a 4.",
+                        "El campo cm de Boca Apertura Oral, debe  estar entre 0 y 5.",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -953,14 +982,15 @@ export default {
                         }
                     }
                 });
-                return false;
+                return false; */
             }
             if(this.form.frm_puntuacionNeurologico <3 || this.form.frm_puntuacionNeurologico > 15){
-                this.flashMessage.show({
+                validar = true;
+                /* this.flashMessage.show({
                     status: "warning",
-                    title: "Advertencia",
+                    title: "Advertencia con campos vacios.",
                     message:
-                        "El campo puntuación debe sumar ser mayor o igual a 3, o menor o igual a 15.",
+                        "El campo puntuación, debe  estar entre 3 y 15.",
                     clickable: true,
                     time: 5000,
                     icon: "/iconsflashMessage/warning.svg",
@@ -971,9 +1001,66 @@ export default {
                         }
                     }
                 });
-                return false;
+                return false; */
             }
-            return true;
+            //return true;
+            this.error = {
+                cmBocaAperturaOral: "",
+                puntuacionNeurologico: "",
+            }
+            if (validar) {
+                validar = false;
+                let that = this;
+                let url = "/modulos/cirugia/valoracionPreanestecia/validar_campos_examen_fisico";
+                var loader = that.$loading.show();
+                axios
+                    .post(url, this.form)
+                    .then(function(response) {
+                        loader.hide();
+                        //that.recargar_validar = true;
+                        //that.$emit("ValidateFirstStep", true);
+                    })
+                    .catch(error => {
+                        loader.hide();
+                        if (error.response.status == 422) {
+                            if (
+                                error.response.data.errors.frm_cmBocaAperturaOral !=
+                                null
+                            ) {
+                                that.error.cmCuelloCorto =
+                                    error.response.data.errors.frm_cmCuelloCorto;
+                            }
+                            if (
+                                error.response.data.errors.frm_puntuacionNeurologico !=
+                                null
+                            ) {
+                                that.error.puntuacionNeurologico =
+                                    error.response.data.errors.frm_puntuacionNeurologico;
+                            }
+                        } else {
+                            that.flashMessage.show({
+                                status: "error",
+                                title:
+                                    "Error al procesar validarForm",
+                                message:
+                                    "Por favor comuníquese con el administrador. " +
+                                    error,
+                                clickable: true,
+                                time: 0,
+                                icon: "/iconsflashMessage/error.svg",
+                                customStyle: {
+                                    flashMessageStyle: {
+                                        background:
+                                            "linear-gradient(#e66465, #9198e5)"
+                                    }
+                                }
+                            });
+                        }
+                    });
+            }else{
+                this.respuesta_validar == false;
+                return true;
+            }
         },
         //Metodo para cargar el motivo antecedente del paciente mediantes el cod cita
         cargarExamenFisico: function() {

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Modulos\Cirugia\valoracionPreanestecia;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Modulos\Cirugia\valoracionPreanestecia\ConsultarListaCirugiaRequest;
+use App\Http\Requests\Modulos\Cirugia\valoracionPreanestesia\ConsultarListaCirugiaRequest;
 use App\Models\Modulos\Cirugia\CirugiaProgramadas;
 use App\Models\Modulos\Cirugia\valoracionPreanestecia\RevisionSistema;
 use DateTime;
@@ -31,17 +31,11 @@ class ValoracionPreanestesicaApiController extends Controller
     public function cargarListaCirugiaProgramadaPaciente(ConsultarListaCirugiaRequest $request)
     {
         try {
-            /* $datosPaciente = DB::connection('admin_db_sql')
-                ->select("exec SpAdm_CirugiasProgramdasConsultar '2890','','DP' "); */
-
-             $fecha = $request->input('frm_fecha');
-            // $listaCirugiaProgramadaPaciente = DB::connection('admin_db_sql')->select("exec SpAdm_CirugiasProgramdasConsultar '','" . $fecha . "','PO' ");
-
+            $fecha = $request->input('frm_fecha');
 
             $listaCirugiaProgramadaPaciente = CirugiaProgramadas::where('CirProFecPro', $fecha)
-            ->with('pacienteLista','pacienteHospitalizacion')
-            ->get();
-
+                ->with('pacienteLista', 'pacienteHospitalizacion')
+                ->get();
 
             return  response()->json(['listaCirugiaProgramadaPaciente' => $listaCirugiaProgramadaPaciente], 200);
         } catch (Exception $e) {
@@ -61,8 +55,8 @@ class ValoracionPreanestesicaApiController extends Controller
                 $datosPaciente = CirugiaProgramadas::where('SecCirPro', $idSecCirPro)
                     ->with('pacienteLista')
                     ->first();
-                if($datosPaciente != null){
-                    if($datosPaciente->pacienteLista != null){
+                if ($datosPaciente != null) {
+                    if ($datosPaciente->pacienteLista != null) {
                         $edadPaciente = $this->calculaEdad($datosPaciente->pacienteLista->fecha_nacimiento);
                     }
                 }
@@ -78,7 +72,6 @@ class ValoracionPreanestesicaApiController extends Controller
                 ]);
 
                 return $pdf->stream($nombreArchivo);
-
             } catch (Exception $e) {
                 return response()->json(['mensaje' => $e->getMessage()], 500);
             }
@@ -99,32 +92,5 @@ class ValoracionPreanestesicaApiController extends Controller
             $ano_diferencia--;
         return $ano_diferencia;
     }
-    /* Funcion para cargar los datos y generar el formulario para imprimir*/ //=> para el servidor de base de datos del BSPI
-    /* public function cargarPdfFormularioValoracionPreanestesica1($idSecCirPro)
-    {
-        if ($idSecCirPro !== '' && isset($idSecCirPro)) {
-            try {
-                //Variables
-                $nombreArchivo = "FormularioValoracionPreanestesica.pdf";
 
-                $datosValoracionPreanestesica = RevisionSistema::where('SecCirPro', $idSecCirPro)
-                ->where('status', '1')
-                ->with('antecedente','examenFisico', 'paraclinico')
-                ->first();
-
-                $cabezera = DB::connection('admin_db_sql')
-                ->select("exec SpAdm_CirugiasProgramdasConsultar '".$idSecCirPro."','','DP' ");
-
-                $pdf = PDF::loadView('reports.pdf.formulario-valoracion-preanestesica', [
-                    'cabezera' => $cabezera,
-                    'datosValoracionPreanestesica' => $datosValoracionPreanestesica
-                ]);
-                return $pdf->stream($nombreArchivo);
-            } catch (Exception $e) {
-                return response()->json(['mensaje' => $e->getMessage()], 500);
-            }
-        } else {
-            return response()->json(['mensaje' => "No Existe Datos"], 500);
-        }
-    } */
 }

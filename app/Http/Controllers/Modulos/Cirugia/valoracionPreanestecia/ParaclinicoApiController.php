@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Modulos\Cirugia\valoracionPreanestecia;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Modulos\Cirugia\ValoracionPreanestesia\ParaclinicosRequest;
 use App\Models\Modulos\Cirugia\valoracionPreanestecia\Paraclinico;
 use Exception;
 use Illuminate\Http\Request;
@@ -11,6 +12,14 @@ use Illuminate\Support\Facades\DB;
 
 class ParaclinicoApiController extends Controller
 {
+    public function validarCampos(ParaclinicosRequest $request)
+    {
+        try {
+            return  response()->json(['msj' => 'OK'], 200);
+        } catch (Exception $e) {
+            return response()->json(['mensaje' => $e->getMessage()], 500);
+        }
+    }
     /* Funcion para cargar el dato de la tabla Examen Fisico con la condicion del idSecCirPro */
     public function cargarParaclinicoCampo($idSecCirPro)
     {

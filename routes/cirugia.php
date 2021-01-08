@@ -33,6 +33,7 @@ Route::group(['prefix' => 'modulos/cirugia', 'middleware' => ['auth:web'], 'veri
         Route::post('guardar_modificar_antecedente', 'AntecedenteApiController@guardarModificarAntecedente');
 
         /* Examen Fisico */
+        Route::post('validar_campos_examen_fisico', 'ExamenFisicoApiController@validarCampos');
         Route::get('cargar_examen_fisico_campo/{idSecCirPro}', 'ExamenFisicoApiController@cargarExamenFisicoCampo');
         Route::post('guardar_modificar_examen_fisico', 'ExamenFisicoApiController@guardarModificarExamenFisico');
 
