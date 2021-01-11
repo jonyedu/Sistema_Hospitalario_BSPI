@@ -967,43 +967,10 @@ export default {
             var validar = false;
             if(this.form.frm_cmBocaAperturaOral <0 || this.form.frm_cmBocaAperturaOral > 5){
                 validar = true;
-                /* this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia con campos vacios.",
-                    message:
-                        "El campo cm de Boca Apertura Oral, debe  estar entre 0 y 5.",
-                    clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                });
-                return false; */
             }
             if(this.form.frm_puntuacionNeurologico <3 || this.form.frm_puntuacionNeurologico > 15){
                 validar = true;
-                /* this.flashMessage.show({
-                    status: "warning",
-                    title: "Advertencia con campos vacios.",
-                    message:
-                        "El campo puntuación, debe  estar entre 3 y 15.",
-                    clickable: true,
-                    time: 5000,
-                    icon: "/iconsflashMessage/warning.svg",
-                    customStyle: {
-                        flashMessageStyle: {
-                            background:
-                                "linear-gradient(#e66465, #9198e5)"
-                        }
-                    }
-                });
-                return false; */
             }
-            //return true;
             this.error = {
                 cmBocaAperturaOral: "",
                 puntuacionNeurologico: "",
@@ -1017,8 +984,6 @@ export default {
                     .post(url, this.form)
                     .then(function(response) {
                         loader.hide();
-                        //that.recargar_validar = true;
-                        //that.$emit("ValidateFirstStep", true);
                     })
                     .catch(error => {
                         loader.hide();
@@ -1067,7 +1032,6 @@ export default {
             let that = this;
             let url =
                 "/modulos/cirugia/valoracionPreanestecia/cargar_examen_fisico_campo/" +that.$props.idSecCirPro;
-            //var loader = that.$loading.show();
             axios
                 .get(url)
                 .then(function(response) {
@@ -1099,17 +1063,6 @@ export default {
 
                         /* Escala de MallaMPATI */
                         that.frm_escala_malla = response.data.examenFisico.escala_malla;
-                        /* that.chk.chk_clase1 = +response.data.examenFisico.clase1;
-                        that.form.frm_clase1 = +response.data.examenFisico.clase1;
-
-                        that.chk.chk_clase2 = +response.data.examenFisico.clase2;
-                        that.form.frm_clase2 = +response.data.examenFisico.clase2;
-
-                        that.chk.chk_clase3 = +response.data.examenFisico.clase3;
-                        that.form.frm_clase3 = +response.data.examenFisico.clase3;
-
-                        that.chk.chk_clase4 = +response.data.examenFisico.clase4 ;
-                        that.form.frm_clase4  = +response.data.examenFisico.clase4 ; */
 
                         that.chk.chk_ingurgitacionYugular = +response.data.examenFisico.ingurgitacionYugular;
                         that.form.frm_ingurgitacionYugular = +response.data.examenFisico.ingurgitacionYugular;
@@ -1137,18 +1090,9 @@ export default {
                         that.form.frm_otros = response.data.examenFisico.otros;
 
                         that.form.frm_puntuacionNeurologico = +response.data.examenFisico.puntuacionNeurologico;
-
                     }
-                    //loader.hide()
                 })
                 .catch(error => {
-                    //Errores
-                    //loader.hide();
-                    /* that.$swal({
-                        icon: "error",
-                        title: "Existe un error",
-                        text: error
-                    }); */
                     that.flashMessage.show({
                         status: "error",
                         title: "Error al procesar cargarExamenFisico",
@@ -1178,18 +1122,10 @@ export default {
                 } else {
                     that.mensaje = "Datos guardados correctamente.";
                 }
-                //var loader = that.$loading.show();
                 this.form.frm_idCirugiaProgramada= idSecCirPro;
                 axios
                     .post(url, this.form)
                     .then(function(response) {
-                        //loader.hide();
-                        /* that.$swal({
-                            icon: "success",
-                            title: "Proceso realizado exitosamente",
-                            text: that.mensaje
-                        }); */
-                        //that.cargarAtencionMotivo();
                     })
                     .catch(error => {
                         that.flashMessage.show({
@@ -1207,15 +1143,9 @@ export default {
                                 }
                             }
                         });
-                        //loader.hide();
                     });
             } else {
                 let that = this;
-                /* that.$swal({
-                    icon: "error",
-                    title: "Citas",
-                    text: "Debe seleccionar un paciente"
-                }); */
                 that.flashMessage.show({
                     status: "error",
                     title: "Error al procesar guardarModificar",

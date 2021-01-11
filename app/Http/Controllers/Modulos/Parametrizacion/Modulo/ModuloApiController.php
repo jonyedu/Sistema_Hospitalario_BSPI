@@ -16,6 +16,9 @@ class ModuloApiController extends Controller
         try {
             $menus = SgModulo::where('status', 1)
                 ->with('subModulo')
+                ->with(['subModulo' => function ($i) {
+                    $i->where('status', 1);
+                }])
                 ->orderBy('orden', 'asc')
                 ->get();
             return  response()->json(['menus' => $menus], 200);
@@ -27,7 +30,6 @@ class ModuloApiController extends Controller
     public function cargarModuloTabla()
     {
         try {
-            /* $modulo = DB::select("exec SPSEG_CONSULTAR_GENERAL_MODULO 1,1"); */
             $modulo = SgModulo::where('status', 1)
                 ->orderBy('orden', 'asc')
                 ->get();

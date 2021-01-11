@@ -3,8 +3,11 @@ import { prefix } from "./variables";
 import VueRouter from "vue-router";
 
 //Parametrizacion
+import Usuario from "./components/Modulos/Parametrizacion/Usuario/Usuario";
 import Modulo from "./components/Modulos/Parametrizacion/modulo/Modulo";
+import Perfil from "./components/Modulos/Parametrizacion/Perfil/Perfil";
 import SubModulo from "./components/Modulos/Parametrizacion/sub_modulo/SubModulo";
+import PerfilPorUsuario from "./components/Modulos/Parametrizacion/PerfilPorUsuario/PerfilPorUsuario";
 
 //Cirugia
 import IndexValoracionPreanestesica from "./components/Modulos/Cirugia/valoracionPreanestecia/IndexValoracionPreanestesica";
@@ -23,14 +26,32 @@ export default new VueRouter({
         {
             path:
                 prefijo +
+                "/modulos/parametrizacion/usuario/mostrar_usuario",
+            component: Usuario
+        },
+        {
+            path:
+                prefijo +
                 "/modulos/parametrizacion/modulo/mostrar_modulo",
             component: Modulo
         },
         {
             path:
                 prefijo +
+                "/modulos/parametrizacion/perfil/mostrar_perfil",
+            component: Perfil
+        },
+        {
+            path:
+                prefijo +
                 "/modulos/parametrizacion/sub_modulo/mostrar_sub_modulo",
             component: SubModulo
+        },
+        {
+            path:
+                prefijo +
+                "/modulos/parametrizacion/perfil_por_usuario/mostrar_perfil_por_usuario",
+            component: PerfilPorUsuario
         },
         //Cirugia
         {
@@ -54,7 +75,7 @@ export default new VueRouter({
         {
             path:
                 prefijo +
-                "/modulos/cirugia/registro_tiempo",
+                "/modulos/cirugia/registro_tiempo/mostrar_registro_tiempo",
             component: IndexRegistroTiempo,
         },
         {

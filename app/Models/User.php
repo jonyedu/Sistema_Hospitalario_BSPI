@@ -80,7 +80,7 @@ class User extends Authenticatable
 
     public function seguridadMedico()
     {
-        return $this->hasOne('App\Models\Modulos\Seguridad\Usuarios\SeguridadMedico', 'id', 'codigo_usu');
+        return $this->hasOne('App\Models\Modulos\Seguridad\Usuario\SeguridadMedico', 'id', 'codigo_usu');
     }
 
 

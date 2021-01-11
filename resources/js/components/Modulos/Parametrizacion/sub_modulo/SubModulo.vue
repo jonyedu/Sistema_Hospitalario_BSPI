@@ -15,7 +15,7 @@
                                 >
                             </li>
                             <li><p>/</p></li>
-                            <li><p style="margin-left:10px">SubModulo</p></li>
+                            <li><p style="margin-left:10px">Mantenimiento de SubModulo</p></li>
                         </ol>
                     </div>
                     &nbsp;

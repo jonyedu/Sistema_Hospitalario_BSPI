@@ -15,7 +15,7 @@
                                 >
                             </li>
                             <li><p>/</p></li>
-                            <li><p style="margin-left:10px">Modulo</p></li>
+                            <li><p style="margin-left:10px">Mantenimiento del Modulo</p></li>
                         </ol>
                     </div>
                     &nbsp;
